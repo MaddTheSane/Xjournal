@@ -1,0 +1,69 @@
+{
+    IBClasses = (
+        {CLASS = AddressBookDropView; LANGUAGE = ObjC; SUPERCLASS = NSImageView; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = KeyHandlingTableView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = XJStripedTableView; 
+        }, 
+        {
+            ACTIONS = {
+                addBirthdayToiCal = id; 
+                addFriend = id; 
+                addGroup = id; 
+                cancelBirthdaySheet = id; 
+                cancelSheet = id; 
+                commitBirthdaySheet = id; 
+                commitSheet = id; 
+                deleteSelectedFriend = id; 
+                deleteSelectedGroup = id; 
+                launchAddressBook = id; 
+                openSelectedFriendsJournal = id; 
+                openSelectedFriendsProfile = id; 
+                removeAddressCard = id; 
+                removeSelectedFriendFromGroup = id; 
+                saveDocument = id; 
+                setBackgroundColor = id; 
+                setForegroundColor = id; 
+                setViewType = id; 
+                switchAccount = id; 
+            }; 
+            CLASS = XJFriendsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                accountToolbarPopup = NSPopUpButton; 
+                accountToolbarView = NSView; 
+                addressBookClearButton = id; 
+                addressBookImageWell = id; 
+                addressBookName = id; 
+                bgWell = NSColorWell; 
+                calChooserSheet = NSWindow; 
+                calPopup = NSPopUpButton; 
+                currentSheet = id; 
+                dateOfBirth = NSTextField; 
+                fgWell = NSColorWell; 
+                friendField = id; 
+                friendSheet = id; 
+                friendsTable = id; 
+                fullName = NSTextField; 
+                groupField = id; 
+                groupSheet = id; 
+                groupTable = id; 
+                iCalButton = NSButton; 
+                recentEntriesView = WebView; 
+                recentSpinner = NSProgressIndicator; 
+                showTypePopUp = NSPopUpButton; 
+                showTypeToolbarView = NSView; 
+                splitView = NSSplitView; 
+                tabs = NSTabView; 
+                userInfoSpinner = NSProgressIndicator; 
+                userInfoView = WebView; 
+                userNameField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = XJStripedTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+    ); 
+    IBVersion = 1; 
+}

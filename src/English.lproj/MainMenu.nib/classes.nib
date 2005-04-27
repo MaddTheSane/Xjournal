@@ -1,0 +1,127 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                logIn = id; 
+                showBookmarkWindow = id; 
+                showFriendsWindow = id; 
+                showGlossaryWindow = id; 
+                showHistoryWindow = id; 
+                showPrefsWindow = id; 
+            }; 
+            CLASS = AppDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {loginPanel = NSWindow; spinner = NSProgressIndicator; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = DockStatusIcon; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addFriend = id; 
+                addGroup = id; 
+                checkForNewVersion = id; 
+                deleteSelectedFriend = id; 
+                deleteSelectedGroup = id; 
+                exportHistory = id; 
+                insertBlockquote = id; 
+                insertBold = id; 
+                insertCenter = id; 
+                insertImage = id; 
+                insertItalic = id; 
+                insertLJComm = id; 
+                insertLJCut = id; 
+                insertLJUser = id; 
+                insertLink = id; 
+                insertUnderline = id; 
+                openChangeNotes = id; 
+                openFriendsJournal = id; 
+                openFriendsPage = id; 
+                openFriendsProfile = id; 
+                openReadMe = id; 
+                openRecent = id; 
+                openSelectedFriendsJournal = id; 
+                openSelectedFriendsProfile = id; 
+                openUserInfo = id; 
+                postEntry = id; 
+                postEntryAndDiscardLocalCopy = id; 
+                saveWindowSize = id; 
+                showInspectorPanel = id; 
+                showMainWindow = id; 
+                showPreviewWindow = id; 
+                toggleDrawer = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                enterSelection = id; 
+                findNext = id; 
+                findPrevious = id; 
+                findTypeChanged = id; 
+                panelFindNext = id; 
+                panelFindNextAndClosePanel = id; 
+                panelFindPrevious = id; 
+                replace = id; 
+                replaceAll = id; 
+                replaceAndFind = id; 
+                showFindPanel = id; 
+            }; 
+            CLASS = OAFindController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                additionalControlsBox = NSBox; 
+                currentPattern = id; 
+                findNextButton = NSButton; 
+                findPanel = NSWindow; 
+                findPreviousButton = NSButton; 
+                findTypeMatrix = NSMatrix; 
+                ignoreCaseButton = NSButton; 
+                regularExpressionControlsView = NSView; 
+                replaceTextForm = NSForm; 
+                searchTextForm = NSForm; 
+                stringControlsView = NSView; 
+                subexpressionPopUp = NSPopUpButton; 
+                wholeWordButton = NSButton; 
+            }; 
+            SUPERCLASS = OFObject; 
+        }, 
+        {CLASS = OBObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = OFObject; LANGUAGE = ObjC; SUPERCLASS = OBObject; }, 
+        {
+            ACTIONS = {
+                checkForUpdate = id; 
+                editLastEntry = id; 
+                logIn = id; 
+                openChangeNotes = id; 
+                openDonate = id; 
+                openReadMe = id; 
+                openXjournalBlog = id; 
+                openXjournalHomePage = id; 
+                showAccountEditWindow = id; 
+                showBirthdayWindow = id; 
+                showBookmarkWindow = id; 
+                showFriendsWindow = id; 
+                showGlossaryWindow = id; 
+                showHistoryWindow = id; 
+                showMainWindow = id; 
+                showPollEditWindow = id; 
+                showPrefsWindow = id; 
+                showShortcutsWindow = id; 
+                switchAccount = id; 
+            }; 
+            CLASS = XJAppDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                accountItem = NSMenuItem; 
+                deleteFriend = NSMenuItem; 
+                deleteFromGroup = NSMenuItem; 
+                loginPanel = NSWindow; 
+                spinner = NSProgressIndicator; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

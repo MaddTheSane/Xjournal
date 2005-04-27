@@ -1,0 +1,24 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {setValueForSender = id; }; 
+            CLASS = XJEntryInspector; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                backdateField = NSTextField; 
+                backdatedChk = NSButton; 
+                friendsTable = NSTableView; 
+                inspectorView = NSView; 
+                noCommentsChk = NSButton; 
+                noEmailChk = NSButton; 
+                preformattedChk = NSButton; 
+                security = NSPopUpButton; 
+                userPicView = NSImageView; 
+                userpic = NSPopUpButton; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

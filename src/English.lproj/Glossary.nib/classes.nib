@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {CLASS = EdgeDockableWindow; LANGUAGE = ObjC; SUPERCLASS = NSPanel; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                copySelectionToClipboard = id; 
+                insertSelection = id; 
+                openLocalGlossary = id; 
+                refresh = id; 
+            }; 
+            CLASS = XJGlossaryWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {outline = NSOutlineView; textView = NSTextView; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = XJStripedOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }
+    ); 
+    IBVersion = 1; 
+}

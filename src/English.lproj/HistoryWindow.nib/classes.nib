@@ -1,0 +1,71 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {webViewClose = id; webViewFocus = id; webViewShow = id; webViewUnfocus = id; }; 
+            CLASS = NSObject; 
+            LANGUAGE = ObjC; 
+        }, 
+        {
+            ACTIONS = {selectText = id; }; 
+            CLASS = WBSearchTextField; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSTextField; 
+        }, 
+        {CLASS = WebBackForwardList; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebDataSource; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebFrame; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebFrameView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = WebHistory; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebHistoryItem; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebPreferences; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                goBack = id; 
+                goForward = id; 
+                makeTextLarger = id; 
+                makeTextSmaller = id; 
+                reload = id; 
+                stopLoading = id; 
+                takeStringURLFrom = id; 
+            }; 
+            CLASS = WebView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {
+                beginHistoryDownload = id; 
+                beginHistoryUpdate = id; 
+                browserChanged = id; 
+                cancelHistoryDownload = id; 
+                clearSearch = id; 
+                deleteSelectedEntry = id; 
+                editSelectionInBrowser = id; 
+                executeSearch = id; 
+                exportHistory = id; 
+                openSelectionInBrowser = id; 
+                setSearchType = id; 
+            }; 
+            CLASS = XJHistoryWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                backButton = NSButton; 
+                browser = NSBrowser; 
+                downloadBar = NSProgressIndicator; 
+                downloadStatus = NSTextField; 
+                downloadTitle = NSTextField; 
+                forwardButton = NSButton; 
+                progressSheet = NSWindow; 
+                searchField = WBSearchTextField; 
+                searchView = NSView; 
+                selectedMenuItem = NSMenuItem; 
+                urlField = NSTextField; 
+                webView = WebView; 
+                wvSpinner = NSProgressIndicator; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}
