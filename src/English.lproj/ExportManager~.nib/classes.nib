@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {cancelExport = id; startExport = id; }; 
+            CLASS = XJExportController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tabs = NSTabView; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,31 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {addQuestion = id; }; 
+            CLASS = XJPollController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                editMasterView = id; 
+                multipleAnswerColumn = NSTableColumn; 
+                multipleAnswerController = NSArrayController; 
+                multipleEditView = id; 
+                multipleQuestionField = NSTextField; 
+                multipleTypePopup = NSPopUpButton; 
+                questionController = NSArrayController; 
+                scaleEditView = id; 
+                scaleEndTextField = NSTextField; 
+                scaleQuestionTextField = NSTextField; 
+                scaleStartTextField = NSTextField; 
+                scaleStepTextField = NSTextField; 
+                splitView = NSSplitView; 
+                textEditView = id; 
+                textMaxLengthTextField = NSTextField; 
+                textQuestionTextField = NSTextField; 
+                textSizeTextField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

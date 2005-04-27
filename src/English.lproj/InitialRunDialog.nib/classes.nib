@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {continueWithLaunch = id; quit = id; }; 
+            CLASS = XJInitialLoginController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {password = NSTextField; username = NSTextField; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

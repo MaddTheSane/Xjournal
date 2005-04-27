@@ -1,0 +1,26 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                insertBlockquote = id; 
+                insertBold = id; 
+                insertCenter = id; 
+                insertImage = id; 
+                insertItalic = id; 
+                insertLJCut = id; 
+                insertLJUser = id; 
+                insertLink = id; 
+                insertUnderline = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = XJEditToolsController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

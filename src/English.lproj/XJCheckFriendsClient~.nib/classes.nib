@@ -1,0 +1,31 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {restoreDefaults = id; setValueForSender = id; }; 
+            CLASS = OAPreferenceClient; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {controlBox = NSView; initialFirstResponder = NSView; lastKeyView = NSView; }; 
+            SUPERCLASS = OFObject; 
+        }, 
+        {CLASS = OBObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = OFObject; LANGUAGE = ObjC; SUPERCLASS = OBObject; }, 
+        {
+            ACTIONS = {openAccountWindow = id; }; 
+            CLASS = XJCheckFriendsClient; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                checkFriends = NSButton; 
+                checkType = NSMatrix; 
+                openFriends = NSButton; 
+                playSound = NSButton; 
+                selectedFriendsTable = NSTableView; 
+                showDialog = NSButton; 
+                showDock = NSButton; 
+                soundSelection = NSPopUpButton; 
+            }; 
+            SUPERCLASS = OAPreferenceClient; 
+        }
+    ); 
+    IBVersion = 1; 
+}

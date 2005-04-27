@@ -1,0 +1,63 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {webViewClose = id; webViewFocus = id; webViewShow = id; webViewUnfocus = id; }; 
+            CLASS = NSObject; 
+            LANGUAGE = ObjC; 
+        }, 
+        {CLASS = SourceListTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {
+            ACTIONS = {selectText = id; }; 
+            CLASS = WBSearchTextField; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSTextField; 
+        }, 
+        {CLASS = WebBackForwardList; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebDataSource; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebFrame; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebFrameView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = WebHistory; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebHistoryItem; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = WebPreferences; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                goBack = id; 
+                goForward = id; 
+                makeTextLarger = id; 
+                makeTextSmaller = id; 
+                reload = id; 
+                stopLoading = id; 
+                takeStringURLFrom = id; 
+            }; 
+            CLASS = WebView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {search = id; }; 
+            CLASS = XJHistoryFilterArrayController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
+            ACTIONS = {editEntry = id; skSearch = id; }; 
+            CLASS = XJHistoryWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                arrayController = XJHistoryFilterArrayController; 
+                backButton = NSButton; 
+                dateColumn = NSTableColumn; 
+                forwardButton = NSButton; 
+                searchField = NSSearchField; 
+                searchView = NSView; 
+                subjectColumn = NSTableColumn; 
+                table = NSTableView; 
+                urlField = NSTextField; 
+                webView = WebView; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

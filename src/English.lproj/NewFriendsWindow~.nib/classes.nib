@@ -1,0 +1,89 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                clearSearchField = id; 
+                deselectAll = id; 
+                editInAddressBook = id; 
+                selectInAddressBook = id; 
+            }; 
+            CLASS = ABPeoplePickerView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = AddressBookDropView; LANGUAGE = ObjC; SUPERCLASS = NSImageView; }, 
+        {
+            CLASS = DNDArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tableView = NSTableView; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {search = id; }; 
+            CLASS = FriendsFilterArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {table = NSTableView; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
+            CLASS = KeyHandlingTableView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = XJStripedTableView; 
+        }, 
+        {
+            CLASS = MetaItemArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tableView = NSTableView; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {CLASS = SourceListImageCell; LANGUAGE = ObjC; SUPERCLASS = NSImageCell; }, 
+        {CLASS = SourceListTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {
+            ACTIONS = {
+                addBirthdayToiCal = id; 
+                addFriend = id; 
+                addGroup = id; 
+                cancelABSelectSheet = id; 
+                cancelBirthdaySheet = id; 
+                cancelSheet = id; 
+                commitABSelectSheet = id; 
+                commitBirthdaySheet = id; 
+                commitSheet = id; 
+                deleteFriendButtonAction = id; 
+                deleteSelectedFriend = id; 
+                deleteSelectedGroup = id; 
+                launchAddressBook = id; 
+                openSelectedFriendsJournal = id; 
+                openSelectedFriendsProfile = id; 
+                removeAddressCard = id; 
+                removeSelectedFriendFromGroup = id; 
+                runABSelectSheet = id; 
+                saveDocument = id; 
+            }; 
+            CLASS = XJFriendsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                abPicker = ABPeoplePickerView; 
+                abSheet = NSWindow; 
+                addressBookClearButton = NSButton; 
+                calChooserSheet = NSWindow; 
+                calPopup = NSPopUpButton; 
+                currentSheet = id; 
+                friendField = id; 
+                friendSheet = id; 
+                friendsForSelectedGroupController = FriendsFilterArrayController; 
+                friendsTable = id; 
+                groupController = MetaItemArrayController; 
+                groupField = id; 
+                groupSheet = id; 
+                groupTable = id; 
+                iCalButton = NSButton; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = XJRoundedTableCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {CLASS = XJStripedTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+    ); 
+    IBVersion = 1; 
+}
