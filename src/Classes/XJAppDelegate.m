@@ -56,12 +56,25 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 @implementation XJAppDelegate
 + (void)initialize {
-	[XJPreferences installPreferences];
-	[[ILCrashReporter defaultReporter]
+	if([self isExpired]) {
+		int result = NSRunAlertPanel(@"Beta Version Expired",
+									 @"This beta version of Xjournal has expired.  Please visit the Xjournal home page to download a newer version.",
+									 @"Quit", @"Open Home Page", nil);
+		
+		if(result == NSAlertAlternateReturn) {
+			[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://speirs.org/xjournal"]];
+		}
+		
+		[NSApp terminate: self];
+	}
+	else {
+		[XJPreferences installPreferences];
+		[[ILCrashReporter defaultReporter]
 	launchReporterForCompany:@"Fraser Speirs"
 				  reportAddr:@"fraser@speirs.org"];
-	
-	[XJGrowlManager defaultManager];
+		
+		[XJGrowlManager defaultManager];
+	}
 }
 
 - (void)awakeFromNib
@@ -116,18 +129,18 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 		[[XJDonationWindowController alloc] init];
 	
 	syncManager = [[XJHistorySyncManager alloc] init];
-
-    [self updateDockMenu];
-
-    // Reopen palettes that were open
-    if([PREFS boolForKey: XJBookmarkWindowIsOpenPreference])
-        [self showBookmarkWindow: self];
-
-    if([PREFS boolForKey: XJGlossaryWindowIsOpenPreference])
-        [self showGlossaryWindow: self];
-
-    [[CCFSoftwareUpdate sharedUpdateChecker] runScheduledUpdateCheckIfRequired];
-    [NSApp setServicesProvider:self];
+	
+	[self updateDockMenu];
+	
+	// Reopen palettes that were open
+	if([PREFS boolForKey: XJBookmarkWindowIsOpenPreference])
+		[self showBookmarkWindow: self];
+	
+	if([PREFS boolForKey: XJGlossaryWindowIsOpenPreference])
+		[self showGlossaryWindow: self];
+	
+	[[CCFSoftwareUpdate sharedUpdateChecker] runScheduledUpdateCheckIfRequired];
+	[NSApp setServicesProvider:self];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -498,5 +511,17 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [doc showWindows];
     [doc updateChangeCount:NSChangeDone];
     [entry release];
+}
+
++ (BOOL)isExpired {
+	// Do expiry check
+	NSCalendarDate *expiry = [NSCalendarDate dateWithYear: 2005
+													month: 6
+													  day: 30
+													 hour: 12
+												   minute: 00
+												   second: 00 timeZone: nil];
+	
+	return [expiry timeIntervalSinceNow] <= 0;
 }
 @end
