@@ -25,10 +25,36 @@
 			<string>Xjournal Entry</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.speirs.xjournal.entry</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>XJDocument</string>
 		</dict>
 	</array>
+	<key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.data</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>Xjournal Entry</string>
+            <key>UTTypeIdentifier</key>
+            <string>org.speirs.xjournal.entry</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>xjournal</string>
+                </array>
+            <key>com.apple.ostype</key>
+            <string>T78q</string>
+            </dict>
+        </dict>
+    </array>
 	<key>CFBundleExecutable</key>
 	<string>Xjournal</string>
 	<key>CFBundleGetInfoString</key>

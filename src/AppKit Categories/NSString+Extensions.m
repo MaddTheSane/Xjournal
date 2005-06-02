@@ -518,3 +518,22 @@
     return (NO);
 } /*stringIsEmpty*/
 @end
+
+@implementation NSString (Technorati)
+- (NSString *)technoratiTags {
+	NSMutableString *html = [[NSMutableString alloc] init];
+	NSArray *tagnames = [[self componentsSeparatedByString: @" "] sortedArrayUsingSelector: @selector(compare:)];
+	
+	NSEnumerator *en = [tagnames objectEnumerator];
+	NSString *tag;
+	while(tag = [en nextObject]) {
+		if([html length] != 0)
+			[html appendString: @" "];
+		
+		NSString *tagString = [NSString stringWithFormat: @"<a rel=\"tag\" href=\"http://www.technorati.com/tags/%@\">%@</a>", tag, tag];
+		[html appendString: tagString];
+	}
+	
+	return [html autorelease];
+}
+@end

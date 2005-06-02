@@ -7,8 +7,7 @@
 //
 
 #import "XJGrowlManager.h"
-#import <GrowlAppBridge/GrowlApplicationBridge.h>
-#import <GrowlAppBridge/GrowlDefines.h>
+#import <Growl/GrowlApplicationBridge.h>
 
 NSString * const XJGrowlAccountDidLogInNotification =   @"Account Logged In";
 NSString * const XJGrowlAccountDidNotLogInNotification =   @"Account Login Failed";
@@ -32,19 +31,19 @@ static XJGrowlManager *singleton;
 	self = [super init];
 	if(self) {
 		// Pull in Growl if we have it.
-		id gab = NSClassFromString(@"GrowlAppBridge");
-		NSLog(@"Got GAB: %@", gab);
-		if(gab != nil) {
-			[self setGrowlAvailable: [gab launchGrowlIfInstalledNotifyingTarget: self
-																	   selector: @selector(growlIsReady:)
-																		context: nil]];		
-		}
-		else {
-			[self setGrowlAvailable: NO];
-		}
-		NSLog(@"Growl available: %d", [self growlAvailable]);
+		[GrowlApplicationBridge setGrowlDelegate: self];
 	}
 	return self;
+}
+
+- (NSDictionary *) registrationDictionaryForGrowl {
+	NSArray *allNotifications = [NSArray arrayWithObjects: XJGrowlAccountDidLogInNotification, 
+		XJGrowlAccountDidNotLogInNotification,
+		XJEntryDidPostGrowlNotification,
+		XJFriendsUpdatedGrowlNotification, nil];
+
+	return [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: allNotifications, allNotifications, nil]
+									   forKeys: [NSArray arrayWithObjects: GROWL_NOTIFICATIONS_DEFAULT, GROWL_NOTIFICATIONS_ALL, nil]];
 }
 
 
@@ -53,26 +52,16 @@ static XJGrowlManager *singleton;
 	   notificationName: (NSString *)notificationName
 				 sticky: (BOOL)isSticky
 {
-	if([self growlAvailable] && growlReady) {
-		NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-		[dict setObject: @"Xjournal" forKey: GROWL_APP_NAME];
-		[dict setObject: notificationName forKey: GROWL_NOTIFICATION_NAME];
-		[dict setObject: title forKey: GROWL_NOTIFICATION_TITLE];
-		[dict setObject: description forKey: GROWL_NOTIFICATION_DESCRIPTION];
-		[dict setObject: [[NSApp applicationIconImage] TIFFRepresentation] forKey: GROWL_NOTIFICATION_ICON];
-		[dict setObject: [NSNumber numberWithBool: isSticky] forKey: GROWL_NOTIFICATION_STICKY];
-		
-		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:GROWL_NOTIFICATION 
-																	   object:nil 
-																	 userInfo: dict
-														   deliverImmediately:YES];
-	}
-	else {
-		NSLog(@"Growl unavailable: %@", description);
-	}
+	[GrowlApplicationBridge notifyWithTitle: title
+								description: description
+						   notificationName: notificationName
+								   iconData: [[NSApp applicationIconImage] TIFFRepresentation]
+								   priority: 0
+								   isSticky: isSticky
+							   clickContext: nil];
 }
 
-- (void)growlIsReady: (NSNotification *)note {
+/*- (void)growlIsReady: (NSNotification *)note {
 	growlReady = YES;	
 	NSLog(@"Got growlIsReady Notification");
 	
@@ -90,7 +79,7 @@ static XJGrowlManager *singleton;
 																   object: nil
 																 userInfo: regDict];
 }
-
+*/
 // =========================================================== 
 // - growlAvailable:
 // =========================================================== 

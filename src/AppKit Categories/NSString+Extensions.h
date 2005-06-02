@@ -78,3 +78,7 @@
 - (NSString *) ellipsizeAfterNWords: (int) n;
 + (BOOL) stringIsEmpty: (NSString *) s;
 @end
+
+@interface NSString (Technorati)
+- (NSString *)technoratiTags;
+@end

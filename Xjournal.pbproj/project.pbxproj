@@ -35,6 +35,7 @@
 //104
 		1058C7A6FEA54F5311CA2CBB = {
 			children = (
+				5F62AC3F084B50A600F61290,
 				5FE8A4680805C6C900F85E06,
 				5F0680E607FB420B00B9806F,
 				5F548C6907133C3C00515272,
@@ -2300,6 +2301,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5F62AC55084B50AE00F61290,
 				5FE8A4700805C74400F85E06,
 				5F0680F407FB421300B9806F,
 				5FE0BAB60727ACC8005E402E,
@@ -2332,6 +2334,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 5F62AD39084B5D8000F61290;
+					ProjectRef = 5F62AD38084B5D8000F61290;
+				},
+				{
 					ProductGroup = 5FFD4AFA0768E00F00EB1EC6;
 					ProjectRef = 5FFD4AF90768E00F00EB1EC6;
 				},
@@ -2347,6 +2353,7 @@
 		};
 		2A37F4AAFDCFA73011CA2CEA = {
 			children = (
+				5F62AD38084B5D8000F61290,
 				5FFD4AF60768E00800EB1EC6,
 				5FC324A9076507DF00AF0C49,
 				5F94D7B907639DE300EFCE4A,
@@ -3100,6 +3107,156 @@
 			settings = {
 			};
 		};
+		5F62ABE2084B414000F61290 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = XJExportController.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5F62ABE3084B414000F61290 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = XJExportController.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5F62ABE4084B414000F61290 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = XJExportManager.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5F62ABE5084B414000F61290 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = XJExportManager.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5F62ABE6084B414000F61290 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = XJExportPluginProtocol.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5F62ABE7084B414000F61290 = {
+			fileRef = 5F62ABE2084B414000F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62ABE8084B414000F61290 = {
+			fileRef = 5F62ABE3084B414000F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62ABE9084B414000F61290 = {
+			fileRef = 5F62ABE4084B414000F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62ABEA084B414000F61290 = {
+			fileRef = 5F62ABE5084B414000F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62ABEB084B414000F61290 = {
+			fileRef = 5F62ABE6084B414000F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62AC3F084B50A600F61290 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Growl.framework;
+			path = "../../../../Frameworks/growl/growl-0.6.1/build/Growl.framework";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		5F62AC40084B50A600F61290 = {
+			fileRef = 5F62AC3F084B50A600F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62AC55084B50AE00F61290 = {
+			fileRef = 5F62AC3F084B50A600F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5F62AD38084B5D8000F61290 = {
+			isa = PBXFileReference;
+			lastKnownFileType = "wrapper.pb-project";
+			name = XjournalImporter.xcode;
+			path = ../../XjournalImporter/XjournalImporter.xcode;
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		5F62AD39084B5D8000F61290 = {
+			children = (
+				5F62AD3A084B5D8000F61290,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5F62AD3A084B5D8000F61290 = {
+			fileType = wrapper.cfbundle;
+			isa = PBXReferenceProxy;
+			path = XjournalImporter.mdimporter;
+			refType = 3;
+			remoteRef = 5F62AD3B084B5D8000F61290;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5F62AD3B084B5D8000F61290 = {
+			containerPortal = 5F62AD38084B5D8000F61290;
+			isa = PBXContainerItemProxy;
+			proxyType = 2;
+			remoteGlobalIDString = 8D576316048677EA00EA77CD;
+			remoteInfo = XjournalImporter;
+		};
+		5F62AD3E084B5D8E00F61290 = {
+			containerPortal = 5F62AD38084B5D8000F61290;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
+			remoteInfo = XjournalImporter;
+		};
+		5F62AD3F084B5D8E00F61290 = {
+			isa = PBXTargetDependency;
+			name = "XjournalImporter (from XjournalImporter.xcode)";
+			targetProxy = 5F62AD3E084B5D8E00F61290;
+		};
+		5F62AD40084B5D9C00F61290 = {
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Spotlight;
+			dstSubfolderSpec = 1;
+			files = (
+				5F62AD47084B5E0200F61290,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F62AD47084B5E0200F61290 = {
+			fileRef = 5F62AD3A084B5D8000F61290;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		5F64FF370713DC660036D5BF = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -3454,12 +3611,6 @@
 			refType = 3;
 			remoteRef = 5FAB4BF107803E26006E15F9;
 			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5FAB4BF007803E24006E15F9 = {
-			fileRef = 5FAB4BEF07803E1D006E15F9;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		5FAB4BF107803E26006E15F9 = {
 			containerPortal = 5FAB4BED07803E1D006E15F9;
@@ -3885,18 +4036,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		5FD3B3C2078C015700524043 = {
-			containerPortal = 5FAB4BED07803E1D006E15F9;
-			isa = PBXContainerItemProxy;
-			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
-			remoteInfo = XJiPodNotesExport;
-		};
-		5FD3B3C3078C015700524043 = {
-			isa = PBXTargetDependency;
-			name = "XJiPodNotesExport (from XJiPodNotesExport.xcode)";
-			targetProxy = 5FD3B3C2078C015700524043;
 		};
 		5FD445E7076F2AAA0075794A = {
 			children = (
@@ -4328,59 +4467,17 @@
 		};
 		5FFD4A52076863F600EB1EC6 = {
 			children = (
+				5F62ABE2084B414000F61290,
+				5F62ABE3084B414000F61290,
+				5F62ABE4084B414000F61290,
+				5F62ABE5084B414000F61290,
+				5F62ABE6084B414000F61290,
 				5FFD4A6107688BA800EB1EC6,
-				5FFD4A6907688ECE00EB1EC6,
-				5FFD4A6A07688ECE00EB1EC6,
-				5FFD4A550768650100EB1EC6,
-				5FFD4A560768650100EB1EC6,
-				5FFD4A530768640700EB1EC6,
 			);
 			isa = PBXGroup;
 			name = Export;
 			refType = 4;
 			sourceTree = "<group>";
-		};
-		5FFD4A530768640700EB1EC6 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = XJExportPluginProtocol.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FFD4A540768640700EB1EC6 = {
-			fileRef = 5FFD4A530768640700EB1EC6;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		5FFD4A550768650100EB1EC6 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = XJExportManager.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FFD4A560768650100EB1EC6 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.objc;
-			path = XJExportManager.m;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FFD4A570768650100EB1EC6 = {
-			fileRef = 5FFD4A550768650100EB1EC6;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		5FFD4A580768650100EB1EC6 = {
-			fileRef = 5FFD4A560768650100EB1EC6;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		5FFD4A6107688BA800EB1EC6 = {
 			children = (
@@ -4402,34 +4499,6 @@
 		};
 		5FFD4A6307688BA800EB1EC6 = {
 			fileRef = 5FFD4A6107688BA800EB1EC6;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		5FFD4A6907688ECE00EB1EC6 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = XJExportController.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FFD4A6A07688ECE00EB1EC6 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.objc;
-			path = XJExportController.m;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FFD4A6B07688ECE00EB1EC6 = {
-			fileRef = 5FFD4A6907688ECE00EB1EC6;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		5FFD4A6C07688ECE00EB1EC6 = {
-			fileRef = 5FFD4A6A07688ECE00EB1EC6;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -4474,17 +4543,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5FAB4BF007803E24006E15F9,
-				5FFD4B000768E03A00EB1EC6,
 			);
 			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5FFD4B000768E03A00EB1EC6 = {
-			fileRef = 5FFD4AFC0768E01000EB1EC6;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		5FFD4B010768E03C00EB1EC6 = {
 			containerPortal = 5FFD4AF90768E00F00EB1EC6;
@@ -4492,18 +4553,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
 			remoteInfo = XJHTMLExporter;
-		};
-		5FFD4B060768E05D00EB1EC6 = {
-			containerPortal = 5FFD4AF90768E00F00EB1EC6;
-			isa = PBXContainerItemProxy;
-			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
-			remoteInfo = XJHTMLExporter;
-		};
-		5FFD4B070768E05D00EB1EC6 = {
-			isa = PBXTargetDependency;
-			name = "XJHTMLExporter (from XJHTMLExporter.xcode)";
-			targetProxy = 5FFD4B060768E05D00EB1EC6;
 		};
 		5FFF662D076CD26B0017B8FB = {
 			children = (
@@ -4536,12 +4585,13 @@
 				1B870E0604C7EA1400C54147,
 				5FFD4AFF0768E02A00EB1EC6,
 				8D15AC330486D014006FF6A4,
+				5F62AD40084B5D9C00F61290,
 			);
 			buildRules = (
 			);
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 60;
-				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder /Users/fspeirs/Library/Frameworks /Users/fspeirs/Desktop /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter";
+				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder /Users/fspeirs/Library/Frameworks /Users/fspeirs/Desktop /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter /Users/fspeirs/Coding/Frameworks/growl/growl-0.6.1/build";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -4565,8 +4615,7 @@
 				ZERO_LINK = NO;
 			};
 			dependencies = (
-				5FFD4B070768E05D00EB1EC6,
-				5FD3B3C3078C015700524043,
+				5F62AD3F084B5D8E00F61290,
 			);
 			isa = PBXNativeTarget;
 			name = Xjournal;
@@ -4641,11 +4690,11 @@
 				5FC3240B0764EE2800AF0C49,
 				5FC324930765057300AF0C49,
 				5FC324AC076507FA00AF0C49,
-				5FFD4A540768640700EB1EC6,
-				5FFD4A570768650100EB1EC6,
-				5FFD4A6B07688ECE00EB1EC6,
 				5FD445ED076F2AAA0075794A,
 				5FCE7DCC0774C62D000F1DFD,
+				5F62ABE7084B414000F61290,
+				5F62ABE9084B414000F61290,
+				5F62ABEB084B414000F61290,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4831,10 +4880,10 @@
 				5FC3240C0764EE2800AF0C49,
 				5FC324940765057300AF0C49,
 				5FC324AD076507FA00AF0C49,
-				5FFD4A580768650100EB1EC6,
-				5FFD4A6C07688ECE00EB1EC6,
 				5FD445EE076F2AAA0075794A,
 				5FCE7DCD0774C62D000F1DFD,
+				5F62ABE8084B414000F61290,
+				5F62ABEA084B414000F61290,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4859,6 +4908,7 @@
 				5F548C6A07133C3C00515272,
 				5F0680E707FB420B00B9806F,
 				5FE8A4690805C6C900F85E06,
+				5F62AC40084B50A600F61290,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
