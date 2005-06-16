@@ -46,12 +46,12 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>CFBundleSignature</key>
 	<string>Xjrl</string>
 	<key>CFBundleVersion</key>
-	<string>331</string>
-	<key>CFBundleHelpBookName</key>
+	<string>332</string>
+	<key>CFBundleHelpBookName</key>
 	<string>Xjournal Help</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>

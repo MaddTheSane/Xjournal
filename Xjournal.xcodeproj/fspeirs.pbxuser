@@ -2,9 +2,9 @@
 {
 	089C1660FE840EACC02AAC07 /* English */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
 			sepNavSelRange = "{107, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{166, 231}, {750, 558}}";
 		};
 	};
@@ -328,10 +328,10 @@
 	};
 	1BBD899A04B0189F003882CD /* XJDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1364, 15750}}";
-			sepNavSelRange = "{11438, 0}";
-			sepNavVisRect = "{{0, 4497}, {705, 429}}";
-			sepNavWindowFrame = "{{245, 229}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1364, 15764}}";
+			sepNavSelRange = "{5743, 0}";
+			sepNavVisRect = "{{0, 2153}, {894, 581}}";
+			sepNavWindowFrame = "{{245, 77}, {939, 710}}";
 		};
 	};
 	1BBD899B04B0189F003882CD /* XJFriendsController.h */ = {
@@ -406,7 +406,7 @@
 		activeBuildConfigurationName = Deployment;
 		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA /* Development */;
 		activeExecutable = 5F97973F05B969EC0082C2C7 /* Xjournal */;
-		activeTarget = 8D15AC270486D014006FF6A4 /* Xjournal */;
+		activeTarget = 5F0C941D06BC04EA0082A48B /* Disk Image */;
 		addToTargets = (
 			8D15AC270486D014006FF6A4 /* Xjournal */,
 		);
@@ -1244,9 +1244,9 @@
 	};
 	2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {705, 1666}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 2170}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 1223}, {705, 443}}";
+			sepNavVisRect = "{{0, 424}, {705, 444}}";
 			sepNavWindowFrame = "{{107, 231}, {750, 558}}";
 		};
 	};
