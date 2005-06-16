@@ -110,8 +110,9 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
  */
 - (void)applicationDidFinishLaunching: (NSNotification *)note
 {
-	if([XJPreferences showDonationWindow])
+	/*if([XJPreferences showDonationWindow])
 		[[XJDonationWindowController alloc] init];
+	*/
 	
     XJAccountManager *acctManager = [XJAccountManager defaultManager];
     // Check that we've got a username to log into

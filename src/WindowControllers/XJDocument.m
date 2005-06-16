@@ -173,9 +173,12 @@
     // Sync the UI up to the state of the Entry object
     if([entry subject] != nil) {
         [theSubjectField setStringValue: [entry subject]];
-		[theTagField setStringValue: [entry tags]];
         [[self window] setTitle: [entry subject]];
     }
+	
+	if([entry tags] != nil) {
+		[theTagField setStringValue: [entry tags]];
+	}
     
     if([entry content] != nil)
         [theTextView setString: [entry content]];
