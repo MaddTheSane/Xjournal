@@ -7,7 +7,6 @@
 //
 
 #import "XJPreferences.h"
-#import "KeyChain.h"
 #import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"

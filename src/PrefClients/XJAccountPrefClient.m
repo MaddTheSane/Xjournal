@@ -7,7 +7,6 @@
 //
 
 #import "XJAccountPrefClient.h"
-#import "KeyChain.h"
 #import "XJPreferences.h"
 
 @implementation XJAccountPrefClient

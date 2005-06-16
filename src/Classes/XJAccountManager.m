@@ -9,7 +9,7 @@
 #import "XJAccountManager.h"
 #import <OmniAppKit/OmniAppKit.h>
 #import "XJPreferences.h"
-#import "KeyChain.h"
+#import "XJKeyChain.h"
 #import "NetworkConfig.h"
 #import "XJAccountManager-Rendezvous.h"
 
@@ -70,8 +70,10 @@ static XJAccountManager *manager;
 
     [PREFS setObject: [accounts allKeys] forKey: kAccountsPrefKey];
     
-    // Put password in keychain
-    [[KeyChain defaultKeyChain] setGenericPassword: password forService: [@"Xjournal: " stringByAppendingString: name] account:name];
+    // Put password in XJKeyChain
+	[[XJKeyChain defaultKeyChain] setGenericPassword: password 
+										forService: [@"Xjournal: " stringByAppendingString: name] 
+										   account:name];
 
     [passwordCache setObject: password forKey: name];
     
@@ -85,7 +87,7 @@ static XJAccountManager *manager;
 	[[NSNotificationCenter defaultCenter] postNotificationName:XJAccountWillRemoveNotification object: acctToRelease];
 
     [accounts removeObjectForKey: name];
-    [[KeyChain defaultKeyChain] removeGenericPasswordForService: [@"Xjournal: " stringByAppendingString: name] account: name];
+    [[XJKeyChain defaultKeyChain] removeGenericPasswordForService: [@"Xjournal: " stringByAppendingString: name] account: name];
 
     [PREFS setObject: [accounts allKeys] forKey: kAccountsPrefKey];
 
@@ -127,7 +129,7 @@ static XJAccountManager *manager;
 {
     NSString *passwd = [passwordCache objectForKey: username];
     if(!passwd) {
-        passwd = [[KeyChain defaultKeyChain] genericPasswordForService: [@"Xjournal: " stringByAppendingString: username] account: username];
+        passwd = [[XJKeyChain defaultKeyChain] genericPasswordForService: [@"Xjournal: " stringByAppendingString: username] account: username];
         [passwordCache setObject: passwd forKey: username];
     }
     return passwd;
@@ -135,8 +137,8 @@ static XJAccountManager *manager;
 
 - (void)setPassword: (NSString *) passwd forUsername: (NSString *)username
 {
-    [[KeyChain defaultKeyChain] removeGenericPasswordForService: [@"Xjournal: " stringByAppendingString: username] account: username];
-    [[KeyChain defaultKeyChain] setGenericPassword: passwd forService: [@"Xjournal: " stringByAppendingString: username] account:username];
+    [[XJKeyChain defaultKeyChain] removeGenericPasswordForService: [@"Xjournal: " stringByAppendingString: username] account: username];
+    [[XJKeyChain defaultKeyChain] setGenericPassword: passwd forService: [@"Xjournal: " stringByAppendingString: username] account:username];
 
     [passwordCache setObject: passwd forKey: username];
 }

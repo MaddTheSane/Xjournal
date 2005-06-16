@@ -73,7 +73,10 @@
     [dictionary setIntValue: _itemID forKey: kItemIDKey];
     [dictionary setIntValue: _aNum forKey: kANumKey];
     
-    
+    // Tags
+	if([self tags])
+		[dictionary setObject: [self tags] forKey: @"Tags"];
+	
     // Set the current version of the file
     [dictionary setIntValue: kCurrentFileFormatVersion forKey: kCurrentFileFormatVersionKey];
 
@@ -113,6 +116,9 @@
     // Encode item ID
     _itemID = [dict intForKey: kItemIDKey];
     _aNum = [dict intForKey: kANumKey];
+	
+	// Tags
+	[self setTags: [dict objectForKey: @"Tags"]];
 }
 
 - (NSString *)metadataHTML

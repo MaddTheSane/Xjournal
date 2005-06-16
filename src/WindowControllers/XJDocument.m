@@ -173,6 +173,7 @@
     // Sync the UI up to the state of the Entry object
     if([entry subject] != nil) {
         [theSubjectField setStringValue: [entry subject]];
+		[theTagField setStringValue: [entry tags]];
         [[self window] setTitle: [entry subject]];
     }
     
@@ -336,6 +337,9 @@
         }
         [entry setCurrentMusic: [[aNotification object] stringValue]];        
     }
+	else if([aNotification object] == theTagField) {
+		[entry setTags: [[aNotification object] stringValue]];
+	}
 }
 
 - (void)controlTextDidChange: (NSNotification *)aNotification

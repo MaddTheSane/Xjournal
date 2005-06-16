@@ -27,11 +27,8 @@
                 closeSheet = id; 
                 commitSheet = id; 
                 detectMusicNow = id; 
-                enableAlign = id; 
-                enableBorder = id; 
                 enableOKButton = id; 
-                enableSize = id; 
-                enableSpace = id; 
+                getImageDimensions = id; 
                 insertBlockquote = id; 
                 insertBold = id; 
                 insertCenter = id; 
@@ -52,12 +49,10 @@
             CLASS = XJDocument; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                alignCheck = NSButton; 
                 alignPop = NSPopUpButton; 
                 altField = NSTextField; 
                 backdateField = NSTextField; 
                 backdatedChk = NSButton; 
-                borderCheck = NSButton; 
                 borderSize = NSTextField; 
                 commSheet = NSWindow; 
                 "comm_OKButton" = NSButton; 
@@ -70,10 +65,10 @@
                 hrefSheet = NSWindow; 
                 htmlPreview = WebView; 
                 htmlPreviewWindow = NSWindow; 
+                "html_LinkTextField" = NSTextField; 
                 "html_TitleField" = NSTextField; 
                 "html_hrefField" = NSTextField; 
                 "html_targetCombo" = NSComboBox; 
-                iTMSIndicator = NSImageView; 
                 imgSheet = NSWindow; 
                 journalPop = NSPopUpButton; 
                 moods = NSComboBox; 
@@ -81,10 +76,8 @@
                 noEmailChk = NSButton; 
                 preformattedChk = NSButton; 
                 security = NSPopUpButton; 
-                sizeCheck = NSButton; 
                 sizeHeight = NSTextField; 
                 sizeWidth = NSTextField; 
-                spaceCheck = NSButton; 
                 spaceHeight = NSTextField; 
                 spaceWidth = NSTextField; 
                 spinner = NSProgressIndicator; 
@@ -92,6 +85,7 @@
                 statusField = NSTextField; 
                 theMusicField = NSTextField; 
                 theSubjectField = NSTextField; 
+                theTagField = NSTextField; 
                 theTextView = NSTextView; 
                 userPicView = NSImageView; 
                 userSheet = NSWindow; 

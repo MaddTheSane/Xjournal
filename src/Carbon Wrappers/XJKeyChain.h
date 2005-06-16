@@ -11,11 +11,11 @@
 #import <CoreServices/CoreServices.h>
 #import <Carbon/Carbon.h>
 
-@interface KeyChain : NSObject {
+@interface XJKeyChain : NSObject {
     unsigned	maxPasswordLength ;
 }
 
-+ (KeyChain*)defaultKeyChain;
++ (XJKeyChain*)defaultKeyChain;
 
 - (void)setGenericPassword:(NSString*)password forService:(NSString *)service account:(NSString*)account;
 - (NSString*)genericPasswordForService:(NSString *)service account:(NSString*)account;

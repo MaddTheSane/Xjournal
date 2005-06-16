@@ -7,19 +7,19 @@
 //  Released under GPL.  You know how to get a copy.
 //
 
-#import "KeyChain.h"
+#import "XJKeyChain.h"
 
-static KeyChain* defaultKeyChain = nil;
+static XJKeyChain* defaultKeyChain = nil;
 
-@interface KeyChain (KeyChainPrivate)
+@interface XJKeyChain (KeyChainPrivate)
 
 -(KCItemRef)_genericPasswordReferenceForService:(NSString *)service account:(NSString*)account;
 
 @end
 
-@implementation KeyChain
+@implementation XJKeyChain
 
-+ (KeyChain*) defaultKeyChain {
++ (XJKeyChain*) defaultKeyChain {
 	return ( defaultKeyChain ? defaultKeyChain : [[[self alloc] init] autorelease] );
 }
 
@@ -95,7 +95,7 @@ static KeyChain* defaultKeyChain = nil;
 
 @end
 
-@implementation KeyChain (KeyChainPrivate)
+@implementation XJKeyChain (KeyChainPrivate)
 
 - (KCItemRef)_genericPasswordReferenceForService:(NSString *)service account:(NSString*)account
 {
