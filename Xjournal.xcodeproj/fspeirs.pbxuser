@@ -406,7 +406,7 @@
 		activeBuildConfigurationName = Deployment;
 		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA /* Development */;
 		activeExecutable = 5F97973F05B969EC0082C2C7 /* Xjournal */;
-		activeTarget = 8D15AC270486D014006FF6A4 /* Xjournal */;
+		activeTarget = 5F0C941D06BC04EA0082A48B /* Disk Image */;
 		addToTargets = (
 			8D15AC270486D014006FF6A4 /* Xjournal */,
 		);
@@ -1233,11 +1233,6 @@
 			};
 			PBXWorkspaceStateSaveDate = 140646047;
 		};
-		perUserProjectItems = {
-			5FD24D360862209A0007E0C5 /* PBXTextBookmark */ = 5FD24D360862209A0007E0C5 /* PBXTextBookmark */;
-			5FD24D3C086220A60007E0C5 /* PBXTextBookmark */ = 5FD24D3C086220A60007E0C5 /* PBXTextBookmark */;
-			5FD24D41086220B40007E0C5 /* PBXTextBookmark */ = 5FD24D41086220B40007E0C5 /* PBXTextBookmark */;
-		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
 			SYMROOT = /Users/fspeirs/Coding/Projects/Xjournal/Build;
@@ -1376,33 +1371,6 @@
 			sepNavVisRect = "{{0, 0}, {975, 558}}";
 			sepNavWindowFrame = "{{143, 123}, {1020, 687}}";
 		};
-	};
-	5FD24D360862209A0007E0C5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
-		rLen = 8;
-		rLoc = 4832;
-		rType = 0;
-	};
-	5FD24D3C086220A60007E0C5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
-		name = Donation;
-		rLen = 8;
-		rLoc = 4832;
-		rType = 0;
-		vrLen = 715;
-		vrLoc = 4504;
-	};
-	5FD24D41086220B40007E0C5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
-		name = Donation;
-		rLen = 8;
-		rLoc = 4832;
-		rType = 0;
-		vrLen = 715;
-		vrLoc = 4504;
 	};
 	8D15AC270486D014006FF6A4 /* Xjournal */ = {
 		activeExec = 0;
