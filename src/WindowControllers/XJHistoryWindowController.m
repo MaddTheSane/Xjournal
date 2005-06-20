@@ -832,7 +832,8 @@ enum {
                 if(downloadFailed) {
                     terminateDownloadThread = NO;
                     NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadFailedNotification
-                                                                           object: exc
+                                                                           object: [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: exc, currentDay, nil]
+																											   forKeys: [NSArray arrayWithObjects: @"exception", @"day", nil]]
                                                                          userInfo: nil];
                     
                     [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:)
@@ -888,7 +889,8 @@ enum {
 
 - (void)historyDownloadFailed: (NSNotification *)note
 {
-    id exception = [note object];
+    id exception = [[note object] objectForKey: @"exception"];
+	XJDay *day = [[note object] objectForKey: @"day"];
     
     userHasDeclinedDownload = YES;
     downloadInProgress = NO;
@@ -902,7 +904,7 @@ enum {
     NSLog(@"historyDownloadFailed: %@", [exception name]);
     
     if([[exception name] isEqualToString: @"LJServerError"])
-        [self showEncodingErrorSheet];
+        [self showEncodingErrorSheetForDate: [day calendarDate]];
     else
         [self showGenericErrorSheet: [exception reason]];
 }
@@ -1084,7 +1086,7 @@ enum {
 @implementation XJHistoryWindowController (PrivateAPI)
 
 // Information sheet
-- (void)showEncodingErrorSheet
+- (void)showEncodingErrorSheetForDate: (NSCalendarDate *)date
 {
     NSBeginCriticalAlertSheet(@"Text Encoding Error",
                               @"OK",
@@ -1095,7 +1097,7 @@ enum {
                               @selector(sheetDidEnd:returnCode:contextInfo:),
                               @selector(sheetDidDismiss:returnCode:contextInfo:),
                               @"textEncoding",
-                              NSLocalizedString(@"There is a problem with your text encoding.  Please visit your LiveJournal information page and set the \"Auto Convert Older Entries From\" setting appropriately.", @""));
+                              [NSString stringWithFormat: @"There is a problem with your text encoding in an entry on %@.  Please visit your LiveJournal information page and set the \"Auto Convert Older Entries From\" setting appropriately.", [date descriptionWithLocale: nil]]);
 }
 
 - (void)showGenericErrorSheet: (NSString *)message

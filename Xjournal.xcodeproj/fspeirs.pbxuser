@@ -122,16 +122,17 @@
 	};
 	1BBD893D04B0189F003882CD /* XJDay.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1194, 895}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 938}}";
 			sepNavSelRange = "{962, 38}";
-			sepNavVisRect = "{{0, 408}, {1194, 473}}";
+			sepNavVisRect = "{{0, 0}, {1011, 736}}";
+			sepNavWindowFrame = "{{74, 8}, {1056, 865}}";
 		};
 	};
 	1BBD893E04B0189F003882CD /* XJDay.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1194, 3709}}";
-			sepNavSelRange = "{6167, 0}";
-			sepNavVisRect = "{{0, 2957}, {1194, 473}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 3878}}";
+			sepNavSelRange = "{667, 0}";
+			sepNavVisRect = "{{0, 0}, {1011, 736}}";
 		};
 	};
 	1BBD894604B0189F003882CD /* NetworkConfig.h */ = {
@@ -374,9 +375,9 @@
 	};
 	1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1364, 18984}}";
-			sepNavSelRange = "{30097, 5}";
-			sepNavVisRect = "{{0, 11216}, {919, 654}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1364, 19012}}";
+			sepNavSelRange = "{33704, 5}";
+			sepNavVisRect = "{{0, 12085}, {1011, 736}}";
 			sepNavWindowFrame = "{{265, 94}, {964, 784}}";
 		};
 	};
@@ -406,7 +407,7 @@
 		activeBuildConfigurationName = Deployment;
 		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA /* Development */;
 		activeExecutable = 5F97973F05B969EC0082C2C7 /* Xjournal */;
-		activeTarget = 5F0C941D06BC04EA0082A48B /* Disk Image */;
+		activeTarget = 8D15AC270486D014006FF6A4 /* Xjournal */;
 		addToTargets = (
 			8D15AC270486D014006FF6A4 /* Xjournal */,
 		);
@@ -575,7 +576,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 140646047;
+			PBXPerProjectTemplateStateSaveDate = 140938541;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1231,11 +1232,12 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 131 912 747 0 0 1440 878 ";
 			};
-			PBXWorkspaceStateSaveDate = 140646047;
+			PBXWorkspaceStateSaveDate = 140938541;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
-			SYMROOT = /Users/fspeirs/Coding/Projects/Xjournal/Build;
+			OBJROOT = "/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Intermediates";
+			SYMROOT = "/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build";
 		};
 	};
 	2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {

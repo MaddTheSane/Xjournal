@@ -217,6 +217,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -253,16 +255,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>2A37F4AAFDCFA73011CA2CEA</string>
-								<string>1B870E0904C7EA5900C54147</string>
+								<string>2A37F4C3FDCFA73011CA2CEA</string>
+								<string>1058C7A6FEA54F5311CA2CBB</string>
 								<string>19C28FB0FE9D524F11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>5FD24D42086220C40007E0C5</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>18</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -331,8 +332,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -369,9 +368,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5FD24D2A08621BC30007E0C5</string>
+				<string>5FE37EB708649A7C00B6C34F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5FD24D2B08621BC30007E0C5</string>
+				<string>5FE37EB808649A7C00B6C34F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -505,10 +504,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>5F6324FC083C8A61007F6AF9</string>
-		<string>/Users/fspeirs/Coding/Projects/Xjournal/wc/Xjournal-1.0/Xjournal.xcodeproj</string>
+		<string>/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/Xjournal-1.0/Xjournal.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>96 240 846 638 0 0 1440 878 </string>
@@ -554,7 +552,7 @@
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 466}, {1032, 280}}</string>
+								<string>{{0, 92}, {1032, 654}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -592,7 +590,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>5F6324FC083C8A61007F6AF9</string>
-				<string>5FD24CDA086217B60007E0C5</string>
+				<string>5FE37E9008644C4F00B6C34F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -906,8 +904,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {367, 168}}</string>
-											<string>{{0, 173}, {367, 270}}</string>
+											<string>{{0, 0}, {491, 168}}</string>
+											<string>{{0, 173}, {491, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -956,9 +954,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>5FD24CEA086218590007E0C5</string>
+				<string>5FE37EB308649A7900B6C34F</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>5FD24CEB086218590007E0C5</string>
+				<string>5FE37EB408649A7900B6C34F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>

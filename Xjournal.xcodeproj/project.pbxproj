@@ -289,6 +289,14 @@
 			outputFiles = (
 			);
 		};
+		5FE37A58086441A600B6C34F /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
 /* End PBXBuildRule section */
 
 /* Begin PBXBuildStyle section */
@@ -597,7 +605,7 @@
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
 		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
 		5F562CB906B99296004629AE /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = src/English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5F6325A9083C922C007F6AF9 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.0.9.7.dylib; sourceTree = "<absolute>"; };
+		5F6325A9083C922C007F6AF9 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = imagesize.tiff; path = src/Art/imagesize.tiff; sourceTree = "<group>"; };
 		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
 		5F7C1ADC05EC1BB2004DBCFC /* LJFriend-FOAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-FOAF.m"; sourceTree = "<group>"; };
@@ -609,11 +617,11 @@
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		5FBF479D08138DEE00829423 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		5FD244F2086208220007E0C5 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../../Build/Development/LJKit.framework; sourceTree = SOURCE_ROOT; };
-		5FD244F3086208220007E0C5 /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = ../../Build/Development/OmniAppKit.framework; sourceTree = SOURCE_ROOT; };
-		5FD244F4086208220007E0C5 /* OmniBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniBase.framework; path = ../../Build/Development/OmniBase.framework; sourceTree = SOURCE_ROOT; };
-		5FD244F5086208220007E0C5 /* OmniFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniFoundation.framework; path = ../../Build/Development/OmniFoundation.framework; sourceTree = SOURCE_ROOT; };
-		5FD2465F086208990007E0C5 /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../../Build/Development/AGRegex.framework; sourceTree = SOURCE_ROOT; };
+		5FD244F2086208220007E0C5 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../build/Deployment/LJKit.framework; sourceTree = SOURCE_ROOT; };
+		5FD244F3086208220007E0C5 /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = ../build/Deployment/OmniAppKit.framework; sourceTree = SOURCE_ROOT; };
+		5FD244F4086208220007E0C5 /* OmniBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniBase.framework; path = ../build/Deployment/OmniBase.framework; sourceTree = SOURCE_ROOT; };
+		5FD244F5086208220007E0C5 /* OmniFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniFoundation.framework; path = ../build/Deployment/OmniFoundation.framework; sourceTree = SOURCE_ROOT; };
+		5FD2465F086208990007E0C5 /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../build/Deployment/AGRegex.framework; sourceTree = SOURCE_ROOT; };
 		5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJKeyChain.h; sourceTree = "<group>"; };
 		5FD248B508620D520007E0C5 /* XJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJKeyChain.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
@@ -1177,6 +1185,7 @@
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 			);
 			buildRules = (
+				5FE37A58086441A600B6C34F /* PBXBuildRule */,
 				5F632510083C8D5A007F6AF9 /* PBXBuildRule */,
 				5F63250F083C8D4A007F6AF9 /* PBXBuildRule */,
 			);
@@ -1692,11 +1701,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/Build,
-					"$(SRCROOT)/../../BuildFolder/Development",
-					"$(SRCROOT)/../../Build/Development",
-				);
+				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1735,11 +1740,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/Build,
-					"$(SRCROOT)/../../BuildFolder/Development",
-					"$(SRCROOT)/../../Build/Development",
-				);
+				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1773,11 +1774,7 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DiskImageEncryption = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/Build,
-					"$(SRCROOT)/../../BuildFolder/Development",
-					"$(SRCROOT)/../../Build/Development",
-				);
+				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1809,11 +1806,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1.0.4;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/Build,
-					"$(SRCROOT)/../../BuildFolder/Development",
-					"$(SRCROOT)/../../Build/Development",
-				);
+				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
