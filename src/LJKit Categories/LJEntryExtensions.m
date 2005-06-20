@@ -128,25 +128,26 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     if([self subject]) {
-        [meta appendString: @"<strong>Subject:</strong>&nbsp;&nbsp;"];
-        [meta appendString: [self subject]];
-        [meta appendString: @"<br>"];
+        [meta appendString: [NSString stringWithFormat: @"<strong>Subject:</strong>&nbsp;%@<br>", [self subject]]];
     }
-    [meta appendString: @"<strong>Date:</strong>&nbsp;&nbsp;"];
-    [meta appendString: [[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@ %%p", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]];
+	
+    [meta appendString: [NSString stringWithFormat: @"<strong>Date:</strong>&nbsp;%@<br>",
+		[[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@ %%p", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]]];
 
     if([self currentMood]) {
-        [meta appendString: @"<br><strong>Mood:</strong>&nbsp;&nbsp;"];
-        [meta appendString: [self currentMood]];
+        [meta appendString: [NSString stringWithFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMood]]];
     }
 
     if([self currentMusic]) {
-        [meta appendString: @"<br><strong>Music:</strong>&nbsp;&nbsp;"];
-        [meta appendString: [self currentMusic]];
+        [meta appendString: [NSString stringWithFormat: @"<strong>Music:</strong>&nbsp;%@<br>", [self currentMusic]]];
     }
-    [meta appendString: @"<br><br>"];
 
-    return [meta autorelease];
+	if([self tags]) {
+		[meta appendString: [NSString stringWithFormat: @"<strong>Tags: </strong>%@<br>", [self tags]]];
+	}
+
+    [meta appendString: @"<br>"];
+	return [meta autorelease];
 }
 
 - (NSMutableDictionary *) makeMutableDictionary: (NSDictionary *)input

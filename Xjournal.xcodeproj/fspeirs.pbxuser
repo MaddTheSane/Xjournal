@@ -375,10 +375,10 @@
 	};
 	1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1364, 19012}}";
-			sepNavSelRange = "{33704, 5}";
-			sepNavVisRect = "{{0, 12085}, {1011, 736}}";
-			sepNavWindowFrame = "{{265, 94}, {964, 784}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1694, 19012}}";
+			sepNavSelRange = "{41755, 0}";
+			sepNavVisRect = "{{0, 15067}, {1011, 736}}";
+			sepNavWindowFrame = "{{265, 13}, {1056, 865}}";
 		};
 	};
 	1BBD89A204B0189F003882CD /* XJMainWindowController.m */ = {
