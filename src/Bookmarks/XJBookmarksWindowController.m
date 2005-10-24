@@ -7,6 +7,7 @@
 //
 
 #import "XJBookmarksWindowController.h"
+#import <OmniBase/OmniBase.h>
 #import "XJPreferences.h"
 
 #define kBookmarkAutosaveName @"kBookmarkAutosaveName"
@@ -38,7 +39,7 @@
  */
 - (void)applicationWillTerminate: (NSNotification *)note
 {
-    [PREFS setBool: [[self window] isVisible] forKey: XJBookmarkWindowIsOpenPreference];
+    [PREFS setBool: [[self window] isVisible] forKey: kBookmarkWindowOpen];
 }
 
 /*

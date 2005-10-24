@@ -39,15 +39,23 @@ enum {
 - (int)viewingPermissions;
 - (void)setViewingPermissions: (int)newPerms;
 
-- (NSMutableArray *)questions;
-- (void)setQuestions:(NSMutableArray *)aQuestions;
+// How many questions in the poll?
+- (int)numberOfQuestions;
 
-	///////  questions  ///////
-- (unsigned int)countOfQuestions;
-- (id)objectInQuestionsAtIndex:(unsigned int)index;
-- (void)insertObject:(id)anObject inQuestionsAtIndex:(unsigned int)index;
-- (void)removeObjectFromQuestionsAtIndex:(unsigned int)index;
-- (void)replaceObjectInQuestionsAtIndex:(unsigned int)index withObject:(id)anObject;
+// Add a question to the poll
+- (void)addQuestion: (LJPollQuestion *)newQ;
+
+// Get the question at the index?
+- (LJPollQuestion *)questionAtIndex: (int)idx;
+
+// Insert the question at the given index
+- (void)insertQuestion: (LJPollQuestion *)question atIndex:(int)idx;
+
+// Move a question from idx to newIdx
+- (void)moveQuestionAtIndex: (int)idx toIndex: (int)newIdx;
+
+// Remove the question at idx
+- (void)deleteQuestionAtIndex: (int)idx;
 
 /*
  Get the HTML representation of the entire poll.  This method

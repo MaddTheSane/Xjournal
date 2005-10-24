@@ -19,7 +19,7 @@
 
 - (NSString *)uniqueId;
 - (NSString *)chatURL;
-- (NSData *)abImage;
+- (NSImage *)abImage;
 - (NSString *)abName;
 - (void)addAddressCardAndEdit: (BOOL)shouldEdit;
 

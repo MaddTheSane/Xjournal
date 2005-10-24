@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CCFSoftwareUpdateURL</key>
-	<string>http://www.speirs.org/xjournal/CCFSoftwareUpdateTest.plist</string>
+	<string>http://www.speirs.org/xjournal/CCFSoftwareUpdate.plist</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDocumentTypes</key>
@@ -25,36 +25,10 @@
 			<string>Xjournal Entry</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.speirs.xjournal.entry</string>
-			</array>
 			<key>NSDocumentClass</key>
 			<string>XJDocument</string>
 		</dict>
 	</array>
-	<key>UTExportedTypeDeclarations</key>
-    <array>
-        <dict>
-            <key>UTTypeConformsTo</key>
-            <array>
-                <string>public.data</string>
-            </array>
-            <key>UTTypeDescription</key>
-            <string>Xjournal Entry</string>
-            <key>UTTypeIdentifier</key>
-            <string>org.speirs.xjournal.entry</string>
-            <key>UTTypeTagSpecification</key>
-            <dict>
-                <key>public.filename-extension</key>
-                <array>
-                    <string>xjournal</string>
-                </array>
-            <key>com.apple.ostype</key>
-            <string>T78q</string>
-            </dict>
-        </dict>
-    </array>
 	<key>CFBundleExecutable</key>
 	<string>Xjournal</string>
 	<key>CFBundleGetInfoString</key>
@@ -72,19 +46,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.0.4</string>
 	<key>CFBundleSignature</key>
 	<string>Xjrl</string>
 	<key>CFBundleVersion</key>
-	<string>321</string>
-	<key>CFBundleHelpBookName</key>
+	<string>332</string>
+	<key>CFBundleHelpBookName</key>
 	<string>Xjournal Help</string>
-	<key>NSAppleScriptEnabled</key>
-	<string>YES</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>XJApplication</string>
+	<string>OAApplication</string>
 	<key>NSServices</key>
 	<array>
 		<dict>
@@ -104,5 +76,157 @@
 			</array>
 		</dict>
 	</array>
+	<key>OFRegistrations</key>
+	<dict>
+		<key>OAPreferenceController</key>
+		<dict>
+			<key>XJAccountPrefClient</key>
+			<dict>
+				<key>category</key>
+				<string>Basic</string>
+				<key>defaultsDictionary</key>
+				<dict>
+					<key>XJDefaultSecurityLevel</key>
+					<integer>0</integer>
+					<key>XJMusicShouldAutoDetect</key>
+					<true/>
+					<key>XJPostingDate</key>
+					<real>1</real>
+					<key>XJShouldAutoLogin</key>
+					<true/>
+					<key>XJShouldOpenDrawerInNewWindow</key>
+					<true/>
+					<key>XJShouldShowPostingConfirmationDialog</key>
+					<true/>
+					<key>XJShowDonationWindow</key>
+					<true/>
+					<key>XJSpellCheckByDefault</key>
+					<true/>
+					<key>XJUnsavedOption</key>
+					<integer>0</integer>
+				</dict>
+				<key>icon</key>
+				<string>GenPreferences</string>
+				<key>identifier</key>
+				<string>Account</string>
+				<key>nib</key>
+				<string>XJAccountPrefClient</string>
+				<key>ordering</key>
+				<integer>0</integer>
+				<key>title</key>
+				<string>General</string>
+			</dict>
+			<key>XJCheckFriendsClient</key>
+			<dict>
+				<key>category</key>
+				<string>Basic</string>
+				<key>defaultsDictionary</key>
+				<dict>
+					<key>XJCheckFriendsGroupType</key>
+					<integer>0</integer>
+					<key>XJCheckFriendsPlaySound</key>
+					<false/>
+					<key>XJCheckFriendsShouldCheck</key>
+					<true/>
+					<key>XJCheckFriendsShouldOpenFriendsPage</key>
+					<true/>
+					<key>XJCheckFriendsShouldShowDialog</key>
+					<false/>
+					<key>XJCheckFriendsShouldShowDockIcon</key>
+					<true/>
+				</dict>
+				<key>icon</key>
+				<string>XJCheckFriendsClient</string>
+				<key>identifier</key>
+				<string>XJCheckFriendsClient</string>
+				<key>nib</key>
+				<string>XJCheckFriendsClient</string>
+				<key>ordering</key>
+				<real>1</real>
+				<key>title</key>
+				<string>Friend Checking</string>
+			</dict>
+			<key>XJHistoryPreferenceClient</key>
+			<dict>
+				<key>category</key>
+				<string>Basic</string>
+				<key>defaultsDictionary</key>
+				<dict>
+					<key>XJHistoryOpenLinksInApp</key>
+					<true/>
+				</dict>
+				<key>icon</key>
+				<string>History</string>
+				<key>identifier</key>
+				<string>XJHistoryClient</string>
+				<key>nib</key>
+				<string>XJHistoryPrefsClient</string>
+				<key>ordering</key>
+				<real>4</real>
+				<key>title</key>
+				<string>History</string>
+			</dict>
+			<key>XJMusicPrefClient</key>
+			<dict>
+				<key>category</key>
+				<string>Basic</string>
+				<key>defaultsDictionary</key>
+				<dict>
+					<key>XJLinkMusicToStore</key>
+					<false/>
+					<key>XJMusicAlbumPrefix</key>
+					<string></string>
+					<key>XJMusicAlbumSuffix</key>
+					<string></string>
+					<key>XJMusicArtistPrefix</key>
+					<string></string>
+					<key>XJMusicArtistSuffix</key>
+					<string></string>
+					<key>XJMusicSeparator</key>
+					<string> - </string>
+					<key>XJMusicShouldAutoDetect</key>
+					<false/>
+					<key>XJMusicTrackPrefix</key>
+					<string></string>
+					<key>XJiTMSLinkPrefix</key>
+					<string>&lt;span class="xj_itms"&gt;&lt;a href="http://www.itunes.com"&gt;&lt;img src="http://ax.phobos.apple.com.edgesuite.net/images/iTunes.gif" border="0"&gt;&lt;/a&gt;</string>
+					<key>XJiTMSLinkSuffix</key>
+					<string>&lt;/span&gt;</string>
+				</dict>
+				<key>icon</key>
+				<string>cd</string>
+				<key>identifer</key>
+				<string>MusicPref</string>
+				<key>nib</key>
+				<string>XJMusicPrefClient</string>
+				<key>ordering</key>
+				<real>2</real>
+				<key>title</key>
+				<string>Music</string>
+			</dict>
+			<key>XJSoftwareUpdatePrefClient</key>
+			<dict>
+				<key>category</key>
+				<string>Basic</string>
+				<key>defaultsDictionary</key>
+				<dict>
+					<key>CCFSoftwareUpdateAutoCheck</key>
+					<true/>
+					<key>CCFSoftwareUpdateInterval</key>
+					<real>1</real>
+				</dict>
+				<key>icon</key>
+				<string>OSUPreferences</string>
+				<key>identifier</key>
+				<string>XJSUClient</string>
+				<key>nib</key>
+				<string>XJSUPreferences</string>
+				<key>ordering</key>
+				<real>4</real>
+				<key>title</key>
+				<string>Update</string>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

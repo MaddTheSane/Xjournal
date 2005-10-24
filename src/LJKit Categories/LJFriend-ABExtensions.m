@@ -28,12 +28,7 @@
 
     [record setValue: [self username] forProperty: kLJUsernameKey];
     [book save];
-	
-	[self willChangeValueForKey: @"abName"];
-    [self didChangeValueForKey: @"abName"];
-
-    [self willChangeValueForKey: @"abImage"];
-	[self didChangeValueForKey: @"abImage"];
+    
 }
 
 - (void)unassociateABRecord
@@ -59,13 +54,13 @@
         return nil;
 }
 
-- (NSData *)abImage
+- (NSImage *)abImage
 {
     ABRecord *rec = [self addressBookRecord];
     if([rec isKindOfClass: [ABPerson class]]) {
         NSData *imageData = [(ABPerson *)rec imageData];
         NSImage *img = [[NSImage alloc] initWithData: imageData];
-        return [img TIFFRepresentation]; // May still be nil
+        return [img autorelease]; // May still be nil
     }
     return nil;
 }

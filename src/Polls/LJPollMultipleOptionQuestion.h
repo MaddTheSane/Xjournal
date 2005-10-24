@@ -33,8 +33,29 @@ enum {
 - (int)type;
 - (void)setType:(int)newType;
 
-- (NSMutableArray *)answers;
-- (void)setAnswers:(NSMutableArray *)anAnswers;
+// Returns the number of answers to this question
+- (int)numberOfAnswers;
+
+// Adds an answer to this question
+- (void)addAnswer:(NSString *)answer;
+
+// Insert the question at the given index
+- (void)insertAnswer: (NSString *)answer atIndex:(int)idx;
+
+// Returns the answer at idx
+- (NSString *)answerAtIndex: (int)idx;
+
+// Modifies the answer at idx to reflect the given string
+- (void)setAnswer:(NSString *)answer atIndex: (int)idx;
+
+// Removes the answer at idx from the question
+- (void)deleteAnswerAtIndex: (int)idx;
+
+// Deletes all the answers
+- (void)deleteAllAnswers;
+
+// Moves the answer at oldIdx to newIdx
+- (void)moveAnswerAtIndex: (int) idx toIndex: (int) newIdx;
 
     // Memento
 - (NSDictionary *) memento;

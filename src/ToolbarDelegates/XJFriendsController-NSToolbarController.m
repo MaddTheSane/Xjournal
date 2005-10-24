@@ -19,6 +19,8 @@
 #define kSaveChangesToolbarItemIdentifier @"kSaveChangesToolbarItemIdentifier"
 #define kAddressBookToolbarItemIdentifier @"kAddressBookToolbarItemIdentifier"
 #define kAddToAddressBookToolbarItemIdentifier @"kAddToAddressBookToolbarItemIdentifier"
+#define kFriendsAccountSelectionPopup @"kFriendsAccountSelectionPopup"
+#define kFriendsViewTypeSelectionPopup @"kFriendsViewTypeSelectionPopup"
 #define kRefreshFriendsToolbarItemIdentifier @"kRefreshFriendsToolbarItemIdentifier"
 
 @implementation XJFriendsController (NSToolbarController)
@@ -112,6 +114,33 @@
             [item setToolTip: NSLocalizedString(@"Add to Address Book", @"")];
             [item setImage: [NSImage imageNamed: @"addToAddressBook"]];
         }
+        else if([itemIdentifier isEqualToString: kFriendsAccountSelectionPopup]) {
+            [item setView: accountToolbarView];
+            [item setLabel: NSLocalizedString(@"Account", @"")];
+            [item setPaletteLabel: NSLocalizedString(@"Account", @"")];
+            [item setToolTip: NSLocalizedString(@"Selects an account to work with", @"")];
+            [item setMinSize: NSMakeSize(130, 26)];
+            [item setMaxSize: NSMakeSize(130, 26)];
+
+            NSMenuItem *menuRep = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"Account", @"") action: nil keyEquivalent: @""];
+            [menuRep setSubmenu: [accountToolbarPopup menu]];
+            [item setMenuFormRepresentation: menuRep];
+            [menuRep release];
+            
+        }
+        else if([itemIdentifier isEqualToString: kFriendsViewTypeSelectionPopup]) {
+            [item setView: showTypeToolbarView];
+            [item setLabel: NSLocalizedString(@"View", @"")];
+            [item setPaletteLabel: NSLocalizedString(@"View", @"")];
+            [item setToolTip: NSLocalizedString(@"Filter out Users or Communities", @"")];
+            [item setMinSize: NSMakeSize(130, 26)];
+            [item setMaxSize: NSMakeSize(130, 26)];
+            
+            NSMenuItem *menuRep = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"View", @"") action: nil keyEquivalent: @""];
+            [menuRep setSubmenu: [accountToolbarPopup menu]];
+            [item setMenuFormRepresentation: menuRep];
+            [menuRep release];
+        }
 		else if([itemIdentifier isEqualToString: kRefreshFriendsToolbarItemIdentifier]) {
 			[item setLabel: NSLocalizedString(@"Reload", @"")];
             [item setPaletteLabel: NSLocalizedString(@"Reload Friends List", @"")];
@@ -129,10 +158,16 @@
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
     return [NSArray arrayWithObjects:
+        kAddFriendToolbarItemIdentifier,
+        kAddGroupToolbarItemIdentifier,
         kChatToolbarItemIdentifier,
+        kDeleteFriendToolbarItemIdentifier,
+        kDeleteGroupToolbarItemIdentifier,
         kSaveChangesToolbarItemIdentifier,
         kAddToAddressBookToolbarItemIdentifier,
         kAddressBookToolbarItemIdentifier,
+        kFriendsAccountSelectionPopup,
+        kFriendsViewTypeSelectionPopup,
 		kRefreshFriendsToolbarItemIdentifier,
         NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarSeparatorItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
 }
@@ -142,10 +177,44 @@
     return [NSArray arrayWithObjects:
         kSaveChangesToolbarItemIdentifier,
         NSToolbarSeparatorItemIdentifier,
+        kAddFriendToolbarItemIdentifier,
+        kAddGroupToolbarItemIdentifier,
+        kDeleteFriendToolbarItemIdentifier,
+        kDeleteGroupToolbarItemIdentifier,
+        NSToolbarSeparatorItemIdentifier,
+        kFriendsAccountSelectionPopup,
+        kFriendsViewTypeSelectionPopup,
+        NSToolbarFlexibleSpaceItemIdentifier,
         kAddToAddressBookToolbarItemIdentifier,
         kAddressBookToolbarItemIdentifier,
         kChatToolbarItemIdentifier,
 		kRefreshFriendsToolbarItemIdentifier,
         nil];
+}
+
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+{
+    if([[theItem itemIdentifier] isEqualToString: kChatToolbarItemIdentifier]) {
+        LJFriend *selectedFriend = [self selectedFriend];
+        if(!selectedFriend) return NO;
+        
+        return [[self selectedFriend] chatURL] != nil;
+    }
+    else if([[theItem itemIdentifier] isEqualToString: kDeleteFriendToolbarItemIdentifier]) {
+        if(![self allFriendsIsSelected]) {
+            [theItem setLabel: NSLocalizedString(@"Remove from Group", @"")];
+            [theItem setAction: @selector(removeSelectedFriendFromGroup:)];
+            return [self canRemoveFriendFromGroup];
+        }
+        else {
+            [theItem setLabel: NSLocalizedString(@"Remove Friend", @"")];
+            [theItem setAction: @selector(deleteSelectedFriend:)];
+            return [self canDeleteFriend];
+        }
+    }
+    else if([[theItem itemIdentifier] isEqualToString: kDeleteGroupToolbarItemIdentifier]) {
+        return [self canDeleteGroup];
+    }
+    return YES;
 }
 @end

@@ -10,10 +10,6 @@
 
 
 @implementation LJPoll
-+ (void)initialize {
-	NSArray *keys = [NSArray arrayWithObjects: @"votingPermissions", @"viewingPermissions", @"name", @"questions", nil];
-	[self setKeys: keys triggerChangeNotificationsForDependentKey: @"htmlRepresentation"];
-}
 
 - (id)init
 {
@@ -22,7 +18,7 @@
     
     questions = [[NSMutableArray arrayWithCapacity: 30] retain];
     name = @"NewPoll";
-	
+
     return self;
 }
 
@@ -36,7 +32,9 @@
 - (NSString *)name { return name; }
 - (void)setName: (NSString *)newName
 {
-    name = [newName copy];
+    [newName retain];
+    [name release];
+    name = newName;
 }
 
 - (int)votingPermissions { return whoVote; }
@@ -45,62 +43,54 @@
 - (int)viewingPermissions { return whoView; }
 - (void)setViewingPermissions: (int)newPerms { whoView = newPerms; }
 
-	//=========================================================== 
-	// - questions:
-	//=========================================================== 
-- (NSMutableArray *)questions {
-    return questions; 
-}
+- (int)numberOfQuestions { return [questions count]; }
 
-//=========================================================== 
-// - setQuestions:
-//=========================================================== 
-- (void)setQuestions:(NSMutableArray *)aQuestions {
-    [aQuestions retain];
-    [questions release];
-    questions = aQuestions;
-}
-
-///////  questions  ///////
-
-- (unsigned int)countOfQuestions 
+- (void)addQuestion: (LJPollQuestion *)newQ
 {
-    return [[self questions] count];
+    [questions addObject: newQ];
 }
 
-- (id)objectInQuestionsAtIndex:(unsigned int)index 
+- (LJPollQuestion *)questionAtIndex: (int)idx
 {
-    return [[self questions] objectAtIndex:index];
+    return [questions objectAtIndex: idx];
 }
 
-- (void)insertObject:(id)anObject inQuestionsAtIndex:(unsigned int)index 
+- (void)moveQuestionAtIndex: (int)idx toIndex: (int)newIdx
 {
-    [[self questions] insertObject:anObject atIndex:index];
+    if(newIdx == idx) return;
+    if(newIdx < 0 || newIdx >= [questions count]) return;
+
+    id obj = [[questions objectAtIndex: idx] retain];
+    [questions removeObjectAtIndex: idx];
+    [questions insertObject: obj atIndex: newIdx];
+    [obj release];
 }
 
-- (void)removeObjectFromQuestionsAtIndex:(unsigned int)index 
+// Insert the question at the given index
+- (void)insertQuestion: (LJPollQuestion *)question atIndex:(int)idx
 {
-    [[self questions] removeObjectAtIndex:index];
+    [questions insertObject: question atIndex: idx];
+}
+    
+- (void)deleteQuestionAtIndex: (int)idx
+{
+    [questions removeObjectAtIndex: idx];
 }
 
-- (void)replaceObjectInQuestionsAtIndex:(unsigned int)index withObject:(id)anObject 
-{
-    [[self questions] replaceObjectAtIndex:index withObject:anObject];
-}
 - (NSString *)htmlRepresentation
 {
     NSMutableString *buf = [[NSMutableString stringWithCapacity: 100] retain];
     NSEnumerator *enu = [questions objectEnumerator];
     LJPollQuestion *ques;
-	
+
     [buf appendString: @"<lj-poll"];
-	
+
     // Append name
     [buf appendString: @" name=\""];
     if(name)
         [buf appendString: name];
     [buf appendString: @"\""];
-	
+
     // Append voting permission property
     [buf appendString: @" whovote=\""];
     switch(whoVote) {
@@ -112,7 +102,7 @@
             break;
     }
     [buf appendString: @"\""];
-	
+
     // Append viewing permission property
     [buf appendString: @" whoview=\""];
     switch(whoView) {

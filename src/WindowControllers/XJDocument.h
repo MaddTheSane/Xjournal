@@ -9,10 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <LJKit/LJKit.h>
+#import <OmniAppKit/OmniAppKit.h>
 #import <WebKit/WebKit.h>
-#import <DisclosableView/DisclosableView.h>
-
-#import "XJMusic.h"
 
 #define kHTMLMenuTag 50
 #define kPostMenuTag 100
@@ -38,18 +36,13 @@
 #define kEditItalicItemIdentifier @"kEditItalicItemIdentifier"
 #define kEditUnderlineItemIdentifier @"kEditUnderlineItemIdentifier"
 
-@class XJAccountManager;
-@class XJGroupAccessValueTransformer;
-@class XJKeywordToImageValueTransformer;
-@class XJHTMLEditView;
-
 @interface XJDocument : NSDocument
 {
     // ----------------------------------------------------------------------------------------
     // Window outlets
     // ----------------------------------------------------------------------------------------
-    IBOutlet XJHTMLEditView *theTextView;
-    IBOutlet NSTextField *theSubjectField, *theMusicField, *statusField;
+    IBOutlet NSTextView *theTextView;
+    IBOutlet NSTextField *theSubjectField, *theMusicField, *statusField, *theTagField;
     IBOutlet NSPopUpButton *journalPop;
     IBOutlet NSComboBox *moods;
     IBOutlet NSProgressIndicator *spinner;
@@ -57,13 +50,7 @@
     // The entry associated with the window
     LJEntry *entry;
 
-	// The XJAccountManager, so we can bind the Account popup
-	XJAccountManager *accountManager;
-	
-	// Value transformer
-	XJGroupAccessValueTransformer *groupAccessVT;
-	XJKeywordToImageValueTransformer *userpicTransformer;
-    // Cache the toolbar items
+    // Cache thtoolbar items
     NSMutableDictionary *toolbarItemCache;
 
 
@@ -101,9 +88,12 @@
     // Drawer
     // ----------------------------------------------------------------------------------------
     IBOutlet NSDrawer *drawer;
+    IBOutlet NSPopUpButton *security, *userpic;
     IBOutlet NSTableView *friendsTable;
-	IBOutlet NSPopUpButton *formatPopup;
-	
+    IBOutlet NSImageView *userPicView;
+    IBOutlet NSButton *preformattedChk, *noCommentsChk, *backdatedChk, *noEmailChk;
+    IBOutlet NSTextField *backdateField;
+
     // ----------------------------------------------------------------------------------------
     // Window title storage
     // ----------------------------------------------------------------------------------------
@@ -114,47 +104,48 @@
     // ----------------------------------------------------------------------------------------
     IBOutlet NSWindow *htmlPreviewWindow;
     IBOutlet WebView *htmlPreview;
-    NSTimer *previewUpdateTimer;
-	IBOutlet SNDisclosableView *disclosableView;
-	IBOutlet NSProgressIndicator *markdownSpinner;
-	
+    
     // ----------------------------------------------------------------------------------------
-    // Music
+    // iTunes Music Store
     // ----------------------------------------------------------------------------------------
-    XJMusic *currentMusic;
+    NSString *iTMSLinks;
+    //IBOutlet NSImageView *iTMSIndicator;
 }
 
 - (id)initWithEntry: (LJEntry *)entry;
+
+/* Accessors for the fields */
+- (void)setSubjectField: (NSString *)newText;
+- (void)setBodyText: (NSString *)newText;
 
 /* Actions for posting */
 - (BOOL)postEntryAndReturnStatus;
 - (void)postEntryAndDiscardLocalCopy:(id)sender;
 
+    // Popup targets
+- (IBAction)setSelectedJournal:(id)sender;
+- (IBAction)setSelectedMood:(id)sender;
+
 /* Builder code */
+- (void)buildJournalPopup;
+- (void)buildMoodPopup;
 - (IBAction)detectMusicNow:(id)sender;
+
+- (void)setStatus: (NSString *)newStatus;
+
 
 - (NSWindow *)window;
 - (void)startSheet:(NSWindow *)sheet;
 
 - (IBAction)saveWindowSize:(id)sender;
 
+- (void)setEntryToEdit: (LJEntry *)entry;
 - (void)initUI;
-
-// ----------------------------------------------------------------------------------------
-// Entry accessors
-// ----------------------------------------------------------------------------------------
-- (LJEntry *)entry;
-- (void)setEntry:(LJEntry *)anEntry;
-
-// ----------------------------------------------------------------------------------------
-// Account Manager accessors
-// ----------------------------------------------------------------------------------------
-- (XJAccountManager *)accountManager;
-- (void)setAccountManager:(XJAccountManager *)anAccountManager;
 
 // ----------------------------------------------------------------------------------------
 // Drawer handling
 // ----------------------------------------------------------------------------------------
+- (IBAction)setValueForSender:(id)sender;
 - (IBAction)toggleDrawer: (id)sender;
 
 // ----------------------------------------------------------------------------------------
@@ -170,14 +161,9 @@
 - (IBAction)insertItalic:(id)sender;
 - (IBAction)insertUnderline:(id)sender;
 - (IBAction)insertCenter:(id)sender;
-- (IBAction)insertCode:(id)sender;
-- (IBAction)insertTT:(id)sender;
 
 - (IBAction)insertLJCut:(id)sender;
 - (IBAction)insertLJUser:(id)sender;
-
-- (IBAction)setEntryFormat:(id)sender;
-- (void)setEntryFormatToValue: (int)formatType;
 
 - (IBAction)closeSheet:(id)sender;
 - (IBAction)commitSheet:(id)sender;
@@ -194,12 +180,4 @@
 - (void)updatePreviewWindow: (NSString *)textContent;
 - (IBAction)showPreviewWindow: (id)sender;
 - (void)closeHTMLPreviewWindow;
-
-
-// ----------------------------------------------------------------------------------------
-// Music
-// ----------------------------------------------------------------------------------------
-- (XJMusic *)currentMusic;
-- (void)setCurrentMusic:(XJMusic *)aCurrentMusic;
-
 @end

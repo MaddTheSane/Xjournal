@@ -2,64 +2,65 @@
 
 #import <Cocoa/Cocoa.h>
 #import <LJKit/LJKit.h>
+#import <OmniAppKit/OmniAppKit.h>
 #import <WebKit/WebKit.h>
-#import <AddressBook/ABPeoplePickerView.h>
 
 #import "AddressBookDropView.h"
-#import "FriendsFilterArrayController.h"
-#import "MetaItemArrayController.h"
-
-@class XJAccountManager;
 
 @interface XJFriendsController : NSWindowController
 {
-	// Models
-	XJAccountManager *accountManager;
-    
-	// The account we're working with
-    LJAccount *account;
-	
-	// What we show:
-	BOOL showUsers;
-	BOOL showCommunities;
-	
-	// Array Controllers
-	IBOutlet FriendsFilterArrayController *friendsForSelectedGroupController;
-	IBOutlet MetaItemArrayController *groupController;
-		
     IBOutlet id friendsTable;
     IBOutlet id groupTable;
+    IBOutlet NSSplitView *splitView;
     
     IBOutlet id groupSheet, friendSheet, groupField, friendField, currentSheet;
 
+    IBOutlet NSTextField *userNameField, *fullName, *dateOfBirth;
+    IBOutlet NSColorWell *fgWell, *bgWell;
+
+    IBOutlet AddressBookDropView *addressBookImageWell;
+	IBOutlet NSTextField *addressBookName;
 	IBOutlet NSButton *addressBookClearButton;
 
+    // Table view sorting
+    int sortDirection;
+    NSTableColumn *sortedColumn;
+    NSMutableArray *friendTableCache;
+    NSMutableDictionary *sortSettings;
+    
     // Cache the toolbar items
     NSMutableDictionary *toolbarItemCache;
+
+    // Toolbar popups
+    IBOutlet NSView *accountToolbarView, *showTypeToolbarView;
+    IBOutlet NSPopUpButton *accountToolbarPopup, *showTypePopUp;
+    
+    // THe view type
+    int viewType; // 0 = all, 1 = only users, 2 = only communities
+    
+    // The account we're working with
+    LJAccount *account;
+    
+    // Images
+    NSImage *userinfo;
+    NSImage *folder;
+    NSImage *community;
+    NSImage *birthday;
+    
+    // WebKit
+    IBOutlet WebView *recentEntriesView, *userInfoView;
+    IBOutlet NSTabView *tabs;
+    IBOutlet NSProgressIndicator *recentSpinner, *userInfoSpinner;
     
     // Birthdays
     IBOutlet NSButton *iCalButton;
     IBOutlet NSWindow *calChooserSheet;
     IBOutlet NSPopUpButton *calPopup;
-	
-	// Address Book Sheet
-	IBOutlet NSWindow *abSheet;
-	IBOutlet ABPeoplePickerView *abPicker;
+    
+    NSTimer *colorTimer;
 }
-
-// Model accessors
-- (XJAccountManager *)accountManager;
-- (void)setAccountManager:(XJAccountManager *)anAccountManager;
-
-- (BOOL)showUsers;
-- (void)setShowUsers:(BOOL)flag;
-
-- (BOOL)showCommunities;
-- (void)setShowCommunities:(BOOL)flag;
-
 - (IBAction)addFriend:(id)sender;
 - (IBAction)addGroup:(id)sender;
-- (IBAction)deleteFriendButtonAction: (id)sender;
 - (IBAction)deleteSelectedFriend: (id)sender;
 - (IBAction)deleteSelectedGroup: (id)sender;
 - (IBAction)removeSelectedFriendFromGroup: (id)sender;
@@ -70,10 +71,6 @@
 - (IBAction)commitBirthdaySheet: (id)sender;
 - (IBAction)cancelBirthdaySheet: (id)sender;
 
-- (IBAction)runABSelectSheet:(id)sender;
-- (IBAction)commitABSelectSheet:(id)sender;
-- (IBAction)cancelABSelectSheet:(id)sender;
-
 - (IBAction)openSelectedFriendsJournal: (id)sender;
 - (IBAction)openSelectedFriendsProfile: (id)sender;
 
@@ -83,13 +80,30 @@
 
 - (IBAction)launchAddressBook: (id)sender;
 
+- (void)refreshWindow: (NSNotification *)note;
+
+- (IBAction)setForegroundColor: (id)sender;
+- (IBAction)setBackgroundColor: (id)sender;
+- (void)sortFriendTableCacheOnColumn: (NSTableColumn *)column direction: (int)direction;
+
 - (void)updateTabs;
 
 - (BOOL)canDeleteGroup;
 - (BOOL)canDeleteFriend;
 - (BOOL)canRemoveFriendFromGroup;
 
-- (LJAccount *)account;
-- (void)setAccount: (LJAccount *)acct;
+- (LJFriend *) selectedFriend;
+- (NSArray *)selectedFriendArray;
+- (LJGroup *)selectedGroup;
 
+- (LJAccount *)account;
+- (void)setCurrentAccount: (LJAccount *)acct;
+- (IBAction)switchAccount: (id)sender;
+
+- (IBAction)setViewType: (id)sender;
+
+- (void)updateFriendTableCache;
+
+- (BOOL)allFriendsIsSelected;
+- (IBAction)refreshFriends: (id)sender;
 @end

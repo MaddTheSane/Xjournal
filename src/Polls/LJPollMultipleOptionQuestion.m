@@ -20,12 +20,13 @@
 
 - (id)init
 {
-	self = [super init];
-	if(self) {
-		[self setQuestion: @"Multiple Choice Question"];
-		[self setType: LJPollRadioType];
-		[self setAnswers: [NSMutableArray array]];
-	}
+    if([super init] == nil)
+        return nil;
+    
+    [self setQuestion: @"New Question"];
+    [self setType: LJPollRadioType];
+    answers = [[NSMutableArray arrayWithCapacity: 10] retain];
+    
     return self;
 }
 
@@ -45,6 +46,56 @@
     type = newType;
 }
 
+- (int)numberOfAnswers
+{
+    return [answers count];
+}
+
+- (NSString *)answerAtIndex: (int)idx
+{
+    return [answers objectAtIndex:idx];
+}
+
+- (void)setAnswer:(NSString *)answer atIndex: (int)idx
+{
+    [answers removeObjectAtIndex: idx];
+    [answers insertObject: answer atIndex: idx];
+}
+
+- (void)addAnswer:(NSString *)answer
+{
+    [answers addObject: answer];
+}
+
+// Insert the question at the given index
+- (void)insertAnswer: (NSString *)answer atIndex:(int)idx
+{
+    [answers insertObject: answer atIndex: idx];
+}
+
+- (void)deleteAnswerAtIndex: (int)idx
+{
+    [answers removeObjectAtIndex: idx];
+}
+
+// Deletes all the answers
+- (void)deleteAllAnswers
+{
+    [answers release];
+    answers = [[NSMutableArray arrayWithCapacity: 30] retain];
+}
+
+- (void)moveAnswerAtIndex: (int) idx toIndex: (int) newIdx
+{
+    if(newIdx == idx) return;
+    if(newIdx < 0 || newIdx >= [answers count]) return;
+
+    id obj = [[answers objectAtIndex: idx] retain];
+    [answers removeObjectAtIndex: idx];
+    [answers insertObject: obj atIndex: newIdx];
+    [obj release];
+}
+
 - (NSString *)htmlRepresentation
 {
     NSMutableString *buf = [[NSMutableString stringWithCapacity: 100] retain];
@@ -60,28 +111,16 @@
     [buf appendString: @"\n"];
 
     NSEnumerator *enu = [answers objectEnumerator];
-    NSDictionary *ans;
+    NSString *ans;
     while(ans = [enu nextObject]) {
         [buf appendString: @"<lj-pi>"];
-        [buf appendString: [ans objectForKey: @"answerText"]];
+        [buf appendString: ans];
         [buf appendString: @"</lj-pi>\n"];
     }
     
     [buf appendString: @"</lj-pq>"];
     
     return [buf autorelease];
-}
-
-//=========================================================== 
-//  answers 
-//=========================================================== 
-- (NSMutableArray *)answers {
-    return answers; 
-}
-- (void)setAnswers:(NSMutableArray *)anAnswers {
-    [anAnswers retain];
-    [answers release];
-    answers = anAnswers;
 }
 
 // Memento
@@ -109,12 +148,12 @@
     [self setQuestion: [memento objectForKey: @"LJPollQuestion"]];
     [self setType: [[memento objectForKey: @"LJMultipleOptionType"] intValue]];
 
-    [self setAnswers: [NSMutableArray array]];
+    [self deleteAllAnswers];
     NSEnumerator *enumerator = [[memento objectForKey: @"LJMultipleOptionAnswerArray"] objectEnumerator];
     id object;
 
     while (object = [enumerator nextObject]) {
-        [[self mutableArrayValueForKey:@"answers"] addObject: object];
+        [self addAnswer: object];
     }
 }
 

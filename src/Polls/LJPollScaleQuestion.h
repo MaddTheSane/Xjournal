@@ -13,17 +13,16 @@
  Question subclass representing a scale with start, end and step values
  */
 @interface LJPollScaleQuestion : LJPollQuestion {
-    NSNumber *startValue;
-	int end, step;
+    int start, end, step;
 }
 
-// Returns an autoreleased scale question with the given startValue, end and step values
+// Returns an autoreleased scale question with the given start, end and step values
 // and a default question string
-+ (LJPollScaleQuestion *)scaleQuestionWithStartValue: (int)thestartValue end: (int)theEnd step:(int)theStep;
++ (LJPollScaleQuestion *)scaleQuestionWithStart: (int)theStart end: (int)theEnd step:(int)theStep;
 
-// Get and set the startValue value
-- (NSNumber *)startValue;
-- (void)setStartValue: (NSNumber *)newValue;
+// Get and set the start value
+- (int)start;
+- (void)setStart: (int)newValue;
 
 // Get and set the end value
 - (int)end;

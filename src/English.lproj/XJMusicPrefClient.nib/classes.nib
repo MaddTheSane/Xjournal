@@ -1,0 +1,36 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {restoreDefaults = id; setValueForSender = id; }; 
+            CLASS = OAPreferenceClient; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {controlBox = NSView; initialFirstResponder = NSView; lastKeyView = NSView; }; 
+            SUPERCLASS = OFObject; 
+        }, 
+        {CLASS = OBObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = OFObject; LANGUAGE = ObjC; SUPERCLASS = OBObject; }, 
+        {CLASS = Preferences; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = XJMusicPrefClient; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                albumPrefix = NSTextField; 
+                albumSuffix = NSTextField; 
+                artistPrefix = NSTextField; 
+                artistSuffix = NSTextField; 
+                example = NSTextField; 
+                fieldSeparator = NSTextField; 
+                iTMSMatrix = NSMatrix; 
+                iTMSPrefix = NSTextField; 
+                iTMSSuffix = NSTextField; 
+                includeMissing = NSButton; 
+                ordering = NSPopUpButton; 
+                trackPrefix = NSTextField; 
+                trackSuffix = NSTextField; 
+            }; 
+            SUPERCLASS = OAPreferenceClient; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -7,87 +7,49 @@
 //
 
 #import "XJDocument.h"
+#import <OmniAppKit/OmniAppKit.h>
 #import "XJPreferences.h"
 #import "NetworkConfig.h"
+#import "MusicStringFormatter.h"
 #import "XJSafariBookmarkParser.h";
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
 #import "NSString+Extensions.h"
-#import "XJArrayNotEmptyValueTransformer.h"
-#import "XJKeywordToImageValueTransformer.h"
-#import "XJHTMLPreviewTitleTransformer.h"
-#import "XJMusic.h"
-#import "NSString+Script.h"
-#import "NSString+Templating.h"
-#import "XJHTMLEditView.h"
-#import "XJGrowlManager.h"
 
-#define kDrawerToggleTag 1000
+#define DOC_TEXT @"document.text"
+#define DOC_SUBJECT @"document.subject"
 
 @interface XJDocument (PrivateAPI)
 - (BOOL)iTunesIsRunning;
 - (BOOL)iTunesIsPlaying;
-
-// KVO-based Undo
-- (void)beginObservingEntry: (LJEntry *)theEntry;
-- (void)stopObservingEntry: (LJEntry *)theEntry;
-- (void)changeKeyPath: (NSString *)keyPath ofObject: (id)obj toValue: (id)newValue;
 @end
 
 @implementation XJDocument
-+ (void)initialize {
-	[NSValueTransformer setValueTransformer: [[[XJHTMLPreviewTitleTransformer alloc] init] autorelease]
-									forName: @"XJHTMLPreviewTitleTransformer"];	
-}
+
 - (id)init
 {
-	self = [super init];
-	if(self) {
-		[self setAccountManager: [XJAccountManager defaultManager]];
-		
-		LJEntry *initialEntry = [[LJEntry alloc] init];
-		[initialEntry setAccount: [[self accountManager] defaultAccount]];
-		[self setEntry: [initialEntry autorelease]];
-		
-		[NSValueTransformer setValueTransformer: [[[XJArrayNotEmptyValueTransformer alloc] init] autorelease]
-										forName: @"XJArrayNotEmptyValueTransformer"];
-		
-		userpicTransformer = [[XJKeywordToImageValueTransformer alloc] init];
-		[userpicTransformer setAccount: [[self entry] account]];
-		[NSValueTransformer setValueTransformer: userpicTransformer
-										forName: @"XJKeywordToImageValueTransformer"];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(accountDidLogIn:)
-													 name: LJAccountDidLoginNotification
-												   object:nil];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(insertGlossaryText:)
-													 name: XJGlossaryInsertEvent
-												   object:nil];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(accountDeleted:)
-													 name: XJAccountRemovedNotification
-												   object:nil];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(friendsDownloaded:)
-													 name: LJAccountDidDownloadFriendsNotification
-												   object:nil];
-		
-		[[NSNotificationCenter defaultCenter] addObserver: self
-												 selector: @selector(runScriptOnSelection:)
-													 name: @"XJRunScriptNotification"
-												   object: nil];
-		
-		[[NSDistributedNotificationCenter defaultCenter] addObserver: self
-															selector: @selector(iTunesChangedTrack:)
-																name: @"com.apple.iTunes.playerInfo"
-															  object: nil
-												  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
-	}
+    if([super init] == nil)
+        return nil;
+    
+    entry = [[LJEntry alloc] init];
+    if([[XJAccountManager defaultManager] loggedInAccount]) {
+        [entry setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(manualLoginSuccess:)
+                                                 name: LJAccountDidLoginNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(insertGlossaryText:)
+                                                 name: XJGlossaryInsertEvent
+                                               object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(accountDeleted:)
+                                                 name: XJAccountRemovedNotification
+                                               object:nil];
     return self;
 }
 
@@ -101,63 +63,50 @@
 
 - (void)dealloc
 {
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver: self];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
-	[self stopObservingEntry: [self entry]];
     [entry release];
 	[toolbarItemCache release];
-	[currentMusic release];
+	[iTMSLinks release];
     [super dealloc];
 }
 
 - (NSString *)windowNibName
 {
     // Override returning the nib file name of the document
-    return @"XJDocument"; 
+    return @"XJDocument";
 }
 
-- (void)accountDidLogIn: (NSNotification *)note
+- (void)manualLoginSuccess: (NSNotification *)note
 {
-	// This should probably happen automatically in the model.
-	if([entry pictureKeyword] == nil && [[note object] isEqualTo: [entry account]]) {
-		// Hack this here by stopping observation while we change this
-		// because we don't want this change to go into the NSUndoManager
-		[self stopObservingEntry: [self entry]];
-		[entry setPictureKeyword: [[entry account] defaultUserPictureKeyword]];
-		[self beginObservingEntry: [self entry]];
-	}
-}
+    [self buildJournalPopup];
+    [self buildMoodPopup];
+    [userpic setMenu: [[[XJAccountManager defaultManager] loggedInAccount] userPicturesMenu]];
+    [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
 
-- (void)friendsDownloaded: (NSNotification *)note {
-	[friendsTable reloadData];
+    [journalPop setEnabled: YES];
+    [moods setEnabled: YES];
+    [userpic setEnabled: YES];
+    [security setEnabled: YES];
+
+    [entry setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+
+    // If User and Community sheets are laoded, reload their combo boxes
+    if(userSheet)
+        [user_nameCombo reloadData];
+
+    if(commSheet)
+        [comm_nameCombo reloadData];
+
+    [friendsTable reloadData];
+    
+    [statusField setStringValue: [NSString stringWithFormat: @"Logged in as %@", [[[XJAccountManager defaultManager] loggedInAccount] username]]];
 }
 
 // If an account was deleted
 - (void)accountDeleted: (NSNotification *)note {
 	[entry setJournal: nil];
-	[self initUI];
-}
 
-- (void)runScriptOnSelection: (NSNotification *) note {
-	if([[self window] isMainWindow]) { 
-		// Only want the front window to take action
-		NSRange selection = [theTextView selectedRange];
-		if(selection.length == 0) {
-			[entry setContent: [[entry content] stringByRunningShellScript: [note object]]];
-		}
-		else {
-			NSString *selectedText = [[entry content] substringWithRange: selection];
-			NSArray *stringParts = [[entry content] componentsSeparatedByString: selectedText];
-			NSString *transformedText = [selectedText stringByRunningShellScript: [note object]];
-			
-			NSString *newContent = [NSString stringWithFormat: @"%@%@%@",
-				[stringParts objectAtIndex: 0],
-				transformedText,
-				[stringParts objectAtIndex: 1]];
-			[entry setContent: newContent];				 
-			
-		}
-	}
+	[self initUI];
 }
 
 // Window building stuff
@@ -168,6 +117,7 @@
 }
 
 - (void)initUI {
+    //NSButtonCell *tPrototypeCell;
     NSToolbar *toolbar;
 
     // Set up NSToolbar
@@ -177,6 +127,87 @@
     [toolbar setDelegate: self];
     [[self window] setToolbar: toolbar];
     [toolbar release];
+
+    // Configure the table
+    NSButtonCell *tPrototypeCell = [[NSButtonCell alloc] initTextCell: @""];
+    [tPrototypeCell setEditable: YES];
+    [tPrototypeCell setButtonType:NSSwitchButton];
+    [tPrototypeCell setImagePosition:NSImageOnly];
+    [tPrototypeCell setControlSize:NSSmallControlSize];
+
+    [[friendsTable tableColumnWithIdentifier: @"check"] setDataCell: tPrototypeCell];
+    [tPrototypeCell release];
+
+    if([entry itemID] == 0) {
+        // Item hasn't been posted, apply default security mode
+        int level = [XJPreferences defaultSecuritySetting];
+        [security selectItemWithTag: level];
+        [entry setSecurityMode:level];
+    }else {
+        [security selectItemWithTag: [entry securityMode]];
+    }
+    
+    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    /*
+     We really want to check here of the network is reachable, because if it isn't
+     certain things will have to be disabled:
+     * Journal selection
+     * Security selection
+     * Userpic Selection
+     * Mood selection
+     */
+    if([NetworkConfig destinationIsReachable: @"www.livejournal.com"] && [[XJAccountManager defaultManager] loggedInAccount]) {
+        if([entry journal] == nil)
+            [entry setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+        [self buildJournalPopup];
+        [self buildMoodPopup];
+        [userpic setMenu: [[[XJAccountManager defaultManager] loggedInAccount] userPicturesMenu]];
+        [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
+    } else {
+        [journalPop setEnabled: NO];
+        [moods setEnabled: NO];
+        [userpic setEnabled: NO];
+        [security setEnabled: NO];
+    }
+
+    // Sync the UI up to the state of the Entry object
+    if([entry subject] != nil) {
+        [theSubjectField setStringValue: [entry subject]];
+        [[self window] setTitle: [entry subject]];
+    }
+	
+	if([entry tags] != nil) {
+		[theTagField setStringValue: [entry tags]];
+	}
+    
+    if([entry content] != nil)
+        [theTextView setString: [entry content]];
+
+    if([entry currentMusic] != nil) {
+        [theMusicField setStringValue: [entry currentMusic]];
+    } else {
+        if([XJPreferences autoDetectMusic] && [entry itemID] == 0) {
+            [self detectMusicNow: self];
+        }
+    }
+
+    if([entry pictureKeyword] != nil) {
+        [userpic selectItemWithTitle: [entry pictureKeyword]];
+        [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
+    }
+
+    if([entry currentMood] != nil) {
+        [moods setStringValue: [entry currentMood]];
+    }
+    
+    [journalPop selectItemAtIndex: [[journalPop menu] indexOfItemWithRepresentedObject: [entry journal]]];
+
+    // Set the option checkboxes
+    [preformattedChk setState: [entry optionPreformatted]];
+    [noCommentsChk setState: [entry optionNoComments]];
+    [noEmailChk setState: [entry optionNoEmail]];
+    [backdatedChk setState: [entry optionBackdated]];
+    [backdateField setEnabled: [entry optionBackdated]];
     
     // Set preferred font
     NSFont *pFont = [XJPreferences preferredWindowFont];
@@ -185,24 +216,37 @@
     }
     
     // Set Spell checking on, if required
-    [theTextView setContinuousSpellCheckingEnabled: [PREFS boolForKey: XJShouldSpellCheckInNewWindowPreference]];
+    [theTextView setContinuousSpellCheckingEnabled: [XJPreferences spellCheckByDefault]];
 
     // Open the drawer if needed
-	if([PREFS boolForKey: XJShouldOpenDrawerInNewWindowPreference])
+    if([XJPreferences shouldOpenDrawerInNewWindow])
         [drawer open];
 
-	// Set the preferred entry format
-	int tag = [[NSUserDefaults standardUserDefaults] integerForKey: @"DefaultPostFormat"];
-	[formatPopup selectItemAtIndex: [formatPopup indexOfItemWithTag: tag]];
-	
-    NSSize storedSize = NSSizeFromString([PREFS objectForKey: XJEntryWindowSizePreference]);
-
+    NSSize storedSize = [XJPreferences entryWindowSize];
     NSPoint origin = [[self window] frame].origin;
     NSRect newRect = NSMakeRect(origin.x, origin.y, storedSize.width, storedSize.height);
     [[self window] setFrame: newRect display: YES];
     
     [spinner setStyle: NSProgressIndicatorSpinningStyle];
     [spinner setUsesThreadedAnimation:YES];
+
+    if([[XJAccountManager defaultManager] loggedInAccount])
+        [statusField setStringValue: [NSString stringWithFormat: @"Logged in as %@", [[[XJAccountManager defaultManager] loggedInAccount] username]]];
+}
+
+- (void) buildJournalPopup
+{
+    NSMenu *jMenu = [[[XJAccountManager defaultManager] loggedInAccount] journalMenu];
+    [journalPop setMenu: jMenu];        
+}
+
+- (void)buildMoodPopup
+{
+    LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
+    if(acct) {
+        [moods setDataSource: [acct moods]];
+        [moods reloadData];
+    }
 }
 
 // ----------------------------------------------------------------------------------------
@@ -213,65 +257,10 @@
     return [entry writePropertyListToFile: fileName atomically: YES];
 }
 
-// ===========================================================
-// - entry:
-// ===========================================================
-- (LJEntry *)entry {
-    return entry; 
-}
-
-// ===========================================================
-// - setEntry:
-// ===========================================================
-- (void)setEntry:(LJEntry *)anEntry {
-    if (entry != anEntry) {
-        [anEntry retain];
-		
-		// remove me as an observer to the outgoing entry
-		[self stopObservingEntry: entry];
-        [entry release];
-        entry = anEntry;
-		if([entry itemID] == 0) {
-// Item hasn't been posted, apply some defaults
-			[entry setSubject: @""];
-			[entry setCurrentMusic: @""];
-			
-			switch([[NSUserDefaults standardUserDefaults] integerForKey: @"DefaultPostFormat"]) {
-				case 0:	// HTML
-					[entry setMarkdownFormat: NO];
-					[entry setOptionPreformatted: NO];
-					break;
-				case 1: // Markdown
-					[entry setMarkdownFormat: YES];
-					[entry setOptionPreformatted: YES];
-					break;
-				case 2: // Preformatted
-					[entry setMarkdownFormat: NO];
-					[entry setOptionPreformatted: YES];
-					break;
-			}
-
-			[entry setSecurityMode: [XJPreferences defaultSecuritySetting]];
-		}
-		[self beginObservingEntry: entry];
-		
-		[friendsTable reloadData];
-    }
-}
-
-// =========================================================== 
-// - accountManager:
-// =========================================================== 
-- (XJAccountManager *)accountManager {
-    return accountManager; 
-}
-
-// =========================================================== 
-// - setAccountManager:
-// =========================================================== 
-- (void)setAccountManager:(XJAccountManager *)anAccountManager {
-	// Weak reference, no retain
-	accountManager = anAccountManager;
+- (void)setEntryToEdit: (LJEntry *)editedEntry
+{
+    entry = [editedEntry retain];
+    //[self initUI];
 }
 
 - (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)docType
@@ -282,10 +271,27 @@
     return entry != nil;
 }
 
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
+{
+    return YES;
+}
+
 - (IBAction)saveWindowSize:(id)sender
 {
-	NSSize size = [[self window] frame].size;
-	[PREFS setObject: NSStringFromSize(size) forKey: XJEntryWindowSizePreference];
+    [XJPreferences setEntryWindowSize: [[self window] frame].size];
+}
+
+// ----------------------------------------------------------------------------------------
+// Accessors for views
+// ----------------------------------------------------------------------------------------
+- (void)setSubjectField: (NSString *)newText
+{
+    [theSubjectField setStringValue: newText];
+}
+
+- (void)setBodyText: (NSString *)newText
+{
+    [theTextView setString: newText];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -293,29 +299,14 @@
 // ----------------------------------------------------------------------------------------
 - (void)textDidChange:(NSNotification *)aNotification
 {
-    if([aNotification object] == theTextView &&
-	   [self htmlPreviewWindow] &&
-	   [[self htmlPreviewWindow] isVisible]) 
-	{
-		if(previewUpdateTimer) {
-			[previewUpdateTimer invalidate];
-			[previewUpdateTimer release];
-			previewUpdateTimer = nil;
-		}
-		previewUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval: 1
-															   target: self
-															 selector: @selector(previewUpdateTimerFired:)
-															 userInfo: nil
-															  repeats: NO] retain];
+    if([aNotification object] == theTextView) {
+        [entry setContent: [[aNotification object] string]];
+        [self updatePreviewWindow: [entry content]];
     }
-}
-
-- (void)previewUpdateTimerFired: (NSTimer *)aTimer {
-	[previewUpdateTimer invalidate];
-	[previewUpdateTimer release];
-	previewUpdateTimer = nil;
-	
-	[self updatePreviewWindow: [entry content]];
+    else if([[aNotification object] isEqualTo: theSubjectField]) {
+        [[self window] setTitle: [[aNotification object] string]];
+        [entry setSubject: [[aNotification object] string]];
+    }
 }
 
 // This enables shift-tab out of the textfield into the subject field :-)
@@ -332,6 +323,28 @@
 // ----------------------------------------------------------------------------------------
 // Subject field delegate
 // ----------------------------------------------------------------------------------------
+- (void)controlTextDidBeginEditing:(NSNotification *)aNotification{}
+
+- (void)controlTextDidEndEditing:(NSNotification *)aNotification
+{
+    if([aNotification object] == theSubjectField) {
+        [entry setSubject: [[aNotification object] stringValue]];
+    }
+    else if([aNotification object] == theMusicField) {
+        // If the user types stuff in the field, we 
+        // invalidate the iTMS links since we can only generate them
+        // directly from iTunes and not from back-parsing the user's
+        // entry
+        if(![[[aNotification object] stringValue] isEqualToString: [entry currentMusic]]) { 
+            iTMSLinks = nil;
+        }
+        [entry setCurrentMusic: [[aNotification object] stringValue]];        
+    }
+	else if([aNotification object] == theTagField) {
+		[entry setTags: [[aNotification object] stringValue]];
+	}
+}
+
 - (void)controlTextDidChange: (NSNotification *)aNotification
 {
     if([aNotification object] == theSubjectField) {
@@ -343,7 +356,7 @@
                 originalWindowName = [[self window] title];
 
             // If we have a non-empty string for the subject
-            if(subjectData && [subjectData length] > 0) {
+            if([subjectData length] > 0) {
                 [[self window] setTitle: subjectData];
                 [self setHTMLPreviewWindowTitle: subjectData];
             }
@@ -358,41 +371,48 @@
 }
 
 // ----------------------------------------------------------------------------------------
+// Menu targets
+// ----------------------------------------------------------------------------------------
+- (IBAction)setSelectedJournal:(id)sender
+{
+    [entry setJournal: [[sender selectedItem] representedObject]];
+}
+
+- (IBAction)setSelectedMood:(id)sender
+{
+    [entry setCurrentMood: [sender stringValue]];
+}
+
+// ----------------------------------------------------------------------------------------
 // Detect Music
 // ----------------------------------------------------------------------------------------
 - (IBAction)detectMusicNow:(id)sender
 {
-	[self setCurrentMusic: [XJMusic currentMusicAsiTunesLink:[[NSUserDefaults standardUserDefaults] boolForKey:@"LinkMusicToiTMS"]]];
+    /*
+     What we do here is generate both iTMS links and regular music text.
+     Keep both around and show the regular links in the UI.  At posting time,
+     if the user wants iTMS links, we remove them from the Current Music 
+     field and put it in the end of the post.
+     */
+  
+    iTMSLinks = [[MusicStringFormatter detectMusicAndFormat: YES] retain];
+    
+    //if([XJPreferences linkMusicToStore])
+    //  [iTMSIndicator setImage:[NSImage imageNamed: @"iTunes"]];
+    
+    NSString *music = [MusicStringFormatter detectMusicAndFormat:NO];
+    
+    if(music) { 
+        [theMusicField setStringValue: music];
+        [entry setCurrentMusic: music];
+    } else {
+        NSString *alternativeValue = [PREFS stringForKey: @"NoMusicString"];
+        if(!alternativeValue)
+            alternativeValue = @"";
+        [theMusicField setStringValue: alternativeValue];
+        [entry setCurrentMusic: alternativeValue];
+    }
 }
-
-- (void)iTunesChangedTrack: (NSNotification *)note {
-	if([[NSUserDefaults standardUserDefaults] boolForKey: @"DetectiTunesChanges"])
-		[self detectMusicNow: self];
-}
-
-//=========================================================== 
-//  currentMusic 
-//=========================================================== 
-- (XJMusic *)currentMusic {
-    return currentMusic; 
-}
-- (void)setCurrentMusic:(XJMusic *)aCurrentMusic {
-    [aCurrentMusic retain];
-    [currentMusic release];
-    currentMusic = aCurrentMusic;
-
-	NSString *formatString = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"MusicFormatString"];
-	
-	if(currentMusic != nil) {
-		[[self entry] setCurrentMusic: [formatString stringByParsingTagsWithStartDelimeter: @"<$"
-																			  endDelimeter: @"/>"
-																			   usingObject: [self currentMusic]]];
-	}
-	else {
-		[[self entry] setCurrentMusic: [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"NoMusicString"]];
-	}
-}
-
 
 // ----------------------------------------------------------------------------------------
 // Posting code
@@ -405,7 +425,7 @@
         [self postEntryAndDiscardLocalCopy: self];
     }else{
 
-        if([self postEntryAndReturnStatus] && [PREFS boolForKey: XJShouldShowPostingConfirmationDialogPreference]) {
+        if([self postEntryAndReturnStatus] && [XJPreferences shouldShowPostConfirmationDialog]) {
             NSBeginInformationalAlertSheet(NSLocalizedString(@"Posting Succeeded", @""),
                                            NSLocalizedString(@"OK", @""),
                                            NSLocalizedString(@"Open Recent Entries", @""),
@@ -433,15 +453,21 @@
     // Force the first responder to end editing
     [[self window] endEditingFor:nil];
     
-    /* 
-		Now that we have the XJMusic class, we keep that object around
-	 and push the iTMS links in there whenever it changes
+    /* Check if the user wants iTMS links instead of current music.
+        Also, only do this if this isn't a repost. 
+        
+        Consider, also, the case where the user has entered 
+        music text by themselves instead of getting it via the button.
+        In such a case, iTMSLinks will be nil.
+    
+        Also, if we detected iTMS links, but the user has since cleared 
+        the music field, we don't want to do anything.
     */
-
-	if(![entry itemID] && [[entry currentMusic] length] > 100) {
-		[entry setContent: [NSString stringWithFormat: @"%@\n\n%@", [entry content], [entry currentMusic]]];
-		[entry setCurrentMusic: @""];
-	}
+    if(![entry itemID] && [XJPreferences linkMusicToStore] && iTMSLinks) {
+        [entry setCurrentMusic: nil];
+        [entry setContent: [NSString stringWithFormat: @"%@\n\n%@", [entry content], iTMSLinks]];
+    }
+    
     
     // Check here that network is still reachable
     if([NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
@@ -449,8 +475,7 @@
         [spinner startAnimation: self];
         if(![entry optionBackdated]) {
             // Set the posting date according to the user's preference
-			BOOL dateEntryByPostingTime = [PREFS boolForKey: XJEntryDateIsWindowCreationTimePreference];
-            if(dateEntryByPostingTime && !isPosted) {
+            if([XJPreferences entryDateDefault] == 1 && !isPosted) {
                 [entry setDate: [NSDate date]];
             }
         }
@@ -460,13 +485,6 @@
         breaks = [[entry content] componentsSeparatedByString: @"\r"];
         temp = [breaks componentsJoinedByString: @"\n"];
         [entry setContent: temp];
-		
-		// Convert to Markdown
-		if([entry markdownFormat]) {
-			NSString *markdown = [[entry content] stringByRunningShellScript: [[NSBundle mainBundle] pathForResource: @"Markdown" ofType: @"pl"]];
-			[entry setContent: markdown];
-		}
-		
         NS_DURING
             [entry saveToJournal];
         NS_HANDLER
@@ -479,6 +497,10 @@
 
         [spinner stopAnimation: self];
 
+        if(!isPosted) // Only fire this if it's not an edit
+            [[NSNotificationCenter defaultCenter] postNotificationName:XJEntryEntryPostedNotification object:entry];
+        else
+            [[NSNotificationCenter defaultCenter] postNotificationName:XJEntryEditedNotification object:entry];
         return YES;
     } else {
         return NO;
@@ -488,12 +510,12 @@
 - (void)postEntryAndDiscardLocalCopy:(id)sender
 {
 	if([self fileName] != nil && [self isDocumentEdited]) {  // Was opened from file and is dirty
-		int unsavedOption = [PREFS integerForKey: XJShouldAskForUnsavedEntriesPreference];
+		int unsavedOption = [XJPreferences unsavedOption];
 
-		if(unsavedOption != kXJShouldDiscardUnsavedEntries) {
+		if(unsavedOption != 2) { // 2 == don't save
 			BOOL shouldSave = YES;
 			
-			if(unsavedOption == kXJShouldAskForUnsavedEntries) {
+			if(unsavedOption == 0) { // ask
 				NSString *file = [[self fileName] lastPathComponent];
 				NSString *msg = [NSString stringWithFormat: @"Do you want to save the changes you made in the document \"%@\"?", file];
 
@@ -515,25 +537,24 @@
     	[self close];
         [self closeHTMLPreviewWindow];
         
-        if([PREFS boolForKey: XJShouldShowPostingConfirmationDialogPreference]) {
-			
-			if([PREFS boolForKey: XJShouldShowPostingConfirmationGrowlPreference]) {
-				[[XJGrowlManager defaultManager] notifyWithTitle: NSLocalizedString(@"Posting Succeeded", @"")
-													 description: NSLocalizedString(@"Your entry was sucessfully posted", @"")
-												notificationName: XJEntryDidPostGrowlNotification
-														  sticky: NO];
-			}
-			else {
-				int result = NSRunInformationalAlertPanel(NSLocalizedString(@"Posting Succeeded", @""),
-														  NSLocalizedString(@"Your entry was sucessfully posted", @""),
-														  NSLocalizedString(@"OK", @""),
-														  NSLocalizedString(@"Open Recent Entries", @""),
-														  nil);
-				if(result == NSAlertAlternateReturn)
-					[[NSWorkspace sharedWorkspace] openURL: [[entry journal] recentEntriesHttpURL]];
-			}
+        if([XJPreferences shouldShowPostConfirmationDialog]) {
+            int result = NSRunInformationalAlertPanel(NSLocalizedString(@"Posting Succeeded", @""),
+                                                      NSLocalizedString(@"Your entry was sucessfully posted", @""),
+                                                      NSLocalizedString(@"OK", @""),
+                                                      NSLocalizedString(@"Open Recent Entries", @""),
+                                                      nil);
+            if(result == NSAlertAlternateReturn)
+                [[NSWorkspace sharedWorkspace] openURL: [[entry journal] recentEntriesHttpURL]];
+        }
+        else {
+            [NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.3]];
         }
     }
+}
+
+- (void)setStatus: (NSString *)newStatus
+{
+    //[statusField setStringValue: newStatus];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -564,7 +585,13 @@
         [html_LinkTextField setStringValue: selectedText];
 		[hrefSheet setInitialFirstResponder: html_hrefField];
     }
-
+	
+    /*
+    if([[html_hrefField stringValue] length] == 0) {
+        [html_hrefField setStringValue: @"http://www..com"];
+		//[html_hrefField setSelection: NSMakeRange(11,0)];
+    }
+    */
     [self startSheet: hrefSheet];
 }
 
@@ -590,38 +617,27 @@
 
 - (IBAction)insertBlockquote:(id)sender
 {
-    [theTextView wrapSelectionWithStartTag: @"<blockquote>"
-									endTag: @"</blockquote>"];
+    [self genericTagWrapWithStart: @"<blockquote>" andEnd: @"</blockquote>"];
 }
 
-- (IBAction)insertBold:(id)sender {
-	[theTextView wrapSelectionWithStartTag: @"<strong>"
-									endTag: @"</strong>"];
+- (IBAction)insertBold:(id)sender
+{
+    [self genericTagWrapWithStart: @"<strong>" andEnd: @"</strong>"];
 }
 
-- (IBAction)insertItalic:(id)sender {
-	[theTextView wrapSelectionWithStartTag: @"<em>"
-									endTag: @"</em>"];
+- (IBAction)insertItalic:(id)sender
+{
+    [self genericTagWrapWithStart: @"<em>" andEnd: @"</em>"];
 }
 
-- (IBAction)insertCenter:(id)sender {
-	[theTextView wrapSelectionWithStartTag: @"<center>"
-									endTag: @"</center>"];
+- (IBAction)insertCenter:(id)sender
+{
+    [self genericTagWrapWithStart: @"<center>" andEnd: @"</center>"];
 }
 
-- (IBAction)insertUnderline:(id)sender {
-	[theTextView wrapSelectionWithStartTag: @"<u>"
-									endTag: @"</u>"];
-}
-
-- (IBAction)insertCode:(id)sender {
-	[theTextView wrapSelectionWithStartTag: @"<code>"
-									endTag: @"</code>"];	
-}
-
-- (IBAction)insertTT:(id)sender {
-	[theTextView wrapSelectionWithStartTag: @"<tt>"
-									endTag: @"</tt>"];	
+- (IBAction)insertUnderline:(id)sender
+{
+    [self genericTagWrapWithStart: @"<u>" andEnd: @"</u>"];
 }
 
 - (IBAction)insertLJCut:(id)sender
@@ -659,46 +675,6 @@
     } else {
         [self genericTagWrapWithStart: @"<lj user=\"" andEnd: @"\">"];
     }
-}
-
-- (IBAction)setEntryFormat:(id)sender {
-	[self setEntryFormatToValue: [[sender selectedItem] tag]];
-}
-
-- (void)setEntryFormatToValue: (int)formatType {
-
-	// Prepare UndoManager with current value
-	int currentTag = 0;
-	
-	if([[self entry] markdownFormat])
-		currentTag = 1; // If markdown, then 1
-	else {
-		if([[self entry] optionPreformatted])
-			currentTag = 2; // if preformatted then 2
-		else
-			currentTag = 0; // If neither then 0
-	}
-	NSLog(@"Preparing undo with tag: %d", currentTag);
-	[[[self undoManager] prepareWithInvocationTarget: self] setEntryFormatToValue: currentTag];
-	
-	// Do the switch
-	switch(formatType) {
-		case 0: // HTML
-			[[self entry] setMarkdownFormat: NO];
-			[[self entry] setOptionPreformatted: NO];
-			break;
-		case 1: // Markdown
-			[[self entry] setMarkdownFormat: YES];
-			[[self entry] setOptionPreformatted: YES];
-			break;
-		case 2: // Preformatted
-			[[self entry] setMarkdownFormat: NO];
-			[[self entry] setOptionPreformatted: YES];
-			break;
-	}
-	NSLog(@"Selecting popup item with Tag: %d", formatType);
-	[formatPopup selectItemAtIndex: [formatPopup indexOfItemWithTag: formatType]];
-	[self updatePreviewWindow: [entry content]];
 }
 
 - (IBAction)commitSheet:(id)sender
@@ -819,6 +795,37 @@
     [self insertStringAtSelection: [note object]];
 }
 
+// Field Enablers for IMG sheet
+/*
+ - (IBAction)enableBorder:(id)sender
+{
+    [borderSize setEnabled: [sender state]];
+}
+
+- (IBAction)enableSize:(id)sender
+{
+    BOOL enabled;
+	if([sender isEqual:self])
+		enabled = YES;
+	else
+		enabled = [sender state];
+    [sizeWidth setEnabled: enabled];
+    [sizeHeight setEnabled: enabled];
+}
+
+- (IBAction)enableSpace:(id)sender
+{
+    BOOL enabled = [sender state];
+    [spaceWidth setEnabled: enabled];
+    [spaceHeight setEnabled: enabled];
+}
+
+- (IBAction)enableAlign:(id)sender
+{
+    [alignPop setEnabled: [sender state]];
+}
+*/
+
 // Button enablers for User and comm sheets
 - (IBAction)enableOKButton:(id)sender
 {
@@ -828,23 +835,37 @@
         [comm_OKButton setEnabled: [[sender stringValue] length] > 0];
 }
 
-- (BOOL)validateToolbarItem:(id)item
+// ----------------------------------------------------------------------------------------
+// Omni Find panel
+// ----------------------------------------------------------------------------------------
+- (id <OAFindControllerTarget>)omniFindControllerTarget
 {
-    if([[item itemIdentifier] isEqualToString: kEditPostItemIdentifier] || [[item itemIdentifier] isEqualToString: kEditPostAndDiscardItemIdentifier])
-        if(![[[entry journal] account] isLoggedIn])
-            return NO;
-    return YES;
+    return theTextView;
 }
 
-- (BOOL)validateMenuItem:(id)item
+// ----------------------------------------------------------------------------------------
+// Validate HTML menu menu items
+// ----------------------------------------------------------------------------------------
+- (BOOL)validateMenuItem:(id <NSMenuItem>)item
 {
-	if([item tag] == kDrawerToggleTag) {
-		if([drawer state] == NSDrawerOpenState || [drawer state] == NSDrawerOpeningState)
-			[item setTitle: NSLocalizedString(@"Hide Info", @"")];
-		else
-			[item setTitle: NSLocalizedString(@"Show Info", @"")];
-	}
-	return YES;
+    int tag = [item tag];
+    
+    if(tag == kPostMenuTag) {
+        return YES; //([entry itemID] == 0 && [[XJAccountManager defaultManager] loggedInAccount]);
+    }
+    else {
+        return YES;
+    }
+}
+
+- (BOOL)validateToolbarItem:(id)item
+{
+    
+    if([[item itemIdentifier] isEqualToString: kEditPostItemIdentifier] || [[item itemIdentifier] isEqualToString: kEditPostAndDiscardItemIdentifier])
+        if(![[XJAccountManager defaultManager] loggedInAccount])
+            return NO;
+    
+    return YES;
 }
 
 - (NSWindow *)window
@@ -857,7 +878,7 @@
 // ----------------------------------------------------------------------------------------
 - (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
-    LJAccount *acct = [[entry journal] account];
+    LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
 
     if(aComboBox == user_nameCombo) {
         return [[acct friendArray] count];
@@ -871,7 +892,7 @@
 
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(int)index
 {
-    LJAccount *acct = [[entry journal] account];
+    LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
     
     if(aComboBox == user_nameCombo)
         return [[[acct friendArray] objectAtIndex: index] username];
@@ -881,36 +902,73 @@
     return @"";
 }
 
+// ----------------------------------------------------------------------------------------
+// Inspector stuff
+// ----------------------------------------------------------------------------------------
+- (id)inspectedObject
+{
+    return entry;
+}
+
+// ----------------------------------------------------------------------------------------
+// Drawer handling
+// ----------------------------------------------------------------------------------------
+- (IBAction)setValueForSender:(id)sender
+{
+    if([sender isEqualTo: security]) {
+        [entry setSecurityMode: [[sender selectedItem] tag]];
+        [friendsTable reloadData];
+    }
+    else if([sender isEqualTo: userpic]) {
+        // Set the user picture
+        [userPicView setImage: [XJPreferences imageForURL: [[sender selectedItem] representedObject]]];
+        [entry setPictureKeyword: [sender title]];
+    }
+    else if([sender isEqualTo: preformattedChk]) {
+        [entry setOptionPreformatted:[sender state]];
+        [self updatePreviewWindow: [entry content]];
+    }
+    else if([sender isEqualTo: noCommentsChk]) {
+        [entry setOptionNoComments: [sender state]];
+    }
+    else if([sender isEqualTo: backdatedChk]) {
+        [entry setOptionBackdated: [sender state]];
+        [backdateField setEnabled: [sender state]];
+
+    }
+    else if([sender isEqualTo: noEmailChk]) {
+        [entry setOptionNoEmail:[sender state]];
+    }
+    else if([sender isEqualTo: backdateField]) {
+        NSString *enteredString = [sender stringValue];
+        NSDate *date = [NSDate dateWithNaturalLanguageString: enteredString];
+        [entry setDate: date];
+    }
+}
+
 - (IBAction)toggleDrawer: (id)sender
 {
     [drawer toggle: sender];
-	
-	if([drawer state] == NSDrawerOpenState || [drawer state] == NSDrawerOpeningState)
-		[sender setTitle: NSLocalizedString(@"Hide Info", @"")];
-	else
-		[sender setTitle: NSLocalizedString(@"Show Info", @"")];
 }
-
 // ----------------------------------------------------------------------------------------
 // NSTableDataSource - friend group security
 // ----------------------------------------------------------------------------------------
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-    if([[self entry] account])
-        return [[[[self entry] account] groupArray] count];
-
-	NSLog(@"returning zero groups for account");
-	return 0;
+    if([[XJAccountManager defaultManager] loggedInAccount])
+        return [[[[XJAccountManager defaultManager] loggedInAccount] groupArray] count];
+    
+    return 1;
 }
 
 - (id)tableView:(NSTableView *)aTableView
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
             row:(int)rowIndex
 {
-    if([[self entry] account])
+    if([[XJAccountManager defaultManager] loggedInAccount]) 
     {
-        NSArray *groups = [[[self entry] account] groupArray];
+        NSArray *groups = [[[XJAccountManager defaultManager] loggedInAccount] groupArray];
         if([groups count] > 0) {
             LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
 
@@ -918,23 +976,34 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
                 return [rowGroup name];
             else {
                 if([entry accessAllowedForGroup: rowGroup])
-                    return [NSNumber numberWithBool: YES];
+                    return [NSNumber numberWithInt: 1];
                 else
-                    return [NSNumber numberWithBool: NO];
+                    return [NSNumber numberWithInt: 0];
             }
         }
     }
-    return @"";
+    else {
+        if([[aTableColumn identifier] isEqualToString: @"name"])
+            return @"(not logged in)";
+        else
+            return [NSNumber numberWithInt: 0];
+    }
+    return 0;
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-    NSArray *groups = [[[self entry] account] groupArray];
+    NSArray *groups = [[[XJAccountManager defaultManager] loggedInAccount] groupArray];
     LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
 
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
-        [[self entry] setAccessAllowed: [anObject boolValue] forGroup: rowGroup];
+        [entry setAccessAllowed: [anObject boolValue] forGroup: rowGroup];
     }
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    return [[aTableColumn identifier] isEqualToString: @"check"];
 }
 
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
@@ -963,15 +1032,6 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 
 - (void)updatePreviewWindow: (NSString *)textContent
 {
-	if([[self entry] markdownFormat]) {
-		[markdownSpinner startAnimation: self];
-		[disclosableView show: self];
-		NSString *mdPath = [[NSBundle mainBundle] pathForResource: @"Markdown" ofType: @"pl"];
-		textContent = [textContent stringByRunningShellScript: mdPath];
-		[disclosableView hide:self];
-		[markdownSpinner stopAnimation: self];
-	}
-	
     if([self htmlPreviewWindow] && [[self htmlPreviewWindow] isVisible]) {
         textContent = [textContent translateLJUser];
         textContent = [textContent translateLJComm];
@@ -1064,67 +1124,5 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     }
     else
         return NO;
-}
-
-- (void)beginObservingEntry: (LJEntry *)theEntry {
-	NSArray *observedPaths = [NSArray arrayWithObjects: 
-		@"subject", @"securityMode", @"currentMusic", @"currentMood", @"account", 
-		@"optionPreformatted", @"optionNoEmail", @"optionBackdated", @"date", 
-		@"securityMode", @"pictureKeyword", @"markdownFormat", nil];
-	
-	NSEnumerator *en = [observedPaths objectEnumerator];
-	NSString *path;
-	while(path = [en nextObject]) {
-		
-		[theEntry addObserver: self
-				   forKeyPath: path
-					  options: NSKeyValueObservingOptionOld
-					  context: nil];
-	}
-}
-
-- (void)stopObservingEntry: (LJEntry *)theEntry {
-	NSArray *observedPaths = [NSArray arrayWithObjects: 
-		@"subject", @"securityMode", @"currentMusic", @"currentMood", @"account", 
-		@"optionPreformatted", @"optionNoEmail", @"optionBackdated", @"date", 
-		@"securityMode", @"pictureKeyword", @"markdownFormat", nil];
-	
-	NSEnumerator *en = [observedPaths objectEnumerator];
-	NSString *path;
-	while(path = [en nextObject]) {
-		[theEntry removeObserver: self forKeyPath: path];
-	}
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-					  ofObject:(id)object 
-                        change:(NSDictionary *)change
-                       context:(void *)context 
-{
-	NSLog(@"Observe value for KeyPath: %@", keyPath);
-	if([keyPath isEqualToString: @"account"]) {
-		[friendsTable reloadData];
-		[userpicTransformer setAccount: [[self entry] account]];
-	}
-	else {
-		// Set the undo manager
-		NSUndoManager *undoManager = [self undoManager];	
-		id oldValue = [change valueForKey: NSKeyValueChangeOldKey];
-
-		if([oldValue isEqualTo: [NSNull null]])
-			oldValue = @"";
-		[[undoManager prepareWithInvocationTarget: self] changeKeyPath: keyPath
-															  ofObject: object
-															   toValue: oldValue];
-	}
-	
-	[self updatePreviewWindow: [entry content]];
-}
-
-- (void)changeKeyPath: (NSString *)keyPath
-			 ofObject: (id)obj
-			  toValue: (id)newValue 
-{
-	[obj setValue: newValue forKey: keyPath];
 }
 @end

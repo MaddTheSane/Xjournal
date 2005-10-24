@@ -19,7 +19,6 @@
             ACTIONS = {
                 addFriend = id; 
                 addGroup = id; 
-                beginHistoryExport = id; 
                 checkForNewVersion = id; 
                 deleteSelectedFriend = id; 
                 deleteSelectedGroup = id; 
@@ -38,7 +37,6 @@
                 openFriendsJournal = id; 
                 openFriendsPage = id; 
                 openFriendsProfile = id; 
-                openMarkdownReference = id; 
                 openReadMe = id; 
                 openRecent = id; 
                 openSelectedFriendsJournal = id; 
@@ -50,7 +48,6 @@
                 showInspectorPanel = id; 
                 showMainWindow = id; 
                 showPreviewWindow = id; 
-                showScriptsPalette = id; 
                 toggleDrawer = id; 
             }; 
             CLASS = FirstResponder; 
@@ -96,23 +93,33 @@
             ACTIONS = {
                 checkForUpdate = id; 
                 editLastEntry = id; 
+                logIn = id; 
                 openChangeNotes = id; 
                 openDonate = id; 
                 openReadMe = id; 
                 openXjournalBlog = id; 
                 openXjournalHomePage = id; 
+                showAccountEditWindow = id; 
+                showBirthdayWindow = id; 
                 showBookmarkWindow = id; 
                 showFriendsWindow = id; 
                 showGlossaryWindow = id; 
                 showHistoryWindow = id; 
+                showMainWindow = id; 
                 showPollEditWindow = id; 
                 showPrefsWindow = id; 
-                showScriptsPalette = id; 
-                showToolsPalette = id; 
+                showShortcutsWindow = id; 
+                switchAccount = id; 
             }; 
             CLASS = XJAppDelegate; 
             LANGUAGE = ObjC; 
-            OUTLETS = {deleteFriend = NSMenuItem; deleteFromGroup = NSMenuItem; }; 
+            OUTLETS = {
+                accountItem = NSMenuItem; 
+                deleteFriend = NSMenuItem; 
+                deleteFromGroup = NSMenuItem; 
+                loginPanel = NSWindow; 
+                spinner = NSProgressIndicator; 
+            }; 
             SUPERCLASS = NSObject; 
         }
     ); 

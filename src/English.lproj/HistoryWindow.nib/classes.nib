@@ -6,7 +6,6 @@
             CLASS = NSObject; 
             LANGUAGE = ObjC; 
         }, 
-        {CLASS = SourceListTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
         {
             ACTIONS = {selectText = id; }; 
             CLASS = WBSearchTextField; 
@@ -35,26 +34,35 @@
             SUPERCLASS = NSView; 
         }, 
         {
-            ACTIONS = {search = id; }; 
-            CLASS = XJHistoryFilterArrayController; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSArrayController; 
-        }, 
-        {
-            ACTIONS = {editEntry = id; skSearch = id; }; 
+            ACTIONS = {
+                beginHistoryDownload = id; 
+                beginHistoryUpdate = id; 
+                browserChanged = id; 
+                cancelHistoryDownload = id; 
+                clearSearch = id; 
+                deleteSelectedEntry = id; 
+                editSelectionInBrowser = id; 
+                executeSearch = id; 
+                exportHistory = id; 
+                openSelectionInBrowser = id; 
+                setSearchType = id; 
+            }; 
             CLASS = XJHistoryWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                arrayController = XJHistoryFilterArrayController; 
                 backButton = NSButton; 
-                dateColumn = NSTableColumn; 
+                browser = NSBrowser; 
+                downloadBar = NSProgressIndicator; 
+                downloadStatus = NSTextField; 
+                downloadTitle = NSTextField; 
                 forwardButton = NSButton; 
-                searchField = NSSearchField; 
+                progressSheet = NSWindow; 
+                searchField = WBSearchTextField; 
                 searchView = NSView; 
-                subjectColumn = NSTableColumn; 
-                table = NSTableView; 
+                selectedMenuItem = NSMenuItem; 
                 urlField = NSTextField; 
                 webView = WebView; 
+                wvSpinner = NSProgressIndicator; 
             }; 
             SUPERCLASS = NSWindowController; 
         }

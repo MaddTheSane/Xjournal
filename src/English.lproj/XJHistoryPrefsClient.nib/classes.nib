@@ -1,0 +1,30 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {
+            ACTIONS = {setFontUsingFontPanel = id; }; 
+            CLASS = OAFontView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {delegate = id; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {restoreDefaults = id; setValueForSender = id; }; 
+            CLASS = OAPreferenceClient; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {controlBox = NSView; initialFirstResponder = NSView; lastKeyView = NSView; }; 
+            SUPERCLASS = OFObject; 
+        }, 
+        {CLASS = OBObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = OFObject; LANGUAGE = ObjC; SUPERCLASS = OBObject; }, 
+        {
+            ACTIONS = {setValueForSender = id; }; 
+            CLASS = XJHistoryPreferenceClient; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {linkPreference = NSMatrix; }; 
+            SUPERCLASS = OAPreferenceClient; 
+        }
+    ); 
+    IBVersion = 1; 
+}

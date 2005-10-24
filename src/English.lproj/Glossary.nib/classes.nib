@@ -3,13 +3,6 @@
         {CLASS = EdgeDockableWindow; LANGUAGE = ObjC; SUPERCLASS = NSPanel; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {search = id; }; 
-            CLASS = XJGlossaryFilterArrayController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {newObj = id; tableView = NSTableView; }; 
-            SUPERCLASS = NSArrayController; 
-        }, 
-        {
             ACTIONS = {
                 copySelectionToClipboard = id; 
                 insertSelection = id; 

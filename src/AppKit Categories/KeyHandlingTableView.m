@@ -28,7 +28,8 @@
         if([[self delegate] respondsToSelector:@selector(handleDeleteKeyInTableView:)])
             [[self delegate] handleDeleteKeyInTableView: self];
     }
-
-	[super keyDown:event]; // let somebody else handle the event
+    else {
+        [super keyDown:event]; // let somebody else handle the event
+    }
 }
 @end

@@ -317,9 +317,9 @@
 	NSMutableString *newString = [[NSMutableString stringWithCapacity: [self length]] retain];	 
     [newString appendString: self];
 
-	[newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
+    [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     return [newString autorelease];
 
 	/*
@@ -354,15 +354,15 @@
 	NSMutableString *newString = [[NSMutableString stringWithCapacity: [self length]] retain];
     [newString appendString: self];
 	
-	[newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
-	[newString replaceOccurrencesOfString: @"\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
+    [newString replaceOccurrencesOfString: @"\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
+    [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     return [newString autorelease];
 }
 
 - (NSString *)translateLJUser
 {
-    AGRegex *userRegex = [[AGRegex alloc] initWithPattern:@"<lj user=\"([A-Za-z0-9_]*)\">" options:0];
+    AGRegex *userRegex = [[AGRegex alloc] initWithPattern:@"<lj user=\"([A-Za-z0-9_]*)\" ?/?>" options:0];
     NSString *result = [userRegex replaceWithString: [NSString stringWithFormat: @"<nobr><a href=\"http://www.livejournal.com/userinfo.bml?user=$1\"><img height=\"17\" border=\"0\" src=\"%@\" align=\"absmiddle\" width=\"17\"></a><b><a href=\"http://www.livejournal.com/users/$1/\">$1</a></b></nobr>", [XJPreferences userIconURL]] inString: self];
     [userRegex release];
     return result;
@@ -517,23 +517,4 @@
     
     return (NO);
 } /*stringIsEmpty*/
-@end
-
-@implementation NSString (Technorati)
-- (NSString *)technoratiTags {
-	NSMutableString *html = [[NSMutableString alloc] init];
-	NSArray *tagnames = [[self componentsSeparatedByString: @" "] sortedArrayUsingSelector: @selector(compare:)];
-	
-	NSEnumerator *en = [tagnames objectEnumerator];
-	NSString *tag;
-	while(tag = [en nextObject]) {
-		if([html length] != 0)
-			[html appendString: @" "];
-		
-		NSString *tagString = [NSString stringWithFormat: @"<a rel=\"tag\" href=\"http://www.technorati.com/tags/%@\">%@</a>", tag, tag];
-		[html appendString: tagString];
-	}
-	
-	return [html autorelease];
-}
 @end

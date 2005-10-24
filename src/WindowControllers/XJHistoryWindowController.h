@@ -6,53 +6,84 @@
 //  Copyright (c) 2003 Connected Flow. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
+#import <AppKit/AppKit.h>
+#import "XJCalendar.h"
+#import "WBSearchTextField.h"
 
-@class XJAccountManager, LJAccount, XJHistoryFilterArrayController, XJExportController;
+#import <WebKit/WebKit.h>
 
 @interface XJHistoryWindowController : NSWindowController {
     // The NSBrowser for dates
-    IBOutlet NSTableView *table;
-	IBOutlet NSTableColumn *subjectColumn;
-	IBOutlet NSTableColumn *dateColumn;
-	NSTableColumn *relevanceColumn;
-	
+    IBOutlet NSBrowser *browser;
+
     // The WebView
     IBOutlet WebView *webView;
     IBOutlet NSButton *backButton, *forwardButton;
     IBOutlet NSTextField *urlField;
+    IBOutlet NSProgressIndicator *wvSpinner;
+    
+    NSDictionary *dayCounts;
 
     // To save us making lots of toolbar items, cache them
     NSMutableDictionary *toolbarItemCache;
 
+    // The actual data.
+    XJCalendar *cal;
+
+    // Progress sheet
+    IBOutlet NSWindow *progressSheet;
+    IBOutlet NSProgressIndicator *downloadBar;
+    IBOutlet NSTextField *downloadStatus, *downloadTitle;
+
+    BOOL historyIsComplete, userHasDeclinedDownload, terminateDownloadThread, downloadInProgress, updateInProgress, userHasDeclinedUpdate, terminateUpdateThread, updateIsComplete;
+
     // Search toolbar view
     IBOutlet NSView *searchView;
-    IBOutlet NSSearchField *searchField;
+    IBOutlet WBSearchTextField *searchField;
+
+    NSMutableDictionary *searchCache;
+    int selectedSearchType;
+    IBOutlet NSMenuItem *selectedMenuItem;
+
+    // Search sheet (for when the toolbar is in Text only mode)
+    //IBOutlet NSWindow *searchSheet;
+    //IBOutlet WBSearchTextField *searchSheetTextField;
 
     LJAccount *account;
-	XJAccountManager *accountManager;
-	IBOutlet XJHistoryFilterArrayController *arrayController;
-	NSMutableArray *searchKitResults;
-	
-	NSString *message;
-	
-	// Export
-	XJExportController *exportController;
 }
 
-- (IBAction)editEntry: (id)sender;
-- (IBAction)beginHistoryExport: (id)sender;
-
 - (LJAccount *)account;
-- (void)setAccount: (LJAccount *)newAcct;
-- (XJAccountManager *)accountManager;
-- (void)setAccountManager:(XJAccountManager *)anAccountManager;
+- (void)setCurrentAccount: (LJAccount *)newAcct;
+- (NSString *)historyArchivePath;
 
-- (IBAction)skSearch: (id)sender;
-- (NSMutableArray *)searchKitResults;
-- (void)setSearchKitResults:(NSMutableArray *)aSearchKitResults;
+// Notification of user selection in the browser
+- (IBAction)browserChanged:(id)sender;
 
-- (NSString *)message;
-- (void)setMessage:(NSString *)aMessage;
+// get day counts from the LJ server
+- (BOOL)analyzeDayCounts;
+
+// Actions for the toolbar items
+- (IBAction)openSelectionInBrowser:(id)sender;
+- (IBAction)editSelectionInBrowser:(id)sender;
+- (IBAction)deleteSelectedEntry:(id)sender;
+
+// Convenience for setting the status field
+- (void)setStatus: (NSString *)status;
+
+// Export
+- (IBAction)exportHistory: (id)sender;
+- (BOOL)loadCachedHistory;
+
+- (void)beginHistoryUpdate: (id)sender;
+- (void)beginHistoryDownload: (id)sender;
+- (IBAction)cancelHistoryDownload: (id)sender;
+
+// Search
+- (IBAction)executeSearch:(id)sender;
+- (void)executeSearchForString: (NSString *)target;
+- (IBAction)clearSearch:(id)sender;
+- (IBAction)setSearchType:(id)sender;
+
+// Editing last entry
+- (void)editLastEntry;
 @end

@@ -14,7 +14,7 @@
 + (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (int)theSize maxLength: (int)theLength
 {
     LJPollTextEntryQuestion *teQ = [[LJPollTextEntryQuestion alloc] init];
-    [teQ setQuestion: @"Text Question"];
+    [teQ setQuestion: @"New Text Question"];
     [teQ setSize: theSize];
     [teQ setMaxLength: theLength];
 

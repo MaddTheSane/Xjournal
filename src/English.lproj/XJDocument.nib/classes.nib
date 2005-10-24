@@ -32,17 +32,17 @@
                 insertBlockquote = id; 
                 insertBold = id; 
                 insertCenter = id; 
-                insertCode = id; 
                 insertImage = id; 
                 insertItalic = id; 
                 insertLJCut = id; 
                 insertLJUser = id; 
                 insertLink = id; 
-                insertTT = id; 
                 insertUnderline = id; 
                 postEntryAndDiscardLocalCopy = id; 
                 saveWindowSize = id; 
-                setEntryFormat = id; 
+                setSelectedJournal = id; 
+                setSelectedMood = id; 
+                setValueForSender = id; 
                 showPreviewWindow = id; 
                 toggleDrawer = id; 
             }; 
@@ -51,6 +51,8 @@
             OUTLETS = {
                 alignPop = NSPopUpButton; 
                 altField = NSTextField; 
+                backdateField = NSTextField; 
+                backdatedChk = NSButton; 
                 borderSize = NSTextField; 
                 commSheet = NSWindow; 
                 "comm_OKButton" = NSButton; 
@@ -59,7 +61,6 @@
                 "cut_textField" = NSTextField; 
                 "cut_textView" = NSTextView; 
                 drawer = NSDrawer; 
-                formatPopup = NSPopUpButton; 
                 friendsTable = NSTableView; 
                 hrefSheet = NSWindow; 
                 htmlPreview = WebView; 
@@ -71,6 +72,10 @@
                 imgSheet = NSWindow; 
                 journalPop = NSPopUpButton; 
                 moods = NSComboBox; 
+                noCommentsChk = NSButton; 
+                noEmailChk = NSButton; 
+                preformattedChk = NSButton; 
+                security = NSPopUpButton; 
                 sizeHeight = NSTextField; 
                 sizeWidth = NSTextField; 
                 spaceHeight = NSTextField; 
@@ -80,14 +85,16 @@
                 statusField = NSTextField; 
                 theMusicField = NSTextField; 
                 theSubjectField = NSTextField; 
-                theTextView = XJHTMLEditView; 
+                theTagField = NSTextField; 
+                theTextView = NSTextView; 
+                userPicView = NSImageView; 
                 userSheet = NSWindow; 
                 "user_OKButton" = NSButton; 
                 "user_nameCombo" = NSComboBox; 
+                userpic = NSPopUpButton; 
             }; 
             SUPERCLASS = NSDocument; 
-        }, 
-        {CLASS = XJHTMLEditView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }
+        }
     ); 
     IBVersion = 1; 
 }

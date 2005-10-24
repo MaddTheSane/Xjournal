@@ -6,16 +6,16 @@
 
 @interface XJPollEditorController : NSWindowController
 {
-    LJPoll *poll;
+    LJPoll *thePoll;
     LJPollQuestion *currentlyEditedQuestion;
     NSWindow *currentSheet;
 
-	IBOutlet NSArrayController *multipleAnswersArrayController;
-	
     NSMutableDictionary *toolbarItemCache;
     id currentlyEditedQuestionMemento;
     
+    IBOutlet NSTextField *pollName;
     IBOutlet NSTableView *questionTable;
+    IBOutlet NSPopUpButton *resultAccess;
 
     IBOutlet NSDrawer *drawer;
     IBOutlet NSTextView *drawerTextView;
@@ -30,25 +30,28 @@
 
     IBOutlet NSTextField *textQuestionField, *textSizeField, *textMaxLengthField;
     IBOutlet NSPanel *textSheet;
+    IBOutlet NSPopUpButton *votingAccess;
 }
 
-- (LJPoll *)poll;
-- (void)setPoll:(LJPoll *)aPoll;
-
 - (IBAction)editSelectedQuestion: (id)sender;
+- (IBAction)deleteSelectedQuestion:(id)sender;
 
-- (IBAction)addQuestion: (id)sender;
-- (IBAction)addScaleQuestion:(id)sender;
-- (IBAction)addTextQuestion:(id)sender;
-- (IBAction)addMultipleQuestion:(id)sender;
+- (IBAction)moveSelectedQuestionUp: (id)sender;
+- (IBAction)moveSelectedQuestionDown: (id)sender;
+
+- (IBAction)setVotingAccess: (id)sender;
+- (IBAction)setResultAccess: (id)sender;
+- (IBAction)setPollName: (id)sender;
 
 - (IBAction)addMultipleAnswer:(id)sender;
+- (IBAction)addMultipleQuestion:(id)sender;
+- (IBAction)deleteMultipleAnswer:(id)sender;
+- (IBAction)setMultipleOptionType: (id)sender;
+
+- (IBAction)addScaleQuestion:(id)sender;
+
+- (IBAction)addTextQuestion:(id)sender;
 
 - (IBAction)cancelSheet:(id)sender;
 - (IBAction)commitSheet:(id)sender;
-
-- (LJPollQuestion *)currentlyEditedQuestion;
-- (void)setCurrentlyEditedQuestion:(LJPollQuestion *)aCurrentlyEditedQuestion;
-- (NSWindow *)currentSheet;
-- (void)setCurrentSheet:(NSWindow *)aCurrentSheet;
 @end

@@ -7,21 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <OmniAppKit/OmniAppKit.h>
 
 #import "XJHistoryWindowController.h"
 #import "XJFriendsController.h"
 #import "XJGlossaryWindowController.h"
 #import "XJSafariBookmarkParser.h"
 #import "XJBookmarksWindowController.h"
+#import "XJAccountEditWindowController.h"
 #import "XJPollEditorController.h"
-#import "XJPreferencesController.h"
-#import "XJPollEditorController.h"
-#import "XJFAWizardController.h"
+#import "XJMainWindowController.h"
 
-@class XJDockStatusItem;
-@class XJHistorySyncManager;
-@class XJScriptWindowController;
-@class XJEditToolsController;
+#ifdef __1.1_BUILD__
+#import "XJBirthdayWindowController.h"
+#import "XJShortcutController.h"
+#endif
 
 @interface XJAppDelegate : NSObject {
     /*
@@ -32,27 +32,37 @@
     XJFriendsController *friendController;
     XJGlossaryWindowController *glossaryController;
     XJBookmarksWindowController *bookmarkController;
+    XJAccountEditWindowController *accountController;
     XJPollEditorController *pollController;
-	//XJPollController *pollController;
-	XJPreferencesController *prefsController;
-	XJScriptWindowController *scriptsController;
-	XJFAWizardController *firstAccountController;
-	XJEditToolsController *toolsController;
-	
+    XJMainWindowController *mainController;
+#ifdef __1.1_BUILD__
+    XJBirthdayWindowController *birthdayController;
+
+    XJShortcutController *shortcutController;
+#endif
+    
+    // Connections to the progress panel
+    IBOutlet NSWindow *loginPanel;
+    IBOutlet NSProgressIndicator *spinner;
+
     // The dock menu
     NSMenu *dynDockMenu;
+
+    // The Accounts > top level menu item
+    IBOutlet NSMenuItem *accountItem;
     
     // Omni dock badge
-    XJDockStatusItem *dockItem;
+    OADockStatusItem *dockItem;
     
     // Flag to tell us if the friends updated dialog is showing
     BOOL friendsDialogIsShowing;
 
     // cmd-delete menu outlets
     IBOutlet NSMenuItem *deleteFriend, *deleteFromGroup;
-	
-	XJHistorySyncManager *syncManager;
 }
+
+// Target for AppMenu -> Login
+- (IBAction)logIn:(id)sender;
 
 // Target for AppMenu -> Check for updates
 - (IBAction)checkForUpdate:(id)sender;
@@ -64,14 +74,19 @@
 - (IBAction)showGlossaryWindow:(id)sender;
 - (IBAction)showBookmarkWindow:(id)sender;
 - (IBAction)showPollEditWindow:(id)sender;
-- (IBAction)showScriptsPalette: (id)sender;
-- (IBAction)showToolsPalette:(id)sender;
+- (IBAction)showAccountEditWindow:(id)sender;
+- (IBAction)showMainWindow:(id)sender;
 
 // Target for Edit -> Edit Last Entry
 - (IBAction) editLastEntry:(id)sender;
 
+#ifdef __1.1_BUILD__
+- (IBAction)showShortcutsWindow: (id)sender;
+- (IBAction)showBirthdayWindow: (id)sender;
+#endif
 // Updates the dock menu with current account information
 - (void)updateDockMenu;
+- (void)buildAccountsMenu: (NSNotification *)note;
 
 // Checks for (and creates if not found) the Application Support directories
 - (void)checkForApplicationSupportDirs;
@@ -82,5 +97,7 @@
 - (IBAction)openXjournalBlog: (id)sender;
 - (IBAction)openXjournalHomePage: (id)sender;
 - (IBAction)openDonate: (id)sender;
-- (IBAction)openMarkdownReference: (id)sender;
+
+// Switching account
+- (IBAction)switchAccount: (id)sender;
 @end

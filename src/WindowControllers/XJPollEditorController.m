@@ -4,47 +4,37 @@
 #import "LJPollQuestion.h"
 #import "LJPollTextEntryQuestion.h"
 #import "LJPollScaleQuestion.h"
-#import "XJPollTypeVT.h"
 
 #define kMultipleAnswerPasteboardType @"kMultipleAnswerPasteboardType"
 #define kPollQuestionPasteboardType @"kPollQuestionPasteboardType"
-#define kPollAddTextItemIdentifier @"kPollAddTextItemIdentifier"
-#define kPollAddMultipleItemIdentifier @"kPollAddMultipleItemIdentifier"
-#define kPollAddScaleItemIdentifier @"kPollAddScaleItemIdentifier"
-
-#define kPollDeleteItemIdentifier @"kPollDeleteItemIdentifier"
-#define kPollMoveUpItemIdentifier @"kPollMoveUpItemIdentifier"
-#define kPollMoveDownItemIdentifier @"kPollMoveDownItemIdentifier"
-#define kPollShowCodeItemIdentifier @"kPollShowCodeItemIdentifier"
 
 @interface XJPollEditorController (PrivateAPI)
+- (void)runMultipleSheet;
+- (void)runScaleSheet;
+- (void)runTextSheet;
 - (void)updateDrawer;
-- (void)runSheet: (NSWindow *)sheet;
-- (void)startObservingPoll: (LJPoll *)thePoll;
-- (void)stopObservingPoll: (LJPoll *)thePoll;
 @end
 
 @implementation XJPollEditorController
 
-+(void)initialize {
-	[NSValueTransformer setValueTransformer: [[[XJPollTypeVT alloc] init] autorelease]
-									forName: @"XJPollTypeVT"];
-}
-
 - (id)init
 {
     if(self == [super initWithWindowNibName: @"PollEditor"]) {
-		LJPoll *newPoll = [[[LJPoll alloc] init] autorelease];
-		[newPoll setViewingPermissions: LJPollAllView];
-		[newPoll setVotingPermissions: LJPollAllVote];
-        [self setPoll: newPoll];
-		
+        thePoll = [[LJPoll alloc] init];
     }
     return self;
 }
 
 - (void)windowDidLoad
 {
+    NSToolbar *toolBar = [[NSToolbar alloc] initWithIdentifier: @"kPollToolbar"];
+    [toolBar setAllowsUserCustomization: YES];
+    [toolBar setAutosavesConfiguration: YES];
+    [toolBar setDelegate: self];
+    [[self window] setToolbar: toolBar];
+    [toolBar release];
+    
+    [pollName setStringValue: [thePoll name]];
     [questionTable setTarget: self];
     [questionTable setDoubleAction: @selector(editSelectedQuestion:)];
 
@@ -55,126 +45,137 @@
     [drawer open];
 }
 
-
-// =========================================================== 
-// - poll:
-// =========================================================== 
-- (LJPoll *)poll {
-    return poll; 
+- (IBAction)setPollName: (id)sender
+{
+    [thePoll setName: [sender stringValue]];
+    [self updateDrawer];
 }
 
-// =========================================================== 
-// - setPoll:
-// =========================================================== 
-- (void)setPoll:(LJPoll *)aPoll {
-    if (poll != aPoll) {
-        [self stopObservingPoll: poll];
-		
-		[aPoll retain];
-        [poll release];
-		poll = aPoll;
-		
-		[self startObservingPoll: poll];
-    }
+- (IBAction)setVotingAccess: (id)sender
+{
+    [thePoll setVotingPermissions: [[sender selectedItem] tag]];
+    [self updateDrawer];
+}
+
+- (IBAction)setResultAccess: (id)sender
+{
+    [thePoll setViewingPermissions: [[sender selectedItem] tag]];
+    [self updateDrawer];
 }
 
 - (IBAction)editSelectedQuestion: (id)sender
 {
     int selectedRow = [questionTable selectedRow];
     if(selectedRow != -1) {
-        [self setCurrentlyEditedQuestion: [poll objectInQuestionsAtIndex: selectedRow]];
+        currentlyEditedQuestion = [thePoll questionAtIndex: selectedRow];
         currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
         
         if([currentlyEditedQuestion isKindOfClass: [LJPollMultipleOptionQuestion class]])
-            [self runSheet: multipleSheet];
+            [self runMultipleSheet];
 
         else if([currentlyEditedQuestion isKindOfClass: [LJPollScaleQuestion class]])
-            [self runSheet: scaleSheet];
+            [self runScaleSheet];
 
         else if([currentlyEditedQuestion isKindOfClass: [LJPollTextEntryQuestion class]])
-            [self runSheet: textSheet];
+            [self runTextSheet];
     }
 }
 
-- (IBAction)addQuestion: (id)sender {
-	NSBeginAlertSheet(@"Add Question",
-					  @"Multiple Choice",
-					  @"Scale",
-					  @"Text",
-					  [self window],
-					  self,
-					  @selector(sheetDidEnd:returnCode:contextInfo:),
-					  nil,
-					  nil,
-					  @"Which kind of question would you like to add?");
+- (IBAction)moveSelectedQuestionUp: (id)sender
+{
+	[currentSheet endEditingFor: nil];
+    if([sender tag] == 0) {
+        if([questionTable numberOfSelectedRows] == 1) {
+            [thePoll moveQuestionAtIndex: [questionTable selectedRow] toIndex: [questionTable selectedRow] - 1];
+            [questionTable selectRow: [questionTable selectedRow] - 1 byExtendingSelection: NO];
+        }
+        [questionTable reloadData];
+    }
+
+    if([sender tag] == 1) { // answer table
+        if([multipleAnswerTable numberOfSelectedRows] == 1) {
+            [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion moveAnswerAtIndex: [multipleAnswerTable selectedRow] toIndex: [multipleAnswerTable selectedRow]-1];
+            [multipleAnswerTable selectRow: [multipleAnswerTable selectedRow] - 1 byExtendingSelection: NO];
+            [multipleAnswerTable reloadData];
+        }
+    }
+
+    [self updateDrawer];
 }
 
-- (void)sheetDidEnd: (NSWindow *)sheet returnCode: (int)returnCode contextInfo: (id)context {
-	if(returnCode == NSAlertDefaultReturn) {
-		// Install multiple choice
-		[self addMultipleQuestion: self];
-	}
-	else if(returnCode == NSAlertAlternateReturn) {
-		// Install Scale
-		[self addScaleQuestion: self];
-	}
-	else if(returnCode == NSAlertOtherReturn) {
-		// Install text
-		[self addTextQuestion: self];
-	}
+- (IBAction)moveSelectedQuestionDown: (id)sender
+{
+	[currentSheet endEditingFor: nil];
+    if([sender tag] == 0) {
+        if([questionTable numberOfSelectedRows] == 1) {
+            [thePoll moveQuestionAtIndex: [questionTable selectedRow] toIndex: [questionTable selectedRow] + 1];
+            [questionTable selectRow: [questionTable selectedRow] + 1 byExtendingSelection: NO];
+        }
+        [questionTable reloadData];
+    }
+
+     if([sender tag] == 1) {
+        if([multipleAnswerTable numberOfSelectedRows] == 1) {
+            [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion moveAnswerAtIndex: [multipleAnswerTable selectedRow] toIndex: [multipleAnswerTable selectedRow] + 1];
+            [multipleAnswerTable selectRow: [multipleAnswerTable selectedRow] + 1 byExtendingSelection: NO];
+        }
+        [multipleAnswerTable reloadData];
+    }
+
+    [self updateDrawer];
+}
+
+- (IBAction)addMultipleAnswer:(id)sender
+{
+    [multipleSheet endEditingFor: nil];
+    [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion addAnswer: @"answer"];
+    [multipleAnswerTable reloadData];
+    [multipleAnswerTable selectRow: [multipleAnswerTable numberOfRows]-1 byExtendingSelection: NO];
+    [multipleAnswerTable editColumn: 0
+                                row: [multipleAnswerTable numberOfRows]-1
+                          withEvent: nil
+                             select: YES];
+    [self updateDrawer];
 }
 
 - (IBAction)addMultipleQuestion:(id)sender
 {
-    [self setCurrentlyEditedQuestion: [LJPollMultipleOptionQuestion questionOfType: LJPollRadioType]];
+    currentlyEditedQuestion = [LJPollMultipleOptionQuestion questionOfType: LJPollRadioType];
     currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
+        
+    [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion addAnswer: @"answer"];
+    
+    [thePoll addQuestion: currentlyEditedQuestion];
+    [questionTable reloadData];
 
-	[poll insertObject: currentlyEditedQuestion inQuestionsAtIndex: [poll countOfQuestions]];
-
-    [self performSelector: @selector(runSheet:)
-			   withObject: multipleSheet
-			   afterDelay: 0.5];
+    [self runMultipleSheet];
     [self updateDrawer];
 }
 
-- (IBAction)addMultipleAnswer:(id)sender {
-	NSMutableDictionary *answer = [NSMutableDictionary dictionary];
-	[answer setObject: @"answer" forKey: @"answerText"];
-	
-	[[[self currentlyEditedQuestion] mutableArrayValueForKey: @"answers"] addObject: answer];
-	
-	int idx = [[[self currentlyEditedQuestion] answers] count] - 1;
-	[multipleAnswerTable selectRow: idx byExtendingSelection: NO];
-	
-	[multipleAnswerTable editColumn: 0
-								row: idx
-						  withEvent: nil
-							 select: YES];
+- (IBAction)setMultipleOptionType: (id)sender
+{
+    [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion setType: [[sender selectedItem] tag]];
 }
 
 - (IBAction)addScaleQuestion:(id)sender
 {
-    [self setCurrentlyEditedQuestion: [LJPollScaleQuestion scaleQuestionWithStartValue: 1 end: 10 step: 1]];
+    currentlyEditedQuestion = [LJPollScaleQuestion scaleQuestionWithStart: 1 end: 10 step: 1];
     currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
         
-	[poll insertObject: currentlyEditedQuestion inQuestionsAtIndex: [poll countOfQuestions]];
-
-	[self performSelector: @selector(runSheet:)
-			   withObject: scaleSheet
-			   afterDelay: 0.5];
+    [thePoll addQuestion: currentlyEditedQuestion];
+    [questionTable reloadData];
+    [self runScaleSheet];
     [self updateDrawer];
 }
 
 - (IBAction)addTextQuestion:(id)sender
 {
-    [self setCurrentlyEditedQuestion: [LJPollTextEntryQuestion textEntryQuestionWithSize: 30 maxLength: 15]];
+    currentlyEditedQuestion = [LJPollTextEntryQuestion textEntryQuestionWithSize: 30 maxLength: 15];
     currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
     
-	[poll insertObject: currentlyEditedQuestion inQuestionsAtIndex: [poll countOfQuestions]];
-	
-	[self performSelector: @selector(runSheet:)
-			   withObject: textSheet
-			   afterDelay: 0.5];
+    [thePoll addQuestion: currentlyEditedQuestion];
+    [questionTable reloadData];
+    [self runTextSheet];
     [self updateDrawer];
 }
 
@@ -192,7 +193,22 @@
 - (IBAction)commitSheet:(id)sender
 {
     [currentSheet endEditingFor:nil];
-        
+    if([currentSheet isEqualTo: multipleSheet]) {
+        [currentlyEditedQuestion setQuestion: [multipleQuestion stringValue]];
+    }
+    else if([currentSheet isEqualTo: scaleSheet]) {
+        [currentlyEditedQuestion setQuestion: [scaleQuestionField stringValue]];
+        [(LJPollScaleQuestion *)currentlyEditedQuestion setStart: [[scaleStartField objectValue] intValue]];
+        [(LJPollScaleQuestion *)currentlyEditedQuestion setEnd: [[scaleEndField objectValue] intValue]];
+        [(LJPollScaleQuestion *)currentlyEditedQuestion setStep: [[scaleStepField objectValue] intValue]];
+    }
+    else if([currentSheet isEqualTo: textSheet]) {
+        [currentlyEditedQuestion setQuestion: [textQuestionField stringValue]];
+        [(LJPollTextEntryQuestion *)currentlyEditedQuestion setSize: [textSizeField intValue]];
+        [(LJPollTextEntryQuestion *)currentlyEditedQuestion setMaxLength: [textMaxLengthField intValue]];
+    }
+    
+    [questionTable reloadData];
     [self updateDrawer];
 
     [NSApp endSheet: currentSheet];
@@ -200,58 +216,151 @@
     currentSheet = nil;
 }
 
+- (IBAction)deleteMultipleAnswer:(id)sender
+{
+	[[self window] endEditingFor: nil];
+	
+    NSEnumerator *selectedRows = [multipleAnswerTable selectedRowEnumerator];
+    NSNumber *rowNumber;
 
-// =========================================================== 
-// - currentlyEditedQuestion:
-// =========================================================== 
-- (LJPollQuestion *)currentlyEditedQuestion {
-    return currentlyEditedQuestion; 
+    while(rowNumber = [selectedRows nextObject]) {
+        [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion deleteAnswerAtIndex: [rowNumber intValue]];
+    }
+
+    [multipleAnswerTable reloadData];
+    [self updateDrawer];
 }
 
-// =========================================================== 
-// - setCurrentlyEditedQuestion:
-// =========================================================== 
-- (void)setCurrentlyEditedQuestion:(LJPollQuestion *)aCurrentlyEditedQuestion {
-        currentlyEditedQuestion = aCurrentlyEditedQuestion;
+- (IBAction)deleteSelectedQuestion:(id)sender
+{
+    NSEnumerator *selectedRows = [questionTable selectedRowEnumerator];
+    NSNumber *rowNumber;
+
+    while(rowNumber = [selectedRows nextObject]) {
+        [thePoll deleteQuestionAtIndex: [rowNumber intValue]];
+    }
+
+    [questionTable reloadData];
+    [self updateDrawer];
 }
 
+// ----------------------------------------------------------------------------------------
+// NSTableDataSource
+// ----------------------------------------------------------------------------------------
 
-// =========================================================== 
-// - currentSheet:
-// =========================================================== 
-- (NSWindow *)currentSheet {
-    return currentSheet; 
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+    if([aTableView isEqualTo: questionTable]) {
+        return [thePoll numberOfQuestions];
+    }
+    else if([aTableView isEqualTo: multipleAnswerTable]) {
+        return [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion numberOfAnswers];
+    }
+    return 0;
 }
 
-// =========================================================== 
-// - setCurrentSheet:
-// =========================================================== 
-- (void)setCurrentSheet:(NSWindow *)aCurrentSheet {
-	currentSheet = aCurrentSheet;
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    if([aTableView isEqualTo: questionTable]) {
+        LJPollQuestion *theQuestion = [thePoll questionAtIndex: rowIndex];
+        if([[aTableColumn identifier] isEqualToString: @"question"])
+            return [theQuestion question];
+        else {
+            if([theQuestion isKindOfClass: [LJPollMultipleOptionQuestion class]]) {
+                switch([(LJPollMultipleOptionQuestion *)theQuestion type]) {
+                    case LJPollRadioType:
+                        return NSLocalizedString(@"Radio Buttons", @"");
+                    case LJPollCheckBoxType:
+                        return NSLocalizedString(@"Check Boxes", @"");
+                    case LJPollDropDownType:
+                        return NSLocalizedString(@"Drop Down Menu", @"");
+                }
+            }
+            else if([theQuestion isKindOfClass: [LJPollTextEntryQuestion class]]) {
+                return NSLocalizedString(@"Text", @"");
+            }
+            else {
+                return [NSString stringWithFormat: NSLocalizedString(@"Scale (%d-%d by %d)", @""),
+                    [(LJPollScaleQuestion *)theQuestion start],
+                    [(LJPollScaleQuestion *)theQuestion end],
+                    [(LJPollScaleQuestion *)theQuestion step]];
+            }
+        }
+    }
+
+    else if([aTableView isEqualTo: multipleAnswerTable]) {
+        return [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion answerAtIndex: rowIndex];
+    }
+    return @"";
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    return [aTableView isEqualTo: multipleAnswerTable];
+}
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    if([aTableView isEqualTo: multipleAnswerTable]) {
+        [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion setAnswer: anObject atIndex: rowIndex];
+    }
 }
 @end
 
 @implementation XJPollEditorController (PrivateAPI)
-- (void)runSheet: (NSWindow *)sheet {
-	[self setCurrentSheet: sheet];
-	
-	if([[self currentSheet] isEqualTo: multipleSheet]) {
-		[multipleAnswersArrayController bind: @"contentArray"
-									toObject: [self currentlyEditedQuestion]
-								 withKeyPath: @"answers"
-									 options: nil];
-		
-		[multipleType bind: @"selectedTag"
-				  toObject: [self currentlyEditedQuestion]
-			   withKeyPath: @"type"
-				   options: nil];
-	}
-	else {
-		[multipleAnswersArrayController unbind: @"contentArray"];
-		[multipleType unbind: @"selectedTag"];
-	}
-	
-    [NSApp beginSheet: [self currentSheet]
+- (void)runMultipleSheet
+{
+    currentSheet = multipleSheet;
+    [multipleQuestion setStringValue: [currentlyEditedQuestion question]];
+    [multipleAnswerTable reloadData];
+
+    int questionType = [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion type];
+    NSMenu *theMenu = [multipleType menu];    
+
+    switch(questionType) {
+        case LJPollRadioType:
+            [multipleType selectItem: [theMenu itemAtIndex:0]];
+            break;
+        case LJPollCheckBoxType:
+            [multipleType selectItem: [theMenu itemAtIndex: 1]];
+            break;
+        case LJPollDropDownType:
+            [multipleType selectItem: [theMenu itemAtIndex: 2]];
+            break;
+    }
+    
+    [NSApp beginSheet: multipleSheet
+       modalForWindow: [self window]
+        modalDelegate: self
+       didEndSelector: nil
+          contextInfo: nil];
+}
+
+- (void)runScaleSheet
+{
+    currentSheet = scaleSheet;
+
+    [scaleQuestionField setStringValue: [currentlyEditedQuestion question]];
+    [scaleStartField setObjectValue: [NSNumber numberWithInt: [(LJPollScaleQuestion *)currentlyEditedQuestion start]]];
+    [scaleEndField setObjectValue: [NSNumber numberWithInt: [(LJPollScaleQuestion *)currentlyEditedQuestion end]]];
+    [scaleStepField setObjectValue: [NSNumber numberWithInt: [(LJPollScaleQuestion *)currentlyEditedQuestion step]]];
+
+    [NSApp beginSheet: scaleSheet
+       modalForWindow: [self window]
+        modalDelegate: self
+       didEndSelector: nil
+          contextInfo: nil];
+}
+
+- (void)runTextSheet
+{
+    currentSheet = textSheet;
+
+    [textQuestionField setStringValue: [currentlyEditedQuestion question]];
+    [textSizeField setObjectValue: [NSNumber numberWithInt: [(LJPollTextEntryQuestion *)currentlyEditedQuestion size]]];
+    [textMaxLengthField setObjectValue: [NSNumber numberWithInt: [(LJPollTextEntryQuestion *)currentlyEditedQuestion maxLength]]];
+
+    [NSApp beginSheet: textSheet
        modalForWindow: [self window]
         modalDelegate: self
        didEndSelector: nil
@@ -260,51 +369,6 @@
 
 - (void)updateDrawer
 {
-    [drawerTextView setString: [poll htmlRepresentation]];
+    [drawerTextView setString: [thePoll htmlRepresentation]];
 }
-
-- (void)startObservingPoll: (LJPoll *)thePoll {
-	[thePoll addObserver: self
-			  forKeyPath: @"questions"
-				 options: NSKeyValueObservingOptionOld
-				 context: nil];
-	
-	[thePoll addObserver: self
-			  forKeyPath: @"name"
-				 options: NSKeyValueObservingOptionOld
-				 context: nil];
-	
-	[thePoll addObserver: self
-			  forKeyPath: @"votingPermissions"
-				 options: NSKeyValueObservingOptionOld
-				 context: nil];
-	
-	[thePoll addObserver: self
-			  forKeyPath: @"viewingPermissions"
-				 options: NSKeyValueObservingOptionOld
-				 context: nil];
-}
-
-- (void)stopObservingPoll: (LJPoll *)thePoll {
-	[thePoll removeObserver: self
-				 forKeyPath: @"questions"];
-	
-	[thePoll removeObserver: self
-				 forKeyPath: @"name"];
-	
-	[thePoll removeObserver: self
-				 forKeyPath: @"votingPermissions"];
-	
-	[thePoll removeObserver: self
-				 forKeyPath: @"viewingPermissions"];
-}
-
-- (void)observeValueForKeyPath: (NSString *)keyPath
-					  ofObject: (id)object
-						change: (NSDictionary *)change
-					   context: (void *)context
-{
-	[self updateDrawer];
-}
-
 @end

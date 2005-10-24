@@ -1,54 +1,21 @@
 {
     IBClasses = (
-        {
-            ACTIONS = {
-                clearSearchField = id; 
-                deselectAll = id; 
-                editInAddressBook = id; 
-                selectInAddressBook = id; 
-            }; 
-            CLASS = ABPeoplePickerView; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSView; 
-        }, 
         {CLASS = AddressBookDropView; LANGUAGE = ObjC; SUPERCLASS = NSImageView; }, 
-        {
-            CLASS = DNDArrayController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {tableView = NSTableView; }; 
-            SUPERCLASS = NSArrayController; 
-        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {
-            ACTIONS = {search = id; }; 
-            CLASS = FriendsFilterArrayController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {table = NSTableView; }; 
-            SUPERCLASS = NSArrayController; 
-        }, 
         {
             CLASS = KeyHandlingTableView; 
             LANGUAGE = ObjC; 
             SUPERCLASS = XJStripedTableView; 
         }, 
         {
-            CLASS = MetaItemArrayController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {tableView = NSTableView; }; 
-            SUPERCLASS = NSArrayController; 
-        }, 
-        {
             ACTIONS = {
                 addBirthdayToiCal = id; 
                 addFriend = id; 
                 addGroup = id; 
-                cancelABSelectSheet = id; 
                 cancelBirthdaySheet = id; 
                 cancelSheet = id; 
-                commitABSelectSheet = id; 
                 commitBirthdaySheet = id; 
                 commitSheet = id; 
-                deleteFriendButtonAction = id; 
                 deleteSelectedFriend = id; 
                 deleteSelectedGroup = id; 
                 launchAddressBook = id; 
@@ -56,31 +23,46 @@
                 openSelectedFriendsProfile = id; 
                 removeAddressCard = id; 
                 removeSelectedFriendFromGroup = id; 
-                runABSelectSheet = id; 
                 saveDocument = id; 
+                setBackgroundColor = id; 
+                setForegroundColor = id; 
+                setViewType = id; 
+                switchAccount = id; 
             }; 
             CLASS = XJFriendsController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                abPicker = ABPeoplePickerView; 
-                abSheet = NSWindow; 
-                addressBookClearButton = NSButton; 
+                accountToolbarPopup = NSPopUpButton; 
+                accountToolbarView = NSView; 
+                addressBookClearButton = id; 
+                addressBookImageWell = id; 
+                addressBookName = id; 
+                bgWell = NSColorWell; 
                 calChooserSheet = NSWindow; 
                 calPopup = NSPopUpButton; 
                 currentSheet = id; 
+                dateOfBirth = NSTextField; 
+                fgWell = NSColorWell; 
                 friendField = id; 
                 friendSheet = id; 
-                friendsForSelectedGroupController = FriendsFilterArrayController; 
                 friendsTable = id; 
-                groupController = MetaItemArrayController; 
+                fullName = NSTextField; 
                 groupField = id; 
                 groupSheet = id; 
                 groupTable = id; 
                 iCalButton = NSButton; 
+                recentEntriesView = WebView; 
+                recentSpinner = NSProgressIndicator; 
+                showTypePopUp = NSPopUpButton; 
+                showTypeToolbarView = NSView; 
+                splitView = NSSplitView; 
+                tabs = NSTabView; 
+                userInfoSpinner = NSProgressIndicator; 
+                userInfoView = WebView; 
+                userNameField = NSTextField; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
-        {CLASS = XJRoundedTableCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
         {CLASS = XJStripedTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
     ); 
     IBVersion = 1; 

@@ -10,48 +10,33 @@
 #import <LJKit/LJKit.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
-/*
- The XJaccountManager manages a mutable array of LJAccount objects.
- 
- It's a singleton, and the idea is that each XJDocument class keeps 
- an iVar reference to it and looks in here for accounts to associate 
- with journals and entries.
- */
+#define XJRendezvousAccountsUpdated @"XJRendezvousAccountsUpdated"
 
 @interface XJAccountManager : NSObject {
-    NSMutableDictionary *passwordCache;
-	NSMutableArray *accounts;
-	NSMutableDictionary *cfSessions;
-	
-	NSTimer *loginCheckTimer;
-	
-	LJAccount *defaultAccount;
+    NSMutableDictionary *accounts, *passwordCache;
+    NSString *defaultUsername;
+    LJAccount *loggedInAccount;
 }
 
 + (XJAccountManager *)defaultManager;
 
-- (NSMutableDictionary *)passwordCache;
-- (void)setPasswordCache:(NSMutableDictionary *)aPasswordCache;
+- (int)numberOfAccounts;
+- (NSDictionary *)accounts;
 
-- (NSMutableArray *)accounts;
-- (void)setAccounts:(NSMutableArray *)anAccounts;
-	///////  accounts  ///////
+- (void)addAccountWithUsername: (NSString *)name password: (NSString *)password;
+- (void)removeAccountWithUsername: (NSString *)name;
 
-- (unsigned int)countOfAccounts;
-- (id)objectInAccountsAtIndex:(unsigned int)index;
-- (void)insertObject:(id)anObject inAccountsAtIndex:(unsigned int)index;
-- (void)removeObjectFromAccountsAtIndex:(unsigned int)index;
-- (void)replaceObjectInAccountsAtIndex:(unsigned int)index withObject:(id)anObject;
+- (void)setPassword: (NSString *) passwd forUsername: (NSString *)username;
 
-- (NSMutableDictionary *)cfSessions;
-- (void)setCfSessions:(NSMutableDictionary *)aCfSessions;
-
-- (void)setAccount: (LJAccount *)account checksFriends: (BOOL)flag startChecking:(BOOL)shouldStart;
-- (BOOL)accountChecksFriends: (LJAccount *)acc;
-- (LJCheckFriendsSession *)cfSessionForAccount: (LJAccount *)acct;
+- (LJAccount *)accountForUsername: (NSString *)username;
+- (NSString *)passwordForUsername: (NSString *)username;
 
 - (LJAccount *)defaultAccount;
-- (void)setDefaultAccount:(LJAccount *)aDefaultAccount;
+- (void)setDefaultUsername: (NSString *)newDefault;
+- (NSString *)defaultUsername;
 
-- (LJAccount *)accountWithUsername: (NSString *)accName;
+- (LJAccount *)loggedInAccount;
+- (void)logInAccount: (LJAccount *)theAccount;
+
+- (NSEnumerator *)menuItemEnumerator;
 @end

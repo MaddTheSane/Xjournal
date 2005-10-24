@@ -8,25 +8,20 @@
 
 #import "XJAppDelegate.h"
 #import <LJKit/LJKit.h>
+#import <OmniAppKit/OmniAppKit.h>
 #import "XJPreferences.h"
 #import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"
+#import "XJAccountManager-Rendezvous.h"
 #import "CCFSoftwareUpdate.h"
 #import "LJKit-URLLaunching.h"
 #import "XJDocument.h"
 #import "XJDonationWindowController.h"
 #import "NSString+Extensions.h"
-#import "XJGrowlManager.h"
-#import "XJSyndicationData.h"
-#import "NSString+Templating.h"
-#import "XJScriptWindowController.h"
-#import "XJFilePathToBaseNameValueTransformer.h"
-#import "XJDockStatusItem.h"
-#import "XJEditToolsController.h"
 
-#import <ILCrashReporter/ILCrashReporter.h>
- 
+#define PREF_LJ_ACCOUNTS @"preferences.accounts"
+
 // Constant local strings
 #define LJ_LOGIN_MESSAGE NSLocalizedString(@"Message from LiveJournal.com", @"")
 #define LJ_FRIENDS_UPDATED_TITLE NSLocalizedString(@"Friends Updated", @"")
@@ -55,34 +50,24 @@ const AEKeyword NNWDataItemSourceHomeURL = 'hurl';
 const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 @implementation XJAppDelegate
-+ (void)initialize {
-	if([self isExpired]) {
-		int result = NSRunAlertPanel(@"Beta Version Expired",
-									 @"This beta version of Xjournal has expired.  Please visit the Xjournal home page to download a newer version.",
-									 @"Quit", @"Open Home Page", nil);
-		
-		if(result == NSAlertAlternateReturn) {
-			[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://speirs.org/xjournal"]];
-		}
-		
-		[NSApp terminate: self];
-	}
-	else {
-		[XJPreferences installPreferences];
-		[[ILCrashReporter defaultReporter]
-	launchReporterForCompany:@"Fraser Speirs"
-				  reportAddr:@"fraser@speirs.org"];
-		
-		[XJGrowlManager defaultManager];
-	}
-}
-
 - (void)awakeFromNib
 {	
-	 [[NSNotificationCenter defaultCenter] addObserver: self
+    /* To find out when the login process will start, so we can show the progress dialog */
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(loginStarted:)
+                                                 name: LJAccountWillLoginNotification
+                                               object: nil];
+
+    /* Need to know whether login succeeds or fails.  In both cases, we dismiss the progress dialog. */
+    [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(loginCompleted:)
                                                  name: LJAccountDidLoginNotification
                                                object: nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginFailed:)
+                                                    name:LJAccountDidNotLoginNotification
+                                                  object:nil];
 
     /* Register to get checkfriends update notifications */
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -96,9 +81,18 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
                                                  name: LJCheckFriendsErrorNotification
                                                object: nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildAccountsMenu:)
+                                                 name:XJAccountAddedNotification
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildAccountsMenu:)
+                                                 name:XJAccountWillRemoveNotification
+                                               object:nil];
     
     /* Initialise the dock icon badge */
-    dockItem = [[XJDockStatusItem alloc] initWithIcon: [NSImage imageNamed:@"usericon"]];
+    dockItem = [[OADockStatusItem alloc] initWithIcon: [NSImage imageNamed:@"usericon"]];
 
     /* Check for and create app support directories */
     [self checkForApplicationSupportDirs];
@@ -109,10 +103,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
         andSelector: @selector (editDataItem: withReplyEvent:)
         forEventClass: NNWEditDataItemAppleEventClass
         andEventID: NNWEditDataItemAppleEventID];
-	 
-	 /* Register the XJFilePathToBaseNameValueTransformer */
-	 [NSValueTransformer setValueTransformer: [[[XJFilePathToBaseNameValueTransformer alloc] init] autorelease]
-									 forName: @"XJFilePathToBaseNameValueTransformer"];
 }
 
 /*
@@ -120,27 +110,53 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
  */
 - (void)applicationDidFinishLaunching: (NSNotification *)note
 {
-	if([[[XJAccountManager defaultManager] accounts] count] == 0) {
-		firstAccountController = [[XJFAWizardController alloc] init];
-		[firstAccountController showWindow:self];
-	}
-	
-	if([XJPreferences showDonationWindow])
+	/*if([XJPreferences showDonationWindow])
 		[[XJDonationWindowController alloc] init];
+	*/
 	
-	syncManager = [[XJHistorySyncManager alloc] init];
-	
-	[self updateDockMenu];
-	
-	// Reopen palettes that were open
-	if([PREFS boolForKey: XJBookmarkWindowIsOpenPreference])
-		[self showBookmarkWindow: self];
-	
-	if([PREFS boolForKey: XJGlossaryWindowIsOpenPreference])
-		[self showGlossaryWindow: self];
-	
-	[[CCFSoftwareUpdate sharedUpdateChecker] runScheduledUpdateCheckIfRequired];
-	[NSApp setServicesProvider:self];
+    XJAccountManager *acctManager = [XJAccountManager defaultManager];
+    // Check that we've got a username to log into
+    if(![acctManager defaultAccount]) {
+        // Show the initial-run username and password dialog
+        [self showAccountEditWindow: self];
+        [accountController addAccount: self];
+    }
+    else {
+        [XJCheckFriendsSessionManager sharedManager]; // Initialise the shared session
+
+        // Once accounts support other LJ services, we should move these reachability tests into the login method
+        if([XJPreferences shouldAutoLogin] && [NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
+            NS_DURING
+
+                [acctManager logInAccount: [acctManager defaultAccount]];
+                if([[acctManager defaultAccount] isLoggedIn])
+					[[acctManager defaultAccount] downloadFriends];
+                // Be a good client and show the LiveJournal login message, if any
+                NSString *serverMsg = [[acctManager loggedInAccount] loginMessage];
+                if(serverMsg != nil && ![XJPreferences suppressLoginMessage])
+                    NSRunAlertPanel(LJ_LOGIN_MESSAGE, serverMsg, @"OK", nil, nil);
+            NS_HANDLER
+                NSRunAlertPanel([localException name], [localException reason], @"OK", nil, nil);
+            NS_ENDHANDLER
+        }
+    }
+    [self updateDockMenu];
+    [self buildAccountsMenu: nil];
+
+    // Reopen palettes that were open
+    if([PREFS boolForKey: kBookmarkWindowOpen])
+        [self showBookmarkWindow: self];
+
+    if([PREFS boolForKey: kGlossaryWindowOpen])
+        [self showGlossaryWindow: self];
+
+#ifdef __1.1_BUILD__
+    if([PREFS boolForKey: kShortcutWindowOpen])
+        [self showShortcutsWindow: self];
+#endif
+    
+    [[CCFSoftwareUpdate sharedUpdateChecker] runScheduledUpdateCheckIfRequired];
+    [NSApp setServicesProvider:self];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -148,45 +164,53 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     return YES;
 }
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication 
-					hasVisibleWindows:(BOOL)flag
-{
-	return [[[XJAccountManager defaultManager] accounts] count] != 0;
-}
-
-- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
-	return [[[XJAccountManager defaultManager] accounts] count] != 0;	
-}
-
-- (void)loginCompleted: (NSNotification *)note {
-	XJGrowlManager *gMan = [XJGrowlManager defaultManager];
-
-	[gMan notifyWithTitle: @"Account Logged In" 
-			  description: [[note object] username] 
-		 notificationName: XJGrowlAccountDidLogInNotification
-				   sticky: NO];
-}
-
 /* NetNewsWire Handler */
 - (void) editDataItem: (NSAppleEventDescriptor *) event withReplyEvent: (NSAppleEventDescriptor *) reply {
 
-	LJJournal *currentJournal = [[[XJAccountManager defaultManager] defaultAccount] defaultJournal];
+	LJJournal *currentJournal = [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal];
 	LJEntry *newPost = [[LJEntry alloc] init];	
 	
-	XJSyndicationData *synData = [XJSyndicationData syndicationDataWithAppleEvent: event];
-
-	NSString *postBody = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"RSSFormatString"];
-	postBody = [postBody stringByParsingTagsWithStartDelimeter: @"<$" endDelimeter: @"/>" usingObject: synData];
+    NSAppleEventDescriptor *recordDescriptor = [event descriptorForKeyword: keyDirectObject];
+    NSString *title = [[recordDescriptor descriptorForKeyword: NNWDataItemTitle] stringValue];
+	NSLog(@"Title: %@", title);
+	if(title)
+		[newPost setSubject:title];
+	else
+		[newPost setSubject: @"[No Title]"];
 	
-	NSString *postTitle = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"RSSSubjectFormatString"];
-	postTitle = [postTitle stringByParsingTagsWithStartDelimeter: @"<$" endDelimeter: @"/>" usingObject: synData];
+	NSString *body = [[recordDescriptor descriptorForKeyword: NNWDataItemDescription] stringValue];
+    NSLog(@"Body: %@", body);
+	NSString *summary = [[recordDescriptor descriptorForKeyword: NNWDataItemSummary] stringValue];
+	NSLog(@"Summary: %@", summary);
+    NSString *link = [[recordDescriptor descriptorForKeyword: NNWDataItemLink] stringValue];
+    NSLog(@"Link: %@", link);
+    NSString *permalink = [[recordDescriptor descriptorForKeyword: NNWDataItemPermalink] stringValue];
+    NSLog(@"Permalink: %@", permalink);
+    NSString *commentsURL = [[recordDescriptor descriptorForKeyword: NNWDataItemCommentsURL] stringValue];
+    NSLog(@"Comments URL: %@", commentsURL);
+    NSString *sourceName = [[recordDescriptor descriptorForKeyword: NNWDataItemSourceName] stringValue];
+    NSLog(@"SourceName: %@", sourceName);
+    NSString *sourceHomeURL = [[recordDescriptor descriptorForKeyword: NNWDataItemSourceHomeURL] stringValue];
+    NSLog(@"Source Home URL: %@", sourceHomeURL);
+    NSString *sourceFeedURL = [[recordDescriptor descriptorForKeyword: NNWDataItemSourceFeedURL] stringValue];
+    NSLog(@"Source Feed URL: %@", sourceFeedURL);
+	
 
-	[newPost setSubject: postTitle];
-	[newPost setContent: postBody];
+    if ([NSString stringIsEmpty: body])
+        [newPost setContent: summary];
+    else
+        [newPost setContent: body];
+
+	if(![NSString stringIsEmpty: permalink]) 
+		[newPost setContent: [NSString stringWithFormat: @"%@\n\n%@", [newPost content], permalink]];
+	else if(![NSString stringIsEmpty: link])
+		[newPost setContent: [NSString stringWithFormat: @"%@\n\n%@", [newPost content], link]];
+	else if([NSString stringIsEmpty: commentsURL])
+		[newPost setContent: [NSString stringWithFormat: @"%@\n\n%@", [newPost content], commentsURL]];
 	
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntry: newPost];
+    [doc setEntryToEdit: newPost];
     [newPost setJournal: currentJournal];
     [doc showWindows];
 
@@ -242,7 +266,22 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     subItem = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"All Friends", @"") action: @selector(openFriendsPage:) keyEquivalent: @""];
     [subMenu addItem: subItem];
     [subItem release];
-	
+
+    if([[XJAccountManager defaultManager] loggedInAccount]) {
+        // Only add friends if we have them.....
+        [subMenu addItem: [NSMenuItem separatorItem]];
+    
+        // Now, add an item for each group
+        NSEnumerator *enu = [[[[XJAccountManager defaultManager] defaultAccount] groupArray] objectEnumerator];
+        LJGroup *grp;
+        while(grp = [enu nextObject]) {
+            subItem = [[NSMenuItem alloc] initWithTitle: [grp name] action: @selector(openFriendGroup:) keyEquivalent: @""];
+            [subItem setRepresentedObject: grp];
+            [subMenu addItem: subItem];
+            [subItem release];
+        }
+    }
+
     // Clean up
     [item setSubmenu: subMenu];
     [subMenu release];
@@ -256,6 +295,59 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     return dynDockMenu;
 }
 
+- (void) buildAccountsMenu: (NSNotification *)note
+{
+	if([accountItem hasSubmenu]) {
+		NSMenu *oldSub = [[accountItem submenu] retain];
+		[accountItem setSubmenu: nil];
+		[oldSub release];
+	}
+	
+	NSMenu *newSubmenu = [[NSMenu alloc] init];
+	NSDictionary *accounts = [[XJAccountManager defaultManager] accounts];
+	NSArray *dictionaryKeys = [[accounts allKeys] sortedArrayUsingSelector:@selector(compare:)];
+	
+	int i;
+	for(i=0; i < [dictionaryKeys count]; i++) {
+		NSString *key = [dictionaryKeys objectAtIndex: i];
+		LJAccount *acc = [accounts objectForKey: key];
+		
+		NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: [acc username] action: @selector(switchAccount:) keyEquivalent: @""];
+        [item setTarget: nil];
+        [item setRepresentedObject: acc];
+		
+		if([[XJAccountManager defaultManager] loggedInAccount] && 
+		   [[acc username] isEqualToString: [[[XJAccountManager defaultManager] loggedInAccount] username]])
+		{
+            [item setState: NSOnState];
+		}
+        else {
+            // If there's no logged in account, set to the default account
+            if(![[XJAccountManager defaultManager] loggedInAccount] && [[acc username] isEqualToString: [[XJAccountManager defaultManager] defaultUsername]])
+                [item setState: NSOnState];
+        }
+		[newSubmenu addItem: item];
+		[item release];
+	}
+
+    [newSubmenu addItem: [NSMenuItem separatorItem]];
+    
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"Edit Accounts", @"")
+												  action: @selector(showWindow:)
+										   keyEquivalent: @""];
+
+    // Make sure the account window controller is initialised here
+    if(!accountController)
+        accountController = [[XJAccountEditWindowController alloc] init];
+    [item setTarget: accountController];
+
+    [newSubmenu addItem: item];
+    [item release];
+	
+	[accountItem setSubmenu: newSubmenu];
+	[newSubmenu release];
+}
+
 /*
  * The following show*Window methods are used to initialise
  * (if required) the subsidiary window controllers and to
@@ -263,9 +355,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
  */
 - (IBAction)showPrefsWindow:(id)sender
 {
-	if(!prefsController) 
-		prefsController = [[XJPreferencesController alloc] init];
-	[prefsController showWindow: self];
+    [[OAPreferenceController sharedPreferenceController] showPreferencesPanel:nil];
 }
 
 - (IBAction)showBookmarkWindow:(id)sender
@@ -300,31 +390,50 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [glossaryController showWindow: self];
 }
 
-- (IBAction)showScriptsPalette: (id)sender
+- (IBAction)showAccountEditWindow:(id)sender
 {
-	if(!scriptsController) {
-		scriptsController = [[XJScriptWindowController alloc] initWithWindowNibName: @"Scripts"];
-	}
-	[scriptsController showWindow: self];
+    if(!accountController) {
+        accountController = [[XJAccountEditWindowController alloc] init];
+    }
+    [accountController showWindow: self];
 }
 
-- (IBAction)showToolsPalette:(id)sender {
-	if(!toolsController) {
-		toolsController = [[XJEditToolsController alloc] init];
-	}
-	[toolsController showWindow: self];
+- (IBAction)showMainWindow:(id)sender
+{
+    if(!mainController) {
+        mainController = [[XJMainWindowController alloc] init];
+    }
+    [mainController showWindow: self];
 }
 
 // Target for Edit -> Edit Last Entry
 - (IBAction) editLastEntry:(id)sender
 {
-	LJJournal *currentJournal = [[[XJAccountManager defaultManager] defaultAccount] defaultJournal];
+	LJJournal *currentJournal = [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal];
 	LJEntry *lastEntry = [currentJournal getMostRecentEntry];
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntry: lastEntry];
+    [doc setEntryToEdit: lastEntry];
     [doc showWindows];
 }
+
+#ifdef __1.1_BUILD__
+- (IBAction)showBirthdayWindow: (id)sender
+{
+    if(!birthdayController) {
+        birthdayController = [[XJBirthdayWindowController alloc] init];
+    }
+    [birthdayController showWindow: self];
+}
+
+- (IBAction)showShortcutsWindow: (id)sender
+{
+    if(!shortcutController) {
+        shortcutController = [[XJShortcutController alloc] init];
+    }
+    [shortcutController showWindow: self];
+}
+#endif
 
 - (IBAction)showPollEditWindow:(id)sender
 {
@@ -335,50 +444,93 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 }
 
 
+
+// ----------------------------------------------------------------------------------------
+// Switching account
+// ----------------------------------------------------------------------------------------
+- (IBAction)switchAccount: (id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName: XJAccountSwitchedNotification object: [sender representedObject]];
+	[[XJAccountManager defaultManager] logInAccount: [sender representedObject]];
+    [self buildAccountsMenu: nil];
+}
+
 // ----------------------------------------------------------------------------------------
 // Notifications
 // ----------------------------------------------------------------------------------------
+/* Called when the user clicks on the dock icon */
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+    // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
+    // and we DON'T open a new window
+    if(![dockItem isHidden]) {
+        if([XJPreferences openFriendsPage])
+            [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
+        [dockItem hide];
+
+        [self updateDockMenu];
+        
+        // User operated here, so restart checkfriends
+        [[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
+        return NO;
+    }
+
+    // Otherwise, we do.
+    return YES;
+}
 
 /* Called from LJKit when the checked-for friends pages have been updated. */
 - (void)friendsUpdated:(NSNotification *)aNotification
 {
-	NSLog(@"**** Friends page updated ****");
     // If the user wants a sound, play it.
-    if([PREFS boolForKey: XJCheckFriendsShouldPlaySoundPreference]) {
-        NSSound *snd = [PREFS objectForKey: XJCheckFriendsSelectedAlertSoundPreference];
+    if([XJPreferences playCheckFriendsSound]) {
+        NSSound *snd = [XJPreferences checkFriendsSound];
         if(snd) [snd play];
     }
 
     // If they want a dock icon, show it.
-    if([PREFS boolForKey: XJCheckFriendsShouldShowDockIconPreference]) {
+    if([XJPreferences showDockIcon]) {
         [dockItem show];
     }
 
     // If they want a dialog, show that too.
-    if([PREFS boolForKey: XJCheckFriendsShouldShowDialogPreference]) {
-		
-		if([PREFS boolForKey: XJCheckFriendsShouldUseGrowlPreference]) {
-			[[XJGrowlManager defaultManager] notifyWithTitle: @"Friends Page Updated"
-												 description: [NSString stringWithFormat: @"%@'s friends page has changed", [[[aNotification object] account] username]]
-																		notificationName: XJFriendsUpdatedGrowlNotification
-																				  sticky: YES];
-		}
-		else {
-			friendsDialogIsShowing = YES;
-			int result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
-			friendsDialogIsShowing = NO;
-			if(result == NSAlertAlternateReturn) {
-				// alt button is "Open Friends Page"
-				[[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
-			}
-			
-			// Hide the dock item.
-			if(![dockItem isHidden])
-				[dockItem hide];
-		}
+    if([XJPreferences showFriendsDialog]) {
+        friendsDialogIsShowing = YES;
+        int result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
+        friendsDialogIsShowing = NO;
+        if(result == NSAlertAlternateReturn) {
+            // alt button is "Open Friends Page"
+            [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
+        }
+
+        // Hide the dock item.
+        if(![dockItem isHidden])
+            [dockItem hide];
+
+        // User operated here, so restart checkfriends
+        [[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
     }
-	
-	[[aNotification object] startChecking];
+}
+
+/* Notifications about login beginning and ending */
+- (void)loginStarted:(NSNotification *)notification
+{
+     [loginPanel makeKeyAndOrderFront: self];
+    [spinner setUsesThreadedAnimation: YES];
+    [spinner startAnimation:self];
+}
+
+- (void)loginCompleted: (NSNotification *)notification
+{
+    [spinner stopAnimation:self];
+    [loginPanel orderOut: nil];
+    [self updateDockMenu];
+}
+
+- (void)loginFailed: (NSNotification *)notification
+{
+    [spinner stopAnimation:self];
+    [loginPanel orderOut: nil];
 }
 
 /* Actions for LJ menu items */
@@ -404,10 +556,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 - (IBAction) openDonationInfo: (id)sender {
 	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://www.livejournal.com/community/xjournal/35968.html"]];
-}
-
-- (IBAction)openMarkdownReference: (id)sender {
-	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://daringfireball.net/projects/markdown/syntax"]];	
 }
 
 /* Actions called from Dock menu */
@@ -437,6 +585,28 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     }
 }
 
+/* Action for login menu item */
+- (IBAction)logIn:(id)sender
+{
+    XJAccountManager *man = [XJAccountManager defaultManager];
+    if(![man defaultAccount]) {
+        int result = NSRunCriticalAlertPanel(NSLocalizedString(@"No accounts defined", @""),
+                                             NSLocalizedString(@"Please define at least one account before attempting to log in", @""),
+                                             NSLocalizedString(@"OK", @""),
+                                             NSLocalizedString(@"Open Accounts Window", @""),
+                                             nil);
+
+        if(result == NSAlertAlternateReturn)
+            [self showAccountEditWindow: self];
+    }
+    else {
+        if([NetworkConfig destinationIsReachable:@"www.livejournal.com"])
+            [man logInAccount: [man defaultAccount]];
+        else
+            [NetworkConfig showUnreachableDialog];
+    }
+}
+
 /*
  * Validation for some menu items, mostly to disable stuff when we're not logged in
  */
@@ -445,6 +615,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     int tag = [item tag];
     if(tag == kHistoryMenuTag) {
         // Must be logged in to use this menu items.
+        //return [[[XJAccountManager defaultManager] defaultAccount] isLoggedIn];
         return YES;
     }
     else if(tag == kFriendsMenuTag) {
@@ -507,21 +678,9 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     XJDocument *doc = (XJDocument *)[docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntry: entry];
+    [doc setEntryToEdit: entry];
     [doc showWindows];
     [doc updateChangeCount:NSChangeDone];
     [entry release];
-}
-
-+ (BOOL)isExpired {
-	// Do expiry check
-	NSCalendarDate *expiry = [NSCalendarDate dateWithYear: 2005
-													month: 6
-													  day: 30
-													 hour: 12
-												   minute: 00
-												   second: 00 timeZone: nil];
-	
-	return [expiry timeIntervalSinceNow] <= 0;
 }
 @end

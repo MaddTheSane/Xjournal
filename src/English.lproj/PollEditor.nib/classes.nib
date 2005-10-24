@@ -10,20 +10,28 @@
                 addTextQuestion = id; 
                 cancelSheet = id; 
                 commitSheet = id; 
+                deleteMultipleAnswer = id; 
+                deleteSelectedQuestion = id; 
                 editSelectedQuestion = id; 
+                moveSelectedQuestionDown = id; 
+                moveSelectedQuestionUp = id; 
+                setMultipleOptionType = id; 
+                setPollName = id; 
+                setResultAccess = id; 
+                setVotingAccess = id; 
             }; 
             CLASS = XJPollEditorController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                currentlyEditedQuestionMemento = id; 
                 drawer = NSDrawer; 
                 drawerTextView = NSTextView; 
                 multipleAnswerTable = NSTableView; 
-                multipleAnswersArrayController = NSArrayController; 
                 multipleQuestion = NSTextField; 
                 multipleSheet = NSPanel; 
                 multipleType = NSPopUpButton; 
+                pollName = NSTextField; 
                 questionTable = NSTableView; 
+                resultAccess = NSPopUpButton; 
                 scaleEndField = NSTextField; 
                 scaleQuestionField = NSTextField; 
                 scaleSheet = NSPanel; 
@@ -33,6 +41,7 @@
                 textQuestionField = NSTextField; 
                 textSheet = NSPanel; 
                 textSizeField = NSTextField; 
+                votingAccess = NSPopUpButton; 
             }; 
             SUPERCLASS = NSWindowController; 
         }
