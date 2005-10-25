@@ -576,7 +576,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 140938541;
+			PBXPerProjectTemplateStateSaveDate = 151918529;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1232,12 +1232,10 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 131 912 747 0 0 1440 878 ";
 			};
-			PBXWorkspaceStateSaveDate = 140938541;
+			PBXWorkspaceStateSaveDate = 151918529;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
-			OBJROOT = "/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Intermediates";
-			SYMROOT = "/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build";
 		};
 	};
 	2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {
@@ -1343,7 +1341,7 @@
 	5F97978205B96A1F0082C2C7 /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
-		isSCMEnabled = 1;
+		isSCMEnabled = 0;
 		scmConfiguration = {
 		};
 		scmType = scm.cvs;

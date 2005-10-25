@@ -183,7 +183,26 @@
 	<key>Name</key>
 	<string>Default</string>
 	<key>Notifications</key>
-	<array/>
+	<array>
+		<dict>
+			<key>XCObserverAutoDisconnectKey</key>
+			<true/>
+			<key>XCObserverDefintionKey</key>
+			<dict/>
+			<key>XCObserverFactoryKey</key>
+			<string>XCPerspectivesSpecificationIdentifier</string>
+			<key>XCObserverGUIDKey</key>
+			<string>XCObserverProjectIdentifier</string>
+			<key>XCObserverNotificationKey</key>
+			<string>PBXStatusBuildStateMessageNotification</string>
+			<key>XCObserverTargetKey</key>
+			<string>XCMainBuildResultsModuleGUID</string>
+			<key>XCObserverTriggerKey</key>
+			<string>awakenModuleWithObserver:</string>
+			<key>XCObserverValidationKey</key>
+			<dict/>
+		</dict>
+	</array>
 	<key>OpenEditors</key>
 	<array/>
 	<key>PerspectiveWidths</key>
@@ -196,14 +215,15 @@
 		<dict>
 			<key>ChosenToolbarItems</key>
 			<array>
-				<string>build</string>
-				<string>clean</string>
-				<string>run</string>
-				<string>com.apple.ide.PBXToolbarStopButton</string>
 				<string>active-target-popup</string>
 				<string>active-buildstyle-popup</string>
-				<string>servicesModuleCVS</string>
-				<string>servicesModuledebug</string>
+				<string>NSToolbarFlexibleSpaceItem</string>
+				<string>buildOrClean</string>
+				<string>build-and-runOrDebug</string>
+				<string>com.apple.ide.PBXToolbarStopButton</string>
+				<string>get-info</string>
+				<string>toggle-editor</string>
+				<string>NSToolbarFlexibleSpaceItem</string>
 				<string>com.apple.pbx.toolbar.searchfield</string>
 			</array>
 			<key>ControllerClassBaseName</key>
@@ -368,9 +388,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5FE37EB708649A7C00B6C34F</string>
+				<string>5F5B156C090E1A6E000734AB</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5FE37EB808649A7C00B6C34F</string>
+				<string>5F5B156D090E1A6E000734AB</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -489,7 +509,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>0.0</real>
+	<real>151918529.45231101</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -504,9 +524,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>5F6324FC083C8A61007F6AF9</string>
-		<string>/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/Xjournal-1.0/Xjournal.xcodeproj</string>
+		<string>/Users/fspeirs/Coding/Projects/Xjournal/trunk/Xjournal.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>96 240 846 638 0 0 1440 878 </string>
