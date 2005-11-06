@@ -15,16 +15,12 @@
 @implementation XJGlossaryWindowController
 - (id)init
 {
-	self == [super initWithWindowNibName: @"Glossary"];
+	self == [super initWithWindowNibName: @"GlossaryWindow"];
     if(self) {
 		if([self fileExists: kGlossaryFilePath])
 			[self readGlossaryFile];
 		else {
 			[self setGlossary: [NSMutableArray array]];
-			[[self mutableArrayValueForKey: @"glossary"] addObject: [NSMutableDictionary dictionaryWithObject: @"hello world" forKey: @"text"]];
-			[[self mutableArrayValueForKey: @"glossary"] addObject: [NSMutableDictionary dictionaryWithObject: @"hello world" forKey: @"text"]];
-			[[self mutableArrayValueForKey: @"glossary"] addObject: [NSMutableDictionary dictionaryWithObject: @"hello world" forKey: @"text"]];
-			[[self mutableArrayValueForKey: @"glossary"] addObject: [NSMutableDictionary dictionaryWithObject: @"hello world" forKey: @"text"]];
 			[[self mutableArrayValueForKey: @"glossary"] addObject: [NSMutableDictionary dictionaryWithObject: @"hello world" forKey: @"text"]];
 		}
         [[self window] setFrameAutosaveName: kGlossaryAutosaveName];
