@@ -165,7 +165,6 @@
 		1BBD8A3C04B01916003882CD /* AccountEditWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A2804B01916003882CD /* AccountEditWindow.nib */; };
 		1BBD8A3E04B01916003882CD /* Bookmarks.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A2C04B01916003882CD /* Bookmarks.nib */; };
 		1BBD8A4004B01916003882CD /* CutSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A3004B01916003882CD /* CutSheet.nib */; };
-		1BBD8A4104B01916003882CD /* Glossary.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A3204B01916003882CD /* Glossary.nib */; };
 		1BBD8A4204B01916003882CD /* HistoryWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A3404B01916003882CD /* HistoryWindow.nib */; };
 		1BBD8A4304B01916003882CD /* HREFSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A3604B01916003882CD /* HREFSheet.nib */; };
 		1BBD8A4404B01916003882CD /* IMGSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A3804B01916003882CD /* IMGSheet.nib */; };
@@ -248,6 +247,7 @@
 		5F142E42091E95660002ADAE /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E3B091E95660002ADAE /* Add.tiff */; };
 		5F142E43091E95660002ADAE /* Remove_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E3D091E95660002ADAE /* Remove_Pressed.tiff */; };
 		5F142E44091E95660002ADAE /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E3F091E95660002ADAE /* Remove.tiff */; };
+		5F142E57091E9BE20002ADAE /* GlossaryWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E55091E9BE20002ADAE /* GlossaryWindow.nib */; };
 		5F562CBA06B99296004629AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F562CB806B99296004629AE /* Localizable.strings */; };
 		5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
 		5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
@@ -522,7 +522,6 @@
 		1BBD8A2D04B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = Bookmarks.nib; sourceTree = "<group>"; };
 		1BBD8A2F04B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = CommunitySheet.nib; sourceTree = "<group>"; };
 		1BBD8A3104B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = CutSheet.nib; sourceTree = "<group>"; };
-		1BBD8A3304B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = Glossary.nib; sourceTree = "<group>"; };
 		1BBD8A3504B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = HistoryWindow.nib; sourceTree = "<group>"; };
 		1BBD8A3704B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = HREFSheet.nib; sourceTree = "<group>"; };
 		1BBD8A3904B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = IMGSheet.nib; sourceTree = "<group>"; };
@@ -612,6 +611,7 @@
 		5F142E3C091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Add.tiff; sourceTree = "<group>"; };
 		5F142E3E091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Remove_Pressed.tiff; sourceTree = "<group>"; };
 		5F142E40091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Remove.tiff; sourceTree = "<group>"; };
+		5F142E56091E9BE20002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = src/English.lproj/GlossaryWindow.nib; sourceTree = "<group>"; };
 		5F562CB906B99296004629AE /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = src/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5F5B16FA090E1FCE000734AB /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../frameworks/AGRegex.framework; sourceTree = SOURCE_ROOT; };
 		5F5B16FB090E1FCE000734AB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
@@ -942,12 +942,12 @@
 		1BF27D5E04B0296500121863 /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				5F142E55091E9BE20002ADAE /* GlossaryWindow.nib */,
 				1BBD8A2804B01916003882CD /* AccountEditWindow.nib */,
 				1BBD8A2A04B01916003882CD /* BirthdaysWindow.nib */,
 				1BBD8A2C04B01916003882CD /* Bookmarks.nib */,
 				1BBD8A2E04B01916003882CD /* CommunitySheet.nib */,
 				1BBD8A3004B01916003882CD /* CutSheet.nib */,
-				1BBD8A3204B01916003882CD /* Glossary.nib */,
 				1BBD8A3404B01916003882CD /* HistoryWindow.nib */,
 				1BBD8A3604B01916003882CD /* HREFSheet.nib */,
 				1BBD8A3804B01916003882CD /* IMGSheet.nib */,
@@ -1286,7 +1286,6 @@
 				1BBD8A3C04B01916003882CD /* AccountEditWindow.nib in Resources */,
 				1BBD8A3E04B01916003882CD /* Bookmarks.nib in Resources */,
 				1BBD8A4004B01916003882CD /* CutSheet.nib in Resources */,
-				1BBD8A4104B01916003882CD /* Glossary.nib in Resources */,
 				1BBD8A4204B01916003882CD /* HistoryWindow.nib in Resources */,
 				1BBD8A4304B01916003882CD /* HREFSheet.nib in Resources */,
 				1BBD8A4404B01916003882CD /* IMGSheet.nib in Resources */,
@@ -1371,6 +1370,7 @@
 				5F142E42091E95660002ADAE /* Add.tiff in Resources */,
 				5F142E43091E95660002ADAE /* Remove_Pressed.tiff in Resources */,
 				5F142E44091E95660002ADAE /* Remove.tiff in Resources */,
+				5F142E57091E9BE20002ADAE /* GlossaryWindow.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1638,15 +1638,6 @@
 			path = src/English.lproj;
 			sourceTree = "<group>";
 		};
-		1BBD8A3204B01916003882CD /* Glossary.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A3304B01916003882CD /* English */,
-			);
-			name = Glossary.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
 		1BBD8A3404B01916003882CD /* HistoryWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1721,6 +1712,14 @@
 				5F142E40091E95660002ADAE /* English */,
 			);
 			name = Remove.tiff;
+			sourceTree = "<group>";
+		};
+		5F142E55091E9BE20002ADAE /* GlossaryWindow.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F142E56091E9BE20002ADAE /* English */,
+			);
+			name = GlossaryWindow.nib;
 			sourceTree = "<group>";
 		};
 		5F562CB806B99296004629AE /* Localizable.strings */ = {

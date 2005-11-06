@@ -14,6 +14,10 @@
     NSDictionary *trackInfo;
     BOOL downloadIsOnReleaseTrack;
     NSTimer *updateTimer;
+	
+	NSMutableData *responseData;
+	NSURLConnection *plistConnection;
+	BOOL isScheduledSoftwareUpdateCheck;
 }
 + (CCFSoftwareUpdate *)sharedUpdateChecker;
 - (void)runSoftwareUpdate:(BOOL)isScheduled;

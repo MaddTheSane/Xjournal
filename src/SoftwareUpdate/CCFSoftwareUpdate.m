@@ -12,7 +12,6 @@
 static CCFSoftwareUpdate *singleton;
 
 @interface CCFSoftwareUpdate (PrivateAPI)
-- (NSDictionary *)downloadPropertyList;
 - (BOOL)propertyListIsValidForCurrentBundle: (NSDictionary *)propList;
 - (NSComparisonResult)orderingAgainstCurrentBundle: (NSDictionary *)propList;
 - (void)runNewVersionDialog:(NSDictionary *)updateDictionary;
@@ -46,14 +45,56 @@ static CCFSoftwareUpdate *singleton;
 /*
  * Runs a software update check
  */
-- (void)runSoftwareUpdate:(BOOL)isScheduled
-{
-    NSDictionary *propertyList = [self downloadPropertyList];
-    if(!propertyList) {
+- (void)runSoftwareUpdate:(BOOL)isScheduled {
+	
+	isScheduledSoftwareUpdateCheck = isScheduled;
+	responseData = [[NSMutableData data] retain];
+	
+	NSURL *plistURL = [NSURL URLWithString: [[self currentBundlePropertyList] objectForKey: @"CCFSoftwareUpdateURL"]];
+	
+	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: plistURL
+												  cachePolicy: NSURLRequestReloadIgnoringCacheData
+											  timeoutInterval: 5.0];
+
+	plistConnection = [[NSURLConnection alloc] initWithRequest: request delegate: self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[responseData appendData: data];	
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	[plistConnection release];
+	plistConnection = nil;
+	
+	[responseData release];
+	responseData = nil;
+	
+	[self scheduleNewSoftwareUpdateCheck];
+}
+
+- (void)connectionDidFinishLoading: (NSURLConnection *)conn {
+
+	NSString *error;
+	NSPropertyListFormat fmt = NSPropertyListXMLFormat_v1_0;
+	NSDictionary *dict = [NSPropertyListSerialization propertyListFromData: responseData
+														  mutabilityOption: NSPropertyListImmutable
+																	format: &fmt
+														  errorDescription: &error];
+	
+	NSLog([dict description]);
+	if(!dict) {
         [self scheduleNewSoftwareUpdateCheck];
         return; // Failed!
     }
-    
+	
+	[self processPropertyListDictionary: dict];
+	[responseData release];
+	responseData = nil;
+}
+
+- (void)processPropertyListDictionary:(NSDictionary *)propertyList {
+
     if(![self propertyListIsValidForCurrentBundle: propertyList]) return; // No info for this app
     NSDictionary *updateInfo = [propertyList objectForKey: [self currentBundleIdentifier]];
     
@@ -79,7 +120,7 @@ static CCFSoftwareUpdate *singleton;
         [self runNewVersionDialog: trackInfo];
     }
     else {
-        if(!isScheduled)
+        if(!isScheduledSoftwareUpdateCheck)
             [self runNoNewVersionDialog];
     }
     
@@ -120,32 +161,6 @@ static CCFSoftwareUpdate *singleton;
 @end
 
 @implementation CCFSoftwareUpdate (PrivateAPI)
-- (NSDictionary *)downloadPropertyList
-{
-    NSURL *plistURL = [NSURL URLWithString: [[self currentBundlePropertyList] objectForKey: @"CCFSoftwareUpdateURL"]];
-	
-	if([NetworkConfig destinationIsReachable: [plistURL host]]) {
-		NSURLRequest *request = [[NSURLRequest alloc] initWithURL: plistURL
-													  cachePolicy: NSURLRequestReloadIgnoringCacheData
-												  timeoutInterval: 10.0];
-		NSURLResponse *response;
-		NSError *err;
-		NSData *data = [NSURLConnection sendSynchronousRequest: request
-											 returningResponse: &response 
-														 error: &err];
-		if(data) {
-			NSString *error;
-			NSPropertyListFormat fmt = NSPropertyListXMLFormat_v1_0;
-			NSDictionary *dict = [NSPropertyListSerialization propertyListFromData: data
-																  mutabilityOption: NSPropertyListImmutable
-																			format: &fmt
-																  errorDescription: &error];
-			return dict;
-		}
-	}
-
-	return nil;
-}
 
 /* Returns YES if the provided plist contains information about the current bundle */
 - (BOOL)propertyListIsValidForCurrentBundle: (NSDictionary *)propList
