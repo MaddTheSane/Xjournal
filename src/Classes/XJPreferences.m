@@ -13,6 +13,8 @@
 
 #define ACCOUNT_PATH [@"~/Library/Application Support/Xjournal/Account" stringByExpandingTildeInPath]
 
+NSString * const XJGlossaryWindowIsOpenPreference = @"GlossaryWindowIsOpen";
+
 static NSMutableDictionary *userPics;
 static BOOL usingCached;
 

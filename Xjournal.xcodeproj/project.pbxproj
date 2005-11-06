@@ -134,8 +134,6 @@
 		1BBD89F004B0189F003882CD /* XJDocument+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */; };
 		1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */; };
 		1BBD89F204B0189F003882CD /* XJFriendsController-NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */; };
-		1BBD89F304B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899004B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.h */; };
-		1BBD89F404B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899104B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.m */; };
 		1BBD89F504B0189F003882CD /* XJPollEditorController+NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899204B0189F003882CD /* XJPollEditorController+NSToolbarController.h */; };
 		1BBD89F604B0189F003882CD /* XJPollEditorController+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */; };
 		1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */; };
@@ -244,7 +242,23 @@
 		1BF27EF304B02A9400121863 /* stop.1.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE804B02A9400121863 /* stop.1.tiff */; };
 		1BF27EF404B02A9400121863 /* stop.2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE904B02A9400121863 /* stop.2.tiff */; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
+		5F142DA9091E935E0002ADAE /* XJGlossaryFilterArrayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */; };
+		5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */; };
+		5F142E41091E95660002ADAE /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E39091E95660002ADAE /* Add_Pressed.tiff */; };
+		5F142E42091E95660002ADAE /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E3B091E95660002ADAE /* Add.tiff */; };
+		5F142E43091E95660002ADAE /* Remove_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E3D091E95660002ADAE /* Remove_Pressed.tiff */; };
+		5F142E44091E95660002ADAE /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F142E3F091E95660002ADAE /* Remove.tiff */; };
 		5F562CBA06B99296004629AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F562CB806B99296004629AE /* Localizable.strings */; };
+		5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
+		5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
+		5F5B1701090E1FCE000734AB /* OmniAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */; };
+		5F5B1702090E1FCE000734AB /* OmniBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FD090E1FCE000734AB /* OmniBase.framework */; };
+		5F5B1703090E1FCE000734AB /* OmniFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */; };
+		5F5B1838090E206A000734AB /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
+		5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
+		5F5B183A090E206A000734AB /* OmniAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */; };
+		5F5B183B090E206A000734AB /* OmniBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FD090E1FCE000734AB /* OmniBase.framework */; };
+		5F5B183C090E206A000734AB /* OmniFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */; };
 		5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6325A9083C922C007F6AF9 /* libcrypto.dylib */; };
 		5F73D7F305DE9C6400DADCD8 /* imagesize.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */; };
 		5F9697B205D930670026F31C /* Donation.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9697B005D930670026F31C /* Donation.nib */; };
@@ -253,18 +267,8 @@
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
 		5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF478F08138A6400829423 /* Cocoa.framework */; };
 		5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF479D08138DEE00829423 /* CoreServices.framework */; };
-		5FD24625086208220007E0C5 /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD244F2086208220007E0C5 /* LJKit.framework */; };
-		5FD24626086208220007E0C5 /* OmniAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD244F3086208220007E0C5 /* OmniAppKit.framework */; };
-		5FD24627086208220007E0C5 /* OmniBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD244F4086208220007E0C5 /* OmniBase.framework */; };
-		5FD24628086208220007E0C5 /* OmniFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD244F5086208220007E0C5 /* OmniFoundation.framework */; };
-		5FD24664086208990007E0C5 /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD2465F086208990007E0C5 /* AGRegex.framework */; };
 		5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD248B408620D520007E0C5 /* XJKeyChain.h */; };
 		5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD248B508620D520007E0C5 /* XJKeyChain.m */; };
-		5FD249FC08620DAD0007E0C5 /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD2465F086208990007E0C5 /* AGRegex.framework */; };
-		5FD249FE08620DAD0007E0C5 /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD244F2086208220007E0C5 /* LJKit.framework */; };
-		5FD249FF08620DAD0007E0C5 /* OmniAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD244F3086208220007E0C5 /* OmniAppKit.framework */; };
-		5FD24A0008620DAD0007E0C5 /* OmniBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD244F4086208220007E0C5 /* OmniBase.framework */; };
-		5FD24A0108620DAD0007E0C5 /* OmniFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD244F5086208220007E0C5 /* OmniFoundation.framework */; };
 		8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
@@ -366,11 +370,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5FD249FC08620DAD0007E0C5 /* AGRegex.framework in CopyFiles */,
-				5FD249FE08620DAD0007E0C5 /* LJKit.framework in CopyFiles */,
-				5FD249FF08620DAD0007E0C5 /* OmniAppKit.framework in CopyFiles */,
-				5FD24A0008620DAD0007E0C5 /* OmniBase.framework in CopyFiles */,
-				5FD24A0108620DAD0007E0C5 /* OmniFoundation.framework in CopyFiles */,
+				5F5B1838090E206A000734AB /* AGRegex.framework in CopyFiles */,
+				5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */,
+				5F5B183A090E206A000734AB /* OmniAppKit.framework in CopyFiles */,
+				5F5B183B090E206A000734AB /* OmniBase.framework in CopyFiles */,
+				5F5B183C090E206A000734AB /* OmniFoundation.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,8 +488,6 @@
 		1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJDocument+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJFriendsController-NSToolbarController.h"; sourceTree = "<group>"; };
 		1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJFriendsController-NSToolbarController.m"; sourceTree = "<group>"; };
-		1BBD899004B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJGlossaryWindowController+NSToolbarController.h"; sourceTree = "<group>"; };
-		1BBD899104B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJGlossaryWindowController+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD899204B0189F003882CD /* XJPollEditorController+NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJPollEditorController+NSToolbarController.h"; sourceTree = "<group>"; };
 		1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJPollEditorController+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJAccountEditWindowController.h; sourceTree = "<group>"; };
@@ -604,7 +606,18 @@
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
 		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
+		5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJGlossaryFilterArrayController.h; sourceTree = "<group>"; };
+		5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJGlossaryFilterArrayController.m; sourceTree = "<group>"; };
+		5F142E3A091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Add_Pressed.tiff; sourceTree = "<group>"; };
+		5F142E3C091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Add.tiff; sourceTree = "<group>"; };
+		5F142E3E091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Remove_Pressed.tiff; sourceTree = "<group>"; };
+		5F142E40091E95660002ADAE /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = src/English.lproj/Remove.tiff; sourceTree = "<group>"; };
 		5F562CB906B99296004629AE /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = src/English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5F5B16FA090E1FCE000734AB /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../frameworks/AGRegex.framework; sourceTree = SOURCE_ROOT; };
+		5F5B16FB090E1FCE000734AB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
+		5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = ../frameworks/OmniAppKit.framework; sourceTree = SOURCE_ROOT; };
+		5F5B16FD090E1FCE000734AB /* OmniBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniBase.framework; path = ../frameworks/OmniBase.framework; sourceTree = SOURCE_ROOT; };
+		5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniFoundation.framework; path = ../frameworks/OmniFoundation.framework; sourceTree = SOURCE_ROOT; };
 		5F6325A9083C922C007F6AF9 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = imagesize.tiff; path = src/Art/imagesize.tiff; sourceTree = "<group>"; };
 		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
@@ -617,11 +630,6 @@
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		5FBF479D08138DEE00829423 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		5FD244F2086208220007E0C5 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
-		5FD244F3086208220007E0C5 /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = ../frameworks/OmniAppKit.framework; sourceTree = SOURCE_ROOT; };
-		5FD244F4086208220007E0C5 /* OmniBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniBase.framework; path = ../frameworks/OmniBase.framework; sourceTree = SOURCE_ROOT; };
-		5FD244F5086208220007E0C5 /* OmniFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniFoundation.framework; path = ../frameworks/OmniFoundation.framework; sourceTree = SOURCE_ROOT; };
-		5FD2465F086208990007E0C5 /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../frameworks/AGRegex.framework; sourceTree = SOURCE_ROOT; };
 		5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJKeyChain.h; sourceTree = "<group>"; };
 		5FD248B508620D520007E0C5 /* XJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJKeyChain.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
@@ -640,11 +648,11 @@
 				5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */,
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
-				5FD24625086208220007E0C5 /* LJKit.framework in Frameworks */,
-				5FD24626086208220007E0C5 /* OmniAppKit.framework in Frameworks */,
-				5FD24627086208220007E0C5 /* OmniBase.framework in Frameworks */,
-				5FD24628086208220007E0C5 /* OmniFoundation.framework in Frameworks */,
-				5FD24664086208990007E0C5 /* AGRegex.framework in Frameworks */,
+				5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */,
+				5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */,
+				5F5B1701090E1FCE000734AB /* OmniAppKit.framework in Frameworks */,
+				5F5B1702090E1FCE000734AB /* OmniBase.framework in Frameworks */,
+				5F5B1703090E1FCE000734AB /* OmniFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,11 +662,11 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5FD2465F086208990007E0C5 /* AGRegex.framework */,
-				5FD244F2086208220007E0C5 /* LJKit.framework */,
-				5FD244F3086208220007E0C5 /* OmniAppKit.framework */,
-				5FD244F4086208220007E0C5 /* OmniBase.framework */,
-				5FD244F5086208220007E0C5 /* OmniFoundation.framework */,
+				5F5B16FA090E1FCE000734AB /* AGRegex.framework */,
+				5F5B16FB090E1FCE000734AB /* LJKit.framework */,
+				5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */,
+				5F5B16FD090E1FCE000734AB /* OmniBase.framework */,
+				5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
 				5FBF478F08138A6400829423 /* Cocoa.framework */,
@@ -895,8 +903,6 @@
 				1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */,
 				1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */,
 				1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */,
-				1BBD899004B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.h */,
-				1BBD899104B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.m */,
 				1BBD899204B0189F003882CD /* XJPollEditorController+NSToolbarController.h */,
 				1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */,
 			);
@@ -907,6 +913,8 @@
 		1BBD899404B0189F003882CD /* WindowControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */,
+				5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */,
 				1BBD898904B0189F003882CD /* ToolbarDelegates */,
 				1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */,
 				1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */,
@@ -1084,6 +1092,10 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F142E39091E95660002ADAE /* Add_Pressed.tiff */,
+				5F142E3B091E95660002ADAE /* Add.tiff */,
+				5F142E3D091E95660002ADAE /* Remove_Pressed.tiff */,
+				5F142E3F091E95660002ADAE /* Remove.tiff */,
 				1BF27EDD04B02A8100121863 /* Images */,
 				1BF27D5E04B0296500121863 /* Nibs */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
@@ -1146,7 +1158,6 @@
 				1BBD89ED04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h in Headers */,
 				1BBD89EF04B0189F003882CD /* XJDocument+NSToolbarController.h in Headers */,
 				1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */,
-				1BBD89F304B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.h in Headers */,
 				1BBD89F504B0189F003882CD /* XJPollEditorController+NSToolbarController.h in Headers */,
 				1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */,
 				1BBD89F904B0189F003882CD /* XJBirthdayWindowController.h in Headers */,
@@ -1167,6 +1178,7 @@
 				1B7C9A420566708F00F0E1AC /* LJPollTextEntryQuestion.h in Headers */,
 				5F9697B505D930F20026F31C /* XJDonationWindowController.h in Headers */,
 				5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */,
+				5F142DA9091E935E0002ADAE /* XJGlossaryFilterArrayController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1355,6 +1367,10 @@
 				5F73D7F305DE9C6400DADCD8 /* imagesize.tiff in Resources */,
 				5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */,
 				5F562CBA06B99296004629AE /* Localizable.strings in Resources */,
+				5F142E41091E95660002ADAE /* Add_Pressed.tiff in Resources */,
+				5F142E42091E95660002ADAE /* Add.tiff in Resources */,
+				5F142E43091E95660002ADAE /* Remove_Pressed.tiff in Resources */,
+				5F142E44091E95660002ADAE /* Remove.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,7 +1433,6 @@
 				1BBD89EE04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m in Sources */,
 				1BBD89F004B0189F003882CD /* XJDocument+NSToolbarController.m in Sources */,
 				1BBD89F204B0189F003882CD /* XJFriendsController-NSToolbarController.m in Sources */,
-				1BBD89F404B0189F003882CD /* XJGlossaryWindowController+NSToolbarController.m in Sources */,
 				1BBD89F604B0189F003882CD /* XJPollEditorController+NSToolbarController.m in Sources */,
 				1BBD89F804B0189F003882CD /* XJAccountEditWindowController.m in Sources */,
 				1BBD89FA04B0189F003882CD /* XJBirthdayWindowController.m in Sources */,
@@ -1439,6 +1454,7 @@
 				1B7C9A440566709400F0E1AC /* LJPollTextEntryQuestion.m in Sources */,
 				5F9697B605D930F20026F31C /* XJDonationWindowController.m in Sources */,
 				5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */,
+				5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,6 +1691,38 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
+		5F142E39091E95660002ADAE /* Add_Pressed.tiff */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F142E3A091E95660002ADAE /* English */,
+			);
+			name = Add_Pressed.tiff;
+			sourceTree = "<group>";
+		};
+		5F142E3B091E95660002ADAE /* Add.tiff */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F142E3C091E95660002ADAE /* English */,
+			);
+			name = Add.tiff;
+			sourceTree = "<group>";
+		};
+		5F142E3D091E95660002ADAE /* Remove_Pressed.tiff */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F142E3E091E95660002ADAE /* English */,
+			);
+			name = Remove_Pressed.tiff;
+			sourceTree = "<group>";
+		};
+		5F142E3F091E95660002ADAE /* Remove.tiff */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F142E40091E95660002ADAE /* English */,
+			);
+			name = Remove.tiff;
+			sourceTree = "<group>";
+		};
 		5F562CB806B99296004629AE /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1701,7 +1749,10 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
+					"$(SRCROOT)/../frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1740,7 +1791,10 @@
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
+					"$(SRCROOT)/../frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1774,7 +1828,10 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DiskImageEncryption = 1;
-				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
+					"$(SRCROOT)/../frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1806,7 +1863,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1.0.4;
-				FRAMEWORK_SEARCH_PATHS = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
+					"$(SRCROOT)/../frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;

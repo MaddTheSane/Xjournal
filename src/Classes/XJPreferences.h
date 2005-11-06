@@ -11,6 +11,8 @@
 #import <LJKit/LJKit.h>
 #import <WebKit/WebKit.h>
 
+FOUNDATION_EXPORT NSString * const XJGlossaryWindowIsOpenPreference;
+
 #define LJ_USERNAME @"livejournal.username"
 #define PREFS [OFPreferenceWrapper sharedPreferenceWrapper]
 

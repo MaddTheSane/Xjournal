@@ -7,37 +7,18 @@
 //
 
 #import <AppKit/AppKit.h>
-#import "XJFileSystemItem.h"
-
-#define kGlossaryWindowToolbarIdentifier @"GlossaryWindowToolbarIdentifier"
-#define kGlossaryRefreshItemIdentifier @"GlossaryRefreshItemIdentifier"
-#define kGlossaryInsertItemIdentifier @"GlossaryInsertItemIdentifier"
-#define kGlossaryOpenItemIdentifier @"GlossaryOpenItemIdentifier"
-
 
 @interface XJGlossaryWindowController : NSWindowController {
-    IBOutlet NSOutlineView *outline;
     IBOutlet NSTextView *textView;
-    NSMutableDictionary *toolbarItemCache;
-    XJFileSystemItem *rootItem;
+	NSMutableArray *glossary;
 }
 
-- (BOOL)directoryExists:(NSString *)path;
-//- (void)loadStringsFromDirectory: (NSString *)dir;
+- (NSMutableArray *)glossary;
+- (void)setGlossary:(NSMutableArray *)aGlossary;
 
-- (IBAction)refresh:(id)sender;
-//- (void)loadLocalGlossary;
-//- (void)loadGlobalGlossary;
+- (BOOL)fileExists:(NSString *)path;
 
-- (NSString *)localGlossaryPath;
-- (NSString *)globalGlossaryPath;
-
-- (IBAction)copySelectionToClipboard:(id)sender;
-- (IBAction)openLocalGlossary:(id)sender;
-- (IBAction)insertSelection:(id)sender;
-
-//- (IBAction)setDisplayType: (id)sender;
-
-- (void)checkForAndCreateGlossaryDirectory;
+- (void)readGlossaryFile;
+- (void)writeGlossaryFile;
 - (void)writeExampleGlossaryFile;
 @end
