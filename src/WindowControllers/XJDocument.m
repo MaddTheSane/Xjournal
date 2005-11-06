@@ -299,14 +299,35 @@
 // ----------------------------------------------------------------------------------------
 - (void)textDidChange:(NSNotification *)aNotification
 {
-    if([aNotification object] == theTextView) {
-        [entry setContent: [[aNotification object] string]];
-        [self updatePreviewWindow: [entry content]];
+    if([aNotification object] == theTextView &&
+	   [self htmlPreviewWindow] &&
+	   [[self htmlPreviewWindow] isVisible]) 
+	{
+		[entry setContent: [[aNotification object] string]];
+		
+		if(previewUpdateTimer) {
+			[previewUpdateTimer invalidate];
+			[previewUpdateTimer release];
+			previewUpdateTimer = nil;
+		}
+		previewUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval: 1
+															   target: self
+															 selector: @selector(previewUpdateTimerFired:)
+															 userInfo: nil
+															  repeats: NO] retain];
     }
     else if([[aNotification object] isEqualTo: theSubjectField]) {
         [[self window] setTitle: [[aNotification object] string]];
         [entry setSubject: [[aNotification object] string]];
     }
+}
+
+- (void)previewUpdateTimerFired: (NSTimer *)aTimer {
+	[previewUpdateTimer invalidate];
+	[previewUpdateTimer release];
+	previewUpdateTimer = nil;
+	
+	[self updatePreviewWindow: [entry content]];
 }
 
 // This enables shift-tab out of the textfield into the subject field :-)

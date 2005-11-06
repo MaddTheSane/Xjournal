@@ -104,6 +104,7 @@
     // ----------------------------------------------------------------------------------------
     IBOutlet NSWindow *htmlPreviewWindow;
     IBOutlet WebView *htmlPreview;
+	NSTimer *previewUpdateTimer;
     
     // ----------------------------------------------------------------------------------------
     // iTunes Music Store
