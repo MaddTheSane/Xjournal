@@ -117,7 +117,6 @@
 }
 
 - (void)initUI {
-    //NSButtonCell *tPrototypeCell;
     NSToolbar *toolbar;
 
     // Set up NSToolbar
@@ -418,9 +417,6 @@
   
     iTMSLinks = [[MusicStringFormatter detectMusicAndFormat: YES] retain];
     
-    //if([XJPreferences linkMusicToStore])
-    //  [iTMSIndicator setImage:[NSImage imageNamed: @"iTunes"]];
-    
     NSString *music = [MusicStringFormatter detectMusicAndFormat:NO];
     
     if(music) { 
@@ -573,11 +569,6 @@
     }
 }
 
-- (void)setStatus: (NSString *)newStatus
-{
-    //[statusField setStringValue: newStatus];
-}
-
 // ----------------------------------------------------------------------------------------
 // Window Delegate Stuff
 // ----------------------------------------------------------------------------------------
@@ -607,12 +598,6 @@
 		[hrefSheet setInitialFirstResponder: html_hrefField];
     }
 	
-    /*
-    if([[html_hrefField stringValue] length] == 0) {
-        [html_hrefField setStringValue: @"http://www..com"];
-		//[html_hrefField setSelection: NSMakeRange(11,0)];
-    }
-    */
     [self startSheet: hrefSheet];
 }
 
@@ -714,8 +699,6 @@
 		tagStart = [tagStart stringByAppendingString: [html_LinkTextField stringValue]];
 		tagStart = [tagStart stringByAppendingString: @"</a>"];
 		[self insertStringAtSelection: tagStart];
-		
-        //[self genericTagWrapWithStart: tagStart andEnd: @"</a>"];
     }
     else if(currentSheet == imgSheet) {
         NSString *tag = [NSString stringWithFormat: @"<img src=\"%@\"", [srcField stringValue]];
@@ -816,37 +799,6 @@
     [self insertStringAtSelection: [note object]];
 }
 
-// Field Enablers for IMG sheet
-/*
- - (IBAction)enableBorder:(id)sender
-{
-    [borderSize setEnabled: [sender state]];
-}
-
-- (IBAction)enableSize:(id)sender
-{
-    BOOL enabled;
-	if([sender isEqual:self])
-		enabled = YES;
-	else
-		enabled = [sender state];
-    [sizeWidth setEnabled: enabled];
-    [sizeHeight setEnabled: enabled];
-}
-
-- (IBAction)enableSpace:(id)sender
-{
-    BOOL enabled = [sender state];
-    [spaceWidth setEnabled: enabled];
-    [spaceHeight setEnabled: enabled];
-}
-
-- (IBAction)enableAlign:(id)sender
-{
-    [alignPop setEnabled: [sender state]];
-}
-*/
-
 // Button enablers for User and comm sheets
 - (IBAction)enableOKButton:(id)sender
 {
@@ -872,7 +824,7 @@
     int tag = [item tag];
     
     if(tag == kPostMenuTag) {
-        return YES; //([entry itemID] == 0 && [[XJAccountManager defaultManager] loggedInAccount]);
+        return YES;
     }
     else {
         return YES;
@@ -921,14 +873,6 @@
         return [[[acct joinedCommunityArray] objectAtIndex: index] username];
     }
     return @"";
-}
-
-// ----------------------------------------------------------------------------------------
-// Inspector stuff
-// ----------------------------------------------------------------------------------------
-- (id)inspectedObject
-{
-    return entry;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -1097,14 +1041,6 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
             [listener use];
             // You could also call [listener download] here.
     }
-}
-
-- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
-{
-    if (sender == htmlPreview)
-    {
-        //[[frame frameView] _scrollToBottomLeft];
-    }	
 }
 @end
 
