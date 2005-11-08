@@ -25,15 +25,17 @@
 @end
 
 @implementation XJDocument
-
+#pragma mark -
+#pragma mark Initialisation
 - (id)init
 {
     if([super init] == nil)
         return nil;
     
-    entry = [[LJEntry alloc] init];
+    [self setEntry: [[[LJEntry alloc] init] autorelease]];
+	
     if([[XJAccountManager defaultManager] loggedInAccount]) {
-        [entry setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+        [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -56,24 +58,125 @@
 - (id)initWithEntry: (LJEntry *)newentry
 {
     [self init];
-    [entry release];
-    entry = [newentry retain];
+    [self setEntry: newentry];
     return self;
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver: self];
-    [entry release];
-	[toolbarItemCache release];
-	[iTMSLinks release];
-    [super dealloc];
-}
-
-- (NSString *)windowNibName
-{
-    // Override returning the nib file name of the document
-    return @"XJDocument";
+- (void)initUI {
+    NSToolbar *toolbar;
+	
+    // Set up NSToolbar
+	toolbar = [[NSToolbar alloc] initWithIdentifier: kEditWindowToolbarIdentifier];
+    [toolbar setAllowsUserCustomization: YES];
+    [toolbar setAutosavesConfiguration: YES];
+    [toolbar setDelegate: self];
+    [[self window] setToolbar: toolbar];
+    [toolbar release];
+	
+    // Configure the table
+    NSButtonCell *tPrototypeCell = [[NSButtonCell alloc] initTextCell: @""];
+    [tPrototypeCell setEditable: YES];
+    [tPrototypeCell setButtonType:NSSwitchButton];
+    [tPrototypeCell setImagePosition:NSImageOnly];
+    [tPrototypeCell setControlSize:NSSmallControlSize];
+	
+    [[friendsTable tableColumnWithIdentifier: @"check"] setDataCell: tPrototypeCell];
+    [tPrototypeCell release];
+	
+    if([[self entry] itemID] == 0) {
+        // Item hasn't been posted, apply default security mode
+        int level = [XJPreferences defaultSecuritySetting];
+        [security selectItemWithTag: level];
+        [[self entry] setSecurityMode:level];
+    }else {
+        [security selectItemWithTag: [[self entry] securityMode]];
+    }
+    
+    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    /*
+     We really want to check here of the network is reachable, because if it isn't
+     certain things will have to be disabled:
+     * Journal selection
+     * Security selection
+     * Userpic Selection
+     * Mood selection
+     */
+    if([NetworkConfig destinationIsReachable: @"www.livejournal.com"] && [[XJAccountManager defaultManager] loggedInAccount]) {
+        if([[self entry] journal] == nil)
+            [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+        [self buildJournalPopup];
+        [self buildMoodPopup];
+        [userpic setMenu: [[[XJAccountManager defaultManager] loggedInAccount] userPicturesMenu]];
+        [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
+    } else {
+        [journalPop setEnabled: NO];
+        [moods setEnabled: NO];
+        [userpic setEnabled: NO];
+        [security setEnabled: NO];
+    }
+	
+    // Sync the UI up to the state of the Entry object
+    if([[self entry] subject] != nil) {
+        [theSubjectField setStringValue: [[self entry] subject]];
+        [[self window] setTitle: [[self entry] subject]];
+    }
+	
+	if([[self entry] tags] != nil) {
+		[theTagField setStringValue: [[self entry] tags]];
+	}
+    
+    if([[self entry] content] != nil)
+        [theTextView setString: [[self entry] content]];
+	
+    if([[self entry] currentMusic] != nil) {
+        [theMusicField setStringValue: [[self entry] currentMusic]];
+    } else {
+        if([XJPreferences autoDetectMusic] && [[self entry] itemID] == 0) {
+            [self detectMusicNow: self];
+        }
+    }
+	
+    if([[self entry] pictureKeyword] != nil) {
+        [userpic selectItemWithTitle: [[self entry] pictureKeyword]];
+        [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
+    }
+	
+    if([[self entry] currentMood] != nil) {
+        [moods setStringValue: [[self entry] currentMood]];
+    }
+    
+    [journalPop selectItemAtIndex: [[journalPop menu] indexOfItemWithRepresentedObject: [[self entry] journal]]];
+	
+    // Set the option checkboxes
+    [preformattedChk setState: [[self entry] optionPreformatted]];
+    [noCommentsChk setState: [[self entry] optionNoComments]];
+    [noEmailChk setState: [[self entry] optionNoEmail]];
+    [backdatedChk setState: [[self entry] optionBackdated]];
+    [backdateField setEnabled: [[self entry] optionBackdated]];
+    
+    // Set preferred font
+    NSFont *pFont = [XJPreferences preferredWindowFont];
+    if(pFont != nil) {
+        [theTextView setFont: pFont];
+    }
+    
+    // Set Spell checking on, if required
+    [theTextView setContinuousSpellCheckingEnabled: [XJPreferences spellCheckByDefault]];
+	
+    // Open the drawer if needed
+    if([XJPreferences shouldOpenDrawerInNewWindow])
+        [drawer open];
+	
+    NSSize storedSize = [XJPreferences entryWindowSize];
+    NSPoint origin = [[self window] frame].origin;
+    NSRect newRect = NSMakeRect(origin.x, origin.y, storedSize.width, storedSize.height);
+    [[self window] setFrame: newRect display: YES];
+    
+    [spinner setStyle: NSProgressIndicatorSpinningStyle];
+    [spinner setUsesThreadedAnimation:YES];
+	
+    if([[XJAccountManager defaultManager] loggedInAccount])
+        [statusField setStringValue: [NSString stringWithFormat: @"Logged in as %@", [[[XJAccountManager defaultManager] loggedInAccount] username]]];
 }
 
 - (void)manualLoginSuccess: (NSNotification *)note
@@ -88,7 +191,7 @@
     [userpic setEnabled: YES];
     [security setEnabled: YES];
 
-    [entry setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+    [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
 
     // If User and Community sheets are laoded, reload their combo boxes
     if(userSheet)
@@ -104,135 +207,43 @@
 
 // If an account was deleted
 - (void)accountDeleted: (NSNotification *)note {
-	[entry setJournal: nil];
-
+	[[self entry] setJournal: nil];
 	[self initUI];
 }
 
-// Window building stuff
-- (void)windowControllerDidLoadNib:(NSWindowController *) aController
+- (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+    [entry release];
+	[toolbarItemCache release];
+	[iTMSLinks release];
+    [super dealloc];
+}
+
+// ==================================
+#pragma mark -
+#pragma mark NSDocumenty stuff
+// ==================================
+- (NSString *)windowNibName
+{
+    // Override returning the nib file name of the document
+    return @"XJDocument";
+}
+
+- (NSWindow *)window { return [[[self windowControllers] objectAtIndex: 0] window]; }
+
+- (void)windowControllerDidLoadNib:(NSWindowController *) aController {
     [self initUI];
     [super windowControllerDidLoadNib:aController];
 }
 
-- (void)initUI {
-    NSToolbar *toolbar;
 
-    // Set up NSToolbar
-     toolbar = [[NSToolbar alloc] initWithIdentifier: kEditWindowToolbarIdentifier];
-    [toolbar setAllowsUserCustomization: YES];
-    [toolbar setAutosavesConfiguration: YES];
-    [toolbar setDelegate: self];
-    [[self window] setToolbar: toolbar];
-    [toolbar release];
 
-    // Configure the table
-    NSButtonCell *tPrototypeCell = [[NSButtonCell alloc] initTextCell: @""];
-    [tPrototypeCell setEditable: YES];
-    [tPrototypeCell setButtonType:NSSwitchButton];
-    [tPrototypeCell setImagePosition:NSImageOnly];
-    [tPrototypeCell setControlSize:NSSmallControlSize];
 
-    [[friendsTable tableColumnWithIdentifier: @"check"] setDataCell: tPrototypeCell];
-    [tPrototypeCell release];
-
-    if([entry itemID] == 0) {
-        // Item hasn't been posted, apply default security mode
-        int level = [XJPreferences defaultSecuritySetting];
-        [security selectItemWithTag: level];
-        [entry setSecurityMode:level];
-    }else {
-        [security selectItemWithTag: [entry securityMode]];
-    }
-    
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    /*
-     We really want to check here of the network is reachable, because if it isn't
-     certain things will have to be disabled:
-     * Journal selection
-     * Security selection
-     * Userpic Selection
-     * Mood selection
-     */
-    if([NetworkConfig destinationIsReachable: @"www.livejournal.com"] && [[XJAccountManager defaultManager] loggedInAccount]) {
-        if([entry journal] == nil)
-            [entry setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
-        [self buildJournalPopup];
-        [self buildMoodPopup];
-        [userpic setMenu: [[[XJAccountManager defaultManager] loggedInAccount] userPicturesMenu]];
-        [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
-    } else {
-        [journalPop setEnabled: NO];
-        [moods setEnabled: NO];
-        [userpic setEnabled: NO];
-        [security setEnabled: NO];
-    }
-
-    // Sync the UI up to the state of the Entry object
-    if([entry subject] != nil) {
-        [theSubjectField setStringValue: [entry subject]];
-        [[self window] setTitle: [entry subject]];
-    }
-	
-	if([entry tags] != nil) {
-		[theTagField setStringValue: [entry tags]];
-	}
-    
-    if([entry content] != nil)
-        [theTextView setString: [entry content]];
-
-    if([entry currentMusic] != nil) {
-        [theMusicField setStringValue: [entry currentMusic]];
-    } else {
-        if([XJPreferences autoDetectMusic] && [entry itemID] == 0) {
-            [self detectMusicNow: self];
-        }
-    }
-
-    if([entry pictureKeyword] != nil) {
-        [userpic selectItemWithTitle: [entry pictureKeyword]];
-        [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
-    }
-
-    if([entry currentMood] != nil) {
-        [moods setStringValue: [entry currentMood]];
-    }
-    
-    [journalPop selectItemAtIndex: [[journalPop menu] indexOfItemWithRepresentedObject: [entry journal]]];
-
-    // Set the option checkboxes
-    [preformattedChk setState: [entry optionPreformatted]];
-    [noCommentsChk setState: [entry optionNoComments]];
-    [noEmailChk setState: [entry optionNoEmail]];
-    [backdatedChk setState: [entry optionBackdated]];
-    [backdateField setEnabled: [entry optionBackdated]];
-    
-    // Set preferred font
-    NSFont *pFont = [XJPreferences preferredWindowFont];
-    if(pFont != nil) {
-        [theTextView setFont: pFont];
-    }
-    
-    // Set Spell checking on, if required
-    [theTextView setContinuousSpellCheckingEnabled: [XJPreferences spellCheckByDefault]];
-
-    // Open the drawer if needed
-    if([XJPreferences shouldOpenDrawerInNewWindow])
-        [drawer open];
-
-    NSSize storedSize = [XJPreferences entryWindowSize];
-    NSPoint origin = [[self window] frame].origin;
-    NSRect newRect = NSMakeRect(origin.x, origin.y, storedSize.width, storedSize.height);
-    [[self window] setFrame: newRect display: YES];
-    
-    [spinner setStyle: NSProgressIndicatorSpinningStyle];
-    [spinner setUsesThreadedAnimation:YES];
-
-    if([[XJAccountManager defaultManager] loggedInAccount])
-        [statusField setStringValue: [NSString stringWithFormat: @"Logged in as %@", [[[XJAccountManager defaultManager] loggedInAccount] username]]];
-}
-
+// ----------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark Popup Building
+// ----------------------------------------------------------------------------------------
 - (void) buildJournalPopup
 {
     NSMenu *jMenu = [[[XJAccountManager defaultManager] loggedInAccount] journalMenu];
@@ -249,56 +260,31 @@
 }
 
 // ----------------------------------------------------------------------------------------
-// Saving stuff
+#pragma mark -
+#pragma mark Saving
 // ----------------------------------------------------------------------------------------
 - (BOOL)writeToFile:(NSString *)fileName ofType:(NSString *)docType
 {
-    return [entry writePropertyListToFile: fileName atomically: YES];
+    return [[self entry] writePropertyListToFile: fileName atomically: YES];
 }
 
-- (void)setEntryToEdit: (LJEntry *)editedEntry
-{
-    entry = [editedEntry retain];
-    //[self initUI];
-}
-
-- (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)docType
-{
-    entry = [[LJEntry alloc] init];
-    if(entry)
-        [entry configureWithContentsOfFile: fileName];
-    return entry != nil;
-}
-
-- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
-{
+- (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)docType {
+    [self setEntry: [[[LJEntry alloc] init] autorelease]];
+	[[self entry] configureWithContentsOfFile: fileName];
     return YES;
 }
 
-- (IBAction)saveWindowSize:(id)sender
-{
+- (IBAction)saveWindowSize:(id)sender {
     [XJPreferences setEntryWindowSize: [[self window] frame].size];
 }
 
 // ----------------------------------------------------------------------------------------
-// Accessors for views
-// ----------------------------------------------------------------------------------------
-- (void)setSubjectField: (NSString *)newText
-{
-    [theSubjectField setStringValue: newText];
-}
-
-- (void)setBodyText: (NSString *)newText
-{
-    [theTextView setString: newText];
-}
-
-// ----------------------------------------------------------------------------------------
-// Text view delegate things
+#pragma mark -
+#pragma mark Text view delegate things
 // ----------------------------------------------------------------------------------------
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	[entry setContent: [[aNotification object] string]];
+	[[self entry] setContent: [[aNotification object] string]];
 	
     if([aNotification object] == theTextView &&
 	   [self htmlPreviewWindow] &&
@@ -317,16 +303,8 @@
     }
     else if([[aNotification object] isEqualTo: theSubjectField]) {
         [[self window] setTitle: [[aNotification object] string]];
-        [entry setSubject: [[aNotification object] string]];
+        [[self entry] setSubject: [[aNotification object] string]];
     }
-}
-
-- (void)previewUpdateTimerFired: (NSTimer *)aTimer {
-	[previewUpdateTimer invalidate];
-	[previewUpdateTimer release];
-	previewUpdateTimer = nil;
-	
-	[self updatePreviewWindow: [entry content]];
 }
 
 // This enables shift-tab out of the textfield into the subject field :-)
@@ -340,28 +318,24 @@
     return NO;
 }
 
-// ----------------------------------------------------------------------------------------
-// Subject field delegate
-// ----------------------------------------------------------------------------------------
-- (void)controlTextDidBeginEditing:(NSNotification *)aNotification{}
-
 - (void)controlTextDidEndEditing:(NSNotification *)aNotification
 {
+#warning Remove most of this in favour of bindings
     if([aNotification object] == theSubjectField) {
-        [entry setSubject: [[aNotification object] stringValue]];
+		[[self entry] setSubject: [[aNotification object] stringValue]];
     }
     else if([aNotification object] == theMusicField) {
         // If the user types stuff in the field, we 
         // invalidate the iTMS links since we can only generate them
         // directly from iTunes and not from back-parsing the user's
         // entry
-        if(![[[aNotification object] stringValue] isEqualToString: [entry currentMusic]]) { 
+        if(![[[aNotification object] stringValue] isEqualToString: [[self entry] currentMusic]]) { 
             iTMSLinks = nil;
         }
-        [entry setCurrentMusic: [[aNotification object] stringValue]];        
+        [[self entry] setCurrentMusic: [[aNotification object] stringValue]];        
     }
 	else if([aNotification object] == theTagField) {
-		[entry setTags: [[aNotification object] stringValue]];
+		[[self entry] setTags: [[aNotification object] stringValue]];
 	}
 }
 
@@ -386,25 +360,25 @@
                 [self setHTMLPreviewWindowTitle: originalWindowName];   
             }
         }
-        [entry setSubject: [[aNotification object] stringValue]];
+        [[self entry] setSubject: [[aNotification object] stringValue]];
     }
 }
 
 // ----------------------------------------------------------------------------------------
-// Menu targets
+#pragma mark -
+#pragma mark Popup Menu targets
 // ----------------------------------------------------------------------------------------
-- (IBAction)setSelectedJournal:(id)sender
-{
-    [entry setJournal: [[sender selectedItem] representedObject]];
+- (IBAction)setSelectedJournal:(id)sender {
+    [[self entry] setJournal: [[sender selectedItem] representedObject]];
 }
 
-- (IBAction)setSelectedMood:(id)sender
-{
-    [entry setCurrentMood: [sender stringValue]];
+- (IBAction)setSelectedMood:(id)sender {
+    [[self entry] setCurrentMood: [sender stringValue]];
 }
 
 // ----------------------------------------------------------------------------------------
-// Detect Music
+#pragma mark -
+#pragma mark Music Detection
 // ----------------------------------------------------------------------------------------
 - (IBAction)detectMusicNow:(id)sender
 {
@@ -421,22 +395,23 @@
     
     if(music) { 
         [theMusicField setStringValue: music];
-        [entry setCurrentMusic: music];
+        [[self entry] setCurrentMusic: music];
     } else {
         NSString *alternativeValue = [PREFS stringForKey: @"NoMusicString"];
         if(!alternativeValue)
             alternativeValue = @"";
         [theMusicField setStringValue: alternativeValue];
-        [entry setCurrentMusic: alternativeValue];
+        [[self entry] setCurrentMusic: alternativeValue];
     }
 }
 
 // ----------------------------------------------------------------------------------------
-// Posting code
+#pragma mark -
+#pragma mark Posting
 // ----------------------------------------------------------------------------------------
 - (void)postEntry:(id)sender
 {
-    BOOL isPosted = ([entry itemID] != 0);
+    BOOL isPosted = ([[self entry] itemID] != 0);
 
     if(isPosted) {
         [self postEntryAndDiscardLocalCopy: self];
@@ -460,12 +435,12 @@
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     if(returnCode == NSAlertAlternateReturn)
-        [[NSWorkspace sharedWorkspace] openURL: [[entry journal] recentEntriesHttpURL]];    
+        [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];    
 }
 
 - (BOOL)postEntryAndReturnStatus
 {
-    BOOL isPosted = ([entry itemID] != 0);
+    BOOL isPosted = ([[self entry] itemID] != 0);
     
     // Force the first responder to end editing
     [[self window] endEditingFor:nil];
@@ -480,9 +455,9 @@
         Also, if we detected iTMS links, but the user has since cleared 
         the music field, we don't want to do anything.
     */
-    if(![entry itemID] && [XJPreferences linkMusicToStore] && iTMSLinks) {
-        [entry setCurrentMusic: nil];
-        [entry setContent: [NSString stringWithFormat: @"%@\n\n%@", [entry content], iTMSLinks]];
+    if(![[self entry] itemID] && [XJPreferences linkMusicToStore] && iTMSLinks) {
+        [[self entry] setCurrentMusic: nil];
+        [[self entry] setContent: [NSString stringWithFormat: @"%@\n\n%@", [[self entry] content], iTMSLinks]];
     }
     
     
@@ -490,20 +465,20 @@
     if([NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
         NSArray *breaks;
         [spinner startAnimation: self];
-        if(![entry optionBackdated]) {
+        if(![[self entry] optionBackdated]) {
             // Set the posting date according to the user's preference
             if([XJPreferences entryDateDefault] == 1 && !isPosted) {
-                [entry setDate: [NSDate date]];
+                [[self entry] setDate: [NSDate date]];
             }
         }
 
         // Sanitize linebreaks
         NSString *temp;
-        breaks = [[entry content] componentsSeparatedByString: @"\r"];
+        breaks = [[[self entry] content] componentsSeparatedByString: @"\r"];
         temp = [breaks componentsJoinedByString: @"\n"];
-        [entry setContent: temp];
+        [[self entry] setContent: temp];
         NS_DURING
-            [entry saveToJournal];
+            [[self entry] saveToJournal];
         NS_HANDLER
             NSBeginCriticalAlertSheet([localException name], @"OK", nil, nil,
                                       [self window], nil, nil, nil, nil,
@@ -561,16 +536,18 @@
                                                       NSLocalizedString(@"Open Recent Entries", @""),
                                                       nil);
             if(result == NSAlertAlternateReturn)
-                [[NSWorkspace sharedWorkspace] openURL: [[entry journal] recentEntriesHttpURL]];
+                [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];
         }
         else {
+#warning Why is this here?  I have no idea!
             [NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.3]];
         }
     }
 }
 
 // ----------------------------------------------------------------------------------------
-// Window Delegate Stuff
+#pragma mark -
+#pragma mark NSWindow Delegate
 // ----------------------------------------------------------------------------------------
 - (BOOL)windowShouldClose:(id)sender
 {
@@ -580,7 +557,8 @@
 }
 
 // ----------------------------------------------------------------------------------------
-// HTML Tools
+#pragma mark -
+#pragma mark HTML Tools
 // ----------------------------------------------------------------------------------------
 - (IBAction)insertLink:(id)sender
 {
@@ -621,30 +599,15 @@
 	[sizeHeight setStringValue: [NSString stringWithFormat: @"%d", (int)[img size].height]];
 }
 
-- (IBAction)insertBlockquote:(id)sender
-{
-    [self genericTagWrapWithStart: @"<blockquote>" andEnd: @"</blockquote>"];
-}
+- (IBAction)insertBlockquote:(id)sender { [self genericTagWrapWithStart: @"<blockquote>" andEnd: @"</blockquote>"]; }
 
-- (IBAction)insertBold:(id)sender
-{
-    [self genericTagWrapWithStart: @"<strong>" andEnd: @"</strong>"];
-}
+- (IBAction)insertBold:(id)sender { [self genericTagWrapWithStart: @"<strong>" andEnd: @"</strong>"]; }
 
-- (IBAction)insertItalic:(id)sender
-{
-    [self genericTagWrapWithStart: @"<em>" andEnd: @"</em>"];
-}
+- (IBAction)insertItalic:(id)sender { [self genericTagWrapWithStart: @"<em>" andEnd: @"</em>"]; }
 
-- (IBAction)insertCenter:(id)sender
-{
-    [self genericTagWrapWithStart: @"<center>" andEnd: @"</center>"];
-}
+- (IBAction)insertCenter:(id)sender { [self genericTagWrapWithStart: @"<center>" andEnd: @"</center>"]; }
 
-- (IBAction)insertUnderline:(id)sender
-{
-    [self genericTagWrapWithStart: @"<u>" andEnd: @"</u>"];
-}
+- (IBAction)insertUnderline:(id)sender { [self genericTagWrapWithStart: @"<u>" andEnd: @"</u>"]; }
 
 - (IBAction)insertLJCut:(id)sender
 {
@@ -683,6 +646,7 @@
     }
 }
 
+#warning We could really clean this up!
 - (IBAction)commitSheet:(id)sender
 {
     if(currentSheet == hrefSheet) {
@@ -789,15 +753,9 @@
     }
 }
 
-- (void)insertStringAtSelection:(NSString *)newString
-{
-    [[[self window] firstResponder] insertText: newString];
-}
+- (void)insertStringAtSelection:(NSString *)newString { [[[self window] firstResponder] insertText: newString]; }
 
-- (void) insertGlossaryText: (NSNotification *)note
-{
-    [self insertStringAtSelection: [note object]];
-}
+- (void) insertGlossaryText: (NSNotification *)note { [self insertStringAtSelection: [note object]]; }
 
 // Button enablers for User and comm sheets
 - (IBAction)enableOKButton:(id)sender
@@ -809,26 +767,17 @@
 }
 
 // ----------------------------------------------------------------------------------------
-// Omni Find panel
+#pragma mark -
+#pragma mark Omni Find panel
 // ----------------------------------------------------------------------------------------
-- (id <OAFindControllerTarget>)omniFindControllerTarget
-{
-    return theTextView;
-}
+- (id <OAFindControllerTarget>)omniFindControllerTarget { return theTextView; }
 
 // ----------------------------------------------------------------------------------------
-// Validate HTML menu menu items
+#pragma mark -
+#pragma mark Validate HTML menu menu items
 // ----------------------------------------------------------------------------------------
-- (BOOL)validateMenuItem:(id <NSMenuItem>)item
-{
-    int tag = [item tag];
-    
-    if(tag == kPostMenuTag) {
-        return YES;
-    }
-    else {
-        return YES;
-    }
+- (BOOL)validateMenuItem:(id <NSMenuItem>)item {
+	return YES;
 }
 
 - (BOOL)validateToolbarItem:(id)item
@@ -841,13 +790,9 @@
     return YES;
 }
 
-- (NSWindow *)window
-{
-    return [[[self windowControllers] objectAtIndex: 0] window];
-}
-
 // ----------------------------------------------------------------------------------------
-// Community and user combo box data source
+#pragma mark -
+#pragma mark Community and user combo box data source
 // ----------------------------------------------------------------------------------------
 - (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
@@ -876,47 +821,47 @@
 }
 
 // ----------------------------------------------------------------------------------------
-// Drawer handling
+#pragma mark -
+#pragma mark Drawer handling
 // ----------------------------------------------------------------------------------------
 - (IBAction)setValueForSender:(id)sender
 {
     if([sender isEqualTo: security]) {
-        [entry setSecurityMode: [[sender selectedItem] tag]];
+        [[self entry] setSecurityMode: [[sender selectedItem] tag]];
         [friendsTable reloadData];
     }
     else if([sender isEqualTo: userpic]) {
         // Set the user picture
         [userPicView setImage: [XJPreferences imageForURL: [[sender selectedItem] representedObject]]];
-        [entry setPictureKeyword: [sender title]];
+        [[self entry] setPictureKeyword: [sender title]];
     }
     else if([sender isEqualTo: preformattedChk]) {
-        [entry setOptionPreformatted:[sender state]];
-        [self updatePreviewWindow: [entry content]];
+        [[self entry] setOptionPreformatted:[sender state]];
+        [self updatePreviewWindow: [[self entry] content]];
     }
     else if([sender isEqualTo: noCommentsChk]) {
-        [entry setOptionNoComments: [sender state]];
+        [[self entry] setOptionNoComments: [sender state]];
     }
     else if([sender isEqualTo: backdatedChk]) {
-        [entry setOptionBackdated: [sender state]];
+        [[self entry] setOptionBackdated: [sender state]];
         [backdateField setEnabled: [sender state]];
 
     }
     else if([sender isEqualTo: noEmailChk]) {
-        [entry setOptionNoEmail:[sender state]];
+        [[self entry] setOptionNoEmail:[sender state]];
     }
     else if([sender isEqualTo: backdateField]) {
         NSString *enteredString = [sender stringValue];
         NSDate *date = [NSDate dateWithNaturalLanguageString: enteredString];
-        [entry setDate: date];
+        [[self entry] setDate: date];
     }
 }
 
-- (IBAction)toggleDrawer: (id)sender
-{
-    [drawer toggle: sender];
-}
+- (IBAction)toggleDrawer: (id)sender { [drawer toggle: sender]; }
+
 // ----------------------------------------------------------------------------------------
-// NSTableDataSource - friend group security
+#pragma mark -
+#pragma mark NSTableDataSource - friend group security
 // ----------------------------------------------------------------------------------------
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -940,7 +885,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
             if([[aTableColumn identifier] isEqualToString: @"name"])
                 return [rowGroup name];
             else {
-                if([entry accessAllowedForGroup: rowGroup])
+                if([[self entry] accessAllowedForGroup: rowGroup])
                     return [NSNumber numberWithInt: 1];
                 else
                     return [NSNumber numberWithInt: 0];
@@ -962,7 +907,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
 
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
-        [entry setAccessAllowed: [anObject boolValue] forGroup: rowGroup];
+        [[self entry] setAccessAllowed: [anObject boolValue] forGroup: rowGroup];
     }
 }
 
@@ -974,12 +919,13 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
-        [aCell setEnabled: [entry securityMode] == LJGroupSecurityMode];
+        [aCell setEnabled: [[self entry] securityMode] == LJGroupSecurityMode];
     }
 }
 
 // ----------------------------------------------------------------------------------------
-// HTML Preview
+#pragma mark -
+#pragma mark HTML Preview
 // ----------------------------------------------------------------------------------------
 - (IBAction)showPreviewWindow: (id)sender
 {
@@ -989,7 +935,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     [self setHTMLPreviewWindowTitle: [[self window] title]];
 
     [htmlPreviewWindow makeKeyAndOrderFront: sender];
-    [self updatePreviewWindow: [entry content]];
+    [self updatePreviewWindow: [[self entry] content]];
 }
 
 - (NSWindow *)htmlPreviewWindow { return htmlPreviewWindow; }
@@ -1004,12 +950,20 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
         textContent = [textContent translateBasicLJCutOpenTag];
         textContent = [textContent translateLJCutCloseTag];
        
-        if(![entry optionPreformatted])
+        if(![[self entry] optionPreformatted])
             textContent = [textContent translateNewLines];
         
         textContent = [NSString stringWithFormat: @"<html><head><style type=\"text/css\">.xjljcut { background-color: #CCFFFF; padding-top: 5px; padding-bottom: 5px }</style></head><body>%@</body</html>", textContent];
         [[htmlPreview mainFrame] loadHTMLString: textContent  baseURL: nil];
     }
+}
+
+- (void)previewUpdateTimerFired: (NSTimer *)aTimer {
+	[previewUpdateTimer invalidate];
+	[previewUpdateTimer release];
+	previewUpdateTimer = nil;
+	
+	[self updatePreviewWindow: [[self entry] content]];
 }
 
 - (void)setHTMLPreviewWindowTitle:(NSString *)title
@@ -1042,8 +996,23 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
             // You could also call [listener download] here.
     }
 }
+
+
+#pragma mark -
+#pragma mark iVar Accessors
+//=========================================================== 
+//  entry 
+//=========================================================== 
+- (LJEntry *)entry {
+    return entry; 
+}
+- (void)setEntry:(LJEntry *)anEntry {
+    [entry release];
+    entry = [anEntry retain];
+}
 @end
 
+#pragma mark -
 @implementation XJDocument (PrivateAPI)
 - (BOOL) iTunesIsRunning
 {
