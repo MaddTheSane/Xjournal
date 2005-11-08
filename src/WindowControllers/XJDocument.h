@@ -115,10 +115,6 @@
 
 - (id)initWithEntry: (LJEntry *)entry;
 
-/* Accessors for the fields */
-- (void)setSubjectField: (NSString *)newText;
-- (void)setBodyText: (NSString *)newText;
-
 /* Actions for posting */
 - (BOOL)postEntryAndReturnStatus;
 - (void)postEntryAndDiscardLocalCopy:(id)sender;
@@ -132,15 +128,11 @@
 - (void)buildMoodPopup;
 - (IBAction)detectMusicNow:(id)sender;
 
-- (void)setStatus: (NSString *)newStatus;
-
-
 - (NSWindow *)window;
 - (void)startSheet:(NSWindow *)sheet;
 
 - (IBAction)saveWindowSize:(id)sender;
 
-- (void)setEntryToEdit: (LJEntry *)entry;
 - (void)initUI;
 
 // ----------------------------------------------------------------------------------------
@@ -181,4 +173,10 @@
 - (void)updatePreviewWindow: (NSString *)textContent;
 - (IBAction)showPreviewWindow: (id)sender;
 - (void)closeHTMLPreviewWindow;
+
+// =============
+// Accessors
+// =============
+- (LJEntry *)entry;
+- (void)setEntry:(LJEntry *)anEntry;
 @end

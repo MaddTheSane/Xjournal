@@ -1171,7 +1171,7 @@ enum {
 {
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntryToEdit: entryToEdit];
+    [doc setEntry: entryToEdit];
     [doc showWindows];
 }
 

@@ -210,7 +210,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntryToEdit: newPost];
+    [doc setEntry: newPost];
     [newPost setJournal: currentJournal];
     [doc showWindows];
 
@@ -413,7 +413,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	LJEntry *lastEntry = [currentJournal getMostRecentEntry];
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntryToEdit: lastEntry];
+    [doc setEntry: lastEntry];
     [doc showWindows];
 }
 
@@ -678,7 +678,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     XJDocument *doc = (XJDocument *)[docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
-    [doc setEntryToEdit: entry];
+    [doc setEntry: entry];
     [doc showWindows];
     [doc updateChangeCount:NSChangeDone];
     [entry release];
