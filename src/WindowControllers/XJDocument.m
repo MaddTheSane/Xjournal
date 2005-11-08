@@ -299,12 +299,12 @@
 // ----------------------------------------------------------------------------------------
 - (void)textDidChange:(NSNotification *)aNotification
 {
+	[entry setContent: [[aNotification object] string]];
+	
     if([aNotification object] == theTextView &&
 	   [self htmlPreviewWindow] &&
 	   [[self htmlPreviewWindow] isVisible]) 
 	{
-		[entry setContent: [[aNotification object] string]];
-		
 		if(previewUpdateTimer) {
 			[previewUpdateTimer invalidate];
 			[previewUpdateTimer release];
