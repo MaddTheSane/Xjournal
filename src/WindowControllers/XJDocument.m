@@ -342,24 +342,6 @@
 - (void)controlTextDidChange: (NSNotification *)aNotification
 {
     if([aNotification object] == theSubjectField) {
-        if([[[self window] representedFilename] length] == 0) {
-            NSString *subjectData = [[aNotification object] stringValue];
-            
-            // Store the "Untitled xx" string
-            if(originalWindowName == nil)
-                originalWindowName = [[self window] title];
-
-            // If we have a non-empty string for the subject
-            if([subjectData length] > 0) {
-                [[self window] setTitle: subjectData];
-                [self setHTMLPreviewWindowTitle: subjectData];
-            }
-            else {
-                // If we let the window title go to @"", we lose it from all the windowcontroller's lists
-                [[self window] setTitle: originalWindowName];
-                [self setHTMLPreviewWindowTitle: originalWindowName];   
-            }
-        }
         [[self entry] setSubject: [[aNotification object] stringValue]];
     }
 }
@@ -932,7 +914,6 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     if(!htmlPreviewWindow) {
         [NSBundle loadNibNamed:@"HTMLPreview" owner: self];
     }
-    [self setHTMLPreviewWindowTitle: [[self window] title]];
 
     [htmlPreviewWindow makeKeyAndOrderFront: sender];
     [self updatePreviewWindow: [[self entry] content]];
@@ -964,13 +945,6 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 	previewUpdateTimer = nil;
 	
 	[self updatePreviewWindow: [[self entry] content]];
-}
-
-- (void)setHTMLPreviewWindowTitle:(NSString *)title
-{
-    NSString *newTitle = [NSString stringWithFormat: @"%@ [HTML Preview]", title];
-    if(htmlPreviewWindow)
-        [[self htmlPreviewWindow] setTitle: newTitle];
 }
 
 - (void)closeHTMLPreviewWindow {

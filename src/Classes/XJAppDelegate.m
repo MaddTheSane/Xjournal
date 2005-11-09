@@ -19,6 +19,7 @@
 #import "XJDocument.h"
 #import "XJDonationWindowController.h"
 #import "NSString+Extensions.h"
+#import "XJMarkupRemovalVT.h"
 
 #define PREF_LJ_ACCOUNTS @"preferences.accounts"
 
@@ -50,6 +51,10 @@ const AEKeyword NNWDataItemSourceHomeURL = 'hurl';
 const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 @implementation XJAppDelegate
++ (void)initialize {
+	[NSValueTransformer setValueTransformer: [[[XJMarkupRemovalVT alloc] init] autorelease] forName: @"XJMarkupRemoval"];
+}
+
 - (void)awakeFromNib
 {	
     /* To find out when the login process will start, so we can show the progress dialog */

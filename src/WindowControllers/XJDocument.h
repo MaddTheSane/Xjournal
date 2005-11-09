@@ -95,11 +95,6 @@
     IBOutlet NSTextField *backdateField;
 
     // ----------------------------------------------------------------------------------------
-    // Window title storage
-    // ----------------------------------------------------------------------------------------
-    NSString *originalWindowName;
-    
-    // ----------------------------------------------------------------------------------------
     // HTML Preview
     // ----------------------------------------------------------------------------------------
     IBOutlet NSWindow *htmlPreviewWindow;
@@ -169,7 +164,6 @@
     // ----------------------------------------------------------------------------------------
 - (NSWindow *)htmlPreviewWindow;
 - (WebView *)htmlPreview;
-- (void)setHTMLPreviewWindowTitle:(NSString *)title;
 - (void)updatePreviewWindow: (NSString *)textContent;
 - (IBAction)showPreviewWindow: (id)sender;
 - (void)closeHTMLPreviewWindow;

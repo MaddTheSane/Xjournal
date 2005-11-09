@@ -240,6 +240,8 @@
 		1BF27EF204B02A9400121863 /* stop.0.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE704B02A9400121863 /* stop.0.tiff */; };
 		1BF27EF304B02A9400121863 /* stop.1.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE804B02A9400121863 /* stop.1.tiff */; };
 		1BF27EF404B02A9400121863 /* stop.2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE904B02A9400121863 /* stop.2.tiff */; };
+		5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */; };
+		5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
 		5F142DA9091E935E0002ADAE /* XJGlossaryFilterArrayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */; };
 		5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */; };
@@ -603,6 +605,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
+		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMarkupRemovalVT.h; path = src/ValueTransformers/XJMarkupRemovalVT.h; sourceTree = "<group>"; };
+		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMarkupRemovalVT.m; path = src/ValueTransformers/XJMarkupRemovalVT.m; sourceTree = "<group>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
 		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
 		5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJGlossaryFilterArrayController.h; sourceTree = "<group>"; };
@@ -1076,6 +1080,7 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				5F044ADC09224A58003D6D2A /* Value Transformers */,
 			);
 			name = Xjournal;
 			sourceTree = "<group>";
@@ -1115,6 +1120,15 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5F044ADC09224A58003D6D2A /* Value Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */,
+				5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */,
+			);
+			name = "Value Transformers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1179,6 +1193,7 @@
 				5F9697B505D930F20026F31C /* XJDonationWindowController.h in Headers */,
 				5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */,
 				5F142DA9091E935E0002ADAE /* XJGlossaryFilterArrayController.h in Headers */,
+				5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1455,6 +1470,7 @@
 				5F9697B605D930F20026F31C /* XJDonationWindowController.m in Sources */,
 				5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */,
 				5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */,
+				5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
