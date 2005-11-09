@@ -117,17 +117,10 @@
 	
     // Sync the UI up to the state of the Entry object
     if([[self entry] subject] != nil) {
-        [theSubjectField setStringValue: [[self entry] subject]];
-        [[self window] setTitle: [[self entry] subject]];
-    }
-	
 	if([[self entry] tags] != nil) {
 		[theTagField setStringValue: [[self entry] tags]];
 	}
     
-    if([[self entry] content] != nil)
-        [theTextView setString: [[self entry] content]];
-	
     if([[self entry] currentMusic] != nil) {
         [theMusicField setStringValue: [[self entry] currentMusic]];
     } else {
@@ -284,8 +277,6 @@
 // ----------------------------------------------------------------------------------------
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	[[self entry] setContent: [[aNotification object] string]];
-	
     if([aNotification object] == theTextView &&
 	   [self htmlPreviewWindow] &&
 	   [[self htmlPreviewWindow] isVisible]) 
@@ -300,10 +291,6 @@
 															 selector: @selector(previewUpdateTimerFired:)
 															 userInfo: nil
 															  repeats: NO] retain];
-    }
-    else if([[aNotification object] isEqualTo: theSubjectField]) {
-        [[self window] setTitle: [[aNotification object] string]];
-        [[self entry] setSubject: [[aNotification object] string]];
     }
 }
 
@@ -321,10 +308,7 @@
 - (void)controlTextDidEndEditing:(NSNotification *)aNotification
 {
 #warning Remove most of this in favour of bindings
-    if([aNotification object] == theSubjectField) {
-		[[self entry] setSubject: [[aNotification object] stringValue]];
-    }
-    else if([aNotification object] == theMusicField) {
+    if([aNotification object] == theMusicField) {
         // If the user types stuff in the field, we 
         // invalidate the iTMS links since we can only generate them
         // directly from iTunes and not from back-parsing the user's
@@ -337,13 +321,6 @@
 	else if([aNotification object] == theTagField) {
 		[[self entry] setTags: [[aNotification object] stringValue]];
 	}
-}
-
-- (void)controlTextDidChange: (NSNotification *)aNotification
-{
-    if([aNotification object] == theSubjectField) {
-        [[self entry] setSubject: [[aNotification object] stringValue]];
-    }
 }
 
 // ----------------------------------------------------------------------------------------
