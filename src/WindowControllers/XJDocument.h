@@ -42,7 +42,7 @@
     // Window outlets
     // ----------------------------------------------------------------------------------------
     IBOutlet NSTextView *theTextView;
-    IBOutlet NSTextField *theSubjectField, *theMusicField, *statusField, *theTagField;
+    IBOutlet NSTextField *theMusicField, *statusField, *theTagField;
     IBOutlet NSPopUpButton *journalPop;
     IBOutlet NSComboBox *moods;
     IBOutlet NSProgressIndicator *spinner;

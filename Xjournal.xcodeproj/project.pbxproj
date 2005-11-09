@@ -61,12 +61,6 @@
 		1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */; };
 		1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */; };
 		1B967FC5058779680035F70C /* itunes.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B967FC4058779680035F70C /* itunes.png */; };
-		1BB46F1104FA7DC3000FBB08 /* XJFileSystemFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB46F0B04FA7DC3000FBB08 /* XJFileSystemFile.h */; };
-		1BB46F1204FA7DC3000FBB08 /* XJFileSystemFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB46F0C04FA7DC3000FBB08 /* XJFileSystemFile.m */; };
-		1BB46F1304FA7DC3000FBB08 /* XJFileSystemFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB46F0D04FA7DC3000FBB08 /* XJFileSystemFolder.h */; };
-		1BB46F1404FA7DC3000FBB08 /* XJFileSystemFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB46F0E04FA7DC3000FBB08 /* XJFileSystemFolder.m */; };
-		1BB46F1504FA7DC3000FBB08 /* XJFileSystemItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB46F0F04FA7DC3000FBB08 /* XJFileSystemItem.h */; };
-		1BB46F1604FA7DC3000FBB08 /* XJFileSystemItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB46F1004FA7DC3000FBB08 /* XJFileSystemItem.m */; };
 		1BB8A3D404C2D917008F16C1 /* XJSoftwareUpdatePrefClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB8A3D204C2D917008F16C1 /* XJSoftwareUpdatePrefClient.h */; };
 		1BB8A3D504C2D917008F16C1 /* XJSoftwareUpdatePrefClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8A3D304C2D917008F16C1 /* XJSoftwareUpdatePrefClient.m */; };
 		1BBD891B04B01883003882CD /* KeyHandlingTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD891104B01883003882CD /* KeyHandlingTableView.h */; };
@@ -402,12 +396,6 @@
 		1B93D18404D090B400DFFB3A /* RSS-HTMLConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RSS-HTMLConversion.h"; path = "src/Classes/RSS-HTMLConversion.h"; sourceTree = SOURCE_ROOT; };
 		1B93D18504D090B400DFFB3A /* RSS-HTMLConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSS-HTMLConversion.m"; sourceTree = "<group>"; };
 		1B967FC4058779680035F70C /* itunes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itunes.png; path = src/Art/itunes.png; sourceTree = "<group>"; };
-		1BB46F0B04FA7DC3000FBB08 /* XJFileSystemFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJFileSystemFile.h; sourceTree = "<group>"; };
-		1BB46F0C04FA7DC3000FBB08 /* XJFileSystemFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJFileSystemFile.m; sourceTree = "<group>"; };
-		1BB46F0D04FA7DC3000FBB08 /* XJFileSystemFolder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJFileSystemFolder.h; sourceTree = "<group>"; };
-		1BB46F0E04FA7DC3000FBB08 /* XJFileSystemFolder.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJFileSystemFolder.m; sourceTree = "<group>"; };
-		1BB46F0F04FA7DC3000FBB08 /* XJFileSystemItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJFileSystemItem.h; sourceTree = "<group>"; };
-		1BB46F1004FA7DC3000FBB08 /* XJFileSystemItem.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJFileSystemItem.m; sourceTree = "<group>"; };
 		1BB8A3D204C2D917008F16C1 /* XJSoftwareUpdatePrefClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSoftwareUpdatePrefClient.h; sourceTree = "<group>"; };
 		1BB8A3D304C2D917008F16C1 /* XJSoftwareUpdatePrefClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSoftwareUpdatePrefClient.m; sourceTree = "<group>"; };
 		1BBD891104B01883003882CD /* KeyHandlingTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyHandlingTableView.h; sourceTree = "<group>"; };
@@ -716,20 +704,6 @@
 			);
 			name = SoftwareUpdate;
 			path = src/SoftwareUpdate;
-			sourceTree = "<group>";
-		};
-		1BB46F0A04FA7DC3000FBB08 /* FilesystemTree */ = {
-			isa = PBXGroup;
-			children = (
-				1BB46F0B04FA7DC3000FBB08 /* XJFileSystemFile.h */,
-				1BB46F0C04FA7DC3000FBB08 /* XJFileSystemFile.m */,
-				1BB46F0D04FA7DC3000FBB08 /* XJFileSystemFolder.h */,
-				1BB46F0E04FA7DC3000FBB08 /* XJFileSystemFolder.m */,
-				1BB46F0F04FA7DC3000FBB08 /* XJFileSystemItem.h */,
-				1BB46F1004FA7DC3000FBB08 /* XJFileSystemItem.m */,
-			);
-			name = FilesystemTree;
-			path = src/FilesystemTree;
 			sourceTree = "<group>";
 		};
 		1BBD891004B01883003882CD /* AppKit Categories */ = {
@@ -1073,7 +1047,6 @@
 				1BBD895F04B0189F003882CD /* LJKit Categories */,
 				1BBD896604B0189F003882CD /* OutlineExport */,
 				1BBD897304B0189F003882CD /* Polls */,
-				1BB46F0A04FA7DC3000FBB08 /* FilesystemTree */,
 				1BBD897E04B0189F003882CD /* PrefClients */,
 				1B8A041D04B2BC160002ED8F /* SoftwareUpdate */,
 				1BBD899404B0189F003882CD /* WindowControllers */,
@@ -1185,9 +1158,6 @@
 				1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */,
 				1BB8A3D404C2D917008F16C1 /* XJSoftwareUpdatePrefClient.h in Headers */,
 				1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */,
-				1BB46F1104FA7DC3000FBB08 /* XJFileSystemFile.h in Headers */,
-				1BB46F1304FA7DC3000FBB08 /* XJFileSystemFolder.h in Headers */,
-				1BB46F1504FA7DC3000FBB08 /* XJFileSystemItem.h in Headers */,
 				1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */,
 				1B7C9A420566708F00F0E1AC /* LJPollTextEntryQuestion.h in Headers */,
 				5F9697B505D930F20026F31C /* XJDonationWindowController.h in Headers */,
@@ -1461,9 +1431,6 @@
 				1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */,
 				1BB8A3D504C2D917008F16C1 /* XJSoftwareUpdatePrefClient.m in Sources */,
 				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
-				1BB46F1204FA7DC3000FBB08 /* XJFileSystemFile.m in Sources */,
-				1BB46F1404FA7DC3000FBB08 /* XJFileSystemFolder.m in Sources */,
-				1BB46F1604FA7DC3000FBB08 /* XJFileSystemItem.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				1B7C9A430566709300F0E1AC /* LJPollScaleQuestion.m in Sources */,
 				1B7C9A440566709400F0E1AC /* LJPollTextEntryQuestion.m in Sources */,
