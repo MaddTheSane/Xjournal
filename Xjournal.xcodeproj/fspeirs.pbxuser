@@ -1503,6 +1503,7 @@
 			5F5B08D0092530E3005BB86B /* PBXTextBookmark */ = 5F5B08D0092530E3005BB86B /* PBXTextBookmark */;
 			5F5B08D1092530E3005BB86B /* PBXTextBookmark */ = 5F5B08D1092530E3005BB86B /* PBXTextBookmark */;
 			5F5B08D4092530E3005BB86B /* PBXTextBookmark */ = 5F5B08D4092530E3005BB86B /* PBXTextBookmark */;
+			5F5B08D7092534BA005BB86B /* PBXTextBookmark */ = 5F5B08D7092534BA005BB86B /* PBXTextBookmark */;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
@@ -3970,6 +3971,16 @@
 		vrLoc = 85;
 	};
 	5F5B08D4092530E3005BB86B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899C04B0189F003882CD /* XJFriendsController.m */;
+		name = O;
+		rLen = 1;
+		rLoc = 450;
+		rType = 0;
+		vrLen = 606;
+		vrLoc = 85;
+	};
+	5F5B08D7092534BA005BB86B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1BBD899C04B0189F003882CD /* XJFriendsController.m */;
 		name = O;

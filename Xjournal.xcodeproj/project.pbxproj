@@ -122,8 +122,6 @@
 		1BBD89F604B0189F003882CD /* XJPollEditorController+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */; };
 		1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */; };
 		1BBD89F804B0189F003882CD /* XJAccountEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */; };
-		1BBD89F904B0189F003882CD /* XJBirthdayWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899704B0189F003882CD /* XJBirthdayWindowController.h */; };
-		1BBD89FA04B0189F003882CD /* XJBirthdayWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899804B0189F003882CD /* XJBirthdayWindowController.m */; };
 		1BBD89FB04B0189F003882CD /* XJDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899904B0189F003882CD /* XJDocument.h */; };
 		1BBD89FC04B0189F003882CD /* XJDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899A04B0189F003882CD /* XJDocument.m */; };
 		1BBD89FD04B0189F003882CD /* XJFriendsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899B04B0189F003882CD /* XJFriendsController.h */; };
@@ -137,12 +135,7 @@
 		1BBD8A1D04B018FF003882CD /* NewFriendsWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A0704B018FF003882CD /* NewFriendsWindow.nib */; };
 		1BBD8A1E04B018FF003882CD /* PollEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A0904B018FF003882CD /* PollEditor.nib */; };
 		1BBD8A2004B018FF003882CD /* UserSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A0D04B018FF003882CD /* UserSheet.nib */; };
-		1BBD8A2104B018FF003882CD /* XJAccountPrefClient.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A0F04B018FF003882CD /* XJAccountPrefClient.nib */; };
-		1BBD8A2204B018FF003882CD /* XJCheckFriendsClient.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A1104B018FF003882CD /* XJCheckFriendsClient.nib */; };
 		1BBD8A2304B018FF003882CD /* XJDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A1304B018FF003882CD /* XJDocument.nib */; };
-		1BBD8A2404B018FF003882CD /* XJHistoryPrefsClient.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A1504B018FF003882CD /* XJHistoryPrefsClient.nib */; };
-		1BBD8A2604B018FF003882CD /* XJMusicPrefClient.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A1904B018FF003882CD /* XJMusicPrefClient.nib */; };
-		1BBD8A2704B018FF003882CD /* XJSUPreferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A1B04B018FF003882CD /* XJSUPreferences.nib */; };
 		1BBD8A3C04B01916003882CD /* AccountEditWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A2804B01916003882CD /* AccountEditWindow.nib */; };
 		1BBD8A3E04B01916003882CD /* Bookmarks.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A2C04B01916003882CD /* Bookmarks.nib */; };
 		1BBD8A4004B01916003882CD /* CutSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A3004B01916003882CD /* CutSheet.nib */; };
@@ -442,8 +435,6 @@
 		1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJPollEditorController+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJAccountEditWindowController.h; sourceTree = "<group>"; };
 		1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJAccountEditWindowController.m; sourceTree = "<group>"; };
-		1BBD899704B0189F003882CD /* XJBirthdayWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJBirthdayWindowController.h; sourceTree = "<group>"; };
-		1BBD899804B0189F003882CD /* XJBirthdayWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJBirthdayWindowController.m; sourceTree = "<group>"; };
 		1BBD899904B0189F003882CD /* XJDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJDocument.h; sourceTree = "<group>"; };
 		1BBD899A04B0189F003882CD /* XJDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJDocument.m; sourceTree = "<group>"; };
 		1BBD899B04B0189F003882CD /* XJFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJFriendsController.h; sourceTree = "<group>"; };
@@ -456,14 +447,8 @@
 		1BBD89A404B0189F003882CD /* XJPollEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJPollEditorController.m; sourceTree = "<group>"; };
 		1BBD8A0804B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = NewFriendsWindow.nib; sourceTree = "<group>"; };
 		1BBD8A0A04B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = PollEditor.nib; sourceTree = "<group>"; };
-		1BBD8A0C04B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = RendezvousClient.nib; sourceTree = "<group>"; };
 		1BBD8A0E04B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = UserSheet.nib; sourceTree = "<group>"; };
-		1BBD8A1004B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = XJAccountPrefClient.nib; sourceTree = "<group>"; };
-		1BBD8A1204B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = XJCheckFriendsClient.nib; sourceTree = "<group>"; };
 		1BBD8A1404B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = XJDocument.nib; sourceTree = "<group>"; };
-		1BBD8A1604B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = XJHistoryPrefsClient.nib; sourceTree = "<group>"; };
-		1BBD8A1A04B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = XJMusicPrefClient.nib; sourceTree = "<group>"; };
-		1BBD8A1C04B018FF003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = XJSUPreferences.nib; sourceTree = "<group>"; };
 		1BBD8A2904B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = AccountEditWindow.nib; sourceTree = "<group>"; };
 		1BBD8A2B04B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = BirthdaysWindow.nib; sourceTree = "<group>"; };
 		1BBD8A2D04B01916003882CD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = Bookmarks.nib; sourceTree = "<group>"; };
@@ -824,8 +809,6 @@
 				1BBD898904B0189F003882CD /* ToolbarDelegates */,
 				1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */,
 				1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */,
-				1BBD899704B0189F003882CD /* XJBirthdayWindowController.h */,
-				1BBD899804B0189F003882CD /* XJBirthdayWindowController.m */,
 				1BBD899904B0189F003882CD /* XJDocument.h */,
 				1BBD899A04B0189F003882CD /* XJDocument.m */,
 				1BBD899B04B0189F003882CD /* XJFriendsController.h */,
@@ -856,14 +839,8 @@
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				1BBD8A0704B018FF003882CD /* NewFriendsWindow.nib */,
 				1BBD8A0904B018FF003882CD /* PollEditor.nib */,
-				1BBD8A0B04B018FF003882CD /* RendezvousClient.nib */,
 				1BBD8A0D04B018FF003882CD /* UserSheet.nib */,
-				1BBD8A0F04B018FF003882CD /* XJAccountPrefClient.nib */,
-				1BBD8A1104B018FF003882CD /* XJCheckFriendsClient.nib */,
 				1BBD8A1304B018FF003882CD /* XJDocument.nib */,
-				1BBD8A1504B018FF003882CD /* XJHistoryPrefsClient.nib */,
-				1BBD8A1904B018FF003882CD /* XJMusicPrefClient.nib */,
-				1BBD8A1B04B018FF003882CD /* XJSUPreferences.nib */,
 				1B49FD0A04F4300400F9843B /* HTMLPreview.nib */,
 				5F5B05660924DD45005BB86B /* Preferences.nib */,
 			);
@@ -1066,7 +1043,6 @@
 				1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */,
 				1BBD89F504B0189F003882CD /* XJPollEditorController+NSToolbarController.h in Headers */,
 				1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */,
-				1BBD89F904B0189F003882CD /* XJBirthdayWindowController.h in Headers */,
 				1BBD89FB04B0189F003882CD /* XJDocument.h in Headers */,
 				1BBD89FD04B0189F003882CD /* XJFriendsController.h in Headers */,
 				1BBD89FF04B0189F003882CD /* XJGlossaryWindowController.h in Headers */,
@@ -1179,12 +1155,7 @@
 				1BBD8A1D04B018FF003882CD /* NewFriendsWindow.nib in Resources */,
 				1BBD8A1E04B018FF003882CD /* PollEditor.nib in Resources */,
 				1BBD8A2004B018FF003882CD /* UserSheet.nib in Resources */,
-				1BBD8A2104B018FF003882CD /* XJAccountPrefClient.nib in Resources */,
-				1BBD8A2204B018FF003882CD /* XJCheckFriendsClient.nib in Resources */,
 				1BBD8A2304B018FF003882CD /* XJDocument.nib in Resources */,
-				1BBD8A2404B018FF003882CD /* XJHistoryPrefsClient.nib in Resources */,
-				1BBD8A2604B018FF003882CD /* XJMusicPrefClient.nib in Resources */,
-				1BBD8A2704B018FF003882CD /* XJSUPreferences.nib in Resources */,
 				1BBD8A3C04B01916003882CD /* AccountEditWindow.nib in Resources */,
 				1BBD8A3E04B01916003882CD /* Bookmarks.nib in Resources */,
 				1BBD8A4004B01916003882CD /* CutSheet.nib in Resources */,
@@ -1333,7 +1304,6 @@
 				1BBD89F204B0189F003882CD /* XJFriendsController-NSToolbarController.m in Sources */,
 				1BBD89F604B0189F003882CD /* XJPollEditorController+NSToolbarController.m in Sources */,
 				1BBD89F804B0189F003882CD /* XJAccountEditWindowController.m in Sources */,
-				1BBD89FA04B0189F003882CD /* XJBirthdayWindowController.m in Sources */,
 				1BBD89FC04B0189F003882CD /* XJDocument.m in Sources */,
 				1BBD89FE04B0189F003882CD /* XJFriendsController.m in Sources */,
 				1BBD8A0004B0189F003882CD /* XJGlossaryWindowController.m in Sources */,
@@ -1406,15 +1376,6 @@
 			path = src/English.lproj;
 			sourceTree = "<group>";
 		};
-		1BBD8A0B04B018FF003882CD /* RendezvousClient.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A0C04B018FF003882CD /* English */,
-			);
-			name = RendezvousClient.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
 		1BBD8A0D04B018FF003882CD /* UserSheet.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1424,57 +1385,12 @@
 			path = src/English.lproj;
 			sourceTree = "<group>";
 		};
-		1BBD8A0F04B018FF003882CD /* XJAccountPrefClient.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A1004B018FF003882CD /* English */,
-			);
-			name = XJAccountPrefClient.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
-		1BBD8A1104B018FF003882CD /* XJCheckFriendsClient.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A1204B018FF003882CD /* English */,
-			);
-			name = XJCheckFriendsClient.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
 		1BBD8A1304B018FF003882CD /* XJDocument.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1BBD8A1404B018FF003882CD /* English */,
 			);
 			name = XJDocument.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
-		1BBD8A1504B018FF003882CD /* XJHistoryPrefsClient.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A1604B018FF003882CD /* English */,
-			);
-			name = XJHistoryPrefsClient.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
-		1BBD8A1904B018FF003882CD /* XJMusicPrefClient.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A1A04B018FF003882CD /* English */,
-			);
-			name = XJMusicPrefClient.nib;
-			path = src/English.lproj;
-			sourceTree = "<group>";
-		};
-		1BBD8A1B04B018FF003882CD /* XJSUPreferences.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BBD8A1C04B018FF003882CD /* English */,
-			);
-			name = XJSUPreferences.nib;
 			path = src/English.lproj;
 			sourceTree = "<group>";
 		};
