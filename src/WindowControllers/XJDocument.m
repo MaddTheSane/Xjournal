@@ -116,7 +116,6 @@
     }
 	
     // Sync the UI up to the state of the Entry object
-    if([[self entry] subject] != nil) {
 	if([[self entry] tags] != nil) {
 		[theTagField setStringValue: [[self entry] tags]];
 	}
