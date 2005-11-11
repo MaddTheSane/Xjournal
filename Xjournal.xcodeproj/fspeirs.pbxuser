@@ -79,10 +79,10 @@
 	};
 	1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {705, 503}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 444}}";
 			sepNavSelRange = "{758, 64}";
-			sepNavVisRect = "{{0, 75}, {705, 428}}";
-			sepNavWindowFrame = "{{15, 315}, {750, 558}}";
+			sepNavVisRect = "{{0, 0}, {705, 444}}";
+			sepNavWindowFrame = "{{289, 194}, {750, 558}}";
 		};
 	};
 	1BBD891804B01883003882CD /* NSString+Extensions.m */ = {
@@ -337,9 +337,9 @@
 	};
 	1BBD899A04B0189F003882CD /* XJDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 11121}}";
-			sepNavSelRange = "{4301, 0}";
-			sepNavVisRect = "{{0, 1017}, {898, 705}}";
+			sepNavIntBoundsRect = "{{0, 0}, {898, 11110}}";
+			sepNavSelRange = "{18367, 44}";
+			sepNavVisRect = "{{0, 5164}, {898, 705}}";
 			sepNavWindowFrame = "{{484, 59}, {943, 819}}";
 		};
 	};
@@ -570,7 +570,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					300,
-					99,
+					166,
 					20,
 					68,
 					43,
@@ -586,7 +586,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 153243929;
+			PBXPerProjectTemplateStateSaveDate = 153409028;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1242,13 +1242,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 131 912 747 0 0 1440 878 ";
 			};
-			PBXWorkspaceStateSaveDate = 153243929;
-		};
-		perUserProjectItems = {
-			5F044BA609225127003D6D2A /* PBXBookmark */ = 5F044BA609225127003D6D2A /* PBXBookmark */;
-			5F044BAB0922512D003D6D2A /* PBXTextBookmark */ = 5F044BAB0922512D003D6D2A /* PBXTextBookmark */;
-			5F044BC2092252D5003D6D2A /* PBXTextBookmark */ = 5F044BC2092252D5003D6D2A /* PBXTextBookmark */;
-			5F044BC3092252D5003D6D2A /* PBXTextBookmark */ = 5F044BC3092252D5003D6D2A /* PBXTextBookmark */;
+			PBXWorkspaceStateSaveDate = 153409028;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
@@ -1284,40 +1278,6 @@
 			sepNavVisRect = "{{0, 0}, {898, 705}}";
 			sepNavWindowFrame = "{{1453, 58}, {943, 819}}";
 		};
-	};
-	5F044BA609225127003D6D2A /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
-	};
-	5F044BAB0922512D003D6D2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
-		name = "XJDocument.m: 917";
-		rLen = 0;
-		rLoc = 33237;
-		rType = 0;
-		vrLen = 2560;
-		vrLoc = 32788;
-	};
-	5F044BC2092252D5003D6D2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
-		name = "XJDocument.m: 904";
-		rLen = 0;
-		rLoc = 32832;
-		rType = 0;
-		vrLen = 2560;
-		vrLoc = 32788;
-	};
-	5F044BC3092252D5003D6D2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
-		name = setContent;
-		rLen = 0;
-		rLoc = 9601;
-		rType = 0;
-		vrLen = 2196;
-		vrLoc = 8680;
 	};
 	5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {
 		uiCtxt = {

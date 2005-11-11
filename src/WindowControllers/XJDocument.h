@@ -9,7 +9,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <LJKit/LJKit.h>
-#import <OmniAppKit/OmniAppKit.h>
 #import <WebKit/WebKit.h>
 
 #define kHTMLMenuTag 50

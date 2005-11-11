@@ -7,7 +7,6 @@
 //
 
 #import "XJDocument.h"
-#import <OmniAppKit/OmniAppKit.h>
 #import "XJPreferences.h"
 #import "NetworkConfig.h"
 #import "MusicStringFormatter.h"
@@ -723,12 +722,6 @@
     else if(currentSheet == commSheet)
         [comm_OKButton setEnabled: [[sender stringValue] length] > 0];
 }
-
-// ----------------------------------------------------------------------------------------
-#pragma mark -
-#pragma mark Omni Find panel
-// ----------------------------------------------------------------------------------------
-- (id <OAFindControllerTarget>)omniFindControllerTarget { return theTextView; }
 
 // ----------------------------------------------------------------------------------------
 #pragma mark -

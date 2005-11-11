@@ -275,7 +275,7 @@
 /* Begin PBXBuildRule section */
 		5F63250F083C8D4A007F6AF9 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc;
 			fileType = sourcecode.c;
 			isEditable = 1;
 			outputFiles = (
@@ -283,7 +283,7 @@
 		};
 		5F632510083C8D5A007F6AF9 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc;
 			fileType = sourcecode.asm;
 			isEditable = 1;
 			outputFiles = (
@@ -291,7 +291,7 @@
 		};
 		5FE37A58086441A600B6C34F /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc;
 			fileType = sourcecode.c;
 			isEditable = 1;
 			outputFiles = (
@@ -1728,6 +1728,7 @@
 		5FD243C50861F8BC0007E0C5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = ppc;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEBUGGING_SYMBOLS = YES;
@@ -2001,6 +2002,10 @@
 		5FD243CF0861F8BC0007E0C5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
