@@ -7,9 +7,6 @@
 #import "LJFriend-ABExtensions.h"
 #import <Foundation/NSDebug.h>
 
-#import "RSS.h"
-#import "RSS-HTMLConversion.h"
-#import "RSSManager.h"
 #import "NetworkConfig.h"
 
 #define STRIPE_RED   (237.0 / 255.0)

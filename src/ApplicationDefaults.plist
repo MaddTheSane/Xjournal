@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CCFSoftwareUpdateAutoCheck</key>
+	<true/>
+	<key>CCFSoftwareUpdateInterval</key>
+	<integer>1</integer>
+	<key>XJCheckFriendsAlertSound</key>
+	<string></string>
+	<key>XJCheckFriendsGroupType</key>
+	<integer>0</integer>
+	<key>XJCheckFriendsPlaySound</key>
+	<false/>
+	<key>XJCheckFriendsShouldCheck</key>
+	<true/>
+	<key>XJCheckFriendsShouldOpenFriendsPages</key>
+	<true/>
+	<key>XJCheckFriendsShouldShowDialog</key>
+	<false/>
+	<key>XJCheckFriendsShouldShowDockIcon</key>
+	<true/>
+	<key>XJDefaultSecurityLevel</key>
+	<integer>0</integer>
+	<key>XJHistoryOpenLinksInApp</key>
+	<true/>
+	<key>XJMusicShouldAutoDetect</key>
+	<true/>
+	<key>XJPostingDate</key>
+	<true/>
+	<key>XJShouldAutoLogin</key>
+	<true/>
+	<key>XJShouldOpenDrawerInNewWindow</key>
+	<true/>
+	<key>XJShouldShowPostingConfirmationDialog</key>
+	<true/>
+	<key>XJSpellCheckByDefault</key>
+	<true/>
+	<key>XJSuppressLoginMessage</key>
+	<false/>
+	<key>XJUnsavedOption</key>
+	<integer>0</integer>
+</dict>
+</plist>

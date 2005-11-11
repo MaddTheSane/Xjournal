@@ -84,7 +84,7 @@
 	
     if([[self entry] itemID] == 0) {
         // Item hasn't been posted, apply default security mode
-        int level = [XJPreferences defaultSecuritySetting];
+        int level = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultSecurityLevel"] intValue];
         [security selectItemWithTag: level];
         [[self entry] setSecurityMode:level];
     }else {
@@ -122,7 +122,8 @@
     if([[self entry] currentMusic] != nil) {
         [theMusicField setStringValue: [[self entry] currentMusic]];
     } else {
-        if([XJPreferences autoDetectMusic] && [[self entry] itemID] == 0) {
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJMusicShouldAutoDetect"] boolValue] &&
+		   [[self entry] itemID] == 0) {
             [self detectMusicNow: self];
         }
     }
@@ -152,13 +153,18 @@
     }
     
     // Set Spell checking on, if required
-    [theTextView setContinuousSpellCheckingEnabled: [XJPreferences spellCheckByDefault]];
+	BOOL shouldSpellCheck = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJSpellCheckByDefault"] boolValue];
+    [theTextView setContinuousSpellCheckingEnabled: shouldSpellCheck];
 	
     // Open the drawer if needed
-    if([XJPreferences shouldOpenDrawerInNewWindow])
+	if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldOpenDrawerInNewWindow"] boolValue])
         [drawer open];
 	
-    NSSize storedSize = [XJPreferences entryWindowSize];
+	NSString *storedSizeString = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJEntryWindowSize"];
+	NSSize storedSize = NSMakeSize(500, 510);
+	if(storedSizeString == nil)
+		storedSize = NSSizeFromString(storedSizeString);
+	
     NSPoint origin = [[self window] frame].origin;
     NSRect newRect = NSMakeRect(origin.x, origin.y, storedSize.width, storedSize.height);
     [[self window] setFrame: newRect display: YES];
@@ -266,7 +272,9 @@
 }
 
 - (IBAction)saveWindowSize:(id)sender {
-    [XJPreferences setEntryWindowSize: [[self window] frame].size];
+	NSString *sizeString = NSStringFromSize([[self window] frame].size);
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: sizeString
+																		forKey: @"XJEntryWindowSize"];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -374,7 +382,9 @@
         [self postEntryAndDiscardLocalCopy: self];
     }else{
 
-        if([self postEntryAndReturnStatus] && [XJPreferences shouldShowPostConfirmationDialog]) {
+        if([self postEntryAndReturnStatus] && 
+		   [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldShowPostingConfirmationDialog"] boolValue])
+		{
             NSBeginInformationalAlertSheet(NSLocalizedString(@"Posting Succeeded", @""),
                                            NSLocalizedString(@"OK", @""),
                                            NSLocalizedString(@"Open Recent Entries", @""),
@@ -412,7 +422,9 @@
         Also, if we detected iTMS links, but the user has since cleared 
         the music field, we don't want to do anything.
     */
-    if(![[self entry] itemID] && [XJPreferences linkMusicToStore] && iTMSLinks) {
+    if(![[self entry] itemID] &&
+	   [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJLinkMusicToStore"] boolValue] &&
+	   iTMSLinks) {
         [[self entry] setCurrentMusic: nil];
         [[self entry] setContent: [NSString stringWithFormat: @"%@\n\n%@", [[self entry] content], iTMSLinks]];
     }
@@ -424,7 +436,8 @@
         [spinner startAnimation: self];
         if(![[self entry] optionBackdated]) {
             // Set the posting date according to the user's preference
-            if([XJPreferences entryDateDefault] == 1 && !isPosted) {
+			BOOL entryIsDatedAtPost = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJPostingDate"] boolValue];
+            if(entryIsDatedAtPost && !isPosted) {
                 [[self entry] setDate: [NSDate date]];
             }
         }
@@ -459,7 +472,7 @@
 - (void)postEntryAndDiscardLocalCopy:(id)sender
 {
 	if([self fileName] != nil && [self isDocumentEdited]) {  // Was opened from file and is dirty
-		int unsavedOption = [XJPreferences unsavedOption];
+		int unsavedOption = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJUnsavedOption"] intValue];
 
 		if(unsavedOption != 2) { // 2 == don't save
 			BOOL shouldSave = YES;
@@ -486,7 +499,7 @@
     	[self close];
         [self closeHTMLPreviewWindow];
         
-        if([XJPreferences shouldShowPostConfirmationDialog]) {
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldShowPostingConfirmationDialog"] boolValue]) {
             int result = NSRunInformationalAlertPanel(NSLocalizedString(@"Posting Succeeded", @""),
                                                       NSLocalizedString(@"Your entry was sucessfully posted", @""),
                                                       NSLocalizedString(@"OK", @""),

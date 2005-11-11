@@ -17,9 +17,9 @@
 #import "CCFSoftwareUpdate.h"
 #import "LJKit-URLLaunching.h"
 #import "XJDocument.h"
-#import "XJDonationWindowController.h"
 #import "NSString+Extensions.h"
 #import "XJMarkupRemovalVT.h"
+#import "XJPreferencesController.h"
 
 #define PREF_LJ_ACCOUNTS @"preferences.accounts"
 
@@ -57,6 +57,10 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 - (void)awakeFromNib
 {	
+	// Register user defaults
+	NSDictionary *defs = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"ApplicationDefaults" ofType: @"plist"]];
+	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defs];
+	
     /* To find out when the login process will start, so we can show the progress dialog */
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(loginStarted:)
@@ -110,15 +114,13 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
         andEventID: NNWEditDataItemAppleEventID];
 }
 
+#pragma mark -
+#pragma mark NSApplicationDelegate
 /*
  * Notification method that we use to start the login process
  */
 - (void)applicationDidFinishLaunching: (NSNotification *)note
 {
-	/*if([XJPreferences showDonationWindow])
-		[[XJDonationWindowController alloc] init];
-	*/
-	
     XJAccountManager *acctManager = [XJAccountManager defaultManager];
     // Check that we've got a username to log into
     if(![acctManager defaultAccount]) {
@@ -130,7 +132,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
         [XJCheckFriendsSessionManager sharedManager]; // Initialise the shared session
 
         // Once accounts support other LJ services, we should move these reachability tests into the login method
-        if([XJPreferences shouldAutoLogin] && [NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
+		BOOL shouldLogin = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldAutoLogin"] boolValue];
+        if(shouldLogin && [NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
             NS_DURING
 
                 [acctManager logInAccount: [acctManager defaultAccount]];
@@ -138,7 +141,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 					[[acctManager defaultAccount] downloadFriends];
                 // Be a good client and show the LiveJournal login message, if any
                 NSString *serverMsg = [[acctManager loggedInAccount] loginMessage];
-                if(serverMsg != nil && ![XJPreferences suppressLoginMessage])
+                if(serverMsg != nil && 
+				   ![[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJSuppressLoginMessage"] boolValue])
                     NSRunAlertPanel(LJ_LOGIN_MESSAGE, serverMsg, @"OK", nil, nil);
             NS_HANDLER
                 NSRunAlertPanel([localException name], [localException reason], @"OK", nil, nil);
@@ -149,26 +153,20 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [self buildAccountsMenu: nil];
 
     // Reopen palettes that were open
-    if([PREFS boolForKey: kBookmarkWindowOpen])
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJBookmarkWindowIsOpen"] boolValue])
         [self showBookmarkWindow: self];
 
-    if([PREFS boolForKey: kGlossaryWindowOpen])
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJGlossaryWindowIsOpen"] boolValue])
         [self showGlossaryWindow: self];
 
-#ifdef __1.1_BUILD__
-    if([PREFS boolForKey: kShortcutWindowOpen])
-        [self showShortcutsWindow: self];
-#endif
-    
     [[CCFSoftwareUpdate sharedUpdateChecker] runScheduledUpdateCheckIfRequired];
     [NSApp setServicesProvider:self];
 }
 
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
-{
-    return YES;
-}
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender { return YES; }
 
+#pragma mark -
+#pragma mark NetNewsWire Protocol Handler
 /* NetNewsWire Handler */
 - (void) editDataItem: (NSAppleEventDescriptor *) event withReplyEvent: (NSAppleEventDescriptor *) reply {
 
@@ -222,18 +220,21 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [NSApp activateIgnoringOtherApps: YES];
 } /*editDataItem: withReplyEvent:*/
 
+#pragma mark -
+#pragma mark Handling Checkfriends Error
 - (void)checkFriendsError: (NSNotification *)note
 {
     NSException *exc = [[note userInfo] objectForKey: @"LJException"];
     NSLog(@"Check friends error: %@ - %@", [exc name], [exc reason]);
 }
 
+#pragma mark -
+#pragma mark Software Update
 // Target for AppMenu -> Check for updates
-- (IBAction)checkForUpdate:(id)sender
-{
-    [[CCFSoftwareUpdate sharedUpdateChecker] runSoftwareUpdate:NO];
-}
+- (IBAction)checkForUpdate:(id)sender { [[CCFSoftwareUpdate sharedUpdateChecker] runSoftwareUpdate:NO]; }
 
+#pragma mark -
+#pragma mark Dock Menu Handling
 - (void)updateDockMenu
 {
     /*
@@ -295,11 +296,10 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 }
 
 /* Called whenever the Dock needs the app menu */
-- (NSMenu *)applicationDockMenu:(NSApplication *)sender
-{
-    return dynDockMenu;
-}
+- (NSMenu *)applicationDockMenu:(NSApplication *)sender{ return dynDockMenu; }
 
+#pragma mark -
+#pragma mark Accounts Menu Handling
 - (void) buildAccountsMenu: (NSNotification *)note
 {
 	if([accountItem hasSubmenu]) {
@@ -353,6 +353,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	[newSubmenu release];
 }
 
+#pragma mark -
+#pragma mark WindowController Initialisation
 /*
  * The following show*Window methods are used to initialise
  * (if required) the subsidiary window controllers and to
@@ -360,7 +362,9 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
  */
 - (IBAction)showPrefsWindow:(id)sender
 {
-    [[OAPreferenceController sharedPreferenceController] showPreferencesPanel:nil];
+	if(!prefsController)
+		prefsController = [[XJPreferencesController alloc] init];
+	[prefsController showWindow: self];
 }
 
 - (IBAction)showBookmarkWindow:(id)sender
@@ -403,14 +407,16 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [accountController showWindow: self];
 }
 
-- (IBAction)showMainWindow:(id)sender
+- (IBAction)showPollEditWindow:(id)sender
 {
-    if(!mainController) {
-        mainController = [[XJMainWindowController alloc] init];
+    if(!pollController) {
+        pollController = [[XJPollEditorController alloc] init];
     }
-    [mainController showWindow: self];
+    [pollController showWindow: self];
 }
 
+#pragma mark -
+#pragma mark Edit Last Entry Menu Handler
 // Target for Edit -> Edit Last Entry
 - (IBAction) editLastEntry:(id)sender
 {
@@ -422,36 +428,11 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [doc showWindows];
 }
 
-#ifdef __1.1_BUILD__
-- (IBAction)showBirthdayWindow: (id)sender
-{
-    if(!birthdayController) {
-        birthdayController = [[XJBirthdayWindowController alloc] init];
-    }
-    [birthdayController showWindow: self];
-}
-
-- (IBAction)showShortcutsWindow: (id)sender
-{
-    if(!shortcutController) {
-        shortcutController = [[XJShortcutController alloc] init];
-    }
-    [shortcutController showWindow: self];
-}
-#endif
-
-- (IBAction)showPollEditWindow:(id)sender
-{
-    if(!pollController) {
-        pollController = [[XJPollEditorController alloc] init];
-    }
-    [pollController showWindow: self];
-}
-
 
 
 // ----------------------------------------------------------------------------------------
-// Switching account
+#pragma mark -
+#pragma mark Switching accounts
 // ----------------------------------------------------------------------------------------
 - (IBAction)switchAccount: (id)sender
 {
@@ -461,7 +442,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 }
 
 // ----------------------------------------------------------------------------------------
-// Notifications
+#pragma mark -
+#pragma mark Notifications
 // ----------------------------------------------------------------------------------------
 /* Called when the user clicks on the dock icon */
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -469,7 +451,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
     // and we DON'T open a new window
     if(![dockItem isHidden]) {
-        if([XJPreferences openFriendsPage])
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] objectForKey: @"XJCheckFriendsShouldOpenFriendsPage"] boolValue])
             [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
         [dockItem hide];
 
@@ -494,12 +476,12 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     }
 
     // If they want a dock icon, show it.
-    if([XJPreferences showDockIcon]) {
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldShowDockIcon"] boolValue]) {
         [dockItem show];
     }
 
     // If they want a dialog, show that too.
-    if([XJPreferences showFriendsDialog]) {
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldShowDialog"] boolValue]) {
         friendsDialogIsShowing = YES;
         int result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
         friendsDialogIsShowing = NO;
@@ -538,47 +520,42 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [loginPanel orderOut: nil];
 }
 
-/* Actions for LJ menu items */
-- (IBAction)openRecent: (id)sender
-{
+// -----------------------------------------
+#pragma mark -
+#pragma mark Actions for LJ menu items
+// -----------------------------------------
+- (IBAction)openRecent: (id)sender {
     [[[XJAccountManager defaultManager] defaultAccount] launchRecentEntries];
 }
 
-- (IBAction)openFriendsPage: (id)sender
-{
+- (IBAction)openFriendsPage: (id)sender {
     [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
 }
 
-- (IBAction)openUserInfo: (id)sender
-{
+- (IBAction)openUserInfo: (id)sender {
     [[[XJAccountManager defaultManager] defaultAccount] launchUserInfo];
 }
 
-- (IBAction)openDonate: (id)sender
-{
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"https://www.paypal.com/xclick/business=fraser%40speirs.org&item_name=Xjournal+Donations&no_note=1&tax=0&currency_code=USD"]];
-}
-
-- (IBAction) openDonationInfo: (id)sender {
-	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://www.livejournal.com/community/xjournal/35968.html"]];
-}
-
-/* Actions called from Dock menu */
-- (IBAction)openURLFromDockMenu: (id)sender
-{
+// -----------------------------------------
+#pragma mark -
+#pragma mark Actions for Dock Menu
+// -----------------------------------------
+- (IBAction)openURLFromDockMenu: (id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [sender representedObject]];
 }
 
-- (IBAction)openFriendGroup: (id)sender
-{
+- (IBAction)openFriendGroup: (id)sender {
     LJGroup *group = [sender representedObject];
     [group launchMembersEntries];
     [dockItem hide];
 }
 
+// -----------------------------------------
+#pragma mark -
+#pragma mark Application Support Directories
+// -----------------------------------------
 /* Checks for (and creates if not found) the Application Support directories */
-- (void)checkForApplicationSupportDirs
-{
+- (void)checkForApplicationSupportDirs {
     BOOL isDir;
     NSFileManager *man = [NSFileManager defaultManager];
     if(![man fileExistsAtPath: GLOBAL_APPSUPPORT isDirectory: &isDir]) {
@@ -590,9 +567,11 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     }
 }
 
-/* Action for login menu item */
-- (IBAction)logIn:(id)sender
-{
+// -----------------------------------------
+#pragma mark -
+#pragma mark Action for login menu item
+// -----------------------------------------
+- (IBAction)logIn:(id)sender {
     XJAccountManager *man = [XJAccountManager defaultManager];
     if(![man defaultAccount]) {
         int result = NSRunCriticalAlertPanel(NSLocalizedString(@"No accounts defined", @""),
@@ -612,6 +591,10 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     }
 }
 
+// -----------------------------------------
+#pragma mark -
+#pragma mark Menu Item Validation
+// -----------------------------------------
 /*
  * Validation for some menu items, mostly to disable stuff when we're not logged in
  */
@@ -636,32 +619,35 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     }
 }
 
+// -----------------------------------------
+#pragma mark -
+#pragma mark Menu Items to open Change Notes, ReadMe and URLs
+// -----------------------------------------
 // Opens change notes and ReadMe
-- (IBAction)openChangeNotes:(id)sender
-{
+- (IBAction)openChangeNotes:(id)sender {
     NSString *notesPath = [[NSBundle mainBundle] pathForResource: @"ChangeNotes" ofType: @"rtf"];
     [[NSWorkspace sharedWorkspace] openFile: notesPath];
 }
 
-- (IBAction)openReadMe: (id)sender
-{
+- (IBAction)openReadMe: (id)sender {
     NSString *readMePath = [[NSBundle mainBundle] pathForResource: @"ReadMe" ofType: @"rtf"];
     [[NSWorkspace sharedWorkspace] openFile: readMePath];
 }
 
-- (IBAction)openXjournalHomePage: (id)sender
-{
+- (IBAction)openXjournalHomePage: (id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://www.speirs.org/xjournal"]];
 }
 
-- (IBAction)openXjournalBlog: (id)sender
-{
+- (IBAction)openXjournalBlog: (id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://www.livejournal.com/community/xjournal"]];   
 }
 
+// -----------------------------------------
+#pragma mark -
+#pragma mark Services
+// -----------------------------------------
 // Services support
-- (void)newJournalItem: (NSPasteboard *)pboard userData: (NSString *)userData error: (NSString **)error
-{
+- (void)newJournalItem: (NSPasteboard *)pboard userData: (NSString *)userData error: (NSString **)error {
     NSString *pboardString;
     NSArray *types;
     

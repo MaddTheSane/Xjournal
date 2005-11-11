@@ -12,7 +12,6 @@
 #import "XJDay.h"
 #import "NSString+Extensions.h"
 #import "LJEntryExtensions.h"
-#import "XJCalendar+OOutlineExtensions.h"
 #import "XJAccountManager.h"
 #import "XJDocument.h"
 #import "NSDocumentController-CustomDocs.h"

@@ -75,7 +75,7 @@ static XJCheckFriendsSessionManager *sharedManager;
         }
     }
     
-    if([XJPreferences shouldCheckFriends]) {
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldCheck"] boolValue]) {
         NS_DURING
             [session startChecking];
         NS_HANDLER

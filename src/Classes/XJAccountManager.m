@@ -7,7 +7,6 @@
 //
 
 #import "XJAccountManager.h"
-#import <OmniAppKit/OmniAppKit.h>
 #import "XJPreferences.h"
 #import "XJKeyChain.h"
 #import "NetworkConfig.h"

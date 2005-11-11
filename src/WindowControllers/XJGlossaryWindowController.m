@@ -63,7 +63,8 @@
 - (void)applicationWillTerminate: (NSNotification *)note
 {
 	[self writeGlossaryFile];
-    [PREFS setBool: [[self window] isVisible] forKey: XJGlossaryWindowIsOpenPreference];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithBool: [[self window] isVisible]]
+																		forKey: @"XJGlossaryWindowIsOpen"];
 }
 
 - (BOOL)fileExists:(NSString *)path

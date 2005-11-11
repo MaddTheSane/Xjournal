@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <OmniAppKit/OmniAppKit.h>
 
 #import "XJHistoryWindowController.h"
 #import "XJFriendsController.h"
@@ -16,12 +15,8 @@
 #import "XJBookmarksWindowController.h"
 #import "XJAccountEditWindowController.h"
 #import "XJPollEditorController.h"
-#import "XJMainWindowController.h"
 
-#ifdef __1.1_BUILD__
-#import "XJBirthdayWindowController.h"
-#import "XJShortcutController.h"
-#endif
+@class XJPreferencesController, OADockStatusItem;
 
 @interface XJAppDelegate : NSObject {
     /*
@@ -34,13 +29,8 @@
     XJBookmarksWindowController *bookmarkController;
     XJAccountEditWindowController *accountController;
     XJPollEditorController *pollController;
-    XJMainWindowController *mainController;
-#ifdef __1.1_BUILD__
-    XJBirthdayWindowController *birthdayController;
-
-    XJShortcutController *shortcutController;
-#endif
-    
+    XJPreferencesController *prefsController;
+	
     // Connections to the progress panel
     IBOutlet NSWindow *loginPanel;
     IBOutlet NSProgressIndicator *spinner;
@@ -75,15 +65,10 @@
 - (IBAction)showBookmarkWindow:(id)sender;
 - (IBAction)showPollEditWindow:(id)sender;
 - (IBAction)showAccountEditWindow:(id)sender;
-- (IBAction)showMainWindow:(id)sender;
 
 // Target for Edit -> Edit Last Entry
 - (IBAction) editLastEntry:(id)sender;
 
-#ifdef __1.1_BUILD__
-- (IBAction)showShortcutsWindow: (id)sender;
-- (IBAction)showBirthdayWindow: (id)sender;
-#endif
 // Updates the dock menu with current account information
 - (void)updateDockMenu;
 - (void)buildAccountsMenu: (NSNotification *)note;
@@ -96,7 +81,6 @@
 - (IBAction)openReadMe: (id)sender;
 - (IBAction)openXjournalBlog: (id)sender;
 - (IBAction)openXjournalHomePage: (id)sender;
-- (IBAction)openDonate: (id)sender;
 
 // Switching account
 - (IBAction)switchAccount: (id)sender;
