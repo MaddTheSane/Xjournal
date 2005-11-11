@@ -442,18 +442,6 @@
 		1BBD896304B0189F003882CD /* LJEntryExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJEntryExtensions.m; sourceTree = "<group>"; };
 		1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "LJFriend-ABExtensions.h"; sourceTree = "<group>"; };
 		1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-ABExtensions.m"; sourceTree = "<group>"; };
-		1BBD896704B0189F003882CD /* LJEntry+OOutlineExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "LJEntry+OOutlineExtensions.h"; sourceTree = "<group>"; };
-		1BBD896804B0189F003882CD /* LJEntry+OOutlineExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LJEntry+OOutlineExtensions.m"; sourceTree = "<group>"; };
-		1BBD896904B0189F003882CD /* OutlineFooterFile.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = OutlineFooterFile.txt; sourceTree = "<group>"; };
-		1BBD896A04B0189F003882CD /* OutlineHeaderFile.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = OutlineHeaderFile.txt; sourceTree = "<group>"; };
-		1BBD896B04B0189F003882CD /* XJCalendar+OOutlineExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJCalendar+OOutlineExtensions.h"; sourceTree = "<group>"; };
-		1BBD896C04B0189F003882CD /* XJCalendar+OOutlineExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJCalendar+OOutlineExtensions.m"; sourceTree = "<group>"; };
-		1BBD896D04B0189F003882CD /* XJDay+OOutlineExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJDay+OOutlineExtensions.h"; sourceTree = "<group>"; };
-		1BBD896E04B0189F003882CD /* XJDay+OOutlineExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJDay+OOutlineExtensions.m"; sourceTree = "<group>"; };
-		1BBD896F04B0189F003882CD /* XJMonth+OOutlineExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJMonth+OOutlineExtensions.h"; sourceTree = "<group>"; };
-		1BBD897004B0189F003882CD /* XJMonth+OOutlineExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJMonth+OOutlineExtensions.m"; sourceTree = "<group>"; };
-		1BBD897104B0189F003882CD /* XJYear+OOutlineExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJYear+OOutlineExtensions.h"; sourceTree = "<group>"; };
-		1BBD897204B0189F003882CD /* XJYear+OOutlineExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJYear+OOutlineExtensions.m"; sourceTree = "<group>"; };
 		1BBD897404B0189F003882CD /* LJPoll.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LJPoll.h; path = src/Polls/LJPoll.h; sourceTree = SOURCE_ROOT; };
 		1BBD897504B0189F003882CD /* LJPoll.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LJPoll.m; path = src/Polls/LJPoll.m; sourceTree = SOURCE_ROOT; };
 		1BBD897604B0189F003882CD /* LJPollMultipleOptionQuestion.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LJPollMultipleOptionQuestion.h; path = src/Polls/LJPollMultipleOptionQuestion.h; sourceTree = SOURCE_ROOT; };
@@ -816,26 +804,6 @@
 			path = "src/LJKit Categories";
 			sourceTree = "<group>";
 		};
-		1BBD896604B0189F003882CD /* OutlineExport */ = {
-			isa = PBXGroup;
-			children = (
-				1BBD896704B0189F003882CD /* LJEntry+OOutlineExtensions.h */,
-				1BBD896804B0189F003882CD /* LJEntry+OOutlineExtensions.m */,
-				1BBD896904B0189F003882CD /* OutlineFooterFile.txt */,
-				1BBD896A04B0189F003882CD /* OutlineHeaderFile.txt */,
-				1BBD896B04B0189F003882CD /* XJCalendar+OOutlineExtensions.h */,
-				1BBD896C04B0189F003882CD /* XJCalendar+OOutlineExtensions.m */,
-				1BBD896D04B0189F003882CD /* XJDay+OOutlineExtensions.h */,
-				1BBD896E04B0189F003882CD /* XJDay+OOutlineExtensions.m */,
-				1BBD896F04B0189F003882CD /* XJMonth+OOutlineExtensions.h */,
-				1BBD897004B0189F003882CD /* XJMonth+OOutlineExtensions.m */,
-				1BBD897104B0189F003882CD /* XJYear+OOutlineExtensions.h */,
-				1BBD897204B0189F003882CD /* XJYear+OOutlineExtensions.m */,
-			);
-			name = OutlineExport;
-			path = src/OutlineExport;
-			sourceTree = "<group>";
-		};
 		1BBD897304B0189F003882CD /* Polls */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,7 +1013,6 @@
 				1BBD894304B0189F003882CD /* Carbon Wrappers */,
 				1BBD894804B0189F003882CD /* Classes */,
 				1BBD895F04B0189F003882CD /* LJKit Categories */,
-				1BBD896604B0189F003882CD /* OutlineExport */,
 				1BBD897304B0189F003882CD /* Polls */,
 				1BBD897E04B0189F003882CD /* PrefClients */,
 				1B8A041D04B2BC160002ED8F /* SoftwareUpdate */,

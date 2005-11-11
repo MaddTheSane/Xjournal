@@ -329,17 +329,17 @@
 	};
 	1BBD899904B0189F003882CD /* XJDocument.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1947}}";
-			sepNavSelRange = "{1675, 0}";
-			sepNavVisRect = "{{0, 66}, {898, 705}}";
+			sepNavIntBoundsRect = "{{0, 0}, {898, 1936}}";
+			sepNavSelRange = "{197, 0}";
+			sepNavVisRect = "{{0, 33}, {898, 705}}";
 			sepNavWindowFrame = "{{484, 59}, {943, 819}}";
 		};
 	};
 	1BBD899A04B0189F003882CD /* XJDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 11110}}";
-			sepNavSelRange = "{18367, 44}";
-			sepNavVisRect = "{{0, 5164}, {898, 705}}";
+			sepNavIntBoundsRect = "{{0, 0}, {898, 11033}}";
+			sepNavSelRange = "{171, 0}";
+			sepNavVisRect = "{{0, 0}, {898, 705}}";
 			sepNavWindowFrame = "{{484, 59}, {943, 819}}";
 		};
 	};

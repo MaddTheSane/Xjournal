@@ -1,7 +1,0 @@
-  <oo:settings>
-    <oo:note-height>50</oo:note-height>
-    <oo:is-status-visible>no</oo:is-status-visible>
-    <oo:is-spellchecking-enabled>yes</oo:is-spellchecking-enabled>
-    <oo:is-note-expanded>yes</oo:is-note-expanded>
-  </oo:settings>
-</oo:outline>
