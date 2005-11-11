@@ -362,7 +362,7 @@
         [theMusicField setStringValue: music];
         [[self entry] setCurrentMusic: music];
     } else {
-        NSString *alternativeValue = [PREFS stringForKey: @"NoMusicString"];
+        NSString *alternativeValue = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJNoMusicString"];
         if(!alternativeValue)
             alternativeValue = @"";
         [theMusicField setStringValue: alternativeValue];

@@ -28,7 +28,7 @@ static XJCheckFriendsSessionManager *sharedManager;
 	 XJAccountManager *manager = [XJAccountManager defaultManager];
     
     // Configure myself from existing preferences
-    checkingMode = [PREFS integerForKey: CHECKFRIENDS_GROUP_TYPE];
+	 checkingMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsGroupType"] intValue];
     session = [[LJCheckFriendsSession alloc] initWithAccount: [manager defaultAccount]];
     
     // register for the LJAccountDidLoginNotification event so we know to start checking friends
