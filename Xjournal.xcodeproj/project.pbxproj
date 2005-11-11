@@ -389,12 +389,6 @@
 		1B870E0C04C7EABE00C54147 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = doc/ReadMe.rtf; sourceTree = "<group>"; };
 		1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSoftwareUpdate.h; sourceTree = "<group>"; };
 		1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSoftwareUpdate.m; sourceTree = "<group>"; };
-		1B93D12104D07F0200DFFB3A /* RSS.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RSS.h; sourceTree = "<group>"; };
-		1B93D12204D07F0200DFFB3A /* RSS.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = RSS.m; sourceTree = "<group>"; };
-		1B93D16304D08C9C00DFFB3A /* RSSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSManager.h; path = src/Classes/RSSManager.h; sourceTree = SOURCE_ROOT; };
-		1B93D16404D08C9C00DFFB3A /* RSSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSManager.m; sourceTree = "<group>"; };
-		1B93D18404D090B400DFFB3A /* RSS-HTMLConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RSS-HTMLConversion.h"; path = "src/Classes/RSS-HTMLConversion.h"; sourceTree = SOURCE_ROOT; };
-		1B93D18504D090B400DFFB3A /* RSS-HTMLConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSS-HTMLConversion.m"; sourceTree = "<group>"; };
 		1B967FC4058779680035F70C /* itunes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itunes.png; path = src/Art/itunes.png; sourceTree = "<group>"; };
 		1BB8A3D204C2D917008F16C1 /* XJSoftwareUpdatePrefClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSoftwareUpdatePrefClient.h; sourceTree = "<group>"; };
 		1BB8A3D304C2D917008F16C1 /* XJSoftwareUpdatePrefClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSoftwareUpdatePrefClient.m; sourceTree = "<group>"; };
@@ -763,8 +757,6 @@
 			children = (
 				1B76D69204CDD901008E50A3 /* AddressBookDropView.h */,
 				1B76D69304CDD901008E50A3 /* AddressBookDropView.m */,
-				1B93D12104D07F0200DFFB3A /* RSS.h */,
-				1B93D12204D07F0200DFFB3A /* RSS.m */,
 				1BBD894904B0189F003882CD /* MusicStringFormatter.h */,
 				1BBD894A04B0189F003882CD /* MusicStringFormatter.m */,
 				1BBD895104B0189F003882CD /* XJAccountManager.h */,
@@ -775,10 +767,6 @@
 				1BBD895604B0189F003882CD /* XJCheckFriendsSessionManager.m */,
 				1BBD895704B0189F003882CD /* XJPreferences.h */,
 				1BBD895804B0189F003882CD /* XJPreferences.m */,
-				1B93D16304D08C9C00DFFB3A /* RSSManager.h */,
-				1B93D16404D08C9C00DFFB3A /* RSSManager.m */,
-				1B93D18404D090B400DFFB3A /* RSS-HTMLConversion.h */,
-				1B93D18504D090B400DFFB3A /* RSS-HTMLConversion.m */,
 			);
 			name = Classes;
 			path = src/Classes;
