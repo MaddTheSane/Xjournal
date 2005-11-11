@@ -23,5 +23,5 @@
 - (void)runSoftwareUpdate:(BOOL)isScheduled;
 - (void)runScheduledUpdateCheckIfRequired;
 - (void)resetCheckTimer;
-
+- (void)processPropertyListDictionary:(NSDictionary *)propertyList;
 @end
