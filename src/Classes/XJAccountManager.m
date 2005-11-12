@@ -24,7 +24,7 @@ static XJAccountManager *manager;
     if([super init] == nil)
         return nil;
 
-    NSArray *storedAccounts = [PREFS objectForKey: kAccountsPrefKey];
+    NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
     accounts = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
     passwordCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
     
@@ -36,7 +36,7 @@ static XJAccountManager *manager;
     }
     
     
-    defaultUsername = [PREFS objectForKey: kDefaultAccountNameKey];
+    defaultUsername = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kDefaultAccountNameKey];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(accountSwitched:)
@@ -67,7 +67,7 @@ static XJAccountManager *manager;
     [accounts setObject: acct forKey: name];
     [acct release];
 
-    [PREFS setObject: [accounts allKeys] forKey: kAccountsPrefKey];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [accounts allKeys] forKey: kAccountsPrefKey];
     
     // Put password in XJKeyChain
 	[[XJKeyChain defaultKeyChain] setGenericPassword: password 
@@ -88,7 +88,7 @@ static XJAccountManager *manager;
     [accounts removeObjectForKey: name];
     [[XJKeyChain defaultKeyChain] removeGenericPasswordForService: [@"Xjournal: " stringByAppendingString: name] account: name];
 
-    [PREFS setObject: [accounts allKeys] forKey: kAccountsPrefKey];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [accounts allKeys] forKey: kAccountsPrefKey];
 
     if([name isEqualToString: defaultUsername]) {
         [self setDefaultUsername: [[accounts allKeys] objectAtIndex: 0]];
@@ -178,7 +178,7 @@ static XJAccountManager *manager;
     [newDefault retain];
     [defaultUsername release];
     defaultUsername = newDefault;
-    [PREFS setObject: defaultUsername forKey: kDefaultAccountNameKey];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setObject: defaultUsername forKey: kDefaultAccountNameKey];
 }
 
 - (NSEnumerator *)menuItemEnumerator

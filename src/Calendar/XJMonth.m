@@ -7,7 +7,6 @@
 //
 
 #import "XJMonth.h"
-#import <OmniFoundation/OmniFoundation.h>
 
 #define JAN NSLocalizedString(@"January", @"")
 #define FEB NSLocalizedString(@"February", @"")

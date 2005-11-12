@@ -9,8 +9,7 @@
 #import "XJDocument.h"
 #import "XJPreferences.h"
 #import "NetworkConfig.h"
-#import "MusicStringFormatter.h"
-#import "XJSafariBookmarkParser.h";
+#import "XJSafariBookmarkParser.h"
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
 #import "NSString+Extensions.h"
@@ -94,10 +93,10 @@
     if([[self entry] itemID] == 0) {
         // Item hasn't been posted, apply default security mode
         int level = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultSecurityLevel"] intValue];
-        [security selectItemWithTag: level];
+        [security selectItemAtIndex: [security indexOfItemWithTag: level]];
         [[self entry] setSecurityMode:level];
     }else {
-        [security selectItemWithTag: [[self entry] securityMode]];
+        [security selectItemAtIndex: [security indexOfItemWithTag: [[self entry] securityMode]]];
     }
     
     // Add any code here that needs to be executed once the windowController has loaded the document's window.

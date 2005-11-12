@@ -8,7 +8,6 @@
 
 #import "XJAppDelegate.h"
 #import <LJKit/LJKit.h>
-#import <OmniAppKit/OmniAppKit.h>
 #import "XJPreferences.h"
 #import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
@@ -99,9 +98,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
                                              selector:@selector(buildAccountsMenu:)
                                                  name:XJAccountWillRemoveNotification
                                                object:nil];
-    
-    /* Initialise the dock icon badge */
-    dockItem = [[OADockStatusItem alloc] initWithIcon: [NSImage imageNamed:@"usericon"]];
 
     /* Check for and create app support directories */
     [self checkForApplicationSupportDirs];
@@ -121,6 +117,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
  */
 - (void)applicationDidFinishLaunching: (NSNotification *)note
 {
+	[self showDockBadge];
     XJAccountManager *acctManager = [XJAccountManager defaultManager];
     // Check that we've got a username to log into
     if(![acctManager defaultAccount]) {
@@ -299,6 +296,36 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender{ return dynDockMenu; }
 
 #pragma mark -
+#pragma mark Dock Icon Handling
+- (void)showDockBadge {
+	NSImage *appIcon = [NSImage imageNamed: @"NSApplicationIcon"];
+	NSImage *starburst = [NSImage imageNamed: @"starburst"];
+	NSImage *bufferImage = [[NSImage alloc] initWithSize:[appIcon size]];
+
+	NSPoint starburstPoint = NSMakePoint([bufferImage size].height-[starburst size].height,
+										 [bufferImage size].width-[starburst size].width);
+	
+	[bufferImage setFlipped: YES];
+	[bufferImage lockFocus];
+	[appIcon compositeToPoint:NSMakePoint(0, [bufferImage size].height) operation:NSCompositeSourceOver];
+	[starburst compositeToPoint: starburstPoint operation:NSCompositeSourceOver];
+	[bufferImage unlockFocus];
+	
+	[NSApp setApplicationIconImage: bufferImage];
+	[bufferImage autorelease];
+	
+	[self setShowingDockBadge: YES];
+}
+
+- (void)hideDockBadge {
+	[NSApp setApplicationIconImage: [NSImage imageNamed: @"NSApplicationIcon"]];	
+	[self setShowingDockBadge: NO];
+}
+
+- (BOOL)showingDockBadge { return showingDockBadge; }
+- (void)setShowingDockBadge:(BOOL)flag { showingDockBadge = flag; }
+
+#pragma mark -
 #pragma mark Accounts Menu Handling
 - (void) buildAccountsMenu: (NSNotification *)note
 {
@@ -450,10 +477,10 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 {
     // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
     // and we DON'T open a new window
-    if(![dockItem isHidden]) {
+    if([self showingDockBadge]) {
         if([[[[NSUserDefaultsController sharedUserDefaultsController] values] objectForKey: @"XJCheckFriendsShouldOpenFriendsPage"] boolValue])
             [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
-        [dockItem hide];
+        [self hideDockBadge];
 
         [self updateDockMenu];
         
@@ -470,14 +497,15 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 - (void)friendsUpdated:(NSNotification *)aNotification
 {
     // If the user wants a sound, play it.
-    if([XJPreferences playCheckFriendsSound]) {
-        NSSound *snd = [XJPreferences checkFriendsSound];
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsPlaySound"] boolValue]) {
+		NSString *path = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsAlertSound"];
+		NSSound *snd = [[NSSound alloc] initWithContentsOfFile: path byReference: NO];
         if(snd) [snd play];
     }
 
     // If they want a dock icon, show it.
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldShowDockIcon"] boolValue]) {
-        [dockItem show];
+		[self showDockBadge];
     }
 
     // If they want a dialog, show that too.
@@ -490,11 +518,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
             [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
         }
 
-        // Hide the dock item.
-        if(![dockItem isHidden])
-            [dockItem hide];
-
         // User operated here, so restart checkfriends
+		[self hideDockBadge];
         [[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
     }
 }
@@ -547,7 +572,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 - (IBAction)openFriendGroup: (id)sender {
     LJGroup *group = [sender representedObject];
     [group launchMembersEntries];
-    [dockItem hide];
+	[self hideDockBadge];
 }
 
 // -----------------------------------------

@@ -61,10 +61,10 @@ static NSMutableDictionary *userPics;
 
 + (BOOL)shouldCheckForGroup: (LJGroup *)grp
 {
-    NSMutableDictionary *dict = [self makeMutable: [PREFS objectForKey: PREFS_CHECKFRIENDS_GROUPS]];
+    NSMutableDictionary *dict = [self makeMutable: [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS]];
     id val = [dict objectForKey: [grp name]];
 
-    [PREFS setObject: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
     
     return ((val != nil) && [val boolValue]);
 }
@@ -72,27 +72,13 @@ static NSMutableDictionary *userPics;
 + (void)setShouldCheck: (BOOL)chk forGroup: (LJGroup *)grp
 {
     // this assumes you can't have 2 groups with the same name (valid?)
-    NSMutableDictionary *dict = [self makeMutable: [PREFS objectForKey: PREFS_CHECKFRIENDS_GROUPS]];
+    NSMutableDictionary *dict = [self makeMutable: [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS]];
     // Prefs stores a dict of booleans keyed against group names, hence, if you have two groups with the same name
     // --> key clash
     
     [dict setObject: [NSNumber numberWithBool: chk] forKey: [grp name]];
     [[XJCheckFriendsSessionManager sharedManager] setChecking: chk forGroup: grp];
-    [PREFS setObject: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
-}
-
-+ (NSString *)iTMSLinkPrefix { return [PREFS stringForKey: ITMS_LINK_PREFIX]; }
-+ (void)setiTMSLinkPrefix: (NSString *)newPrefix { [PREFS setObject: newPrefix forKey: ITMS_LINK_PREFIX]; }
-
-+ (NSString *)iTMSLinkSuffix { return [PREFS stringForKey: ITMS_LINK_SUFFIX]; }
-+ (void)setiTMSLinkSuffix: (NSString *)newSuffix { [PREFS setObject: newSuffix forKey: ITMS_LINK_SUFFIX]; }
-
-+ (BOOL)playCheckFriendsSound { return [PREFS boolForKey: CHECKFRIENDS_PLAY_SOUND]; }
-+ (NSSound *)checkFriendsSound
-{
-    NSString *path = [PREFS stringForKey: CHECKFRIENDS_SELECTED_SOUND];
-    NSSound *sound = [[NSSound alloc] initWithContentsOfFile: path byReference: NO];
-    return [sound autorelease];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
 }
 
 + (NSFont *)preferredWindowFont

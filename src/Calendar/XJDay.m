@@ -8,7 +8,6 @@
 
 #import "XJDay.h"
 #import "XJPreferences.h"
-#import <OmniFoundation/OmniFoundation.h>
 
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
@@ -42,8 +41,8 @@
 - (id)propertyListRepresentation
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setIntValue: postCount forKey: kPostCountKey];
-    [dictionary setIntValue: dayNumber forKey: kDayNumberKey];
+    [dictionary setObject: [NSNumber numberWithInt: postCount] forKey: kPostCountKey];
+    [dictionary setObject: [NSNumber numberWithInt: dayNumber] forKey: kDayNumberKey];
 
     NSMutableArray *array = [NSMutableArray array];
     if(entries) {
@@ -64,8 +63,8 @@
     NSArray *plistEntries;
     NSEnumerator *plistEnumerator;
     
-    postCount = [plistType intForKey: kPostCountKey];
-    dayNumber = [plistType intForKey: kDayNumberKey];
+    postCount = [[plistType objectForKey: kPostCountKey] intValue];
+    dayNumber = [[plistType objectForKey: kDayNumberKey] intValue];
     plistEntries = [plistType objectForKey: kEntryArrayKey];
 
     if([plistEntries count] > 0) {

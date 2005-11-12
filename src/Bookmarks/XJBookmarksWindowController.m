@@ -7,7 +7,6 @@
 //
 
 #import "XJBookmarksWindowController.h"
-#import <OmniBase/OmniBase.h>
 #import "XJPreferences.h"
 
 #define kBookmarkAutosaveName @"kBookmarkAutosaveName"

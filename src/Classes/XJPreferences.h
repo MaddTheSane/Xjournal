@@ -9,26 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <LJKit/LJKit.h>
 #import <WebKit/WebKit.h>
-#import <OmniAppKit/OmniAppKit.h>
 
 #define LJ_USERNAME @"livejournal.username"
-#define PREFS [OFPreferenceWrapper sharedPreferenceWrapper]
 
 #define NOTE_LOGIN_START @"note.login.start"
 #define NOTE_LOGIN_END @"note.login.end"
-
-// Keys for track info dictionary
-#define PREFS_MUSIC_ARTIST_PREFIX @"XJMusicArtistPrefix"
-#define PREFS_MUSIC_ARTIST_SUFFIX @"XJMusicArtistSuffix"
-#define PREFS_MUSIC_TRACK_PREFIX @"XJMusicTrackPrefix"
-#define PREFS_MUSIC_TRACK_SUFFIX @"XJMusicTrackSuffix"
-#define PREFS_MUSIC_ALBUM_PREFIX @"XJMusicAlbumPrefix"
-#define PREFS_MUSIC_ALBUM_SUFFIX @"XJMusicAlbumSuffix"
-#define PREFS_MUSIC_SEPARATOR @"XJMusicSeparator"
-#define PREFS_MUSIC_ORDERING @"XJMusicOrdering"
-#define PREFS_MUSIC_INCLUDE_EMPTY @"XJMusicIncludeEmpty"
-#define ITMS_LINK_PREFIX @"XJiTMSLinkPrefix"
-#define ITMS_LINK_SUFFIX @"XJiTMSLinkSuffix"
 
 // Prefs for checkfriends
 #define CHECKFRIENDS_GROUP_TYPE @"XJCheckFriendsGroupType"
@@ -79,15 +64,6 @@
 // Checkfriends API
 + (BOOL)shouldCheckForGroup: (LJGroup *)grp;
 + (void)setShouldCheck: (BOOL)chk forGroup: (LJGroup *)grp;
-
-+ (NSString *)iTMSLinkPrefix;
-+ (void)setiTMSLinkPrefix: (NSString *)newPrefix;
-
-+ (NSString *)iTMSLinkSuffix;
-+ (void)setiTMSLinkSuffix: (NSString *)newSuffix;
-
-+ (BOOL)playCheckFriendsSound;
-+ (NSSound *)checkFriendsSound;
 
 + (NSFont *)preferredWindowFont;
 

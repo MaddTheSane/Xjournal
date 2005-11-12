@@ -16,7 +16,7 @@
 #import "XJAccountEditWindowController.h"
 #import "XJPollEditorController.h"
 
-@class XJPreferencesController, OADockStatusItem;
+@class XJPreferencesController;
 
 @interface XJAppDelegate : NSObject {
     /*
@@ -41,8 +41,8 @@
     // The Accounts > top level menu item
     IBOutlet NSMenuItem *accountItem;
     
-    // Omni dock badge
-    OADockStatusItem *dockItem;
+    // Are we showing the dock badge?
+    BOOL showingDockBadge;
     
     // Flag to tell us if the friends updated dialog is showing
     BOOL friendsDialogIsShowing;
@@ -84,4 +84,10 @@
 
 // Switching account
 - (IBAction)switchAccount: (id)sender;
+
+// Dock Badge
+- (void)showDockBadge;
+- (void)hideDockBadge;
+- (BOOL)showingDockBadge;
+- (void)setShowingDockBadge:(BOOL)flag;
 @end

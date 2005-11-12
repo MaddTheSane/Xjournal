@@ -7,7 +7,6 @@
 //
 
 #import "XJYear.h"
-#import <OmniFoundation/OmniFoundation.h>
 #import <LJKit/LJKit.h>
 
 #define kNameKey @"YearName"

@@ -87,8 +87,6 @@
 		1BBD89AC04B0189F003882CD /* XJYear.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894204B0189F003882CD /* XJYear.m */; };
 		1BBD89AF04B0189F003882CD /* NetworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD894604B0189F003882CD /* NetworkConfig.h */; };
 		1BBD89B004B0189F003882CD /* NetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894704B0189F003882CD /* NetworkConfig.m */; };
-		1BBD89B104B0189F003882CD /* MusicStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD894904B0189F003882CD /* MusicStringFormatter.h */; };
-		1BBD89B204B0189F003882CD /* MusicStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894A04B0189F003882CD /* MusicStringFormatter.m */; };
 		1BBD89B504B0189F003882CD /* WBSearchTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD894D04B0189F003882CD /* WBSearchTextField.h */; };
 		1BBD89B604B0189F003882CD /* WBSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894E04B0189F003882CD /* WBSearchTextField.m */; };
 		1BBD89B904B0189F003882CD /* XJAccountManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD895104B0189F003882CD /* XJAccountManager.h */; };
@@ -250,6 +248,7 @@
 		5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF479D08138DEE00829423 /* CoreServices.framework */; };
 		5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD248B408620D520007E0C5 /* XJKeyChain.h */; };
 		5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD248B508620D520007E0C5 /* XJKeyChain.m */; };
+		5FD2819409268EAB005A1060 /* starburst.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2819309268EAB005A1060 /* starburst.tiff */; };
 		8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
@@ -401,8 +400,6 @@
 		1BBD894204B0189F003882CD /* XJYear.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJYear.m; path = src/Calendar/XJYear.m; sourceTree = SOURCE_ROOT; };
 		1BBD894604B0189F003882CD /* NetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NetworkConfig.h; sourceTree = "<group>"; };
 		1BBD894704B0189F003882CD /* NetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NetworkConfig.m; sourceTree = "<group>"; };
-		1BBD894904B0189F003882CD /* MusicStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MusicStringFormatter.h; sourceTree = "<group>"; };
-		1BBD894A04B0189F003882CD /* MusicStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MusicStringFormatter.m; sourceTree = "<group>"; };
 		1BBD894D04B0189F003882CD /* WBSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = WBSearchTextField.h; path = ../Classes/WBSearchTextField.h; sourceTree = "<group>"; };
 		1BBD894E04B0189F003882CD /* WBSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = WBSearchTextField.m; path = ../Classes/WBSearchTextField.m; sourceTree = "<group>"; };
 		1BBD895104B0189F003882CD /* XJAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJAccountManager.h; sourceTree = "<group>"; };
@@ -577,6 +574,7 @@
 		5FBF479D08138DEE00829423 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJKeyChain.h; sourceTree = "<group>"; };
 		5FD248B508620D520007E0C5 /* XJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJKeyChain.m; sourceTree = "<group>"; };
+		5FD2819309268EAB005A1060 /* starburst.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = starburst.tiff; path = src/Art/starburst.tiff; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -732,8 +730,6 @@
 				5F5B098C092563B6005BB86B /* XJMusic.m */,
 				1B76D69204CDD901008E50A3 /* AddressBookDropView.h */,
 				1B76D69304CDD901008E50A3 /* AddressBookDropView.m */,
-				1BBD894904B0189F003882CD /* MusicStringFormatter.h */,
-				1BBD894A04B0189F003882CD /* MusicStringFormatter.m */,
 				1BBD895104B0189F003882CD /* XJAccountManager.h */,
 				1BBD895204B0189F003882CD /* XJAccountManager.m */,
 				1BBD895304B0189F003882CD /* XJAppDelegate.h */,
@@ -981,6 +977,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5FD2819309268EAB005A1060 /* starburst.tiff */,
 				5F142E39091E95660002ADAE /* Add_Pressed.tiff */,
 				5F142E3B091E95660002ADAE /* Add.tiff */,
 				5F142E3D091E95660002ADAE /* Remove_Pressed.tiff */,
@@ -1037,7 +1034,6 @@
 				1BBD89A904B0189F003882CD /* XJMonth.h in Headers */,
 				1BBD89AB04B0189F003882CD /* XJYear.h in Headers */,
 				1BBD89AF04B0189F003882CD /* NetworkConfig.h in Headers */,
-				1BBD89B104B0189F003882CD /* MusicStringFormatter.h in Headers */,
 				1BBD89B504B0189F003882CD /* WBSearchTextField.h in Headers */,
 				1BBD89B904B0189F003882CD /* XJAccountManager.h in Headers */,
 				1BBD89BB04B0189F003882CD /* XJAppDelegate.h in Headers */,
@@ -1258,6 +1254,7 @@
 				5F142E44091E95660002ADAE /* Remove.tiff in Resources */,
 				5F142E57091E9BE20002ADAE /* GlossaryWindow.nib in Resources */,
 				5F5B05680924DD45005BB86B /* Preferences.nib in Resources */,
+				5FD2819409268EAB005A1060 /* starburst.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1301,7 +1298,6 @@
 				1BBD89AA04B0189F003882CD /* XJMonth.m in Sources */,
 				1BBD89AC04B0189F003882CD /* XJYear.m in Sources */,
 				1BBD89B004B0189F003882CD /* NetworkConfig.m in Sources */,
-				1BBD89B204B0189F003882CD /* MusicStringFormatter.m in Sources */,
 				1BBD89B604B0189F003882CD /* WBSearchTextField.m in Sources */,
 				1BBD89BA04B0189F003882CD /* XJAccountManager.m in Sources */,
 				1BBD89BC04B0189F003882CD /* XJAppDelegate.m in Sources */,
