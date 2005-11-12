@@ -48,7 +48,7 @@ enum {
 };
 
 @interface XJHistoryWindowController (PrivateAPI)
-- (void)showEncodingErrorSheet;
+- (void)showEncodingErrorSheetForDate: (NSCalendarDate *)date;
 - (void)showGenericErrorSheet: (NSString *)message;
 
  - (int)browserSelectionType;
@@ -718,19 +718,6 @@ enum {
     }
 }
 
-// Export
-- (IBAction)exportHistory: (id)sender
-{
-    NSSavePanel *panel = [NSSavePanel savePanel];
-    [panel beginSheetForDirectory: nil file: nil modalForWindow: [self window] modalDelegate: self didEndSelector: @selector(savePanelDidEnd:returnCode:contextInfo:) contextInfo: nil];
-}
-
-- (void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
-{
-    if(returnCode != NSOKButton) return;
-    [[cal outlinerRepresentation] writeToFile: [sheet filename] atomically: YES];
-}
-
 - (void)beginHistoryDownload: (id)sender
 {
     if([NetworkConfig destinationIsReachable:@"www.livejournal.com"]) {
@@ -1069,9 +1056,8 @@ enum {
         [listener use]; // Generated HTML
     }
     else {
-        if([XJPreferences openHistoryLinksInXjournal]) {
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJHistoryOpenLinksInApp"] boolValue])
             [listener use];
-        }
         else {
             [listener ignore];
             // Instead of opening it in the WebView, we want to open

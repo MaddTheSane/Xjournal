@@ -22,10 +22,14 @@
 	<true/>
 	<key>XJDefaultSecurityLevel</key>
 	<integer>0</integer>
+	<key>XJDetectMusicOniTunesTrackChange</key>
+	<false/>
 	<key>XJHistoryOpenLinksInApp</key>
 	<true/>
 	<key>XJMusicShouldAutoDetect</key>
 	<true/>
+	<key>XJMusicSubstitutionString</key>
+	<string>&lt;$name/&gt; - &lt;%$artist/&gt;</string>
 	<key>XJPostingDate</key>
 	<true/>
 	<key>XJShouldAutoLogin</key>

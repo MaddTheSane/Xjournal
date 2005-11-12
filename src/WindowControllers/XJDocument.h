@@ -35,6 +35,8 @@
 #define kEditItalicItemIdentifier @"kEditItalicItemIdentifier"
 #define kEditUnderlineItemIdentifier @"kEditUnderlineItemIdentifier"
 
+@class XJMusic;
+
 @interface XJDocument : NSDocument
 {
     // ----------------------------------------------------------------------------------------
@@ -104,7 +106,8 @@
     // iTunes Music Store
     // ----------------------------------------------------------------------------------------
     NSString *iTMSLinks;
-    //IBOutlet NSImageView *iTMSIndicator;
+
+	XJMusic *currentMusic;
 }
 
 - (id)initWithEntry: (LJEntry *)entry;
@@ -172,4 +175,9 @@
 // =============
 - (LJEntry *)entry;
 - (void)setEntry:(LJEntry *)anEntry;
+
+	// Music
+- (XJMusic *)currentMusic;
+- (void)setCurrentMusic:(XJMusic *)aCurrentMusic;
+
 @end

@@ -14,6 +14,8 @@
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
 #import "NSString+Extensions.h"
+#import "XJMusic.h"
+#import "NSString+Templating.h"
 
 #define DOC_TEXT @"document.text"
 #define DOC_SUBJECT @"document.subject"
@@ -51,6 +53,13 @@
                                              selector:@selector(accountDeleted:)
                                                  name: XJAccountRemovedNotification
                                                object:nil];
+	
+	[[NSDistributedNotificationCenter defaultCenter] addObserver: self
+														selector: @selector(iTunesChangedTrack:)
+															name: @"com.apple.iTunes.playerInfo"
+														  object: nil
+											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
+
     return self;
 }
 
@@ -100,6 +109,7 @@
      * Userpic Selection
      * Mood selection
      */
+	
     if([NetworkConfig destinationIsReachable: @"www.livejournal.com"] && [[XJAccountManager defaultManager] loggedInAccount]) {
         if([[self entry] journal] == nil)
             [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
@@ -118,12 +128,13 @@
 	if([[self entry] tags] != nil) {
 		[theTagField setStringValue: [[self entry] tags]];
 	}
-    
+
     if([[self entry] currentMusic] != nil) {
         [theMusicField setStringValue: [[self entry] currentMusic]];
     } else {
         if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJMusicShouldAutoDetect"] boolValue] &&
-		   [[self entry] itemID] == 0) {
+		   [[self entry] itemID] == 0)
+		{
             [self detectMusicNow: self];
         }
     }
@@ -146,6 +157,7 @@
     [backdatedChk setState: [[self entry] optionBackdated]];
     [backdateField setEnabled: [[self entry] optionBackdated]];
     
+	
     // Set preferred font
     NSFont *pFont = [XJPreferences preferredWindowFont];
     if(pFont != nil) {
@@ -161,14 +173,15 @@
         [drawer open];
 	
 	NSString *storedSizeString = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJEntryWindowSize"];
-	NSSize storedSize = NSMakeSize(500, 510);
-	if(storedSizeString == nil)
-		storedSize = NSSizeFromString(storedSizeString);
 	
+	NSSize storedSize = NSMakeSize(500, 510);
+	if(storedSizeString != nil)
+		storedSize = NSSizeFromString(storedSizeString);
+
     NSPoint origin = [[self window] frame].origin;
     NSRect newRect = NSMakeRect(origin.x, origin.y, storedSize.width, storedSize.height);
     [[self window] setFrame: newRect display: YES];
-    
+
     [spinner setStyle: NSProgressIndicatorSpinningStyle];
     [spinner setUsesThreadedAnimation:YES];
 	
@@ -347,27 +360,35 @@
 // ----------------------------------------------------------------------------------------
 - (IBAction)detectMusicNow:(id)sender
 {
-    /*
-     What we do here is generate both iTMS links and regular music text.
-     Keep both around and show the regular links in the UI.  At posting time,
-     if the user wants iTMS links, we remove them from the Current Music 
-     field and put it in the end of the post.
-     */
-  
-    iTMSLinks = [[MusicStringFormatter detectMusicAndFormat: YES] retain];
-    
-    NSString *music = [MusicStringFormatter detectMusicAndFormat:NO];
-    
-    if(music) { 
-        [theMusicField setStringValue: music];
-        [[self entry] setCurrentMusic: music];
-    } else {
-        NSString *alternativeValue = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJNoMusicString"];
-        if(!alternativeValue)
-            alternativeValue = @"";
-        [theMusicField setStringValue: alternativeValue];
-        [[self entry] setCurrentMusic: alternativeValue];
-    }
+	[self setCurrentMusic: [XJMusic currentMusicAsiTunesLink:[[NSUserDefaults standardUserDefaults] boolForKey:@"XJLinkMusicToStore"]]];
+}
+
+- (void)iTunesChangedTrack: (NSNotification *)note {
+	if([[NSUserDefaults standardUserDefaults] boolForKey: @"XJDetectMusicOniTunesTrackChange"])
+		[self detectMusicNow: self];
+}
+
+
+//=========================================================== 
+//  currentMusic 
+//=========================================================== 
+- (XJMusic *)currentMusic {
+    return currentMusic; 
+}
+- (void)setCurrentMusic:(XJMusic *)aCurrentMusic {
+    [aCurrentMusic retain];
+    [currentMusic release];
+    currentMusic = aCurrentMusic;
+	NSString *formatString = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"XJMusicSubstitutionString"];
+	
+	if(currentMusic != nil) {
+		[[self entry] setCurrentMusic: [formatString stringByParsingTagsWithStartDelimeter: @"<$"
+																			  endDelimeter: @"/>"
+																			   usingObject: [self currentMusic]]];
+	}
+	else {
+		[[self entry] setCurrentMusic: [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"XJNoMusicString"]];
+	}
 }
 
 // ----------------------------------------------------------------------------------------

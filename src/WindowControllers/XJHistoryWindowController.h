@@ -70,8 +70,6 @@
 // Convenience for setting the status field
 - (void)setStatus: (NSString *)status;
 
-// Export
-- (IBAction)exportHistory: (id)sender;
 - (BOOL)loadCachedHistory;
 
 - (void)beginHistoryUpdate: (id)sender;

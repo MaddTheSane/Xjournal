@@ -229,6 +229,10 @@
 		5F5B06D80924FBFA005BB86B /* XJPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B05880924E5A0005BB86B /* XJPreferencesController.m */; };
 		5F5B06D90924FBFC005BB86B /* XJPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F5B05870924E5A0005BB86B /* XJPreferencesController.h */; };
 		5F5B083F09252596005BB86B /* ApplicationDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F5B083E09252596005BB86B /* ApplicationDefaults.plist */; };
+		5F5B098D092563B6005BB86B /* XJMusic.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F5B098B092563B6005BB86B /* XJMusic.h */; };
+		5F5B098E092563B6005BB86B /* XJMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B098C092563B6005BB86B /* XJMusic.m */; };
+		5F5B0991092563E8005BB86B /* NSString+Templating.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F5B098F092563E8005BB86B /* NSString+Templating.h */; };
+		5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B0990092563E8005BB86B /* NSString+Templating.m */; };
 		5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
 		5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
 		5F5B1701090E1FCE000734AB /* OmniAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */; };
@@ -553,6 +557,10 @@
 		5F5B05870924E5A0005BB86B /* XJPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJPreferencesController.h; sourceTree = "<group>"; };
 		5F5B05880924E5A0005BB86B /* XJPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJPreferencesController.m; sourceTree = "<group>"; };
 		5F5B083E09252596005BB86B /* ApplicationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ApplicationDefaults.plist; path = src/ApplicationDefaults.plist; sourceTree = "<group>"; };
+		5F5B098B092563B6005BB86B /* XJMusic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJMusic.h; sourceTree = "<group>"; };
+		5F5B098C092563B6005BB86B /* XJMusic.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJMusic.m; sourceTree = "<group>"; };
+		5F5B098F092563E8005BB86B /* NSString+Templating.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSString+Templating.h"; path = "src/Classes/NSString+Templating.h"; sourceTree = SOURCE_ROOT; };
+		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+Templating.m"; path = "src/Classes/NSString+Templating.m"; sourceTree = SOURCE_ROOT; };
 		5F5B16FA090E1FCE000734AB /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../frameworks/AGRegex.framework; sourceTree = SOURCE_ROOT; };
 		5F5B16FB090E1FCE000734AB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
 		5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = ../frameworks/OmniAppKit.framework; sourceTree = SOURCE_ROOT; };
@@ -654,6 +662,8 @@
 		1BBD891004B01883003882CD /* AppKit Categories */ = {
 			isa = PBXGroup;
 			children = (
+				5F5B098F092563E8005BB86B /* NSString+Templating.h */,
+				5F5B0990092563E8005BB86B /* NSString+Templating.m */,
 				1BBD891104B01883003882CD /* KeyHandlingTableView.h */,
 				1BBD891204B01883003882CD /* KeyHandlingTableView.m */,
 				1BBD891704B01883003882CD /* NSString+Extensions.h */,
@@ -718,6 +728,8 @@
 		1BBD894804B0189F003882CD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5F5B098B092563B6005BB86B /* XJMusic.h */,
+				5F5B098C092563B6005BB86B /* XJMusic.m */,
 				1B76D69204CDD901008E50A3 /* AddressBookDropView.h */,
 				1B76D69304CDD901008E50A3 /* AddressBookDropView.m */,
 				1BBD894904B0189F003882CD /* MusicStringFormatter.h */,
@@ -1057,6 +1069,8 @@
 				5F142DA9091E935E0002ADAE /* XJGlossaryFilterArrayController.h in Headers */,
 				5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */,
 				5F5B06D90924FBFC005BB86B /* XJPreferencesController.h in Headers */,
+				5F5B098D092563B6005BB86B /* XJMusic.h in Headers */,
+				5F5B0991092563E8005BB86B /* NSString+Templating.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,6 +1333,8 @@
 				5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */,
 				5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */,
 				5F5B06D80924FBFA005BB86B /* XJPreferencesController.m in Sources */,
+				5F5B098E092563B6005BB86B /* XJMusic.m in Sources */,
+				5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
