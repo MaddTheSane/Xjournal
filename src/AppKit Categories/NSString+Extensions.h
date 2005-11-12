@@ -38,32 +38,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSString (WhiteSpaceExt) 
-- (NSString *)stringByRemovingSurroundingWhitespace;
-@end
-
-@interface NSString (ContainsString)
-- (BOOL) containsString:(NSString *)myString;
-@end
-
-// Added by koliver for encoding of unicode chars
-@interface NSString (HtmlCodec)
-- (NSString *) encodeAsHtml;
-- (NSString *) decodeHtml;
-
-// Moved from a bad place by gnarf37
-- (NSString *) urlEncode:(BOOL) useUTF8;
-- (NSString *) urlEncodeASCII;
-- (NSString *) urlDecode:(BOOL) useUTF8;
-- (NSString *) urlDecodeASCII;
-@end
-
 @interface NSString (LJCutConversions)
 - (NSString *)translateNewLines;
 - (NSString *)translateLJUser;
 - (NSString *)translateLJComm;
-//- (NSString *)translateLJCutBlockWithItemURL: (NSString *)url;
-//- (NSString *)translateLJStandaloneCutWithItemURL: (NSString *)url;
 - (NSString *)translateLJCutOpenTagWithText;
 - (NSString *)translateBasicLJCutOpenTag;
 - (NSString *)translateLJCutCloseTag;
@@ -74,7 +52,5 @@
 // Moved from NSString+extras.h from Ranchero.com's RSS class
 @interface NSString (extras)
 - (NSString *) trimWhiteSpace;
-- (NSString *) stripHTML;
-- (NSString *) ellipsizeAfterNWords: (int) n;
 + (BOOL) stringIsEmpty: (NSString *) s;
 @end
