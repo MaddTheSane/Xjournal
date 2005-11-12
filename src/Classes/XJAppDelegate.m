@@ -117,7 +117,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
  */
 - (void)applicationDidFinishLaunching: (NSNotification *)note
 {
-	[self showDockBadge];
     XJAccountManager *acctManager = [XJAccountManager defaultManager];
     // Check that we've got a username to log into
     if(![acctManager defaultAccount]) {
