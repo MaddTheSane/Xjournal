@@ -233,14 +233,8 @@
 		5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B0990092563E8005BB86B /* NSString+Templating.m */; };
 		5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
 		5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
-		5F5B1701090E1FCE000734AB /* OmniAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */; };
-		5F5B1702090E1FCE000734AB /* OmniBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FD090E1FCE000734AB /* OmniBase.framework */; };
-		5F5B1703090E1FCE000734AB /* OmniFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */; };
 		5F5B1838090E206A000734AB /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
 		5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
-		5F5B183A090E206A000734AB /* OmniAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */; };
-		5F5B183B090E206A000734AB /* OmniBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FD090E1FCE000734AB /* OmniBase.framework */; };
-		5F5B183C090E206A000734AB /* OmniFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */; };
 		5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6325A9083C922C007F6AF9 /* libcrypto.dylib */; };
 		5F73D7F305DE9C6400DADCD8 /* imagesize.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */; };
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
@@ -352,9 +346,6 @@
 			files = (
 				5F5B1838090E206A000734AB /* AGRegex.framework in CopyFiles */,
 				5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */,
-				5F5B183A090E206A000734AB /* OmniAppKit.framework in CopyFiles */,
-				5F5B183B090E206A000734AB /* OmniBase.framework in CopyFiles */,
-				5F5B183C090E206A000734AB /* OmniFoundation.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,9 +551,6 @@
 		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+Templating.m"; path = "src/Classes/NSString+Templating.m"; sourceTree = SOURCE_ROOT; };
 		5F5B16FA090E1FCE000734AB /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../frameworks/AGRegex.framework; sourceTree = SOURCE_ROOT; };
 		5F5B16FB090E1FCE000734AB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
-		5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniAppKit.framework; path = ../frameworks/OmniAppKit.framework; sourceTree = SOURCE_ROOT; };
-		5F5B16FD090E1FCE000734AB /* OmniBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniBase.framework; path = ../frameworks/OmniBase.framework; sourceTree = SOURCE_ROOT; };
-		5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmniFoundation.framework; path = ../frameworks/OmniFoundation.framework; sourceTree = SOURCE_ROOT; };
 		5F6325A9083C922C007F6AF9 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = imagesize.tiff; path = src/Art/imagesize.tiff; sourceTree = "<group>"; };
 		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
@@ -593,9 +581,6 @@
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
 				5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */,
 				5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */,
-				5F5B1701090E1FCE000734AB /* OmniAppKit.framework in Frameworks */,
-				5F5B1702090E1FCE000734AB /* OmniBase.framework in Frameworks */,
-				5F5B1703090E1FCE000734AB /* OmniFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,9 +592,6 @@
 			children = (
 				5F5B16FA090E1FCE000734AB /* AGRegex.framework */,
 				5F5B16FB090E1FCE000734AB /* LJKit.framework */,
-				5F5B16FC090E1FCE000734AB /* OmniAppKit.framework */,
-				5F5B16FD090E1FCE000734AB /* OmniBase.framework */,
-				5F5B16FE090E1FCE000734AB /* OmniFoundation.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
 				5FBF478F08138A6400829423 /* Cocoa.framework */,

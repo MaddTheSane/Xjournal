@@ -8,8 +8,8 @@
 
 @interface XJFriendsController : NSWindowController
 {
-    IBOutlet id friendsTable;
-    IBOutlet id groupTable;
+    IBOutlet NSTableView *friendsTable;
+    IBOutlet NSTableView *groupTable;
     IBOutlet NSSplitView *splitView;
     
     IBOutlet id groupSheet, friendSheet, groupField, friendField, currentSheet;

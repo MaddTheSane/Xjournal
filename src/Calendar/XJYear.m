@@ -26,7 +26,7 @@
 - (id)propertyListRepresentation
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setIntValue:name forKey: kNameKey];
+    [dictionary setObject: [NSNumber numberWithInt: name] forKey: kNameKey];
 
     NSMutableArray *array = [NSMutableArray array];
     NSEnumerator *enumerator = [months objectEnumerator];
@@ -42,7 +42,7 @@
 
 - (void)configureFromPropertyListRepresentation: (id) plistType
 {
-    name = [plistType intForKey: kNameKey];
+    name = [[plistType objectForKey: kNameKey] intValue];
     //[months release];
     months = [[NSMutableArray arrayWithCapacity: 12] retain];
 

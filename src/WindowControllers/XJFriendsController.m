@@ -76,7 +76,9 @@ enum {
     
     // Set up the account popup menu
     NSMenu *popMenu = [accountToolbarPopup menu];
-    [popMenu removeAllItems];
+    while ([popMenu numberOfItems])
+        [popMenu removeItemAtIndex: 0];
+	
     NSEnumerator *accountItems = [[XJAccountManager defaultManager] menuItemEnumerator];
     NSMenuItem *item;
 
