@@ -97,16 +97,16 @@
 	1BBD891704B01883003882CD /* NSString+Extensions.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {898, 705}}";
-			sepNavSelRange = "{1696, 0}";
+			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 0}, {898, 705}}";
 		};
 	};
 	1BBD891804B01883003882CD /* NSString+Extensions.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 2178}}";
-			sepNavSelRange = "{1751, 0}";
-			sepNavVisRect = "{{0, 1473}, {898, 705}}";
-			sepNavWindowFrame = "{{97, 51}, {1175, 801}}";
+			sepNavIntBoundsRect = "{{0, 0}, {793, 1727}}";
+			sepNavSelRange = "{4073, 0}";
+			sepNavVisRect = "{{0, 1090}, {793, 361}}";
+			sepNavWindowFrame = "{{74, 54}, {943, 819}}";
 		};
 	};
 	1BBD891A04B01883003882CD /* XJStripedOutlineView.m */ = {
@@ -200,9 +200,9 @@
 	};
 	1BBD895204B0189F003882CD /* XJAccountManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {975, 2354}}";
-			sepNavSelRange = "{1091, 0}";
-			sepNavVisRect = "{{0, 137}, {975, 573}}";
+			sepNavIntBoundsRect = "{{0, 0}, {722, 2497}}";
+			sepNavSelRange = "{3670, 0}";
+			sepNavVisRect = "{{0, 1510}, {722, 446}}";
 			sepNavWindowFrame = "{{107, 102}, {1020, 687}}";
 		};
 	};
@@ -216,10 +216,10 @@
 	};
 	1BBD895404B0189F003882CD /* XJAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {973, 7733}}";
-			sepNavSelRange = "{19804, 0}";
-			sepNavVisRect = "{{0, 4885}, {973, 625}}";
-			sepNavWindowFrame = "{{1536, 77}, {1018, 739}}";
+			sepNavIntBoundsRect = "{{0, 0}, {722, 7942}}";
+			sepNavSelRange = "{24607, 0}";
+			sepNavVisRect = "{{0, 7021}, {722, 446}}";
+			sepNavWindowFrame = "{{282, 139}, {1018, 739}}";
 		};
 	};
 	1BBD895504B0189F003882CD /* XJCheckFriendsSessionManager.h */ = {
@@ -338,10 +338,10 @@
 	};
 	1BBD899A04B0189F003882CD /* XJDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {984, 11363}}";
-			sepNavSelRange = "{3228, 17}";
-			sepNavVisRect = "{{0, 690}, {984, 721}}";
-			sepNavWindowFrame = "{{319, 43}, {1029, 835}}";
+			sepNavIntBoundsRect = "{{0, 0}, {793, 11616}}";
+			sepNavSelRange = "{35167, 15}";
+			sepNavVisRect = "{{0, 10297}, {793, 361}}";
+			sepNavWindowFrame = "{{1870, 52}, {1029, 835}}";
 		};
 	};
 	1BBD899B04B0189F003882CD /* XJFriendsController.h */ = {
@@ -1706,6 +1706,29 @@
 			5FD28366092697DC005A1060 /* PBXTextBookmark */ = 5FD28366092697DC005A1060 /* PBXTextBookmark */;
 			5FD28367092697DC005A1060 /* PBXTextBookmark */ = 5FD28367092697DC005A1060 /* PBXTextBookmark */;
 			5FD28368092697DC005A1060 /* PBXTextBookmark */ = 5FD28368092697DC005A1060 /* PBXTextBookmark */;
+			5FD2836D09269870005A1060 /* PBXTextBookmark */ = 5FD2836D09269870005A1060 /* PBXTextBookmark */;
+			5FD2836E09269870005A1060 /* PBXTextBookmark */ = 5FD2836E09269870005A1060 /* PBXTextBookmark */;
+			5FD2836F09269870005A1060 /* PBXTextBookmark */ = 5FD2836F09269870005A1060 /* PBXTextBookmark */;
+			5FD28372092698A6005A1060 /* PBXTextBookmark */ = 5FD28372092698A6005A1060 /* PBXTextBookmark */;
+			5FD28375092698A7005A1060 /* PBXTextBookmark */ = 5FD28375092698A7005A1060 /* PBXTextBookmark */;
+			5FD28376092698AA005A1060 /* PBXTextBookmark */ = 5FD28376092698AA005A1060 /* PBXTextBookmark */;
+			5FD283BC0926A48C005A1060 /* PBXTextBookmark */ = 5FD283BC0926A48C005A1060 /* PBXTextBookmark */;
+			5FD283BF0926A48D005A1060 /* PBXTextBookmark */ = 5FD283BF0926A48D005A1060 /* PBXTextBookmark */;
+			5FD2848A0926ADB8005A1060 /* PBXTextBookmark */ = 5FD2848A0926ADB8005A1060 /* PBXTextBookmark */;
+			5FD2848B0926ADB8005A1060 /* PBXTextBookmark */ = 5FD2848B0926ADB8005A1060 /* PBXTextBookmark */;
+			5FD2848C0926ADB8005A1060 /* PBXTextBookmark */ = 5FD2848C0926ADB8005A1060 /* PBXTextBookmark */;
+			5FD2848D0926ADB8005A1060 /* PBXTextBookmark */ = 5FD2848D0926ADB8005A1060 /* PBXTextBookmark */;
+			5FD284930926AF2C005A1060 /* PBXTextBookmark */ = 5FD284930926AF2C005A1060 /* PBXTextBookmark */;
+			5FD284CE0926AF6D005A1060 /* PBXTextBookmark */ = 5FD284CE0926AF6D005A1060 /* PBXTextBookmark */;
+			5FD284D50926AF87005A1060 /* PBXTextBookmark */ = 5FD284D50926AF87005A1060 /* PBXTextBookmark */;
+			5FD284D90926AFC9005A1060 /* PBXTextBookmark */ = 5FD284D90926AFC9005A1060 /* PBXTextBookmark */;
+			5FD284E40926B057005A1060 /* PBXTextBookmark */ = 5FD284E40926B057005A1060 /* PBXTextBookmark */;
+			5FD284E80926B07E005A1060 /* PBXTextBookmark */ = 5FD284E80926B07E005A1060 /* PBXTextBookmark */;
+			5FD284EB0926B07F005A1060 /* PBXTextBookmark */ = 5FD284EB0926B07F005A1060 /* PBXTextBookmark */;
+			5FD284F40926B0E5005A1060 /* PBXTextBookmark */ = 5FD284F40926B0E5005A1060 /* PBXTextBookmark */;
+			5FD284F50926B0E5005A1060 /* PBXTextBookmark */ = 5FD284F50926B0E5005A1060 /* PBXTextBookmark */;
+			5FD284F60926B0E5005A1060 /* PBXTextBookmark */ = 5FD284F60926B0E5005A1060 /* PBXTextBookmark */;
+			5FD284F70926B0E5005A1060 /* PBXTextBookmark */ = 5FD284F70926B0E5005A1060 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
@@ -2491,7 +2514,7 @@
 		comments = "error: 'shouldAutoLogin' undeclared (first use in this function)";
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 1;
-		rLoc = 132;
+		rLoc = 131;
 		rType = 1;
 	};
 	5F5B06D30924FBE8005BB86B /* PBXTextBookmark */ = {
@@ -2499,7 +2522,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 131";
 		rLen = 0;
-		rLoc = 5825;
+		rLoc = 5802;
 		rType = 0;
 		vrLen = 2686;
 		vrLoc = 4295;
@@ -2559,7 +2582,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 131";
 		rLen = 0;
-		rLoc = 5825;
+		rLoc = 5802;
 		rType = 0;
 		vrLen = 2686;
 		vrLoc = 4295;
@@ -2779,7 +2802,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 0;
-		rLoc = 20069;
+		rLoc = 20046;
 		rType = 0;
 	};
 	5F5B07250924FF65005BB86B /* PBXTextBookmark */ = {
@@ -2787,7 +2810,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 471";
 		rLen = 0;
-		rLoc = 20194;
+		rLoc = 20171;
 		rType = 0;
 		vrLen = 2098;
 		vrLoc = 16839;
@@ -2866,7 +2889,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 0;
-		rLoc = 19856;
+		rLoc = 19833;
 		rType = 0;
 	};
 	5F5B07430925000A005BB86B /* PBXTextBookmark */ = {
@@ -2884,7 +2907,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -2958,7 +2981,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 471";
 		rLen = 0;
-		rLoc = 20181;
+		rLoc = 20158;
 		rType = 0;
 		vrLen = 2198;
 		vrLoc = 16839;
@@ -2968,7 +2991,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -2978,7 +3001,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -2988,7 +3011,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3006,7 +3029,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3016,7 +3039,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3046,7 +3069,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3056,7 +3079,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3066,7 +3089,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3096,7 +3119,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3106,7 +3129,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3136,7 +3159,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3146,7 +3169,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 466";
 		rLen = 0;
-		rLoc = 19969;
+		rLoc = 19946;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 17437;
@@ -3155,7 +3178,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 0;
-		rLoc = 18766;
+		rLoc = 18743;
 		rType = 0;
 	};
 	5F5B079F09251726005BB86B /* PBXTextBookmark */ = {
@@ -3163,7 +3186,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 441";
 		rLen = 0;
-		rLoc = 18832;
+		rLoc = 18809;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 16276;
@@ -3189,7 +3212,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 441";
 		rLen = 0;
-		rLoc = 18832;
+		rLoc = 18809;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 16276;
@@ -3199,7 +3222,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 441";
 		rLen = 0;
-		rLoc = 18832;
+		rLoc = 18809;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 16276;
@@ -3306,7 +3329,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 441";
 		rLen = 0;
-		rLoc = 18832;
+		rLoc = 18809;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 16276;
@@ -3316,7 +3339,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 441";
 		rLen = 0;
-		rLoc = 18832;
+		rLoc = 18809;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 16276;
@@ -3509,7 +3532,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 0;
-		rLoc = 6328;
+		rLoc = 6305;
 		rType = 0;
 	};
 	5F5B080009251C84005BB86B /* PBXTextBookmark */ = {
@@ -3527,7 +3550,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 140";
 		rLen = 0;
-		rLoc = 6431;
+		rLoc = 6408;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 5346;
@@ -3614,7 +3637,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 140";
 		rLen = 0;
-		rLoc = 6431;
+		rLoc = 6408;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 5346;
@@ -3631,7 +3654,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 140";
 		rLen = 0;
-		rLoc = 6431;
+		rLoc = 6408;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 5346;
@@ -4016,7 +4039,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 159";
 		rLen = 0;
-		rLoc = 7085;
+		rLoc = 7062;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 6593;
@@ -4043,7 +4066,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 159";
 		rLen = 0;
-		rLoc = 7085;
+		rLoc = 7062;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 6593;
@@ -4990,7 +5013,7 @@
 		continueAfterActions = 0;
 		delayBeforeContinue = 0;
 		hitCount = 1;
-		modificationTime = 153418869.545558;
+		modificationTime = 153530409.883224;
 		state = 1;
 		symbolName = "-[NSException raise]";
 	};
@@ -5132,7 +5155,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 0;
-		rLoc = 19441;
+		rLoc = 19418;
 		rType = 0;
 	};
 	5FD2813C09268B6E005A1060 /* PBXTextBookmark */ = {
@@ -5260,7 +5283,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 473";
 		rLen = 0;
-		rLoc = 19558;
+		rLoc = 19535;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 18088;
@@ -5269,7 +5292,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 	};
 	5FD2816D09268CC6005A1060 /* PBXTextBookmark */ = {
@@ -5277,7 +5300,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 476";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 18088;
@@ -5297,7 +5320,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: buildAccountsMenu:";
 		rLen = 775;
-		rLoc = 12679;
+		rLoc = 12656;
 		rType = 0;
 		vrLen = 2083;
 		vrLoc = 11543;
@@ -5317,7 +5340,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: buildAccountsMenu:";
 		rLen = 775;
-		rLoc = 12679;
+		rLoc = 12656;
 		rType = 0;
 		vrLen = 2083;
 		vrLoc = 11543;
@@ -5337,7 +5360,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 308";
 		rLen = 0;
-		rLoc = 13534;
+		rLoc = 13511;
 		rType = 0;
 		vrLen = 2083;
 		vrLoc = 11543;
@@ -5347,7 +5370,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 487";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2778;
 		vrLoc = 16988;
@@ -5410,7 +5433,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 308";
 		rLen = 0;
-		rLoc = 13534;
+		rLoc = 13511;
 		rType = 0;
 		vrLen = 2160;
 		vrLoc = 11543;
@@ -5420,7 +5443,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 487";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2778;
 		vrLoc = 17065;
@@ -5445,7 +5468,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 499";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 17525;
@@ -5465,7 +5488,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 524";
 		rLen = 0;
-		rLoc = 20595;
+		rLoc = 20572;
 		rType = 0;
 		vrLen = 2654;
 		vrLoc = 18528;
@@ -5475,7 +5498,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 524";
 		rLen = 0;
-		rLoc = 20595;
+		rLoc = 20572;
 		rType = 0;
 		vrLen = 2654;
 		vrLoc = 18528;
@@ -5495,7 +5518,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 124";
 		rLen = 0;
-		rLoc = 5140;
+		rLoc = 5117;
 		rType = 0;
 		vrLen = 3070;
 		vrLoc = 3854;
@@ -5515,7 +5538,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 506";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2264;
 		vrLoc = 17224;
@@ -5535,7 +5558,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 321";
 		rLen = 0;
-		rLoc = 13239;
+		rLoc = 13216;
 		rType = 0;
 		vrLen = 2386;
 		vrLoc = 11659;
@@ -5555,7 +5578,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 508";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2264;
 		vrLoc = 17362;
@@ -5575,7 +5598,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 507";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 17910;
@@ -5585,7 +5608,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 321";
 		rLen = 0;
-		rLoc = 13239;
+		rLoc = 13216;
 		rType = 0;
 		vrLen = 2386;
 		vrLoc = 11659;
@@ -5605,7 +5628,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 508";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2264;
 		vrLoc = 17362;
@@ -5625,7 +5648,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 312";
 		rLen = 0;
-		rLoc = 13239;
+		rLoc = 13216;
 		rType = 0;
 		vrLen = 2372;
 		vrLoc = 11659;
@@ -5645,7 +5668,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 499";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2541;
 		vrLoc = 17179;
@@ -5665,7 +5688,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 498";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 17711;
@@ -5675,7 +5698,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 315";
 		rLen = 0;
-		rLoc = 13254;
+		rLoc = 13231;
 		rType = 0;
 		vrLen = 2259;
 		vrLoc = 11659;
@@ -5695,7 +5718,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 502";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2570;
 		vrLoc = 17199;
@@ -5715,7 +5738,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 501";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 17762;
@@ -5725,7 +5748,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 310";
 		rLen = 0;
-		rLoc = 12997;
+		rLoc = 12974;
 		rType = 0;
 		vrLen = 2267;
 		vrLoc = 11659;
@@ -5745,7 +5768,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 502";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2570;
 		vrLoc = 17207;
@@ -5765,7 +5788,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 501";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 17770;
@@ -5775,7 +5798,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 310";
 		rLen = 0;
-		rLoc = 12997;
+		rLoc = 12974;
 		rType = 0;
 		vrLen = 2259;
 		vrLoc = 11659;
@@ -5795,7 +5818,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 502";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2570;
 		vrLoc = 17199;
@@ -5815,7 +5838,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 501";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 17762;
@@ -5835,7 +5858,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 323";
 		rLen = 0;
-		rLoc = 13568;
+		rLoc = 13545;
 		rType = 0;
 		vrLen = 2310;
 		vrLoc = 11523;
@@ -5845,7 +5868,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: hideDockBadge";
 		rLen = 121;
-		rLoc = 13572;
+		rLoc = 13549;
 		rType = 0;
 		vrLen = 2357;
 		vrLoc = 11523;
@@ -5865,7 +5888,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 323";
 		rLen = 0;
-		rLoc = 13568;
+		rLoc = 13545;
 		rType = 0;
 		vrLen = 2310;
 		vrLoc = 11523;
@@ -5905,7 +5928,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 504";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2526;
 		vrLoc = 17164;
@@ -5925,7 +5948,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 503";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 17691;
@@ -5955,7 +5978,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 504";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2526;
 		vrLoc = 17164;
@@ -5995,7 +6018,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 504";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2526;
 		vrLoc = 17164;
@@ -6035,7 +6058,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 504";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2526;
 		vrLoc = 17164;
@@ -6071,7 +6094,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 503";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 17691;
@@ -6121,7 +6144,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 504";
 		rLen = 0;
-		rLoc = 19804;
+		rLoc = 19781;
 		rType = 0;
 		vrLen = 2526;
 		vrLoc = 17164;
@@ -6141,7 +6164,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 503";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 17691;
@@ -6151,7 +6174,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 503";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 17691;
@@ -6160,7 +6183,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 112;
 		rType = 0;
 	};
 	5FD283490926977A005A1060 /* PBXTextBookmark */ = {
@@ -6168,7 +6191,7 @@
 		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
 		name = "XJAppDelegate.m: 503";
 		rLen = 0;
-		rLoc = 19771;
+		rLoc = 19748;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 17691;
@@ -6178,7 +6201,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: 66";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 112;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 6899;
@@ -6188,7 +6211,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: 66";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 112;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 6899;
@@ -6198,7 +6221,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: 66";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 112;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 6899;
@@ -6208,7 +6231,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: 43";
 		rLen = 0;
-		rLoc = 1751;
+		rLoc = 82;
 		rType = 0;
 		vrLen = 2112;
 		vrLoc = 5579;
@@ -6218,7 +6241,7 @@
 		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
 		name = "NSString+Extensions.h: trimWhiteSpace";
 		rLen = 0;
-		rLoc = 2173;
+		rLoc = 502;
 		rType = 0;
 		vrLen = 2345;
 		vrLoc = 0;
@@ -6228,7 +6251,7 @@
 		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
 		name = "NSString+Extensions.h: 43";
 		rLen = 0;
-		rLoc = 1696;
+		rLoc = 25;
 		rType = 0;
 		vrLen = 2512;
 		vrLoc = 0;
@@ -6238,7 +6261,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: 66";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 112;
 		rType = 0;
 		vrLen = 2765;
 		vrLoc = 2554;
@@ -6248,7 +6271,7 @@
 		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
 		name = "NSString+Extensions.h: 49";
 		rLen = 0;
-		rLoc = 1830;
+		rLoc = 159;
 		rType = 0;
 		vrLen = 2417;
 		vrLoc = 0;
@@ -6258,7 +6281,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: stringIsEmpty:";
 		rLen = 231;
-		rLoc = 7132;
+		rLoc = 5306;
 		rType = 0;
 		vrLen = 2112;
 		vrLoc = 6359;
@@ -6268,7 +6291,7 @@
 		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
 		name = "NSString+Extensions.h: trimWhiteSpace";
 		rLen = 0;
-		rLoc = 2173;
+		rLoc = 502;
 		rType = 0;
 		vrLen = 2345;
 		vrLoc = 0;
@@ -6278,7 +6301,7 @@
 		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
 		name = "NSString+Extensions.m: 43";
 		rLen = 0;
-		rLoc = 1751;
+		rLoc = 82;
 		rType = 0;
 		vrLen = 2112;
 		vrLoc = 5579;
@@ -6288,10 +6311,232 @@
 		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
 		name = "NSString+Extensions.h: 41";
 		rLen = 0;
-		rLoc = 1696;
+		rLoc = 25;
 		rType = 0;
 		vrLen = 2249;
 		vrLoc = 0;
+	};
+	5FD2836D09269870005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
+		name = "NSString+Extensions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 578;
+		vrLoc = 0;
+	};
+	5FD2836E09269870005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */;
+		name = "NSString+Extensions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 578;
+		vrLoc = 0;
+	};
+	5FD2836F09269870005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 2736;
+		vrLoc = 0;
+	};
+	5FD28372092698A6005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 6";
+		rLen = 0;
+		rLoc = 112;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 5306;
+	};
+	5FD28375092698A7005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 6";
+		rLen = 0;
+		rLoc = 112;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 5306;
+	};
+	5FD28376092698AA005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 2736;
+		vrLoc = 0;
+	};
+	5FD283BC0926A48C005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 6";
+		rLen = 0;
+		rLoc = 112;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 5306;
+	};
+	5FD283BF0926A48D005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 6";
+		rLen = 0;
+		rLoc = 112;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 5306;
+	};
+	5FD2848A0926ADB8005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = AGRegex;
+		rLen = 0;
+		rLoc = 82;
+		rType = 0;
+		vrLen = 1219;
+		vrLoc = 0;
+	};
+	5FD2848B0926ADB8005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+	};
+	5FD2848C0926ADB8005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = AGRegex;
+		rLen = 0;
+		rLoc = 82;
+		rType = 0;
+		vrLen = 1219;
+		vrLoc = 0;
+	};
+	5FD2848D0926ADB8005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284930926AF2C005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284CE0926AF6D005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: parse error before 'OGRegularExpression'";
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		rLen = 1;
+		rLoc = 58;
+		rType = 1;
+	};
+	5FD284D50926AF87005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 64";
+		rLen = 0;
+		rLoc = 2543;
+		rType = 0;
+		vrLen = 3467;
+		vrLoc = 1403;
+	};
+	5FD284D90926AFC9005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 92";
+		rLen = 0;
+		rLoc = 3546;
+		rType = 0;
+		vrLen = 3608;
+		vrLoc = 1755;
+	};
+	5FD284E40926B057005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284E80926B07E005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284EB0926B07F005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284F40926B0E5005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284F50926B0E5005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		rLen = 0;
+		rLoc = 4073;
+		rType = 0;
+	};
+	5FD284F60926B0E5005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD899A04B0189F003882CD /* XJDocument.m */;
+		name = translateLJComm;
+		rLen = 15;
+		rLoc = 35167;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 34626;
+	};
+	5FD284F70926B0E5005A1060 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */;
+		name = "NSString+Extensions.m: 92";
+		rLen = 0;
+		rLoc = 4073;
+		rType = 0;
+		vrLen = 1420;
+		vrLoc = 4040;
 	};
 	8D15AC270486D014006FF6A4 /* Xjournal */ = {
 		activeExec = 0;

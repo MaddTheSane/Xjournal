@@ -1,7 +1,7 @@
 #import "NSString+Extensions.h"
 #define NSLogDebug NSLog
 #import "XJPreferences.h"
-#import <AGRegex/AGRegex.h>
+#import <OgreKit/OgreKit.h>
 
 @implementation NSString (LJCutConversions)
 
@@ -55,59 +55,49 @@
 
 - (NSString *)translateLJUser
 {
-    AGRegex *userRegex = [[AGRegex alloc] initWithPattern:@"<lj user=\"([A-Za-z0-9_]*)\" ?/?>" options:0];
-    NSString *result = [userRegex replaceWithString: [NSString stringWithFormat: @"<nobr><a href=\"http://www.livejournal.com/userinfo.bml?user=$1\"><img height=\"17\" border=\"0\" src=\"%@\" align=\"absmiddle\" width=\"17\"></a><b><a href=\"http://www.livejournal.com/users/$1/\">$1</a></b></nobr>", [XJPreferences userIconURL]] inString: self];
-    [userRegex release];
-    return result;
+	NSString *replacementString = [NSString stringWithFormat: @"<nobr><a href=\"http://www.livejournal.com/userinfo.bml?user=$1\"><img height=\"17\" border=\"0\" src=\"%@\" align=\"absmiddle\" width=\"17\"></a><b><a href=\"http://www.livejournal.com/users/$1/\">$1</a></b></nobr>", [XJPreferences userIconURL]];
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"<lj user=\"([A-Za-z0-9_]*)\" ?/?>"];
+	return [regex replaceAllMatchesInString: self withString: replacementString];
 }
 
 - (NSString *)translateLJComm
 {
-    AGRegex *commRegex = [[AGRegex alloc] initWithPattern:@"<lj comm=\"([A-Za-z0-9_]*)\">" options:0];
-    NSString *result = [commRegex replaceWithString: [NSString stringWithFormat: @"<nobr><a href=\"http://www.livejournal.com/userinfo.bml?user=$1\"><img height=\"17\" border=\"0\" src=\"%@\" align=\"absmiddle\" width=\"17\"></a><b><a href=\"http://www.livejournal.com/community/$1/\">$1</a></b></nobr>", [XJPreferences communityIconURL]] inString: self];
-    [commRegex release];
-    return result;
+	NSString *replacementString = [NSString stringWithFormat: @"<nobr><a href=\"http://www.livejournal.com/userinfo.bml?user=$1\"><img height=\"17\" border=\"0\" src=\"%@\" align=\"absmiddle\" width=\"17\"></a><b><a href=\"http://www.livejournal.com/community/$1/\">$1</a></b></nobr>", [XJPreferences communityIconURL]];
+	
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"<lj comm=\"([A-Za-z0-9_]*)\">"];
+	return [regex replaceAllMatchesInString: self withString: replacementString];
 }
 
 
 - (NSString *)translateLJCutOpenTagWithText
 {
-    AGRegex *blockRegex = [[AGRegex alloc] initWithPattern:@"<lj-cut text=\"([^>]*)\">" options:0];
-    NSString *result = [blockRegex replaceWithString: @"<div class=\"xjljcut\">LJ-Cut: $1</div>" inString: self];
-    [blockRegex release];
-    return result; 
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"<lj-cut text=\"([^>]*)\">"];
+	return [regex replaceAllMatchesInString: self withString: @"<div class=\"xjljcut\">LJ-Cut: $1</div>"];
 }
 
 - (NSString *)translateBasicLJCutOpenTag
 {
-    AGRegex *blockRegex = [[AGRegex alloc] initWithPattern:@"<lj-cut>" options:0];
-    NSString *result = [blockRegex replaceWithString: @"<div class=\"xjljcut\">LJ-Cut</div>" inString: self];
-    [blockRegex release];
-    return result;    
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"<lj-cut>"];
+	return [regex replaceAllMatchesInString: self withString: @"<div class=\"xjljcut\">LJ-Cut</div>"];
 }
 
 - (NSString *)translateLJCutCloseTag
 {
-    AGRegex *blockRegex = [[AGRegex alloc] initWithPattern:@"</lj-cut>" options:0];
-    NSString *result = [blockRegex replaceWithString: @"<br><div class=\"xjljcut\">&nbsp;</div>" inString: self];
-    [blockRegex release];
-    return result;
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"</lj-cut>"];
+	return [regex replaceAllMatchesInString: self withString: @"<br><div class=\"xjljcut\">&nbsp;</div>"];
 }
 
 - (NSString *)translateLJPoll
 {
-    AGRegex *blockRegex = [[AGRegex alloc] initWithPattern:@"<lj-poll-([^>]*)>" options:0];
-    NSString *result = [blockRegex replaceWithString: @"<a href=\"http://www.livejournal.com/poll/?id=$1\">LJ-Poll ID: $1</a>" inString: self];
-    [blockRegex release];
-    return result;
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"<lj-poll-([^>]*)>"];
+	return [regex replaceAllMatchesInString: self withString: @"<a href=\"http://www.livejournal.com/poll/?id=$1\">LJ-Poll ID: $1</a>"];
 }
 
 - (NSString *)translateLJPhonePostWithItemURL:(NSString *)url userName: (NSString *)user{
-    AGRegex *blockRegex = [[AGRegex alloc] initWithPattern:@"<lj-phonepost journalid='([^']*)' dpid='([^']*)' />" options:0];
-    NSString *result = [blockRegex replaceWithString: [NSString stringWithFormat: @"<a href=\"http://files.livejournal.com/%@/phonepost/$2.ogg\">PhonePost</a> (<a href=\"http://www.livejournal.com/phonepost/transcribe.bml?user=%@&ppid=$2\">transcribe</a>)<br><br><a href=\"%@\">View PhonePost Online</a>", user, user, url] inString: self];
-    [blockRegex release];
-    return result;
-    
+	NSString *replacementString = [NSString stringWithFormat: @"<a href=\"http://files.livejournal.com/%@/phonepost/$2.ogg\">PhonePost</a> (<a href=\"http://www.livejournal.com/phonepost/transcribe.bml?user=%@&ppid=$2\">transcribe</a>)<br><br><a href=\"%@\">View PhonePost Online</a>", user, user, url];
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"<lj-phonepost journalid='([^']*)' dpid='([^']*)' />"];
+	return [regex replaceAllMatchesInString: self withString: replacementString];
+	
     // Old style
     //<lj-phonepost user='fraserspeirs' phonepostid='3' />
     

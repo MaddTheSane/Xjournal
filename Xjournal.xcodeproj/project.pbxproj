@@ -231,9 +231,7 @@
 		5F5B098E092563B6005BB86B /* XJMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B098C092563B6005BB86B /* XJMusic.m */; };
 		5F5B0991092563E8005BB86B /* NSString+Templating.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F5B098F092563E8005BB86B /* NSString+Templating.h */; };
 		5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B0990092563E8005BB86B /* NSString+Templating.m */; };
-		5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
 		5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
-		5F5B1838090E206A000734AB /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FA090E1FCE000734AB /* AGRegex.framework */; };
 		5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
 		5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6325A9083C922C007F6AF9 /* libcrypto.dylib */; };
 		5F73D7F305DE9C6400DADCD8 /* imagesize.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */; };
@@ -243,6 +241,8 @@
 		5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD248B408620D520007E0C5 /* XJKeyChain.h */; };
 		5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD248B508620D520007E0C5 /* XJKeyChain.m */; };
 		5FD2819409268EAB005A1060 /* starburst.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2819309268EAB005A1060 /* starburst.tiff */; };
+		5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; };
+		5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; };
 		8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
@@ -344,7 +344,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5F5B1838090E206A000734AB /* AGRegex.framework in CopyFiles */,
+				5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */,
 				5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,7 +549,6 @@
 		5F5B098C092563B6005BB86B /* XJMusic.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJMusic.m; sourceTree = "<group>"; };
 		5F5B098F092563E8005BB86B /* NSString+Templating.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSString+Templating.h"; path = "src/Classes/NSString+Templating.h"; sourceTree = SOURCE_ROOT; };
 		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+Templating.m"; path = "src/Classes/NSString+Templating.m"; sourceTree = SOURCE_ROOT; };
-		5F5B16FA090E1FCE000734AB /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = ../frameworks/AGRegex.framework; sourceTree = SOURCE_ROOT; };
 		5F5B16FB090E1FCE000734AB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
 		5F6325A9083C922C007F6AF9 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = imagesize.tiff; path = src/Art/imagesize.tiff; sourceTree = "<group>"; };
@@ -563,6 +562,7 @@
 		5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJKeyChain.h; sourceTree = "<group>"; };
 		5FD248B508620D520007E0C5 /* XJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJKeyChain.m; sourceTree = "<group>"; };
 		5FD2819309268EAB005A1060 /* starburst.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = starburst.tiff; path = src/Art/starburst.tiff; sourceTree = "<group>"; };
+		5FD2849B0926AF4F005A1060 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = ../frameworks/OgreKit.framework; sourceTree = SOURCE_ROOT; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -579,8 +579,8 @@
 				5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */,
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
-				5F5B16FF090E1FCE000734AB /* AGRegex.framework in Frameworks */,
 				5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */,
+				5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,7 +590,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5F5B16FA090E1FCE000734AB /* AGRegex.framework */,
+				5FD2849B0926AF4F005A1060 /* OgreKit.framework */,
 				5F5B16FB090E1FCE000734AB /* LJKit.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
