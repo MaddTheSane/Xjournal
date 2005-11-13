@@ -56,7 +56,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>XJApplication</string>
 	<key>NSServices</key>
 	<array>
 		<dict>
