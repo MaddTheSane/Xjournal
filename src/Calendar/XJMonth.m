@@ -39,7 +39,7 @@
 - (id)propertyListRepresentation
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setIntValue:name forKey: kNameKey];
+    [dictionary setObject: [NSNumber numberWithInt: name] forKey: kNameKey];
 
     NSMutableArray *array = [NSMutableArray array];
     NSEnumerator *enumerator = [days objectEnumerator];
@@ -54,8 +54,7 @@
 
 - (void)configureFromPropertyListRepresentation: (id) plistType
 {
-    name = [plistType intForKey: kNameKey];
-    //[days release];
+    name = [[plistType objectForKey: kNameKey] intValue];
     days = [[NSMutableArray arrayWithCapacity: 31] retain];
     
     NSArray *plistDays = [plistType objectForKey: kDayListKey];
