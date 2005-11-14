@@ -62,6 +62,16 @@
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"History"];
     [item release];	
+
+	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Weblogs"];
+    [item setPaletteLabel:@"Weblogs"];
+    [item setLabel:@"Weblogs"];
+    [item setToolTip:@"Weblogs preference options."];
+    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PostToWeblog" ofType:@"tif"]]];
+    [item setTarget:self];
+    [item setAction:@selector(switchViews:)];
+    [items setObject:item forKey:@"Weblogs"];
+    [item release];
 	
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"SWUpdate"];
     [item setPaletteLabel:@"Software Update"];
@@ -118,6 +128,10 @@
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = musicView;
     }
+	else if([sender isEqualToString:@"Weblogs"]){
+        //assign the temp pointer to the appearanceView we set up in IB.
+        prefsView = weblogsView;
+    }
 	else if([sender isEqualToString:@"SWUpdate"]){
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = softwareUpdateView;
@@ -156,7 +170,7 @@
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)theToolbar
 {
     //just return an array with all your items.
-    return [NSArray arrayWithObjects:@"General", @"Friends", @"Music", @"History", @"SWUpdate", nil];
+    return [NSArray arrayWithObjects:@"General", @"Friends", @"Music", @"Weblogs", @"History", @"SWUpdate", nil];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers: (NSToolbar *)toolbar

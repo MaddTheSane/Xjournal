@@ -18,6 +18,7 @@
                 historyView = NSView; 
                 musicView = NSView; 
                 softwareUpdateView = NSView; 
+                weblogsView = NSView; 
             }; 
             SUPERCLASS = NSWindowController; 
         }

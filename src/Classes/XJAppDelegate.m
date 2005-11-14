@@ -12,13 +12,14 @@
 #import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"
-#import "XJAccountManager-Rendezvous.h"
 #import "CCFSoftwareUpdate.h"
 #import "LJKit-URLLaunching.h"
 #import "XJDocument.h"
 #import "NSString+Extensions.h"
 #import "XJMarkupRemovalVT.h"
 #import "XJPreferencesController.h"
+#import "XJSyndicationData.h"
+#import "NSString+Templating.h"
 
 #define PREF_LJ_ACCOUNTS @"preferences.accounts"
 
@@ -163,56 +164,29 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 #pragma mark -
 #pragma mark NetNewsWire Protocol Handler
-/* NetNewsWire Handler */
-- (void) editDataItem: (NSAppleEventDescriptor *) event withReplyEvent: (NSAppleEventDescriptor *) reply {
 
-	LJJournal *currentJournal = [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal];
+	/* NetNewsWire Handler */
+- (void) editDataItem: (NSAppleEventDescriptor *) event withReplyEvent: (NSAppleEventDescriptor *) reply {
+	
+	LJJournal *currentJournal = [[[XJAccountManager defaultManager] defaultAccount] defaultJournal];
 	LJEntry *newPost = [[LJEntry alloc] init];	
 	
-    NSAppleEventDescriptor *recordDescriptor = [event descriptorForKeyword: keyDirectObject];
-    NSString *title = [[recordDescriptor descriptorForKeyword: NNWDataItemTitle] stringValue];
-	NSLog(@"Title: %@", title);
-	if(title)
-		[newPost setSubject:title];
-	else
-		[newPost setSubject: @"[No Title]"];
+	XJSyndicationData *synData = [XJSyndicationData syndicationDataWithAppleEvent: event];
+	NSString *postBody = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey: @"XJRSSFormatString"];
+	postBody = [postBody stringByParsingTagsWithStartDelimeter: @"<$" endDelimeter: @"/>" usingObject: synData];
 	
-	NSString *body = [[recordDescriptor descriptorForKeyword: NNWDataItemDescription] stringValue];
-    NSLog(@"Body: %@", body);
-	NSString *summary = [[recordDescriptor descriptorForKeyword: NNWDataItemSummary] stringValue];
-	NSLog(@"Summary: %@", summary);
-    NSString *link = [[recordDescriptor descriptorForKeyword: NNWDataItemLink] stringValue];
-    NSLog(@"Link: %@", link);
-    NSString *permalink = [[recordDescriptor descriptorForKeyword: NNWDataItemPermalink] stringValue];
-    NSLog(@"Permalink: %@", permalink);
-    NSString *commentsURL = [[recordDescriptor descriptorForKeyword: NNWDataItemCommentsURL] stringValue];
-    NSLog(@"Comments URL: %@", commentsURL);
-    NSString *sourceName = [[recordDescriptor descriptorForKeyword: NNWDataItemSourceName] stringValue];
-    NSLog(@"SourceName: %@", sourceName);
-    NSString *sourceHomeURL = [[recordDescriptor descriptorForKeyword: NNWDataItemSourceHomeURL] stringValue];
-    NSLog(@"Source Home URL: %@", sourceHomeURL);
-    NSString *sourceFeedURL = [[recordDescriptor descriptorForKeyword: NNWDataItemSourceFeedURL] stringValue];
-    NSLog(@"Source Feed URL: %@", sourceFeedURL);
+	NSString *postTitle = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey: @"XJRSSSubjectFormatString"];
+	postTitle = [postTitle stringByParsingTagsWithStartDelimeter: @"<$" endDelimeter: @"/>" usingObject: synData];
 	
-
-    if ([NSString stringIsEmpty: body])
-        [newPost setContent: summary];
-    else
-        [newPost setContent: body];
-
-	if(![NSString stringIsEmpty: permalink]) 
-		[newPost setContent: [NSString stringWithFormat: @"%@\n\n%@", [newPost content], permalink]];
-	else if(![NSString stringIsEmpty: link])
-		[newPost setContent: [NSString stringWithFormat: @"%@\n\n%@", [newPost content], link]];
-	else if([NSString stringIsEmpty: commentsURL])
-		[newPost setContent: [NSString stringWithFormat: @"%@\n\n%@", [newPost content], commentsURL]];
+	[newPost setSubject: postTitle];
+	[newPost setContent: postBody];
 	
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
     [doc setEntry: newPost];
     [newPost setJournal: currentJournal];
     [doc showWindows];
-
+	
     [NSApp activateIgnoringOtherApps: YES];
 } /*editDataItem: withReplyEvent:*/
 

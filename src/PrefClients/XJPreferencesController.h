@@ -10,6 +10,7 @@
 	IBOutlet NSView *musicView;
 	IBOutlet NSView *friendsView;
 	IBOutlet NSView *historyView;
+	IBOutlet NSView *weblogsView;
 	IBOutlet NSView *softwareUpdateView;
 }
 

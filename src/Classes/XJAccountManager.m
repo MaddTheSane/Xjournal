@@ -10,7 +10,6 @@
 #import "XJPreferences.h"
 #import "XJKeyChain.h"
 #import "NetworkConfig.h"
-#import "XJAccountManager-Rendezvous.h"
 
 #define kAccountsPrefKey @"Accounts"
 #define kDefaultAccountNameKey @"DefaultAccount"
@@ -25,6 +24,7 @@ static XJAccountManager *manager;
         return nil;
 
     NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
+	NSLog(@"Loaded stored accounts: %@", [storedAccounts description]);
     accounts = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
     passwordCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
     
@@ -104,22 +104,8 @@ static XJAccountManager *manager;
     LJAccount *acct = [accounts objectForKey: username];
     if(!acct) {
         acct = [[LJAccount alloc] initWithUsername: username];
-        //[[acct server] enableProxyDetection];
-        
         [accounts setObject: acct forKey: username];
         [acct release];
-		
-        // Set proxy
-        /*
-        if([NetworkConfig destinationIsProxied: @"livejournal.com"] && 
-           [NetworkConfig httpProxyIsEnabled]) {
-			NSString *proxy = [NSString stringWithFormat: @"http://%@:%d", 
-														  [NetworkConfig httpProxyHost],
-														  [NetworkConfig httpProxyPort]];
-			NSLog(@"Setting proxy: %@", proxy);
-        	[[acct server] setProxyURL: [NSURL URLWithString: proxy]];
-        }
-        */
     }
     return acct;
 }
@@ -178,7 +164,8 @@ static XJAccountManager *manager;
     [newDefault retain];
     [defaultUsername release];
     defaultUsername = newDefault;
-    [[[NSUserDefaultsController sharedUserDefaultsController] values] setObject: defaultUsername forKey: kDefaultAccountNameKey];
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: defaultUsername forKey: kDefaultAccountNameKey];
+	NSLog(@"Stored default username: %@", defaultUsername);
 }
 
 - (NSEnumerator *)menuItemEnumerator

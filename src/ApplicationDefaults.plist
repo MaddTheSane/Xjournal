@@ -32,6 +32,10 @@
 	<string>&lt;$name/&gt; - &lt;%$artist/&gt;</string>
 	<key>XJPostingDate</key>
 	<true/>
+	<key>XJRSSFormatString</key>
+	<string>&lt;$body/&gt;</string>
+	<key>XJRSSSubjectFormatString</key>
+	<string>&lt;$title/&gt;</string>
 	<key>XJShouldAutoLogin</key>
 	<true/>
 	<key>XJShouldOpenDrawerInNewWindow</key>
