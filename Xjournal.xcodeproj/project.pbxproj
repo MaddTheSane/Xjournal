@@ -1596,15 +1596,16 @@
 		5FD243C60861F8BC0007E0C5 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
-					"$(SRCROOT)/../frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../frameworks";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1636,6 +1637,10 @@
 		5FD243C70861F8BC0007E0C5 /* Linked with Symbols */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DiskImageEncryption = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1672,6 +1677,10 @@
 		5FD243C80861F8BC0007E0C5 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",

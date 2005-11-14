@@ -392,7 +392,7 @@
 		};
 	};
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Development;
+		activeBuildConfigurationName = Deployment;
 		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA /* Development */;
 		activeExecutable = 5F97973F05B969EC0082C2C7 /* Xjournal */;
 		activeTarget = 8D15AC270486D014006FF6A4 /* Xjournal */;
@@ -473,7 +473,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					261,
+					412,
 					20,
 					102,
 					43,
@@ -1230,6 +1230,9 @@
 			5F546A31092811A800ABCAC9 /* PBXTextBookmark */ = 5F546A31092811A800ABCAC9 /* PBXTextBookmark */;
 			5F546A38092811F700ABCAC9 /* PBXTextBookmark */ = 5F546A38092811F700ABCAC9 /* PBXTextBookmark */;
 			5F546A3B092811F800ABCAC9 /* PBXTextBookmark */ = 5F546A3B092811F800ABCAC9 /* PBXTextBookmark */;
+			5F546A4A0928172200ABCAC9 /* PBXTextBookmark */ = 5F546A4A0928172200ABCAC9 /* PBXTextBookmark */;
+			5F546A4F092817B500ABCAC9 /* PBXTextBookmark */ = 5F546A4F092817B500ABCAC9 /* PBXTextBookmark */;
+			5F546AA209286B1000ABCAC9 /* PBXTextBookmark */ = 5F546AA209286B1000ABCAC9 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
@@ -1359,6 +1362,36 @@
 		vrLen = 823;
 		vrLoc = 1282;
 	};
+	5F546A4A0928172200ABCAC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */;
+		name = lowercaseString;
+		rLen = 15;
+		rLoc = 1797;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 1282;
+	};
+	5F546A4F092817B500ABCAC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */;
+		name = lowercaseString;
+		rLen = 15;
+		rLoc = 1797;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 1282;
+	};
+	5F546AA209286B1000ABCAC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */;
+		name = lowercaseString;
+		rLen = 15;
+		rLoc = 1797;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 1282;
+	};
 	5F5B05250924D90A005BB86B /* XJApplication.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {898, 705}}";
@@ -1388,6 +1421,14 @@
 			sepNavSelRange = "{2880, 0}";
 			sepNavVisRect = "{{0, 412}, {898, 705}}";
 			sepNavWindowFrame = "{{493, 59}, {943, 819}}";
+		};
+	};
+	5F5B083E09252596005BB86B /* ApplicationDefaults.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {860, 639}}";
+			sepNavSelRange = "{1311, 0}";
+			sepNavVisRect = "{{0, 0}, {860, 639}}";
+			sepNavWindowFrame = "{{166, 36}, {905, 753}}";
 		};
 	};
 	5F5B098C092563B6005BB86B /* XJMusic.m */ = {
