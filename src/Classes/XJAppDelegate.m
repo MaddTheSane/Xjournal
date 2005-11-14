@@ -451,7 +451,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
     // and we DON'T open a new window
     if([self showingDockBadge]) {
-        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] objectForKey: @"XJCheckFriendsShouldOpenFriendsPage"] boolValue])
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldOpenFriendsPage"] boolValue])
             [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
         [self hideDockBadge];
 
