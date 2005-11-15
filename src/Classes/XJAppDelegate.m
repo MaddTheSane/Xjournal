@@ -453,8 +453,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     if([self showingDockBadge]) {
         if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldOpenFriendsPage"] boolValue])
             [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
-        [self hideDockBadge];
-
+        
+		[self hideDockBadge];
         [self updateDockMenu];
         
         // User operated here, so restart checkfriends
@@ -463,6 +463,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     }
 
     // Otherwise, we do.
+	[self hideDockBadge];
     return YES;
 }
 
