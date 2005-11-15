@@ -36,7 +36,7 @@ static XJAccountManager *manager;
     }
     
     
-    defaultUsername = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kDefaultAccountNameKey];
+    defaultUsername = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kDefaultAccountNameKey] copy];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(accountSwitched:)
@@ -101,6 +101,10 @@ static XJAccountManager *manager;
 
 - (LJAccount *)accountForUsername: (NSString *)username
 {
+	NSAssert(accounts != nil, @"Accounts dictionary is nil in accountForUsername");
+	NSAssert(username != nil, @"Called accountForUsername with nil username");
+	NSLog(@"Accounts: %@", [accounts description]);
+	NSLog(@"accountForUsername: %@", username);
     LJAccount *acct = [accounts objectForKey: username];
     if(!acct) {
         acct = [[LJAccount alloc] initWithUsername: username];
