@@ -24,7 +24,7 @@ static XJAccountManager *manager;
         return nil;
 
     NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
-	NSLog(@"Loaded stored accounts: %@", [storedAccounts description]);
+
     accounts = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
     passwordCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
     
@@ -101,10 +101,6 @@ static XJAccountManager *manager;
 
 - (LJAccount *)accountForUsername: (NSString *)username
 {
-	NSAssert(accounts != nil, @"Accounts dictionary is nil in accountForUsername");
-	NSAssert(username != nil, @"Called accountForUsername with nil username");
-	NSLog(@"Accounts: %@", [accounts description]);
-	NSLog(@"accountForUsername: %@", username);
     LJAccount *acct = [accounts objectForKey: username];
     if(!acct) {
         acct = [[LJAccount alloc] initWithUsername: username];

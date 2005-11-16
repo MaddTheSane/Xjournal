@@ -184,9 +184,9 @@
 	};
 	1BBD895204B0189F003882CD /* XJAccountManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {722, 2376}}";
-			sepNavSelRange = "{3827, 0}";
-			sepNavVisRect = "{{0, 1032}, {722, 456}}";
+			sepNavIntBoundsRect = "{{0, 0}, {793, 2277}}";
+			sepNavSelRange = "{3637, 0}";
+			sepNavVisRect = "{{0, 1013}, {793, 361}}";
 			sepNavWindowFrame = "{{107, 102}, {1020, 687}}";
 		};
 	};
@@ -200,8 +200,8 @@
 	};
 	1BBD895404B0189F003882CD /* XJAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {973, 7436}}";
-			sepNavSelRange = "{17485, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {973, 7447}}";
+			sepNavSelRange = "{17237, 0}";
 			sepNavVisRect = "{{0, 4621}, {973, 625}}";
 			sepNavWindowFrame = "{{282, 139}, {1018, 739}}";
 		};
@@ -392,7 +392,7 @@
 		};
 	};
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Deployment;
+		activeBuildConfigurationName = Development;
 		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA /* Development */;
 		activeExecutable = 5F97973F05B969EC0082C2C7 /* Xjournal */;
 		activeTarget = 8D15AC270486D014006FF6A4 /* Xjournal */;
@@ -461,7 +461,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					22,
-					559.7974,
+					559,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXExecutablesDataSource_ActiveFlagID,
@@ -564,7 +564,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 153675551;
+			PBXPerProjectTemplateStateSaveDate = 153824157;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1220,7 +1220,31 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 131 912 747 0 0 1440 878 ";
 			};
-			PBXWorkspaceStateSaveDate = 153675551;
+			PBXWorkspaceStateSaveDate = 153824157;
+		};
+		perUserProjectItems = {
+			5F3D5DD9092A3DED00ABC2C8 = 5F3D5DD9092A3DED00ABC2C8 /* PBXBookmark */;
+			5F3D5DDF092A3F1A00ABC2C8 = 5F3D5DDF092A3F1A00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E15092A698A00ABC2C8 = 5F3D5E15092A698A00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E16092A698A00ABC2C8 = 5F3D5E16092A698A00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E1B092A699000ABC2C8 = 5F3D5E1B092A699000ABC2C8 /* PBXTextBookmark */;
+			5F3D5E1D092A699000ABC2C8 = 5F3D5E1D092A699000ABC2C8 /* PBXTextBookmark */;
+			5F3D5E21092A699000ABC2C8 = 5F3D5E21092A699000ABC2C8 /* PBXTextBookmark */;
+			5F3D5E23092A699000ABC2C8 = 5F3D5E23092A699000ABC2C8 /* PBXTextBookmark */;
+			5F3D5E28092A69DB00ABC2C8 = 5F3D5E28092A69DB00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E2B092A69DC00ABC2C8 = 5F3D5E2B092A69DC00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E2E092A69E200ABC2C8 = 5F3D5E2E092A69E200ABC2C8 /* PBXBookmark */;
+			5F3D5E2F092A69E200ABC2C8 = 5F3D5E2F092A69E200ABC2C8 /* PBXTextBookmark */;
+			5F3D5E30092A69E200ABC2C8 = 5F3D5E30092A69E200ABC2C8 /* PBXTextBookmark */;
+			5F3D5E31092A69E200ABC2C8 = 5F3D5E31092A69E200ABC2C8 /* PBXTextBookmark */;
+			5F3D5E36092A6A0F00ABC2C8 = 5F3D5E36092A6A0F00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E39092A6A2100ABC2C8 = 5F3D5E39092A6A2100ABC2C8 /* PBXTextBookmark */;
+			5F3D5E3B092A6A2100ABC2C8 = 5F3D5E3B092A6A2100ABC2C8 /* PBXTextBookmark */;
+			5F3D5E3D092A6A2100ABC2C8 = 5F3D5E3D092A6A2100ABC2C8 /* PBXTextBookmark */;
+			5F3D5E3E092A6A2100ABC2C8 = 5F3D5E3E092A6A2100ABC2C8 /* PBXTextBookmark */;
+			5F3D5E3F092A6A2100ABC2C8 = 5F3D5E3F092A6A2100ABC2C8 /* PBXTextBookmark */;
+			5F3D5E4D092A6B7C00ABC2C8 = 5F3D5E4D092A6B7C00ABC2C8 /* PBXTextBookmark */;
+			5F3D5E59092B2B4000ABC2C8 = 5F3D5E59092B2B4000ABC2C8 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
@@ -1275,6 +1299,244 @@
 			sepNavVisRect = "{{0, 573}, {793, 361}}";
 		};
 	};
+	5F3D5DD9092A3DED00ABC2C8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
+	};
+	5F3D5DDF092A3F1A00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895404B0189F003882CD /* XJAppDelegate.m */;
+		name = "XJAppDelegate.m: 452";
+		rLen = 0;
+		rLoc = 17237;
+		rType = 0;
+		vrLen = 2562;
+		vrLoc = 15907;
+	};
+	5F3D5E15092A698A00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+	};
+	5F3D5E16092A698A00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		name = "XJAccountManager.m: 103";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 3072;
+	};
+	5F3D5E1B092A699000ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E1C092A699000ABC2C8 /* NSAppleEventDescriptor.h */;
+		rLen = 1;
+		rLoc = 11;
+		rType = 1;
+	};
+	5F3D5E1C092A699000ABC2C8 /* NSAppleEventDescriptor.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSAppleEventDescriptor.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSAppleEventDescriptor.h;
+		sourceTree = "<absolute>";
+	};
+	5F3D5E1D092A699000ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E1E092A699000ABC2C8 /* NSAppleEventDescriptor.h */;
+		name = "@interface NSAppleEventDescriptor : NSObject<NSCopying> {";
+		rLen = 58;
+		rLoc = 203;
+		rType = 0;
+		vrLen = 3053;
+		vrLoc = 0;
+	};
+	5F3D5E1E092A699000ABC2C8 /* NSAppleEventDescriptor.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSAppleEventDescriptor.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSAppleEventDescriptor.h;
+		sourceTree = "<absolute>";
+	};
+	5F3D5E21092A699000ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E22092A699000ABC2C8 /* NSAppleScript.h */;
+		rLen = 1;
+		rLoc = 43;
+		rType = 1;
+	};
+	5F3D5E22092A699000ABC2C8 /* NSAppleScript.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSAppleScript.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSAppleScript.h;
+		sourceTree = "<absolute>";
+	};
+	5F3D5E23092A699000ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E24092A699000ABC2C8 /* NSAppleScript.h */;
+		name = NSAppleEventDescriptor;
+		rLen = 22;
+		rLoc = 2723;
+		rType = 0;
+		vrLen = 3151;
+		vrLoc = 0;
+	};
+	5F3D5E24092A699000ABC2C8 /* NSAppleScript.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSAppleScript.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSAppleScript.h;
+		sourceTree = "<absolute>";
+	};
+	5F3D5E28092A69DB00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		name = "XJAccountManager.m: 103";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 3072;
+	};
+	5F3D5E2B092A69DC00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		name = "XJAccountManager.m: 103";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 3072;
+	};
+	5F3D5E2E092A69E200ABC2C8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5F5B098C092563B6005BB86B /* XJMusic.m */;
+	};
+	5F3D5E2F092A69E200ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F5B098C092563B6005BB86B /* XJMusic.m */;
+		name = "XJMusic.m: 220";
+		rLen = 0;
+		rLoc = 6604;
+		rType = 0;
+		vrLen = 2032;
+		vrLoc = 4731;
+	};
+	5F3D5E30092A69E200ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E1C092A699000ABC2C8 /* NSAppleEventDescriptor.h */;
+		name = "@interface NSAppleEventDescriptor : NSObject<NSCopying> {";
+		rLen = 58;
+		rLoc = 203;
+		rType = 0;
+		vrLen = 3053;
+		vrLoc = 0;
+	};
+	5F3D5E31092A69E200ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E22092A699000ABC2C8 /* NSAppleScript.h */;
+		name = NSAppleEventDescriptor;
+		rLen = 22;
+		rLoc = 2723;
+		rType = 0;
+		vrLen = 3151;
+		vrLoc = 0;
+	};
+	5F3D5E36092A6A0F00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		name = "XJAccountManager.m: 103";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 3072;
+	};
+	5F3D5E39092A6A2100ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E3A092A6A2100ABC2C8 /* AERegistry.h */;
+		rLen = 0;
+		rLoc = 2147483647;
+		rType = 0;
+	};
+	5F3D5E3A092A6A2100ABC2C8 /* AERegistry.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = AERegistry.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/Headers/AERegistry.h;
+		sourceTree = "<absolute>";
+	};
+	5F3D5E3B092A6A2100ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E3C092A6A2100ABC2C8 /* AERegistry.h */;
+		name = PS;
+		rLen = 2;
+		rLoc = 26023;
+		rType = 0;
+		vrLen = 3248;
+		vrLoc = 32934;
+	};
+	5F3D5E3C092A6A2100ABC2C8 /* AERegistry.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = AERegistry.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/Headers/AERegistry.h;
+		sourceTree = "<absolute>";
+	};
+	5F3D5E3D092A6A2100ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F5B098C092563B6005BB86B /* XJMusic.m */;
+		name = "XJMusic.m: 220";
+		rLen = 0;
+		rLoc = 6604;
+		rType = 0;
+		vrLen = 2032;
+		vrLoc = 4731;
+	};
+	5F3D5E3E092A6A2100ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E1C092A699000ABC2C8 /* NSAppleEventDescriptor.h */;
+		name = "@interface NSAppleEventDescriptor : NSObject<NSCopying> {";
+		rLen = 58;
+		rLoc = 203;
+		rType = 0;
+		vrLen = 3053;
+		vrLoc = 0;
+	};
+	5F3D5E3F092A6A2100ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5F3D5E22092A699000ABC2C8 /* NSAppleScript.h */;
+		name = NSAppleEventDescriptor;
+		rLen = 22;
+		rLoc = 2723;
+		rType = 0;
+		vrLen = 3151;
+		vrLoc = 0;
+	};
+	5F3D5E4D092A6B7C00ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		name = "XJAccountManager.m: 103";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 3072;
+	};
+	5F3D5E59092B2B4000ABC2C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */;
+		name = "XJAccountManager.m: 103";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 3072;
+	};
 	5F5468C1092809EF00ABCAC9 /* XJSyndicationData.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {860, 2607}}";
@@ -1322,12 +1584,19 @@
 			sepNavWindowFrame = "{{166, 36}, {905, 753}}";
 		};
 	};
+	5F5B098B092563B6005BB86B /* XJMusic.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {898, 711}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {898, 711}}";
+		};
+	};
 	5F5B098C092563B6005BB86B /* XJMusic.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {788, 2618}}";
-			sepNavSelRange = "{438, 0}";
-			sepNavVisRect = "{{0, 14}, {788, 591}}";
-			sepNavWindowFrame = "{{212, 42}, {833, 705}}";
+			sepNavIntBoundsRect = "{{0, 0}, {898, 2640}}";
+			sepNavSelRange = "{6288, 0}";
+			sepNavVisRect = "{{0, 1907}, {898, 711}}";
+			sepNavWindowFrame = "{{97, 27}, {943, 825}}";
 		};
 	};
 	5F70865505BDCFA7004F29A1 /* -[NSException raise] */ = {
@@ -1337,7 +1606,7 @@
 		continueAfterActions = 0;
 		delayBeforeContinue = 0;
 		hitCount = 1;
-		modificationTime = 153675873.390301;
+		modificationTime = 153763749.454979;
 		state = 1;
 		symbolName = "-[NSException raise]";
 	};
@@ -1399,10 +1668,11 @@
 	5F97978205B96A1F0082C2C7 /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
-		isSCMEnabled = 0;
+		isSCMEnabled = 1;
 		scmConfiguration = {
+			SubversionToolPath = /usr/local/bin/svn;
 		};
-		scmType = scm.cvs;
+		scmType = scm.subversion;
 	};
 	5F97978305B96A1F0082C2C7 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
