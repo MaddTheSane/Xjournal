@@ -134,7 +134,33 @@
         [meta appendString: [NSString stringWithFormat: @"<strong>Subject:</strong>&nbsp;%@<br>", [self subject]]];
     }
 	
-    [meta appendString: [NSString stringWithFormat: @"<strong>Date:</strong>&nbsp;%@<br>",
+	[meta appendString: @"<strong>Date:</strong>&nbsp;"];
+	
+	switch([[[self date] dateWithCalendarFormat: nil timeZone: nil] dayOfWeek]) {
+		case 0:
+			[meta appendString: NSLocalizedString(@"Sunday", @"Sunday")];
+			break;
+		case 1:
+			[meta appendString: NSLocalizedString(@"Monday", @"Monday")];
+			break;
+		case 2:
+			[meta appendString: NSLocalizedString(@"Tuesday", @"Tuesday")];
+			break;
+		case 3:
+			[meta appendString: NSLocalizedString(@"Wednesday", @"Wednesday")];
+			break;
+		case 4:
+			[meta appendString: NSLocalizedString(@"Thursday", @"Thursday")];
+			break;
+		case 5:
+			[meta appendString: NSLocalizedString(@"Friday", @"Friday")];
+			break;
+		case 6:
+			[meta appendString: NSLocalizedString(@"Saturday", @"Saturday")];
+			break;
+	}
+	
+    [meta appendString: [NSString stringWithFormat: @" %@<br>",
 		[[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@ %%p", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]]];
 	
     if([self currentMood]) {
