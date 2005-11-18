@@ -407,7 +407,7 @@
                                            @selector(sheetDidEnd:returnCode:contextInfo:), /* SEL didEndSelector */
                                            nil, /* SEL didDismissSelector */
                                            nil, /* void *contextInfo */
-                                           NSLocalizedString(@"Your entry was sucessfully posted", @""));
+                                           NSLocalizedString(@"Your entry was successfully posted", @""));
         }
     }
 }
@@ -514,7 +514,7 @@
         
         if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldShowPostingConfirmationDialog"] boolValue]) {
             int result = NSRunInformationalAlertPanel(NSLocalizedString(@"Posting Succeeded", @""),
-                                                      NSLocalizedString(@"Your entry was sucessfully posted", @""),
+                                                      NSLocalizedString(@"Your entry was successfully posted", @""),
                                                       NSLocalizedString(@"OK", @""),
                                                       NSLocalizedString(@"Open Recent Entries", @""),
                                                       nil);
