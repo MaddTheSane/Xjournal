@@ -262,19 +262,19 @@ enum {
 	if(numberSelected == 1) {
 		LJFriend *selFriend = [self selectedFriend];
 		if(selFriend) {
-			[selFriend setForegroundColor: [sender color]];
+			[selFriend setForegroundColor: [(NSColorWell *)sender color]];
 		}
 	} else {
 		NSEnumerator *selectedFriends = [[self selectedFriendArray] objectEnumerator];
 		LJFriend *friend;
 		while(friend = [selectedFriends nextObject]) {
-			[friend setForegroundColor: [sender color]];
+			[friend setForegroundColor: [(NSColorWell *)sender color]];
 		}
 	}
 	
 	[[self window] setDocumentEdited: YES];
 	[self refreshWindow: nil];
-	[fullName setTextColor: [sender color]];
+	[fullName setTextColor: [(NSColorWell *)sender color]];
 }
 
 - (IBAction)setBackgroundColor: (id)sender
@@ -284,20 +284,20 @@ enum {
 	if(numberSelected == 1) {
 		LJFriend *selFriend = [self selectedFriend];
 		if(selFriend) {
-			[selFriend setBackgroundColor: [sender color]];
+			[selFriend setBackgroundColor: [(NSColorWell *)sender color]];
 		}
 	} else {
 		NSArray *friendArr = [self selectedFriendArray];
 		NSEnumerator *selectedFriends = [friendArr objectEnumerator];
 		LJFriend *friend;
 		while(friend = [selectedFriends nextObject]) {
-			[friend setBackgroundColor: [sender color]];
+			[friend setBackgroundColor: [(NSColorWell *)sender color]];
 		}
 	}
 	
 	[[self window] setDocumentEdited: YES];
 	[self refreshWindow: nil];
-	[fullName setBackgroundColor: [sender color]];
+	[fullName setBackgroundColor: [(NSColorWell *)sender color]];
 }
 
 - (IBAction)removeAddressCard: (id)sender
@@ -638,7 +638,7 @@ enum {
 
 - (void)updateTabs
 {
-	int numSelected = [[friendsTable selectedRows] count];
+	int numSelected = [friendsTable numberOfSelectedRows];
 	BOOL isMultiple = numSelected > 1;
 	
 	

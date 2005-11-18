@@ -236,11 +236,11 @@
 		5F5B098E092563B6005BB86B /* XJMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B098C092563B6005BB86B /* XJMusic.m */; };
 		5F5B0991092563E8005BB86B /* NSString+Templating.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F5B098F092563E8005BB86B /* NSString+Templating.h */; };
 		5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B0990092563E8005BB86B /* NSString+Templating.m */; };
-		5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
-		5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F5B16FB090E1FCE000734AB /* LJKit.framework */; };
 		5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6325A9083C922C007F6AF9 /* libcrypto.dylib */; };
 		5F73D7F305DE9C6400DADCD8 /* imagesize.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */; };
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
+		5FBE9E5E092E6A880071F534 /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBE9E4D092E6A880071F534 /* LJKit.framework */; };
+		5FBE9E5F092E6A920071F534 /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FBE9E4D092E6A880071F534 /* LJKit.framework */; };
 		5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF478F08138A6400829423 /* Cocoa.framework */; };
 		5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF479D08138DEE00829423 /* CoreServices.framework */; };
 		5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD248B408620D520007E0C5 /* XJKeyChain.h */; };
@@ -349,8 +349,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5FBE9E5F092E6A920071F534 /* LJKit.framework in CopyFiles */,
 				5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */,
-				5F5B1839090E206A000734AB /* LJKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +557,6 @@
 		5F5B098C092563B6005BB86B /* XJMusic.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJMusic.m; sourceTree = "<group>"; };
 		5F5B098F092563E8005BB86B /* NSString+Templating.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSString+Templating.h"; path = "src/Classes/NSString+Templating.h"; sourceTree = SOURCE_ROOT; };
 		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+Templating.m"; path = "src/Classes/NSString+Templating.m"; sourceTree = SOURCE_ROOT; };
-		5F5B16FB090E1FCE000734AB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
 		5F6325A9083C922C007F6AF9 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = imagesize.tiff; path = src/Art/imagesize.tiff; sourceTree = "<group>"; };
 		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
@@ -565,6 +564,7 @@
 		5F80118406BD528900789AD7 /* LJAccount-RetainDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJAccount-RetainDebug.h"; sourceTree = "<group>"; };
 		5F80118506BD528900789AD7 /* LJAccount-RetainDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-RetainDebug.m"; sourceTree = "<group>"; };
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
+		5FBE9E4D092E6A880071F534 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../LJKit/LJKit/build/Development/LJKit.framework; sourceTree = SOURCE_ROOT; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		5FBF479D08138DEE00829423 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJKeyChain.h; sourceTree = "<group>"; };
@@ -587,8 +587,8 @@
 				5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */,
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
-				5F5B1700090E1FCE000734AB /* LJKit.framework in Frameworks */,
 				5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */,
+				5FBE9E5E092E6A880071F534 /* LJKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,8 +598,8 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FBE9E4D092E6A880071F534 /* LJKit.framework */,
 				5FD2849B0926AF4F005A1060 /* OgreKit.framework */,
-				5F5B16FB090E1FCE000734AB /* LJKit.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
 				5FBF478F08138A6400829423 /* Cocoa.framework */,
@@ -1555,14 +1555,14 @@
 		5FD243C50861F8BC0007E0C5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../frameworks",
+					"$(SRCROOT)/../LJKit/LJKit/build/Development",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1606,7 +1606,10 @@
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../frameworks",
+					"$(SRCROOT)/../LJKit/LJKit/build/Development",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1647,6 +1650,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
 					"$(SRCROOT)/../frameworks",
+					"$(SRCROOT)/../LJKit/LJKit/build/Development",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1687,6 +1691,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
 					"$(SRCROOT)/../frameworks",
+					"$(SRCROOT)/../LJKit/LJKit/build/Development",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
