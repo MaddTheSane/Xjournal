@@ -124,10 +124,6 @@
     }
 	
     // Sync the UI up to the state of the Entry object
-	if([[self entry] tags] != nil) {
-		[theTagField setStringValue: [[self entry] tags]];
-	}
-
     if([[self entry] currentMusic] != nil) {
         [theMusicField setStringValue: [[self entry] currentMusic]];
     } else {
@@ -336,9 +332,6 @@
         }
         [[self entry] setCurrentMusic: [[aNotification object] stringValue]];        
     }
-	else if([aNotification object] == theTagField) {
-		[[self entry] setTags: [[aNotification object] stringValue]];
-	}
 }
 
 // ----------------------------------------------------------------------------------------
