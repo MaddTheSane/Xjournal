@@ -14,6 +14,7 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 accountsView = NSView; 
+                checkFriendsGroupTable = NSTableView; 
                 friendsView = NSView; 
                 historyView = NSView; 
                 musicView = NSView; 

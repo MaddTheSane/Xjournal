@@ -12,6 +12,8 @@
 	IBOutlet NSView *historyView;
 	IBOutlet NSView *weblogsView;
 	IBOutlet NSView *softwareUpdateView;
+	
+	IBOutlet NSTableView *checkFriendsGroupTable;
 }
 
 - (void)switchViews:(NSToolbarItem *)item;

@@ -15,6 +15,11 @@
 																 options: NSKeyValueObservingOptionNew
 																 context: nil];
 	
+	[[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
+															  forKeyPath: @"values.XJCheckFriendsGroupType"
+																 options: NSKeyValueObservingOptionNew
+																 context: nil];
+	
 	return self;
 }
 
@@ -329,6 +334,10 @@
 			else
 				[[XJCheckFriendsSessionManager sharedManager] stopCheckingFriends];
 		}
+	}
+	
+	if([keyPath isEqualToString: @"values.XJCheckFriendsGroupType"]) {
+		[checkFriendsGroupTable reloadData];
 	}
 }
 @end
