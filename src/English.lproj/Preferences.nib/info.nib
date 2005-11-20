@@ -15,19 +15,15 @@
 		<key>214</key>
 		<string>443 407 612 356 0 0 1440 878 </string>
 		<key>233</key>
-		<string>444 402 620 375 0 0 1440 878 </string>
+		<string>439 397 620 375 0 0 1440 878 </string>
 		<key>7</key>
-		<string>446 350 606 469 0 0 1440 878 </string>
+		<string>384 147 606 469 0 0 1440 878 </string>
 	</dict>
 	<key>IBFramework Version</key>
 	<string>443.0</string>
 	<key>IBOpenObjects</key>
 	<array>
-		<integer>112</integer>
-		<integer>214</integer>
-		<integer>111</integer>
-		<integer>5</integer>
-		<integer>233</integer>
+		<integer>7</integer>
 	</array>
 	<key>IBSystem Version</key>
 	<string>8F46</string>

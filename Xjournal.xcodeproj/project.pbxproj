@@ -241,6 +241,8 @@
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
 		5FBE9E5E092E6A880071F534 /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBE9E4D092E6A880071F534 /* LJKit.framework */; };
 		5FBE9E5F092E6A920071F534 /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FBE9E4D092E6A880071F534 /* LJKit.framework */; };
+		5FBEA5F2093107170071F534 /* XJFontNameToDisplayVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */; };
+		5FBEA5F3093107170071F534 /* XJFontNameToDisplayVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */; };
 		5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF478F08138A6400829423 /* Cocoa.framework */; };
 		5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF479D08138DEE00829423 /* CoreServices.framework */; };
 		5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD248B408620D520007E0C5 /* XJKeyChain.h */; };
@@ -565,6 +567,8 @@
 		5F80118506BD528900789AD7 /* LJAccount-RetainDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-RetainDebug.m"; sourceTree = "<group>"; };
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
 		5FBE9E4D092E6A880071F534 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../LJKit/LJKit/build/Development/LJKit.framework; sourceTree = SOURCE_ROOT; };
+		5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJFontNameToDisplayVT.h; path = src/ValueTransformers/XJFontNameToDisplayVT.h; sourceTree = "<group>"; };
+		5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJFontNameToDisplayVT.m; path = src/ValueTransformers/XJFontNameToDisplayVT.m; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		5FBF479D08138DEE00829423 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJKeyChain.h; sourceTree = "<group>"; };
@@ -1002,6 +1006,8 @@
 			children = (
 				5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */,
 				5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */,
+				5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */,
+				5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */,
 			);
 			name = "Value Transformers";
 			sourceTree = "<group>";
@@ -1062,6 +1068,7 @@
 				5F5B0991092563E8005BB86B /* NSString+Templating.h in Headers */,
 				5F5468660928059300ABCAC9 /* XJApplication.h in Headers */,
 				5F5468C2092809EF00ABCAC9 /* XJSyndicationData.h in Headers */,
+				5FBEA5F2093107170071F534 /* XJFontNameToDisplayVT.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,6 +1336,7 @@
 				5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */,
 				5F5468650928059200ABCAC9 /* XJApplication.m in Sources */,
 				5F5468C3092809EF00ABCAC9 /* XJSyndicationData.m in Sources */,
+				5FBEA5F3093107170071F534 /* XJFontNameToDisplayVT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

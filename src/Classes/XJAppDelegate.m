@@ -20,6 +20,7 @@
 #import "XJPreferencesController.h"
 #import "XJSyndicationData.h"
 #import "NSString+Templating.h"
+#import "XJFontNameToDisplayVT.h"
 
 #define PREF_LJ_ACCOUNTS @"preferences.accounts"
 
@@ -53,6 +54,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 @implementation XJAppDelegate
 + (void)initialize {
 	[NSValueTransformer setValueTransformer: [[[XJMarkupRemovalVT alloc] init] autorelease] forName: @"XJMarkupRemoval"];
+	[NSValueTransformer setValueTransformer: [[[XJFontNameToDisplayVT alloc] init] autorelease] forName: @"XJFontNameToDisplay"];
 }
 
 - (void)awakeFromNib
@@ -448,6 +450,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 /* Called when the user clicks on the dock icon */
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
+	NSLog(@"applicationShouldHandleReopen");
+	[self hideDockBadge];
     // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
     // and we DON'T open a new window
     if([self showingDockBadge]) {
@@ -461,9 +465,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
         [[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
         return NO;
     }
-
-    // Otherwise, we do.
-	[self hideDockBadge];
+	
     return YES;
 }
 
