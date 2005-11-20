@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "XJStripedTableView.h"
 
-@interface KeyHandlingTableView : XJStripedTableView {}
+@interface KeyHandlingTableView : NSTableView {}
 
 @end
