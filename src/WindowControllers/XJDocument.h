@@ -144,6 +144,7 @@
 - (void)genericTagWrapWithStart: (NSString *)tagStart andEnd: (NSString *)tagEnd;
 - (void)insertStringAtSelection:(NSString *)newString;
 - (IBAction)insertLink:(id)sender;
+- (IBAction)pasteLink:(id)sender;
 - (IBAction)insertImage:(id)sender;
 - (IBAction)getImageDimensions:(id)sender;
 - (IBAction)insertBlockquote:(id)sender;

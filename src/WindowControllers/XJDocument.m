@@ -53,11 +53,11 @@
                                                  name: XJAccountRemovedNotification
                                                object:nil];
 	
-	[[NSDistributedNotificationCenter defaultCenter] addObserver: self
+	/*[[NSDistributedNotificationCenter defaultCenter] addObserver: self
 														selector: @selector(iTunesChangedTrack:)
 															name: @"com.apple.iTunes.playerInfo"
 														  object: nil
-											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
+											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];*/
 
     return self;
 }
@@ -218,7 +218,7 @@
 
 - (void)dealloc
 {
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver: self];
+	//[[NSDistributedNotificationCenter defaultCenter] removeObserver: self];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
     [entry release];
 	[toolbarItemCache release];
@@ -561,6 +561,18 @@
     }
 	
     [self startSheet: hrefSheet];
+}
+
+- (IBAction)pasteLink:(id)sender {
+	NSPasteboard *genPboard = [NSPasteboard generalPasteboard];
+	if([[genPboard types] containsObject: NSStringPboardType]) {
+		NSString *pasteboardString = [genPboard stringForType: NSStringPboardType];
+		[self genericTagWrapWithStart: [NSString stringWithFormat: @"<a href=\"%@\">", pasteboardString]
+							   andEnd: @"</a>"];
+	}
+	else {
+		NSBeep();	
+	}
 }
 
 - (IBAction)insertImage:(id)sender
