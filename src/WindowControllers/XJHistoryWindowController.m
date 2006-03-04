@@ -323,6 +323,11 @@ enum {
         NSCalendarDate *date;
         NSDictionary *tempDayCounts;
         
+        // Cocoa (erroneously) believes we might fall through the NS_DURING loop,
+        // and wants this variable 'nil'd so as to ensure it's not uninitialized memory.
+        //      --sparks
+        tempDayCounts = nil;
+        
         NS_DURING
             tempDayCounts = [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getDayCounts];
             [dayCounts release];
@@ -577,6 +582,11 @@ enum {
     NSString *html, *fullHTML;
     LJEntry *selectedEntry;
 
+    // There is a small chance (at least, in Cocoa's mind) we fall through the
+    // if tree below, and so selectedEntry should be nil'd to avoid using
+    // uninitialized memory. --sparks
+    selectedEntry = nil;
+
     // Check if the first column selection is a search result.  If it is,
     // show the search cancel button and put the search string in the field
 
@@ -791,7 +801,7 @@ enum {
     int numberDownloaded = 0;
 
     BOOL downloadFailed = NO;
-    NSException *exc;
+    NSException *exc = nil;
     
     NSEnumerator *years = [cal yearEnumerator];
     XJYear *currentYear;

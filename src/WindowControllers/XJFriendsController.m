@@ -893,10 +893,11 @@ enum {
     return @"";
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCellId forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
     if([aTableView isEqualTo: friendsTable]) {
         LJFriend *friend;
+        NSTextFieldCell *aCell = (NSTextFieldCell *)aCellId; /* We cast aCellId to NSTextFieldCell so it finds the proper method prototypes. --Sparks */
         
         if([self allFriendsIsSelected]) {
             friend = [friendTableCache objectAtIndex: rowIndex];

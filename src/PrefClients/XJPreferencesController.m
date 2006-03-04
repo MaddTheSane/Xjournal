@@ -114,7 +114,10 @@
     }
 	
     //make a temp pointer.
-    NSView *prefsView;
+    //
+    // ...and nil it, so we aren't potentially pointing to uninitialized memory 
+    // if we somehow fall out the bottom of that if tree below. ;) --sparks
+    NSView *prefsView = nil;
 	
     //set the title to the name of the Preference Item.
     [[self window] setTitle:sender];

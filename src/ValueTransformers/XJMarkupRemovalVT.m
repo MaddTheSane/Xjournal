@@ -20,12 +20,14 @@
 	return NO;
 }
 
-- (id)transformedValue:(id)value {
+- (id)transformedValue:(id)aValue {
 	NSString *result = nil;
 	
 	// Remaining code from cocoa.karelia.com - see below.
-	if (![value isEqualToString:@""])	// if empty string, don't do this!  You get junk.
+	if (![aValue isEqualToString:@""])	// if empty string, don't do this!  You get junk.
 	{
+        NSString *value = (NSString *)aValue; // We want to cast this to NSString to ensure we get the proper method prototypes. --Sparks
+
 		// HACK -- IF SHORT LENGTH, USE MACROMAN -- FOR SOME REASON UNICODE FAILS FOR "" AND "-" AND "CNN" ...
 		int encoding = ([value length] > 3) ? NSUnicodeStringEncoding : NSMacOSRomanStringEncoding;
 		NSAttributedString *attrString;

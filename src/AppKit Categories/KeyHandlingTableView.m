@@ -8,6 +8,14 @@
 
 #import "KeyHandlingTableView.h"
 
+/*
+ * Define our delegate methods, so as to avoid compiler assumptions about
+ * parameters and return values.
+ *   --sparks
+ */
+@interface KeyHandlingTableViewDelegate
+- (void) handleDeleteKeyInTableView:(NSTableView *) aTableView;
+@end
 
 @implementation KeyHandlingTableView
 
