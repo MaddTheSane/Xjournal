@@ -4,7 +4,7 @@
 //
 //  Created by Fraser Speirs on Mon Jun 30 2003.
 //  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
-//
+//  
 
 #import <Cocoa/Cocoa.h>
 
