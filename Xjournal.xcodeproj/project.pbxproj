@@ -65,8 +65,6 @@
 		1BBD891C04B01883003882CD /* KeyHandlingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD891204B01883003882CD /* KeyHandlingTableView.m */; };
 		1BBD892104B01883003882CD /* NSString+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */; };
 		1BBD892204B01883003882CD /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */; };
-		1BBD892304B01883003882CD /* XJStripedOutlineView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD891904B01883003882CD /* XJStripedOutlineView.h */; };
-		1BBD892404B01883003882CD /* XJStripedOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD891A04B01883003882CD /* XJStripedOutlineView.m */; };
 		1BBD893004B0188D003882CD /* XJBookmarkFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD892604B0188D003882CD /* XJBookmarkFolder.h */; };
 		1BBD893104B0188D003882CD /* XJBookmarkFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD892704B0188D003882CD /* XJBookmarkFolder.m */; };
 		1BBD893204B0188D003882CD /* XJBookmarkItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD892804B0188D003882CD /* XJBookmarkItem.h */; };
@@ -145,8 +143,6 @@
 		1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */; };
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
 		1BBFE83204C4978B002D9439 /* HistoryDownload.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BBFE83104C4978B002D9439 /* HistoryDownload.icns */; };
-		1BF27D3D04B024E200121863 /* XJStripedTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BF27D3B04B024E200121863 /* XJStripedTableView.h */; };
-		1BF27D3E04B024E200121863 /* XJStripedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF27D3C04B024E200121863 /* XJStripedTableView.m */; };
 		1BF27E9B04B02A7900121863 /* AddGroup.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E5904B02A7900121863 /* AddGroup.tiff */; };
 		1BF27E9C04B02A7900121863 /* addressbook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E5A04B02A7900121863 /* addressbook.tiff */; };
 		1BF27E9D04B02A7900121863 /* addToAddressBook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E5B04B02A7900121863 /* addToAddressBook.tiff */; };
@@ -376,8 +372,6 @@
 		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KeyHandlingTableView.m; path = "src/AppKit Categories/KeyHandlingTableView.m"; sourceTree = SOURCE_ROOT; };
 		1BBD891704B01883003882CD /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		1BBD891804B01883003882CD /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+Extensions.m"; path = "src/AppKit Categories/NSString+Extensions.m"; sourceTree = SOURCE_ROOT; };
-		1BBD891904B01883003882CD /* XJStripedOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJStripedOutlineView.h; sourceTree = "<group>"; };
-		1BBD891A04B01883003882CD /* XJStripedOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJStripedOutlineView.m; path = "src/AppKit Categories/XJStripedOutlineView.m"; sourceTree = SOURCE_ROOT; };
 		1BBD892604B0188D003882CD /* XJBookmarkFolder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJBookmarkFolder.h; sourceTree = "<group>"; };
 		1BBD892704B0188D003882CD /* XJBookmarkFolder.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJBookmarkFolder.m; path = src/Bookmarks/XJBookmarkFolder.m; sourceTree = SOURCE_ROOT; };
 		1BBD892804B0188D003882CD /* XJBookmarkItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJBookmarkItem.h; sourceTree = "<group>"; };
@@ -461,8 +455,6 @@
 		1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		1BBD8C9E04B01A8B003882CD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		1BBFE83104C4978B002D9439 /* HistoryDownload.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HistoryDownload.icns; path = src/Art/HistoryDownload.icns; sourceTree = "<group>"; };
-		1BF27D3B04B024E200121863 /* XJStripedTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJStripedTableView.h; sourceTree = "<group>"; };
-		1BF27D3C04B024E200121863 /* XJStripedTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJStripedTableView.m; path = "src/AppKit Categories/XJStripedTableView.m"; sourceTree = SOURCE_ROOT; };
 		1BF27E5904B02A7900121863 /* AddGroup.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddGroup.tiff; path = src/Art/AddGroup.tiff; sourceTree = "<group>"; };
 		1BF27E5A04B02A7900121863 /* addressbook.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = addressbook.tiff; path = src/Art/addressbook.tiff; sourceTree = "<group>"; };
 		1BF27E5B04B02A7900121863 /* addToAddressBook.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = addToAddressBook.tiff; path = src/Art/addToAddressBook.tiff; sourceTree = "<group>"; };
@@ -566,7 +558,7 @@
 		5F80118406BD528900789AD7 /* LJAccount-RetainDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJAccount-RetainDebug.h"; sourceTree = "<group>"; };
 		5F80118506BD528900789AD7 /* LJAccount-RetainDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-RetainDebug.m"; sourceTree = "<group>"; };
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
-		5FBE9E4D092E6A880071F534 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../LJKit/LJKit/build/Development/LJKit.framework; sourceTree = SOURCE_ROOT; };
+		5FBE9E4D092E6A880071F534 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = ../frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
 		5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJFontNameToDisplayVT.h; path = src/ValueTransformers/XJFontNameToDisplayVT.h; sourceTree = "<group>"; };
 		5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJFontNameToDisplayVT.m; path = src/ValueTransformers/XJFontNameToDisplayVT.m; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -660,10 +652,6 @@
 				1BBD891204B01883003882CD /* KeyHandlingTableView.m */,
 				1BBD891704B01883003882CD /* NSString+Extensions.h */,
 				1BBD891804B01883003882CD /* NSString+Extensions.m */,
-				1BBD891904B01883003882CD /* XJStripedOutlineView.h */,
-				1BBD891A04B01883003882CD /* XJStripedOutlineView.m */,
-				1BF27D3B04B024E200121863 /* XJStripedTableView.h */,
-				1BF27D3C04B024E200121863 /* XJStripedTableView.m */,
 				1BBD894D04B0189F003882CD /* WBSearchTextField.h */,
 				1BBD894E04B0189F003882CD /* WBSearchTextField.m */,
 			);
@@ -1022,7 +1010,6 @@
 				8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */,
 				1BBD891B04B01883003882CD /* KeyHandlingTableView.h in Headers */,
 				1BBD892104B01883003882CD /* NSString+Extensions.h in Headers */,
-				1BBD892304B01883003882CD /* XJStripedOutlineView.h in Headers */,
 				1BBD893004B0188D003882CD /* XJBookmarkFolder.h in Headers */,
 				1BBD893204B0188D003882CD /* XJBookmarkItem.h in Headers */,
 				1BBD893404B0188D003882CD /* XJBookmarkRoot.h in Headers */,
@@ -1055,7 +1042,6 @@
 				1BBD89FF04B0189F003882CD /* XJGlossaryWindowController.h in Headers */,
 				1BBD8A0104B0189F003882CD /* XJHistoryWindowController.h in Headers */,
 				1BBD8A0504B0189F003882CD /* XJPollEditorController.h in Headers */,
-				1BF27D3D04B024E200121863 /* XJStripedTableView.h in Headers */,
 				1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */,
 				1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */,
 				1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */,
@@ -1290,7 +1276,6 @@
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				1BBD891C04B01883003882CD /* KeyHandlingTableView.m in Sources */,
 				1BBD892204B01883003882CD /* NSString+Extensions.m in Sources */,
-				1BBD892404B01883003882CD /* XJStripedOutlineView.m in Sources */,
 				1BBD893104B0188D003882CD /* XJBookmarkFolder.m in Sources */,
 				1BBD893304B0188D003882CD /* XJBookmarkItem.m in Sources */,
 				1BBD893504B0188D003882CD /* XJBookmarkRoot.m in Sources */,
@@ -1322,7 +1307,6 @@
 				1BBD8A0004B0189F003882CD /* XJGlossaryWindowController.m in Sources */,
 				1BBD8A0204B0189F003882CD /* XJHistoryWindowController.m in Sources */,
 				1BBD8A0604B0189F003882CD /* XJPollEditorController.m in Sources */,
-				1BF27D3E04B024E200121863 /* XJStripedTableView.m in Sources */,
 				1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */,
 				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
