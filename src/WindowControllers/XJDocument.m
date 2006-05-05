@@ -940,7 +940,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
         textContent = [textContent translateLJCutCloseTag];
        
         if(![[self entry] optionPreformatted])
-            textContent = [textContent translateNewLines];
+            textContent = [textContent translateNewLinesOutsideTables];
         
         textContent = [NSString stringWithFormat: @"<html><head><style type=\"text/css\">.xjljcut { background-color: #CCFFFF; padding-top: 5px; padding-bottom: 5px }</style></head><body>%@</body</html>", textContent];
         [[htmlPreview mainFrame] loadHTMLString: textContent  baseURL: nil];

@@ -1,6 +1,6 @@
 //
 //  CCFSoftwareUpdate.h
-//  Xjournal
+//  Xjournal  
 //
 //  Created by Fraser Speirs on Wed Jul 02 2003.
 //  Copyright (c) 2003 __MyCompanyName__. All rights reserved.

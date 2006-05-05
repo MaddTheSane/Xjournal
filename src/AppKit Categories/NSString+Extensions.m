@@ -14,33 +14,6 @@
     [newString replaceOccurrencesOfString: @"\r" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     return [newString autorelease];
-
-	/*
-	 Here's a new algorithm:
-	 
-	 1. Find every instance of <table></table> pairs.
-	 2. Run the above conversions on the areas outside those ranges.
-	
-	NSScanner *scanner = [[NSScanner scannerWithString: self] retain];
-	while(![scanner isAtEnd]) {
-		NSString *temp;
-		if([scanner scanUpToString: @"<table" intoString: &temp]) {
-			[temp convertNewlinesToBR];
-			[newString appendString: temp];
-			temp = @"";
-			[newString appendString: @"<table"];
-			
-			[scanner scanUpToString: @">" intoString: &temp];
-			[newString appendString: temp];
-			[newString appendString: @">"];
-			
-			[scanner scanUpToString: @"</table>" intoString: &temp];
-			[newString appendString: temp];
-			[newString appendString: @"</table>"];
-		}
-	}
-	*/
-	return [newString autorelease];
 }
 
 - (NSString *)convertNewlinesToBR {
@@ -49,7 +22,7 @@
 	
     [newString replaceOccurrencesOfString: @"\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
-    [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
+//    [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     return [newString autorelease];
 }
 
@@ -104,6 +77,119 @@
     // New style
     //<lj-phonepost journalid='127645' dpid='1498' />
     
+}
+
+/*
+ http://connectedflow.com:9010/xjournal/ticket/72
+ Ticket 72:
+ tables render improperly
+ 
+ The solution to the issue of not cleaning CRs in tables becomes tricky when you remember that
+ table tags can be nested. Therefore you can't simply wait for the next </table>
+ 
+ This algorithm basically kills all CR to <br /> conversion within the scope of <table> tags.
+ 
+ It does so by blowing up the string into an array and then tracking 'table tag depth'
+ 
+ The function will ignore the table tags if there is a misbalance of table tags.
+ */
+- (NSString *)translateNewLinesOutsideTables
+{
+	int		tableDepth = 0;
+	int		sectionCount = 0;
+	BOOL	error = NO;
+
+	NSString 		*loadString = [NSString stringWithString:self];
+	NSArray 		*firstArray = [loadString componentsSeparatedByString:@"<table"];
+	NSMutableArray	*returnBuildArray = [NSMutableArray arrayWithCapacity:[firstArray count]];
+	NSString 		*finishedWork;
+	NSString 		*textBlob;
+	NSEnumerator	*dataWalker;
+	NSString		*measureString;	// this is an annoying string to type cast array objects so I don't get warnings.
+	
+	// if we find no tables then just convert the whole thing
+	if ([firstArray count] == 1) {
+		return [self translateNewLines];
+	}
+	
+	// If first element = 0 length, text begins with <table, so discard first element. It is empty anyway
+	measureString = [firstArray objectAtIndex:0];
+	if ([measureString length] == 0) {
+		NSMutableArray *choppingArrray;
+
+		[returnBuildArray addObject:@""];
+		tableDepth ++;
+		choppingArrray = [NSMutableArray  arrayWithArray:firstArray];
+		[choppingArrray removeObjectAtIndex:0];
+		firstArray = [NSArray arrayWithArray:choppingArrray];
+	}
+	
+	dataWalker = [firstArray objectEnumerator];
+	while (textBlob = [dataWalker nextObject]) {
+		NSArray			*secondArray;
+		int				sACount;
+		NSMutableArray	*secondBuildArray;
+		sectionCount++;
+		if ((sectionCount == [firstArray count]) && ([textBlob length] == 0)) {
+			NSLog(@"Error: Mismatched <table> - </table> count! Too many <table>");
+			error = YES;
+			break;
+		}
+		
+		secondArray = [textBlob componentsSeparatedByString:@"/table>"];
+		sACount = [secondArray count];
+		secondBuildArray = [NSMutableArray arrayWithArray:secondArray];
+
+		if (sACount > tableDepth) {
+			NSString *correctedSection;
+
+			if ((sACount - tableDepth) > 1) {
+				NSLog(@"Error: Mismatched <table> - </table> count! Too many </table>");
+				error = YES;
+				break;
+			}
+			
+			measureString  = [secondArray lastObject];
+			if ([measureString length] == 0) {
+				// By not dropping this section we have [foo, nil]
+				// the array builder will reinsert /table> leaving us with:
+				// foo/table>nil
+			} else {
+				// We have a section that should be converted
+				correctedSection = [[secondArray lastObject] translateNewLines];
+				[secondBuildArray removeLastObject];
+				[secondBuildArray addObject:correctedSection];				
+			}
+			
+			if (sACount > 1) {
+				[returnBuildArray addObject:[secondBuildArray componentsJoinedByString:@"/table>"]];
+			} else {
+				[returnBuildArray addObject:correctedSection];
+			}
+		} else {
+			if (sACount > 1) {
+				[returnBuildArray addObject:[secondBuildArray componentsJoinedByString:@"/table>"]];
+			} else {
+				[returnBuildArray addObject:textBlob];
+			}
+		}
+		tableDepth -= ([secondArray count] - 1);
+		
+		tableDepth++;
+	}
+	
+	
+	if (error) {
+		finishedWork = [self translateNewLines];
+	} else {
+		if ([returnBuildArray count] > 1) {
+			finishedWork = [returnBuildArray componentsJoinedByString:@"<table"];
+		} else {
+			finishedWork = loadString;
+		}
+	}
+	
+	return finishedWork;
 }
 @end
 

@@ -634,7 +634,7 @@ enum {
 		html = [html translateLJPhonePostWithItemURL: [[selectedEntry readCommentsHttpURL] absoluteString] userName: username];
 		
 		if(![selectedEntry optionPreformatted])
-			html = [html translateNewLines];
+			html = [html translateNewLinesOutsideTables];
 		
 		fullHTML = [[selectedEntry metadataHTML] stringByAppendingString: html];
 		
