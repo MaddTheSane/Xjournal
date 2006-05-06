@@ -53,16 +53,19 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 @implementation XJAppDelegate
 + (void)initialize {
+	// Register user defaults
+	NSDictionary *defs = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"ApplicationDefaults" ofType: @"plist"]];
+	// You have to do both of the following, apparently
+	// http://www.cocoabuilder.com/archive/message/cocoa/2004/4/27/105492
+	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defs];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defs];
+		
 	[NSValueTransformer setValueTransformer: [[[XJMarkupRemovalVT alloc] init] autorelease] forName: @"XJMarkupRemoval"];
 	[NSValueTransformer setValueTransformer: [[[XJFontNameToDisplayVT alloc] init] autorelease] forName: @"XJFontNameToDisplay"];
 }
 
 - (void)awakeFromNib
 {	
-	// Register user defaults
-	NSDictionary *defs = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"ApplicationDefaults" ofType: @"plist"]];
-	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defs];
-	
     /* To find out when the login process will start, so we can show the progress dialog */
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(loginStarted:)
