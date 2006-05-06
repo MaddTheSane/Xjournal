@@ -223,6 +223,10 @@
     [entry release];
 	[toolbarItemCache release];
 	[iTMSLinks release];
+	
+	[self setFriendArray: nil];
+    [self setJoinedCommunityArray: nil];
+	
     [super dealloc];
 }
 
@@ -787,25 +791,26 @@
 - (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
     LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
+	
 
     if(aComboBox == user_nameCombo) {
-        return [[acct friendArray] count];
+		[self setFriendArray:[acct friendArray]];
+		return [[self friendArray] count];
     }
     else if(aComboBox == comm_nameCombo) {
-        return [[acct joinedCommunityArray] count];
+		[self setJoinedCommunityArray:[acct joinedCommunityArray]];
+		return [[self joinedCommunityArray] count];
     }
 
     return 0;
 }
 
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(int)index
-{
-    LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
-    
+{    
     if(aComboBox == user_nameCombo)
-        return [[[acct friendArray] objectAtIndex: index] username];
+        return [[[self friendArray] objectAtIndex: index] username];
     else if(aComboBox == comm_nameCombo) {
-        return [[[acct joinedCommunityArray] objectAtIndex: index] username];
+        return [[[self joinedCommunityArray] objectAtIndex: index] username];
     }
     return @"";
 }
@@ -992,6 +997,35 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     [entry release];
     entry = [anEntry retain];
 }
+
+- (NSArray *) friendArray
+{
+    return [[friendArray retain] autorelease]; 
+}
+
+- (void) setFriendArray: (NSArray *) newFriendArray
+{
+    if (friendArray != newFriendArray) {
+        [newFriendArray retain];
+        [friendArray release];
+        friendArray = newFriendArray;
+    }
+}
+
+- (NSArray *) joinedCommunityArray
+{
+    return [[joinedCommunityArray retain] autorelease]; 
+}
+
+- (void) setJoinedCommunityArray: (NSArray *) newJoinedCommunityArray
+{
+    if (joinedCommunityArray != newJoinedCommunityArray) {
+        [newJoinedCommunityArray retain];
+        [joinedCommunityArray release];
+        joinedCommunityArray = newJoinedCommunityArray;
+    }
+}
+
 @end
 
 #pragma mark -

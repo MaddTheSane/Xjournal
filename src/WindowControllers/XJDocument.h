@@ -108,6 +108,12 @@
     NSString *iTMSLinks;
 
 	XJMusic *currentMusic;
+    
+    // ----------------------------------------------------------------------------------------
+    // user lookup speeding
+    // ----------------------------------------------------------------------------------------
+    NSArray *friendArray;
+    NSArray *joinedCommunityArray;
 }
 
 - (id)initWithEntry: (LJEntry *)entry;
@@ -177,8 +183,15 @@
 - (LJEntry *)entry;
 - (void)setEntry:(LJEntry *)anEntry;
 
+- (NSArray *) friendArray;
+- (void) setFriendArray: (NSArray *) newFriendArray;
+
+- (NSArray *) joinedCommunityArray;
+- (void) setJoinedCommunityArray: (NSArray *) newJoinedCommunityArray;
+
 	// Music
 - (XJMusic *)currentMusic;
 - (void)setCurrentMusic:(XJMusic *)aCurrentMusic;
+
 
 @end
