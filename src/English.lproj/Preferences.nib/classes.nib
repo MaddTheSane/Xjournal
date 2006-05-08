@@ -9,7 +9,13 @@
             SUPERCLASS = NSView; 
         }, 
         {
-            ACTIONS = {changeFont = id; changeTextFont = id; checkNow = id; openAccountWindow = id; }; 
+            ACTIONS = {
+                changeFont = id; 
+                changeTextFont = id; 
+                checkNow = id; 
+                openAccountWindow = id; 
+                setSelectedFriendsSound = id; 
+            }; 
             CLASS = XJPreferencesController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
@@ -19,6 +25,7 @@
                 historyView = NSView; 
                 musicView = NSView; 
                 softwareUpdateView = NSView; 
+                soundSelection = NSPopUpButton; 
                 weblogsView = NSView; 
             }; 
             SUPERCLASS = NSWindowController; 

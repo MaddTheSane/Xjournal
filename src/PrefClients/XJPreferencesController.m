@@ -25,6 +25,8 @@
 
 - (void)windowDidLoad
 {
+	[self buildSoundMenu];
+	
     NSToolbarItem *item;
     items = [[NSMutableDictionary alloc] init];
     
@@ -240,9 +242,45 @@
 
 // ----------------------------------------------------------------------------------------
 #pragma mark -
+#pragma mark Sounds Popup Menu
+// ----------------------------------------------------------------------------------------
+- (void)buildSoundMenu
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSEnumerator *locs = [[NSArray arrayWithObjects: @"/System/Library/Sounds", [@"~/Library/Sounds" stringByExpandingTildeInPath], nil] objectEnumerator];
+    NSString *path;
+
+    NSMenu *menu = [[NSMenu alloc] init];
+    
+    while(path = [locs nextObject]) {
+        NSDirectoryEnumerator *dEnum = [manager enumeratorAtPath: path];
+        NSString *file, *baseName;
+
+        while(file = [dEnum nextObject]) {
+            NSMenuItem *item;
+            if(![file hasPrefix: @"."]) {
+                baseName = [[[file lastPathComponent] componentsSeparatedByString: @"."] objectAtIndex: 0];
+                item = [[NSMenuItem alloc] initWithTitle: baseName action: @selector(setSelectedFriendsSound:) keyEquivalent: @""];
+                [item setTarget: self];
+                [item setRepresentedObject: [NSString stringWithFormat: @"%@/%@", path,file]];
+                [menu addItem: item];
+                [item release];
+            }
+        }
+    }
+    [soundSelection setMenu: menu];
+    [menu release];
+}
+
+- (IBAction)setSelectedFriendsSound:(id)sender {
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [sender representedObject] forKey: @"XJCheckFriendsAlertSound"];
+	[[[[NSSound alloc] initWithContentsOfFile: [sender representedObject] byReference: NO] autorelease] play];
+}
+
+// ----------------------------------------------------------------------------------------
+#pragma mark -
 #pragma mark NSTableDataSource - friend group security
 // ----------------------------------------------------------------------------------------
-
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];

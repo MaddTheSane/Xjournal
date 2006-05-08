@@ -14,6 +14,7 @@
 	IBOutlet NSView *softwareUpdateView;
 	
 	IBOutlet NSTableView *checkFriendsGroupTable;
+	IBOutlet NSPopUpButton *soundSelection;
 }
 
 - (void)switchViews:(NSToolbarItem *)item;
@@ -21,4 +22,6 @@
 - (void)changeFont:(id)sender;
 - (IBAction)openAccountWindow: (id)sender;
 - (IBAction)checkNow: (id)sender;
+- (void)buildSoundMenu;
+- (IBAction)setSelectedFriendsSound:(id)sender;
 @end
