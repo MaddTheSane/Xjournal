@@ -17,13 +17,11 @@
 {
 	self == [super initWithWindowNibName: @"GlossaryWindow"];
     if(self) {
-		if([self fileExists: kGlossaryFilePath])
-			[self readGlossaryFile];
-		else {
-			[self setGlossary: [NSMutableArray array]];
-			[[self mutableArrayValueForKey: @"glossary"] addObject: [NSMutableDictionary dictionaryWithObject: @"hello world" forKey: @"text"]];
-		}
-        [[self window] setFrameAutosaveName: kGlossaryAutosaveName];
+		if(![self fileExists: kGlossaryFilePath])
+			[self writeExampleGlossaryFile];
+			
+		[self readGlossaryFile];
+		[[self window] setFrameAutosaveName: kGlossaryAutosaveName];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(applicationWillTerminate:)
                                                      name: NSApplicationWillTerminateNotification
@@ -79,7 +77,6 @@
 	NSMutableArray *tempGloss = [NSMutableArray array];
 	
 	NSArray *file = [NSArray arrayWithContentsOfFile: kGlossaryFilePath];
-	NSLog([file description]);
 	NSEnumerator *en = [file objectEnumerator];
 	NSDictionary *item;
 	while(item = [en nextObject]) {
@@ -99,7 +96,7 @@
 #warning Still needs work!
 - (void)writeExampleGlossaryFile
 {
-    NSString *exPath = [[NSBundle mainBundle] pathForResource: @"SampleFile" ofType: @"txt"];
+    NSString *exPath = [[NSBundle mainBundle] pathForResource: @"ExampleGlossary" ofType: @"plist"];
 	NSFileManager *man = [NSFileManager defaultManager];
 	[man copyPath: exPath toPath: kGlossaryFilePath handler: nil];
 }
