@@ -81,7 +81,6 @@
 	NSDictionary *item;
 	while(item = [en nextObject]) {
 		NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
-		NSLog([tempDict description]);
 		[tempDict addEntriesFromDictionary: item];
 		[tempGloss addObject: tempDict];
 	}
