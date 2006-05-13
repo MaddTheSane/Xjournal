@@ -1264,7 +1264,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/tcsh;
-			shellScript = "echo \"Running...\"\ncd .\necho `pwd`\nrm -fr frameworks\nunzip -q frameworks.zip\nrm -fr \"__MACOSX\"\n";
+			shellScript = "echo \"Running Framework set up...\"\ncd .\n# echo `pwd`\necho \"Removing old Frameworks folder...\"\nrm -fr frameworks\necho \"Inflating current Frameworks archive...\"\nunzip -q frameworks.zip\necho \"Cleaning up inflation...\"\nrm -fr \"__MACOSX\"\n";
 		};
 		5F0C941C06BC04EA0082A48B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
