@@ -4,6 +4,7 @@
 #import "LJPollQuestion.h"
 #import "LJPollTextEntryQuestion.h"
 #import "LJPollScaleQuestion.h"
+#import <OgreKit/OgreKit.h>
 
 #define kMultipleAnswerPasteboardType @"kMultipleAnswerPasteboardType"
 #define kPollQuestionPasteboardType @"kPollQuestionPasteboardType"
@@ -47,7 +48,8 @@
 
 - (IBAction)setPollName: (id)sender
 {
-    [thePoll setName: [sender stringValue]];
+	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: @"\""];
+    [thePoll setName: [regex replaceAllMatchesInString: [sender stringValue] withString: @"&quot;"]];
     [self updateDrawer];
 }
 
