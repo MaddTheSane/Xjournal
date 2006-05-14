@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>LJFriend</title>
+	<meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff"><h1><font face="Geneva,Arial,Helvtica">LJFriend</font></h1><hr><br>
+<h2>Abstract</h2>
+Represents a LiveJournal friend.
+ <hr><br><h2>Methods</h2>
+
+<h3><a name="accountStatus">accountStatus</a></h3>
+<b>Abstract:</b> Obtain the account status of the receiver.
+This property is blank if the receiver has normal active status.
+Other possible values are are "deleted", "suspended", and "purged". 
+ 
+<blockquote><pre><tt>- (NSString *)<B>accountStatus;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="accountType">accountType</a></h3>
+<b>Abstract:</b> Obtain the account type of the receiver.
+
+<blockquote><pre><tt>- (NSString *)<B>accountType;</B> </tt><br>
+</pre></blockquote>
+<p>This property is blank if the receiver represents a regular user account.
+If the receiver is a community, this will return the string "community".
+ </p>
+<hr>
+
+<h3><a name="backgroundColor">backgroundColor</a></h3>
+<b>Abstract:</b> Obtain the background color of the receiver.
+ 
+<blockquote><pre><tt>- (NSColor *)<B>backgroundColor;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="backgroundColorForYou">backgroundColorForYou</a></h3>
+<blockquote><pre><tt>- (NSColor *)<B>backgroundColorForYou;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> The color this friend uses for your background.
+ 
+<hr>
+
+<h3><a name="birthDate">birthDate</a></h3>
+<b>Abstract:</b> Obtain the birthdate of the receiver.
+ 
+<blockquote><pre><tt>- (NSCalendarDate *)<B>birthDate;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="foregroundColor">foregroundColor</a></h3>
+<b>Abstract:</b> Obtain the foreground color of the receiver.
+ 
+<blockquote><pre><tt>- (NSColor *)<B>foregroundColor;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="foregroundColorForYou">foregroundColorForYou</a></h3>
+<blockquote><pre><tt>- (NSColor *)<B>foregroundColorForYou;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> The color this friend uses for your foreground.
+ 
+<hr>
+
+<h3><a name="friendship">friendship</a></h3>
+<b>Abstract:</b> Returns the type of friendship for this friend.
+
+<blockquote><pre><tt>- (int)<B>friendship;</B> </tt><br>
+</pre></blockquote>
+<p>Returns the direction of friendship with this user.  If you list the receiver
+as a friend, the friendship is outgoing.  If the receiver lists you as a
+friend, the friendship is incoming.  If both cases are true, the friendship is
+mutual.  The result is one of the Friendship constants defined in the LJFriend
+header.
+ </p>
+<hr>
+
+<h3><a name="fullname">fullname</a></h3>
+<b>Abstract:</b> Obtain the full name of the receiver.
+
+<blockquote><pre><tt>- (NSString *)<B>fullname;</B> </tt><br>
+</pre></blockquote>
+<p>Returns the receiver's full name, as reported by the server.  If not
+available, this method returns the receiver's username.
+ </p>
+<hr>
+
+<h3><a name="modifiedDate">modifiedDate</a></h3>
+<b>Abstract:</b> Returns the receiver's modification date.
+
+<blockquote><pre><tt>- (NSDate *)<B>modifiedDate;</B> </tt><br>
+</pre></blockquote>
+<p>This is the date that the receiver was most recently changed in some way.
+If this date is later than the last time the account's friends have been
+downloaded then its changes will be committed next time
+[LJAccount uploadFriends] is called.
+ </p>
+<hr>
+
+<h3><a name="recentEntriesHttpURL">recentEntriesHttpURL</a></h3>
+<b>Abstract:</b> Returns the URL of the receiver's recent entries view.
+ 
+<blockquote><pre><tt>- (NSURL *)<B>recentEntriesHttpURL;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="setBackgroundColor:">setBackgroundColor:</a></h3>
+<b>Abstract:</b> Sets the background color of the receiver.
+ 
+<blockquote><pre><tt>- (void)<B>setBackgroundColor:</B>(NSColor *)<I>bgColor;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="setForegroundColor:">setForegroundColor:</a></h3>
+<b>Abstract:</b> Sets the foreground color of the receiver.
+ 
+<blockquote><pre><tt>- (void)<B>setForegroundColor:</B>(NSColor *)<I>fgColor;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="userProfileHttpURL">userProfileHttpURL</a></h3>
+<b>Abstract:</b> Returns the URL of the receiver's user profile page.
+ 
+<blockquote><pre><tt>- (NSURL *)<B>userProfileHttpURL;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="username">username</a></h3>
+<b>Abstract:</b> Obtain the username of the receiver.
+ 
+<blockquote><pre><tt>- (NSString *)<B>username;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<p>(Last Updated 2/17/2003)
+</p></body></html>

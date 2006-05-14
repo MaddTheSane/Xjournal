@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>LJServer</title>
+	<meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff"><h1><font face="Geneva,Arial,Helvtica">LJServer</font></h1><hr><br>
+<h2>Abstract</h2>
+Represents a LiveJournal server.
+<h2>Discussion</h2>
+This class represents the LiveJournal server on the network.  LJServer does
+all the work of translating messages into HTTP traffic and back.
+ <hr><br><h2>Methods</h2>
+
+<h3><a name="getReplyForMode:parameters:">getReplyForMode:parameters:</a></h3>
+<b>Abstract:</b> Sends a message to the server and returns the reply.
+
+<blockquote><pre><tt>- (NSDictionary *)<B>getReplyForMode:</B>(NSString *)<I>mode</I> <B>parameters:</B>(NSDictionary *)<I>parameters;</I> </tt><br>
+</pre></blockquote>
+<p>This method takes a mode and a set of variable parameters, encodes them as an HTTP
+POST request, sends them to the server, parses the reply, and returns it as a
+dictionary.  If a network error occurs, nil is returned.  This method is only concerned
+with network transport.  If the LiveJournal server returns an error, this method
+will not detect it.  You should use the corresponding method in LJAccount instead.
+ </p>
+<hr>
+
+<h3><a name="hostname">hostname</a></h3>
+<b>Abstract:</b> Obtain the hostname of the receiver.
+ 
+<blockquote><pre><tt>- (NSURL *)<B>url;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="isUsingFastServers">isUsingFastServers</a></h3>
+<b>Abstract:</b> Determine if fast server access is enabled.
+ 
+<blockquote><pre><tt>- (BOOL)<B>isUsingFastServers;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="proxyURL">proxyURL</a></h3>
+<b>Abstract:</b> Obtain the URL of the proxy server.
+
+<blockquote><pre><tt>- (NSURL *)<B>proxyURL;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> The URL of a the proxy server, or nil if proxy is disabled.
+ 
+<hr>
+
+<h3><a name="setProxyURL:">setProxyURL:</a></h3>
+<b>Abstract:</b> Set the URL of a proxy server.
+
+<blockquote><pre><tt>- (void)<B>setProxyURL:</B>(NSURL *)<I>url;</I> </tt><br>
+</pre></blockquote>
+<p>To enable proxy support, call this method with the URL of the proxy server.
+To disable proxy support, set proxyHostname to nil.
+ </p>
+<hr>
+
+<h3><a name="setURL:">setURL:</a></h3>
+<b>Abstract:</b> Set the URL of the host to communicate with.
+
+<blockquote><pre><tt>- (void)<B>setURL:</B>(NSURL *)<I>url;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>url</tt></td><td>The URL of the host to connect to.</td></tr>
+</table>
+</blockquote>
+<hr>
+<p>(Last Updated 2/17/2003)
+</p></body></html>

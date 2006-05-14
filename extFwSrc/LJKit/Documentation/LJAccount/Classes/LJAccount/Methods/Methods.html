@@ -1,0 +1,654 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>Methods</title>
+	<meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff"><h1><font face="Geneva,Arial,Helvtica">Methods</font></h1><hr><br>
+<a name="//apple_ref/occ/clm/LJAccount/accountWithIdentifier:"></a>
+<h3><a name="accountWithIdentifier:">accountWithIdentifier:</a></h3>
+<b>Abstract:</b> Find the account with the given identifier.
+
+<blockquote><pre><tt>+ (LJAccount *)<B>accountWithIdentifier:</B>(NSString *)<I>identifier;</I> </tt><br>
+</pre></blockquote>
+<p>The LJAccount class keeps track of all active account objects.
+Using this method, you can obtain a reference to the account
+object with the given identifier.  If no matching account is
+found, returns nil.
+ </p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>identifier</tt></td><td>The identifier for the desired account object.</td></tr>
+</table>
+</blockquote>
+<b>Result:</b> An account reference if found, nil otherwise.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/addFriend:"></a>
+<h3><a name="addFriend:">addFriend:</a></h3>
+<b>Abstract:</b> Add a friend to the receiver's friends list.
+ 
+<blockquote><pre><tt>- (LJFriend *)<B>addFriendWithUsername:</B>(NSString *)<I>username;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<a name="//apple_ref/occ/clm/LJAccount/allAccounts"></a>
+<h3><a name="allAccounts">allAccounts</a></h3>
+<b>Abstract:</b> Obtain an array containing all active account objects.
+
+<blockquote><pre><tt>+ (NSArray *)<B>allAccounts;</B> </tt><br>
+</pre></blockquote>
+<p>The LJAccount class keeps track of all active account objects.
+This method returns the list in the form of an NSArray.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/customInfo"></a>
+<h3><a name="customInfo">customInfo</a></h3>
+<b>Abstract:</b> Returns a custom info dictionary for this account.
+
+<blockquote><pre><tt>- (NSMutableDictionary *)<B>customInfo;</B> </tt><br>
+</pre></blockquote>
+<p>Returns a mutable dictionary object you can use to store whatever
+information you would like to attach to this account.  All keys and
+values must support the NSCoding protocol.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/defaultJournal"></a>
+<h3><a name="defaultJournal">defaultJournal</a></h3>
+<b>Abstract:</b> Obtain the user's default journal.
+
+<blockquote><pre><tt>- (LJJournal *)<B>defaultJournal;</B> </tt><br>
+</pre></blockquote>
+<p>A convenience method to return the user's default journal (their own).
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/defaultUserPictureURL"></a>
+<h3><a name="defaultUserPictureURL">defaultUserPictureURL</a></h3>
+<b>Abstract:</b> Returns the URL of the default user picture.
+
+<blockquote><pre><tt>- (NSURL *)<B>defaultUserPictureURL;</B> </tt><br>
+</pre></blockquote>
+<p>This property is preserved during archiving.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/delegate"></a>
+<h3><a name="delegate">delegate</a></h3>
+<b>Abstract:</b> Returns the receiver's delegate.
+ 
+<blockquote><pre><tt>- (id)<B>delegate;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/downloadFriends"></a>
+<h3><a name="downloadFriends">downloadFriends</a></h3>
+<b>Abstract:</b> Download friends information from the server.
+
+<blockquote><pre><tt>- (void)<B>downloadFriends;</B> </tt><br>
+</pre></blockquote>
+<p>Downloads the friends associated with the receiver.  This method causes
+any changes made to LJFriend objects locally to be discarded.  You can
+access the LJFriends objects using the friendSet or friendArray messages.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/downloadGroups"></a>
+<h3><a name="downloadGroups">downloadGroups</a></h3>
+<b>Abstract:</b> Download friend group information from the server.
+
+<blockquote><pre><tt>- (void)<B>downloadGroups;</B> </tt><br>
+</pre></blockquote>
+<p>Downloads the friend groups associated with the receiver.  This method
+causes any changes made to LJGroup objects locally to be discarded.  You
+can access the LJGroup objects using the groupSet or groupArray messages.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendArray"></a>
+<h3><a name="friendArray">friendArray</a></h3>
+<b>Abstract:</b> Obtain the friends associated with the receiver.
+
+<blockquote><pre><tt>- (NSArray *)<B>friendArray;</B> </tt><br>
+</pre></blockquote>
+<p>Returns a sorted NSArray containing the user's friends in the form of LJFriend
+objects.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendEnumerator"></a>
+<h3><a name="friendEnumerator">friendEnumerator</a></h3>
+<b>Abstract:</b> Enumerate the friends associated with the receiver.
+
+<blockquote><pre><tt>- (NSEnumerator *)<B>friendEnumerator;</B> </tt><br>
+</pre></blockquote>
+<p>Returns an NSEnumerator which traverses the user's friends, returning LJFriend
+objects.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendNamed:"></a>
+<h3><a name="friendNamed:">friendNamed:</a></h3>
+<b>Abstract:</b> Returns the friend with the given name.
+
+<blockquote><pre><tt>- (LJFriend *)<B>friendNamed:</B>(NSString *)<I>username;</I> </tt><br>
+</pre></blockquote>
+<p>This method searches both the friends and friend-ofs for the account.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendOfArray"></a>
+<h3><a name="friendOfArray">friendOfArray</a></h3>
+<b>Abstract:</b> Returns the friends which list the receiver as a friend.
+
+<blockquote><pre><tt>- (NSArray *)<B>friendOfArray;</B> </tt><br>
+</pre></blockquote>
+<p>This property is preserved during archiving.
+</p>
+<b>Result:</b> A sorted NSArray of LJFriend objects.
+ 
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendOfEnumerator"></a>
+<h3><a name="friendOfEnumerator">friendOfEnumerator</a></h3>
+<b>Abstract:</b> Enumerate the "friend of" users for the receiver.
+
+<blockquote><pre><tt>- (NSEnumerator *)<B>friendOfEnumerator;</B> </tt><br>
+</pre></blockquote>
+<p>Returns an NSEnumerator which traverses users who list the receiver as a
+friend, returning LJFriend objects.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendOfSet"></a>
+<h3><a name="friendOfSet">friendOfSet</a></h3>
+<b>Abstract:</b> Returns the friends which list the receiver as a friend.
+
+<blockquote><pre><tt>- (NSSet *)<B>friendOfSet;</B> </tt><br>
+</pre></blockquote>
+<p>This property is preserved during archiving.
+</p>
+<b>Result:</b> An NSSet of LJFriend objects.
+ 
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/friendSet"></a>
+<h3><a name="friendSet">friendSet</a></h3>
+<b>Abstract:</b> Obtain the friends associated with the receiver.
+
+<blockquote><pre><tt>- (NSSet *)<B>friendSet;</B> </tt><br>
+</pre></blockquote>
+<p>Returns an NSSet containing the user's friends in the form of LJFriend objects.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/fullname"></a>
+<h3><a name="fullname">fullname</a></h3>
+<b>Abstract:</b> Returns full name associated with the receiver.
+
+<blockquote><pre><tt>- (NSString *)<B>fullname;</B> </tt><br>
+</pre></blockquote>
+<p>Returns the user's long name as reported by the server.  If the receiver
+has never been logged in, this method will return the username.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/getReplyForMode:parameters:"></a>
+<h3><a name="getReplyForMode:parameters:">getReplyForMode:parameters:</a></h3>
+<b>Abstract:</b> Sends a request to the LiveJournal server.
+
+<blockquote><pre><tt>- (NSDictionary *)<B>getReplyForMode:</B>(NSString *)<I>mode</I> <B>parameters:</B>(NSDictionary *)<I>parameters;</I> </tt><br>
+</pre></blockquote>
+<p>Sends a message to the LiveJournal server and returns the reply.
+This message blocks until the message is sent over the network and
+a reply is received.
+<br><br>
+Most LiveJournal protocol modes are handled by other classes in the
+LJKit, so client programs won't need to call this method directly.
+<br><br>
+If an error occurs, an exception is raised.
+ </p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>mode</tt></td><td>The protocol mode to use.</td></tr>
+<tr><td align="center"><tt>parameters</tt></td><td>A set of variables and values to send to the server.</td></tr>
+</table>
+</blockquote>
+<b>Result:</b> A set of variables and values received from the server.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupArray"></a>
+<h3><a name="groupArray">groupArray</a></h3>
+<b>Abstract:</b> Obtain the friend groups associated with the receiver.
+
+<blockquote><pre><tt>- (NSArray *)<B>groupArray;</B> </tt><br>
+</pre></blockquote>
+<p>Returns a sorted NSArray containing the user's friend groups in the form of
+LJGroup objects.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupArrayFromMask:"></a>
+<h3><a name="groupArrayFromMask:">groupArrayFromMask:</a></h3>
+<blockquote><pre><tt>- (NSArray *)<B>groupArrayFromMask:</B>(unsigned int)<I>groupMask;</I> </tt><br>
+</pre></blockquote>
+<p>Returns an array of the groups defined by the given bitmask.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupEnumerator"></a>
+<h3><a name="groupEnumerator">groupEnumerator</a></h3>
+<b>Abstract:</b> Enumerate the groups associated with the receiver.
+
+<blockquote><pre><tt>- (NSEnumerator *)<B>groupEnumerator;</B> </tt><br>
+</pre></blockquote>
+<p>Returns an NSEnumerator which traverses the user's groups, returning
+LJGroup objects.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupMaskFromArray:"></a>
+<h3><a name="groupMaskFromArray:">groupMaskFromArray:</a></h3>
+<blockquote><pre><tt>- (unsigned int)<B>groupMaskFromArray:</B>(NSArray *)<I>groupArray;</I> </tt><br>
+</pre></blockquote>
+<p>Returns the bitmask which defines the given array of groups.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupMaskFromSet:"></a>
+<h3><a name="groupMaskFromSet:">groupMaskFromSet:</a></h3>
+<blockquote><pre><tt>- (unsigned int)<B>groupMaskFromSet:</B>(NSSet *)<I>groupSet;</I> </tt><br>
+</pre></blockquote>
+<p>Returns the bitmask which defines the given set of groups.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupSet"></a>
+<h3><a name="groupSet">groupSet</a></h3>
+<b>Abstract:</b> Obtain the friend groups associated with the receiver.
+
+<blockquote><pre><tt>- (NSSet *)<B>groupSet;</B> </tt><br>
+</pre></blockquote>
+<p>Returns an NSSet containing the user's friend groups in the form of LJGroup
+objects.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/groupSetFromMask:"></a>
+<h3><a name="groupSetFromMask:">groupSetFromMask:</a></h3>
+<blockquote><pre><tt>- (NSSet *)<B>groupSetFromMask:</B>(unsigned int)<I>groupMask;</I> </tt><br>
+</pre></blockquote>
+<p>Returns a set of the groups defined by the given mask.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/identifier"></a>
+<h3><a name="identifier">identifier</a></h3>
+<b>Abstract:</b> Returns a unique identifier for this account.
+
+<blockquote><pre><tt>- (NSString *)<B>identifier;</B> </tt><br>
+</pre></blockquote>
+<p>Returns a unique identifier for the receiver.  It is of the form
+"username&#64;hostname:port".
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/initWithContentsOfFile:"></a>
+<h3><a name="initWithContentsOfFile:">initWithContentsOfFile:</a></h3>
+<b>Abstract:</b> Initializes an LJAccount object from a file.
+
+<blockquote><pre><tt>- (id)<B>initWithContentsOfFile:</B>(NSString *)<I>path;</I> </tt><br>
+</pre></blockquote>
+<p>Initializes an account object using information previously saved
+to a file.  This method uses NSKeyedUnarchiver to read the file.
+ </p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>path</tt></td><td>The path to the previously archived account object.</td></tr>
+</table>
+</blockquote>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/initWithUsername:"></a>
+<h3><a name="initWithUsername:">initWithUsername:</a></h3>
+<b>Abstract:</b> Initializes an LJAccount object.
+
+<blockquote><pre><tt>- (id)<B>initWithUsername:</B>(NSString *)<I>username;</I> </tt><br>
+</pre></blockquote>
+<p>Initializes a newly allocated LJAccount.  To start communicating
+with the LiveJournal server you must call the loginWithPassword:
+method.  This is the designated initializer for the class.
+ </p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>username</tt></td><td>The user's login name.</td></tr>
+</table>
+</blockquote>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/isLoggedIn"></a>
+<h3><a name="isLoggedIn">isLoggedIn</a></h3>
+<b>Abstract:</b> Returns YES if the account has been logged in.
+
+<blockquote><pre><tt>- (BOOL)<B>isLoggedIn;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> YES if the account has successfully logged in, NO otherwise.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/joinedCommunityArray"></a>
+<h3><a name="joinedCommunityArray">joinedCommunityArray</a></h3>
+<b>Abstract:</b> Returns the communities the receiver is a member of.
+
+<blockquote><pre><tt>- (NSArray *)<B>joinedCommunityArray;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> A sorted NSArray of LJFriend objects.
+ 
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/joinedCommunitySet"></a>
+<h3><a name="joinedCommunitySet">joinedCommunitySet</a></h3>
+<b>Abstract:</b> Returns the communities the receiver is a member of.
+
+<blockquote><pre><tt>- (NSSet *)<B>joinedCommunitySet;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> An NSSet of LJFriend objects.
+ 
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/journalArray"></a>
+<h3><a name="journalArray">journalArray</a></h3>
+<b>Abstract:</b> Obtain an array of LJJournal objects for this account.
+
+<blockquote><pre><tt>- (NSArray *)<B>journalArray;</B> </tt><br>
+</pre></blockquote>
+<p>This method returns an array of LJJournal objects, representing the
+journals this account has access to post into (e.g., communities).
+It will always return an array with at least one element, the default
+journal for this account.  The default journal is always at index 0.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/journalMenu"></a>
+<h3><a name="journalMenu">journalMenu</a></h3>
+<b>Abstract:</b> Returns an NSMenu of all journals for this account.
+
+<blockquote><pre><tt>- (NSMenu *)<B>journalMenu;</B> </tt><br>
+</pre></blockquote>
+<p>Creates an NSMenu of all journals for the receivers account.  Each
+menu item is set to represent the appropriate LJJournal object, so
+you may retrieve a journal by sending the representedObject message
+to any of the menu items.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/journalNamed:"></a>
+<h3><a name="journalNamed:">journalNamed:</a></h3>
+<b>Abstract:</b> Obtain the journal with the given name.
+
+<blockquote><pre><tt>- (LJJournal *)<B>journalNamed:</B>(NSString *)<I>name;</I> </tt><br>
+</pre></blockquote>
+<p>Searches the user's list of journals and returns one with the given name,
+or nil if none match.
+ </p>
+<b>Result:</b> The desired journal if found, nil otherwise.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/loginMessage"></a>
+<h3><a name="loginMessage">loginMessage</a></h3>
+<b>Abstract:</b> Obtain the server's login message.
+
+<blockquote><pre><tt>- (NSString *)<B>loginMessage;</B> </tt><br>
+</pre></blockquote>
+<p>The server may send a message for the user after login.  Your client
+should call this method after loginWithPassword: and if it returns
+a string, display the string to the user.
+ </p>
+<b>Result:</b> The login message, or nil if none was available.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/loginWithPassword:"></a>
+<h3><a name="loginWithPassword:">loginWithPassword:</a></h3>
+<b>Abstract:</b> Logs in to the LiveJournal server.
+
+<blockquote><pre><tt>- (void)<B>loginWithPassword:</B>(NSString *)<I>password;</I> </tt><br>
+</pre></blockquote>
+<p>Calls loginWithPassword:flags: with LJDefaultLoginFlags.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/loginWithPassword:flags:"></a>
+<h3><a name="loginWithPassword:flags:">loginWithPassword:flags:</a></h3>
+<b>Abstract:</b> Logs in to the LiveJournal server.
+
+<blockquote><pre><tt>- (void)<B>loginWithPassword:</B>(NSString *)<I>password</I> <B>flags:</B>(int)<I>loginFlags;</I> </tt><br>
+</pre></blockquote>
+<p>Sends a login message to the server.  Use a combination of the login
+flags to determine what features you want to download (e.g., moods,
+pictures, etc.).
+<br><br>
+This method causes the password to be stored in the receiver so that
+it can be sent to the server on subsequent messages.  You must call
+this method before any other methods that may communicate with the
+server.
+<br><br>
+The password is encoded as an MD5 hex digest before it is sent to the
+server, in order to make it (slightly) more difficult for packet sniffers
+to guess your actual password.
+<br><br>
+This method also sends the client name and version to the server.
+The name and version is determined by your main bundle's infoDictionary.
+By default, it uses the values of CFBundleName and CFBundleVersion.
+If you wish to override one or both of these values, use the keys
+LJClientName and LJClientVersion.  Finally, if none of these are
+set the client is identified as LJKit/1.0.0.
+<br><br>
+If the username/password combination is incorrect, an exception will
+be raised.
+ </p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>password</tt></td><td>The user's password.</td></tr>
+<tr><td align="center"><tt>loginFlags</tt></td><td>A bitwise-OR combination of the login flag constants.</td></tr>
+</table>
+</blockquote>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/menu"></a>
+<h3><a name="menu">menu</a></h3>
+<b>Abstract:</b> Returns the web menu provided by the server.
+
+<blockquote><pre><tt>- (NSMenu *)<B>menu;</B> </tt><br>
+</pre></blockquote>
+<p>If you provided the LJGetMenuLoginFlag to the loginWithPassword:flags:
+method, this method will return an NSMenu object you can display in your
+application.  Otherwise, returns nil.
+The menu is configured so that selection of any items
+will direct the system default web browser to the correct web site.
+Thus, all you need to do is display the menu in your interface.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/moods"></a>
+<h3><a name="moods">moods</a></h3>
+<b>Abstract:</b> Returns an LJMoods object for this account.
+
+<blockquote><pre><tt>- (LJMoods *)<B>moods;</B> </tt><br>
+</pre></blockquote>
+<p>If you provided the LJGetMoodsLoginFlag to the loginWithPassword:flags:
+method, this method returns an LJMoods object, which represents all the
+moods known to the system and maps them to IDs.
+Otherwise, returns nil.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/newGroupWithName:"></a>
+<h3><a name="newGroupWithName:">newGroupWithName:</a></h3>
+<b>Abstract:</b> Create a new group.
+
+<blockquote><pre><tt>- (LJGroup *)<B>newGroupWithName:</B>(NSString *)<I>name;</I> </tt><br>
+</pre></blockquote>
+<p>Use this method if you want to add a new friend group.  LiveJournal limits you to
+a total of 30 groups; if you exceed this limit an exception will be raised.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/removeFriend:"></a>
+<h3><a name="removeFriend:">removeFriend:</a></h3>
+<b>Abstract:</b> Removes a friend from the receiver's friends list.
+ 
+<blockquote><pre><tt>- (void)<B>removeFriend:</B>(LJFriend *)<I>buddy;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/removeGroup:"></a>
+<h3><a name="removeGroup:">removeGroup:</a></h3>
+<b>Abstract:</b> Removes a friend group.
+
+<blockquote><pre><tt>- (void)<B>removeGroup:</B>(LJGroup *)<I>group;</I> </tt><br>
+</pre></blockquote>
+<p>Removes a friend group from the receiver.  This method also removes all friends
+from the group.  If you decide to cancel the operation by calling downloadGroups,
+remember to call downloadFriends also.
+<br><br>
+When you uploadGroups to commit this change, the server updates the groupmask of
+previous posts and removes references to the deleted groups.  The LJKit does not
+attempt to simulate this behavior, as it does not "know" where relevant LJEntry
+objects are stored.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/server"></a>
+<h3><a name="server">server</a></h3>
+<b>Abstract:</b> Returns the LJServer object used by the receiver.
+
+<blockquote><pre><tt>- (LJServer *)<B>server;</B> </tt><br>
+</pre></blockquote>
+<p>This property is preserved during archiving.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/setDelegate:"></a>
+<h3><a name="setDelegate:">setDelegate:</a></h3>
+<b>Abstract:</b> Sets the receiver's delegate.
+
+<blockquote><pre><tt>- (void)<B>setDelegate:</B>(id)<I>delegate;</I> </tt><br>
+</pre></blockquote>
+<p>Sets the delegate of the receiver.  The delegate is automatically registered to
+receive notifications if it implements the methods below.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/setMoods:"></a>
+<h3><a name="setMoods:">setMoods:</a></h3>
+<b>Abstract:</b> Set the LJMoods object for this account.
+
+<blockquote><pre><tt>- (void)<B>setMoods:</B>(LJMoods *)<I>moods;</I> </tt><br>
+</pre></blockquote>
+<p>You can set the moods object before logging in, so that the
+mood list can be saved between sessions.  If so, only new moods will be
+downloaded from the server, to save on bandwidth.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/uploadFriends"></a>
+<h3><a name="uploadFriends">uploadFriends</a></h3>
+<b>Abstract:</b> Upload changes to friends to the server.
+
+<blockquote><pre><tt>- (BOOL)<B>uploadFriends;</B> </tt><br>
+</pre></blockquote>
+<p>Uploads the local changes to LJFriend objects to the LiveJournal server.
+If friends were added, their full names are obtained from the server
+and saved.
+ </p>
+<b>Result:</b> YES if changes were made; NO if there were no changes to upload.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/uploadGroups"></a>
+<h3><a name="uploadGroups">uploadGroups</a></h3>
+<b>Abstract:</b> Upload changes to friend groups to the server.
+
+<blockquote><pre><tt>- (BOOL)<B>uploadGroups;</B> </tt><br>
+</pre></blockquote>
+<p>Uploads the local changes to LJGroup objects to the LiveJournal server.
+ </p>
+<b>Result:</b> YES if changes were made; NO if there were no changes to upload.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/userPicturesDictionary"></a>
+<h3><a name="userPicturesDictionary">userPicturesDictionary</a></h3>
+<b>Abstract:</b> Returns a dictionary of account picture keywords and URLs.
+
+<blockquote><pre><tt>- (NSDictionary *)<B>userPicturesDictionary;</B> </tt><br>
+</pre></blockquote>
+<p>If you provided the LJGetPicturesLoginFlag to the loginWithPassword:flags:
+method, this method will return an NSDictionary mapping userpic keywords
+to NSURL objects.  Otherwise, returns nil.
+<br><br>
+This property is preserved during archiving.
+</p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/userPicturesMenu"></a>
+<h3><a name="userPicturesMenu">userPicturesMenu</a></h3>
+<b>Abstract:</b> Returns an NSMenu of all picture keywords for the receiver.
+
+<blockquote><pre><tt>- (NSMenu *)<B>userPicturesMenu;</B> </tt><br>
+</pre></blockquote>
+<p>Creates an NSMenu representing the user's picture keywords.  Each menu item
+has the picture's URL as a its represented object, so you can retrieve the
+NSURL object by calling [menuItem representedObject].
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/userProfileHttpURL"></a>
+<h3><a name="userProfileHttpURL">userProfileHttpURL</a></h3>
+<b>Abstract:</b> Returns the URL of the receiver's user profile webpage.
+ 
+<blockquote><pre><tt>- (NSURL *)<B>userProfileHttpURL;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/username"></a>
+<h3><a name="username">username</a></h3>
+<b>Abstract:</b> Returns the username associated with the receiver.
+
+<blockquote><pre><tt>- (NSString *)<B>username;</B> </tt><br>
+</pre></blockquote>
+<p>This property is preserved during archiving.
+ </p>
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/watchedCommunityArray"></a>
+<h3><a name="watchedCommunityArray">watchedCommunityArray</a></h3>
+<b>Abstract:</b> Returns the communities the receiver is watching.
+
+<blockquote><pre><tt>- (NSArray *)<B>watchedCommunityArray;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> A sorted NSArray of LJFriend objects.
+ 
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/watchedCommunitySet"></a>
+<h3><a name="watchedCommunitySet">watchedCommunitySet</a></h3>
+<b>Abstract:</b> Returns the communities the receiver is watching.
+
+<blockquote><pre><tt>- (NSSet *)<B>watchedCommunitySet;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> An NSSet of LJFriend objects.
+
+<hr>
+<a name="//apple_ref/occ/instm/LJAccount/writeToFile:"></a>
+<h3><a name="writeToFile:">writeToFile:</a></h3>
+<b>Abstract:</b> Archives the receiver to a file.
+
+<blockquote><pre><tt>- (BOOL)<B>writeToFile:</B>(NSString *)<I>path;</I> </tt><br>
+</pre></blockquote>
+<p>Archives the receiver to a file.  This is a convenience
+method; it uses NSKeyedArchiver to write the file to disk.
+This can be used by offline clients to save account info.
+</p>
+<h4>Parameters</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><tt>path</tt></td><td>The path to save the object to.</td></tr>
+</table>
+</blockquote>
+<b>Result:</b> YES on success; NO otherwise.
+ 
+<hr>
+<p>(Last Updated 2/17/2003)
+</p></body></html>

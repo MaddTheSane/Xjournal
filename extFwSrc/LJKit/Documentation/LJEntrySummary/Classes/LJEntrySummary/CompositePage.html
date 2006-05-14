@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>LJEntrySummary</title>
+	<meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff"><h1><font face="Geneva,Arial,Helvtica">LJEntrySummary</font></h1><hr><br>
+<h2>Abstract</h2>
+Represents an entry summary.
+<h2>Discussion</h2>
+Rather than downloading an entire entry, the LiveJournal server permits the downloading
+of entry summaries, which consist of the entry's subject, if it has one, or the first
+few characters of the entry's text.  The number of characters is determined by the
+[LJJournal setEntrySummaryLength:] method.
+ <hr><br><h2>Methods</h2>
+
+<h3><a name="description">description</a></h3>
+<b>Abstract:</b> Obtain a string containing the entry's date, time, and summary text.
+
+<blockquote><pre><tt>- (NSString *)<B>description;</B> </tt><br>
+</pre></blockquote>
+<p>Returns a string of the format: "YYYY-MM-DD HH:MM:SS: Summary text...".
+Calls descriptionWithFormat: with the format string "%Y-%m-%d %H:%M:%S: %%&#64;".
+ </p>
+<hr>
+
+<h3><a name="descriptionWithFormat:">descriptionWithFormat:</a></h3>
+<b>Abstract:</b> Obtain a string containing the entry's date, time, and summary text.
+
+<blockquote><pre><tt>- (NSString *)<B>descriptionWithFormat:</B>(NSString *)<I>format;</I> </tt><br>
+</pre></blockquote>
+<p>Returns a string based on the format string.  The format is first passed to
+[NSCalendarDate descriptionWithCalendarFormat:] to fill in date fields, then
+to [NSString stringWithFormat:] with the summary text as the argument.  Therefore,
+you can use any of the escape codes from NSCalendarDate to include the date fields,
+but you must use %%&#64; (two percent signs) to include the summary text.
+ </p>
+<hr>
+
+<h3><a name="getEntry">getEntry</a></h3>
+<b>Abstract:</b> Obtain the entry the receiver summarizes.
+ 
+<blockquote><pre><tt>- (LJEntry *)<B>getEntry;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="summary">summary</a></h3>
+<b>Abstract:</b> Obtain the entry's summary text.
+ 
+<blockquote><pre><tt>- (NSString *)<B>summary;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<p>(Last Updated 2/17/2003)
+</p></body></html>

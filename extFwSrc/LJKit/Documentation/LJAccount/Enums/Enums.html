@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>Enumerations</title>
+	<meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff"><h1><font face="Geneva,Arial,Helvtica">Enumerations</font></h1><hr><br>
+<a name="//apple_ref/c/tag/Login Flags"></a>
+<h3><a name="Login Flags">Login Flags</a></h3>
+<blockquote><pre>
+enum {
+    LJNoLoginFlags                 = 0,
+    LJGetMoodsLoginFlag            = 0x00000001,
+    LJGetMenuLoginFlag             = 0x00000002,
+    LJGetUserPicturesLoginFlag     = 0x00000004,
+    LJDoNotUseFastServersLoginFlag = 0x00000008,
+    LJDefaultLoginFlags            = 0x00000007,
+    LJReservedLoginFlags           = 0xFFFFFFF0,
+};
+</pre>
+</blockquote>
+<p>These flags are used with the loginWithPassword:flags: method to
+determine what features of the LJKit you wish to enable or disable.
+They can be combined with the bitwise OR operator (|).
+<br><br>
+</p>
+<h4>Constants</h4>
+<blockquote>
+<table border="1"  width="90%">
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJNoLoginFlags"><tt>LJNoLoginFlags</tt></a></td><td>Don't download any extra information.
+<br><br></td></tr>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJGetMoodsLoginFlag"><tt>LJGetMoodsLoginFlag</tt></a></td><td>Download mood information.  Updates the current mood object if it has
+already been set using the setMoods: method.  Otherwise, creates a new
+moods object.
+<br><br></td></tr>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJGetMenuLoginFlag"><tt>LJGetMenuLoginFlag</tt></a></td><td>Creates a web menu.  After login it can be retrieved with the menu
+method.
+<br><br></td></tr>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJGetUserPicturesLoginFlag"><tt>LJGetUserPicturesLoginFlag</tt></a></td><td>Download keywords and URLs for account pictures.  After login they can
+be retrieved with the userPicturesDictionary method.
+<br><br></td></tr>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJDoNotUseFastServersLoginFlag"><tt>LJDoNotUseFastServersLoginFlag</tt></a></td><td>Don't enable fast server access, even if the server offers it.
+Has no effect if fast server access is not offered.
+<br><br></td></tr>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJDefaultLoginFlags"><tt>LJDefaultLoginFlags</tt></a></td><td>Downloads all available information and enabled fast server access if
+offered.
+<br><br></td></tr>
+<tr><td align="center"><a name="//apple_ref/c/econst/LJReservedLoginFlags"><tt>LJReservedLoginFlags</tt></a></td><td>These bits are reserved and must be set to zero.</td></tr>
+</table>
+</blockquote>
+<hr>
+<p>(Last Updated 2/17/2003)
+</p></body></html>

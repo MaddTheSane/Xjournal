@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html><head>
+    <title>LJEntry</title>
+	<meta name="generator" content="HeaderDoc">
+</head><body bgcolor="#ffffff"><h1><font face="Geneva,Arial,Helvtica">LJEntry</font></h1><hr><br>
+<h2>Abstract</h2>
+Represents a LiveJournal entry.
+<h2>Discussion</h2>
+The LJEntry class represents a LiveJournal entry.  An entry is either unassociated,
+associated with a journal, or posted to a journal.  When entries are created using
+init they are unassociated.  You can associate them with a journal by calling the
+setJournal: method.  The entry is finally posted by calling saveToJournal.  Entries
+that are obtained from LJJournal's getEntries... methods are posted entries.
+<br><br>
+<TABLE BORDER=1>
+<TR><TH> unassociated </TH> <TD> journal == nil </TD></TR>
+<TR><TH> associated </TH>   <TD> journal != nil, itemID == 0 </TD></TR>
+<TR><TH> posted </TH>       <TD> journal != nil, itemID != 0 </TD></TR>
+</TABLE>
+ <hr><br><h2>Methods</h2>
+
+<h3><a name="booleanForProperty:">booleanForProperty:</a></h3>
+<b>Abstract:</b> Returns the boolean value for a property.
+ 
+<blockquote><pre><tt>- (BOOL)<B>booleanForProperty:</B>(NSString *)<I>property;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="content">content</a></h3>
+<b>Abstract:</b> Obtain the content of the receiver.
+ 
+<blockquote><pre><tt>- (NSString *)<B>content;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="currentMood">currentMood</a></h3>
+<b>Abstract:</b> Obtain the mood associated with the receiver.
+
+<blockquote><pre><tt>- (NSString *)<B>currentMood;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> The mood name, or nil if none is set.
+ 
+<hr>
+
+<h3><a name="currentMusic">currentMusic</a></h3>
+<b>Abstract:</b> Obtain the music associated with the receiver.
+ 
+<blockquote><pre><tt>- (NSString *)<B>currentMusic;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="customInfo">customInfo</a></h3>
+<b>Abstract:</b> Returns a custom info dictionary for this entry.
+
+<blockquote><pre><tt>- (NSMutableDictionary *)<B>customInfo;</B> </tt><br>
+</pre></blockquote>
+<p>Returns a mutable dictionary object you can use to store whatever
+information you would like to attach to this entry.  All keys and
+values must support the NSCoding protocol.
+<br><br>
+This property is preserved during archiving.
+ </p>
+<hr>
+
+<h3><a name="init">init</a></h3>
+<b>Abstract:</b> Initializes a new journal entry.
+
+<blockquote><pre><tt>- (id)<B>init;</B> </tt><br>
+</pre></blockquote>
+<p>Initializes a new journal entry.  The date is set to the current date and time.
+All other fields are left blank.
+ </p>
+<hr>
+
+<h3><a name="isEdited">isEdited</a></h3>
+<b>Abstract:</b> Obtain the edited status of this entry.
+
+<blockquote><pre><tt>- (BOOL)<B>isEdited;</B> </tt><br>
+</pre></blockquote>
+<p>Returns YES if this entry has changed since it was last downloaded or saved, NO
+otherwise.  The edited flag is set whenever any of the set... methods are
+called, and reset when saveToJournal completes successfully.
+ </p>
+<hr>
+
+<h3><a name="optionBackdated">optionBackdated</a></h3>
+<b>Abstract:</b> Obtain the backdated setting of the receiver.
+ 
+<blockquote><pre><tt>- (BOOL)<B>optionBackdated;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="optionNoComments">optionNoComments</a></h3>
+<b>Abstract:</b> Obtain the don't allow comments setting of the receiver.
+ 
+<blockquote><pre><tt>- (BOOL)<B>optionNoComments;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="optionNoEmail">optionNoEmail</a></h3>
+<b>Abstract:</b> Obtain the don't email comments setting of the receiver.
+ 
+<blockquote><pre><tt>- (BOOL)<B>optionNoEmail;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="optionPreformatted">optionPreformatted</a></h3>
+<b>Abstract:</b> Obtain the preformatted setting of the receiver.
+ 
+<blockquote><pre><tt>- (BOOL)<B>optionPreformatted;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="pictureKeyword">pictureKeyword</a></h3>
+<b>Abstract:</b> Obtain the picture keyword associated with the receiver.
+ 
+<blockquote><pre><tt>- (NSString *)<B>pictureKeyword;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="saveToJournal">saveToJournal</a></h3>
+<b>Abstract:</b> Saves the receiver's data on the server.
+
+<blockquote><pre><tt>- (void)<B>saveToJournal;</B> </tt><br>
+</pre></blockquote>
+<p>If the receiver is unassociated, raises an exception.
+If the receiver is associated with a journal, sends a postevent message to the
+server and sets the itemID of the receiver, making is a posted entry.
+If the receiver is posted, sends an editevent message to the server.
+ </p>
+<hr>
+
+<h3><a name="setAccessAllowed:forGroup:">setAccessAllowed:forGroup:</a></h3>
+<b>Abstract:</b> Allow or deny access for a specific group.
+
+<blockquote><pre><tt>- (void)<B>setAccessAllowed:</B>(BOOL)<I>allowed</I> <B>forGroup:</B>(LJGroup *)<I>group;</I> </tt><br>
+</pre></blockquote>
+<p>Set whether a group is allowed to access this journal if the security mode is
+set to LJGroupSecurityMode.  If the security mode is something else, an
+exception is raised.
+<br><br>
+You cannot use this and other group security related methods on unassociated
+entries.  If you try, an exception will be raised.  This is because groups
+have no meaning outside of their account, and unassociated entries are not
+attached to an account.
+ </p>
+<hr>
+
+<h3><a name="setBoolean:forProperty:">setBoolean:forProperty:</a></h3>
+<b>Abstract:</b> Set the boolean value of a metadata property.
+ 
+<blockquote><pre><tt>- (void)<B>setBoolean:</B>(BOOL)<I>flag</I> <B>forProperty:</B>(NSString *)<I>property;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="setContent:">setContent:</a></h3>
+<b>Abstract:</b> Set the content of the receiver.
+ 
+<blockquote><pre><tt>- (void)<B>setContent:</B>(NSString *)<I>content;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="setCurrentMood:">setCurrentMood:</a></h3>
+<b>Abstract:</b> Set the mood associated with the receiver.
+
+<blockquote><pre><tt>- (void)<B>setCurrentMood:</B>(NSString *)<I>moodName;</I> </tt><br>
+</pre></blockquote>
+<p>Sets the current mood for this entry.  Set moodName to nil to remove the
+mood property.
+If the mood has an associated ID number, it will be set by the LJKit in
+[LJEntry saveToJournal]; this allows LiveJournal to display the graphic
+for that mood on the web.
+ </p>
+<hr>
+
+<h3><a name="setCurrentMusic:">setCurrentMusic:</a></h3>
+<b>Abstract:</b> Sets the music associated with the receiver.
+ 
+<blockquote><pre><tt>- (void)<B>setCurrentMusic:</B>(NSString *)<I>music;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="setDate:">setDate:</a></h3>
+<b>Abstract:</b> Set the date of the receiver.
+
+<blockquote><pre><tt>- (void)<B>setDate:</B>(NSDate *)<I>date;</I> </tt><br>
+</pre></blockquote>
+<p>Sets the date of the receiver.  Note that if you want to post an entry with a date
+earlier than the latest entry already in the journal the server will return an error
+asking you to set the backdate option on this entry.  See  setOptionBackdated:.
+ </p>
+<hr>
+
+<h3><a name="setEdited:">setEdited:</a></h3>
+<b>Abstract:</b> Sets the edited status of this entry.
+
+<blockquote><pre><tt>- (void)<B>setEdited:</B>(BOOL)<I>flag;</I> </tt><br>
+</pre></blockquote>
+<p>You can call this method to mark this entry as edited or unedited as you see
+fit.
+ </p>
+<hr>
+
+<h3><a name="setGroupsAllowedAccessMask:">setGroupsAllowedAccessMask:</a></h3>
+<blockquote><pre><tt>- (void)<B>setGroupsAllowedAccessMask:</B>(unsigned int)<I>mask;</I> </tt><br>
+</pre></blockquote>
+<p>Set the bitmask which defines the groups allowed to access this entry.
+This value is ignored if not in LJGroupSecurityMode.
+ </p>
+<hr>
+
+<h3><a name="setJournal:">setJournal:</a></h3>
+<b>Abstract:</b> Set the journal to associate the receiver with.
+
+<blockquote><pre><tt>- (void)<B>setJournal:</B>(LJJournal *)<I>journal;</I> </tt><br>
+</pre></blockquote>
+<p>Sets the journal this entry is associated with.  To cause the receiver to become
+unassociated, call set journal to nil.  An exception is raised if you attempt to
+change the journal of a posted entry.
+<br><br>
+If through this method you cause the receiver to become associated with an
+different account than before, and the security mode is LJGroupModeSecurity,
+the set of allowed groups will be cleared, as groups have no meaning outside
+of the account they exist in.
+ </p>
+<hr>
+
+<h3><a name="setOptionBackdated:">setOptionBackdated:</a></h3>
+<b>Abstract:</b> Sets the backdated setting of the receiver.
+
+<blockquote><pre><tt>- (void)<B>setOptionBackdated:</B>(BOOL)<I>flag;</I> </tt><br>
+</pre></blockquote>
+<p>If an entry is backdated, it will not appear on other users' friends views.
+You must backdate an entry if it bears a date earlier than the latest entry
+posted to the journal.
+ </p>
+<hr>
+
+<h3><a name="setOptionNoEmail">setOptionNoEmail</a></h3>
+<b>Abstract:</b> Sets the don't email comments setting of the receiver.
+
+<blockquote><pre><tt>- (void)<B>setOptionNoEmail:</B>(BOOL)<I>flag;</I> </tt><br>
+</pre></blockquote>
+<p>LiveJournal provides to option to email a copy of comments that are posted to your
+journal.  This method allows you to override this option for this one entry.
+ </p>
+<hr>
+
+<h3><a name="setOptionPreformatted:">setOptionPreformatted:</a></h3>
+<b>Abstract:</b> Set the preformatted setting of the receiver.
+
+<blockquote><pre><tt>- (void)<B>setOptionPreformatted:</B>(BOOL)<I>flag;</I> </tt><br>
+</pre></blockquote>
+<p>If this option is enabled, LiveJournal will not apply the usually formatting,
+such as changing newlines to &lt;br&gt; tags.  Enable this option if you want
+to control the receivers appearance with HTML tags.
+You may still include HTML in your entry if this option is disabled.
+ </p>
+<hr>
+
+<h3><a name="setOptionsNoComments:">setOptionsNoComments:</a></h3>
+<b>Abstract:</b> Set the don't allow comments setting of the receiver.
+
+<blockquote><pre><tt>- (void)<B>setOptionNoComments:</B>(BOOL)<I>flag;</I> </tt><br>
+</pre></blockquote>
+<p>If you don't want to allow users to write comments about the receiver,
+set this to true.
+ </p>
+<hr>
+
+<h3><a name="setPictureKeyword:">setPictureKeyword:</a></h3>
+<b>Abstract:</b> Set the picture keyword associated with the receiver.
+
+<blockquote><pre><tt>- (void)<B>setPictureKeyword:</B>(NSString *)<I>keyword;</I> </tt><br>
+</pre></blockquote>
+<p>The set of available picture keywords can be obtained from the
+[LJAccount userPicturesDictionary] method, using the keys from the
+resulting NSDictionary.
+ </p>
+<hr>
+
+<h3><a name="setSecurityMode:">setSecurityMode:</a></h3>
+<b>Abstract:</b> Set the security mode of the receiver.
+
+<blockquote><pre><tt>- (void)<B>setSecurityMode:</B>(int)<I>security;</I> </tt><br>
+</pre></blockquote>
+<p>The security modes are explained in the LJEntry Security Modes enumeration.
+<br><br>
+You cannot set the security mode to LJGroupSecurityMode unless the receiver
+has been associated with a journal.  This is because groups only have meaning
+in the context of a particular account, and an unassociated entry has no
+connection to an account object.
+ </p>
+<hr>
+
+<h3><a name="setString:forProperty:">setString:forProperty:</a></h3>
+<b>Abstract:</b> Set the string value of a metadata property.
+
+<blockquote><pre><tt>- (void)<B>setString:</B>(NSString *)<I>string</I> <B>forProperty:</B>(NSString *)<I>property;</I> </tt><br>
+</pre></blockquote>
+<p>Sets the string value of a metadata property.  To remove a property,
+set its value to nil.
+ </p>
+<hr>
+
+<h3><a name="setSubject:">setSubject:</a></h3>
+<b>Abstract:</b> Set the subject of the receiver.
+ 
+<blockquote><pre><tt>- (void)<B>setSubject:</B>(NSString *)<I>subject;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+
+<h3><a name="stringForProperty:">stringForProperty:</a></h3>
+<b>Abstract:</b> Obtain the string value of a metadata property.
+
+<blockquote><pre><tt>- (NSString *)<B>stringForProperty:</B>(NSString *)<I>property;</I> </tt><br>
+</pre></blockquote>
+<p></p>
+<b>Result:</b> The string value of a metadata property, or nil if it has no value.
+ 
+<hr>
+
+<h3><a name="subject">subject</a></h3>
+<b>Abstract:</b> Obtain the subject of the receiver.
+ 
+<blockquote><pre><tt>- (NSString *)<B>subject;</B> </tt><br>
+</pre></blockquote>
+<p></p>
+<hr>
+<p>(Last Updated 2/17/2003)
+</p></body></html>
