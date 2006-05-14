@@ -84,7 +84,7 @@ static NSMutableDictionary *userPics;
 + (NSFont *)preferredWindowFont
 {
 	id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSString *fontName = [values valueForKey: @"XJEntryWindowFont"];
+    NSString *fontName = [values valueForKey: @"XJEntryWindowFontName"];
 	int fontSize = [[values valueForKey: @"XJEntryWindowFontSize"] intValue];
 	
     NSFont *font = [NSFont fontWithName: fontName size: fontSize];

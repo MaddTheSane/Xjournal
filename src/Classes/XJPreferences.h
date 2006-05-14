@@ -22,7 +22,7 @@
 #define CHECKFRIENDS_SELECTED_SOUND @"XJCheckFriendsAlertSound"
 
 // Window Options
-#define ENTRY_WINDOW_FONT @"XJEntryWindowFont"
+#define ENTRY_WINDOW_FONT @"XJEntryWindowFontName"
 
 // WebKit Prefs
 #define XJ_HISTORY_PREF_IDENT @"XJHistory"

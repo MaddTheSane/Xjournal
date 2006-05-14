@@ -48,7 +48,7 @@
 	<false/>
 	<key>XJUnsavedOption</key>
 	<integer>0</integer>
-	<key>XJEntryWindowFont</key>
+	<key>XJEntryWindowFontName</key>
 	<string>Helvetica</string>
 	<key>XJEntryWindowFontSize</key>
 	<integer>12</integer>
