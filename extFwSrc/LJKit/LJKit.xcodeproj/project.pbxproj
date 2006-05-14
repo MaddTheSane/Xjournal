@@ -7,85 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		089C1668FE841158C02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
-		1058C7B3FEA5585E11CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		438B206A03BD273D00067F6D /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 438B206903BD273D00067F6D /* License.txt */; };
-		43A8D825040850A500C93AF6 /* LJFriend.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5D02E35F4301ECE1AA /* LJFriend.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43DC2B4303F897280074B2F0 /* LJCheckFriendsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 43DC2B4103F897280074B2F0 /* LJCheckFriendsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43DC2B4403F897280074B2F0 /* LJCheckFriendsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DC2B4203F897280074B2F0 /* LJCheckFriendsSession.m */; };
-		585EF8F90A0FDA70001E92ED /* LJKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F51DE22702E293FB01745AE7 /* LJKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF8FA0A0FDA70001E92ED /* LJAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = F51DE22002E293C501745AE7 /* LJAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF8FB0A0FDA70001E92ED /* LJAccount_EditFriends.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5102E35F2301ECE1AA /* LJAccount_EditFriends.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF8FC0A0FDA70001E92ED /* LJJournal.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5502E35F3201ECE1AA /* LJJournal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF8FD0A0FDA70001E92ED /* LJEntryRoot.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BD1B0C03A5597201805C1D /* LJEntryRoot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF8FE0A0FDA70001E92ED /* LJEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5902E35F3C01ECE1AA /* LJEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF8FF0A0FDA70001E92ED /* LJEntry_Metadata.h in Headers */ = {isa = PBXBuildFile; fileRef = F53614280304A86B0100006B /* LJEntry_Metadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9000A0FDA70001E92ED /* LJEntrySummary.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A55BDE03686C84015CD356 /* LJEntrySummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9010A0FDA70001E92ED /* LJServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6902E3650701ECE1AA /* LJServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9020A0FDA70001E92ED /* LJCheckFriendsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 43DC2B4103F897280074B2F0 /* LJCheckFriendsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9030A0FDA70001E92ED /* LJMoods.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB7702E381BC01ECE1AA /* LJMoods.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9040A0FDA70001E92ED /* LJFriend.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5D02E35F4301ECE1AA /* LJFriend.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9050A0FDA70001E92ED /* LJGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6102E35F4A01ECE1AA /* LJGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9060A0FDA70001E92ED /* LJHttpURLs.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E1F010357A538010C7683 /* LJHttpURLs.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		585EF9070A0FDA70001E92ED /* URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6D02E36F5701ECE1AA /* URLEncoding.h */; settings = {ATTRIBUTES = (); }; };
-		585EF9080A0FDA70001E92ED /* Miscellaneous.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6502E362C001ECE1AA /* Miscellaneous.h */; settings = {ATTRIBUTES = (); }; };
-		585EF9090A0FDA70001E92ED /* LJMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB7202E37FBE01ECE1AA /* LJMenu.h */; settings = {ATTRIBUTES = (); }; };
-		585EF90B0A0FDA70001E92ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
-		585EF90C0A0FDA70001E92ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F52E1F0A0357B1BA010C7683 /* Localizable.strings */; };
-		585EF90D0A0FDA70001E92ED /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 438B206903BD273D00067F6D /* License.txt */; };
-		585EF90F0A0FDA70001E92ED /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F51DE21F02E293C501745AE7 /* LJAccount.m */; };
-		585EF9100A0FDA70001E92ED /* LJJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5402E35F3201ECE1AA /* LJJournal.m */; };
-		585EF9110A0FDA70001E92ED /* Miscellaneous.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6402E362C001ECE1AA /* Miscellaneous.m */; };
-		585EF9120A0FDA70001E92ED /* LJServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6802E3650701ECE1AA /* LJServer.m */; };
-		585EF9130A0FDA70001E92ED /* URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6C02E36F5701ECE1AA /* URLEncoding.m */; };
-		585EF9140A0FDA70001E92ED /* LJMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB7102E37FBE01ECE1AA /* LJMenu.m */; };
-		585EF9150A0FDA70001E92ED /* LJMoods.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB7602E381BC01ECE1AA /* LJMoods.m */; };
-		585EF9160A0FDA70001E92ED /* LJAccount_EditFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5002E35F2301ECE1AA /* LJAccount_EditFriends.m */; };
-		585EF9170A0FDA70001E92ED /* LJFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5C02E35F4301ECE1AA /* LJFriend.m */; };
-		585EF9180A0FDA70001E92ED /* LJGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6002E35F4A01ECE1AA /* LJGroup.m */; };
-		585EF9190A0FDA70001E92ED /* LJEntry_Metadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F53614270304A86B0100006B /* LJEntry_Metadata.m */; };
-		585EF91A0A0FDA70001E92ED /* LJHttpURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E1F020357A538010C7683 /* LJHttpURLs.m */; };
-		585EF91B0A0FDA70001E92ED /* LJEntrySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A55BDF03686C84015CD356 /* LJEntrySummary.m */; };
-		585EF91C0A0FDA70001E92ED /* LJEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5802E35F3C01ECE1AA /* LJEntry.m */; };
-		585EF91D0A0FDA70001E92ED /* LJEntryRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BD1B0D03A5597201805C1D /* LJEntryRoot.m */; };
-		585EF91E0A0FDA70001E92ED /* LJCheckFriendsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DC2B4203F897280074B2F0 /* LJCheckFriendsSession.m */; };
-		585EF9200A0FDA70001E92ED /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		585EF9210A0FDA70001E92ED /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F52AFB7C02E3878801ECE1AA /* libcrypto.dylib */; };
-		585EF9220A0FDA70001E92ED /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5992D0C03786BB6012C19B1 /* CoreServices.framework */; };
-		585EF9610A10F442001E92ED /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 585EF9280A0FDA71001E92ED /* Info.plist */; };
-		F51DE22102E293C501745AE7 /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F51DE21F02E293C501745AE7 /* LJAccount.m */; };
-		F51DE22202E293C501745AE7 /* LJAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = F51DE22002E293C501745AE7 /* LJAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F51DE22802E293FB01745AE7 /* LJKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F51DE22702E293FB01745AE7 /* LJKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F52AFB5602E35F3201ECE1AA /* LJJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5402E35F3201ECE1AA /* LJJournal.m */; };
-		F52AFB5702E35F3201ECE1AA /* LJJournal.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5502E35F3201ECE1AA /* LJJournal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F52AFB5B02E35F3C01ECE1AA /* LJEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5902E35F3C01ECE1AA /* LJEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F52AFB6602E362C001ECE1AA /* Miscellaneous.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6402E362C001ECE1AA /* Miscellaneous.m */; };
-		F52AFB6702E362C001ECE1AA /* Miscellaneous.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6502E362C001ECE1AA /* Miscellaneous.h */; settings = {ATTRIBUTES = (); }; };
-		F52AFB6A02E3650701ECE1AA /* LJServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6802E3650701ECE1AA /* LJServer.m */; };
-		F52AFB6B02E3650701ECE1AA /* LJServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6902E3650701ECE1AA /* LJServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F52AFB6E02E36F5701ECE1AA /* URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6C02E36F5701ECE1AA /* URLEncoding.m */; };
-		F52AFB6F02E36F5701ECE1AA /* URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6D02E36F5701ECE1AA /* URLEncoding.h */; settings = {ATTRIBUTES = (); }; };
-		F52AFB7302E37FBE01ECE1AA /* LJMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB7102E37FBE01ECE1AA /* LJMenu.m */; };
-		F52AFB7402E37FBE01ECE1AA /* LJMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB7202E37FBE01ECE1AA /* LJMenu.h */; settings = {ATTRIBUTES = (); }; };
-		F52AFB7802E381BC01ECE1AA /* LJMoods.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB7602E381BC01ECE1AA /* LJMoods.m */; };
-		F52AFB7902E381BC01ECE1AA /* LJMoods.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB7702E381BC01ECE1AA /* LJMoods.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F52AFB7D02E3878801ECE1AA /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F52AFB7C02E3878801ECE1AA /* libcrypto.dylib */; };
-		F52E1F030357A538010C7683 /* LJHttpURLs.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E1F010357A538010C7683 /* LJHttpURLs.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F52E1F040357A538010C7683 /* LJHttpURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E1F020357A538010C7683 /* LJHttpURLs.m */; };
-		F52E1F0B0357B1BA010C7683 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F52E1F0A0357B1BA010C7683 /* Localizable.strings */; };
-		F53614290304A86B0100006B /* LJEntry_Metadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F53614270304A86B0100006B /* LJEntry_Metadata.m */; };
-		F536142A0304A86B0100006B /* LJEntry_Metadata.h in Headers */ = {isa = PBXBuildFile; fileRef = F53614280304A86B0100006B /* LJEntry_Metadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5992D8A03786BB6012C19B1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5992D0C03786BB6012C19B1 /* CoreServices.framework */; };
-		F5A55BE003686C84015CD356 /* LJEntrySummary.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A55BDE03686C84015CD356 /* LJEntrySummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5A55BE103686C84015CD356 /* LJEntrySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A55BDF03686C84015CD356 /* LJEntrySummary.m */; };
-		F5B976CE039970E701094BD6 /* LJEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5802E35F3C01ECE1AA /* LJEntry.m */; };
-		F5BD1B0E03A5597201805C1D /* LJEntryRoot.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BD1B0C03A5597201805C1D /* LJEntryRoot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5BD1B0F03A5597201805C1D /* LJEntryRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BD1B0D03A5597201805C1D /* LJEntryRoot.m */; };
-		F5D00B0902F7A1F901ECE1AA /* LJAccount_EditFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5002E35F2301ECE1AA /* LJAccount_EditFriends.m */; };
-		F5D00B0A02F7A20001ECE1AA /* LJAccount_EditFriends.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5102E35F2301ECE1AA /* LJAccount_EditFriends.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5D00B0C02F7A20301ECE1AA /* LJGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6102E35F4A01ECE1AA /* LJGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5D00B0D02F7A20501ECE1AA /* LJFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5C02E35F4301ECE1AA /* LJFriend.m */; };
-		F5D00B0E02F7A20601ECE1AA /* LJGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6002E35F4A01ECE1AA /* LJGroup.m */; };
+		5F548C4C07133B7600515272 /* LJUserEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F548C4A07133B7600515272 /* LJUserEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F548C4D07133B7600515272 /* LJUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F548C4B07133B7600515272 /* LJUserEntity.m */; };
+		BC296EFF058B62EF00874810 /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC296EFE058B62EF00874810 /* ToDo.txt */; };
+		BC72DAEF058B2AFA00784C4A /* LJKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F51DE22702E293FB01745AE7 /* LJKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF0058B2AFA00784C4A /* LJAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = F51DE22002E293C501745AE7 /* LJAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF1058B2AFA00784C4A /* LJAccount_EditFriends.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5102E35F2301ECE1AA /* LJAccount_EditFriends.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF2058B2AFA00784C4A /* LJJournal.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5502E35F3201ECE1AA /* LJJournal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF3058B2AFA00784C4A /* LJEntryRoot.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BD1B0C03A5597201805C1D /* LJEntryRoot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF4058B2AFA00784C4A /* LJEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5902E35F3C01ECE1AA /* LJEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF5058B2AFA00784C4A /* LJEntry_Metadata.h in Headers */ = {isa = PBXBuildFile; fileRef = F53614280304A86B0100006B /* LJEntry_Metadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF6058B2AFA00784C4A /* LJEntrySummary.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A55BDE03686C84015CD356 /* LJEntrySummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF7058B2AFA00784C4A /* LJServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6902E3650701ECE1AA /* LJServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF8058B2AFA00784C4A /* LJCheckFriendsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 43DC2B4103F897280074B2F0 /* LJCheckFriendsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAF9058B2AFA00784C4A /* LJMoods.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB7702E381BC01ECE1AA /* LJMoods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAFA058B2AFA00784C4A /* LJFriend.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB5D02E35F4301ECE1AA /* LJFriend.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAFB058B2AFA00784C4A /* LJGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6102E35F4A01ECE1AA /* LJGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAFC058B2AFA00784C4A /* LJHttpURLs.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E1F010357A538010C7683 /* LJHttpURLs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC72DAFD058B2AFA00784C4A /* URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6D02E36F5701ECE1AA /* URLEncoding.h */; settings = {ATTRIBUTES = (); }; };
+		BC72DAFE058B2AFA00784C4A /* Miscellaneous.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB6502E362C001ECE1AA /* Miscellaneous.h */; settings = {ATTRIBUTES = (); }; };
+		BC72DAFF058B2AFA00784C4A /* LJMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AFB7202E37FBE01ECE1AA /* LJMenu.h */; settings = {ATTRIBUTES = (); }; };
+		BC72DB01058B2AFA00784C4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		BC72DB03058B2AFA00784C4A /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 438B206903BD273D00067F6D /* License.txt */; };
+		BC72DB05058B2AFA00784C4A /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F51DE21F02E293C501745AE7 /* LJAccount.m */; };
+		BC72DB06058B2AFA00784C4A /* LJJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5402E35F3201ECE1AA /* LJJournal.m */; };
+		BC72DB07058B2AFA00784C4A /* Miscellaneous.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6402E362C001ECE1AA /* Miscellaneous.m */; };
+		BC72DB08058B2AFA00784C4A /* LJServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6802E3650701ECE1AA /* LJServer.m */; };
+		BC72DB09058B2AFA00784C4A /* URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6C02E36F5701ECE1AA /* URLEncoding.m */; };
+		BC72DB0A058B2AFA00784C4A /* LJMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB7102E37FBE01ECE1AA /* LJMenu.m */; };
+		BC72DB0B058B2AFA00784C4A /* LJMoods.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB7602E381BC01ECE1AA /* LJMoods.m */; };
+		BC72DB0C058B2AFA00784C4A /* LJAccount_EditFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5002E35F2301ECE1AA /* LJAccount_EditFriends.m */; };
+		BC72DB0D058B2AFA00784C4A /* LJFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5C02E35F4301ECE1AA /* LJFriend.m */; };
+		BC72DB0E058B2AFA00784C4A /* LJGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB6002E35F4A01ECE1AA /* LJGroup.m */; };
+		BC72DB0F058B2AFA00784C4A /* LJEntry_Metadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F53614270304A86B0100006B /* LJEntry_Metadata.m */; };
+		BC72DB10058B2AFA00784C4A /* LJHttpURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E1F020357A538010C7683 /* LJHttpURLs.m */; };
+		BC72DB11058B2AFA00784C4A /* LJEntrySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A55BDF03686C84015CD356 /* LJEntrySummary.m */; };
+		BC72DB12058B2AFA00784C4A /* LJEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AFB5802E35F3C01ECE1AA /* LJEntry.m */; };
+		BC72DB13058B2AFA00784C4A /* LJEntryRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BD1B0D03A5597201805C1D /* LJEntryRoot.m */; };
+		BC72DB14058B2AFA00784C4A /* LJCheckFriendsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DC2B4203F897280074B2F0 /* LJCheckFriendsSession.m */; };
+		BC72DB16058B2AFA00784C4A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		BC72DB17058B2AFA00784C4A /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F52AFB7C02E3878801ECE1AA /* libcrypto.dylib */; };
+		BC72DB18058B2AFA00784C4A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5992D0C03786BB6012C19B1 /* CoreServices.framework */; };
+		BCBC6A3605AB8C5F000EFE4A /* LJAccount_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6A3505AB8C5F000EFE4A /* LJAccount_Private.h */; };
+		BCBC6A7805AB9348000EFE4A /* LJServer_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6A7705AB9348000EFE4A /* LJServer_Private.h */; };
+		BCBC6A7A05AB9409000EFE4A /* LJMoods_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6A7905AB9409000EFE4A /* LJMoods_Private.h */; };
+		BCBC6AA505AB95D8000EFE4A /* LJJournal_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6AA405AB95D8000EFE4A /* LJJournal_Private.h */; };
+		BCBC6AA705AB96F9000EFE4A /* LJEntry_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6AA605AB96F9000EFE4A /* LJEntry_Private.h */; };
+		BCBC6AA905AB976B000EFE4A /* LJFriend_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6AA805AB976B000EFE4A /* LJFriend_Private.h */; };
+		BCBC6AAB05AB9849000EFE4A /* LJGroup_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BCBC6AAA05AB9849000EFE4A /* LJGroup_Private.h */; };
+		BCBC6B0B05ABB098000EFE4A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC6B0A05ABB098000EFE4A /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
@@ -115,18 +85,29 @@
 /* End PBXBuildStyle section */
 
 /* Begin PBXFileReference section */
-		034768E0FF38A50411DB9C8B /* LJKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LJKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		436733F403F4A34F007D1F38 /* syncitems.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = syncitems.txt; sourceTree = "<group>"; };
 		438B206903BD273D00067F6D /* License.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		43A748C30423A93100B3509D /* RemovedCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RemovedCode.txt; sourceTree = "<group>"; };
 		43DC2B4103F897280074B2F0 /* LJCheckFriendsSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCheckFriendsSession.h; sourceTree = "<group>"; };
 		43DC2B4203F897280074B2F0 /* LJCheckFriendsSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCheckFriendsSession.m; sourceTree = "<group>"; };
-		585EF9280A0FDA71001E92ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
-		585EF9290A0FDA71001E92ED /* LJKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LJKit.framework; path = build/Development/LJKit.framework; sourceTree = "<group>"; };
+		5F548C4A07133B7600515272 /* LJUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJUserEntity.h; sourceTree = "<group>"; };
+		5F548C4B07133B7600515272 /* LJUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJUserEntity.m; sourceTree = "<group>"; };
+		BC296EFE058B62EF00874810 /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
+		BC71787A05AD5484000355FC /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC72DB1B058B2AFA00784C4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC72DB1C058B2AFA00784C4A /* LJKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LJKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC72DB6C058B2D2000784C4A /* Changes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Changes.html; sourceTree = "<group>"; };
+		BC72DCA3058B315E00784C4A /* LJKitDocumentation */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = LJKitDocumentation; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCBC6A3505AB8C5F000EFE4A /* LJAccount_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAccount_Private.h; sourceTree = "<group>"; };
+		BCBC6A7705AB9348000EFE4A /* LJServer_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJServer_Private.h; sourceTree = "<group>"; };
+		BCBC6A7905AB9409000EFE4A /* LJMoods_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJMoods_Private.h; sourceTree = "<group>"; };
+		BCBC6AA405AB95D8000EFE4A /* LJJournal_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJournal_Private.h; sourceTree = "<group>"; };
+		BCBC6AA605AB96F9000EFE4A /* LJEntry_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJEntry_Private.h; sourceTree = "<group>"; };
+		BCBC6AA805AB976B000EFE4A /* LJFriend_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriend_Private.h; sourceTree = "<group>"; };
+		BCBC6AAA05AB9849000EFE4A /* LJGroup_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJGroup_Private.h; sourceTree = "<group>"; };
+		BCBC6B0A05ABB098000EFE4A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		F51DE21F02E293C501745AE7 /* LJAccount.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJAccount.m; sourceTree = "<group>"; };
 		F51DE22002E293C501745AE7 /* LJAccount.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJAccount.h; sourceTree = "<group>"; };
 		F51DE22702E293FB01745AE7 /* LJKit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJKit.h; sourceTree = "<group>"; };
@@ -151,13 +132,10 @@
 		F52AFB7602E381BC01ECE1AA /* LJMoods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJMoods.m; sourceTree = "<group>"; };
 		F52AFB7702E381BC01ECE1AA /* LJMoods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJMoods.h; sourceTree = "<group>"; };
 		F52AFB7C02E3878801ECE1AA /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
-		F52D10D102F9F2C201ECE1AA /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 		F52E1F010357A538010C7683 /* LJHttpURLs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJHttpURLs.h; sourceTree = "<group>"; };
 		F52E1F020357A538010C7683 /* LJHttpURLs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJHttpURLs.m; sourceTree = "<group>"; };
-		F52E1F080357B1A8010C7683 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F53614270304A86B0100006B /* LJEntry_Metadata.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJEntry_Metadata.m; sourceTree = "<group>"; };
 		F53614280304A86B0100006B /* LJEntry_Metadata.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJEntry_Metadata.h; sourceTree = "<group>"; };
-		F567C3700375DCC1011F79D0 /* Changes.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Changes.txt; sourceTree = "<group>"; };
 		F5992D0C03786BB6012C19B1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		F5A55BDE03686C84015CD356 /* LJEntrySummary.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LJEntrySummary.h; sourceTree = "<group>"; };
 		F5A55BDF03686C84015CD356 /* LJEntrySummary.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJEntrySummary.m; sourceTree = "<group>"; };
@@ -165,93 +143,15 @@
 		F5BD1B0D03A5597201805C1D /* LJEntryRoot.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJEntryRoot.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworkTarget section */
-		0867D69CFE84028FC02AAC07 /* LJKit (Old) */ = {
-			isa = PBXFrameworkTarget;
-			buildConfigurationList = 585EF7ED0A0FB812001E92ED /* Build configuration list for PBXFrameworkTarget "LJKit (Old)" */;
-			buildPhases = (
-				0867D69DFE84028FC02AAC07 /* Headers */,
-				0867D69EFE84028FC02AAC07 /* Resources */,
-				0867D69FFE84028FC02AAC07 /* Sources */,
-				0867D6A0FE84028FC02AAC07 /* Frameworks */,
-				0867D6A2FE84028FC02AAC07 /* Rez */,
-			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "";
-				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x10000000,
-				);
-				PRODUCT_NAME = LJKit;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = framework;
-			};
-			dependencies = (
-			);
-			name = "LJKit (Old)";
-			productInstallPath = "@executable_path/../Frameworks";
-			productName = LJKit;
-			productReference = 034768E0FF38A50411DB9C8B /* LJKit.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>LJKit</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.livejournal.benzado.LJKit</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>LJKit</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleSignature</key>
-	<string>LJKt</string>
-	<key>CFBundleVersion</key>
-	<string>0.9.4</string>
-	<key>NSPrincipalClass</key>
-	<string>LJAccount</string>
-</dict>
-</plist>
-";
-		};
-/* End PBXFrameworkTarget section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		0867D6A0FE84028FC02AAC07 /* Frameworks */ = {
+		BC72DB15058B2AFA00784C4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1058C7B3FEA5585E11CA2CBB /* Cocoa.framework in Frameworks */,
-				F52AFB7D02E3878801ECE1AA /* libcrypto.dylib in Frameworks */,
-				F5992D8A03786BB6012C19B1 /* CoreServices.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		585EF91F0A0FDA70001E92ED /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				585EF9200A0FDA70001E92ED /* Cocoa.framework in Frameworks */,
-				585EF9210A0FDA70001E92ED /* libcrypto.dylib in Frameworks */,
-				585EF9220A0FDA70001E92ED /* CoreServices.framework in Frameworks */,
+				BC72DB16058B2AFA00784C4A /* Cocoa.framework in Frameworks */,
+				BC72DB17058B2AFA00784C4A /* libcrypto.dylib in Frameworks */,
+				BC72DB18058B2AFA00784C4A /* CoreServices.framework in Frameworks */,
+				BCBC6B0B05ABB098000EFE4A /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +161,8 @@
 		034768DFFF38A50411DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				034768E0FF38A50411DB9C8B /* LJKit.framework */,
-				585EF9290A0FDA71001E92ED /* LJKit.framework */,
+				BC72DB1C058B2AFA00784C4A /* LJKit.framework */,
+				BC72DCA3058B315E00784C4A /* LJKitDocumentation */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -270,10 +170,8 @@
 		0867D691FE84028FC02AAC07 /* LJKit */ = {
 			isa = PBXGroup;
 			children = (
-				F52D10D102F9F2C201ECE1AA /* ToDo.txt */,
-				F567C3700375DCC1011F79D0 /* Changes.txt */,
-				436733F403F4A34F007D1F38 /* syncitems.txt */,
-				43A748C30423A93100B3509D /* RemovedCode.txt */,
+				BC296EFE058B62EF00874810 /* ToDo.txt */,
+				BC72DB6C058B2D2000784C4A /* Changes.html */,
 				F51DE22502E293D301745AE7 /* Public */,
 				F51DE22602E293E501745AE7 /* Private */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -288,9 +186,10 @@
 			children = (
 				F5992D0C03786BB6012C19B1 /* CoreServices.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
-				F52AFB7C02E3878801ECE1AA /* libcrypto.dylib */,
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				BCBC6B0A05ABB098000EFE4A /* SystemConfiguration.framework */,
+				F52AFB7C02E3878801ECE1AA /* libcrypto.dylib */,
 			);
 			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -298,9 +197,9 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				585EF9280A0FDA71001E92ED /* Info.plist */,
+				BC72DB1B058B2AFA00784C4A /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
-				F52E1F0A0357B1BA010C7683 /* Localizable.strings */,
+				BC71787905AD5484000355FC /* Localizable.strings */,
 				438B206903BD273D00067F6D /* License.txt */,
 			);
 			name = Resources;
@@ -336,6 +235,8 @@
 				F52AFB6002E35F4A01ECE1AA /* LJGroup.m */,
 				F52E1F010357A538010C7683 /* LJHttpURLs.h */,
 				F52E1F020357A538010C7683 /* LJHttpURLs.m */,
+				5F548C4A07133B7600515272 /* LJUserEntity.h */,
+				5F548C4B07133B7600515272 /* LJUserEntity.m */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -343,6 +244,13 @@
 		F51DE22602E293E501745AE7 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				BCBC6A3505AB8C5F000EFE4A /* LJAccount_Private.h */,
+				BCBC6AA605AB96F9000EFE4A /* LJEntry_Private.h */,
+				BCBC6AA805AB976B000EFE4A /* LJFriend_Private.h */,
+				BCBC6AAA05AB9849000EFE4A /* LJGroup_Private.h */,
+				BCBC6AA405AB95D8000EFE4A /* LJJournal_Private.h */,
+				BCBC6A7905AB9409000EFE4A /* LJMoods_Private.h */,
+				BCBC6A7705AB9348000EFE4A /* LJServer_Private.h */,
 				F52AFB7202E37FBE01ECE1AA /* LJMenu.h */,
 				F52AFB7102E37FBE01ECE1AA /* LJMenu.m */,
 				F52AFB6D02E36F5701ECE1AA /* URLEncoding.h */,
@@ -356,66 +264,50 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0867D69DFE84028FC02AAC07 /* Headers */ = {
+		BC72DAEE058B2AFA00784C4A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F51DE22802E293FB01745AE7 /* LJKit.h in Headers */,
-				F51DE22202E293C501745AE7 /* LJAccount.h in Headers */,
-				F5D00B0A02F7A20001ECE1AA /* LJAccount_EditFriends.h in Headers */,
-				F52AFB5702E35F3201ECE1AA /* LJJournal.h in Headers */,
-				F5BD1B0E03A5597201805C1D /* LJEntryRoot.h in Headers */,
-				F52AFB5B02E35F3C01ECE1AA /* LJEntry.h in Headers */,
-				F536142A0304A86B0100006B /* LJEntry_Metadata.h in Headers */,
-				F5A55BE003686C84015CD356 /* LJEntrySummary.h in Headers */,
-				F52AFB6B02E3650701ECE1AA /* LJServer.h in Headers */,
-				43DC2B4303F897280074B2F0 /* LJCheckFriendsSession.h in Headers */,
-				F52AFB7902E381BC01ECE1AA /* LJMoods.h in Headers */,
-				43A8D825040850A500C93AF6 /* LJFriend.h in Headers */,
-				F5D00B0C02F7A20301ECE1AA /* LJGroup.h in Headers */,
-				F52E1F030357A538010C7683 /* LJHttpURLs.h in Headers */,
-				F52AFB6F02E36F5701ECE1AA /* URLEncoding.h in Headers */,
-				F52AFB6702E362C001ECE1AA /* Miscellaneous.h in Headers */,
-				F52AFB7402E37FBE01ECE1AA /* LJMenu.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		585EF8F80A0FDA70001E92ED /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				585EF8F90A0FDA70001E92ED /* LJKit.h in Headers */,
-				585EF8FA0A0FDA70001E92ED /* LJAccount.h in Headers */,
-				585EF8FB0A0FDA70001E92ED /* LJAccount_EditFriends.h in Headers */,
-				585EF8FC0A0FDA70001E92ED /* LJJournal.h in Headers */,
-				585EF8FD0A0FDA70001E92ED /* LJEntryRoot.h in Headers */,
-				585EF8FE0A0FDA70001E92ED /* LJEntry.h in Headers */,
-				585EF8FF0A0FDA70001E92ED /* LJEntry_Metadata.h in Headers */,
-				585EF9000A0FDA70001E92ED /* LJEntrySummary.h in Headers */,
-				585EF9010A0FDA70001E92ED /* LJServer.h in Headers */,
-				585EF9020A0FDA70001E92ED /* LJCheckFriendsSession.h in Headers */,
-				585EF9030A0FDA70001E92ED /* LJMoods.h in Headers */,
-				585EF9040A0FDA70001E92ED /* LJFriend.h in Headers */,
-				585EF9050A0FDA70001E92ED /* LJGroup.h in Headers */,
-				585EF9060A0FDA70001E92ED /* LJHttpURLs.h in Headers */,
-				585EF9070A0FDA70001E92ED /* URLEncoding.h in Headers */,
-				585EF9080A0FDA70001E92ED /* Miscellaneous.h in Headers */,
-				585EF9090A0FDA70001E92ED /* LJMenu.h in Headers */,
+				BC72DAEF058B2AFA00784C4A /* LJKit.h in Headers */,
+				BC72DAF0058B2AFA00784C4A /* LJAccount.h in Headers */,
+				BC72DAF1058B2AFA00784C4A /* LJAccount_EditFriends.h in Headers */,
+				BC72DAF2058B2AFA00784C4A /* LJJournal.h in Headers */,
+				BC72DAF3058B2AFA00784C4A /* LJEntryRoot.h in Headers */,
+				BC72DAF4058B2AFA00784C4A /* LJEntry.h in Headers */,
+				BC72DAF5058B2AFA00784C4A /* LJEntry_Metadata.h in Headers */,
+				BC72DAF6058B2AFA00784C4A /* LJEntrySummary.h in Headers */,
+				BC72DAF7058B2AFA00784C4A /* LJServer.h in Headers */,
+				BC72DAF8058B2AFA00784C4A /* LJCheckFriendsSession.h in Headers */,
+				BC72DAF9058B2AFA00784C4A /* LJMoods.h in Headers */,
+				BC72DAFA058B2AFA00784C4A /* LJFriend.h in Headers */,
+				BC72DAFB058B2AFA00784C4A /* LJGroup.h in Headers */,
+				BC72DAFC058B2AFA00784C4A /* LJHttpURLs.h in Headers */,
+				BC72DAFD058B2AFA00784C4A /* URLEncoding.h in Headers */,
+				BC72DAFE058B2AFA00784C4A /* Miscellaneous.h in Headers */,
+				BC72DAFF058B2AFA00784C4A /* LJMenu.h in Headers */,
+				BCBC6A3605AB8C5F000EFE4A /* LJAccount_Private.h in Headers */,
+				BCBC6A7805AB9348000EFE4A /* LJServer_Private.h in Headers */,
+				BCBC6A7A05AB9409000EFE4A /* LJMoods_Private.h in Headers */,
+				BCBC6AA505AB95D8000EFE4A /* LJJournal_Private.h in Headers */,
+				BCBC6AA705AB96F9000EFE4A /* LJEntry_Private.h in Headers */,
+				BCBC6AA905AB976B000EFE4A /* LJFriend_Private.h in Headers */,
+				BCBC6AAB05AB9849000EFE4A /* LJGroup_Private.h in Headers */,
+				5F548C4C07133B7600515272 /* LJUserEntity.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		585EF8F70A0FDA70001E92ED /* LJKit */ = {
+		BC72DAED058B2AFA00784C4A /* LJKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 585EF9240A0FDA70001E92ED /* Build configuration list for PBXNativeTarget "LJKit" */;
+			buildConfigurationList = 5FBE9E0F092E685C0071F534 /* Build configuration list for PBXNativeTarget "LJKit" */;
 			buildPhases = (
-				585EF8F80A0FDA70001E92ED /* Headers */,
-				585EF90A0A0FDA70001E92ED /* Resources */,
-				585EF90E0A0FDA70001E92ED /* Sources */,
-				585EF91F0A0FDA70001E92ED /* Frameworks */,
-				585EF9230A0FDA70001E92ED /* Rez */,
+				BC72DAEE058B2AFA00784C4A /* Headers */,
+				BC72DB00058B2AFA00784C4A /* Resources */,
+				BC72DB04058B2AFA00784C4A /* Sources */,
+				BC72DB15058B2AFA00784C4A /* Frameworks */,
+				BC72DB19058B2AFA00784C4A /* Rez */,
 			);
 			buildRules = (
 			);
@@ -424,7 +316,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = "";
 				FRAMEWORK_VERSION = A;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
@@ -434,11 +329,7 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 			};
 			dependencies = (
@@ -446,15 +337,42 @@
 			name = LJKit;
 			productInstallPath = "@executable_path/../Frameworks";
 			productName = LJKit;
-			productReference = 585EF9290A0FDA71001E92ED /* LJKit.framework */;
+			productReference = BC72DB1C058B2AFA00784C4A /* LJKit.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		BC72DCA0058B315D00784C4A /* Documentation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FBE9E13092E685C0071F534 /* Build configuration list for PBXNativeTarget "Documentation" */;
+			buildPhases = (
+				BC72DCA1058B315D00784C4A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LJKitDocumentation;
+				REZ_EXECUTABLE = NO;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost";
+			};
+			dependencies = (
+			);
+			name = Documentation;
+			productInstallPath = /usr/local/bin;
+			productName = Documentation;
+			productReference = BC72DCA3058B315E00784C4A /* LJKitDocumentation */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 585EF7F10A0FB812001E92ED /* Build configuration list for PBXProject "LJKit" */;
+			buildConfigurationList = 5FBE9E17092E685C0071F534 /* Build configuration list for PBXProject "LJKit" */;
 			buildSettings = {
 			};
 			buildStyles = (
@@ -466,45 +384,27 @@
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			targets = (
-				585EF8F70A0FDA70001E92ED /* LJKit */,
-				0867D69CFE84028FC02AAC07 /* LJKit (Old) */,
+				BC72DAED058B2AFA00784C4A /* LJKit */,
+				BC72DCA0058B315D00784C4A /* Documentation */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0867D69EFE84028FC02AAC07 /* Resources */ = {
+		BC72DB00058B2AFA00784C4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				089C1668FE841158C02AAC07 /* InfoPlist.strings in Resources */,
-				F52E1F0B0357B1BA010C7683 /* Localizable.strings in Resources */,
-				438B206A03BD273D00067F6D /* License.txt in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		585EF90A0A0FDA70001E92ED /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				585EF90B0A0FDA70001E92ED /* InfoPlist.strings in Resources */,
-				585EF90C0A0FDA70001E92ED /* Localizable.strings in Resources */,
-				585EF90D0A0FDA70001E92ED /* License.txt in Resources */,
-				585EF9610A10F442001E92ED /* Info.plist in Resources */,
+				BC72DB01058B2AFA00784C4A /* InfoPlist.strings in Resources */,
+				BC72DB03058B2AFA00784C4A /* License.txt in Resources */,
+				BC296EFF058B62EF00874810 /* ToDo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
-		0867D6A2FE84028FC02AAC07 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		585EF9230A0FDA70001E92ED /* Rez */ = {
+		BC72DB19058B2AFA00784C4A /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,50 +413,45 @@
 		};
 /* End PBXRezBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		0867D69FFE84028FC02AAC07 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		BC72DCA1058B315D00784C4A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F51DE22102E293C501745AE7 /* LJAccount.m in Sources */,
-				F52AFB5602E35F3201ECE1AA /* LJJournal.m in Sources */,
-				F52AFB6602E362C001ECE1AA /* Miscellaneous.m in Sources */,
-				F52AFB6A02E3650701ECE1AA /* LJServer.m in Sources */,
-				F52AFB6E02E36F5701ECE1AA /* URLEncoding.m in Sources */,
-				F52AFB7302E37FBE01ECE1AA /* LJMenu.m in Sources */,
-				F52AFB7802E381BC01ECE1AA /* LJMoods.m in Sources */,
-				F5D00B0902F7A1F901ECE1AA /* LJAccount_EditFriends.m in Sources */,
-				F5D00B0D02F7A20501ECE1AA /* LJFriend.m in Sources */,
-				F5D00B0E02F7A20601ECE1AA /* LJGroup.m in Sources */,
-				F53614290304A86B0100006B /* LJEntry_Metadata.m in Sources */,
-				F52E1F040357A538010C7683 /* LJHttpURLs.m in Sources */,
-				F5A55BE103686C84015CD356 /* LJEntrySummary.m in Sources */,
-				F5B976CE039970E701094BD6 /* LJEntry.m in Sources */,
-				F5BD1B0F03A5597201805C1D /* LJEntryRoot.m in Sources */,
-				43DC2B4403F897280074B2F0 /* LJCheckFriendsSession.m in Sources */,
+			);
+			inputPaths = (
+				"",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DOCUMENTATION=${BUILD_ROOT}/LJKitDocumentation\nheaderdoc2html -o $DOCUMENTATION *.h\ngatherheaderdoc $DOCUMENTATION\n";
 		};
-		585EF90E0A0FDA70001E92ED /* Sources */ = {
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC72DB04058B2AFA00784C4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				585EF90F0A0FDA70001E92ED /* LJAccount.m in Sources */,
-				585EF9100A0FDA70001E92ED /* LJJournal.m in Sources */,
-				585EF9110A0FDA70001E92ED /* Miscellaneous.m in Sources */,
-				585EF9120A0FDA70001E92ED /* LJServer.m in Sources */,
-				585EF9130A0FDA70001E92ED /* URLEncoding.m in Sources */,
-				585EF9140A0FDA70001E92ED /* LJMenu.m in Sources */,
-				585EF9150A0FDA70001E92ED /* LJMoods.m in Sources */,
-				585EF9160A0FDA70001E92ED /* LJAccount_EditFriends.m in Sources */,
-				585EF9170A0FDA70001E92ED /* LJFriend.m in Sources */,
-				585EF9180A0FDA70001E92ED /* LJGroup.m in Sources */,
-				585EF9190A0FDA70001E92ED /* LJEntry_Metadata.m in Sources */,
-				585EF91A0A0FDA70001E92ED /* LJHttpURLs.m in Sources */,
-				585EF91B0A0FDA70001E92ED /* LJEntrySummary.m in Sources */,
-				585EF91C0A0FDA70001E92ED /* LJEntry.m in Sources */,
-				585EF91D0A0FDA70001E92ED /* LJEntryRoot.m in Sources */,
-				585EF91E0A0FDA70001E92ED /* LJCheckFriendsSession.m in Sources */,
+				BC72DB05058B2AFA00784C4A /* LJAccount.m in Sources */,
+				BC72DB06058B2AFA00784C4A /* LJJournal.m in Sources */,
+				BC72DB07058B2AFA00784C4A /* Miscellaneous.m in Sources */,
+				BC72DB08058B2AFA00784C4A /* LJServer.m in Sources */,
+				BC72DB09058B2AFA00784C4A /* URLEncoding.m in Sources */,
+				BC72DB0A058B2AFA00784C4A /* LJMenu.m in Sources */,
+				BC72DB0B058B2AFA00784C4A /* LJMoods.m in Sources */,
+				BC72DB0C058B2AFA00784C4A /* LJAccount_EditFriends.m in Sources */,
+				BC72DB0D058B2AFA00784C4A /* LJFriend.m in Sources */,
+				BC72DB0E058B2AFA00784C4A /* LJGroup.m in Sources */,
+				BC72DB0F058B2AFA00784C4A /* LJEntry_Metadata.m in Sources */,
+				BC72DB10058B2AFA00784C4A /* LJHttpURLs.m in Sources */,
+				BC72DB11058B2AFA00784C4A /* LJEntrySummary.m in Sources */,
+				BC72DB12058B2AFA00784C4A /* LJEntry.m in Sources */,
+				BC72DB13058B2AFA00784C4A /* LJEntryRoot.m in Sources */,
+				BC72DB14058B2AFA00784C4A /* LJCheckFriendsSession.m in Sources */,
+				5F548C4D07133B7600515272 /* LJUserEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,10 +466,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F52E1F0A0357B1BA010C7683 /* Localizable.strings */ = {
+		BC71787905AD5484000355FC /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F52E1F080357B1A8010C7683 /* Localizable.strings */,
+				BC71787A05AD5484000355FC /* English */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -582,9 +477,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		585EF7EE0A0FB812001E92ED /* Development */ = {
+		5FBE9E10092E685C0071F534 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -594,7 +493,10 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OPTIMIZATION_CFLAGS = "-O0";
@@ -605,30 +507,25 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
 			name = Development;
 		};
-		585EF7EF0A0FB812001E92ED /* Deployment */ = {
+		5FBE9E11092E685C0071F534 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = "";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
@@ -638,24 +535,23 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
-		585EF7F00A0FB812001E92ED /* Default */ = {
+		5FBE9E12092E685C0071F534 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = "";
 				FRAMEWORK_VERSION = A;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
@@ -665,172 +561,117 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Default;
 		};
-		585EF7F20A0FB812001E92ED /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-			};
-			name = Development;
-		};
-		585EF7F30A0FB812001E92ED /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-			};
-			name = Deployment;
-		};
-		585EF7F40A0FB812001E92ED /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-			};
-			name = Default;
-		};
-		585EF9250A0FDA70001E92ED /* Development */ = {
+		5FBE9E14092E685C0071F534 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "";
-				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-LJKit__Upgraded_.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x10000000,
-				);
-				PRODUCT_NAME = LJKit;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "-DDEBUG";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LJKitDocumentation;
+				REZ_EXECUTABLE = NO;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = framework;
+				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = YES;
 			};
 			name = Development;
 		};
-		585EF9260A0FDA70001E92ED /* Deployment */ = {
+		5FBE9E15092E685C0071F534 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
 				COPY_PHASE_STRIP = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "";
-				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-LJKit__Upgraded_.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x10000000,
-				);
-				PRODUCT_NAME = LJKit;
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LJKitDocumentation;
+				REZ_EXECUTABLE = NO;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = framework;
+				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
-		585EF9270A0FDA70001E92ED /* Default */ = {
+		5FBE9E16092E685C0071F534 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "";
-				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-LJKit__Upgraded_.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x10000000,
-				);
-				PRODUCT_NAME = LJKit;
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LJKitDocumentation;
+				REZ_EXECUTABLE = NO;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
+				WARNING_CFLAGS = "-Wmost";
+			};
+			name = Default;
+		};
+		5FBE9E18092E685C0071F534 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		5FBE9E19092E685C0071F534 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
 				);
-				WRAPPER_EXTENSION = framework;
+			};
+			name = Deployment;
+		};
+		5FBE9E1A092E685C0071F534 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 			};
 			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		585EF7ED0A0FB812001E92ED /* Build configuration list for PBXFrameworkTarget "LJKit (Old)" */ = {
+		5FBE9E0F092E685C0071F534 /* Build configuration list for PBXNativeTarget "LJKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				585EF7EE0A0FB812001E92ED /* Development */,
-				585EF7EF0A0FB812001E92ED /* Deployment */,
-				585EF7F00A0FB812001E92ED /* Default */,
+				5FBE9E10092E685C0071F534 /* Development */,
+				5FBE9E11092E685C0071F534 /* Deployment */,
+				5FBE9E12092E685C0071F534 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		585EF7F10A0FB812001E92ED /* Build configuration list for PBXProject "LJKit" */ = {
+		5FBE9E13092E685C0071F534 /* Build configuration list for PBXNativeTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				585EF7F20A0FB812001E92ED /* Development */,
-				585EF7F30A0FB812001E92ED /* Deployment */,
-				585EF7F40A0FB812001E92ED /* Default */,
+				5FBE9E14092E685C0071F534 /* Development */,
+				5FBE9E15092E685C0071F534 /* Deployment */,
+				5FBE9E16092E685C0071F534 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		585EF9240A0FDA70001E92ED /* Build configuration list for PBXNativeTarget "LJKit" */ = {
+		5FBE9E17092E685C0071F534 /* Build configuration list for PBXProject "LJKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				585EF9250A0FDA70001E92ED /* Development */,
-				585EF9260A0FDA70001E92ED /* Deployment */,
-				585EF9270A0FDA70001E92ED /* Default */,
+				5FBE9E18092E685C0071F534 /* Development */,
+				5FBE9E19092E685C0071F534 /* Deployment */,
+				5FBE9E1A092E685C0071F534 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

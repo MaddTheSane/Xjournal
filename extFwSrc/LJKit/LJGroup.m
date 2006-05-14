@@ -19,6 +19,10 @@
  You may contact the author via email at benzado@livejournal.com.
  */
 
+/*
+ 2004-01-06 [BPR] Removed calls to ImmutablizeObject()
+ */
+
 #import "LJGroup.h"
 #import "LJFriend.h"
 #import "LJAccount.h"
@@ -210,32 +214,32 @@
 
 - (NSArray *)memberArray
 {
-    NSMutableArray *members = [[NSMutableArray alloc] init];
+    NSMutableArray *members = [NSMutableArray array];
     [self _addMembersToContainer:members nonMembersToContainer:nil];
     [members sortUsingSelector:@selector(compare:)];
-    return ImmutablizeObject(members);
+    return members;
 }
 
 - (NSSet *)memberSet
 {
-    NSMutableSet *members = [[NSMutableSet alloc] init];
+    NSMutableSet *members = [NSMutableSet set];
     [self _addMembersToContainer:members nonMembersToContainer:nil];
-    return ImmutablizeObject(members);
+    return members;
 }
 
 - (NSArray *)nonMemberArray
 {
-    NSMutableArray *nonMembers = [[NSMutableArray alloc] init];
+    NSMutableArray *nonMembers = [NSMutableArray array];
     [self _addMembersToContainer:nil nonMembersToContainer:nonMembers];
     [nonMembers sortUsingSelector:@selector(compare:)];
-    return ImmutablizeObject(nonMembers);
+    return nonMembers;
 }
 
 - (NSSet *)nonMemberSet
 {
-    NSMutableSet *nonMembers = [[NSMutableSet alloc] init];
+    NSMutableSet *nonMembers = [NSMutableSet set];
     [self _addMembersToContainer:nil nonMembersToContainer:nonMembers];
-    return ImmutablizeObject(nonMembers);
+    return nonMembers;
 }
 
 - (unsigned)hash
@@ -255,15 +259,24 @@
     return NO;
 }
 
-- (NSComparisonResult)compare:(LJGroup *)otherGroup
+- (NSComparisonResult)compare:(id)object
 {
-    signed int diff = _sortOrder - otherGroup->_sortOrder;
-    if (diff < 1)
-        return NSOrderedAscending;
-    else if (diff > 1)
-        return NSOrderedDescending;
-    else
-        return [_name compare:(otherGroup->_name)];
+    signed int diff;
+    
+    if ([object isKindOfClass:[LJGroup class]]) {
+        diff = [self sortOrder] - [object sortOrder];
+        if (diff < 1) return NSOrderedAscending;
+        else if (diff > 1) return NSOrderedDescending;
+        else return [[self name] compare:[object name]];
+    }
+    if ([object isKindOfClass:[NSNumber class]]) {
+        diff = [self number] - [object intValue];
+        if (diff < 1) return NSOrderedAscending;
+        else if (diff > 1) return NSOrderedDescending;
+        else return NSOrderedSame;
+    }
+    NSAssert1(NO, @"Can't compare an LJGroup to %@", object);
+    return nil;
 }
 
 - (NSString *)description
@@ -271,7 +284,7 @@
     return _name;
 }
 
-- (void)_addAddFieldsToDictionary:(NSMutableDictionary *)parameters
+- (void)_addAddFieldsToParameters:(NSMutableDictionary *)parameters
 {
     NSString *key, *value;
 
@@ -287,7 +300,7 @@
     [parameters setObject:(_isPublic ? @"1" : @"0") forKey:key];
 }
 
-- (void)_addDeleteFieldsToDictionary:(NSMutableDictionary *)parameters
+- (void)_addDeleteFieldsToParameters:(NSMutableDictionary *)parameters
 {
     NSString *key;
     

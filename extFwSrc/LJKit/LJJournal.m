@@ -19,12 +19,16 @@
  You may contact the author via email at benzado@livejournal.com.
  */
 
-#import "LJJournal.h"
+/*
+ 2004-01-06 [BPR] Removed calls to ImmutablizeObject()
+ 2004-03-01 [BPR] Simplified implementation of getMostRecentEntry
+ */
+
 #import "LJAccount.h"
-#import "LJEntry.h"
-#import "LJEntrySummary.h"
-#import "URLEncoding.h"
+#import "LJEntry_Private.h"
+#import "LJJournal_Private.h"
 #import "Miscellaneous.h"
+#import "URLEncoding.h"
 
 static NSString *entrySummaryLength = nil;
 
@@ -48,30 +52,32 @@ static NSString *entrySummaryLength = nil;
 
     journal = [account journalNamed:name];
     if (journal == nil) {
-        journal = [[[LJJournal alloc] initWithName:name
-                                           account:account] autorelease];
+        journal = [[[LJJournal alloc] initWithName:name account:account] autorelease];
     }
     return journal;
 }
 
-+ (NSArray *)_journalArrayFromLoginReply:(NSDictionary *)reply
-                                 account:(LJAccount *)account
++ (NSArray *)_journalArrayFromLoginReply:(NSDictionary *)reply account:(LJAccount *)account
 {
     NSMutableArray *array;
     NSString *name;
+    LJJournal *journal;
     int count, i;
 
     count = [[reply objectForKey:@"access_count"] intValue];
-    array = [[NSMutableArray alloc] initWithCapacity:(count + 1)];
+    array = [NSMutableArray arrayWithCapacity:(count + 1)];
     // add user's own journal (not part of login reply)
-    [array addObject:[self _journalWithName:[account username]
-                                    account:account]];
+    [array addObject:[account defaultJournal]];
     // add others, if present
     for (i = 1; i <= count; i++) {
         name = [reply objectForKey:[NSString stringWithFormat:@"access_%d", i]];
-        [array addObject:[self _journalWithName:name account:account]];
+        journal = [account journalNamed:name];
+        if (journal == nil) {
+            journal = [self _journalWithName:name account:account];
+        }
+        [array addObject:journal];
     }
-    return ImmutablizeObject(array);
+    return array;
 }
 
 - (id)initWithName:(NSString *)name account:(LJAccount *)account
@@ -177,7 +183,7 @@ static NSString *entrySummaryLength = nil;
     
     reply = [self getEventsReplyWithParameters:parameters];
     count = [[reply objectForKey:@"events_count"] intValue];
-    workingArray = [[NSMutableArray alloc] initWithCapacity:count];
+    workingArray = [NSMutableArray arrayWithCapacity:count];
     for ( i = 1; i <= count; i++ ) {
         NSString *prefix = [[NSString alloc] initWithFormat:@"events_%d_", i];
         LJEntry *entry = [[LJEntry alloc] initWithReply:reply prefix:prefix journal:self];
@@ -185,7 +191,7 @@ static NSString *entrySummaryLength = nil;
         [entry release];
         [prefix release];
     }
-    return ImmutablizeObject(workingArray);
+    return workingArray;
 }
 
 - (NSArray *)getSummariesWithParameters:(NSMutableDictionary *)parameters
@@ -199,7 +205,7 @@ static NSString *entrySummaryLength = nil;
     [parameters setObject:@"1" forKey:@"prefersubject"];
     reply = [self getEventsReplyWithParameters:parameters];
     count = [[reply objectForKey:@"events_count"] intValue];
-    workingArray = [[NSMutableArray alloc] initWithCapacity:count];
+    workingArray = [NSMutableArray arrayWithCapacity:count];
     for ( i = 1; i <= count; i++ ) {
         NSString *prefix = [[NSString alloc] initWithFormat:@"events_%d_", i];
         LJEntrySummary *summary = [[LJEntrySummary alloc] initWithReply:reply prefix:prefix journal:self];
@@ -207,7 +213,7 @@ static NSString *entrySummaryLength = nil;
         [summary release];
         [prefix release];
     }
-    return ImmutablizeObject(workingArray);
+    return workingArray;
 }
 
 - (LJEntry *)getEntryForItemID:(int)itemID
@@ -218,8 +224,7 @@ static NSString *entrySummaryLength = nil;
 
 - (LJEntry *)getMostRecentEntry
 {
-    NSArray *array = [self getEntriesWithParameters:[self parametersForItemID:-1]];
-    return [array count] == 0 ? nil : [array objectAtIndex:0];
+    return [self getEntryForItemID:-1];
 }
 
 - (NSArray *)getEntriesLastN:(int)n beforeDate:(NSDate *)date
@@ -269,17 +274,17 @@ static NSString *entrySummaryLength = nil;
         parameters = [NSDictionary dictionaryWithObject:_name forKey:@"usejournal"];
     }
     reply = [_account getReplyForMode:@"getdaycounts" parameters:parameters];
-    workingCounts = [[NSMutableDictionary alloc] init];
+    workingCounts = [NSMutableDictionary dictionary];
     enumerator = [reply keyEnumerator];
     while (key = [enumerator nextObject]) {
         NSCalendarDate *date = [[NSCalendarDate alloc] initWithString:key calendarFormat:@"%Y-%m-%d"];
         if (date) {
-            NSNumber *count = [NSNumber numberWithInt:[[reply objectForKey:key] intValue]];
-            [workingCounts setObject:count forKey:date];
+            int c = [[reply objectForKey:key] intValue];
+            [workingCounts setObject:[NSNumber numberWithInt:c] forKey:date];
             [date release];
         }
     }
-    return ImmutablizeObject(workingCounts);
+    return workingCounts;
 }
 
 - (unsigned)hash

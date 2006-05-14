@@ -18,10 +18,16 @@
 
  You may contact the author via email at benzado@livejournal.com.
  */
+/*
+ 2004-03-13 [BPR] Added default account methods.
+ */
 
 #import <Cocoa/Cocoa.h>
+#import <LJKit/LJUserEntity.h>
 
 @class LJServer, LJMoods, LJJournal;
+
+#define LJKitBundle [NSBundle bundleForClass:[LJAccount class]]
 
 /*!
  @enum Login Flags
@@ -109,13 +115,37 @@ FOUNDATION_EXPORT NSString * const LJAccountWillLoginNotification;
 FOUNDATION_EXPORT NSString * const LJAccountDidLoginNotification;
 
 /*!
- @const LJAccountDidLoginNotification
+ @const LJAccountDidNotLoginNotification
  @discussion
  Posted after an account object fails to log in.
  The notification object is the account instance.
  The userInfo object for key LJException is the exception raised during login.
  */
 FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
+
+/*!
+ @const LJAccountDidLogoutNotification
+ @discussion
+ Posted after an account object logs out.
+ The notification object is the account instance.
+ */
+FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
+
+/*!
+ @const LJAccountWillDownloadFriendsNotification
+ @discussion
+ Posted before an account object downloads friend/group info.
+ The notification object is the account instance.
+ */
+FOUNDATION_EXPORT NSString * const LJAccountWillDownloadFriendsNotification;
+
+/*!
+@const LJAccountDidDownloadFriendsNotification
+ @discussion
+ Posted after an account object downloads friend/group info.
+ The notification object is the account instance.
+ */
+FOUNDATION_EXPORT NSString * const LJAccountDidDownloadFriendsNotification;
 
 /*!
  @class LJAccount
@@ -134,9 +164,8 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
  accessor methods.  The an account's customInfo dictionary can be used
  to store client specific information with the account.
  */
-@interface LJAccount : NSObject <NSCoding>
+@interface LJAccount : LJUserEntity <NSCoding>
 {
-    NSString *_username, *_fullname;
     NSMenu *_menu;
     NSArray *_journalArray;
     LJServer *_server;
@@ -155,6 +184,12 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
     NSMutableSet *_friendOfSet;
     NSDate *_groupsSyncDate;
     NSDate *_friendsSyncDate;
+    
+   	// For efficiency, keep an ordered cache of friends, 
+	// which we only update when _friendSet changes
+	NSArray *_orderedFriendArrayCache;
+	NSArray *_orderedGroupArrayCache;
+	
     // for internal linked list
     LJAccount *_nextAccount;
 }
@@ -180,6 +215,58 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
  found, returns nil.
  */
 + (LJAccount *)accountWithIdentifier:(NSString *)identifier;
+
+
+/*!
+ @method defaultAccount
+ @abstract Returns the default account.
+ @result An account reference if any exists.
+ @discussion
+ The LJAccount keeps an internal list of all known account objects.
+ This method will return the one designated as default.  If you have 
+ never set a default account, and arbitrary account will be returned.
+ This method is guaranteed not to return nil unless there are no
+ LJAccount objects in memory.
+ */
++ (LJAccount *)defaultAccount;
+
+/*!
+ @method setDefaultAccount:
+ @abstract Sets the default account.
+ @param newDefault The account to be set as the new default.
+ @discussion
+ Use this method to designate the account object to be returned by
+ defaultAccount.
+ The identifier of the selected account will be stored in the user defaults
+ database.  As account objects are unarchived, they check their identifiers 
+ against the defaults database.  If a match is found, the unarchived object
+ will be registered as the default account.  Thus, default account status 
+ is maintained across executions of your application if you archive account
+ object instances.  If you modify the defaults key directly default account
+ status will not be synchronized and the results are undefined.
+ */
++ (void)setDefaultAccount:(LJAccount *)newDefault;
+
+/*!
+ @method setDefault:
+ @abstract Makes the receiver the default.
+ @param flag YES to make the receiver the default.
+ @discussion
+ Use this method to designate the receiver to be the object returned by
+ defaultAccount.  If flag is NO, no action is taken.
+ */
+- (void)setDefault:(BOOL)flag;
+
+/*!
+ @method isDefault
+ @abstract Determines if the receiver is the default account.
+ @returns YES if the receiver is the default account, NO otherwise.
+ @discussion
+ Use this method to determine if the receiver is the object returned by
+ defaultAccount.
+ */
+- (BOOL)isDefault;
+
 
 /*!
  @method initWithUsername:
@@ -217,25 +304,6 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
  @result YES on success; NO otherwise.
  */ 
 - (BOOL)writeToFile:(NSString *)path;
-
-/*!
- @method username
- @abstract Returns the username associated with the receiver.
- @discussion
- This property is preserved during archiving.
- */
-- (NSString *)username;
-
-/*!
- @method fullname
- @abstract Returns full name associated with the receiver.
- @discussion
- Returns the user's long name as reported by the server.  If the receiver
- has never been logged in, this method will return the username.
-
- This property is preserved during archiving.
-*/
-- (NSString *)fullname;
 
 /*!
  @method server
@@ -303,6 +371,16 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
 - (void)loginWithPassword:(NSString *)password;
 
 /*!
+ @method logout
+ @abstract Logs out of the LiveJournal server.
+ @discussion
+ Since the LiveJournal Client Server Protocol is stateless, logging out does
+ not result in any communication with the server.  This method destroys any
+ stored password information and posts LJAccountDidLogoutNotification.
+ */
+- (void)logout;
+
+/*!
  @method loginMessage
  @abstract Obtain the server's login message.
  @result The login message, or nil if none was available.
@@ -358,6 +436,18 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
 - (void)setMoods:(LJMoods *)moods;
 
 /*!
+ @method userPictureKeywords
+ @abstract Returns an NSArray of account picture keywords in NSStrings.
+ @discussion
+	 If you provided the LJGetPicturesLoginFlag to the loginWithPassword:flags:
+	 method, this method will return an NSArray of NSStrings. Otherwise, returns nil.
+	 
+	 This property is preserved during archiving.
+	 */
+- (NSArray *)userPictureKeywords;
+
+
+/*!
  @method userPicturesDictionary
  @abstract Returns a dictionary of account picture keywords and URLs.
  @discussion
@@ -376,6 +466,14 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
  This property is preserved during archiving.
  */
 - (NSURL *)defaultUserPictureURL;
+
+/*!
+	@method defaultUserPictureURL
+ @abstract Returns the URL of the default user picture.
+ @discussion
+ This property is preserved during archiving.
+ */
+- (NSString *)defaultUserPictureKeyword;
 
 /*!
  @method userPicturesMenu
@@ -469,6 +567,7 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
 
 @end
 
+
 /*!
  @category NSObject(LJAccountDelegate)
  @abstract Methods implemented by the delegate
@@ -484,12 +583,22 @@ FOUNDATION_EXPORT NSString * const LJAccountDidNotLoginNotification;
  */
 - (BOOL)accountShouldConnect:(LJAccount *)sender;
 
+/*!
+ @method accountWillConnect:
+ @param notification 
+ @discussion
+ Called before an account will connect to the server.
+ What is [notification object]???
+ */
 - (void)accountWillConnect:(NSNotification *)notification;
-- (void)accountDidConnect:(NSNotification *)notification;
-@end
 
-@interface LJAccount (Private)
-+ (NSString *)_clientVersionForBundle:(NSBundle *)bundle;
-- (void)_raiseExceptionWithName:(NSString *)name;
-- (void)_raiseExceptionWithName:(NSString *)name reason:(NSString *)reason;
+/*!
+ @method accountDidConnect:
+ @discussion
+ Called immediately after a connection to the server is completed.
+ Is it called if an error occurs???
+ What is [notification object]???
+ */
+- (void)accountDidConnect:(NSNotification *)notification;
+
 @end

@@ -20,6 +20,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <LJKit/LJUserEntity.h>
 
 @class LJAccount, LJGroup;
 
@@ -46,10 +47,9 @@ enum {
  @class LJFriend
  @abstract Represents a LiveJournal friend.
  */
-@interface LJFriend : NSObject <NSCoding>
+@interface LJFriend : LJUserEntity <NSCoding>
 {
     LJAccount *_account;
-    NSString *_username, *_fullname;
     NSCalendarDate *_birthDate;
     NSColor *_fgColor, *_bgColor, *_fgColorForYou, *_bgColorForYou;
     unsigned int _groupMask;
@@ -61,28 +61,8 @@ enum {
     NSDate *_modifiedDate;
 }
 
-+ (void)updateFriendSet:(NSMutableSet *)friends withReply:(NSDictionary *)reply account:(LJAccount *)account;
-+ (void)updateFriendOfSet:(NSMutableSet *)friendOfs withReply:(NSDictionary *)reply account:(LJAccount *)account;
-+ (void)updateFriendSet:(NSSet *)friends withEditReply:(NSDictionary *)reply;
-
-- (id)initWithUsername:(NSString *)username account:(LJAccount *)account;
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;
-
-/*!
- @method username
- @abstract Obtain the username of the receiver.
- */
-- (NSString *)username;
-
-/*!
- @method fullname
- @abstract Obtain the full name of the receiver.
- @discussion
- Returns the receiver's full name, as reported by the server.  If not
- available, this method returns the receiver's username.
- */
-- (NSString *)fullname;
 
 /*!
  @method birthDate
@@ -172,13 +152,4 @@ enum {
  */
 - (NSColor *)foregroundColorForYou;
 
-@end
-
-@interface LJFriend (Private)
-- (void)_addAddFieldsToDictionary:(NSMutableDictionary *)parameters index:(int)i;
-- (void)_addDeleteFieldsToDictionary:(NSMutableDictionary *)parameters;
-- (void)_enqueueNotificationName:(NSString *)name;
-- (void)_updateModifiedDate;
-- (void)_setOutgoingFriendship:(BOOL)flag;
-- (void)_setIncomingFriendship:(BOOL)flag;
 @end
