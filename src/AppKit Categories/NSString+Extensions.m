@@ -141,7 +141,7 @@
 		secondBuildArray = [NSMutableArray arrayWithArray:secondArray];
 
 		if (sACount > tableDepth) {
-			NSString *correctedSection;
+			NSString *correctedSection =@"";
 
 			if ((sACount - tableDepth) > 1) {
 				NSLog(@"Error: Mismatched <table> - </table> count! Too many </table>");
