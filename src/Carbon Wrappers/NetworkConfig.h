@@ -37,7 +37,7 @@
 //  ProxyDetect
 //
 //  Created by Fraser Speirs on Thu Sep 12 2002.
-//  Copyright (c) 2002 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2002 Connected Flow. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

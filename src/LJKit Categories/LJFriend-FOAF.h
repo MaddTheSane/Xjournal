@@ -3,7 +3,7 @@
 //  Xjournal
 //
 //  Created by Fraser on Tue Feb 24 2004.
-//  Copyright (c) 2004 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2004 Connected Flow. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

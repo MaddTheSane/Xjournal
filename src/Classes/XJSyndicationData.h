@@ -3,7 +3,7 @@
 //  Xjournal
 //
 //  Created by Fraser Speirs on 19/10/2004.
-//  Copyright 2004 __MyCompanyName__. All rights reserved.
+//  Copyright 2004 Connected Flow. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
