@@ -79,6 +79,7 @@
 // Opens change notes and ReadMe
 - (IBAction)openChangeNotes:(id)sender;
 - (IBAction)openReadMe: (id)sender;
+- (IBAction)openLicense: (id)sender;
 - (IBAction)openXjournalBlog: (id)sender;
 - (IBAction)openXjournalHomePage: (id)sender;
 

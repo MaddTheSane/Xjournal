@@ -638,6 +638,11 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [[NSWorkspace sharedWorkspace] openFile: readMePath];
 }
 
+- (IBAction)openLicense: (id)sender {
+    NSString *readMePath = [[NSBundle mainBundle] pathForResource: @"CFPSL_1_0" ofType: @"rtf"];
+    [[NSWorkspace sharedWorkspace] openFile: readMePath];
+}
+
 - (IBAction)openXjournalHomePage: (id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://www.speirs.org/xjournal"]];
 }

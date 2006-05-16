@@ -97,6 +97,7 @@
                 logIn = id; 
                 openChangeNotes = id; 
                 openDonate = id; 
+                openLicense = id; 
                 openReadMe = id; 
                 openXjournalBlog = id; 
                 openXjournalHomePage = id; 
