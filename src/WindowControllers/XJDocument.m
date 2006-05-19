@@ -996,6 +996,17 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 - (void)setEntry:(LJEntry *)anEntry {
     [entry release];
     entry = [anEntry retain];
+	[self setEntryHasBeenPosted: [entry webItemID] != 0];
+}
+
+//=========================================================== 
+//  entryHasBeenPosted 
+//=========================================================== 
+- (BOOL)entryHasBeenPosted {
+    return entryHasBeenPosted;
+}
+- (void)setEntryHasBeenPosted:(BOOL)flag {
+    entryHasBeenPosted = flag;
 }
 
 - (NSArray *) friendArray

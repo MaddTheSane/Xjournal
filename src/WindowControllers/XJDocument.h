@@ -50,7 +50,8 @@
 
     // The entry associated with the window
     LJEntry *entry;
-
+	BOOL entryHasBeenPosted; // Is entry already on LJ?
+	
     // Cache thtoolbar items
     NSMutableDictionary *toolbarItemCache;
 
@@ -182,6 +183,9 @@
 // =============
 - (LJEntry *)entry;
 - (void)setEntry:(LJEntry *)anEntry;
+
+- (BOOL)entryHasBeenPosted;
+- (void)setEntryHasBeenPosted:(BOOL)flag;
 
 - (NSArray *) friendArray;
 - (void) setFriendArray: (NSArray *) newFriendArray;
