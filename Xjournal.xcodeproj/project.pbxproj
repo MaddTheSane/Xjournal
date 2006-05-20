@@ -210,6 +210,8 @@
 		1BF27EF404B02A9400121863 /* stop.2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE904B02A9400121863 /* stop.2.tiff */; };
 		585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
 		585E03210A1A2FE7001E92ED /* CFPSL_1_0.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
+		5882FAA60A1F02F400C30DDB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5882FAA50A1F02F400C30DDB /* LJKit.framework */; };
+		5882FB970A1F035600C30DDB /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5882FAA50A1F02F400C30DDB /* LJKit.framework */; };
 		5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */; };
 		5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
@@ -237,8 +239,6 @@
 		5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6325A9083C922C007F6AF9 /* libcrypto.dylib */; };
 		5F73D7F305DE9C6400DADCD8 /* imagesize.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F73D7F205DE9C6400DADCD8 /* imagesize.tiff */; };
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
-		5FBE9E5E092E6A880071F534 /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBE9E4D092E6A880071F534 /* LJKit.framework */; };
-		5FBE9E5F092E6A920071F534 /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FBE9E4D092E6A880071F534 /* LJKit.framework */; };
 		5FBEA5F2093107170071F534 /* XJFontNameToDisplayVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */; };
 		5FBEA5F3093107170071F534 /* XJFontNameToDisplayVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */; };
 		5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF478F08138A6400829423 /* Cocoa.framework */; };
@@ -322,6 +322,27 @@
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
+		5882F9940A1EFDB600C30DDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A /* LJKit.framework */;
+			remoteInfo = LJKit;
+		};
+		5882F9960A1EFDB600C30DDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC72DCA3058B315E00784C4A /* LJKitDocumentation */;
+			remoteInfo = Documentation;
+		};
+		5882F9AE0A1EFF7300C30DDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC72DAED058B2AFA00784C4A /* LJKit */;
+			remoteInfo = LJKit;
+		};
 		5F7417AB06C588B000FEB18A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -350,7 +371,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5FBE9E5F092E6A920071F534 /* LJKit.framework in CopyFiles */,
+				5882FB970A1F035600C30DDB /* LJKit.framework in CopyFiles */,
 				5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +551,8 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
 		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = "<group>"; };
+		5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = extFwSrc/LJKit/LJKit.xcodeproj; sourceTree = "<group>"; };
+		5882FAA50A1F02F400C30DDB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LJKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMarkupRemovalVT.h; path = src/ValueTransformers/XJMarkupRemovalVT.h; sourceTree = "<group>"; };
 		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMarkupRemovalVT.m; path = src/ValueTransformers/XJMarkupRemovalVT.m; sourceTree = "<group>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
@@ -562,7 +585,6 @@
 		5F80118406BD528900789AD7 /* LJAccount-RetainDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJAccount-RetainDebug.h"; sourceTree = "<group>"; };
 		5F80118506BD528900789AD7 /* LJAccount-RetainDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-RetainDebug.m"; sourceTree = "<group>"; };
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
-		5FBE9E4D092E6A880071F534 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LJKit.framework; path = frameworks/LJKit.framework; sourceTree = SOURCE_ROOT; };
 		5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJFontNameToDisplayVT.h; path = src/ValueTransformers/XJFontNameToDisplayVT.h; sourceTree = "<group>"; };
 		5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJFontNameToDisplayVT.m; path = src/ValueTransformers/XJFontNameToDisplayVT.m; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -588,7 +610,7 @@
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
 				5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */,
-				5FBE9E5E092E6A880071F534 /* LJKit.framework in Frameworks */,
+				5882FAA60A1F02F400C30DDB /* LJKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,7 +620,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5FBE9E4D092E6A880071F534 /* LJKit.framework */,
+				5882FAA50A1F02F400C30DDB /* LJKit.framework */,
 				5FD2849B0926AF4F005A1060 /* OgreKit.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
@@ -933,6 +955,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Xjournal */ = {
 			isa = PBXGroup;
 			children = (
+				5882F98D0A1EFD9400C30DDB /* Local Frameworks */,
 				5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */,
 				1B870E0904C7EA5900C54147 /* Documentation */,
 				1BBD891004B01883003882CD /* AppKit Categories */,
@@ -992,6 +1015,23 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5882F98D0A1EFD9400C30DDB /* Local Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */,
+			);
+			name = "Local Frameworks";
+			sourceTree = "<group>";
+		};
+		5882F98F0A1EFDB600C30DDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5882F9950A1EFDB600C30DDB /* LJKit.framework */,
+				5882F9970A1EFDB600C30DDB /* LJKitDocumentation */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5F044ADC09224A58003D6D2A /* Value Transformers */ = {
@@ -1115,6 +1155,7 @@
 				ZERO_LINK = NO;
 			};
 			dependencies = (
+				5882F9AF0A1EFF7300C30DDB /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -1140,12 +1181,35 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Xjournal */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5882F98F0A1EFDB600C30DDB /* Products */;
+					ProjectRef = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
+				},
+			);
 			targets = (
 				8D15AC270486D014006FF6A4 /* Xjournal */,
 				5F0C941D06BC04EA0082A48B /* Disk Image */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5882F9950A1EFDB600C30DDB /* LJKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LJKit.framework;
+			remoteRef = 5882F9940A1EFDB600C30DDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5882F9970A1EFDB600C30DDB /* LJKitDocumentation */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = LJKitDocumentation;
+			remoteRef = 5882F9960A1EFDB600C30DDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D15AC2B0486D014006FF6A4 /* Resources */ = {
@@ -1349,6 +1413,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5882F9AF0A1EFF7300C30DDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LJKit;
+			targetProxy = 5882F9AE0A1EFF7300C30DDB /* PBXContainerItemProxy */;
+		};
 		5F7417AC06C588B000FEB18A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* Xjournal */;
@@ -1576,7 +1645,10 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.5d1;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/frameworks",
+					"$(SRCROOT)/build/Deployment",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1620,7 +1692,10 @@
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/frameworks",
+					"$(SRCROOT)/build/Deployment",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1662,6 +1737,7 @@
 					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
 					"$(SRCROOT)/../frameworks",
 					"$(SRCROOT)/../LJKit/LJKit/build/Development",
+					"$(SRCROOT)/build/Deployment",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1703,6 +1779,7 @@
 					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
 					"$(SRCROOT)/../frameworks",
 					"$(SRCROOT)/../LJKit/LJKit/build/Development",
+					"$(SRCROOT)/build/Deployment",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
