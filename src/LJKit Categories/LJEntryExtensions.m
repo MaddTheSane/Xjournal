@@ -161,7 +161,7 @@
 	}
 	
     [meta appendString: [NSString stringWithFormat: @" %@<br>",
-		[[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@ %%p", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]]];
+		[[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]]];
 	
     if([self currentMood]) {
         [meta appendString: [NSString stringWithFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMood]]];
