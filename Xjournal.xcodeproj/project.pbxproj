@@ -326,21 +326,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A /* LJKit.framework */;
+			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A;
 			remoteInfo = LJKit;
 		};
 		5882F9960A1EFDB600C30DDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BC72DCA3058B315E00784C4A /* LJKitDocumentation */;
+			remoteGlobalIDString = BC72DCA3058B315E00784C4A;
 			remoteInfo = Documentation;
 		};
 		5882F9AE0A1EFF7300C30DDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BC72DAED058B2AFA00784C4A /* LJKit */;
+			remoteGlobalIDString = BC72DAED058B2AFA00784C4A;
 			remoteInfo = LJKit;
 		};
 		5F7417AB06C588B000FEB18A /* PBXContainerItemProxy */ = {
