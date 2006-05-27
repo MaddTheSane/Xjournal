@@ -303,6 +303,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FBE9E0F092E685C0071F534 /* Build configuration list for PBXNativeTarget "LJKit" */;
 			buildPhases = (
+				58E700E20A259E2F00EB5E27 /* ShellScript */,
 				BC72DAEE058B2AFA00784C4A /* Headers */,
 				BC72DB00058B2AFA00784C4A /* Resources */,
 				BC72DB04058B2AFA00784C4A /* Sources */,
@@ -414,6 +415,19 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		58E700E20A259E2F00EB5E27 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Symroot: ${SYMROOT}\"";
+		};
 		BC72DCA1058B315D00784C4A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -507,6 +521,7 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
+				SYMROOT = "$(PROJECT_DIR)/../../build";
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
@@ -535,6 +550,7 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
+				SYMROOT = "$(PROJECT_DIR)/../../build";
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
@@ -561,6 +577,7 @@
 				);
 				PRODUCT_NAME = LJKit;
 				SECTORDER_FLAGS = "";
+				SYMROOT = "$(PROJECT_DIR)/../../build";
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -624,6 +641,20 @@
 		5FBE9E18092E685C0071F534 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 3.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+				SYMROOT = "$(PROJECT_DIR)/../../build";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Development;
 		};
@@ -634,12 +665,36 @@
 					ppc,
 					i386,
 				);
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 3.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+				SYMROOT = "$(PROJECT_DIR)/../../build";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Deployment;
 		};
 		5FBE9E1A092E685C0071F534 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 3.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+				SYMROOT = "$(PROJECT_DIR)/../../build";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Default;
 		};
