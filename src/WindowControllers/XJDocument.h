@@ -122,6 +122,8 @@
 /* Actions for posting */
 - (BOOL)postEntryAndReturnStatus;
 - (void)postEntryAndDiscardLocalCopy:(id)sender;
+/* Support for post confirmation dialog */
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
 
     // Popup targets
 - (IBAction)setSelectedJournal:(id)sender;

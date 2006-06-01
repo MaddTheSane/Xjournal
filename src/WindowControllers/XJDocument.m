@@ -420,7 +420,11 @@
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     if(returnCode == NSAlertAlternateReturn)
-        [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];    
+    {
+        [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];  
+    }
+    [self closeHTMLPreviewWindow];
+    [self close];
 }
 
 - (BOOL)postEntryAndReturnStatus
@@ -514,17 +518,19 @@
 	}
 
     if([self postEntryAndReturnStatus]) {
-    	[self close];
-        [self closeHTMLPreviewWindow];
         
         if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldShowPostingConfirmationDialog"] boolValue]) {
-            int result = NSRunInformationalAlertPanel(NSLocalizedString(@"Posting Succeeded", @""),
-                                                      NSLocalizedString(@"Your entry was successfully posted", @""),
-                                                      NSLocalizedString(@"OK", @""),
-                                                      NSLocalizedString(@"Open Recent Entries", @""),
-                                                      nil);
-            if(result == NSAlertAlternateReturn)
-                [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];
+            NSBeginInformationalAlertSheet(NSLocalizedString(@"Posting Succeeded", @""),
+                                           NSLocalizedString(@"OK", @""),
+                                           NSLocalizedString(@"Open Recent Entries", @""),
+                                           nil, /* Other Btn */
+                                           [self window],
+                                           self, /* id modalDelegate */
+                                           @selector(sheetDidEnd:returnCode:contextInfo:), /* SEL didEndSelector */
+                                           nil, /* SEL didDismissSelector */
+                                           nil, /* void *contextInfo */
+                                           NSLocalizedString(@"Your entry was successfully posted", @""));
+            
         }
         else {
 #warning Why is this here?  I have no idea!
@@ -532,6 +538,7 @@
         }
     }
 }
+
 
 // ----------------------------------------------------------------------------------------
 #pragma mark -
