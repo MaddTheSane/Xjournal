@@ -1,12 +1,3 @@
-//
-//  KeyChain.m
-//  Fire
-//
-//  Created by Colter Reed on Thu Jan 24 2002.
-//  Copyright (c) 2002 Colter Reed. All rights reserved.
-//  Released under GPL.  You know how to get a copy.
-//
-
 #import "XJKeyChain.h"
 
 static XJKeyChain* defaultKeyChain = nil;

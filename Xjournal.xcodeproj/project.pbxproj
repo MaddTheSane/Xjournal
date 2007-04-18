@@ -13,28 +13,6 @@
 			buildPhases = (
 				5F0C941C06BC04EA0082A48B /* ShellScript */,
 			);
-			buildSettings = {
-				DiskImageProduct = "$(PROJECT_NAME).app";
-				DiskImageSizeInMB = 10;
-				DiskImageVolumeName = "$(PROJECT_NAME)";
-				DiskImageWindowBackgroundBlue = 1.0;
-				DiskImageWindowBackgroundGreen = 1.0;
-				DiskImageWindowBackgroundRed = 1.0;
-				DiskImageWindowMaxX = 500;
-				DiskImageWindowMaxY = 300;
-				DiskImageWindowMinX = 100;
-				DiskImageWindowMinY = 100;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "Disk Image";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
 				5F7417AC06C588B000FEB18A /* PBXTargetDependency */,
 			);
@@ -281,45 +259,6 @@
 			);
 		};
 /* End PBXBuildRule section */
-
-/* Begin PBXBuildStyle section */
-		4A9504D0FFE6A4CB11CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = src/Info.plist;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		4A9504D1FFE6A4CB11CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.4;
-				DEPLOYMENT_LOCATION = NO;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				DiskImageEncryption = 0;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				VERSIONING_SYSTEM = "apple-generic";
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		5F7B05DA06946E2C009C921F /* Linked with Symbols */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				DiskImageEncryption = 1;
-			};
-			name = "Linked with Symbols";
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
 		5882F9940A1EFDB600C30DDB /* PBXContainerItemProxy */ = {
@@ -1123,37 +1062,6 @@
 				5F632510083C8D5A007F6AF9 /* PBXBuildRule */,
 				5F63250F083C8D4A007F6AF9 /* PBXBuildRule */,
 			);
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1.0.4;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder,
-					"/Users/fspeirs/Coding/Projects/Xjournal/Xjournal-1.02/LJKit-0.9.5/build",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/Xjournal_Prefix.pch;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = src/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Xjournal;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
 			dependencies = (
 				5882F9AF0A1EFF7300C30DDB /* PBXTargetDependency */,
 			);
@@ -1169,15 +1077,6 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 5FD243CE0861F8BC0007E0C5 /* Build configuration list for PBXProject "Xjournal" */;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
-			};
-			buildStyles = (
-				4A9504D0FFE6A4CB11CA0CBA /* Development */,
-				4A9504D1FFE6A4CB11CA0CBA /* Deployment */,
-				5F7B05DA06946E2C009C921F /* Linked with Symbols */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Xjournal */;
 			projectDirPath = "";
@@ -1736,11 +1635,12 @@
 				CURRENT_PROJECT_VERSION = 1.0.5d1;
 				DiskImageEncryption = 1;
 				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(SRCROOT)/../frameworks",
 					"$(SRCROOT)/../LJKit/LJKit/build/Development",
 					"$(SRCROOT)/build/Deployment",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1779,11 +1679,12 @@
 				);
 				CURRENT_PROJECT_VERSION = 1.0.5d1;
 				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/fspeirs/Coding/Projects/Xjournal/1.0 Branch/build/Deployment",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(SRCROOT)/../frameworks",
 					"$(SRCROOT)/../LJKit/LJKit/build/Development",
 					"$(SRCROOT)/build/Deployment",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1938,10 +1839,7 @@
 		5FD243CF0861F8BC0007E0C5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(NATIVE_ARCH)";
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
 				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";

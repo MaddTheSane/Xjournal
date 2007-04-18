@@ -332,9 +332,9 @@
         // invalidate the iTMS links since we can only generate them
         // directly from iTunes and not from back-parsing the user's
         // entry
-        if(![[[aNotification object] stringValue] isEqualToString: [[self entry] currentMusic]]) { 
-            iTMSLinks = nil;
-        }
+		[iTMSLinks release];
+		iTMSLinks = nil;
+
         [[self entry] setCurrentMusic: [[aNotification object] stringValue]];        
     }
 }
@@ -355,8 +355,7 @@
 #pragma mark -
 #pragma mark Music Detection
 // ----------------------------------------------------------------------------------------
-- (IBAction)detectMusicNow:(id)sender
-{
+- (IBAction)detectMusicNow:(id)sender {
 	[self setCurrentMusic: [XJMusic currentMusicAsiTunesLink:[[NSUserDefaults standardUserDefaults] boolForKey:@"XJLinkMusicToStore"]]];
 }
 
@@ -364,7 +363,6 @@
 	if([[NSUserDefaults standardUserDefaults] boolForKey: @"XJDetectMusicOniTunesTrackChange"])
 		[self detectMusicNow: self];
 }
-
 
 //=========================================================== 
 //  currentMusic 
@@ -446,7 +444,7 @@
     */
     if(![[self entry] itemID] &&
 	   [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJLinkMusicToStore"] boolValue] &&
-	   iTMSLinks) {
+	   [self currentMusic]) {
         [[self entry] setCurrentMusic: nil];
         [[self entry] setContent: [NSString stringWithFormat: @"%@\n\n%@", [[self entry] content], iTMSLinks]];
     }

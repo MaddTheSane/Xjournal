@@ -23,6 +23,14 @@
 			sepNavVisRect = "{{0, 0}, {1194, 445}}";
 		};
 	};
+	1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1039, 846}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {1039, 846}}";
+			sepNavWindowFrame = "{{74, 48}, {1084, 975}}";
+		};
+	};
 	1B76D69204CDD901008E50A3 /* AddressBookDropView.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1194, 473}}";
@@ -103,9 +111,10 @@
 	};
 	1BBD892F04B0188D003882CD /* XJSafariBookmarkParser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1194, 3331}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1039, 3332}}";
 			sepNavSelRange = "{7598, 0}";
-			sepNavVisRect = "{{0, 2800}, {1194, 415}}";
+			sepNavVisRect = "{{0, 1113}, {1039, 846}}";
+			sepNavWindowFrame = "{{74, 48}, {1084, 975}}";
 		};
 	};
 	1BBD893B04B0189F003882CD /* XJCalendar.h */ = {
@@ -216,9 +225,9 @@
 	};
 	1BBD895704B0189F003882CD /* XJPreferences.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {887, 814}}";
-			sepNavSelRange = "{608, 24}";
-			sepNavVisRect = "{{0, 0}, {887, 679}}";
+			sepNavIntBoundsRect = "{{0, 0}, {836, 888}}";
+			sepNavSelRange = "{186, 24}";
+			sepNavVisRect = "{{0, 22}, {836, 184}}";
 			sepNavWindowFrame = "{{1764, 2}, {932, 793}}";
 		};
 	};
@@ -292,18 +301,18 @@
 	};
 	1BBD899904B0189F003882CD /* XJDocument.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {984, 2024}}";
-			sepNavSelRange = "{5970, 0}";
-			sepNavVisRect = "{{0, 1281}, {984, 721}}";
+			sepNavIntBoundsRect = "{{0, 0}, {898, 2424}}";
+			sepNavSelRange = "{1934, 0}";
+			sepNavVisRect = "{{0, 0}, {898, 741}}";
 			sepNavWindowFrame = "{{484, 59}, {943, 819}}";
 		};
 	};
 	1BBD899A04B0189F003882CD /* XJDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {793, 11539}}";
-			sepNavSelRange = "{15239, 0}";
-			sepNavVisRect = "{{0, 4445}, {793, 361}}";
-			sepNavWindowFrame = "{{336, 43}, {1029, 835}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1007, 13068}}";
+			sepNavSelRange = "{16456, 0}";
+			sepNavVisRect = "{{0, 4909}, {1007, 743}}";
+			sepNavWindowFrame = "{{141, 105}, {1052, 821}}";
 		};
 	};
 	1BBD899B04B0189F003882CD /* XJFriendsController.h */ = {
@@ -378,7 +387,6 @@
 	};
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Development;
-		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA /* Development */;
 		activeExecutable = 5F97973F05B969EC0082C2C7 /* Xjournal */;
 		activeTarget = 8D15AC270486D014006FF6A4 /* Xjournal */;
 		addToTargets = (
@@ -549,7 +557,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 168424960;
+			PBXPerProjectTemplateStateSaveDate = 198571835;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1205,7 +1213,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 131 912 747 0 0 1440 878 ";
 			};
-			PBXWorkspaceStateSaveDate = 168424960;
+			PBXWorkspaceStateSaveDate = 198571835;
 		};
 		sourceControlManager = 5F97978205B96A1F0082C2C7 /* Source Control */;
 		userBuildSettings = {
@@ -1260,11 +1268,19 @@
 			sepNavVisRect = "{{0, 573}, {793, 361}}";
 		};
 	};
+	5F5468C0092809EF00ABCAC9 /* XJSyndicationData.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1039, 846}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {1039, 846}}";
+			sepNavWindowFrame = "{{120, 6}, {1084, 975}}";
+		};
+	};
 	5F5468C1092809EF00ABCAC9 /* XJSyndicationData.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {860, 2607}}";
+			sepNavIntBoundsRect = "{{0, 0}, {938, 3304}}";
 			sepNavSelRange = "{2206, 0}";
-			sepNavVisRect = "{{0, 21}, {860, 639}}";
+			sepNavVisRect = "{{0, 1180}, {860, 624}}";
 			sepNavWindowFrame = "{{143, 57}, {905, 753}}";
 		};
 	};
@@ -1316,16 +1332,17 @@
 	};
 	5F5B098C092563B6005BB86B /* XJMusic.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 2640}}";
-			sepNavSelRange = "{6288, 0}";
-			sepNavVisRect = "{{0, 1907}, {898, 711}}";
-			sepNavWindowFrame = "{{97, 27}, {943, 825}}";
+			sepNavIntBoundsRect = "{{0, 0}, {898, 2856}}";
+			sepNavSelRange = "{561, 0}";
+			sepNavVisRect = "{{0, 0}, {898, 747}}";
+			sepNavWindowFrame = "{{615, 157}, {943, 825}}";
 		};
 	};
 	5F70865505BDCFA7004F29A1 /* -[NSException raise] */ = {
 		isa = PBXSymbolicBreakpoint;
 		actions = (
 		);
+		breakpointStyle = 0;
 		continueAfterActions = 0;
 		delayBeforeContinue = 0;
 		hitCount = 1;
@@ -1425,9 +1442,10 @@
 	};
 	5FD248B408620D520007E0C5 /* XJKeyChain.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {975, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1039, 846}}";
 			sepNavSelRange = "{374, 0}";
-			sepNavVisRect = "{{0, 0}, {975, 558}}";
+			sepNavVisRect = "{{0, 0}, {1039, 846}}";
+			sepNavWindowFrame = "{{97, 27}, {1084, 975}}";
 		};
 	};
 	5FD248B508620D520007E0C5 /* XJKeyChain.m */ = {
