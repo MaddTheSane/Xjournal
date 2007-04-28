@@ -261,33 +261,26 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		5882F9940A1EFDB600C30DDB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A;
-			remoteInfo = LJKit;
-		};
-		5882F9960A1EFDB600C30DDB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC72DCA3058B315E00784C4A;
-			remoteInfo = Documentation;
-		};
-		5882F9AE0A1EFF7300C30DDB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC72DAED058B2AFA00784C4A;
-			remoteInfo = LJKit;
-		};
 		5F7417AB06C588B000FEB18A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
 			remoteInfo = Xjournal;
+		};
+		BC7E83C40BE3F51B00765961 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A;
+			remoteInfo = LJKit;
+		};
+		BC7E83C60BE3F51B00765961 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC72DCA3058B315E00784C4A;
+			remoteInfo = Documentation;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -490,7 +483,6 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
 		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = "<group>"; };
-		5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = extFwSrc/LJKit/LJKit.xcodeproj; sourceTree = "<group>"; };
 		5882FAA50A1F02F400C30DDB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LJKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMarkupRemovalVT.h; path = src/ValueTransformers/XJMarkupRemovalVT.h; sourceTree = "<group>"; };
 		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMarkupRemovalVT.m; path = src/ValueTransformers/XJMarkupRemovalVT.m; sourceTree = "<group>"; };
@@ -534,6 +526,7 @@
 		5FD2849B0926AF4F005A1060 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = SOURCE_ROOT; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../../LJKit/trunk/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -959,18 +952,9 @@
 		5882F98D0A1EFD9400C30DDB /* Local Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */,
+				BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */,
 			);
 			name = "Local Frameworks";
-			sourceTree = "<group>";
-		};
-		5882F98F0A1EFDB600C30DDB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5882F9950A1EFDB600C30DDB /* LJKit.framework */,
-				5882F9970A1EFDB600C30DDB /* LJKitDocumentation */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		5F044ADC09224A58003D6D2A /* Value Transformers */ = {
@@ -982,6 +966,15 @@
 				5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */,
 			);
 			name = "Value Transformers";
+			sourceTree = "<group>";
+		};
+		BC7E83BD0BE3F51B00765961 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC7E83C50BE3F51B00765961 /* LJKit.framework */,
+				BC7E83C70BE3F51B00765961 /* LJKitDocumentation */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1063,7 +1056,6 @@
 				5F63250F083C8D4A007F6AF9 /* PBXBuildRule */,
 			);
 			dependencies = (
-				5882F9AF0A1EFF7300C30DDB /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -1082,8 +1074,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5882F98F0A1EFDB600C30DDB /* Products */;
-					ProjectRef = 5882F98E0A1EFDB600C30DDB /* LJKit.xcodeproj */;
+					ProductGroup = BC7E83BD0BE3F51B00765961 /* Products */;
+					ProjectRef = BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */;
 				},
 			);
 			targets = (
@@ -1094,18 +1086,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		5882F9950A1EFDB600C30DDB /* LJKit.framework */ = {
+		BC7E83C50BE3F51B00765961 /* LJKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LJKit.framework;
-			remoteRef = 5882F9940A1EFDB600C30DDB /* PBXContainerItemProxy */;
+			remoteRef = BC7E83C40BE3F51B00765961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5882F9970A1EFDB600C30DDB /* LJKitDocumentation */ = {
+		BC7E83C70BE3F51B00765961 /* LJKitDocumentation */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = LJKitDocumentation;
-			remoteRef = 5882F9960A1EFDB600C30DDB /* PBXContainerItemProxy */;
+			remoteRef = BC7E83C60BE3F51B00765961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1312,11 +1304,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5882F9AF0A1EFF7300C30DDB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LJKit;
-			targetProxy = 5882F9AE0A1EFF7300C30DDB /* PBXContainerItemProxy */;
-		};
 		5F7417AC06C588B000FEB18A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* Xjournal */;
