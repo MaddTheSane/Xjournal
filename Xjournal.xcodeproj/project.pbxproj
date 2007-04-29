@@ -188,8 +188,6 @@
 		1BF27EF404B02A9400121863 /* stop.2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE904B02A9400121863 /* stop.2.tiff */; };
 		585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
 		585E03210A1A2FE7001E92ED /* CFPSL_1_0.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
-		5882FAA60A1F02F400C30DDB /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5882FAA50A1F02F400C30DDB /* LJKit.framework */; };
-		5882FB970A1F035600C30DDB /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5882FAA50A1F02F400C30DDB /* LJKit.framework */; };
 		5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */; };
 		5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
@@ -231,6 +229,8 @@
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		BC4E13860BE40D3200B4C9AC /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BC7E88DC0BE4057600765961 /* LJKit.framework */; };
+		BC4E14F60BE40F2800B4C9AC /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7E88DC0BE4057600765961 /* LJKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -268,16 +268,23 @@
 			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
 			remoteInfo = Xjournal;
 		};
-		BC7E83C40BE3F51B00765961 /* PBXContainerItemProxy */ = {
+		BC4E14F40BE40F0600B4C9AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */;
+			containerPortal = BC7E88D30BE4057600765961 /* LJKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC72DAED058B2AFA00784C4A;
+			remoteInfo = LJKit;
+		};
+		BC7E88DB0BE4057600765961 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC7E88D30BE4057600765961 /* LJKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A;
 			remoteInfo = LJKit;
 		};
-		BC7E83C60BE3F51B00765961 /* PBXContainerItemProxy */ = {
+		BC7E88DD0BE4057600765961 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */;
+			containerPortal = BC7E88D30BE4057600765961 /* LJKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BC72DCA3058B315E00784C4A;
 			remoteInfo = Documentation;
@@ -303,7 +310,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5882FB970A1F035600C30DDB /* LJKit.framework in CopyFiles */,
+				BC4E13860BE40D3200B4C9AC /* LJKit.framework in CopyFiles */,
 				5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +490,6 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
 		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = "<group>"; };
-		5882FAA50A1F02F400C30DDB /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LJKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMarkupRemovalVT.h; path = src/ValueTransformers/XJMarkupRemovalVT.h; sourceTree = "<group>"; };
 		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMarkupRemovalVT.m; path = src/ValueTransformers/XJMarkupRemovalVT.m; sourceTree = "<group>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
@@ -526,7 +532,7 @@
 		5FD2849B0926AF4F005A1060 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = SOURCE_ROOT; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../../LJKit/trunk/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../../LJKit/trunk/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -534,6 +540,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC4E14F60BE40F2800B4C9AC /* LJKit.framework in Frameworks */,
 				1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */,
 				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
 				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
@@ -542,7 +549,6 @@
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
 				5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */,
-				5882FAA60A1F02F400C30DDB /* LJKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +558,6 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5882FAA50A1F02F400C30DDB /* LJKit.framework */,
 				5FD2849B0926AF4F005A1060 /* OgreKit.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
@@ -887,7 +892,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* Xjournal */ = {
 			isa = PBXGroup;
 			children = (
-				5882F98D0A1EFD9400C30DDB /* Local Frameworks */,
 				5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */,
 				1B870E0904C7EA5900C54147 /* Documentation */,
 				1BBD891004B01883003882CD /* AppKit Categories */,
@@ -943,18 +947,11 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC7E88D30BE4057600765961 /* LJKit.xcodeproj */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5882F98D0A1EFD9400C30DDB /* Local Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */,
-			);
-			name = "Local Frameworks";
 			sourceTree = "<group>";
 		};
 		5F044ADC09224A58003D6D2A /* Value Transformers */ = {
@@ -968,11 +965,11 @@
 			name = "Value Transformers";
 			sourceTree = "<group>";
 		};
-		BC7E83BD0BE3F51B00765961 /* Products */ = {
+		BC7E88D40BE4057600765961 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC7E83C50BE3F51B00765961 /* LJKit.framework */,
-				BC7E83C70BE3F51B00765961 /* LJKitDocumentation */,
+				BC7E88DC0BE4057600765961 /* LJKit.framework */,
+				BC7E88DE0BE4057600765961 /* LJKitDocumentation */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1042,7 +1039,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FD243C40861F8BC0007E0C5 /* Build configuration list for PBXNativeTarget "Xjournal" */;
 			buildPhases = (
-				583290F50A0D5FD3008A0D0D /* InflateFramworks */,
+				583290F50A0D5FD3008A0D0D /* InflateFrameworks */,
 				8D15AC280486D014006FF6A4 /* Headers */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
@@ -1056,6 +1053,7 @@
 				5F63250F083C8D4A007F6AF9 /* PBXBuildRule */,
 			);
 			dependencies = (
+				BC4E14F50BE40F0600B4C9AC /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -1074,8 +1072,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BC7E83BD0BE3F51B00765961 /* Products */;
-					ProjectRef = BC7E83BC0BE3F51B00765961 /* LJKit.xcodeproj */;
+					ProductGroup = BC7E88D40BE4057600765961 /* Products */;
+					ProjectRef = BC7E88D30BE4057600765961 /* LJKit.xcodeproj */;
 				},
 			);
 			targets = (
@@ -1086,18 +1084,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		BC7E83C50BE3F51B00765961 /* LJKit.framework */ = {
+		BC7E88DC0BE4057600765961 /* LJKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LJKit.framework;
-			remoteRef = BC7E83C40BE3F51B00765961 /* PBXContainerItemProxy */;
+			remoteRef = BC7E88DB0BE4057600765961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BC7E83C70BE3F51B00765961 /* LJKitDocumentation */ = {
+		BC7E88DE0BE4057600765961 /* LJKitDocumentation */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = LJKitDocumentation;
-			remoteRef = BC7E83C60BE3F51B00765961 /* PBXContainerItemProxy */;
+			remoteRef = BC7E88DD0BE4057600765961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1212,7 +1210,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		583290F50A0D5FD3008A0D0D /* InflateFramworks */ = {
+		583290F50A0D5FD3008A0D0D /* InflateFrameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			comments = "This will inflate the pre-compiled frameworks";
@@ -1220,7 +1218,7 @@
 			);
 			inputPaths = (
 			);
-			name = InflateFramworks;
+			name = InflateFrameworks;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1308,6 +1306,11 @@
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* Xjournal */;
 			targetProxy = 5F7417AB06C588B000FEB18A /* PBXContainerItemProxy */;
+		};
+		BC4E14F50BE40F0600B4C9AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LJKit;
+			targetProxy = BC4E14F40BE40F0600B4C9AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1534,6 +1537,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Deployment",
+					/Build/Products/Deployment,
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1582,6 +1586,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Deployment",
+					/Build/Products/Deployment,
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1626,6 +1631,7 @@
 					"$(SRCROOT)/../frameworks",
 					"$(SRCROOT)/../LJKit/LJKit/build/Development",
 					"$(SRCROOT)/build/Deployment",
+					/Build/Products/Deployment,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
@@ -1670,6 +1676,7 @@
 					"$(SRCROOT)/../frameworks",
 					"$(SRCROOT)/../LJKit/LJKit/build/Development",
 					"$(SRCROOT)/build/Deployment",
+					/Build/Products/Deployment,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
 				FRAMEWORK_VERSION = A;
@@ -1829,14 +1836,12 @@
 				ARCHS = "$(NATIVE_ARCH)";
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
-				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Development;
@@ -1850,14 +1855,12 @@
 				);
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
-				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Deployment;
@@ -1871,14 +1874,12 @@
 				);
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
-				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Linked with Symbols";
@@ -1892,14 +1893,12 @@
 				);
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
-				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Default;
