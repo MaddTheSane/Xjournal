@@ -454,7 +454,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
 	NSLog(@"applicationShouldHandleReopen");
-	[self hideDockBadge];
     // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
     // and we DON'T open a new window
     if([self showingDockBadge]) {
@@ -468,7 +467,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
         [[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
         return NO;
     }
-	
+	[self hideDockBadge];
     return YES;
 }
 
