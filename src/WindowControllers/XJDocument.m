@@ -143,6 +143,10 @@
         [moods setStringValue: [[self entry] currentMood]];
     }
     
+    if([[self entry] currentLocation] != nil) {
+        [theLocationField setStringValue: [[self entry] currentLocation]];
+    }
+    
     [journalPop selectItemAtIndex: [[journalPop menu] indexOfItemWithRepresentedObject: [[self entry] journal]]];
 	
     // Set the option checkboxes
@@ -349,6 +353,7 @@
 
 - (IBAction)setSelectedMood:(id)sender {
     [[self entry] setCurrentMood: [sender stringValue]];
+	[[self entry] setCurrentMoodName: [sender stringValue]];
 }
 
 // ----------------------------------------------------------------------------------------
