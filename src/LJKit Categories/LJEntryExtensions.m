@@ -163,18 +163,22 @@
     [meta appendString: [NSString stringWithFormat: @" %@<br>",
 		[[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]]];
 	
-    if([self currentMood]) {
-        [meta appendString: [NSString stringWithFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMood]]];
+    if([self currentMoodName]) {
+        [meta appendString: [NSString stringWithFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMoodName]]];
     }
 	
     if([self currentMusic]) {
         [meta appendString: [NSString stringWithFormat: @"<strong>Music:</strong>&nbsp;%@<br>", [self currentMusic]]];
     }
 	
+    if([self currentLocation]) {
+        [meta appendString: [NSString stringWithFormat: @"<strong>Location:</strong>&nbsp;%@<br>", [self currentLocation]]];
+    }
+	
 	if([self tags]) {
 		[meta appendString: [NSString stringWithFormat: @"<strong>Tags: </strong>%@<br>", [self tags]]];
 	}
-	
+
     [meta appendString: @"<br>"];
 	return [meta autorelease];
 }
