@@ -114,6 +114,7 @@
             [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
         [self buildJournalPopup];
         [self buildMoodPopup];
+		[self buildTagsPopup];
         [userpic setMenu: [[[XJAccountManager defaultManager] loggedInAccount] userPicturesMenu]];
         [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
     } else {
@@ -121,6 +122,7 @@
         [moods setEnabled: NO];
         [userpic setEnabled: NO];
         [security setEnabled: NO];
+        [tagsPop setEnabled: NO];
     }
 	
     // Sync the UI up to the state of the Entry object
@@ -199,6 +201,7 @@
     [moods setEnabled: YES];
     [userpic setEnabled: YES];
     [security setEnabled: YES];
+    [tagsPop setEnabled: YES];
 
     [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
 
@@ -210,6 +213,7 @@
         [comm_nameCombo reloadData];
 
     [friendsTable reloadData];
+	[self buildTagsPopup];
     
     [statusField setStringValue: [NSString stringWithFormat: @"Logged in as %@", [[[XJAccountManager defaultManager] loggedInAccount] username]]];
 }
@@ -271,6 +275,21 @@
         [moods setDataSource: [acct moods]];
         [moods reloadData];
     }
+}
+
+- (void)buildTagsPopup
+{
+	NSMutableArray *tagArray = [[[self entry] journal] tags];
+	[tagsPop removeAllItems];
+	if ((int)[tagArray count] == 0) {
+		[tagsPop addItemWithTitle:@"(no tags found)"];
+		[tagsPop setEnabled:  NO];
+	}
+	else {
+		[tagsPop addItemWithTitle:@"(select tag)"];
+		[tagsPop addItemsWithTitles:tagArray];
+		[tagsPop setEnabled:  YES];
+	}
 }
 
 // ----------------------------------------------------------------------------------------
@@ -349,11 +368,23 @@
 // ----------------------------------------------------------------------------------------
 - (IBAction)setSelectedJournal:(id)sender {
     [[self entry] setJournal: [[sender selectedItem] representedObject]];
+	LJJournal *j = [[self entry] journal];
+	if ([j tags] == nil) {
+		NSDictionary *tagsReply = [j getTagsReplyForThisJournal];
+		[j createJournalTagsArray: tagsReply];
+	}
+	[self buildTagsPopup]; // rebuild the tags dropdown when the journal changes
 }
 
 - (IBAction)setSelectedMood:(id)sender {
     [[self entry] setCurrentMood: [sender stringValue]];
 	[[self entry] setCurrentMoodName: [sender stringValue]];
+}
+
+- (IBAction)addSelectedTag:(id)sender {
+	if ([sender indexOfSelectedItem] != 0) {
+		[[self entry] addTag: [sender titleOfSelectedItem]];
+	}
 }
 
 // ----------------------------------------------------------------------------------------

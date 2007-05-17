@@ -24,6 +24,7 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
+                addSelectedTag = id; 
                 closeSheet = id; 
                 commitSheet = id; 
                 detectMusicNow = id; 
@@ -38,6 +39,7 @@
                 insertLJUser = id; 
                 insertLink = id; 
                 insertUnderline = id; 
+                pasteLink = id; 
                 postEntryAndDiscardLocalCopy = id; 
                 saveWindowSize = id; 
                 setSelectedJournal = id; 
@@ -83,8 +85,10 @@
                 spinner = NSProgressIndicator; 
                 srcField = NSTextField; 
                 statusField = NSTextField; 
+                tagsPop = NSPopUpButton; 
+                theLocationField = NSTextField; 
+                theMoodNameField = NSTextField; 
                 theMusicField = NSTextField; 
-                theSubjectField = NSTextField; 
                 theTagField = NSTextField; 
                 theTextView = NSTextView; 
                 userPicView = NSImageView; 

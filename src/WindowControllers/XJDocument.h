@@ -44,7 +44,7 @@
     // ----------------------------------------------------------------------------------------
     IBOutlet NSTextView *theTextView;
     IBOutlet NSTextField *theMusicField, *statusField, *theTagField, *theLocationField, *theMoodNameField;
-    IBOutlet NSPopUpButton *journalPop;
+    IBOutlet NSPopUpButton *journalPop, *tagsPop;
     IBOutlet NSComboBox *moods;
     IBOutlet NSProgressIndicator *spinner;
 
@@ -128,10 +128,12 @@
     // Popup targets
 - (IBAction)setSelectedJournal:(id)sender;
 - (IBAction)setSelectedMood:(id)sender;
+- (IBAction)addSelectedTag:(id)sender;
 
 /* Builder code */
 - (void)buildJournalPopup;
 - (void)buildMoodPopup;
+- (void)buildTagsPopup;
 - (IBAction)detectMusicNow:(id)sender;
 
 - (NSWindow *)window;
