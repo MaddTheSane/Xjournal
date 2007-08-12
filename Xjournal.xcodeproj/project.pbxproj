@@ -34,8 +34,8 @@
 		1B7C9A440566709400F0E1AC /* LJPollTextEntryQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD897D04B0189F003882CD /* LJPollTextEntryQuestion.m */; };
 		1B870E0B04C7EAA200C54147 /* ChangeNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
 		1B870E0D04C7EABE00C54147 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
-		1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
-		1B870E1304C7EACB00C54147 /* ReadMe.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
+		1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in Copy Text Files */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
+		1B870E1304C7EACB00C54147 /* ReadMe.rtf in Copy Text Files */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
 		1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */; };
 		1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */; };
 		1B967FC5058779680035F70C /* itunes.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B967FC4058779680035F70C /* itunes.png */; };
@@ -187,7 +187,7 @@
 		1BF27EF304B02A9400121863 /* stop.1.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE804B02A9400121863 /* stop.1.tiff */; };
 		1BF27EF404B02A9400121863 /* stop.2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27EE904B02A9400121863 /* stop.2.tiff */; };
 		585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
-		585E03210A1A2FE7001E92ED /* CFPSL_1_0.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
+		585E03210A1A2FE7001E92ED /* CFPSL_1_0.rtf in Copy Text Files */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
 		5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */; };
 		5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
@@ -223,14 +223,14 @@
 		5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD248B508620D520007E0C5 /* XJKeyChain.m */; };
 		5FD2819409268EAB005A1060 /* starburst.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2819309268EAB005A1060 /* starburst.tiff */; };
 		5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; };
-		5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; };
+		5FD284CB0926AF55005A1060 /* OgreKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; };
 		8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		BC2DBF8C0BF2AA7B0078A37C /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
-		BC2DBF8D0BF2AA850078A37C /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
+		BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -292,27 +292,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1B870E0604C7EA1400C54147 /* CopyFiles */ = {
+		1B870E0604C7EA1400C54147 /* Copy Text Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				585E03210A1A2FE7001E92ED /* CFPSL_1_0.rtf in CopyFiles */,
-				1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in CopyFiles */,
-				1B870E1304C7EACB00C54147 /* ReadMe.rtf in CopyFiles */,
+				585E03210A1A2FE7001E92ED /* CFPSL_1_0.rtf in Copy Text Files */,
+				1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in Copy Text Files */,
+				1B870E1304C7EACB00C54147 /* ReadMe.rtf in Copy Text Files */,
 			);
+			name = "Copy Text Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1BF27FA304B032D600121863 /* CopyFiles */ = {
+		1BF27FA304B032D600121863 /* Copy Framework Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5FD284CB0926AF55005A1060 /* OgreKit.framework in CopyFiles */,
-				BC2DBF8D0BF2AA850078A37C /* LJKit.framework in CopyFiles */,
+				5FD284CB0926AF55005A1060 /* OgreKit.framework in Copy Framework Files */,
+				BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */,
 			);
+			name = "Copy Framework Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1043,8 +1045,8 @@
 				8D15AC280486D014006FF6A4 /* Headers */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
-				1BF27FA304B032D600121863 /* CopyFiles */,
-				1B870E0604C7EA1400C54147 /* CopyFiles */,
+				1BF27FA304B032D600121863 /* Copy Framework Files */,
+				1B870E0604C7EA1400C54147 /* Copy Text Files */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 			);
 			buildRules = (
@@ -1532,15 +1534,13 @@
 					i386,
 				);
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.0.5d1;
+				CURRENT_PROJECT_VERSION = 1.0.6a2;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
-					"$(SRCROOT)/build/Deployment",
-					/Build/Products/Deployment,
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(SRCROOT)/build/Development",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Build/Products/Default\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../LJKit/build/Development\"";
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1552,7 +1552,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/build/Development";
 				INFOPLIST_FILE = src/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
@@ -1581,17 +1581,15 @@
 					i386,
 				);
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.0.5d1;
+				CURRENT_PROJECT_VERSION = 1.0.6a2;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Deployment",
-					/Build/Products/Deployment,
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Build/Products/Default\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../LJKit/build/Deployment\"";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1601,7 +1599,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/build/Deployment";
 				INFOPLIST_FILE = src/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
@@ -1628,18 +1626,14 @@
 					ppc,
 					i386,
 				);
-				CURRENT_PROJECT_VERSION = 1.0.5d1;
+				CURRENT_PROJECT_VERSION = 1.0.6a2;
 				DiskImageEncryption = 1;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
-					"$(SRCROOT)/../frameworks",
-					"$(SRCROOT)/../LJKit/LJKit/build/Development",
-					"$(SRCROOT)/build/Deployment",
-					/Build/Products/Deployment,
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+					"$(SRCROOT)/frameworks",
+					"$(SRCROOT)/build/Development",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../Build/Products/Default\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../LJKit/build/Development\"";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1649,7 +1643,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/build/Development";
 				INFOPLIST_FILE = src/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
@@ -1676,17 +1670,12 @@
 					ppc,
 					i386,
 				);
-				CURRENT_PROJECT_VERSION = 1.0.5d1;
+				CURRENT_PROJECT_VERSION = 1.0.6a2;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
-					"$(SRCROOT)/../frameworks",
-					"$(SRCROOT)/../LJKit/LJKit/build/Development",
+					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Deployment",
-					/Build/Products/Deployment,
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "/Users/fspeirs/Coding/Projects/Xjournal/1.0\\ Branch/build/Deployment";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../Build/Products/Default\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../LJKit/build/Deployment\"";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1696,7 +1685,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}/LJKit.framework/Headers";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/build/Deployment";
 				INFOPLIST_FILE = src/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
