@@ -199,7 +199,7 @@
 	
 	// Get font name and size from user defaults
 	NSDictionary *values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-	NSString *fontName = [values valueForKey:@"XJEntryWindowFont"];
+	NSString *fontName = [values valueForKey:@"XJEntryWindowFontName"];
 	int fontSize = [[values valueForKey:@"XJEntryWindowFontSize"] floatValue];
 	
 	// Create font from name and size; initialize font panel
@@ -236,7 +236,7 @@
 	NSNumber *fontSize = [NSNumber numberWithFloat:[panelFont pointSize]];	
 	
 	id currentPrefsValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-	[currentPrefsValues setValue:[panelFont fontName] forKey:@"XJEntryWindowFont"];
+	[currentPrefsValues setValue:[panelFont fontName] forKey:@"XJEntryWindowFontName"];
 	[currentPrefsValues setValue:fontSize forKey:@"XJEntryWindowFontSize"];
 }
 
