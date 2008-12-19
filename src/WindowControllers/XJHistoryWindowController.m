@@ -143,7 +143,9 @@ enum {
 
 - (void)applicationWillTerminate: (NSNotification *)note
 {
-    [cal writeToFile: CACHED_HISTORY_PATH atomically: YES];
+    if (historyIsComplete) {
+        [cal writeToFile: CACHED_HISTORY_PATH atomically: YES];
+	}
 }
 
 - (BOOL)loadCachedHistory
