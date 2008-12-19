@@ -337,7 +337,7 @@
 }
 
 // This enables shift-tab out of the textfield into the subject field :-)
-// See: http://www.omnigroup.com/mailman/archive/macosx-dev/2001-March/010498.html
+// See: http://www.omnigroup.com/mailman/archive/macosx-dev/2001-March/022693.html
 //
 - (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector;
 {
