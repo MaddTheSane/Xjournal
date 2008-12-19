@@ -512,7 +512,7 @@
 		5F5B05670924DD45005BB86B /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = src/English.lproj/Preferences.nib; sourceTree = "<group>"; };
 		5F5B05870924E5A0005BB86B /* XJPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJPreferencesController.h; sourceTree = "<group>"; };
 		5F5B05880924E5A0005BB86B /* XJPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJPreferencesController.m; sourceTree = "<group>"; };
-		5F5B083E09252596005BB86B /* ApplicationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ApplicationDefaults.plist; path = src/ApplicationDefaults.plist; sourceTree = "<group>"; };
+		5F5B083E09252596005BB86B /* ApplicationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = ApplicationDefaults.plist; path = src/ApplicationDefaults.plist; sourceTree = "<group>"; };
 		5F5B098B092563B6005BB86B /* XJMusic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJMusic.h; sourceTree = "<group>"; };
 		5F5B098C092563B6005BB86B /* XJMusic.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJMusic.m; sourceTree = "<group>"; };
 		5F5B098F092563E8005BB86B /* NSString+Templating.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSString+Templating.h"; path = "src/Classes/NSString+Templating.h"; sourceTree = SOURCE_ROOT; };
@@ -532,7 +532,7 @@
 		5FD248B508620D520007E0C5 /* XJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJKeyChain.m; sourceTree = "<group>"; };
 		5FD2819309268EAB005A1060 /* starburst.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = starburst.tiff; path = src/Art/starburst.tiff; sourceTree = "<group>"; };
 		5FD2849B0926AF4F005A1060 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = SOURCE_ROOT; };
-		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../LJKit/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -1069,6 +1069,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 5FD243CE0861F8BC0007E0C5 /* Build configuration list for PBXProject "Xjournal" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Xjournal */;
 			projectDirPath = "";
@@ -1078,6 +1079,7 @@
 					ProjectRef = BC7E88D30BE4057600765961 /* LJKit.xcodeproj */;
 				},
 			);
+			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Xjournal */,
 				5F0C941D06BC04EA0082A48B /* Disk Image */,
@@ -1556,7 +1558,6 @@
 				INFOPLIST_FILE = src/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Xjournal;
@@ -1725,7 +1726,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = src/Info.plist;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
