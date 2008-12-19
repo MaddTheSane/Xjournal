@@ -38,6 +38,8 @@
         [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
     }
     
+    [[NSDocumentController sharedDocumentController] setAutosavingDelay:30];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(manualLoginSuccess:)
                                                  name: LJAccountDidLoginNotification
