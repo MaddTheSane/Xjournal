@@ -1,35 +1,84 @@
-{
-    IBClasses = (
-        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {
-            ACTIONS = {setFontUsingFontPanel = id; }; 
-            CLASS = OAFontView; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {delegate = id; }; 
-            SUPERCLASS = NSView; 
-        }, 
-        {
-            ACTIONS = {
-                changeFont = id; 
-                changeTextFont = id; 
-                checkNow = id; 
-                openAccountWindow = id; 
-                setSelectedFriendsSound = id; 
-            }; 
-            CLASS = XJPreferencesController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                accountsView = NSView; 
-                checkFriendsGroupTable = NSTableView; 
-                friendsView = NSView; 
-                historyView = NSView; 
-                musicView = NSView; 
-                softwareUpdateView = NSView; 
-                soundSelection = NSPopUpButton; 
-                weblogsView = NSView; 
-            }; 
-            SUPERCLASS = NSWindowController; 
-        }
-    ); 
-    IBVersion = 1; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>CLASS</key>
+			<string>NSUserDefaultsController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSController</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>changeFont</key>
+				<string>id</string>
+				<key>changeTextFont</key>
+				<string>id</string>
+				<key>changeUpdateFrequency</key>
+				<string>id</string>
+				<key>openAccountWindow</key>
+				<string>id</string>
+				<key>setSelectedFriendsSound</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>XJPreferencesController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>accountsView</key>
+				<string>NSView</string>
+				<key>checkFriendsGroupTable</key>
+				<string>NSTableView</string>
+				<key>friendsView</key>
+				<string>NSView</string>
+				<key>historyView</key>
+				<string>NSView</string>
+				<key>musicView</key>
+				<string>NSView</string>
+				<key>softwareUpdateView</key>
+				<string>NSView</string>
+				<key>soundSelection</key>
+				<string>NSPopUpButton</string>
+				<key>updateCheckSelection</key>
+				<string>NSPopUpButton</string>
+				<key>updater</key>
+				<string>SUUpdater</string>
+				<key>weblogsView</key>
+				<string>NSView</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSWindowController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>checkForUpdates</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>SUUpdater</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>

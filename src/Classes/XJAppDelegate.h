@@ -54,9 +54,6 @@
 // Target for AppMenu -> Login
 - (IBAction)logIn:(id)sender;
 
-// Target for AppMenu -> Check for updates
-- (IBAction)checkForUpdate:(id)sender;
-
 // Targets for Window menu items
 - (IBAction)showPrefsWindow:(id)sender;
 - (IBAction)showHistoryWindow:(id)sender;

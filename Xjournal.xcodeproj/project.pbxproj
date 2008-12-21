@@ -36,8 +36,6 @@
 		1B870E0D04C7EABE00C54147 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
 		1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in Copy Text Files */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
 		1B870E1304C7EACB00C54147 /* ReadMe.rtf in Copy Text Files */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
-		1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */; };
-		1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */; };
 		1B967FC5058779680035F70C /* itunes.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B967FC4058779680035F70C /* itunes.png */; };
 		1BBD891B04B01883003882CD /* KeyHandlingTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD891104B01883003882CD /* KeyHandlingTableView.h */; };
 		1BBD891C04B01883003882CD /* KeyHandlingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD891204B01883003882CD /* KeyHandlingTableView.m */; };
@@ -231,6 +229,8 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		BC2DBF8C0BF2AA7B0078A37C /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
 		BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
+		F38635490EFE031400FFEDDB /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38635480EFE031400FFEDDB /* Sparkle.framework */; };
+		F386355D0EFE040500FFEDDB /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = F38635480EFE031400FFEDDB /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -311,6 +311,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F386355D0EFE040500FFEDDB /* Sparkle.framework in Copy Framework Files */,
 				5FD284CB0926AF55005A1060 /* OgreKit.framework in Copy Framework Files */,
 				BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */,
 			);
@@ -330,8 +331,6 @@
 		1B76D69304CDD901008E50A3 /* AddressBookDropView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AddressBookDropView.m; sourceTree = "<group>"; };
 		1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ChangeNotes.rtf; path = doc/ChangeNotes.rtf; sourceTree = "<group>"; };
 		1B870E0C04C7EABE00C54147 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = doc/ReadMe.rtf; sourceTree = "<group>"; };
-		1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSoftwareUpdate.h; sourceTree = "<group>"; };
-		1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSoftwareUpdate.m; sourceTree = "<group>"; };
 		1B967FC4058779680035F70C /* itunes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itunes.png; path = src/Art/itunes.png; sourceTree = "<group>"; };
 		1BBD891104B01883003882CD /* KeyHandlingTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyHandlingTableView.h; sourceTree = "<group>"; };
 		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KeyHandlingTableView.m; path = "src/AppKit Categories/KeyHandlingTableView.m"; sourceTree = SOURCE_ROOT; };
@@ -535,6 +534,7 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../LJKit/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F38635480EFE031400FFEDDB /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -551,6 +551,7 @@
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
 				5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */,
 				BC2DBF8C0BF2AA7B0078A37C /* LJKit.framework in Frameworks */,
+				F38635490EFE031400FFEDDB /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +561,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F38635480EFE031400FFEDDB /* Sparkle.framework */,
 				5FD2849B0926AF4F005A1060 /* OgreKit.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
@@ -597,16 +599,6 @@
 				1B870E0C04C7EABE00C54147 /* ReadMe.rtf */,
 			);
 			name = Documentation;
-			sourceTree = "<group>";
-		};
-		1B8A041D04B2BC160002ED8F /* SoftwareUpdate */ = {
-			isa = PBXGroup;
-			children = (
-				1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */,
-				1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */,
-			);
-			name = SoftwareUpdate;
-			path = src/SoftwareUpdate;
 			sourceTree = "<group>";
 		};
 		1BBD891004B01883003882CD /* AppKit Categories */ = {
@@ -905,7 +897,6 @@
 				1BBD895F04B0189F003882CD /* LJKit Categories */,
 				1BBD897304B0189F003882CD /* Polls */,
 				1BBD897E04B0189F003882CD /* PrefClients */,
-				1B8A041D04B2BC160002ED8F /* SoftwareUpdate */,
 				1BBD899404B0189F003882CD /* WindowControllers */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				BC7E88D30BE4057600765961 /* LJKit.xcodeproj */,
@@ -1018,7 +1009,6 @@
 				1BBD89FF04B0189F003882CD /* XJGlossaryWindowController.h in Headers */,
 				1BBD8A0104B0189F003882CD /* XJHistoryWindowController.h in Headers */,
 				1BBD8A0504B0189F003882CD /* XJPollEditorController.h in Headers */,
-				1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */,
 				1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */,
 				1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */,
 				1B7C9A420566708F00F0E1AC /* LJPollTextEntryQuestion.h in Headers */,
@@ -1286,7 +1276,6 @@
 				1BBD8A0004B0189F003882CD /* XJGlossaryWindowController.m in Sources */,
 				1BBD8A0204B0189F003882CD /* XJHistoryWindowController.m in Sources */,
 				1BBD8A0604B0189F003882CD /* XJPollEditorController.m in Sources */,
-				1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */,
 				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				1B7C9A430566709300F0E1AC /* LJPollScaleQuestion.m in Sources */,

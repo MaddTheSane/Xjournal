@@ -2,6 +2,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SUUpdater;
+
 @interface XJPreferencesController : NSWindowController
 {
 	NSMutableDictionary *items;
@@ -15,13 +17,17 @@
 	
 	IBOutlet NSTableView *checkFriendsGroupTable;
 	IBOutlet NSPopUpButton *soundSelection;
+	IBOutlet NSPopUpButton *updateCheckSelection;
+	
+	IBOutlet SUUpdater *updater;
 }
 
 - (void)switchViews:(NSToolbarItem *)item;
 - (void)changeTextFont:(id)sender;
 - (void)changeFont:(id)sender;
 - (IBAction)openAccountWindow: (id)sender;
-- (IBAction)checkNow: (id)sender;
 - (void)buildSoundMenu;
 - (IBAction)setSelectedFriendsSound:(id)sender;
+- (IBAction)changeUpdateFrequency:(id)sender;
+
 @end

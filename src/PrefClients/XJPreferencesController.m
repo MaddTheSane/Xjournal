@@ -1,8 +1,8 @@
 #import "XJPreferencesController.h"
 #import "XJPreferences.h"
-#import "CCFSoftwareUpdate.h"
 #import "XJAccountManager.h"
 #import "XJCheckFriendsSessionManager.h"
+#import "Sparkle/SUUpdater.h"
 
 // Almost all this code taken from http://www.cocoadev.com/index.pl?MultiPanePreferences
 
@@ -93,6 +93,20 @@
     //any other items you want to add, do so here.
     //after you are done, just do all the toolbar stuff.
     //[self window] is an outlet pointing to the Preferences Window you made to hold all these custom views.
+	
+	int checkInterval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SUScheduledCheckInterval"] intValue];
+	if (checkInterval == 0) {
+		[updateCheckSelection selectItemWithTitle:@"Never"];
+	} else if (checkInterval == 24*60*60) {
+		[updateCheckSelection selectItemWithTitle:@"Daily"];
+	} else if (checkInterval == 7*24*60*60) {
+		[updateCheckSelection selectItemWithTitle:@"Weekly"];
+	} else if (checkInterval == 4*7*24*60*60) {
+		[updateCheckSelection selectItemWithTitle:@"Monthly"];
+	} else {
+		// If it isn't one of these values then pick a default
+		[updateCheckSelection selectItemWithTitle:@"Weekly"];
+	}	
 	
     NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:@"preferencePanes"];
     [toolbar setDelegate:self];  //this is how the toolbar knows what can be selected and such.
@@ -350,8 +364,26 @@
 
 #pragma mark -
 #pragma mark Software Update
-- (IBAction)checkNow: (id)sender {
-    [[CCFSoftwareUpdate sharedUpdateChecker] runSoftwareUpdate: NO];
+// Grab title from popup menu and set defaults accordingly
+- (IBAction)changeUpdateFrequency:(id)sender
+{
+	if ([@"Never" isEqualToString:[sender title]]) {
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:0]  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"SUCheckAtStartup"];
+		[updater scheduleCheckWithInterval:0];
+	} else if ([@"Daily" isEqualToString:[sender title]]) {
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:24*60*60]  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
+		[updater scheduleCheckWithInterval:24*60*60];
+	} else if ([@"Weekly" isEqualToString:[sender title]]) {
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:7*24*60*60]  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
+		[updater scheduleCheckWithInterval:7*24*60*60];
+	} else if ([@"Monthly" isEqualToString:[sender title]]) {
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:4*7*24*60*60]  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
+		[updater scheduleCheckWithInterval:4*7*24*60*60];
+	}
 }
 
 #pragma mark -
@@ -381,4 +413,5 @@
 		[checkFriendsGroupTable reloadData];
 	}
 }
+
 @end

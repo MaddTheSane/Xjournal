@@ -1,202 +1,433 @@
-{
-    IBClasses = (
-        {
-            ACTIONS = {
-                logIn = id; 
-                showBookmarkWindow = id; 
-                showFriendsWindow = id; 
-                showGlossaryWindow = id; 
-                showHistoryWindow = id; 
-                showPrefsWindow = id; 
-            }; 
-            CLASS = AppDelegate; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {loginPanel = NSWindow; spinner = NSProgressIndicator; }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {CLASS = DockStatusIcon; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {
-            ACTIONS = {
-                addFriend = id; 
-                addGroup = id; 
-                checkForNewVersion = id; 
-                deleteSelectedFriend = id; 
-                deleteSelectedGroup = id; 
-                exportHistory = id; 
-                insertBlockquote = id; 
-                insertBold = id; 
-                insertCenter = id; 
-                insertImage = id; 
-                insertItalic = id; 
-                insertLJComm = id; 
-                insertLJCut = id; 
-                insertLJUser = id; 
-                insertLink = id; 
-                insertUnderline = id; 
-                openChangeNotes = id; 
-                openFriendsJournal = id; 
-                openFriendsPage = id; 
-                openFriendsProfile = id; 
-                openReadMe = id; 
-                openRecent = id; 
-                openSelectedFriendsJournal = id; 
-                openSelectedFriendsProfile = id; 
-                openUserInfo = id; 
-                pasteLink = id; 
-                postEntry = id; 
-                postEntryAndDiscardLocalCopy = id; 
-                saveWindowSize = id; 
-                showInspectorPanel = id; 
-                showMainWindow = id; 
-                showPreviewWindow = id; 
-                toggleDrawer = id; 
-            }; 
-            CLASS = FirstResponder; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
-            ACTIONS = {
-                enterSelection = id; 
-                findNext = id; 
-                findPrevious = id; 
-                findTypeChanged = id; 
-                panelFindNext = id; 
-                panelFindNextAndClosePanel = id; 
-                panelFindPrevious = id; 
-                replace = id; 
-                replaceAll = id; 
-                replaceAndFind = id; 
-                showFindPanel = id; 
-            }; 
-            CLASS = OAFindController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                additionalControlsBox = NSBox; 
-                currentPattern = id; 
-                findNextButton = NSButton; 
-                findPanel = NSWindow; 
-                findPreviousButton = NSButton; 
-                findTypeMatrix = NSMatrix; 
-                ignoreCaseButton = NSButton; 
-                regularExpressionControlsView = NSView; 
-                replaceTextForm = NSForm; 
-                searchTextForm = NSForm; 
-                stringControlsView = NSView; 
-                subexpressionPopUp = NSPopUpButton; 
-                wholeWordButton = NSButton; 
-            }; 
-            SUPERCLASS = OFObject; 
-        }, 
-        {CLASS = OBObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {CLASS = OFObject; LANGUAGE = ObjC; SUPERCLASS = OBObject; }, 
-        {
-            ACTIONS = {
-                checkForUpdate = id; 
-                editLastEntry = id; 
-                logIn = id; 
-                openChangeNotes = id; 
-                openDonate = id; 
-                openLicense = id; 
-                openReadMe = id; 
-                openXjournalBlog = id; 
-                openXjournalHomePage = id; 
-                showAccountEditWindow = id; 
-                showBirthdayWindow = id; 
-                showBookmarkWindow = id; 
-                showFriendsWindow = id; 
-                showGlossaryWindow = id; 
-                showHistoryWindow = id; 
-                showMainWindow = id; 
-                showPollEditWindow = id; 
-                showPrefsWindow = id; 
-                showShortcutsWindow = id; 
-                switchAccount = id; 
-            }; 
-            CLASS = XJAppDelegate; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                accountItem = NSMenuItem; 
-                deleteFriend = NSMenuItem; 
-                deleteFromGroup = NSMenuItem; 
-                loginPanel = NSWindow; 
-                spinner = NSProgressIndicator; 
-            }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
-            ACTIONS = {
-                closeSheet = id; 
-                commitSheet = id; 
-                detectMusicNow = id; 
-                enableOKButton = id; 
-                getImageDimensions = id; 
-                insertBlockquote = id; 
-                insertBold = id; 
-                insertCenter = id; 
-                insertImage = id; 
-                insertItalic = id; 
-                insertLJCut = id; 
-                insertLJUser = id; 
-                insertLink = id; 
-                insertUnderline = id; 
-                pasteLink = id; 
-                postEntryAndDiscardLocalCopy = id; 
-                saveWindowSize = id; 
-                setSelectedJournal = id; 
-                setSelectedMood = id; 
-                setValueForSender = id; 
-                showPreviewWindow = id; 
-                toggleDrawer = id; 
-            }; 
-            CLASS = XJDocument; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                alignPop = NSPopUpButton; 
-                altField = NSTextField; 
-                backdateField = NSTextField; 
-                backdatedChk = NSButton; 
-                borderSize = NSTextField; 
-                commSheet = NSWindow; 
-                "comm_OKButton" = NSButton; 
-                "comm_nameCombo" = NSComboBox; 
-                cutSheet = NSWindow; 
-                "cut_textField" = NSTextField; 
-                "cut_textView" = NSTextView; 
-                drawer = NSDrawer; 
-                friendsTable = NSTableView; 
-                hrefSheet = NSWindow; 
-                htmlPreview = WebView; 
-                htmlPreviewWindow = NSWindow; 
-                "html_LinkTextField" = NSTextField; 
-                "html_TitleField" = NSTextField; 
-                "html_hrefField" = NSTextField; 
-                "html_targetCombo" = NSComboBox; 
-                imgSheet = NSWindow; 
-                journalPop = NSPopUpButton; 
-                moods = NSComboBox; 
-                noCommentsChk = NSButton; 
-                noEmailChk = NSButton; 
-                preformattedChk = NSButton; 
-                security = NSPopUpButton; 
-                sizeHeight = NSTextField; 
-                sizeWidth = NSTextField; 
-                spaceHeight = NSTextField; 
-                spaceWidth = NSTextField; 
-                spinner = NSProgressIndicator; 
-                srcField = NSTextField; 
-                statusField = NSTextField; 
-                theMusicField = NSTextField; 
-                theTagField = NSTextField; 
-                theTextView = NSTextView; 
-                userPicView = NSImageView; 
-                userSheet = NSWindow; 
-                "user_OKButton" = NSButton; 
-                "user_nameCombo" = NSComboBox; 
-                userpic = NSPopUpButton; 
-            }; 
-            SUPERCLASS = NSDocument; 
-        }
-    ); 
-    IBVersion = 1; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>CLASS</key>
+			<string>AddressBookDropView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSImageView</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addBirthdayToiCal</key>
+				<string>id</string>
+				<key>addFriend</key>
+				<string>id</string>
+				<key>addGroup</key>
+				<string>id</string>
+				<key>cancelBirthdaySheet</key>
+				<string>id</string>
+				<key>cancelSheet</key>
+				<string>id</string>
+				<key>commitBirthdaySheet</key>
+				<string>id</string>
+				<key>commitSheet</key>
+				<string>id</string>
+				<key>deleteSelectedFriend</key>
+				<string>id</string>
+				<key>deleteSelectedGroup</key>
+				<string>id</string>
+				<key>launchAddressBook</key>
+				<string>id</string>
+				<key>openSelectedFriendsJournal</key>
+				<string>id</string>
+				<key>openSelectedFriendsProfile</key>
+				<string>id</string>
+				<key>refreshFriends</key>
+				<string>id</string>
+				<key>removeAddressCard</key>
+				<string>id</string>
+				<key>removeSelectedFriendFromGroup</key>
+				<string>id</string>
+				<key>saveDocument</key>
+				<string>id</string>
+				<key>setBackgroundColor</key>
+				<string>id</string>
+				<key>setForegroundColor</key>
+				<string>id</string>
+				<key>setViewType</key>
+				<string>id</string>
+				<key>switchAccount</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>XJFriendsController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>accountToolbarPopup</key>
+				<string>NSPopUpButton</string>
+				<key>accountToolbarView</key>
+				<string>NSView</string>
+				<key>addressBookClearButton</key>
+				<string>NSButton</string>
+				<key>addressBookImageWell</key>
+				<string>AddressBookDropView</string>
+				<key>addressBookName</key>
+				<string>NSTextField</string>
+				<key>bgWell</key>
+				<string>NSColorWell</string>
+				<key>calChooserSheet</key>
+				<string>NSWindow</string>
+				<key>calPopup</key>
+				<string>NSPopUpButton</string>
+				<key>currentSheet</key>
+				<string>id</string>
+				<key>dateOfBirth</key>
+				<string>NSTextField</string>
+				<key>fgWell</key>
+				<string>NSColorWell</string>
+				<key>friendField</key>
+				<string>id</string>
+				<key>friendSheet</key>
+				<string>id</string>
+				<key>friendsTable</key>
+				<string>NSTableView</string>
+				<key>fullName</key>
+				<string>NSTextField</string>
+				<key>groupField</key>
+				<string>id</string>
+				<key>groupSheet</key>
+				<string>id</string>
+				<key>groupTable</key>
+				<string>NSTableView</string>
+				<key>iCalButton</key>
+				<string>NSButton</string>
+				<key>recentEntriesView</key>
+				<string>WebView</string>
+				<key>recentSpinner</key>
+				<string>NSProgressIndicator</string>
+				<key>showTypePopUp</key>
+				<string>NSPopUpButton</string>
+				<key>showTypeToolbarView</key>
+				<string>NSView</string>
+				<key>splitView</key>
+				<string>NSSplitView</string>
+				<key>tabs</key>
+				<string>NSTabView</string>
+				<key>userInfoSpinner</key>
+				<string>NSProgressIndicator</string>
+				<key>userInfoView</key>
+				<string>WebView</string>
+				<key>userNameField</key>
+				<string>NSTextField</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSWindowController</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addFriend</key>
+				<string>id</string>
+				<key>addGroup</key>
+				<string>id</string>
+				<key>checkForNewVersion</key>
+				<string>id</string>
+				<key>deleteSelectedFriend</key>
+				<string>id</string>
+				<key>deleteSelectedGroup</key>
+				<string>id</string>
+				<key>exportHistory</key>
+				<string>id</string>
+				<key>insertBlockquote</key>
+				<string>id</string>
+				<key>insertBold</key>
+				<string>id</string>
+				<key>insertCenter</key>
+				<string>id</string>
+				<key>insertImage</key>
+				<string>id</string>
+				<key>insertItalic</key>
+				<string>id</string>
+				<key>insertLJComm</key>
+				<string>id</string>
+				<key>insertLJCut</key>
+				<string>id</string>
+				<key>insertLJUser</key>
+				<string>id</string>
+				<key>insertLink</key>
+				<string>id</string>
+				<key>insertUnderline</key>
+				<string>id</string>
+				<key>openChangeNotes</key>
+				<string>id</string>
+				<key>openFriendsJournal</key>
+				<string>id</string>
+				<key>openFriendsPage</key>
+				<string>id</string>
+				<key>openFriendsProfile</key>
+				<string>id</string>
+				<key>openReadMe</key>
+				<string>id</string>
+				<key>openRecent</key>
+				<string>id</string>
+				<key>openSelectedFriendsJournal</key>
+				<string>id</string>
+				<key>openSelectedFriendsProfile</key>
+				<string>id</string>
+				<key>openUserInfo</key>
+				<string>id</string>
+				<key>pasteLink</key>
+				<string>id</string>
+				<key>postEntry</key>
+				<string>id</string>
+				<key>postEntryAndDiscardLocalCopy</key>
+				<string>id</string>
+				<key>saveWindowSize</key>
+				<string>id</string>
+				<key>showInspectorPanel</key>
+				<string>id</string>
+				<key>showMainWindow</key>
+				<string>id</string>
+				<key>showPreviewWindow</key>
+				<string>id</string>
+				<key>toggleDrawer</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>checkForUpdate</key>
+				<string>id</string>
+				<key>editLastEntry</key>
+				<string>id</string>
+				<key>logIn</key>
+				<string>id</string>
+				<key>openChangeNotes</key>
+				<string>id</string>
+				<key>openDonate</key>
+				<string>id</string>
+				<key>openLicense</key>
+				<string>id</string>
+				<key>openReadMe</key>
+				<string>id</string>
+				<key>openXjournalBlog</key>
+				<string>id</string>
+				<key>openXjournalHomePage</key>
+				<string>id</string>
+				<key>showAccountEditWindow</key>
+				<string>id</string>
+				<key>showBirthdayWindow</key>
+				<string>id</string>
+				<key>showBookmarkWindow</key>
+				<string>id</string>
+				<key>showFriendsWindow</key>
+				<string>id</string>
+				<key>showGlossaryWindow</key>
+				<string>id</string>
+				<key>showHistoryWindow</key>
+				<string>id</string>
+				<key>showMainWindow</key>
+				<string>id</string>
+				<key>showPollEditWindow</key>
+				<string>id</string>
+				<key>showPrefsWindow</key>
+				<string>id</string>
+				<key>showShortcutsWindow</key>
+				<string>id</string>
+				<key>switchAccount</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>XJAppDelegate</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>accountItem</key>
+				<string>NSMenuItem</string>
+				<key>deleteFriend</key>
+				<string>NSMenuItem</string>
+				<key>deleteFromGroup</key>
+				<string>NSMenuItem</string>
+				<key>loginPanel</key>
+				<string>NSWindow</string>
+				<key>spinner</key>
+				<string>NSProgressIndicator</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>checkForUpdates</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>SUUpdater</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addSelectedTag</key>
+				<string>id</string>
+				<key>closeSheet</key>
+				<string>id</string>
+				<key>commitSheet</key>
+				<string>id</string>
+				<key>detectMusicNow</key>
+				<string>id</string>
+				<key>enableOKButton</key>
+				<string>id</string>
+				<key>getImageDimensions</key>
+				<string>id</string>
+				<key>insertBlockquote</key>
+				<string>id</string>
+				<key>insertBold</key>
+				<string>id</string>
+				<key>insertCenter</key>
+				<string>id</string>
+				<key>insertImage</key>
+				<string>id</string>
+				<key>insertItalic</key>
+				<string>id</string>
+				<key>insertLJCut</key>
+				<string>id</string>
+				<key>insertLJUser</key>
+				<string>id</string>
+				<key>insertLink</key>
+				<string>id</string>
+				<key>insertUnderline</key>
+				<string>id</string>
+				<key>pasteLink</key>
+				<string>id</string>
+				<key>postEntryAndDiscardLocalCopy</key>
+				<string>id</string>
+				<key>saveWindowSize</key>
+				<string>id</string>
+				<key>setSelectedJournal</key>
+				<string>id</string>
+				<key>setSelectedMood</key>
+				<string>id</string>
+				<key>setValueForSender</key>
+				<string>id</string>
+				<key>showPreviewWindow</key>
+				<string>id</string>
+				<key>toggleDrawer</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>XJDocument</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>alignPop</key>
+				<string>NSPopUpButton</string>
+				<key>altField</key>
+				<string>NSTextField</string>
+				<key>backdateField</key>
+				<string>NSTextField</string>
+				<key>backdatedChk</key>
+				<string>NSButton</string>
+				<key>borderSize</key>
+				<string>NSTextField</string>
+				<key>commSheet</key>
+				<string>NSWindow</string>
+				<key>comm_OKButton</key>
+				<string>NSButton</string>
+				<key>comm_nameCombo</key>
+				<string>NSComboBox</string>
+				<key>cutSheet</key>
+				<string>NSWindow</string>
+				<key>cut_textField</key>
+				<string>NSTextField</string>
+				<key>cut_textView</key>
+				<string>NSTextView</string>
+				<key>drawer</key>
+				<string>NSDrawer</string>
+				<key>friendsTable</key>
+				<string>NSTableView</string>
+				<key>hrefSheet</key>
+				<string>NSWindow</string>
+				<key>htmlPreview</key>
+				<string>WebView</string>
+				<key>htmlPreviewWindow</key>
+				<string>NSWindow</string>
+				<key>html_LinkTextField</key>
+				<string>NSTextField</string>
+				<key>html_TitleField</key>
+				<string>NSTextField</string>
+				<key>html_hrefField</key>
+				<string>NSTextField</string>
+				<key>html_targetCombo</key>
+				<string>NSComboBox</string>
+				<key>imgSheet</key>
+				<string>NSWindow</string>
+				<key>journalPop</key>
+				<string>NSPopUpButton</string>
+				<key>moods</key>
+				<string>NSComboBox</string>
+				<key>noCommentsChk</key>
+				<string>NSButton</string>
+				<key>noEmailChk</key>
+				<string>NSButton</string>
+				<key>preformattedChk</key>
+				<string>NSButton</string>
+				<key>security</key>
+				<string>NSPopUpButton</string>
+				<key>sizeHeight</key>
+				<string>NSTextField</string>
+				<key>sizeWidth</key>
+				<string>NSTextField</string>
+				<key>spaceHeight</key>
+				<string>NSTextField</string>
+				<key>spaceWidth</key>
+				<string>NSTextField</string>
+				<key>spinner</key>
+				<string>NSProgressIndicator</string>
+				<key>srcField</key>
+				<string>NSTextField</string>
+				<key>statusField</key>
+				<string>NSTextField</string>
+				<key>tagsPop</key>
+				<string>NSPopUpButton</string>
+				<key>theLocationField</key>
+				<string>NSTextField</string>
+				<key>theMoodNameField</key>
+				<string>NSTextField</string>
+				<key>theMusicField</key>
+				<string>NSTextField</string>
+				<key>theTagField</key>
+				<string>NSTextField</string>
+				<key>theTextView</key>
+				<string>NSTextView</string>
+				<key>userPicView</key>
+				<string>NSImageView</string>
+				<key>userSheet</key>
+				<string>NSWindow</string>
+				<key>user_OKButton</key>
+				<string>NSButton</string>
+				<key>user_nameCombo</key>
+				<string>NSComboBox</string>
+				<key>userpic</key>
+				<string>NSPopUpButton</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSDocument</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>

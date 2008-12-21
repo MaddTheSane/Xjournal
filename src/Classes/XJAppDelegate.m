@@ -12,7 +12,6 @@
 #import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"
-#import "CCFSoftwareUpdate.h"
 #import "LJKit-URLLaunching.h"
 #import "XJDocument.h"
 #import "NSString+Extensions.h"
@@ -161,7 +160,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJGlossaryWindowIsOpen"] boolValue])
         [self showGlossaryWindow: self];
 
-    [[CCFSoftwareUpdate sharedUpdateChecker] runScheduledUpdateCheckIfRequired];
     [NSApp setServicesProvider:self];
 }
 
@@ -202,11 +200,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     NSException *exc = [[note userInfo] objectForKey: @"LJException"];
     NSLog(@"Check friends error: %@ - %@", [exc name], [exc reason]);
 }
-
-#pragma mark -
-#pragma mark Software Update
-// Target for AppMenu -> Check for updates
-- (IBAction)checkForUpdate:(id)sender { [[CCFSoftwareUpdate sharedUpdateChecker] runSoftwareUpdate:NO]; }
 
 #pragma mark -
 #pragma mark Dock Menu Handling
