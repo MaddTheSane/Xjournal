@@ -446,7 +446,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 /* Called when the user clicks on the dock icon */
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
-	NSLog(@"applicationShouldHandleReopen");
     // If the dock icon is showing, ir (friendsDialogIsShowing=YES) we open the friends page
     // and we DON'T open a new window
     if([self showingDockBadge]) {
