@@ -18,7 +18,7 @@
 @end
 
 @implementation XJMusic
-
+/*
 + (XJMusic *)currentMusicAsiTunesLink: (BOOL)link {
 
 	XJMusic *music = nil;
@@ -39,6 +39,40 @@
 											   artist: [data objectForKey: @"artist"]
 											   rating: [[data objectForKey: @"rating"] intValue]];
 			}
+		}
+	}
+	return [music autorelease];
+}
+*/
++ (XJMusic *)currentMusic {
+
+	XJMusic *music = nil;
+
+	if([self iTunesIsRunning] && [self iTunesIsPlaying]) {
+		NSDictionary *data = [self detectMusic];
+
+		if(data) {
+			music = [[XJMusic alloc] initWithName: [data objectForKey: @"name"]
+											album: [data objectForKey: @"album"]
+										   artist: [data objectForKey: @"artist"]
+										   rating: [[data objectForKey: @"rating"] intValue]];
+		}
+	}
+	return [music autorelease];
+}
+
++ (XJMusic *)musicAsiTunesLink: (XJMusic *)aMusic {
+
+	XJMusic *music = nil;
+
+	if([self iTunesIsRunning] && [self iTunesIsPlaying]) {
+		NSDictionary *data = [self detectMusic];
+
+		if(data) {
+			music = [[XJMusic alloc] initWithName: [self wrapIniTunesLink: [aMusic name]]
+											album: [self wrapIniTunesLink: [aMusic album]]
+										   artist: [self wrapIniTunesLink: [aMusic artist]]
+										   rating: [aMusic rating]];	
 		}
 	}
 	return [music autorelease];
@@ -231,6 +265,6 @@ return artist;
 }
 
 + (NSString *)wrapIniTunesLink: (NSString *)str {
-	return [NSString stringWithFormat:@"<a href=\"itms://phobos.apple.com/WebObjects/MZSearch.woa/wa/com.apple.jingle.search.DirectAction/search?term=%@\">%@</a>", str, str];	
+	return [NSString stringWithFormat:@"<a href=\"itms://phobos.apple.com/WebObjects/MZSearch.woa/wa/search?term=%@\">%@</a>", str, str];
 }
 @end

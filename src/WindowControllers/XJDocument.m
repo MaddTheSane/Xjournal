@@ -37,7 +37,7 @@
     if([[XJAccountManager defaultManager] loggedInAccount]) {
         [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
     }
-    
+
     [[NSDocumentController sharedDocumentController] setAutosavingDelay:30];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -55,11 +55,11 @@
                                                  name: XJAccountRemovedNotification
                                                object:nil];
 	
-	/*[[NSDistributedNotificationCenter defaultCenter] addObserver: self
+	[[NSDistributedNotificationCenter defaultCenter] addObserver: self
 														selector: @selector(iTunesChangedTrack:)
 															name: @"com.apple.iTunes.playerInfo"
 														  object: nil
-											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];*/
+											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
 
     return self;
 }
@@ -228,11 +228,10 @@
 
 - (void)dealloc
 {
-	//[[NSDistributedNotificationCenter defaultCenter] removeObserver: self];
+	[[NSDistributedNotificationCenter defaultCenter] removeObserver: self];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
     [entry release];
 	[toolbarItemCache release];
-	[iTMSLinks release];
 	
 	[self setFriendArray: nil];
     [self setJoinedCommunityArray: nil];
@@ -357,8 +356,6 @@
         // invalidate the iTMS links since we can only generate them
         // directly from iTunes and not from back-parsing the user's
         // entry
-		[iTMSLinks release];
-		iTMSLinks = nil;
 
         [[self entry] setCurrentMusic: [[aNotification object] stringValue]];        
     }
@@ -394,7 +391,7 @@
 #pragma mark Music Detection
 // ----------------------------------------------------------------------------------------
 - (IBAction)detectMusicNow:(id)sender {
-	[self setCurrentMusic: [XJMusic currentMusicAsiTunesLink:[[NSUserDefaults standardUserDefaults] boolForKey:@"XJLinkMusicToStore"]]];
+	[self setCurrentMusic: [XJMusic currentMusic]];
 }
 
 - (void)iTunesChangedTrack: (NSNotification *)note {
@@ -466,25 +463,26 @@
 - (BOOL)postEntryAndReturnStatus
 {
     BOOL isPosted = ([[self entry] itemID] != 0);
-    
+	XJMusic *tempMusic;
+
     // Force the first responder to end editing
     [[self window] endEditingFor:nil];
-    
+
     /* Check if the user wants iTMS links instead of current music.
         Also, only do this if this isn't a repost. 
         
         Consider, also, the case where the user has entered 
         music text by themselves instead of getting it via the button.
-        In such a case, iTMSLinks will be nil.
     
         Also, if we detected iTMS links, but the user has since cleared 
         the music field, we don't want to do anything.
     */
     if(![[self entry] itemID] &&
-	   [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJLinkMusicToStore"] boolValue] &&
+	   [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJGenerateiTunesLinks"] boolValue] &&
 	   [self currentMusic]) {
         [[self entry] setCurrentMusic: nil];
-        [[self entry] setContent: [NSString stringWithFormat: @"%@\n\n%@", [[self entry] content], iTMSLinks]];
+		tempMusic = [XJMusic musicAsiTunesLink:currentMusic];
+        [[self entry] setContent: [NSString stringWithFormat: @"%@\n\n%@%@", [[self entry] content], @"<a href=\"http://www.itunes.com\"><img src=\"http://ax.phobos.apple.com.edgesuite.net/images/iTunes.gif\" border=\"0\"></a>&nbsp;", tempMusic]];
     }
     
     

@@ -55,7 +55,6 @@
     // Cache thtoolbar items
     NSMutableDictionary *toolbarItemCache;
 
-
     // ----------------------------------------------------------------------------------------
     // HTML Tools Nib connections
     // ----------------------------------------------------------------------------------------
@@ -106,8 +105,6 @@
     // ----------------------------------------------------------------------------------------
     // iTunes Music Store
     // ----------------------------------------------------------------------------------------
-    NSString *iTMSLinks;
-
 	XJMusic *currentMusic;
     
     // ----------------------------------------------------------------------------------------
@@ -125,7 +122,7 @@
 /* Support for post confirmation dialog */
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
 
-    // Popup targets
+// Popup targets
 - (IBAction)setSelectedJournal:(id)sender;
 - (IBAction)setSelectedMood:(id)sender;
 - (IBAction)addSelectedTag:(id)sender;
@@ -173,9 +170,9 @@
 // Button enablers for User and comm sheets
 - (IBAction)enableOKButton:(id)sender;
 
-    // ----------------------------------------------------------------------------------------
-    // HTML Preview
-    // ----------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------
+// HTML Preview
+// ----------------------------------------------------------------------------------------
 - (NSWindow *)htmlPreviewWindow;
 - (WebView *)htmlPreview;
 - (void)updatePreviewWindow: (NSString *)textContent;

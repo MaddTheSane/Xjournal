@@ -18,7 +18,8 @@
 
 // If iTunes is playing, returns a configured XJMusic object
 // If iTunes is not playing, returns nil;
-+ (XJMusic *)currentMusicAsiTunesLink: (BOOL)link;
++ (XJMusic *)currentMusic;
++ (XJMusic *)musicAsiTunesLink: (XJMusic *)aMusic;
 
 - (id)initWithName: (NSString *)aName album: (NSString *)anAlbum artist: (NSString *)anArtist rating: (int)aRating;
 
