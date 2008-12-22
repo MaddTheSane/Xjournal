@@ -18,32 +18,7 @@
 @end
 
 @implementation XJMusic
-/*
-+ (XJMusic *)currentMusicAsiTunesLink: (BOOL)link {
 
-	XJMusic *music = nil;
-	
-	if([self iTunesIsRunning] && [self iTunesIsPlaying]) {
-		NSDictionary *data = [self detectMusic];
-
-		if(data) {
-			if(link) {
-				music = [[XJMusic alloc] initWithName: [self wrapIniTunesLink: [data objectForKey: @"name"]]
-												album: [self wrapIniTunesLink: [data objectForKey: @"album"]]
-											   artist: [self wrapIniTunesLink: [data objectForKey: @"artist"]]
-											   rating: [[data objectForKey: @"rating"] intValue]];				
-			}
-			else {
-				music = [[XJMusic alloc] initWithName: [data objectForKey: @"name"]
-												album: [data objectForKey: @"album"]
-											   artist: [data objectForKey: @"artist"]
-											   rating: [[data objectForKey: @"rating"] intValue]];
-			}
-		}
-	}
-	return [music autorelease];
-}
-*/
 + (XJMusic *)currentMusic {
 
 	XJMusic *music = nil;
