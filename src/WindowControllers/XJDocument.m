@@ -596,13 +596,16 @@
     
 	NSRange selection = [theTextView selectedRange];
 	
+	// Clear href field
+	[html_hrefField setStringValue:@""];
+	
     if(selection.length == 0) {
         [html_LinkTextField setStringValue: @""];
-		[hrefSheet setInitialFirstResponder: html_LinkTextField];
+		[hrefSheet makeFirstResponder:html_LinkTextField];
     } else {
         NSString *selectedText = [[theTextView string] substringWithRange: selection];
         [html_LinkTextField setStringValue: selectedText];
-		[hrefSheet setInitialFirstResponder: html_hrefField];
+		[hrefSheet makeFirstResponder:html_hrefField];
     }
 	
     [self startSheet: hrefSheet];
