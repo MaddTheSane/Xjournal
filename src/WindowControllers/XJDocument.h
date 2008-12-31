@@ -89,7 +89,7 @@
     // Drawer
     // ----------------------------------------------------------------------------------------
     IBOutlet NSDrawer *drawer;
-    IBOutlet NSPopUpButton *security, *userpic;
+    IBOutlet NSPopUpButton *security, *userpic, *commentScreening;
     IBOutlet NSTableView *friendsTable;
     IBOutlet NSImageView *userPicView;
     IBOutlet NSButton *preformattedChk, *noCommentsChk, *backdatedChk, *noEmailChk;

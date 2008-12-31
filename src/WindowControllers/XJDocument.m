@@ -94,11 +94,40 @@
 	
     if([[self entry] itemID] == 0) {
         // Item hasn't been posted, apply default security mode
-        int level = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultSecurityLevel"] intValue];
-        [security selectItemAtIndex: [security indexOfItemWithTag: level]];
-        [[self entry] setSecurityMode:level];
+        int securityLevel = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultSecurityLevel"] intValue];
+        [security selectItemAtIndex: [security indexOfItemWithTag: securityLevel]];
+        [[self entry] setSecurityMode:securityLevel];
+        // Item hasn't been posted, apply default comment screening mode
+        int commentScreeningLevel = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultCommentScreeningLevel"] intValue];
+		[commentScreening selectItemAtIndex:commentScreeningLevel];
+		switch (commentScreeningLevel) {
+			case 1:
+				[[self entry] setOptionScreenReplies:@"N"]; // Allow all replies
+				break;
+			case 2:
+				[[self entry] setOptionScreenReplies:@"R"]; // Screen anonymous
+				break;
+			case 3:
+				[[self entry] setOptionScreenReplies:@"F"]; // Allow friends only
+				break;
+			case 4:
+				[[self entry] setOptionScreenReplies:@"A"]; // Screen all
+				break;				
+		}
     }else {
         [security selectItemAtIndex: [security indexOfItemWithTag: [[self entry] securityMode]]];
+		unichar screeningChar = [[self entry] optionScreenReplies];
+		if (screeningChar == 'A') {
+			[commentScreening selectItemAtIndex:4];         // Screen all
+		} else if (screeningChar == 'F') {
+			[commentScreening selectItemAtIndex:3];         // Allow friends only
+		} else if (screeningChar == 'R') {
+			[commentScreening selectItemAtIndex:2];         // Screen anonymous
+		} else if (screeningChar == 'N') {
+			[commentScreening selectItemAtIndex:1];         // Allow all replies
+		} else {
+			[commentScreening selectItemAtIndex:0];         // Journal default
+		}
     }
     
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
@@ -160,7 +189,6 @@
     [backdatedChk setState: [[self entry] optionBackdated]];
     [backdateField setEnabled: [[self entry] optionBackdated]];
     
-	
     // Set preferred font
     NSFont *pFont = [XJPreferences preferredWindowFont];
     if(pFont != nil) {
@@ -463,7 +491,7 @@
 - (BOOL)postEntryAndReturnStatus
 {
     BOOL isPosted = ([[self entry] itemID] != 0);
-	XJMusic *tempMusic;
+    XJMusic *tempMusic;
 
     // Force the first responder to end editing
     [[self window] endEditingFor:nil];
@@ -893,6 +921,22 @@
         NSString *enteredString = [sender stringValue];
         NSDate *date = [NSDate dateWithNaturalLanguageString: enteredString];
         [[self entry] setDate: date];
+    }
+    else if([sender isEqualTo: commentScreening]) {
+		switch ([sender indexOfSelectedItem]) {
+			case 1:
+				[[self entry] setOptionScreenReplies:@"N"]; // Allow all replies
+				break;
+			case 2:
+				[[self entry] setOptionScreenReplies:@"R"]; // Screen anonymous
+				break;
+			case 3:
+				[[self entry] setOptionScreenReplies:@"F"];	// Allow friends only
+				break;
+			case 4:
+				[[self entry] setOptionScreenReplies:@"A"]; // Screen all
+				break;				
+		}
     }
 }
 

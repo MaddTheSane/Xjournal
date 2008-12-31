@@ -1,104 +1,171 @@
-{
-    IBClasses = (
-        {
-            ACTIONS = {
-                logIn = id; 
-                showBookmarkWindow = id; 
-                showFriendsWindow = id; 
-                showGlossaryWindow = id; 
-                showHistoryWindow = id; 
-                showPrefsWindow = id; 
-            }; 
-            CLASS = AppDelegate; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                LJMenu = NSMenu; 
-                checkFriendsItem = NSMenuItem; 
-                dockIcon = DockStatusIcon; 
-                journalMenu = NSMenuItem; 
-                loginPanel = NSWindow; 
-                spinner = NSProgressIndicator; 
-            }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {
-            ACTIONS = {
-                addSelectedTag = id; 
-                closeSheet = id; 
-                commitSheet = id; 
-                detectMusicNow = id; 
-                enableOKButton = id; 
-                getImageDimensions = id; 
-                insertBlockquote = id; 
-                insertBold = id; 
-                insertCenter = id; 
-                insertImage = id; 
-                insertItalic = id; 
-                insertLJCut = id; 
-                insertLJUser = id; 
-                insertLink = id; 
-                insertUnderline = id; 
-                pasteLink = id; 
-                postEntryAndDiscardLocalCopy = id; 
-                saveWindowSize = id; 
-                setSelectedJournal = id; 
-                setSelectedMood = id; 
-                setValueForSender = id; 
-                showPreviewWindow = id; 
-                toggleDrawer = id; 
-            }; 
-            CLASS = XJDocument; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                alignPop = NSPopUpButton; 
-                altField = NSTextField; 
-                backdateField = NSTextField; 
-                backdatedChk = NSButton; 
-                borderSize = NSTextField; 
-                commSheet = NSWindow; 
-                "comm_OKButton" = NSButton; 
-                "comm_nameCombo" = NSComboBox; 
-                cutSheet = NSWindow; 
-                "cut_textField" = NSTextField; 
-                "cut_textView" = NSTextView; 
-                drawer = NSDrawer; 
-                friendsTable = NSTableView; 
-                hrefSheet = NSWindow; 
-                htmlPreview = WebView; 
-                htmlPreviewWindow = NSWindow; 
-                "html_LinkTextField" = NSTextField; 
-                "html_TitleField" = NSTextField; 
-                "html_hrefField" = NSTextField; 
-                "html_targetCombo" = NSComboBox; 
-                imgSheet = NSWindow; 
-                journalPop = NSPopUpButton; 
-                moods = NSComboBox; 
-                noCommentsChk = NSButton; 
-                noEmailChk = NSButton; 
-                preformattedChk = NSButton; 
-                security = NSPopUpButton; 
-                sizeHeight = NSTextField; 
-                sizeWidth = NSTextField; 
-                spaceHeight = NSTextField; 
-                spaceWidth = NSTextField; 
-                spinner = NSProgressIndicator; 
-                srcField = NSTextField; 
-                statusField = NSTextField; 
-                tagsPop = NSPopUpButton; 
-                theLocationField = NSTextField; 
-                theMoodNameField = NSTextField; 
-                theMusicField = NSTextField; 
-                theTagField = NSTextField; 
-                theTextView = NSTextView; 
-                userPicView = NSImageView; 
-                userSheet = NSWindow; 
-                "user_OKButton" = NSButton; 
-                "user_nameCombo" = NSComboBox; 
-                userpic = NSPopUpButton; 
-            }; 
-            SUPERCLASS = NSDocument; 
-        }
-    ); 
-    IBVersion = 1; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addSelectedTag</key>
+				<string>id</string>
+				<key>closeSheet</key>
+				<string>id</string>
+				<key>commitSheet</key>
+				<string>id</string>
+				<key>detectMusicNow</key>
+				<string>id</string>
+				<key>enableOKButton</key>
+				<string>id</string>
+				<key>getImageDimensions</key>
+				<string>id</string>
+				<key>insertBlockquote</key>
+				<string>id</string>
+				<key>insertBold</key>
+				<string>id</string>
+				<key>insertCenter</key>
+				<string>id</string>
+				<key>insertImage</key>
+				<string>id</string>
+				<key>insertItalic</key>
+				<string>id</string>
+				<key>insertLJCut</key>
+				<string>id</string>
+				<key>insertLJUser</key>
+				<string>id</string>
+				<key>insertLink</key>
+				<string>id</string>
+				<key>insertUnderline</key>
+				<string>id</string>
+				<key>pasteLink</key>
+				<string>id</string>
+				<key>postEntryAndDiscardLocalCopy</key>
+				<string>id</string>
+				<key>saveWindowSize</key>
+				<string>id</string>
+				<key>setSelectedJournal</key>
+				<string>id</string>
+				<key>setSelectedMood</key>
+				<string>id</string>
+				<key>setValueForSender</key>
+				<string>id</string>
+				<key>showPreviewWindow</key>
+				<string>id</string>
+				<key>toggleDrawer</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>XJDocument</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>alignPop</key>
+				<string>NSPopUpButton</string>
+				<key>altField</key>
+				<string>NSTextField</string>
+				<key>backdateField</key>
+				<string>NSTextField</string>
+				<key>backdatedChk</key>
+				<string>NSButton</string>
+				<key>borderSize</key>
+				<string>NSTextField</string>
+				<key>commSheet</key>
+				<string>NSWindow</string>
+				<key>comm_OKButton</key>
+				<string>NSButton</string>
+				<key>comm_nameCombo</key>
+				<string>NSComboBox</string>
+				<key>commentScreening</key>
+				<string>NSPopUpButton</string>
+				<key>cutSheet</key>
+				<string>NSWindow</string>
+				<key>cut_textField</key>
+				<string>NSTextField</string>
+				<key>cut_textView</key>
+				<string>NSTextView</string>
+				<key>drawer</key>
+				<string>NSDrawer</string>
+				<key>friendsTable</key>
+				<string>NSTableView</string>
+				<key>hrefSheet</key>
+				<string>NSWindow</string>
+				<key>htmlPreview</key>
+				<string>WebView</string>
+				<key>htmlPreviewWindow</key>
+				<string>NSWindow</string>
+				<key>html_LinkTextField</key>
+				<string>NSTextField</string>
+				<key>html_TitleField</key>
+				<string>NSTextField</string>
+				<key>html_hrefField</key>
+				<string>NSTextField</string>
+				<key>html_targetCombo</key>
+				<string>NSComboBox</string>
+				<key>imgSheet</key>
+				<string>NSWindow</string>
+				<key>journalPop</key>
+				<string>NSPopUpButton</string>
+				<key>moods</key>
+				<string>NSComboBox</string>
+				<key>noCommentsChk</key>
+				<string>NSButton</string>
+				<key>noEmailChk</key>
+				<string>NSButton</string>
+				<key>preformattedChk</key>
+				<string>NSButton</string>
+				<key>security</key>
+				<string>NSPopUpButton</string>
+				<key>sizeHeight</key>
+				<string>NSTextField</string>
+				<key>sizeWidth</key>
+				<string>NSTextField</string>
+				<key>spaceHeight</key>
+				<string>NSTextField</string>
+				<key>spaceWidth</key>
+				<string>NSTextField</string>
+				<key>spinner</key>
+				<string>NSProgressIndicator</string>
+				<key>srcField</key>
+				<string>NSTextField</string>
+				<key>statusField</key>
+				<string>NSTextField</string>
+				<key>tagsPop</key>
+				<string>NSPopUpButton</string>
+				<key>theLocationField</key>
+				<string>NSTextField</string>
+				<key>theMoodNameField</key>
+				<string>NSTextField</string>
+				<key>theMusicField</key>
+				<string>NSTextField</string>
+				<key>theTagField</key>
+				<string>NSTextField</string>
+				<key>theTextView</key>
+				<string>NSTextView</string>
+				<key>userPicView</key>
+				<string>NSImageView</string>
+				<key>userSheet</key>
+				<string>NSWindow</string>
+				<key>user_OKButton</key>
+				<string>NSButton</string>
+				<key>user_nameCombo</key>
+				<string>NSComboBox</string>
+				<key>userpic</key>
+				<string>NSPopUpButton</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSDocument</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>
