@@ -655,6 +655,19 @@
 {
     if(!imgSheet)
         [NSBundle loadNibNamed: @"IMGSheet" owner: self];
+
+    // Clear fields
+    [srcField setStringValue:@""];
+    [altField setStringValue:@""];
+    [sizeWidth setStringValue:@""];
+    [sizeHeight setStringValue:@""];
+    [spaceWidth setStringValue:@""];
+    [spaceHeight setStringValue:@""];
+    [borderSize setStringValue:@""];
+	
+    // Make sure we always start in the first textfield of the sheet
+    [imgSheet makeFirstResponder:srcField];
+
     [self startSheet: imgSheet];
 }
 
