@@ -46,11 +46,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.6b3</string>
+	<string>1.0.6b6</string>
 	<key>CFBundleSignature</key>
 	<string>Xjrl</string>
 	<key>CFBundleVersion</key>
-	<string>341</string>
+	<string>344</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
