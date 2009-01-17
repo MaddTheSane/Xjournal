@@ -52,6 +52,8 @@
 
 #define XJAddressCardDroppedNotification @"XJAddressCardDroppedNotification"
 
+#define XJUIChanged @"XJUIChanged"
+
 // Pref keys for whether palettes are open
 #define kBookmarkWindowOpen @"XJBookmarkWindowIsOpen"
 #define kGlossaryWindowOpen @"XJGlossaryWindowIsOpen"

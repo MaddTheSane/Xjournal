@@ -45,6 +45,12 @@
 				<string>id</string>
 				<key>insertUnderline</key>
 				<string>id</string>
+				<key>locationMenuItemClicked</key>
+				<string>id</string>
+				<key>moodMenuItemClicked</key>
+				<string>id</string>
+				<key>musicMenuItemClicked</key>
+				<string>id</string>
 				<key>pasteLink</key>
 				<string>id</string>
 				<key>postEntryAndDiscardLocalCopy</key>
@@ -58,6 +64,8 @@
 				<key>setValueForSender</key>
 				<string>id</string>
 				<key>showPreviewWindow</key>
+				<string>id</string>
+				<key>tagsMenuItemClicked</key>
 				<string>id</string>
 				<key>toggleDrawer</key>
 				<string>id</string>
@@ -94,6 +102,8 @@
 				<string>NSTextView</string>
 				<key>drawer</key>
 				<string>NSDrawer</string>
+				<key>fieldsView</key>
+				<string>NSView</string>
 				<key>friendsTable</key>
 				<string>NSTableView</string>
 				<key>hrefSheet</key>
@@ -120,6 +130,8 @@
 				<string>NSButton</string>
 				<key>noEmailChk</key>
 				<string>NSButton</string>
+				<key>notFieldsView</key>
+				<string>NSView</string>
 				<key>preformattedChk</key>
 				<string>NSButton</string>
 				<key>security</key>
@@ -140,14 +152,42 @@
 				<string>NSTextField</string>
 				<key>tagsPop</key>
 				<string>NSPopUpButton</string>
+				<key>theJournalLabel</key>
+				<string>NSTextField</string>
 				<key>theLocationField</key>
 				<string>NSTextField</string>
+				<key>theLocationFieldLabel</key>
+				<string>NSTextField</string>
+				<key>theLocationMenuItem</key>
+				<string>NSMenuItem</string>
+				<key>theMoodComboLabel</key>
+				<string>NSTextField</string>
+				<key>theMoodFieldLabel</key>
+				<string>NSTextField</string>
+				<key>theMoodMenuItem</key>
+				<string>NSMenuItem</string>
 				<key>theMoodNameField</key>
 				<string>NSTextField</string>
 				<key>theMusicField</key>
 				<string>NSTextField</string>
+				<key>theMusicFieldLabel</key>
+				<string>NSTextField</string>
+				<key>theMusicMenuItem</key>
+				<string>NSMenuItem</string>
+				<key>thePopMenuButton</key>
+				<string>NSButton</string>
+				<key>theScrollView</key>
+				<string>NSScrollView</string>
+				<key>theSubjectField</key>
+				<string>NSTextField</string>
 				<key>theTagField</key>
 				<string>NSTextField</string>
+				<key>theTagFieldLabel</key>
+				<string>NSTextField</string>
+				<key>theTagPopLabel</key>
+				<string>NSTextField</string>
+				<key>theTagsMenuItem</key>
+				<string>NSMenuItem</string>
 				<key>theTextView</key>
 				<string>NSTextView</string>
 				<key>userPicView</key>
@@ -163,6 +203,19 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSDocument</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>XJPopUpButton</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>popUpMenu</key>
+				<string>NSMenu</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSButton</string>
 		</dict>
 	</array>
 	<key>IBVersion</key>

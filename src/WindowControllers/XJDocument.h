@@ -35,6 +35,11 @@
 #define kEditItalicItemIdentifier @"kEditItalicItemIdentifier"
 #define kEditUnderlineItemIdentifier @"kEditUnderlineItemIdentifier"
 
+extern NSString *TXJshowLocationField;
+extern NSString *TXJshowMusicField;
+extern NSString *TXJshowTagsField;
+extern NSString *TXJshowMoodField;
+
 @class XJMusic;
 
 @interface XJDocument : NSDocument
@@ -42,11 +47,16 @@
     // ----------------------------------------------------------------------------------------
     // Window outlets
     // ----------------------------------------------------------------------------------------
-    IBOutlet NSTextView *theTextView;
-    IBOutlet NSTextField *theMusicField, *statusField, *theTagField, *theLocationField, *theMoodNameField;
+	IBOutlet NSScrollView *theScrollView;
+	IBOutlet NSTextView *theTextView;
+	IBOutlet NSTextField *theSubjectField, *theMusicField, *theLocationField, *theTagField, *theMoodNameField, *statusField;
+	IBOutlet NSTextField *theMusicFieldLabel, *theLocationFieldLabel, *theTagFieldLabel, *theTagPopLabel, *theMoodFieldLabel, *theMoodComboLabel, *theJournalLabel;
+	IBOutlet NSButton *thePopMenuButton;
     IBOutlet NSPopUpButton *journalPop, *tagsPop;
     IBOutlet NSComboBox *moods;
     IBOutlet NSProgressIndicator *spinner;
+	IBOutlet NSMenuItem *theMusicMenuItem, *theLocationMenuItem, *theTagsMenuItem, *theMoodMenuItem;
+	IBOutlet NSView *fieldsView, *notFieldsView;
 
     // The entry associated with the window
     LJEntry *entry;
@@ -139,6 +149,19 @@
 - (IBAction)saveWindowSize:(id)sender;
 
 - (void)initUI;
+
+// ----------------------------------------------------------------------------------------
+// Code for selecting which textfields to show
+// ----------------------------------------------------------------------------------------
+- (void)moveLocationControls:(signed int)distance;
+- (IBAction)musicMenuItemClicked:(id)sender;
+- (IBAction)locationMenuItemClicked:(id)sender;
+- (IBAction)tagsMenuItemClicked:(id)sender;
+- (IBAction)moodMenuItemClicked:(id)sender;
+- (void)showLocationField:(BOOL)aFlag;
+- (void)showMusicField:(BOOL)aFlag;
+- (void)showTagsField:(BOOL)aFlag;
+- (void)showMoodField:(BOOL)aFlag;
 
 // ----------------------------------------------------------------------------------------
 // Drawer handling

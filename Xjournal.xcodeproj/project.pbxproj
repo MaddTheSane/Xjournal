@@ -226,6 +226,9 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		BC2DBF8C0BF2AA7B0078A37C /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
 		BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
+		F30490610F2227E3008A1888 /* XJPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = F304905F0F2227E3008A1888 /* XJPopUpButton.h */; };
+		F30490620F2227E3008A1888 /* XJPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F30490600F2227E3008A1888 /* XJPopUpButton.m */; };
+		F30490720F222DE4008A1888 /* popupbutton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F30490710F222DE4008A1888 /* popupbutton.tiff */; };
 		F38635490EFE031400FFEDDB /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38635480EFE031400FFEDDB /* Sparkle.framework */; };
 		F386355D0EFE040500FFEDDB /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = F38635480EFE031400FFEDDB /* Sparkle.framework */; };
 /* End PBXBuildFile section */
@@ -518,6 +521,9 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../LJKit/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F304905F0F2227E3008A1888 /* XJPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPopUpButton.h; sourceTree = "<group>"; };
+		F30490600F2227E3008A1888 /* XJPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPopUpButton.m; sourceTree = "<group>"; };
+		F30490710F222DE4008A1888 /* popupbutton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = popupbutton.tiff; path = src/Art/popupbutton.tiff; sourceTree = "<group>"; };
 		F38635480EFE031400FFEDDB /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -650,6 +656,8 @@
 		1BBD894804B0189F003882CD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F304905F0F2227E3008A1888 /* XJPopUpButton.h */,
+				F30490600F2227E3008A1888 /* XJPopUpButton.m */,
 				5F5468C0092809EF00ABCAC9 /* XJSyndicationData.h */,
 				5F5468C1092809EF00ABCAC9 /* XJSyndicationData.m */,
 				5F5B098B092563B6005BB86B /* XJMusic.h */,
@@ -827,6 +835,7 @@
 				1BF27E8504B02A7900121863 /* OAForwardArrow.tiff */,
 				1BF27E8604B02A7900121863 /* OpenFolder.tiff */,
 				1BF27E8704B02A7900121863 /* OSUPreferences.tiff */,
+				F30490710F222DE4008A1888 /* popupbutton.tiff */,
 				1BF27E8804B02A7900121863 /* Post.tiff */,
 				1BF27E8904B02A7900121863 /* PostAndClose.tiff */,
 				1BF27E8A04B02A7900121863 /* private.gif */,
@@ -1005,6 +1014,7 @@
 				5F5468660928059300ABCAC9 /* XJApplication.h in Headers */,
 				5F5468C2092809EF00ABCAC9 /* XJSyndicationData.h in Headers */,
 				5FBEA5F2093107170071F534 /* XJFontNameToDisplayVT.h in Headers */,
+				F30490610F2227E3008A1888 /* XJPopUpButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1181,6 +1191,7 @@
 				5FD2819409268EAB005A1060 /* starburst.tiff in Resources */,
 				5F54693E09280BAF00ABCAC9 /* PostToWeblog.tif in Resources */,
 				585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */,
+				F30490720F222DE4008A1888 /* popupbutton.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,6 +1283,7 @@
 				5F5468650928059200ABCAC9 /* XJApplication.m in Sources */,
 				5F5468C3092809EF00ABCAC9 /* XJSyndicationData.m in Sources */,
 				5FBEA5F3093107170071F534 /* XJFontNameToDisplayVT.m in Sources */,
+				F30490620F2227E3008A1888 /* XJPopUpButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

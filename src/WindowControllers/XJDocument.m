@@ -19,6 +19,11 @@
 #define DOC_TEXT @"document.text"
 #define DOC_SUBJECT @"document.subject"
 
+NSString *TXJshowLocationField = @"ShowLocationField";
+NSString *TXJshowMusicField	   = @"ShowMusicField";
+NSString *TXJshowTagsField     = @"ShowTagsField";
+NSString *TXJshowMoodField     = @"ShowMoodField";
+
 @interface XJDocument (PrivateAPI)
 - (BOOL)iTunesIsRunning;
 - (BOOL)iTunesIsPlaying;
@@ -27,6 +32,17 @@
 @implementation XJDocument
 #pragma mark -
 #pragma mark Initialisation
++ (void)initialize {
+	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+	
+	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowLocationField"];
+	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowMusicField"];
+	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowTagsField"];
+	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowMoodField"];
+
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+}
+
 - (id)init
 {
     if([super init] == nil)
@@ -55,6 +71,11 @@
                                                  name: XJAccountRemovedNotification
                                                object:nil];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleUIChange)
+												 name: XJUIChanged
+											   object:nil];
+
 	[[NSDistributedNotificationCenter defaultCenter] addObserver: self
 														selector: @selector(iTunesChangedTrack:)
 															name: @"com.apple.iTunes.playerInfo"
@@ -112,7 +133,7 @@
 				break;
 			case 4:
 				[[self entry] setOptionScreenReplies:@"A"]; // Screen all
-				break;				
+				break;
 		}
     }else {
         [security selectItemAtIndex: [security indexOfItemWithTag: [[self entry] securityMode]]];
@@ -129,7 +150,29 @@
 			[commentScreening selectItemAtIndex:0];         // Journal default
 		}
     }
-    
+
+	// Initially set all items to on
+	[theMusicMenuItem setState:NSOnState];
+	[theLocationMenuItem setState:NSOnState];
+	[theTagsMenuItem setState:NSOnState];
+	[theMoodMenuItem setState:NSOnState];
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowMusicField"]) {
+		[self showMusicField:NO];
+	}
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowLocationField"]) {
+		[self showLocationField:NO];
+	}
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowTagsField"]) {
+		[self showTagsField:NO];
+	}
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowMoodField"]) {
+		[self showMoodField:NO];
+	}
+
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     /*
      We really want to check here of the network is reachable, because if it isn't
@@ -284,8 +327,308 @@
     [super windowControllerDidLoadNib:aController];
 }
 
+// ----------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark Code to show/hide textfields
+// ----------------------------------------------------------------------------------------
+- (void)handleUIChange
+{
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowMusicField"] && [theMusicField frame].size.height > 0.0) {
+		[self showMusicField:NO];
+	} else if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ShowMusicField"] && [theMusicField frame].size.height < 22.0) {
+		[self showMusicField:YES];
+	}
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowLocationField"] && [theLocationField frame].size.height > 0.0) {
+		[self showLocationField:NO];
+	} else if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ShowLocationField"] && [theLocationField frame].size.height < 22.0) {
+		[self showLocationField:YES];
+	}
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowTagsField"] && [theTagField frame].size.height > 0.0) {
+		[self showTagsField:NO];
+	} else if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ShowTagsField"] && [theTagField frame].size.height < 22.0) {
+		[self showTagsField:YES];
+	}
+	
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShowMoodField"] && [theMoodNameField frame].size.height > 0.0) {
+		[self showMoodField:NO];
+	} else if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ShowMoodField"] && [theMoodNameField frame].size.height < 22.0) {
+		[self showMoodField:YES];
+	}
+}
 
+- (void)moveLocationControls:(signed int)distance
+{
+	[theLocationFieldLabel setFrameOrigin:NSMakePoint([theLocationFieldLabel frame].origin.x, [theLocationFieldLabel frame].origin.y+distance )];
+	[theLocationField setFrameOrigin:NSMakePoint([theLocationField frame].origin.x, [theLocationField frame].origin.y+distance )];
+}
 
+- (void)moveMusicControls:(signed int)distance
+{
+	[theMusicFieldLabel setFrameOrigin:NSMakePoint([theMusicFieldLabel frame].origin.x, [theMusicFieldLabel frame].origin.y+distance )];
+	[theMusicField setFrameOrigin:NSMakePoint([theMusicField frame].origin.x, [theMusicField frame].origin.y+distance )];
+}
+
+- (void)moveTagsControls:(signed int)distance
+{
+	[theTagFieldLabel setFrameOrigin:NSMakePoint([theTagFieldLabel frame].origin.x, [theTagFieldLabel frame].origin.y+distance )];
+	[theTagField setFrameOrigin:NSMakePoint([theTagField frame].origin.x, [theTagField frame].origin.y+distance )];
+	[theTagPopLabel setFrameOrigin:NSMakePoint([theTagPopLabel frame].origin.x, [theTagPopLabel frame].origin.y+distance )];
+	[tagsPop setFrameOrigin:NSMakePoint([tagsPop frame].origin.x, [tagsPop frame].origin.y+distance )];
+}
+
+- (void)moveMoodControls:(signed int)distance
+{
+	[theMoodComboLabel setFrameOrigin:NSMakePoint([theMoodComboLabel frame].origin.x, [theMoodComboLabel frame].origin.y+distance )];
+	[moods setFrameOrigin:NSMakePoint([moods frame].origin.x, [moods frame].origin.y+distance )];
+	[theMoodFieldLabel setFrameOrigin:NSMakePoint([theMoodFieldLabel frame].origin.x, [theMoodFieldLabel frame].origin.y+distance )];
+	[theMoodNameField setFrameOrigin:NSMakePoint([theMoodNameField frame].origin.x, [theMoodNameField frame].origin.y+distance )];
+}
+
+- (void)moveJournalStatusControls:(signed int)distance
+{
+	[thePopMenuButton setFrameOrigin:NSMakePoint([thePopMenuButton frame].origin.x ,[thePopMenuButton frame].origin.y+distance )];
+	[theJournalLabel setFrameOrigin:NSMakePoint([theJournalLabel frame].origin.x ,[theJournalLabel frame].origin.y+distance )];
+	[journalPop setFrameOrigin:NSMakePoint([journalPop frame].origin.x ,[journalPop frame].origin.y+distance )];
+	[statusField setFrameOrigin:NSMakePoint([statusField frame].origin.x ,[statusField frame].origin.y+distance )];
+	[spinner setFrameOrigin:NSMakePoint([spinner frame].origin.x ,[spinner frame].origin.y+distance )];
+}
+
+- (void)showMusicField:(BOOL)aFlag
+{
+	[theMusicMenuItem setState:aFlag];
+	if (YES == aFlag) {
+		[theMusicFieldLabel setFrame:NSMakeRect([theMusicFieldLabel frame].origin.x,
+												[theMusicFieldLabel frame].origin.y-22.0,
+												[theMusicFieldLabel frame].size.width,
+												22.0)];
+		[theMusicField setFrame:NSMakeRect([theMusicField frame].origin.x,
+										   [theMusicField frame].origin.y-22.0,
+										   [theMusicField frame].size.width,
+										   22.0)];
+		
+		// Move everything that is below tags controls
+		[self moveLocationControls:-31.0];
+		[self moveTagsControls:-31.0];
+		[self moveMoodControls:-31.0];
+		[self moveJournalStatusControls:-31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
+		[theMusicField setHidden:NO];
+	} else {
+		[theMusicFieldLabel setFrame:NSMakeRect([theMusicFieldLabel frame].origin.x,
+												[theMusicFieldLabel frame].origin.y+[theMusicFieldLabel frame].size.height,
+												[theMusicFieldLabel frame].size.width,
+												0.0)];
+		[theMusicField setFrame:NSMakeRect([theMusicField frame].origin.x,
+										   [theMusicField frame].origin.y+[theMusicField frame].size.height,
+										   [theMusicField frame].size.width,
+										   0.0)];
+		
+		// Move everything that is below tags controls
+		[self moveLocationControls:31.0];
+		[self moveTagsControls:31.0];
+		[self moveMoodControls:31.0];
+		[self moveJournalStatusControls:31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
+		[theMusicField setHidden:YES];
+	}
+	[[NSUserDefaults standardUserDefaults] setBool:aFlag forKey:@"ShowMusicField"];
+	[fieldsView setNeedsDisplay:YES];
+}
+
+- (void)showLocationField:(BOOL)aFlag
+{
+	[theLocationMenuItem setState:aFlag];
+	if (YES == aFlag) {
+		[theLocationFieldLabel setFrame:NSMakeRect([theLocationFieldLabel frame].origin.x,
+												   [theLocationFieldLabel frame].origin.y-22.0,
+												   [theLocationFieldLabel frame].size.width,
+												   22.0)];
+		[theLocationField setFrame:NSMakeRect([theLocationField frame].origin.x,
+											  [theLocationField frame].origin.y-22.0,
+											  [theLocationField frame].size.width,
+											  22.0)];
+		
+		// Move everything that is below tags controls
+		[self moveTagsControls:-31.0];
+		[self moveMoodControls:-31.0];
+		[self moveJournalStatusControls:-31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
+		[theLocationField setHidden:NO];
+	} else {
+		[theLocationFieldLabel setFrame:NSMakeRect([theLocationFieldLabel frame].origin.x,
+												   [theLocationFieldLabel frame].origin.y+[theLocationFieldLabel frame].size.height,
+												   [theLocationFieldLabel frame].size.width,
+												   0.0)];
+		[theLocationField setFrame:NSMakeRect([theLocationField frame].origin.x,
+											  [theLocationField frame].origin.y+[theLocationField frame].size.height,
+											  [theLocationField frame].size.width,
+											  0.0)];
+		
+		// Move everything that is below tags controls
+		[self moveTagsControls:31.0];
+		[self moveMoodControls:31.0];
+		[self moveJournalStatusControls:31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
+		[theLocationField setHidden:YES];
+	}
+	[[NSUserDefaults standardUserDefaults] setBool:aFlag forKey:@"ShowLocationField"];
+	[fieldsView setNeedsDisplay:YES];
+}
+
+- (void)showTagsField:(BOOL)aFlag
+{
+	[theTagsMenuItem setState:aFlag];
+	if (YES == aFlag) {
+		[theTagFieldLabel setFrame:NSMakeRect([theTagFieldLabel frame].origin.x,
+											  [theTagFieldLabel frame].origin.y-22.0,
+											  [theTagFieldLabel frame].size.width,
+											  22.0)];
+		[theTagField setFrame:NSMakeRect([theTagField frame].origin.x,
+										 [theTagField frame].origin.y-22.0,
+										 [theTagField frame].size.width,
+										 22.0)];
+		[theTagPopLabel setFrame:NSMakeRect([theTagPopLabel frame].origin.x,
+											[theTagPopLabel frame].origin.y-22.0,
+											[theTagPopLabel frame].size.width,
+											22.0)];
+		[tagsPop setFrame:NSMakeRect([tagsPop frame].origin.x,
+									 [tagsPop frame].origin.y-26.0,
+									 [tagsPop frame].size.width,
+									 26.0)];
+		
+		// Move everything that is below tags controls
+		[self moveMoodControls:-31.0];
+		[self moveJournalStatusControls:-31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
+		[theTagField setHidden:NO];
+		[tagsPop setHidden:NO];
+	} else {
+		[theTagFieldLabel setFrame:NSMakeRect([theTagFieldLabel frame].origin.x,
+											  [theTagFieldLabel frame].origin.y+[theTagFieldLabel frame].size.height,
+											  [theTagFieldLabel frame].size.width,
+											  0.0)];
+		[theTagField setFrame:NSMakeRect([theTagField frame].origin.x,
+										 [theTagField frame].origin.y+[theTagField frame].size.height,
+										 [theTagField frame].size.width,
+										 0.0)];
+		[theTagPopLabel setFrame:NSMakeRect([theTagPopLabel frame].origin.x,
+											[theTagPopLabel frame].origin.y+[theTagPopLabel frame].size.height,
+											[theTagPopLabel frame].size.width,
+											0.0)];
+		[tagsPop setFrame:NSMakeRect([tagsPop frame].origin.x,
+									 [tagsPop frame].origin.y+[tagsPop frame].size.height,
+									 [tagsPop frame].size.width,
+									 0.0)];
+		
+		// Move everything that is below tags controls
+		[self moveMoodControls:31.0];
+		[self moveJournalStatusControls:31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
+		[theTagField setHidden:YES];
+		[tagsPop setHidden:YES];
+	}
+	[[NSUserDefaults standardUserDefaults] setBool:aFlag forKey:@"ShowTagsField"];
+	[fieldsView setNeedsDisplay:YES];
+}
+
+- (void)showMoodField:(BOOL)aFlag
+{
+	[theMoodMenuItem setState:aFlag];
+	if (YES == aFlag) {
+		[theMoodComboLabel setFrame:NSMakeRect([theMoodComboLabel frame].origin.x,
+											   [theMoodComboLabel frame].origin.y-22.0,
+											   [theMoodComboLabel frame].size.width,
+											   22.0)];
+		[moods setFrame:NSMakeRect([moods frame].origin.x,
+								   [moods frame].origin.y-26.0,
+								   [moods frame].size.width,
+								   26.0)];
+		[theMoodFieldLabel setFrame:NSMakeRect([theMoodFieldLabel frame].origin.x,
+											   [theMoodFieldLabel frame].origin.y-22.0,
+											   [theMoodFieldLabel frame].size.width,
+											   22.0)];
+		[theMoodNameField setFrame:NSMakeRect([theMoodNameField frame].origin.x,
+											  [theMoodNameField frame].origin.y-22.0,
+											  [theMoodNameField frame].size.width,
+											  22.0)];
+		
+		// Move everything that is below tags controls
+		[self moveJournalStatusControls:-31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
+		[theMoodNameField setHidden:NO];
+		[moods setHidden:NO];
+	} else {
+		[theMoodComboLabel setFrame:NSMakeRect([theMoodComboLabel frame].origin.x,
+											   [theMoodComboLabel frame].origin.y+[theMoodComboLabel frame].size.height,
+											   [theMoodComboLabel frame].size.width,
+											   0.0)];
+		[moods setFrame:NSMakeRect([moods frame].origin.x,
+								   [moods frame].origin.y+[moods frame].size.height,
+								   [moods frame].size.width,
+								   0.0)];
+		[theMoodFieldLabel setFrame:NSMakeRect([theMoodFieldLabel frame].origin.x,
+											   [theMoodFieldLabel frame].origin.y+[theMoodFieldLabel frame].size.height,
+											   [theMoodFieldLabel frame].size.width,
+											   0.0)];
+		[theMoodNameField setFrame:NSMakeRect([theMoodNameField frame].origin.x,
+											  [theMoodNameField frame].origin.y+[theMoodNameField frame].size.height,
+											  [theMoodNameField frame].size.width,
+											  0.0)];
+		
+		// Move everything that is below tags controls
+		[self moveJournalStatusControls:31.0];
+		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
+		[theMoodNameField setHidden:YES];
+		[moods setHidden:YES];
+	}
+	[[NSUserDefaults standardUserDefaults] setBool:aFlag forKey:@"ShowMoodField"];
+	[fieldsView setNeedsDisplay:YES];
+}
+
+- (IBAction)musicMenuItemClicked:(id)sender
+{
+	if ([theMusicField frame].size.height > 0.0) {
+		// Shrinks music
+		[self showMusicField:NO];
+	} else {
+		[self showMusicField:YES];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:XJUIChanged object:self];
+}
+
+- (IBAction)locationMenuItemClicked:(id)sender
+{
+	if ([theLocationField frame].size.height > 0.0) {
+		[self showLocationField:NO];
+	} else {
+		[self showLocationField:YES];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:XJUIChanged object:self];
+}
+
+- (IBAction)tagsMenuItemClicked:(id)sender
+{
+	if ([theTagField frame].size.height > 0.0) {
+		// Shrinks tags
+		[self showTagsField:NO];
+	} else {
+		[self showTagsField:YES];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:XJUIChanged object:self];
+}
+
+- (IBAction)moodMenuItemClicked:(id)sender
+{
+	if ([theMoodNameField frame].size.height > 0.0) {
+		// Shrinks tags
+		[self showMoodField:NO];
+	} else {
+		[self showMoodField:YES];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:XJUIChanged object:self];
+}
 
 // ----------------------------------------------------------------------------------------
 #pragma mark -
@@ -623,10 +966,10 @@
         [NSBundle loadNibNamed: @"HREFSheet" owner: self];
     
 	NSRange selection = [theTextView selectedRange];
-	
+
 	// Clear href field
 	[html_hrefField setStringValue:@""];
-	
+
     if(selection.length == 0) {
         [html_LinkTextField setStringValue: @""];
 		[hrefSheet makeFirstResponder:html_LinkTextField];
@@ -656,17 +999,17 @@
     if(!imgSheet)
         [NSBundle loadNibNamed: @"IMGSheet" owner: self];
 
-    // Clear fields
-    [srcField setStringValue:@""];
-    [altField setStringValue:@""];
-    [sizeWidth setStringValue:@""];
-    [sizeHeight setStringValue:@""];
-    [spaceWidth setStringValue:@""];
-    [spaceHeight setStringValue:@""];
-    [borderSize setStringValue:@""];
-	
+	// Clear fields
+	[srcField setStringValue:@""];
+	[altField setStringValue:@""];
+	[sizeWidth setStringValue:@""];
+	[sizeHeight setStringValue:@""];
+	[spaceWidth setStringValue:@""];
+	[spaceHeight setStringValue:@""];
+	[borderSize setStringValue:@""];
+
     // Make sure we always start in the first textfield of the sheet
-    [imgSheet makeFirstResponder:srcField];
+	[imgSheet makeFirstResponder:srcField];
 
     [self startSheet: imgSheet];
 }
