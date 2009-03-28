@@ -144,7 +144,7 @@ enum {
 - (void)applicationWillTerminate: (NSNotification *)note
 {
     if (historyIsComplete) {
-        [cal writeToFile: CACHED_HISTORY_PATH atomically: YES];
+        [cal writeToFile: [self historyArchivePath] atomically: YES];
 	}
 }
 
@@ -152,8 +152,8 @@ enum {
 {
     NSFileManager *man = [NSFileManager defaultManager];
     BOOL isDir;
-    if([man fileExistsAtPath: CACHED_HISTORY_PATH isDirectory: &isDir] && !isDir) {
-        [cal configureWithContentsOfFile: CACHED_HISTORY_PATH];
+    if([man fileExistsAtPath: [self historyArchivePath] isDirectory: &isDir] && !isDir) {
+        [cal configureWithContentsOfFile: [self historyArchivePath]];
         historyIsComplete = YES;
         return YES;
     }
@@ -191,7 +191,7 @@ enum {
 
 - (NSString *)historyArchivePath
 {
-    return [NSString stringWithFormat: [@"~/Library/Application Support/Xjournal/%@.plist" stringByExpandingTildeInPath], [[self account] username]];
+    return [NSString stringWithFormat: [@"~/Library/Application Support/Xjournal/%@.plist" stringByExpandingTildeInPath], [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] name]];
 }
 
 /*
@@ -772,7 +772,7 @@ enum {
 {
     if([[note object] isEqualToString: @"downloadCompleted"]) {
         historyIsComplete = YES;
-        [cal writeToFile: CACHED_HISTORY_PATH atomically: YES];
+        [cal writeToFile:[self historyArchivePath] atomically: YES];
         [self cancelHistoryDownload: self];
         downloadInProgress = NO;
     }
