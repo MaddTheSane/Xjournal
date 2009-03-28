@@ -65,7 +65,7 @@
         [day configureFromPropertyListRepresentation: plistDay];
         [day setMonth: self];
         [days addObject: day];
-        //[day release];
+        [day release];
     }
         
 }

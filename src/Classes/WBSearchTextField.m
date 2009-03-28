@@ -606,13 +606,11 @@ static NSMutableArray * _stopImages_=nil;
         [tCell endEditing:[notification object]];
         
         d = [[NSMutableDictionary alloc] initWithDictionary: [notification userInfo]];
-        
         [d setObject: [notification object] forKey: @"NSFieldEditor"];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName: NSControlTextDidEndEditingNotification
                                                             object: self
                                                         userInfo: d];
-        
+        [d release];
         
         textMovement = [[notification userInfo] objectForKey: @"NSTextMovement"];
     

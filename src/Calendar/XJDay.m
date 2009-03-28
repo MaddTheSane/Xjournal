@@ -81,6 +81,7 @@
             [newEntry configureFromPropertyListRepresentation: entry];
             [entries addObject: newEntry];
             //[entry release];
+            [newEntry release];
         }
     }
 }

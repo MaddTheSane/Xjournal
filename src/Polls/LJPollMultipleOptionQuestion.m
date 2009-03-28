@@ -128,7 +128,10 @@
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
-    [dictionary setObject: [[self question] copy] forKey: @"LJPollQuestion"];
+    NSDictionary *tempQuestion = [[self question] copy];
+    [dictionary setObject: tempQuestion forKey: @"LJPollQuestion"];
+    [tempQuestion release];
+
     [dictionary setObject: [NSNumber numberWithInt: [self type]] forKey: @"LJMultipleOptionType"];
 
     NSMutableArray *array = [NSMutableArray array];
@@ -136,7 +139,8 @@
     id object;
 
     while (object = [enumerator nextObject]) {
-        [array addObject: [object copy]];
+        [array addObject: object];
+        [object release];
     }
 
     [dictionary setObject: array forKey: @"LJMultipleOptionAnswerArray"];

@@ -194,6 +194,9 @@ return artist;
 		theRating = theRating/20;
         [script release];
 		
+        [theArtist autorelease];
+        [theAlbum autorelease];
+        [theTrack autorelease];
 		
         return [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: theArtist, theAlbum, theTrack, [NSNumber numberWithInt: theRating], nil] 
 										   forKeys: [NSArray arrayWithObjects: @"artist", @"album", @"name", @"rating", nil]];

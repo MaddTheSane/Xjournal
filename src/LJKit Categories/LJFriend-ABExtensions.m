@@ -148,6 +148,7 @@
         NSString *urlString = [NSString stringWithFormat:@"addressbook://%@?edit", uniqueId];
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
     }
+    [person release];
 }
 
 - (NSString *)email

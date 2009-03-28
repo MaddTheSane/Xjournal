@@ -172,7 +172,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 - (void) editDataItem: (NSAppleEventDescriptor *) event withReplyEvent: (NSAppleEventDescriptor *) reply {
 	
 	LJJournal *currentJournal = [[[XJAccountManager defaultManager] defaultAccount] defaultJournal];
-	LJEntry *newPost = [[LJEntry alloc] init];	
+    LJEntry *newPost = [[LJEntry alloc] init];
 	
 	XJSyndicationData *synData = [XJSyndicationData syndicationDataWithAppleEvent: event];
 	NSString *postBody = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey: @"XJRSSFormatString"];
@@ -188,6 +188,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
     [doc setEntry: newPost];
     [newPost setJournal: currentJournal];
+    [newPost release];
     [doc showWindows];
 	
     [NSApp activateIgnoringOtherApps: YES];
@@ -471,6 +472,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 		NSString *path = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsAlertSound"];
 		NSSound *snd = [[NSSound alloc] initWithContentsOfFile: path byReference: NO];
         if(snd) [snd play];
+        [snd release];
     }
 
     // If they want a dock icon, show it.

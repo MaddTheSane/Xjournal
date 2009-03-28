@@ -54,7 +54,7 @@
         [month configureFromPropertyListRepresentation: plistMonth];
         [month setYear: self];
         [months addObject: month];
-        //[month release];
+        [month release];
     }
     
 }

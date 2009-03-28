@@ -155,6 +155,7 @@ static void CallBack(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info
     sc_store = SCDynamicStoreCreate(NULL, (CFStringRef)[[NSProcessInfo processInfo] processName], CallBack, NULL);
     proxies_key = SCDynamicStoreKeyCreateProxies(NULL);
     dict = (NSDictionary *)SCDynamicStoreCopyValue(sc_store, proxies_key);
+    CFRelease(proxies_key);
     return [dict autorelease];
 }
 

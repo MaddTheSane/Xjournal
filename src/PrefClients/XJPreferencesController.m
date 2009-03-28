@@ -34,60 +34,72 @@
     [item setPaletteLabel:@"General"];
     [item setLabel:@"General"];
     [item setToolTip:@"General preference options."];
-    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GenPreferences" ofType:@"tiff"]]];
+    NSImage *genImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GenPreferences" ofType:@"tiff"]];
+    [item setImage:genImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"General"];
+    [genImage release];
     [item release];
 
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Friends"];
     [item setPaletteLabel:@"Friends"];
     [item setLabel:@"Friends"];
     [item setToolTip:@"Friends preference options."];
-    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"XJCheckFriendsClient" ofType:@"tiff"]]];
+    NSImage *friendsImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"XJCheckFriendsClient" ofType:@"tiff"]];
+    [item setImage:friendsImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"Friends"];
+    [friendsImage release];
     [item release];
 
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Music"];
     [item setPaletteLabel:@"Music"];
     [item setLabel:@"Music"];
     [item setToolTip:@"Music preference options."];
-    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"cd" ofType:@"icns"]]];
+    NSImage *musicImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"cd" ofType:@"icns"]];
+    [item setImage:musicImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"Music"];
+    [musicImage release];
     [item release];
 	
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"History"];
     [item setPaletteLabel:@"History"];
     [item setLabel:@"History"];
     [item setToolTip:@"History preference options."];
-    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"History" ofType:@"tiff"]]];
+    NSImage *historyImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"History" ofType:@"tiff"]];
+    [item setImage:historyImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"History"];
+    [historyImage release];
     [item release];	
 
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Weblogs"];
     [item setPaletteLabel:@"Weblogs"];
     [item setLabel:@"Weblogs"];
     [item setToolTip:@"Weblogs preference options."];
-    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PostToWeblog" ofType:@"tif"]]];
+    NSImage *weblogsImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PostToWeblog" ofType:@"tif"]];
+    [item setImage:weblogsImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"Weblogs"];
+    [weblogsImage release];
     [item release];
 	
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"SWUpdate"];
     [item setPaletteLabel:@"Software Update"];
     [item setLabel:@"Update"];
     [item setToolTip:@"Software Update preference options."];
-    [item setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OSUPreferences" ofType:@"tiff"]]];
+    NSImage *updateImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OSUPreferences" ofType:@"tiff"]];
+    [item setImage:updateImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     [items setObject:item forKey:@"SWUpdate"];
+    [updateImage release];
     [item release];
 	
     //any other items you want to add, do so here.

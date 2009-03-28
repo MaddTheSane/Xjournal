@@ -58,7 +58,7 @@
         XJYear *oneYear = [[XJYear alloc] init];
         [oneYear configureFromPropertyListRepresentation: plistYear];
         [years addObject: oneYear];
-        //[oneYear release];
+        [oneYear release];
     }
 }
 

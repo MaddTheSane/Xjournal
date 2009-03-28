@@ -53,8 +53,10 @@
         if(selectedAccountIndex != -1) {
             NSArray *usernames = [[[[XJAccountManager defaultManager] accounts] allKeys] sortedArrayUsingSelector: @selector(compare:)];
             NSString *username = [[usernames objectAtIndex: selectedAccountIndex] copy];
+            [usernames release];
 
             [[XJAccountManager defaultManager] removeAccountWithUsername: username];
+            [username release];
 
             [table reloadData];
         }

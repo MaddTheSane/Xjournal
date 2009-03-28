@@ -63,6 +63,7 @@ enum {
     [tc setDataCell:cell];
     tc = [groupTable tableColumnWithIdentifier: @"icon"];
     [tc setDataCell:cell];
+    [cell release];
 
     // Configure the table for drag and drop
     [groupTable registerForDraggedTypes: [NSArray arrayWithObjects: @"LJFriend", NSStringPboardType, nil]];
@@ -467,6 +468,7 @@ enum {
         NSData *imageData = [(ABPerson *)person imageData];
         NSImage *img = [[NSImage alloc] initWithData: imageData];
         [addressBookImageWell setImage: img];
+        [img release];
     }
 
     [[self selectedFriend] associateABRecord: person];

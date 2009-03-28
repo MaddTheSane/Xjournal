@@ -189,6 +189,7 @@ static XJAccountManager *manager;
                 [item setState: NSOnState];
         }
         [array addObject: item];
+        [item release];
     }
     return [array objectEnumerator];
 }

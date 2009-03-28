@@ -1025,6 +1025,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 		  
 	[sizeWidth setStringValue: [NSString stringWithFormat: @"%d", (int)[img size].width]];
 	[sizeHeight setStringValue: [NSString stringWithFormat: @"%d", (int)[img size].height]];
+
+    [img release];
 }
 
 - (IBAction)insertBlockquote:(id)sender { [self genericTagWrapWithStart: @"<blockquote>" andEnd: @"</blockquote>"]; }
