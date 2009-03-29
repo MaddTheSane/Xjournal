@@ -409,10 +409,10 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 										   22.0)];
 		
 		// Move everything that is below tags controls
-		[self moveLocationControls:-31.0];
-		[self moveTagsControls:-31.0];
-		[self moveMoodControls:-31.0];
-		[self moveJournalStatusControls:-31.0];
+		[self moveLocationControls:-31];
+		[self moveTagsControls:-31];
+		[self moveMoodControls:-31];
+		[self moveJournalStatusControls:-31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
 		[theMusicField setHidden:NO];
 	} else {
@@ -426,10 +426,10 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 										   0.0)];
 		
 		// Move everything that is below tags controls
-		[self moveLocationControls:31.0];
-		[self moveTagsControls:31.0];
-		[self moveMoodControls:31.0];
-		[self moveJournalStatusControls:31.0];
+		[self moveLocationControls:31];
+		[self moveTagsControls:31];
+		[self moveMoodControls:31];
+		[self moveJournalStatusControls:31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
 		[theMusicField setHidden:YES];
 	}
@@ -451,9 +451,9 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 											  22.0)];
 		
 		// Move everything that is below tags controls
-		[self moveTagsControls:-31.0];
-		[self moveMoodControls:-31.0];
-		[self moveJournalStatusControls:-31.0];
+		[self moveTagsControls:-31];
+		[self moveMoodControls:-31];
+		[self moveJournalStatusControls:-31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
 		[theLocationField setHidden:NO];
 	} else {
@@ -467,9 +467,9 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 											  0.0)];
 		
 		// Move everything that is below tags controls
-		[self moveTagsControls:31.0];
-		[self moveMoodControls:31.0];
-		[self moveJournalStatusControls:31.0];
+		[self moveTagsControls:31];
+		[self moveMoodControls:31];
+		[self moveJournalStatusControls:31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
 		[theLocationField setHidden:YES];
 	}
@@ -499,8 +499,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 									 26.0)];
 		
 		// Move everything that is below tags controls
-		[self moveMoodControls:-31.0];
-		[self moveJournalStatusControls:-31.0];
+		[self moveMoodControls:-31];
+		[self moveJournalStatusControls:-31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
 		[theTagField setHidden:NO];
 		[tagsPop setHidden:NO];
@@ -523,8 +523,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 									 0.0)];
 		
 		// Move everything that is below tags controls
-		[self moveMoodControls:31.0];
-		[self moveJournalStatusControls:31.0];
+		[self moveMoodControls:31];
+		[self moveJournalStatusControls:31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
 		[theTagField setHidden:YES];
 		[tagsPop setHidden:YES];
@@ -555,7 +555,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 											  22.0)];
 		
 		// Move everything that is below tags controls
-		[self moveJournalStatusControls:-31.0];
+		[self moveJournalStatusControls:-31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
 		[theMoodNameField setHidden:NO];
 		[moods setHidden:NO];
@@ -578,7 +578,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 											  0.0)];
 		
 		// Move everything that is below tags controls
-		[self moveJournalStatusControls:31.0];
+		[self moveJournalStatusControls:31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
 		[theMoodNameField setHidden:YES];
 		[moods setHidden:YES];
