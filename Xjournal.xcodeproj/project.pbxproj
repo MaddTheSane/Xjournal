@@ -229,8 +229,9 @@
 		F30490610F2227E3008A1888 /* XJPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = F304905F0F2227E3008A1888 /* XJPopUpButton.h */; };
 		F30490620F2227E3008A1888 /* XJPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F30490600F2227E3008A1888 /* XJPopUpButton.m */; };
 		F30490720F222DE4008A1888 /* popupbutton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F30490710F222DE4008A1888 /* popupbutton.tiff */; };
-		F38635490EFE031400FFEDDB /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38635480EFE031400FFEDDB /* Sparkle.framework */; };
-		F386355D0EFE040500FFEDDB /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = F38635480EFE031400FFEDDB /* Sparkle.framework */; };
+		F3A392300F7FFF6C0079760A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A3922F0F7FFF6C0079760A /* Sparkle.framework */; };
+		F3A392700F8001F40079760A /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = F3A3922F0F7FFF6C0079760A /* Sparkle.framework */; };
+		F3A3927D0F80228E0079760A /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F3A3927C0F80228E0079760A /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -298,7 +299,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F386355D0EFE040500FFEDDB /* Sparkle.framework in Copy Framework Files */,
+				F3A392700F8001F40079760A /* Sparkle.framework in Copy Framework Files */,
 				5FD284CB0926AF55005A1060 /* OgreKit.framework in Copy Framework Files */,
 				BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */,
 			);
@@ -524,7 +525,8 @@
 		F304905F0F2227E3008A1888 /* XJPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPopUpButton.h; sourceTree = "<group>"; };
 		F30490600F2227E3008A1888 /* XJPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPopUpButton.m; sourceTree = "<group>"; };
 		F30490710F222DE4008A1888 /* popupbutton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = popupbutton.tiff; path = src/Art/popupbutton.tiff; sourceTree = "<group>"; };
-		F38635480EFE031400FFEDDB /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		F3A3922F0F7FFF6C0079760A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		F3A3927C0F80228E0079760A /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,7 +543,7 @@
 				5F6325AA083C922C007F6AF9 /* libcrypto.dylib in Frameworks */,
 				5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */,
 				BC2DBF8C0BF2AA7B0078A37C /* LJKit.framework in Frameworks */,
-				F38635490EFE031400FFEDDB /* Sparkle.framework in Frameworks */,
+				F3A392300F7FFF6C0079760A /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +553,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F38635480EFE031400FFEDDB /* Sparkle.framework */,
+				F3A3922F0F7FFF6C0079760A /* Sparkle.framework */,
 				5FD2849B0926AF4F005A1060 /* OgreKit.framework */,
 				5F6325A9083C922C007F6AF9 /* libcrypto.dylib */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
@@ -912,6 +914,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3A3927C0F80228E0079760A /* dsa_pub.pem */,
 				5F54693D09280BAF00ABCAC9 /* PostToWeblog.tif */,
 				5FD2819309268EAB005A1060 /* starburst.tiff */,
 				5F142E39091E95660002ADAE /* Add_Pressed.tiff */,
@@ -1192,6 +1195,7 @@
 				5F54693E09280BAF00ABCAC9 /* PostToWeblog.tif in Resources */,
 				585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */,
 				F30490720F222DE4008A1888 /* popupbutton.tiff in Resources */,
+				F3A3927D0F80228E0079760A /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1525,8 +1529,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Development",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../LJKit/build/Development\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1573,8 +1579,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Deployment",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../LJKit/build/Deployment\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1616,9 +1624,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Development",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../LJKit/build/Development\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1659,8 +1669,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/frameworks",
 					"$(SRCROOT)/build/Deployment",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../LJKit/build/Deployment\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;

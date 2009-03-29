@@ -382,19 +382,19 @@
 	if ([@"Never" isEqualToString:[sender title]]) {
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:0]  forKey:@"SUScheduledCheckInterval"];
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"SUCheckAtStartup"];
-		[updater scheduleCheckWithInterval:0];
+		[updater setUpdateCheckInterval:0];
 	} else if ([@"Daily" isEqualToString:[sender title]]) {
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:24*60*60]  forKey:@"SUScheduledCheckInterval"];
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
-		[updater scheduleCheckWithInterval:24*60*60];
+		[updater setUpdateCheckInterval:24*60*60];
 	} else if ([@"Weekly" isEqualToString:[sender title]]) {
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:7*24*60*60]  forKey:@"SUScheduledCheckInterval"];
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
-		[updater scheduleCheckWithInterval:7*24*60*60];
+		[updater setUpdateCheckInterval:7*24*60*60];
 	} else if ([@"Monthly" isEqualToString:[sender title]]) {
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:4*7*24*60*60]  forKey:@"SUScheduledCheckInterval"];
 		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
-		[updater scheduleCheckWithInterval:4*7*24*60*60];
+		[updater setUpdateCheckInterval:4*7*24*60*60];
 	}
 }
 
