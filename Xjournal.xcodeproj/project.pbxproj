@@ -387,7 +387,7 @@
 		5FD2849B0926AF4F005A1060 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = SOURCE_ROOT; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = ../LJKit/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = LJKit/LJKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		F304905F0F2227E3008A1888 /* XJPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPopUpButton.h; sourceTree = "<group>"; };
 		F30490600F2227E3008A1888 /* XJPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPopUpButton.m; sourceTree = "<group>"; };
 		F3A3922F0F7FFF6C0079760A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = SOURCE_ROOT; };
