@@ -17,29 +17,29 @@
 @synthesize end;
 @synthesize step;
 
-+ (LJPollScaleQuestion *)scaleQuestionWithStart: (int)theStart end: (int)theEnd step:(int)theStep
++ (LJPollScaleQuestion *)scaleQuestionWithStart: (NSInteger)theStart end: (NSInteger)theEnd step:(NSInteger)theStep
 {
     LJPollScaleQuestion *scale = [[LJPollScaleQuestion alloc] init];
-    [scale setQuestion: @"New Question"];
-    [scale setStart: theStart];
-    [scale setEnd: theEnd];
-    [scale setStep: theStep];
+    scale.question = @"New Question";
+    scale.start = theStart;
+    scale.end = theEnd;
+    scale.step = theStep;
 
     return scale;
 }
 
 - (NSString *)htmlRepresentation
 {
-    return [NSString stringWithFormat: @"<lj-pq type=\"scale\" from=\"%d\" to=\"%d\" by=\"%d\">%@</lj-pq>", start, end, step, theQuestion];
+    return [NSString stringWithFormat: @"<lj-pq type=\"scale\" from=\"%ld\" to=\"%ld\" by=\"%ld\">%@</lj-pq>", (long)start, (long)end, (long)step, self.question];
 }
 
 #pragma mark Memento Pattern
 - (NSDictionary *) memento
 {
-    NSDictionary *dict = @{kLJPollQuestionKey : [self.question copy],
-                           kPollScaleStart :    @(start),
-                           kPollScaleEnd :      @(end),
-                           kPollScaleStep :     @(step)};
+    NSDictionary *dict = @{kLJPollQuestionKey   : self.question,
+                           kPollScaleStart      : @(start),
+                           kPollScaleEnd        : @(end),
+                           kPollScaleStep       : @(step)};
 
     return dict;
 }
@@ -47,26 +47,26 @@
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
     self.question = memento[kLJPollQuestionKey];
-    start = [memento[kPollScaleStart] intValue];
-    end = [memento[kPollScaleEnd] intValue];
-    step = [memento[kPollScaleStep] intValue];
+    self.start = [memento[kPollScaleStart] integerValue];
+    self.end = [memento[kPollScaleEnd] integerValue];
+    self.step = [memento[kPollScaleStep] integerValue];
 }
 
 #pragma mark NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeInt: start forKey: kPollScaleStart];
-    [encoder encodeInt: end forKey: kPollScaleEnd];
-    [encoder encodeInt: step forKey: kPollScaleStep];
+    [encoder encodeInteger: start forKey: kPollScaleStart];
+    [encoder encodeInteger: end forKey: kPollScaleEnd];
+    [encoder encodeInteger: step forKey: kPollScaleStep];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     if (self = [super initWithCoder: decoder]) {
-        start = [decoder decodeIntForKey: kPollScaleStart];
-        end = [decoder decodeIntForKey: kPollScaleEnd];
-        step = [decoder decodeIntForKey: kPollScaleStep];
+        start = [decoder decodeIntegerForKey: kPollScaleStart];
+        end = [decoder decodeIntegerForKey: kPollScaleEnd];
+        step = [decoder decodeIntegerForKey: kPollScaleStep];
     }
     return self;
 }
