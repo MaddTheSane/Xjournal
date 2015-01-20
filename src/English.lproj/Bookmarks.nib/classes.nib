@@ -1,0 +1,16 @@
+{
+    IBClasses = (
+        {CLASS = EdgeDockableWindow; LANGUAGE = ObjC; SUPERCLASS = NSPanel; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = SafariBookmarkParser; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {refreshBookmarks = id; }; 
+            CLASS = XJBookmarksWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {outline = NSOutlineView; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = XJStripedOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }
+    ); 
+    IBVersion = 1; 
+}
