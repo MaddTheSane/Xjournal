@@ -19,14 +19,15 @@
 + (LJPollScaleQuestion *)scaleQuestionWithStart: (int)theStart end: (int)theEnd step:(int)theStep;
 
 // Get and set the start value
-@property  int start;
+@property int start;
 
 // Get and set the end value
-@property  int end;
+@property int end;
 
 // Get and set the step value
-@property  int step;
+@property int step;
 
     // Memento
-@property (setter=restoreFromMemento:, copy) NSDictionary *memento;
+@property (readonly, copy) NSDictionary *memento;
+- (void)restoreFromMemento: (NSDictionary*)memento;
 @end

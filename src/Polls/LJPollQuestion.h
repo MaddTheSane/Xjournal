@@ -10,7 +10,7 @@
 
 #define kLJPollQuestionKey @"LJPollQuestion"
 
-@interface LJPollQuestion : NSObject {
+@interface LJPollQuestion : NSObject <NSCoding> {
     NSString *theQuestion;
 }
 
@@ -22,5 +22,6 @@
 @property (readonly, copy) NSString *htmlRepresentation;
 
 // Memento Pattern
-@property (setter=restoreFromMemento:, copy) id memento;
+@property (readonly, copy) NSDictionary *memento;
+- (void)restoreFromMemento: (NSDictionary*)memento;
 @end

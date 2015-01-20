@@ -24,6 +24,7 @@
 // Get and set the length
 @property NSInteger maxLength;
 
-    // Memento
-@property (setter=restoreFromMemento:, copy) NSDictionary *memento;
+// Memento
+@property (readonly, copy) NSDictionary *memento;
+- (void)restoreFromMemento: (NSDictionary*)memento;
 @end
