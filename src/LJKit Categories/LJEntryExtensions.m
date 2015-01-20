@@ -86,7 +86,7 @@
     // Set the current version of the file
     dictionary[kCurrentFileFormatVersionKey] = @kCurrentFileFormatVersion;
 	
-    return dictionary;
+    return [NSDictionary dictionaryWithDictionary: dictionary];
 }
 
 - (void)configureWithContentsOfFile: (NSString *)file
@@ -100,7 +100,7 @@
     [self setSubject: dict[kSubjectKey] ? dict[kSubjectKey] : @""];
 	[self setContent: dict[kContentKey] ? dict[kContentKey] : @""];
 	
-    _properties = [self makeMutableDictionary: dict[@"props"]];
+    _properties = [dict[@"props"] mutableCopy];
     _customInfo = dict[@"info"];
     
     //if([self optionBackdated])
@@ -181,15 +181,4 @@
 	return meta;
 }
 
-- (NSMutableDictionary *) makeMutableDictionary: (NSDictionary *)input
-{
-	NSMutableDictionary *muta = [NSMutableDictionary dictionaryWithCapacity:[input count]];
-	NSEnumerator *enu = [[input allKeys] objectEnumerator];
-	id key;
-	while (key = [enu nextObject]) {
-		muta[key] = input[key];
-	}
-	
-	return muta;
-}
 @end

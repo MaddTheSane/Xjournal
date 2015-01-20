@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kLJPollQuestionKey @"LJPollQuestion"
 
 @interface LJPollQuestion : NSObject {
     NSString *theQuestion;

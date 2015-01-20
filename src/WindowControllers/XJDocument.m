@@ -32,17 +32,20 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 @implementation XJDocument
 @synthesize currentMusic;
+@synthesize entryHasBeenPosted;
+@synthesize friendArray;
+@synthesize joinedCommunityArray;
+@synthesize entry;
+
 #pragma mark -
 #pragma mark Initialisation
 + (void)initialize {
-	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
-	
-	defaultValues[@"ShowLocationField"] = @YES;
-	defaultValues[@"ShowMusicField"] = @YES;
-	defaultValues[@"ShowTagsField"] = @YES;
-	defaultValues[@"ShowMoodField"] = @YES;
-
-	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+    NSDictionary *values = @{TXJshowLocationField: @YES,
+                             TXJshowMusicField: @YES,
+                             TXJshowTagsField: @YES,
+                             TXJshowMoodField: @YES};
+    
+	[[NSUserDefaults standardUserDefaults] registerDefaults:values];
 }
 
 - (instancetype)init
@@ -640,7 +643,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 {
     LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
     if(acct) {
-        [moods setDataSource: [acct moods]];
+        moods.dataSource = acct.moods;
         [moods reloadData];
     }
 }
@@ -649,14 +652,14 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 {
 	NSMutableArray *tagArray = [[[self entry] journal] tags];
 	[tagsPop removeAllItems];
-	if ((int)[tagArray count] == 0) {
+	if ([tagArray count] == 0) {
 		[tagsPop addItemWithTitle:@"(no tags found)"];
-		[tagsPop setEnabled:  NO];
+        tagsPop.enabled = NO;
 	}
 	else {
 		[tagsPop addItemWithTitle:@"(select tag)"];
 		[tagsPop addItemsWithTitles:tagArray];
-		[tagsPop setEnabled:  YES];
+        tagsPop.enabled = YES;
 	}
 }
 
@@ -1447,49 +1450,9 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 //=========================================================== 
 //  entry 
 //=========================================================== 
-- (LJEntry *)entry {
-    return entry; 
-}
 - (void)setEntry:(LJEntry *)anEntry {
     entry = anEntry;
 	[self setEntryHasBeenPosted: [entry webItemID] != 0];
-}
-
-//=========================================================== 
-//  entryHasBeenPosted 
-//===========================================================
-@synthesize entryHasBeenPosted;
-@synthesize friendArray;
-@synthesize joinedCommunityArray;
-- (BOOL)entryHasBeenPosted {
-    return entryHasBeenPosted;
-}
-- (void)setEntryHasBeenPosted:(BOOL)flag {
-    entryHasBeenPosted = flag;
-}
-
-- (NSArray *) friendArray
-{
-    return friendArray; 
-}
-
-- (void) setFriendArray: (NSArray *) newFriendArray
-{
-    if (friendArray != newFriendArray) {
-        friendArray = newFriendArray;
-    }
-}
-
-- (NSArray *) joinedCommunityArray
-{
-    return joinedCommunityArray; 
-}
-
-- (void) setJoinedCommunityArray: (NSArray *) newJoinedCommunityArray
-{
-    if (joinedCommunityArray != newJoinedCommunityArray) {
-        joinedCommunityArray = newJoinedCommunityArray;
-    }
 }
 
 #pragma mark -

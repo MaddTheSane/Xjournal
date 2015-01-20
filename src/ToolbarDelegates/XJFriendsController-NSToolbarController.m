@@ -42,7 +42,7 @@
     NSToolbarItem *item;
 
     if(!toolbarItemCache) {
-        toolbarItemCache = [NSMutableDictionary dictionaryWithCapacity: 5];
+        toolbarItemCache = [[NSMutableDictionary alloc] initWithCapacity: 5];
     }
 
     item = toolbarItemCache[itemIdentifier];

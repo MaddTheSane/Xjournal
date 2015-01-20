@@ -32,7 +32,7 @@ static NSMutableDictionary *userPics;
         NSImage *img;
     
         if(!userPics)
-            userPics = [NSMutableDictionary dictionaryWithCapacity: 10];
+            userPics = [[NSMutableDictionary alloc] initWithCapacity: 10];
 
         img = userPics[imageURL];
         if(img == nil) {

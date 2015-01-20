@@ -8,6 +8,8 @@
 
 #import "LJPollTextEntryQuestion.h"
 
+#define kPollTextSize @"LJPollTextSize"
+#define kPollTextLength @"LJPollTextLength"
 
 @implementation LJPollTextEntryQuestion
 @synthesize size;
@@ -16,7 +18,7 @@
 + (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (NSInteger)theSize maxLength: (NSInteger)theLength
 {
     LJPollTextEntryQuestion *teQ = [[LJPollTextEntryQuestion alloc] init];
-    [teQ setQuestion: @"New Text Question"];
+    teQ.question = @"New Text Question";
     teQ.size = theSize;
     teQ.maxLength = theLength;
 
@@ -31,19 +33,18 @@
 // Memento
 - (NSDictionary *) memento
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    dictionary[@"LJPollQuestion"] = [[self question] copy];
-    dictionary[@"LJPollTextSize"] = @([self size]);
-    dictionary[@"LJPollTextLength"] = @([self maxLength]);
+    NSDictionary *dict = @{kLJPollQuestionKey : [self.question copy],
+                           kPollTextSize : @(self.size),
+                           kPollTextLength : @(self.maxLength)};
 
-    return dictionary;
+    return dict;
 }
 
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
-    [self setQuestion: memento[@"LJPollQuestion"]];
-    [self setSize: [memento[@"LJPollTextSize"] integerValue]];
-    [self setMaxLength: [memento[@"LJPollTextLength"] integerValue]];
+    self.question = memento[kLJPollQuestionKey];
+    self.size = [memento[kPollTextSize] integerValue];
+    self.maxLength = [memento[kPollTextLength] integerValue];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -52,10 +53,10 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeInteger: maxLength forKey: @"LJPollTextLength"];
-        [encoder encodeInteger: size forKey: @"LJPollTextSize"];
+        [encoder encodeInteger: maxLength forKey: kPollTextLength];
+        [encoder encodeInteger: size forKey: kPollTextSize];
 
-        [encoder encodeObject: [self question] forKey:@"LJPollQuestion"];
+        [encoder encodeObject: self.question forKey:kLJPollQuestionKey];
     } else {
         [NSException raise:NSInvalidArgumentException format:@"LJKit requires keyed coding."];
     }
@@ -65,10 +66,10 @@
 {
     self = [super init];
     if (self) {
-        [self setQuestion: [decoder decodeObjectForKey:@"LJPollQuestion"]];
+        self.question = [decoder decodeObjectForKey:kLJPollQuestionKey];
 
-        maxLength = [decoder decodeIntegerForKey: @"LJPollTextLength"];
-        size = [decoder decodeIntegerForKey: @"LJPollTextSize"];
+        maxLength = [decoder decodeIntegerForKey: kPollTextLength];
+        size = [decoder decodeIntegerForKey: kPollTextSize];
     }
     return self;
 }
