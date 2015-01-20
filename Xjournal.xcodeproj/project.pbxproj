@@ -549,10 +549,10 @@
 			children = (
 				1BBD897404B0189F003882CD /* LJPoll.h */,
 				1BBD897504B0189F003882CD /* LJPoll.m */,
-				1BBD897604B0189F003882CD /* LJPollMultipleOptionQuestion.h */,
-				1BBD897704B0189F003882CD /* LJPollMultipleOptionQuestion.m */,
 				1BBD897804B0189F003882CD /* LJPollQuestion.h */,
 				1BBD897904B0189F003882CD /* LJPollQuestion.m */,
+				1BBD897604B0189F003882CD /* LJPollMultipleOptionQuestion.h */,
+				1BBD897704B0189F003882CD /* LJPollMultipleOptionQuestion.m */,
 				1BBD897A04B0189F003882CD /* LJPollScaleQuestion.h */,
 				1BBD897B04B0189F003882CD /* LJPollScaleQuestion.m */,
 				1BBD897C04B0189F003882CD /* LJPollTextEntryQuestion.h */,

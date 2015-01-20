@@ -17,5 +17,4 @@
 - (void)configureFromPropertyListRepresentation:(id)plist;
 
 @property (readonly, copy) NSString *metadataHTML;
-- (NSMutableDictionary *) makeMutableDictionary: (NSDictionary *)input;
 @end

@@ -8,6 +8,8 @@
 
 #import "LJPollMultipleOptionQuestion.h"
 
+#define kMultipleOptionType @"LJMultipleOptionType"
+#define kMultipleOptionAnswerArray @"LJMultipleOptionAnswerArray"
 
 @implementation LJPollMultipleOptionQuestion
 @synthesize type;
@@ -114,36 +116,26 @@
 // Memento
 - (NSDictionary *) memento
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
-    NSDictionary *tempQuestion = [[self question] copy];
-    dictionary[@"LJPollQuestion"] = tempQuestion;
+    NSString *tempQuestion = [self.question copy];
+    dictionary[kLJPollQuestionKey] = tempQuestion;
 
-    dictionary[@"LJMultipleOptionType"] = @([self type]);
+    dictionary[kMultipleOptionType] = @(self.type);
 
-    NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [answers objectEnumerator];
-    id object;
-
-    while (object = [enumerator nextObject]) {
-        [array addObject: object];
-    }
-
-    dictionary[@"LJMultipleOptionAnswerArray"] = array;
-    return dictionary;
+    dictionary[kMultipleOptionAnswerArray] = [answers copy];
+    return [NSDictionary dictionaryWithDictionary: dictionary];
 }
 
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
-    [self setQuestion: memento[@"LJPollQuestion"]];
-    [self setType: [memento[@"LJMultipleOptionType"] intValue]];
+    self.question = memento[kLJPollQuestionKey];
+    [self setType: [memento[kMultipleOptionType] integerValue]];
 
     [self deleteAllAnswers];
-    NSEnumerator *enumerator = [memento[@"LJMultipleOptionAnswerArray"] objectEnumerator];
-    id object;
-
-    while (object = [enumerator nextObject]) {
-        [self addAnswer: object];
+    
+    for (id object in memento[kMultipleOptionAnswerArray]) {
+        [self addAnswer:object];
     }
 }
 
@@ -153,9 +145,9 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeInt: type forKey:@"LJMultipleOptionType"];
-        [encoder encodeObject: answers forKey:@"LJMultipleOptionAnswerArray"];
-        [encoder encodeObject: [self question] forKey:@"LJPollQuestion"];
+        [encoder encodeInteger: type forKey: kMultipleOptionType];
+        [encoder encodeObject: answers forKey: kMultipleOptionAnswerArray];
+        [encoder encodeObject: [self question] forKey:kLJPollQuestionKey];
     } else {
         [NSException raise:NSInvalidArgumentException format:@"LJKit requires keyed coding."];
     }
@@ -165,9 +157,9 @@
 {
     self = [super init];
     if (self) {
-        [self setQuestion: [decoder decodeObjectForKey:@"LJPollQuestion"]];
-        answers = [decoder decodeObjectForKey: @"LJMultipleOptionAnswerArray"];
-        type = [decoder decodeIntForKey:@"LJMultipleOptionType"];
+        [self setQuestion: [decoder decodeObjectForKey:kLJPollQuestionKey]];
+        answers = [decoder decodeObjectForKey: kMultipleOptionAnswerArray];
+        type = [decoder decodeIntegerForKey: kMultipleOptionType];
     }
     return self;
 }

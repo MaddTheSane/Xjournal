@@ -27,8 +27,8 @@ static XJAccountManager *manager;
 
     NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
 
-    accounts = [NSMutableDictionary dictionaryWithCapacity: 5];
-    passwordCache = [NSMutableDictionary dictionaryWithCapacity: 5];
+    accounts = [[NSMutableDictionary alloc] initWithCapacity: 5];
+    passwordCache = [[NSMutableDictionary alloc] initWithCapacity: 5];
     
     NSEnumerator *enumerator = [storedAccounts objectEnumerator];
     id object;

@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
         
         [self refreshFriends: nil];
 
-        sortSettings = [NSMutableDictionary dictionaryWithCapacity: 30];
+        sortSettings = [[NSMutableDictionary alloc] initWithCapacity: 30];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addressBookDropped:)
@@ -764,13 +764,13 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
     if (prefs != nil) {
         NSDictionary *cals = prefs[@"SourcesView"];
         if (cals != nil) {
-            NSMutableDictionary *output = [NSMutableDictionary dictionaryWithCapacity:[cals count]];
+            NSMutableDictionary *output = [[NSMutableDictionary alloc] initWithCapacity:[cals count]];
             NSEnumerator *enumerator = [cals objectEnumerator];
             NSDictionary *cal;
             while ((cal = [enumerator nextObject])) {
                 output[cal[@"Description"]] = cal[@"Color"];
             }
-            return output;
+            return [NSDictionary dictionaryWithDictionary: output];
         }
     }
     return nil;
@@ -942,8 +942,7 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
     [self refreshWindow: nil];
 }
 
-//Deprecated method!
-- (BOOL) tableView: (NSTableView *)aTableView writeRows: (NSArray *)rows toPasteboard: (NSPasteboard *)pb
+- (BOOL)tableView:(NSTableView *)aTableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pb
 {
     NSArray *arrayOfFriends;
     if([self allFriendsIsSelected]) {
@@ -951,41 +950,36 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
     }
     else {
         LJGroup *selectedGroup = [self selectedGroup];
-        if(!selectedGroup) return 0; // Nil == no selection in left table
+        if(!selectedGroup) return NO; // Nil == no selection in left table
         arrayOfFriends = friendTableCache;
     }
     
     NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [rows objectEnumerator];
-    id object;
 
-    while (object = [enumerator nextObject]) {
-        int theRow = [object intValue];
-        LJFriend *thisFriend = arrayOfFriends[theRow];
-        [array addObject: [thisFriend username]];
+    for (LJFriend *friend in [arrayOfFriends objectsAtIndexes:rowIndexes]) {
+        [array addObject: friend.username];
     }
-
+    
+    [array addObjectsFromArray:[arrayOfFriends objectsAtIndexes:rowIndexes]];
+    
     [pb declareTypes: @[@"LJFriend", NSStringPboardType] owner: self];
-
+    
     NSMutableData *data;
     NSKeyedArchiver *archiver;
-
+    
     data = [NSMutableData data];
     archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     // Customize archiver here
     [archiver encodeObject:array forKey: @"LJFriend"];
     [archiver finishEncoding];
-
+    
     NSMutableString *string = [NSMutableString stringWithCapacity:100];
-    enumerator = [array objectEnumerator];
-    NSString *userName;
-    while(userName = [enumerator nextObject]) {
+    for (NSString *userName in array) {
         [string appendString: [NSString stringWithFormat: @"<lj user=\"%@\">, ", userName]];
     }
     NSString *userString = [string substringToIndex: [string length]-2]; // Hack to take off the last comma-space
     
     return [pb setData: data forType: @"LJFriend"] && [pb setData: [userString dataUsingEncoding: NSUTF8StringEncoding] forType: NSStringPboardType];
-    
 }
 
 - (NSDragOperation)tableView: (NSTableView *)tableView validateDrop: (id <NSDraggingInfo>)info proposedRow: (NSInteger)row proposedDropOperation: (NSTableViewDropOperation)op

@@ -205,7 +205,7 @@ extern NSString *TXJshowMoodField;
 // =============
 // Accessors
 // =============
-@property (strong) LJEntry *entry;
+@property (nonatomic, strong) LJEntry *entry;
 @property BOOL entryHasBeenPosted;
 @property (copy) NSArray *friendArray;
 @property (copy) NSArray *joinedCommunityArray;

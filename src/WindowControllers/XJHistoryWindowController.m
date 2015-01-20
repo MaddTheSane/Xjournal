@@ -122,7 +122,7 @@ enum {
         // HTML view stuff
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotNotification:) name:NULL object:NULL];
         
-        searchCache = [NSMutableDictionary dictionaryWithCapacity: 10];
+        searchCache = [[NSMutableDictionary alloc] initWithCapacity: 10];
         
         cal = [[XJCalendar alloc] init];
         

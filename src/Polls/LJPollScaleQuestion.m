@@ -8,6 +8,9 @@
 
 #import "LJPollScaleQuestion.h"
 
+#define kPollScaleStart @"LJPollScaleStart"
+#define kPollScaleEnd @"LJPollScaleEnd"
+#define kPollScaleStep @"LJPollScaleStep"
 
 @implementation LJPollScaleQuestion
 @synthesize start;
@@ -33,21 +36,20 @@
 // Memento
 - (NSDictionary *) memento
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    dictionary[@"LJPollQuestion"] = [[self question] copy];
-    dictionary[@"LJPollScaleStart"] = @([self start]);
-    dictionary[@"LJPollScaleEnd"] = @([self end]);
-    dictionary[@"LJPollScaleStep"] = @([self step]);
+    NSDictionary *dict = @{kLJPollQuestionKey : [self.question copy],
+                           kPollScaleStart :    @(self.start),
+                           kPollScaleEnd :      @(self.end),
+                           kPollScaleStep :     @(self.step)};
 
-    return dictionary;
+    return dict;
 }
 
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
-    [self setQuestion: memento[ @"LJPollQuestion"]];
-    [self setStart: [memento[ @"LJPollScaleStart"] intValue]];
-    [self setEnd: [memento[ @"LJPollScaleEnd"] intValue]];
-    [self setStep: [memento[ @"LJPollScaleStep"] intValue]];
+    self.question = memento[kLJPollQuestionKey];
+    self.start = [memento[kPollScaleStart] intValue];
+    self.end = [memento[kPollScaleEnd] intValue];
+    self.step = [memento[kPollScaleStep] intValue];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -56,11 +58,11 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeInt: start forKey:@"LJPollScaleStart"];
-        [encoder encodeInt: end forKey:@"LJPollScaleEnd"];
-        [encoder encodeInt: step forKey:@"LJPollScaleStep"];
+        [encoder encodeInt: start forKey: kPollScaleStart];
+        [encoder encodeInt: end forKey: kPollScaleEnd];
+        [encoder encodeInt: step forKey: kPollScaleStep];
 
-        [encoder encodeObject: [self question] forKey:@"LJPollQuestion"];
+        [encoder encodeObject: [self question] forKey:kLJPollQuestionKey];
     } else {
         [NSException raise:NSInvalidArgumentException format:@"LJKit requires keyed coding."];
     }
@@ -70,11 +72,11 @@
 {
     self = [super init];
     if (self) {
-        [self setQuestion: [decoder decodeObjectForKey:@"LJPollQuestion"]];
+        self.question = [decoder decodeObjectForKey: kLJPollQuestionKey];
         
-        start = [decoder decodeIntForKey: @"LJPollScaleStart"];
-        end = [decoder decodeIntForKey: @"LJPollScaleEnd"];
-        step = [decoder decodeIntForKey: @"LJPollScaleStep"];
+        start = [decoder decodeIntForKey: kPollScaleStart];
+        end = [decoder decodeIntForKey: kPollScaleEnd];
+        step = [decoder decodeIntForKey: kPollScaleStep];
     }
     return self;
 }
