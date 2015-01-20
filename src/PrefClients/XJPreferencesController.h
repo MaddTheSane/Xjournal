@@ -1,8 +1,7 @@
 /* XJPreferencesController */
 
 #import <Cocoa/Cocoa.h>
-
-@class SUUpdater;
+#import <Sparkle/Sparkle.h>
 
 @interface XJPreferencesController : NSWindowController <NSToolbarDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {

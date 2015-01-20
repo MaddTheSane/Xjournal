@@ -148,17 +148,17 @@
 		5FD248B608620D520007E0C5 /* XJKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD248B408620D520007E0C5 /* XJKeyChain.h */; };
 		5FD248B708620D520007E0C5 /* XJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD248B508620D520007E0C5 /* XJKeyChain.m */; };
 		5FD2849C0926AF4F005A1060 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; };
-		5FD284CB0926AF55005A1060 /* OgreKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FD284CB0926AF55005A1060 /* OgreKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 5FD2849B0926AF4F005A1060 /* OgreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		BC2DBF8C0BF2AA7B0078A37C /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; };
-		BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = BC2DBE190BF2A5380078A37C /* LJKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F30490610F2227E3008A1888 /* XJPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = F304905F0F2227E3008A1888 /* XJPopUpButton.h */; };
 		F30490620F2227E3008A1888 /* XJPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F30490600F2227E3008A1888 /* XJPopUpButton.m */; };
 		F3A392300F7FFF6C0079760A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A3922F0F7FFF6C0079760A /* Sparkle.framework */; };
-		F3A392700F8001F40079760A /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = F3A3922F0F7FFF6C0079760A /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F3A392700F8001F40079760A /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = F3A3922F0F7FFF6C0079760A /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3A3927D0F80228E0079760A /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F3A3927C0F80228E0079760A /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
@@ -232,16 +232,6 @@
 				BC2DBF8D0BF2AA850078A37C /* LJKit.framework in Copy Framework Files */,
 			);
 			name = "Copy Framework Files";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5529442D1A6DF89F00642F70 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -813,7 +803,6 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				1BF27FA304B032D600121863 /* Copy Framework Files */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				5529442D1A6DF89F00642F70 /* Embed App Extensions */,
 			);
 			buildRules = (
 				5FE37A58086441A600B6C34F /* PBXBuildRule */,
