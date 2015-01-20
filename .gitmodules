@@ -1,0 +1,3 @@
+[submodule "LJKit"]
+	path = LJKit
+	url = https://github.com/MaddTheSane/LJKit.git
