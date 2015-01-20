@@ -25,10 +25,9 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-    
-    [self setQuestion: @"New Question"];
-    [self setType: LJPollRadioType];
-    answers = [[NSMutableArray alloc] initWithCapacity: 10];
+        self.question = @"New Question";
+        type = LJPollRadioType;
+        answers = [[NSMutableArray alloc] initWithCapacity: 10];
     }
     return self;
 }
@@ -45,8 +44,7 @@
 
 - (void)setAnswer:(NSString *)answer atIndex: (NSInteger)idx
 {
-    [answers removeObjectAtIndex: idx];
-    [answers insertObject: answer atIndex: idx];
+    answers[idx] = answer;
 }
 
 - (void)addAnswer:(NSString *)answer
@@ -97,7 +95,7 @@
     else
         [buf appendString: @"<lj-pq type=\"drop\">\n"];
     
-    [buf appendString: theQuestion];
+    [buf appendString: self.question];
     [buf appendString: @"\n"];
 
     NSEnumerator *enu = [answers objectEnumerator];
@@ -126,7 +124,7 @@
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
     self.question = memento[kLJPollQuestionKey];
-    [self setType: [memento[kMultipleOptionType] integerValue]];
+    self.type = [memento[kMultipleOptionType] integerValue];
 
     [self deleteAllAnswers];
     

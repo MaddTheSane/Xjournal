@@ -10,9 +10,9 @@
 
 #define kLJPollQuestionKey @"LJPollQuestion"
 
-@interface LJPollQuestion : NSObject <NSCoding> {
-    NSString *theQuestion;
-}
+@interface LJPollQuestion : NSObject <NSCoding>
+
+- (instancetype)init;
 
 // The question name
 // Set the question

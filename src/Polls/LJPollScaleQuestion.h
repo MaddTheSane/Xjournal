@@ -16,16 +16,16 @@
 
 // Returns an autoreleased scale question with the given start, end and step values
 // and a default question string
-+ (LJPollScaleQuestion *)scaleQuestionWithStart: (int)theStart end: (int)theEnd step:(int)theStep;
++ (LJPollScaleQuestion *)scaleQuestionWithStart: (NSInteger)theStart end: (NSInteger)theEnd step:(NSInteger)theStep;
 
 // Get and set the start value
-@property int start;
+@property NSInteger start;
 
 // Get and set the end value
-@property int end;
+@property NSInteger end;
 
 // Get and set the step value
-@property int step;
+@property NSInteger step;
 
     // Memento
 @property (readonly, copy) NSDictionary *memento;

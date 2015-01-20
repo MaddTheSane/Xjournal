@@ -17,6 +17,14 @@
     return @"";
 }
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        theQuestion = @"New Question";
+    }
+    return self;
+}
+
 #pragma mark Memento Pattern
 - (NSDictionary*)memento { return nil; }
 - (void)restoreFromMemento: (NSDictionary*)memento {}
@@ -25,7 +33,7 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeObject: [self question] forKey:kLJPollQuestionKey];
+        [encoder encodeObject: theQuestion forKey:kLJPollQuestionKey];
     } else {
         [NSException raise:NSInvalidArgumentException format:@"LJKit requires keyed coding."];
     }
@@ -35,7 +43,7 @@
 {
     self = [super init];
     if (self) {
-        [self setQuestion: [decoder decodeObjectForKey:kLJPollQuestionKey]];
+        theQuestion = [decoder decodeObjectForKey:kLJPollQuestionKey];
     }
     return self;
 }

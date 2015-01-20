@@ -27,13 +27,13 @@
 
 - (NSString *)htmlRepresentation
 {
-    return [NSString stringWithFormat: @"<lj-pq type=\"text\" size=\"%ld\" maxlength=\"%ld\">%@</lj-pq>", (long)size, (long)maxLength, theQuestion];
+    return [NSString stringWithFormat: @"<lj-pq type=\"text\" size=\"%ld\" maxlength=\"%ld\">%@</lj-pq>", (long)size, (long)maxLength, self.question];
 }
 
 #pragma mark Memento Pattern
 - (NSDictionary *) memento
 {
-    NSDictionary *dict = @{kLJPollQuestionKey   : [self.question copy],
+    NSDictionary *dict = @{kLJPollQuestionKey   : self.question,
                            kPollTextSize        : @(size),
                            kPollTextLength      : @(maxLength)};
 
