@@ -17,7 +17,27 @@
     return @"";
 }
 
-// Memento Pattern
-- (id)memento { return nil; }
-- (void)restoreFromMemento: (id)memento {}
+#pragma mark Memento Pattern
+- (NSDictionary*)memento { return nil; }
+- (void)restoreFromMemento: (NSDictionary*)memento {}
+
+#pragma mark NSCoding
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    if ([encoder allowsKeyedCoding]) {
+        [encoder encodeObject: [self question] forKey:kLJPollQuestionKey];
+    } else {
+        [NSException raise:NSInvalidArgumentException format:@"LJKit requires keyed coding."];
+    }
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        [self setQuestion: [decoder decodeObjectForKey:kLJPollQuestionKey]];
+    }
+    return self;
+}
+
 @end

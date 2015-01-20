@@ -58,5 +58,6 @@ typedef NS_ENUM(NSInteger, LJPollMultipleOptionType) {
 - (void)moveAnswerAtIndex: (NSInteger) idx toIndex: (NSInteger) newIdx;
 
     // Memento
-@property (setter=restoreFromMemento:, copy) NSDictionary *memento;
+@property (readonly, copy) NSDictionary *memento;
+- (void)restoreFromMemento: (NSDictionary*)memento;
 @end

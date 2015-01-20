@@ -30,12 +30,12 @@
     return [NSString stringWithFormat: @"<lj-pq type=\"text\" size=\"%ld\" maxlength=\"%ld\">%@</lj-pq>", (long)size, (long)maxLength, theQuestion];
 }
 
-// Memento
+#pragma mark Memento Pattern
 - (NSDictionary *) memento
 {
-    NSDictionary *dict = @{kLJPollQuestionKey : [self.question copy],
-                           kPollTextSize : @(self.size),
-                           kPollTextLength : @(self.maxLength)};
+    NSDictionary *dict = @{kLJPollQuestionKey   : [self.question copy],
+                           kPollTextSize        : @(size),
+                           kPollTextLength      : @(maxLength)};
 
     return dict;
 }
@@ -47,27 +47,17 @@
     self.maxLength = [memento[kPollTextLength] integerValue];
 }
 
-// ----------------------------------------------------------------------------------------
-// NSCoding
-// ----------------------------------------------------------------------------------------
+#pragma mark NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    if ([encoder allowsKeyedCoding]) {
-        [encoder encodeInteger: maxLength forKey: kPollTextLength];
-        [encoder encodeInteger: size forKey: kPollTextSize];
-
-        [encoder encodeObject: self.question forKey:kLJPollQuestionKey];
-    } else {
-        [NSException raise:NSInvalidArgumentException format:@"LJKit requires keyed coding."];
-    }
+    [super encodeWithCoder: encoder];
+    [encoder encodeInteger: maxLength forKey: kPollTextLength];
+    [encoder encodeInteger: size forKey: kPollTextSize];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
-    self = [super init];
-    if (self) {
-        self.question = [decoder decodeObjectForKey:kLJPollQuestionKey];
-
+    if (self = [super initWithCoder: decoder]) {
         maxLength = [decoder decodeIntegerForKey: kPollTextLength];
         size = [decoder decodeIntegerForKey: kPollTextSize];
     }
