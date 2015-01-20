@@ -18,9 +18,8 @@
 {
     if(self = [super init]) {
         years = [[NSMutableArray alloc] initWithCapacity: 10];
-        return self;
     }
-    return nil;
+    return self;
 }
 
 

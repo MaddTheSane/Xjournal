@@ -231,8 +231,7 @@
 
 - (NSURL *)urlForDayArchiveForAccount: (LJAccount *)acct {
 	NSString *base = [[myMonth urlForMonthArchiveForAccount: acct] absoluteString];
-	NSString *zeroizedName = zeroizedString(dayNumber);
-	NSString *url = [NSString stringWithFormat: @"%@/%@", base, zeroizedName];
+	NSString *url = [NSString stringWithFormat: @"%@/%02d", base, dayNumber];
 	return [NSURL URLWithString: url];
 }
 

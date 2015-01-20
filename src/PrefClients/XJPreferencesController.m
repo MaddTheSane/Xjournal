@@ -9,19 +9,20 @@
 
 @implementation XJPreferencesController
 - (instancetype)init {
-	self = [super initWithWindowNibName: @"Preferences"];
-	
-	[[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
-															  forKeyPath: @"values.XJCheckFriendsShouldCheck"
-																 options: NSKeyValueObservingOptionNew
-																 context: nil];
-	
-	[[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
-															  forKeyPath: @"values.XJCheckFriendsGroupType"
-																 options: NSKeyValueObservingOptionNew
-																 context: nil];
-	
-	return self;
+    if (self = [super initWithWindowNibName: @"Preferences"]) {
+        
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
+                                                                  forKeyPath: @"values.XJCheckFriendsShouldCheck"
+                                                                     options: NSKeyValueObservingOptionNew
+                                                                     context: nil];
+        
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
+                                                                  forKeyPath: @"values.XJCheckFriendsGroupType"
+                                                                     options: NSKeyValueObservingOptionNew
+                                                                     context: nil];
+    }
+    
+    return self;
 }
 
 - (void)windowDidLoad

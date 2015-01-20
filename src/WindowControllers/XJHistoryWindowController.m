@@ -41,7 +41,7 @@
 - (IBAction)runSearchSheet:(id)sender;
 @end
 
-enum {
+typedef NS_ENUM(int, XJHistorySelection) {
     XJHistorySearchResultSelected = 0,
     XJHistoryEntrySelected,
     XJHistoryDaySelected,
@@ -69,11 +69,10 @@ enum {
 @property (readonly, copy) NSURL *urlForBrowserSelection;
 
 - (void)editEntry: (LJEntry *)entryToEdit;
-
-- (NSString *)zeroizedString:(int)number;
 @end
 
 @implementation XJHistoryWindowController 
+@synthesize account;
 
 - (instancetype)init
 {
@@ -139,10 +138,8 @@ enum {
         selectedSearchType = XJSearchEntirePost;
         
         [browser loadColumnZero];
-        
-        return self;
     }
-    return nil;
+    return self;
 }
 
 - (void)applicationWillTerminate: (NSNotification *)note
@@ -180,16 +177,6 @@ enum {
     [webView setPolicyDelegate: self];
     [webView setPreferencesIdentifier: XJ_HISTORY_PREF_IDENT];
     [[webView preferences] setAutosaves: YES];
-}
-
-- (LJAccount *)account
-{
-    return account;
-}
-
-- (void)setCurrentAccount: (LJAccount *)newAcct
-{
-    account = newAcct;
 }
 
 - (NSString *)historyArchivePath
@@ -1218,8 +1205,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
         {
             XJMonth *selectedMonth = [self selectedMonth];
             XJYear *selectedYear = [self selectedYear];
-            NSString *URLFormat = @"http://www.livejournal.com/users/%@/%d/%@";
-            urlToOpen = [NSURL URLWithString: [NSString stringWithFormat: URLFormat, [[[XJAccountManager defaultManager] defaultAccount] username], [selectedYear yearName], [self zeroizedString: [selectedMonth monthName]]]];
+            urlToOpen = [NSURL URLWithString: [NSString stringWithFormat: @"http://www.livejournal.com/users/%@/%d/%02d", [[[XJAccountManager defaultManager] defaultAccount] username], [selectedYear yearName], selectedMonth.monthName]];
         }
             break;
 
@@ -1228,10 +1214,9 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
             XJDay *selectedDay = [self selectedDay];
             XJMonth *selectedMonth = [self selectedMonth];
             XJYear *selectedYear = [self selectedYear];
-            NSString *URLFormat = @"http://www.livejournal.com/users/%@/%d/%@/%@";
-            urlToOpen = [NSURL URLWithString: [NSString stringWithFormat: URLFormat, [[[XJAccountManager defaultManager] defaultAccount] username], [selectedYear yearName],
-                [self zeroizedString: [selectedMonth monthName]],
-                [self zeroizedString: [selectedDay dayName]]]];
+            urlToOpen = [NSURL URLWithString: [NSString stringWithFormat: @"http://www.livejournal.com/users/%@/%d/%02d/%02d", [[[XJAccountManager defaultManager] defaultAccount] username], [selectedYear yearName],
+                selectedMonth.monthName,
+                selectedDay.dayName]];
         }
             break;
 
@@ -1247,10 +1232,6 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
     return urlToOpen;
 }
 
-- (NSString *)zeroizedString:(int)number
-{
-    return [NSString stringWithFormat: @"%02d", number];
-}
 // ----------------------------------------------------------------------------------------
 // Toolbar delegate
 // ----------------------------------------------------------------------------------------

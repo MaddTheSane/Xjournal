@@ -75,4 +75,5 @@
 	NSFileManager *man = [NSFileManager defaultManager];
 	[man copyItemAtPath:exPath toPath:kGlossaryFilePath error:nil];
 }
+
 @end

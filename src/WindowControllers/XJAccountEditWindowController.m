@@ -141,7 +141,6 @@
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	NSInteger i = [[[[XJAccountManager defaultManager] accounts] allKeys] count];
-    //return [[[[XJAccountManager defaultManager] accounts] allKeys] count];
 	return i;
 }
 

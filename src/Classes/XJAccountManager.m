@@ -24,31 +24,30 @@ static XJAccountManager *manager;
 - (instancetype)init
 {
     if (self = [super init]) {
-
-    NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
-
-    accounts = [[NSMutableDictionary alloc] initWithCapacity: 5];
-    passwordCache = [[NSMutableDictionary alloc] initWithCapacity: 5];
-    
-    NSEnumerator *enumerator = [storedAccounts objectEnumerator];
-    id object;
-    
-    while (object = [enumerator nextObject]) {
-        [self accountForUsername: object];
-    }
-    
-    
-    defaultUsername = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kDefaultAccountNameKey] copy];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(accountSwitched:)
-                                                 name: XJAccountSwitchedNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(accountSwitched:)
-                                                 name:LJAccountDidLoginNotification
-                                               object:nil];
+        NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
+        
+        accounts = [[NSMutableDictionary alloc] initWithCapacity: 5];
+        passwordCache = [[NSMutableDictionary alloc] initWithCapacity: 5];
+        
+        NSEnumerator *enumerator = [storedAccounts objectEnumerator];
+        id object;
+        
+        while (object = [enumerator nextObject]) {
+            [self accountForUsername: object];
+        }
+        
+        
+        defaultUsername = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kDefaultAccountNameKey] copy];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(accountSwitched:)
+                                                     name: XJAccountSwitchedNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(accountSwitched:)
+                                                     name:LJAccountDidLoginNotification
+                                                   object:nil];
     }
     return self;
 }

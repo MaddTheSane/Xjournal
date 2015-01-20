@@ -55,7 +55,6 @@
         [month setYear: self];
         [months addObject: month];
     }
-    
 }
 
 - (NSInteger)numberOfEntriesInYear
@@ -153,4 +152,5 @@
 	NSString *url = [NSString stringWithFormat: @"%@%d", base, name];
 	return [NSURL URLWithString: url];
 }
+
 @end
