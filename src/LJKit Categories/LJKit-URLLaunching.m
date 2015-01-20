@@ -40,7 +40,7 @@
 @implementation LJAccount (URLLaunching)
 - (void)launchRecentEntries
 {
-    [[NSWorkspace sharedWorkspace] openURL:[[[self journalArray] objectAtIndex:0] recentEntriesHttpURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[[self journalArray][0] recentEntriesHttpURL]];
 }
 
 - (void)launchFriendsPage

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "XJFriendsController.h"
 
-@interface XJFriendsController (NSToolbarController)
+@interface XJFriendsController (NSToolbarController) <NSToolbarDelegate>
 - (void)setUpToolbar;
 @end

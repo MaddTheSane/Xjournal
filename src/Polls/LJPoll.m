@@ -10,78 +10,61 @@
 
 
 @implementation LJPoll
+@synthesize name;
+@synthesize votingPermissions = whoVote;
+@synthesize viewingPermissions = whoView;
 
-- (id)init
+- (instancetype)init
 {
-    if([super init] == nil)
-        return nil;
+    if (self = [super init]) {
     
-    questions = [[NSMutableArray arrayWithCapacity: 30] retain];
+    questions = [[NSMutableArray alloc] initWithCapacity: 30];
     name = @"NewPoll";
-
+    }
     return self;
 }
 
-- (void)dealloc
-{
-    [name release];
-    [questions release];
-    [super dealloc];
-}
-
-- (NSString *)name { return name; }
-- (void)setName: (NSString *)newName
-{
-    [newName retain];
-    [name release];
-    name = newName;
-}
-
-- (int)votingPermissions { return whoVote; }
-- (void)setVotingPermissions: (int)newPerms { whoVote = newPerms; }
-
-- (int)viewingPermissions { return whoView; }
-- (void)setViewingPermissions: (int)newPerms { whoView = newPerms; }
-
-- (int)numberOfQuestions { return [questions count]; }
+- (NSInteger)numberOfQuestions { return [questions count]; }
 
 - (void)addQuestion: (LJPollQuestion *)newQ
 {
     [questions addObject: newQ];
 }
 
-- (LJPollQuestion *)questionAtIndex: (int)idx
+- (LJPollQuestion *)questionAtIndex: (NSInteger)idx
 {
-    return [questions objectAtIndex: idx];
+    return questions[idx];
 }
 
-- (void)moveQuestionAtIndex: (int)idx toIndex: (int)newIdx
+- (void)moveQuestionAtIndex: (NSInteger)idx toIndex: (NSInteger)newIdx
 {
     if(newIdx == idx) return;
     if(newIdx < 0 || newIdx >= [questions count]) return;
 
-    id obj = [[questions objectAtIndex: idx] retain];
+    id obj = questions[idx];
     [questions removeObjectAtIndex: idx];
     [questions insertObject: obj atIndex: newIdx];
-    [obj release];
 }
 
 // Insert the question at the given index
-- (void)insertQuestion: (LJPollQuestion *)question atIndex:(int)idx
+- (void)insertQuestion: (LJPollQuestion *)question atIndex:(NSInteger)idx
 {
     [questions insertObject: question atIndex: idx];
 }
     
-- (void)deleteQuestionAtIndex: (int)idx
+- (void)deleteQuestionAtIndex: (NSInteger)idx
 {
     [questions removeObjectAtIndex: idx];
 }
 
+- (void)deleteQuestionsAtIndexes:(NSIndexSet*)idx
+{
+	[questions removeObjectsAtIndexes:idx];
+}
+
 - (NSString *)htmlRepresentation
 {
-    NSMutableString *buf = [[NSMutableString stringWithCapacity: 100] retain];
-    NSEnumerator *enu = [questions objectEnumerator];
-    LJPollQuestion *ques;
+    NSMutableString *buf = [[NSMutableString alloc] initWithCapacity: 100];
 
     [buf appendString: @"<lj-poll"];
 
@@ -120,12 +103,13 @@
     
     
     [buf appendString: @">\n\n"];
-    
-    while(ques = [enu nextObject]) {
+	
+	for (LJPollQuestion *ques in questions) {
         [buf appendString: [ques htmlRepresentation]];
         [buf appendString: @"\n\n"];
-    }
+	}
+	
     [buf appendString: @"</lj-poll>"];
-    return [buf autorelease];
+    return [[NSString alloc] initWithString:buf];
 }
 @end

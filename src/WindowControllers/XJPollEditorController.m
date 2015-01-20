@@ -9,7 +9,7 @@
 #define kMultipleAnswerPasteboardType @"kMultipleAnswerPasteboardType"
 #define kPollQuestionPasteboardType @"kPollQuestionPasteboardType"
 
-@interface XJPollEditorController (PrivateAPI)
+@interface XJPollEditorController ()
 - (void)runMultipleSheet;
 - (void)runScaleSheet;
 - (void)runTextSheet;
@@ -18,9 +18,9 @@
 
 @implementation XJPollEditorController
 
-- (id)init
+- (instancetype)init
 {
-    if(self == [super initWithWindowNibName: @"PollEditor"]) {
+    if (self = [super initWithWindowNibName: @"PollEditor"]) {
         thePoll = [[LJPoll alloc] init];
     }
     return self;
@@ -33,7 +33,6 @@
     [toolBar setAutosavesConfiguration: YES];
     [toolBar setDelegate: self];
     [[self window] setToolbar: toolBar];
-    [toolBar release];
     
     [pollName setStringValue: [thePoll name]];
     [questionTable setTarget: self];
@@ -67,10 +66,10 @@
 
 - (IBAction)editSelectedQuestion: (id)sender
 {
-    int selectedRow = [questionTable selectedRow];
+    NSInteger selectedRow = [questionTable selectedRow];
     if(selectedRow != -1) {
         currentlyEditedQuestion = [thePoll questionAtIndex: selectedRow];
-        currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
+        currentlyEditedQuestionMemento = [currentlyEditedQuestion memento];
         
         if([currentlyEditedQuestion isKindOfClass: [LJPollMultipleOptionQuestion class]])
             [self runMultipleSheet];
@@ -89,7 +88,7 @@
     if([sender tag] == 0) {
         if([questionTable numberOfSelectedRows] == 1) {
             [thePoll moveQuestionAtIndex: [questionTable selectedRow] toIndex: [questionTable selectedRow] - 1];
-            [questionTable selectRow: [questionTable selectedRow] - 1 byExtendingSelection: NO];
+			[questionTable selectRowIndexes: [NSIndexSet indexSetWithIndex: questionTable.selectedRow - 1] byExtendingSelection: NO];
         }
         [questionTable reloadData];
     }
@@ -97,7 +96,7 @@
     if([sender tag] == 1) { // answer table
         if([multipleAnswerTable numberOfSelectedRows] == 1) {
             [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion moveAnswerAtIndex: [multipleAnswerTable selectedRow] toIndex: [multipleAnswerTable selectedRow]-1];
-            [multipleAnswerTable selectRow: [multipleAnswerTable selectedRow] - 1 byExtendingSelection: NO];
+			[multipleAnswerTable selectRowIndexes: [NSIndexSet indexSetWithIndex: multipleAnswerTable.selectedRow - 1] byExtendingSelection: NO];
             [multipleAnswerTable reloadData];
         }
     }
@@ -111,7 +110,7 @@
     if([sender tag] == 0) {
         if([questionTable numberOfSelectedRows] == 1) {
             [thePoll moveQuestionAtIndex: [questionTable selectedRow] toIndex: [questionTable selectedRow] + 1];
-            [questionTable selectRow: [questionTable selectedRow] + 1 byExtendingSelection: NO];
+			[questionTable selectRowIndexes: [NSIndexSet indexSetWithIndex: questionTable.selectedRow + 1] byExtendingSelection: NO];
         }
         [questionTable reloadData];
     }
@@ -119,7 +118,7 @@
      if([sender tag] == 1) {
         if([multipleAnswerTable numberOfSelectedRows] == 1) {
             [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion moveAnswerAtIndex: [multipleAnswerTable selectedRow] toIndex: [multipleAnswerTable selectedRow] + 1];
-            [multipleAnswerTable selectRow: [multipleAnswerTable selectedRow] + 1 byExtendingSelection: NO];
+			[multipleAnswerTable selectRowIndexes: [NSIndexSet indexSetWithIndex: multipleAnswerTable.selectedRow + 1] byExtendingSelection: NO];
         }
         [multipleAnswerTable reloadData];
     }
@@ -132,7 +131,7 @@
     [multipleSheet endEditingFor: nil];
     [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion addAnswer: @"answer"];
     [multipleAnswerTable reloadData];
-    [multipleAnswerTable selectRow: [multipleAnswerTable numberOfRows]-1 byExtendingSelection: NO];
+    [multipleAnswerTable selectRowIndexes:[NSIndexSet indexSetWithIndex: multipleAnswerTable.numberOfRows - 1] byExtendingSelection:NO];
     [multipleAnswerTable editColumn: 0
                                 row: [multipleAnswerTable numberOfRows]-1
                           withEvent: nil
@@ -143,7 +142,7 @@
 - (IBAction)addMultipleQuestion:(id)sender
 {
     currentlyEditedQuestion = [LJPollMultipleOptionQuestion questionOfType: LJPollRadioType];
-    currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
+    currentlyEditedQuestionMemento = [currentlyEditedQuestion memento];
         
     [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion addAnswer: @"answer"];
     
@@ -162,7 +161,7 @@
 - (IBAction)addScaleQuestion:(id)sender
 {
     currentlyEditedQuestion = [LJPollScaleQuestion scaleQuestionWithStart: 1 end: 10 step: 1];
-    currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
+    currentlyEditedQuestionMemento = [currentlyEditedQuestion memento];
         
     [thePoll addQuestion: currentlyEditedQuestion];
     [questionTable reloadData];
@@ -173,7 +172,7 @@
 - (IBAction)addTextQuestion:(id)sender
 {
     currentlyEditedQuestion = [LJPollTextEntryQuestion textEntryQuestionWithSize: 30 maxLength: 15];
-    currentlyEditedQuestionMemento = [[currentlyEditedQuestion memento] retain];
+    currentlyEditedQuestionMemento = [currentlyEditedQuestion memento];
     
     [thePoll addQuestion: currentlyEditedQuestion];
     [questionTable reloadData];
@@ -184,7 +183,6 @@
 - (IBAction)cancelSheet:(id)sender
 {
     [currentlyEditedQuestion restoreFromMemento: currentlyEditedQuestionMemento];
-    [currentlyEditedQuestionMemento release];
     currentlyEditedQuestionMemento = nil;
         
     [NSApp endSheet: currentSheet];
@@ -222,26 +220,21 @@
 {
 	[[self window] endEditingFor: nil];
 	
-    NSEnumerator *selectedRows = [multipleAnswerTable selectedRowEnumerator];
-    NSNumber *rowNumber;
+    NSIndexSet *selectedRows = [multipleAnswerTable selectedRowIndexes];
 
-    while(rowNumber = [selectedRows nextObject]) {
-        [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion deleteAnswerAtIndex: [rowNumber intValue]];
-    }
+    [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion deleteAnswersAtIndexes: selectedRows];
 
+    
     [multipleAnswerTable reloadData];
     [self updateDrawer];
 }
 
 - (IBAction)deleteSelectedQuestion:(id)sender
 {
-    NSEnumerator *selectedRows = [questionTable selectedRowEnumerator];
-    NSNumber *rowNumber;
-
-    while(rowNumber = [selectedRows nextObject]) {
-        [thePoll deleteQuestionAtIndex: [rowNumber intValue]];
-    }
-
+    NSIndexSet *selectedRows = [questionTable selectedRowIndexes];
+    
+    [thePoll deleteQuestionsAtIndexes:selectedRows];
+    
     [questionTable reloadData];
     [self updateDrawer];
 }
@@ -250,7 +243,7 @@
 // NSTableDataSource
 // ----------------------------------------------------------------------------------------
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     if([aTableView isEqualTo: questionTable]) {
         return [thePoll numberOfQuestions];
@@ -261,7 +254,7 @@
     return 0;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     if([aTableView isEqualTo: questionTable]) {
         LJPollQuestion *theQuestion = [thePoll questionAtIndex: rowIndex];
@@ -296,20 +289,18 @@
     return @"";
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     return [aTableView isEqualTo: multipleAnswerTable];
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     if([aTableView isEqualTo: multipleAnswerTable]) {
         [(LJPollMultipleOptionQuestion *)currentlyEditedQuestion setAnswer: anObject atIndex: rowIndex];
     }
 }
-@end
 
-@implementation XJPollEditorController (PrivateAPI)
 - (void)runMultipleSheet
 {
     currentSheet = multipleSheet;
@@ -343,9 +334,9 @@
     currentSheet = scaleSheet;
 
     [scaleQuestionField setStringValue: [currentlyEditedQuestion question]];
-    [scaleStartField setObjectValue: [NSNumber numberWithInt: [(LJPollScaleQuestion *)currentlyEditedQuestion start]]];
-    [scaleEndField setObjectValue: [NSNumber numberWithInt: [(LJPollScaleQuestion *)currentlyEditedQuestion end]]];
-    [scaleStepField setObjectValue: [NSNumber numberWithInt: [(LJPollScaleQuestion *)currentlyEditedQuestion step]]];
+    [scaleStartField setObjectValue: @([(LJPollScaleQuestion *)currentlyEditedQuestion start])];
+    [scaleEndField setObjectValue: @([(LJPollScaleQuestion *)currentlyEditedQuestion end])];
+    [scaleStepField setObjectValue: @([(LJPollScaleQuestion *)currentlyEditedQuestion step])];
 
     [NSApp beginSheet: scaleSheet
        modalForWindow: [self window]
@@ -359,8 +350,8 @@
     currentSheet = textSheet;
 
     [textQuestionField setStringValue: [currentlyEditedQuestion question]];
-    [textSizeField setObjectValue: [NSNumber numberWithInt: [(LJPollTextEntryQuestion *)currentlyEditedQuestion size]]];
-    [textMaxLengthField setObjectValue: [NSNumber numberWithInt: [(LJPollTextEntryQuestion *)currentlyEditedQuestion maxLength]]];
+    [textSizeField setObjectValue: @([(LJPollTextEntryQuestion *)currentlyEditedQuestion size])];
+    [textMaxLengthField setObjectValue: @([(LJPollTextEntryQuestion *)currentlyEditedQuestion maxLength])];
 
     [NSApp beginSheet: textSheet
        modalForWindow: [self window]

@@ -18,10 +18,10 @@
     NSToolbarItem *item;
 
     if(!toolbarItemCache) {
-        toolbarItemCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
+        toolbarItemCache = [NSMutableDictionary dictionaryWithCapacity: 5];
     }
 
-    item = [toolbarItemCache objectForKey: itemIdentifier];
+    item = toolbarItemCache[itemIdentifier];
     if(!item) {
         item = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier];
         [item setImage: [NSImage imageNamed: @"Placeholder"]];
@@ -51,27 +51,24 @@
             [item setImage: [NSImage imageNamed: @"ExpandAll"]];
         }
 
-        [toolbarItemCache setObject: item forKey:itemIdentifier];
-        [item release];
+        toolbarItemCache[itemIdentifier] = item;
     }
     return item;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects: kBookmarkRefreshItemIdentifier,
+    return @[kBookmarkRefreshItemIdentifier,
         kBookmarkExpandAllItemIdentifier,
         kBookmarkCollapseAllItemIdentifier,
         NSToolbarSpaceItemIdentifier,
         NSToolbarFlexibleSpaceItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
-        NSToolbarCustomizeToolbarItemIdentifier,
-        nil];
+        NSToolbarCustomizeToolbarItemIdentifier];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects: kBookmarkExpandAllItemIdentifier, kBookmarkCollapseAllItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, kBookmarkRefreshItemIdentifier, nil];
+    return @[kBookmarkExpandAllItemIdentifier, kBookmarkCollapseAllItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, kBookmarkRefreshItemIdentifier];
 }
 
 @end

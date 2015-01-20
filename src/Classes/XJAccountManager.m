@@ -10,6 +10,7 @@
 #import "XJPreferences.h"
 #import "XJKeyChain.h"
 #import "NetworkConfig.h"
+#import "XJAppDelegate.h"
 
 #define kAccountsPrefKey @"Accounts"
 #define kDefaultAccountNameKey @"DefaultAccount"
@@ -17,16 +18,17 @@
 static XJAccountManager *manager;
 
 @implementation XJAccountManager
+@synthesize defaultUsername;
+@synthesize loggedInAccount;
 
-- (id)init
+- (instancetype)init
 {
-    if([super init] == nil)
-        return nil;
+    if (self = [super init]) {
 
     NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
 
-    accounts = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
-    passwordCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
+    accounts = [NSMutableDictionary dictionaryWithCapacity: 5];
+    passwordCache = [NSMutableDictionary dictionaryWithCapacity: 5];
     
     NSEnumerator *enumerator = [storedAccounts objectEnumerator];
     id object;
@@ -46,7 +48,8 @@ static XJAccountManager *manager;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(accountSwitched:)
                                                  name:LJAccountDidLoginNotification
-                                               object:nil];       
+                                               object:nil];
+    }
     return self;
 }
 
@@ -57,15 +60,14 @@ static XJAccountManager *manager;
     return manager;
 }
 
-- (int)numberOfAccounts { return [[accounts allKeys] count]; }
+- (NSInteger)numberOfAccounts { return [[accounts allKeys] count]; }
 
 - (NSDictionary *)accounts { return accounts; }
 
 - (void)addAccountWithUsername: (NSString *)name password: (NSString *)password
 {
     LJAccount *acct = [[LJAccount alloc] initWithUsername: name];
-    [accounts setObject: acct forKey: name];
-    [acct release];
+    accounts[name] = acct;
 
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [accounts allKeys] forKey: kAccountsPrefKey];
     
@@ -74,14 +76,14 @@ static XJAccountManager *manager;
 										forService: [@"Xjournal: " stringByAppendingString: name] 
 										   account:name];
 
-    [passwordCache setObject: password forKey: name];
+    passwordCache[name] = password;
     
     [[NSNotificationCenter defaultCenter] postNotificationName: XJAccountAddedNotification object: [self accountForUsername: name]];
 }
 
 - (void)removeAccountWithUsername: (NSString *)name
 {
-	LJAccount *acctToRelease = [accounts objectForKey: name];
+	LJAccount *acctToRelease = accounts[name];
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:XJAccountWillRemoveNotification object: acctToRelease];
 
@@ -91,7 +93,7 @@ static XJAccountManager *manager;
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [accounts allKeys] forKey: kAccountsPrefKey];
 
     if([name isEqualToString: defaultUsername]) {
-        [self setDefaultUsername: [[accounts allKeys] objectAtIndex: 0]];
+        [self setDefaultUsername: [accounts allKeys][0]];
 		NSAssert([[[self defaultAccount] username] isEqualToString:[self defaultUsername]], @"Account/username mismatch");
     }
 
@@ -101,21 +103,20 @@ static XJAccountManager *manager;
 
 - (LJAccount *)accountForUsername: (NSString *)username
 {
-    LJAccount *acct = [accounts objectForKey: username];
+    LJAccount *acct = accounts[username];
     if(!acct) {
         acct = [[LJAccount alloc] initWithUsername: username];
-        [accounts setObject: acct forKey: username];
-        [acct release];
+        accounts[username] = acct;
     }
     return acct;
 }
 
 - (NSString *)passwordForUsername: (NSString *)username
 {
-    NSString *passwd = [passwordCache objectForKey: username];
+    NSString *passwd = passwordCache[username];
     if(!passwd) {
         passwd = [[XJKeyChain defaultKeyChain] genericPasswordForService: [@"Xjournal: " stringByAppendingString: username] account: username];
-        [passwordCache setObject: passwd forKey: username];
+        passwordCache[username] = passwd;
     }
     return passwd;
 }
@@ -125,7 +126,7 @@ static XJAccountManager *manager;
     [[XJKeyChain defaultKeyChain] removeGenericPasswordForService: [@"Xjournal: " stringByAppendingString: username] account: username];
     [[XJKeyChain defaultKeyChain] setGenericPassword: passwd forService: [@"Xjournal: " stringByAppendingString: username] account:username];
 
-    [passwordCache setObject: passwd forKey: username];
+    passwordCache[username] = passwd;
 }
 
 - (LJAccount *)defaultAccount
@@ -134,11 +135,6 @@ static XJAccountManager *manager;
         return [self accountForUsername: defaultUsername];
     else
         return nil;
-}
-
-- (LJAccount *)loggedInAccount
-{
-    return loggedInAccount;
 }
 
 - (void)logInAccount: (LJAccount *)theAccount
@@ -152,17 +148,13 @@ static XJAccountManager *manager;
 	NS_HANDLER
 		NSLog(@"%@ - %@", [localException name], [localException reason]);
 		NSRunAlertPanel(@"Could not log in",
-						[localException reason],
-						@"OK",nil,nil);
+						@"%@",
+						@"OK",nil,nil,[localException reason]);
 	NS_ENDHANDLER
 }
 
-- (NSString *)defaultUsername { return defaultUsername; }
-
 - (void)setDefaultUsername: (NSString *)newDefault
 {
-    [newDefault retain];
-    [defaultUsername release];
     defaultUsername = newDefault;
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: defaultUsername forKey: kDefaultAccountNameKey];
 	NSLog(@"Stored default username: %@", defaultUsername);
@@ -175,7 +167,7 @@ static XJAccountManager *manager;
     
     int i;
     for(i=0; i < [keys count]; i++) {
-        LJAccount *acct = [self accountForUsername: [keys objectAtIndex:i]];
+        LJAccount *acct = [self accountForUsername: keys[i]];
         
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: [acct username] action: @selector(switchAccount:) keyEquivalent: @""];
         [item setTarget: nil];
@@ -189,7 +181,6 @@ static XJAccountManager *manager;
                 [item setState: NSOnState];
         }
         [array addObject: item];
-        [item release];
     }
     return [array objectEnumerator];
 }

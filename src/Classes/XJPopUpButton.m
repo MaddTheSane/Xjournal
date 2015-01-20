@@ -9,7 +9,13 @@
 
 #import "XJPopUpButton.h"
 
+@interface XJPopUpButton ()
+@property (strong) NSPopUpButtonCell *popUpCell;
+@end
+
 @implementation XJPopUpButton
+@synthesize popUpCell;
+@synthesize popUpMenu;
 
 - (void)awakeFromNib
 {
@@ -33,8 +39,6 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidEndTrackingNotification object:popUpMenu];
-	[popUpCell release];
-	[super dealloc];
 }
 
 @end

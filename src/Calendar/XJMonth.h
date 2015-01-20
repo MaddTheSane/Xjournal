@@ -9,41 +9,38 @@
 #import <Foundation/Foundation.h>
 #import "XJYear.h"
 #import "XJDay.h"
+#import "XJCalendarProtocol.h"
 
 @class XJDay;
 @class XJYear;
 
-@interface XJMonth : NSObject {
-    int name;
-    XJYear * year;
+@interface XJMonth : NSObject <XJCalendarProtocol> {
     NSMutableArray *days;
 }
 
-- (id)initWithName:(int)theName inYear:(XJYear *)theYear;
-- (int)monthName;
-- (NSString *)displayName;
+- (instancetype)initWithName:(int)theName inYear:(XJYear *)theYear NS_DESIGNATED_INITIALIZER;
+@property (readonly) int monthName;
+@property (readonly, copy) NSString *displayName;
 + (int)numberForMonth: (NSString *)name;
-- (XJYear *)year;
-- (void)setYear: (XJYear *)parentYear;
+@property (weak) XJYear *year;
 
-- (int)numberOfDays;
+@property (readonly) NSInteger numberOfDays;
 - (BOOL)containsDay: (int)dayNumber;
 - (XJDay *)day:(int)dayNumber;
 - (XJDay *)createDayWithName:(int)dName;
-- (XJDay *)dayAtIndex: (int) idx;
-- (XJDay *)mostRecentDay;
-- (NSEnumerator *)dayEnumerator;
+- (XJDay *)dayAtIndex: (NSInteger) idx;
+@property (readonly, strong) XJDay *mostRecentDay;
+@property (readonly, strong) NSEnumerator *dayEnumerator;
 
 - (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(int) type;
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
 
-- (NSArray *)entriesInMonth;
-- (int)numberOfEntriesInMonth;
+@property (readonly, copy) NSArray *entriesInMonth;
+@property (readonly) NSInteger numberOfEntriesInMonth;
 
 - (NSURL *)urlForMonthArchiveForAccount: (LJAccount *)acct;
 
-- (id)propertyListRepresentation;
+@property (readonly, copy) id propertyListRepresentation;
 - (void)configureFromPropertyListRepresentation: (id) plistType;
 
-- (NSString *)zeroizedString:(int)number;
 @end

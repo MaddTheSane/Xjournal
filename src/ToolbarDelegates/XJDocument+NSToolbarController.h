@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "XJDocument.h"
 
-@interface XJDocument (NSToolbarController)
+@interface XJDocument (NSToolbarController) <NSToolbarDelegate>
 
 @end

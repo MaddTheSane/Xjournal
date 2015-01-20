@@ -10,11 +10,9 @@
 
 @interface XJGlossaryWindowController : NSWindowController {
     IBOutlet NSTextView *textView;
-	NSMutableArray *glossary;
 }
 
-- (NSMutableArray *)glossary;
-- (void)setGlossary:(NSMutableArray *)aGlossary;
+@property (copy) NSMutableArray *glossary;
 
 - (BOOL)fileExists:(NSString *)path;
 

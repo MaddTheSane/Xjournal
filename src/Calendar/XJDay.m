@@ -20,29 +20,25 @@
 #define kEntryArrayKey @"Entries"
 
 @implementation XJDay
-- (id)initWithDayNumber:(int)theDayNumber month: (XJMonth *)mo andPostCount:(int)thePostCount
+@synthesize month = myMonth;
+@synthesize postCount;
+@synthesize dayName = dayNumber;
+
+- (instancetype)initWithDayNumber:(int)theDayNumber month: (XJMonth *)mo andPostCount:(int)thePostCount
 {
-    if(self == [super init]) {
+    if(self = [super init]) {
         postCount = thePostCount;
         dayNumber = theDayNumber;
         myMonth = mo;
-        return self;
     }
-    return nil;
-}
-
-- (void)dealloc
-{
-    // myMonth is not retained
-    [entries release];
-    [super dealloc];
+    return self;
 }
 
 - (id)propertyListRepresentation
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject: [NSNumber numberWithInt: postCount] forKey: kPostCountKey];
-    [dictionary setObject: [NSNumber numberWithInt: dayNumber] forKey: kDayNumberKey];
+    dictionary[kPostCountKey] = @(postCount);
+    dictionary[kDayNumberKey] = @(dayNumber);
 
     NSMutableArray *array = [NSMutableArray array];
     if(entries) {
@@ -53,7 +49,7 @@
             [array addObject: [oneentry propertyListRepresentation]];
     }
     
-    [dictionary setObject: array forKey: kEntryArrayKey];
+    dictionary[kEntryArrayKey] = array;
     return dictionary;
 }
 
@@ -63,9 +59,9 @@
     NSArray *plistEntries;
     NSEnumerator *plistEnumerator;
     
-    postCount = [[plistType objectForKey: kPostCountKey] intValue];
-    dayNumber = [[plistType objectForKey: kDayNumberKey] intValue];
-    plistEntries = [plistType objectForKey: kEntryArrayKey];
+    postCount = [plistType[kPostCountKey] intValue];
+    dayNumber = [plistType[kDayNumberKey] intValue];
+    plistEntries = plistType[kEntryArrayKey];
 
     if([plistEntries count] > 0) {
         // if we don't actually have any entries, the entries array
@@ -74,24 +70,16 @@
         plistEnumerator = [plistEntries objectEnumerator];
         id entry;
         //[entries release];
-        entries = [[NSMutableArray arrayWithCapacity: 30] retain];
+        entries = [[NSMutableArray alloc] initWithCapacity: 30];
 
         while(entry = [plistEnumerator nextObject]) {
             LJEntry *newEntry = [[LJEntry alloc] init];
             [newEntry configureFromPropertyListRepresentation: entry];
             [entries addObject: newEntry];
             //[entry release];
-            [newEntry release];
         }
     }
 }
-
-- (void)setPostCount:(int)newPCount
-{
-    postCount = newPCount;
-}
-
-- (int)postCount { return postCount; }
 
 - (void)validatePostCountAndUpdate: (int)newPostCount
 {
@@ -99,13 +87,6 @@
         [self downloadEntries];
 }
 
-
-- (int)dayName { return dayNumber; }
-
-- (void)setMonth: (XJMonth *)parentMonth
-{
-    myMonth = parentMonth;
-}
 
 - (BOOL)hasPosts { return postCount != 0; }
 
@@ -130,7 +111,7 @@
 
 - (NSString *)dayOfWeek
 {
-    int day = [[self calendarDate] dayOfWeek];
+    NSInteger day = [[self calendarDate] dayOfWeek];
 
     if(day == 0)
         return @"Sunday";
@@ -161,21 +142,19 @@
 
 - (void)downloadEntries
 {
-	[entries release];
-    entries = [[self makeMutable: [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getEntriesForDay: [self calendarDate]]] retain];
+    entries = [self makeMutable: [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getEntriesForDay: [self calendarDate]]];
     [self setPostCount: [entries count]];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:XJEntryDownloadEndedNotification object:self];
 } 
 
-- (LJEntry *)entryAtIndex:(int)idx
+- (LJEntry *)entryAtIndex:(NSInteger)idx
 {
-
     if(![self hasDownloadedEntries]) {
         [self downloadEntries];
     }
 
-    return [entries objectAtIndex: idx];
+    return entries[idx];
 }
 
 - (LJEntry *)mostRecentEntry
@@ -185,18 +164,16 @@
 
 - (NSArray *)entriesContainingString: (NSString *)target
 {
-    return [self entriesContainingString: target searchType: 3];
+    return [self entriesContainingString: target searchType: XJSearchEntirePost];
 }
 
-- (NSArray *)entriesContainingString: (NSString *)target searchType: (int)type
+- (NSArray *)entriesContainingString: (NSString *)target searchType: (XJSearchType)type
 {
-    NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [entries objectEnumerator];
-    LJEntry *entry;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
 
     NSString *searchString = @"";
     
-    while(entry = [enumerator nextObject]) {
+    for (LJEntry *entry in entries) {
         switch(type) {
             case XJSearchSubjectOnly:
                 if([entry subject])
@@ -223,7 +200,7 @@
     return array;
 }
 
-- (void)deleteEntryAtIndex:(int)idx
+- (void)deleteEntryAtIndex:(NSInteger)idx
 {
     LJEntry *entry = [self entryAtIndex: idx];
     [entry removeFromJournal];
@@ -233,7 +210,7 @@
 
 - (void)deleteEntry: (LJEntry *)entry
 {
-	int i;
+	NSInteger i;
 	for(i = 0; i < [entries count]; i++) {
 		LJEntry *iter = [self entryAtIndex:i];
 		if([iter itemID] == [entry itemID])
@@ -249,27 +226,19 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat: @"%@ - %d entries.", [[self calendarDate] description], [self postCount]];
+    return [NSString stringWithFormat: @"%@ - %ld entries.", [[self calendarDate] description], (long)[self postCount]];
 }
 
 - (NSURL *)urlForDayArchiveForAccount: (LJAccount *)acct {
 	NSString *base = [[myMonth urlForMonthArchiveForAccount: acct] absoluteString];
-	NSString *zeroizedName = [self zeroizedString: dayNumber];
+	NSString *zeroizedName = zeroizedString(dayNumber);
 	NSString *url = [NSString stringWithFormat: @"%@/%@", base, zeroizedName];
 	return [NSURL URLWithString: url];
 }
 
-- (NSString *)zeroizedString:(int)number
-{
-    if(number < 10)
-        return [NSString stringWithFormat: @"0%d", number];
-    else
-        return [NSString stringWithFormat: @"%d", number];
-}
-
 - (NSMutableArray *)makeMutable:(NSArray *)array
 {
-    NSMutableArray *temp = [NSMutableArray arrayWithCapacity: [array count]+5];
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity: [array count]+5];
     [temp addObjectsFromArray: array];
     return temp;
 }

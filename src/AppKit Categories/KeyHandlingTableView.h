@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface KeyHandlingTableView : NSTableView {}
+@interface KeyHandlingTableView : NSTableView
 
 @end

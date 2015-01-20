@@ -9,6 +9,5 @@
 	BOOL dragState;
 }
 
-- (void)setAcceptsDrags: (BOOL)accept;
-- (BOOL)acceptsDrags;
+@property (nonatomic) BOOL acceptsDrags;
 @end

@@ -20,8 +20,8 @@
 
 + (XJAccountManager *)defaultManager;
 
-- (int)numberOfAccounts;
-- (NSDictionary *)accounts;
+@property (readonly) NSInteger numberOfAccounts;
+@property (readonly, copy) NSDictionary *accounts;
 
 - (void)addAccountWithUsername: (NSString *)name password: (NSString *)password;
 - (void)removeAccountWithUsername: (NSString *)name;
@@ -32,11 +32,10 @@
 - (NSString *)passwordForUsername: (NSString *)username;
 
 - (LJAccount *)defaultAccount;
-- (void)setDefaultUsername: (NSString *)newDefault;
-- (NSString *)defaultUsername;
+@property (nonatomic, copy) NSString *defaultUsername;
 
-- (LJAccount *)loggedInAccount;
+@property (nonatomic, strong, setter=logInAccount:) LJAccount *loggedInAccount;
 - (void)logInAccount: (LJAccount *)theAccount;
 
-- (NSEnumerator *)menuItemEnumerator;
+@property (readonly, strong) NSEnumerator *menuItemEnumerator;
 @end

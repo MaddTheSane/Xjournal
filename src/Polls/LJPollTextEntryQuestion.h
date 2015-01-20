@@ -12,23 +12,18 @@
 /*
  This is a subclass representing a text box question
  */
-@interface LJPollTextEntryQuestion : LJPollQuestion {
-    int size, maxLength;
-}
+@interface LJPollTextEntryQuestion : LJPollQuestion<NSCoding>
 
 // Returns an autoreleased text question with the given size and length
 // and a default question
-+ (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (int)theSize maxLength: (int)theLength;
++ (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (NSInteger)theSize maxLength: (NSInteger)theLength;
 
 // Get and set the size property
-- (int)size;
-- (void)setSize:(int)newSize;
+@property NSInteger size;
 
 // Get and set the length
-- (int)maxLength;
-- (void)setMaxLength: (int)newMaxLength;
+@property NSInteger maxLength;
 
     // Memento
-- (NSDictionary *) memento;
-- (void) restoreFromMemento: (NSDictionary *)memento;
+@property (setter=restoreFromMemento:, copy) NSDictionary *memento;
 @end

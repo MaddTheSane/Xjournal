@@ -21,38 +21,21 @@
 	NSString *sourceFeedURL;
 }
 
-+ (XJSyndicationData *)syndicationDataWithAppleEvent: (NSAppleEventDescriptor *)aeDesc;
-- (id)initWithAppleEvent: (NSAppleEventDescriptor *)aeDesc;
++ (instancetype)syndicationDataWithAppleEvent: (NSAppleEventDescriptor *)aeDesc;
+- (instancetype)initWithAppleEvent: (NSAppleEventDescriptor *)aeDesc NS_DESIGNATED_INITIALIZER;
 
 // ---------------------------------
 // Accessors
 // ---------------------------------
-- (NSString *)title;
-- (void)setTitle:(NSString *)aTitle;
-
-- (NSString *)body;
-- (void)setBody:(NSString *)aBody;
-
-- (NSString *)summary;
-- (void)setSummary:(NSString *)aSummary;
-
-- (NSString *)link;
-- (void)setLink:(NSString *)aLink;
-
-- (NSString *)permalink;
-- (void)setPermalink:(NSString *)aPermalink;
-
-- (NSString *)commentsURL;
-- (void)setCommentsURL:(NSString *)aCommentsURL;
-
-- (NSString *)sourceName;
-- (void)setSourceName:(NSString *)aSourceName;
-
-- (NSString *)sourceHomeURL;
-- (void)setSourceHomeURL:(NSString *)aSourceHomeURL;
-
-- (NSString *)sourceFeedURL;
-- (void)setSourceFeedURL:(NSString *)aSourceFeedURL;
+@property (copy) NSString *title;
+@property (copy) NSString *body;
+@property (copy) NSString *summary;
+@property (copy) NSString *link;
+@property (copy) NSString *permalink;
+@property (copy) NSString *commentsURL;
+@property (copy) NSString *sourceName;
+@property (copy) NSString *sourceHomeURL;
+@property (copy) NSString *sourceFeedURL;
 
 
 @end

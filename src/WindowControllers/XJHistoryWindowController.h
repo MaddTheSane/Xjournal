@@ -8,11 +8,11 @@
 
 #import <AppKit/AppKit.h>
 #import "XJCalendar.h"
-#import "WBSearchTextField.h"
+//#import "WBSearchTextField.h"
 
 #import <WebKit/WebKit.h>
 
-@interface XJHistoryWindowController : NSWindowController {
+@interface XJHistoryWindowController : NSWindowController <NSToolbarDelegate, NSBrowserDelegate> {
     // The NSBrowser for dates
     IBOutlet NSBrowser *browser;
 
@@ -39,10 +39,10 @@
 
     // Search toolbar view
     IBOutlet NSView *searchView;
-    IBOutlet WBSearchTextField *searchField;
+    IBOutlet NSSearchField *searchField;
 
     NSMutableDictionary *searchCache;
-    int selectedSearchType;
+    XJSearchType selectedSearchType;
     IBOutlet NSMenuItem *selectedMenuItem;
 
     // Search sheet (for when the toolbar is in Text only mode)
@@ -52,15 +52,15 @@
     LJAccount *account;
 }
 
-- (LJAccount *)account;
+@property (readonly, strong) LJAccount *account;
 - (void)setCurrentAccount: (LJAccount *)newAcct;
-- (NSString *)historyArchivePath;
+@property (readonly, copy) NSString *historyArchivePath;
 
 // Notification of user selection in the browser
 - (IBAction)browserChanged:(id)sender;
 
 // get day counts from the LJ server
-- (BOOL)analyzeDayCounts;
+@property (readonly) BOOL analyzeDayCounts;
 
 // Actions for the toolbar items
 - (IBAction)openSelectionInBrowser:(id)sender;
@@ -70,7 +70,7 @@
 // Convenience for setting the status field
 - (void)setStatus: (NSString *)status;
 
-- (BOOL)loadCachedHistory;
+@property (readonly) BOOL loadCachedHistory;
 
 - (void)beginHistoryUpdate: (id)sender;
 - (void)beginHistoryDownload: (id)sender;

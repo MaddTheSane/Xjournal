@@ -7,23 +7,23 @@
 
 - (NSString *)translateNewLines
 {
-	NSMutableString *newString = [[NSMutableString stringWithCapacity: [self length]] retain];	 
+	NSMutableString *newString = [NSMutableString stringWithCapacity: [self length]];	 
     [newString appendString: self];
 
     [newString replaceOccurrencesOfString: @"\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
-    return [newString autorelease];
+    return [[NSString alloc] initWithString: newString];
 }
 
 - (NSString *)convertNewlinesToBR {
-	NSMutableString *newString = [[NSMutableString stringWithCapacity: [self length]] retain];
+	NSMutableString *newString = [NSMutableString stringWithCapacity: [self length]];
     [newString appendString: self];
 	
     [newString replaceOccurrencesOfString: @"\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
     [newString replaceOccurrencesOfString: @"\r" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
 //    [newString replaceOccurrencesOfString: @"\r\n" withString: @"<br>" options: NSCaseInsensitiveSearch range:NSMakeRange(0, [newString length])];
-    return [newString autorelease];
+    return [[NSString alloc] initWithString: newString];
 }
 
 - (NSString *)translateLJUser
@@ -95,13 +95,13 @@
  */
 - (NSString *)translateNewLinesOutsideTables
 {
-	int		tableDepth = 0;
-	int		sectionCount = 0;
-	BOOL	error = NO;
+	NSInteger	tableDepth = 0;
+	NSInteger	sectionCount = 0;
+	BOOL		error = NO;
 
 	NSString 		*loadString = [NSString stringWithString:self];
 	NSArray 		*firstArray = [loadString componentsSeparatedByString:@"<table"];
-	NSMutableArray	*returnBuildArray = [NSMutableArray arrayWithCapacity:[firstArray count]];
+	NSMutableArray	*returnBuildArray = [[NSMutableArray alloc] initWithCapacity:[firstArray count]];
 	NSString 		*finishedWork;
 	NSString 		*textBlob;
 	NSEnumerator	*dataWalker;
@@ -113,7 +113,7 @@
 	}
 	
 	// If first element = 0 length, text begins with <table, so discard first element. It is empty anyway
-	measureString = [firstArray objectAtIndex:0];
+	measureString = firstArray[0];
 	if ([measureString length] == 0) {
 		NSMutableArray *choppingArrray;
 
@@ -127,7 +127,7 @@
 	dataWalker = [firstArray objectEnumerator];
 	while (textBlob = [dataWalker nextObject]) {
 		NSArray			*secondArray;
-		int				sACount;
+		NSInteger		sACount;
 		NSMutableArray	*secondBuildArray;
 		sectionCount++;
 		if ((sectionCount == [firstArray count]) && ([textBlob length] == 0)) {
@@ -199,11 +199,11 @@
 @implementation NSString (extras)
 - (NSString *) trimWhiteSpace {
     
-    NSMutableString *s = [[self mutableCopy] autorelease];
+    NSMutableString *s = [self mutableCopy];
     
     CFStringTrimWhitespace ((CFMutableStringRef) s);
     
-    return (NSString *) [[s copy] autorelease];
+	return [NSString stringWithString:s];
 } /*trimWhiteSpace*/
 
 
@@ -218,7 +218,7 @@
     if ([s isEqualTo: @""])
         return (YES);
     
-    copy = [[s copy] autorelease];
+    copy = [s copy];
     
     if ([[copy trimWhiteSpace] isEqualTo: @""])
         return (YES);

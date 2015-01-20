@@ -15,16 +15,15 @@
     exceptions = 0;
     exceptionDate = [[NSDate alloc] init];
     do {
-        NS_DURING {
+        @try {
             [super run];
-            NS_VOIDRETURN;
-        } NS_HANDLER {
+            return;
+        } @catch (NSException *localException) {
             if (++exceptions >= 300) {
                 if ([exceptionDate timeIntervalSinceNow] >= -3.0) {
                     fprintf(stderr, "Too many errors!\n");
                     return;
                 }
-                [exceptionDate release];
                 exceptionDate = [[NSDate alloc] init];
                 exceptions = 0;
             }
@@ -34,7 +33,7 @@
                 else
                     [self handleInitException:localException];
             }
-        } NS_ENDHANDLER;
+        };
     } while (_appFlags._hasBeenRun);
 }
 

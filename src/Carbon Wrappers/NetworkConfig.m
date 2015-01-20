@@ -45,7 +45,7 @@
 #define SCSTR(s) (NSString *)CFSTR(s)
 #import <SystemConfiguration/SystemConfiguration.h>
 
-@interface NetworkConfig(PrivateAPI)
+@interface NetworkConfig()
 + (NSDictionary *)getSettingsDictionary;
 @end
 
@@ -65,14 +65,14 @@
 + (BOOL)httpProxyIsEnabled
 {
     NSDictionary *dict = [self getSettingsDictionary];
-    return [[dict objectForKey: kSCPropNetProxiesHTTPEnable] boolValue];
+    return [dict[(NSString*)kSCPropNetProxiesHTTPEnable] boolValue];
 }
 
     // Returns the HTTP proxy or nil if none is set
 + (NSString *)httpProxyHost
 {
     NSDictionary *dict = [self getSettingsDictionary];
-    id val = [dict objectForKey: kSCPropNetProxiesHTTPProxy];
+    id val = dict[(NSString*)kSCPropNetProxiesHTTPProxy];
     if([val isKindOfClass: [NSString class]])
         return (NSString *)val;
     else
@@ -82,7 +82,7 @@
     // Returns the HTTP Proxy port, or 80 if none is set
 + (int)httpProxyPort {
     NSDictionary *dict = [self getSettingsDictionary];
-    id val = [dict objectForKey: kSCPropNetProxiesHTTPPort];
+    id val = dict[(NSString*)kSCPropNetProxiesHTTPPort];
     if(val != nil)
         return [val intValue];
     else {
@@ -94,14 +94,10 @@
 // i.e. The domain does not appear in the non-proxied destinations list
 + (BOOL)destinationIsProxied:(NSString *)host {
     NSDictionary *dict = [self getSettingsDictionary];
-    NSArray *nonProxied = [dict objectForKey: @"ExceptionsList"];
+    NSArray *nonProxied = dict[(NSString*)kSCPropNetProxiesExceptionsList];
     
     if(nonProxied != nil && [nonProxied count] > 0) {
-        int ct, idx;
-
-        ct = [nonProxied count];
-        for(idx = 0; idx < ct; idx++) {
-            NSString *exception = [nonProxied objectAtIndex: idx];
+        for (NSString *exception in nonProxied) {
             if([host hasSuffix: exception]) {
                 return NO;
             }
@@ -112,17 +108,20 @@
 
 + (BOOL)destinationIsReachable:(NSString *)host
 {
-    Boolean                     result;
-    SCNetworkConnectionFlags    flags;
+    Boolean                     result = false;
+    SCNetworkConnectionFlags    flags = 0;
     // IMPORTANT:
     // To work with CodeWarrior you should set the
     // "enums are always int" option, which the CWPro8
     // Mach-O stationery fails to do.
 
-    assert(sizeof(SCNetworkConnectionFlags) == sizeof(int));
+	SCNetworkReachabilityRef target;
+	Boolean ok;
+	target = SCNetworkReachabilityCreateWithName(NULL, [host UTF8String]);
+	ok = SCNetworkReachabilityGetFlags(target, &flags);
+	CFRelease(target);
 
-    result = false;
-    if ( SCNetworkCheckReachabilityByName([host cString], &flags) ) {
+    if ( ok ) {
         result =    !(flags & kSCNetworkFlagsConnectionRequired)
         &&  (flags & kSCNetworkFlagsReachable);
     }
@@ -141,9 +140,6 @@
     NSRunInformationalAlertPanel(@"Network Unreachable", @"Livejournal.com is not reachable with your current network settings."
                                  ,@"OK",nil,nil);
 }
-@end
-
-@implementation NetworkConfig(PrivateAPI)
 
 static void CallBack(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info);
 
@@ -152,11 +148,11 @@ static void CallBack(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info
     CFStringRef proxies_key;
     NSDictionary *dict;
 
-    sc_store = SCDynamicStoreCreate(NULL, (CFStringRef)[[NSProcessInfo processInfo] processName], CallBack, NULL);
+    sc_store = SCDynamicStoreCreate(NULL, (__bridge CFStringRef)[[NSProcessInfo processInfo] processName], CallBack, NULL);
     proxies_key = SCDynamicStoreKeyCreateProxies(NULL);
-    dict = (NSDictionary *)SCDynamicStoreCopyValue(sc_store, proxies_key);
+    dict = CFBridgingRelease(SCDynamicStoreCopyValue(sc_store, proxies_key));
     CFRelease(proxies_key);
-    return [dict autorelease];
+    return dict;
 }
 
 static void CallBack(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "XJPollEditorController.h"
 
-@interface XJPollEditorController (NSToolbarController)
+@interface XJPollEditorController (NSToolbarController) <NSToolbarDelegate>
 
 @end

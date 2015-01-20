@@ -37,6 +37,10 @@
 #define STRIPE_GREEN (243.0 / 255.0)
 #define STRIPE_BLUE  (254.0 / 255.0)
 
+@protocol SearchSheetRunner <NSObject>
+- (IBAction)runSearchSheet:(id)sender;
+@end
+
 enum {
     XJHistorySearchResultSelected = 0,
     XJHistoryEntrySelected,
@@ -47,22 +51,22 @@ enum {
     XJHistorySearchGroupSelected
 };
 
-@interface XJHistoryWindowController (PrivateAPI)
+@interface XJHistoryWindowController ()
 - (void)showEncodingErrorSheetForDate: (NSCalendarDate *)date;
 - (void)showGenericErrorSheet: (NSString *)message;
 
- - (int)browserSelectionType;
-- (BOOL)columnZeroSelectionIsYear;
-- (LJEntry *)selectedEntry;
-- (XJDay *)selectedDay;
-- (XJMonth *)selectedMonth;
-- (XJYear *)selectedYear;
+ @property (readonly) int browserSelectionType;
+@property (readonly) BOOL columnZeroSelectionIsYear;
+@property (readonly, strong) LJEntry *selectedEntry;
+@property (readonly, strong) XJDay *selectedDay;
+@property (readonly, strong) XJMonth *selectedMonth;
+@property (readonly, strong) XJYear *selectedYear;
 
-- (NSString *)selectedSearchString;
-- (NSArray *)selectedSearchResultRoot;
-- (LJEntry *)selectedSearchResult;
+@property (readonly, copy) NSString *selectedSearchString;
+@property (readonly, copy) NSArray *selectedSearchResultRoot;
+@property (readonly, strong) LJEntry *selectedSearchResult;
 
-- (NSURL *)urlForBrowserSelection;
+@property (readonly, copy) NSURL *urlForBrowserSelection;
 
 - (void)editEntry: (LJEntry *)entryToEdit;
 
@@ -71,7 +75,7 @@ enum {
 
 @implementation XJHistoryWindowController 
 
-- (id)init
+- (instancetype)init
 {
     if(self = [super initWithWindowNibName:@"HistoryWindow"]) {
         historyIsComplete = NO;
@@ -118,7 +122,7 @@ enum {
         // HTML view stuff
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotNotification:) name:NULL object:NULL];
         
-        searchCache = [[NSMutableDictionary dictionaryWithCapacity: 10] retain];
+        searchCache = [NSMutableDictionary dictionaryWithCapacity: 10];
         
         cal = [[XJCalendar alloc] init];
         
@@ -168,7 +172,6 @@ enum {
     [toolbar setAutosavesConfiguration: YES];
     [toolbar setDelegate: self];
     [[self window] setToolbar: toolbar];
-    [toolbar release];
 
     [browser setTarget: self];
     [browser setDoubleAction: @selector(editSelectedEntry:)];
@@ -241,9 +244,9 @@ enum {
 }
 
 // DidEndHandler for the delete confirmation sheet
-- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    NSString *cmd = (NSString *)contextInfo;
+    NSString *cmd = (__bridge NSString *)contextInfo;
 
     if([cmd isEqualToString: @"downloadHistory"]) {
         switch(returnCode) {
@@ -295,7 +298,7 @@ enum {
 				NS_HANDLER
 					NSLog(@"Connection Reset During Delete");
 				NS_ENDHANDLER
-				int row = [browser selectedRowInColumn: 2];
+				NSInteger row = [browser selectedRowInColumn: 2];
 				[browser selectRow: row inColumn: 2];
 				//[browser reloadColumn: [browser lastVisibleColumn]];
 				[self setStatus: @""];
@@ -304,9 +307,9 @@ enum {
     }
 }
 
-- (void)sheetDidDismiss:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)sheetDidDismiss:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    NSString *cmd = (NSString *)contextInfo;
+    NSString *cmd = (__bridge NSString *)contextInfo;
     if([cmd isEqualToString: @"downloadHistory"]) {
         userHasDeclinedDownload = YES;
     }
@@ -332,7 +335,6 @@ enum {
         
         NS_DURING
             tempDayCounts = [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getDayCounts];
-            [dayCounts release];
             dayCounts = nil;
             dayCounts = tempDayCounts;
             
@@ -340,7 +342,7 @@ enum {
             
             while(date = [dates nextObject]) {
                 XJDay *day = [cal dayForCalendarDate: date];
-                [day setPostCount: [[dayCounts objectForKey: date] intValue]];
+                [day setPostCount: [dayCounts[date] intValue]];
             }
         NS_HANDLER
             NSLog(@"getDayCounts failed");
@@ -353,16 +355,15 @@ enum {
 // Search
 - (IBAction)executeSearch:(id)sender {
 	[self executeSearchForString: [sender stringValue]];
-	[sender showCancelButton: YES];
 }
 
 - (void)executeSearchForString: (NSString *)target
 {
     NSArray *results = [cal entriesContainingString: target searchType: selectedSearchType];
-    [searchCache setObject: results forKey: target];
+    searchCache[target] = results;
 
     // Get the index of the search
-    int rowToSelect = [[searchCache allKeys] indexOfObject: target] + [cal numberOfYears];
+    NSInteger rowToSelect = [[searchCache allKeys] indexOfObject: target] + [cal numberOfYears];
     [browser loadColumnZero];
     [browser selectRow: rowToSelect inColumn: 0];
     //[browser becomeFirstResponder];
@@ -370,8 +371,8 @@ enum {
 
 - (IBAction)clearSearch:(id)sender
 {
-    int base = [browser selectedRowInColumn: 0] - [cal numberOfYears];
-    NSString *searchKey = [[searchCache allKeys] objectAtIndex: base];
+    NSInteger base = [browser selectedRowInColumn: 0] - [cal numberOfYears];
+    NSString *searchKey = [searchCache allKeys][base];
 
     [searchCache removeObjectForKey: searchKey];
     [browser loadColumnZero];
@@ -432,7 +433,7 @@ enum {
 // ----------------------------------------------------------------------------------------
 // Browser delegate
 // ----------------------------------------------------------------------------------------
-- (int)browser:(NSBrowser *)sender numberOfRowsInColumn:(int)column
+- (NSInteger)browser:(NSBrowser *)sender numberOfRowsInColumn:(NSInteger)column
 {
     if(column == 0) {
         // return years;
@@ -468,7 +469,7 @@ enum {
     return 0;
 }
 
-- (void)browser:(NSBrowser *)sender willDisplayCell:(id)cell atRow:(int)row column:(int)column
+- (void)browser:(NSBrowser *)sender willDisplayCell:(id)cell atRow:(NSInteger)row column:(NSInteger)column
 {
     // Switch on Column
     switch(column){
@@ -480,8 +481,8 @@ enum {
                 [cell setImage: nil];
             }
             else {
-                int base = row - [cal numberOfYears];
-                [cell setTitle: [[searchCache allKeys] objectAtIndex: base]];
+                NSInteger base = row - [cal numberOfYears];
+                [cell setTitle: [searchCache allKeys][base]];
                 [cell setImage: [NSImage imageNamed: @"Magnifier"]];
             }
             [cell setLeaf: NO];
@@ -500,7 +501,7 @@ enum {
             else {
                 // showing search result entries
                 NSArray *resultEntries = [self selectedSearchResultRoot];
-                LJEntry *selectedEntry = [resultEntries objectAtIndex: row];
+                LJEntry *selectedEntry = resultEntries[row];
 
                 NSString *subject = [selectedEntry subject];
                 if(subject != nil) {
@@ -518,14 +519,14 @@ enum {
                 [cell setLeaf: YES];
                 
                 switch([selectedEntry securityMode]) {
-                    case LJPrivateSecurityMode:
+                    case LJSecurityModePrivate:
                         [cell setImage: [NSImage imageNamed: @"private"]];
                         break;
-                    case LJFriendSecurityMode:
-                    case LJGroupSecurityMode:
+                    case LJSecurityModeFriend:
+                    case LJSecurityModeGroup:
                         [cell setImage: [NSImage imageNamed: @"protected"]];
                         break;
-                    default: // LJPublicSecurityMode
+                    default: // LJSecurityModePublic
                         [cell setImage: nil];
                         break;
                 }
@@ -557,14 +558,14 @@ enum {
             }
 
             switch([selectedEntry securityMode]) {
-                case LJPrivateSecurityMode:
+                case LJSecurityModePrivate:
                     [cell setImage: [NSImage imageNamed: @"private"]];
                     break;
-                case LJFriendSecurityMode:
-                case LJGroupSecurityMode:
+                case LJSecurityModeFriend:
+                case LJSecurityModeGroup:
                     [cell setImage: [NSImage imageNamed: @"protected"]];
                     break;
-                default: // LJPublicSecurityMode
+                default: // LJSecurityModePublic
                     [cell setImage: nil];
                     break;
             }
@@ -599,11 +600,9 @@ enum {
 	
     if(selectionType == XJHistorySearchGroupSelected) {
         [searchField setStringValue: [self selectedSearchString]];
-        [searchField showCancelButton: YES];
     }
     else {
         [searchField setStringValue: @""];
-        [searchField showCancelButton: NO];
     }
 
     if(selectionType == XJHistoryMonthSelected ||
@@ -673,11 +672,11 @@ enum {
     LJEntry *selectedEntry;
     NSString *urlFormatString = @"http://www.livejournal.com/editjournal_do.bml?journal=%@&itemid=%d";
 
-    int mo = [XJMonth numberForMonth: [selectedArray objectAtIndex: 2]];
-    int selectedRow = [browser selectedRowInColumn: [browser lastVisibleColumn]];
-    XJDay *day = [cal day: [[selectedArray objectAtIndex: 3] intValue]
+    int mo = [XJMonth numberForMonth: selectedArray[2]];
+    NSInteger selectedRow = [browser selectedRowInColumn: [browser lastVisibleColumn]];
+    XJDay *day = [cal day: [selectedArray[3] intValue]
                 ofMonth: mo
-                 inYear: [[selectedArray objectAtIndex: 1] intValue]];
+                 inYear: [selectedArray[1] intValue]];
 
     // Shouldn't happen since the button is only enabled if this is true
     NSAssert([selectedArray count] == 5, @"An entry must be selected in the browser");
@@ -733,7 +732,7 @@ enum {
 - (void)beginHistoryDownload: (id)sender
 {
     if([NetworkConfig destinationIsReachable:@"www.livejournal.com"]) {
-        int calTotal = [cal totalEntriesInCalendar];
+        NSInteger calTotal = [cal totalEntriesInCalendar];
         [downloadTitle setStringValue: NSLocalizedString(@"Downloading History", @"")];
         
         [NSApp beginSheet: progressSheet modalForWindow: [self window] modalDelegate: nil didEndSelector: nil contextInfo: nil];
@@ -742,7 +741,7 @@ enum {
         [downloadBar setMinValue: 0.0];
         [downloadBar setDoubleValue: 0.0];
         [downloadBar setIndeterminate: NO];
-        [downloadStatus setStringValue: [NSString stringWithFormat: @"0 of %d", calTotal]];
+        [downloadStatus setStringValue: [NSString stringWithFormat: @"0 of %ld", (long)calTotal]];
         
         [NSThread detachNewThreadSelector: @selector(downloadEntireHistory) toTarget: self withObject: nil];
     } else {
@@ -768,6 +767,15 @@ enum {
     [progressSheet orderOut: nil];   
 }
 
+static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
+{
+    if ([NSThread isMainThread]) {
+        theBlock();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), theBlock);
+    }
+}
+
 - (void)downloadFinished: (NSNotification *)note
 {
     if([[note object] isEqualToString: @"downloadCompleted"]) {
@@ -784,10 +792,10 @@ enum {
 	}
 	
 	// Here, note the selected rows in each column and select them again
-	int zero = [browser selectedRowInColumn: 0];
-	int one  = [browser selectedRowInColumn: 1];
-	int two  = [browser selectedRowInColumn: 2];
-	int three = [browser selectedRowInColumn: 3];
+	NSInteger zero = [browser selectedRowInColumn: 0];
+	NSInteger one  = [browser selectedRowInColumn: 1];
+	NSInteger two  = [browser selectedRowInColumn: 2];
+	NSInteger three = [browser selectedRowInColumn: 3];
 	
 	[browser selectRow: zero inColumn: 0];
 	[browser selectRow: one inColumn: 1];
@@ -797,98 +805,94 @@ enum {
 
 - (void)downloadEntireHistory
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
-    int calTotal = [cal totalEntriesInCalendar];
-    int numberDownloaded = 0;
+        NSInteger calTotal = [cal totalEntriesInCalendar];
+        NSInteger numberDownloaded = 0;
 
-    BOOL downloadFailed = NO;
-    NSException *exc = nil;
-    
-    NSEnumerator *years = [cal yearEnumerator];
-    XJYear *currentYear;
-    while(!terminateDownloadThread && (currentYear = [years nextObject])) {
-        NSEnumerator *monthsInYear = [currentYear monthEnumerator];
-        XJMonth *currentMonth;
-        while(!terminateDownloadThread && (currentMonth = [monthsInYear nextObject])) {
-            NSEnumerator *daysInMonth = [currentMonth dayEnumerator];
-            XJDay *currentDay;
-            while(!terminateDownloadThread && (currentDay = [daysInMonth nextObject])) {
-                int postsInDay = [currentDay postCount];
-                NS_DURING
-                    // This can vomit if the network goes away
-                    [currentDay downloadEntries];
-                NS_HANDLER
-                    terminateDownloadThread = YES;
-                    NSLog(@"%@ - %@", [localException name], [localException reason]);
+        BOOL downloadFailed = NO;
+        NSException *exc = nil;
+        
+        NSEnumerator *years = [cal yearEnumerator];
+        XJYear *currentYear;
+        while(!terminateDownloadThread && (currentYear = [years nextObject])) {
+            NSEnumerator *monthsInYear = [currentYear monthEnumerator];
+            XJMonth *currentMonth;
+            while(!terminateDownloadThread && (currentMonth = [monthsInYear nextObject])) {
+                NSEnumerator *daysInMonth = [currentMonth dayEnumerator];
+                XJDay *currentDay;
+                while(!terminateDownloadThread && (currentDay = [daysInMonth nextObject])) {
+                    NSInteger postsInDay = [currentDay postCount];
+                    NS_DURING
+                        // This can vomit if the network goes away
+                        [currentDay downloadEntries];
+                    NS_HANDLER
+                        terminateDownloadThread = YES;
+                        NSLog(@"%@ - %@", [localException name], [localException reason]);
 
-                    // Network has failed, so bail
-                    downloadFailed = YES;
-                    exc = [localException retain];
-                NS_ENDHANDLER
-                
-                if(downloadFailed) {
-                    terminateDownloadThread = NO;
-                    NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadFailedNotification
-                                                                           object: [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: exc, currentDay, nil]
-																											   forKeys: [NSArray arrayWithObjects: @"exception", @"day", nil]]
-                                                                         userInfo: nil];
+                        // Network has failed, so bail
+                        downloadFailed = YES;
+                        exc = localException;
+                    NS_ENDHANDLER
                     
-                    [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:)
-                                                                           withObject:notice
-                                                                        waitUntilDone:YES];
-                    [exc release];
+                    if(downloadFailed) {
+                        terminateDownloadThread = NO;
+                        NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadFailedNotification
+                                                                               object: @{@"exception": exc, @"day": currentDay}
+                                                                             userInfo: nil];
+                        
+                        RunOnMainThreadSync(^{
+                            [[NSNotificationCenter defaultCenter] postNotification:notice];
+                        });
+                        
+                        return;
+                    }
                     
-                    return;
+                    numberDownloaded += postsInDay;
+
+                    NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadMadeProgressNotification
+                                                                           object:@[@(numberDownloaded),
+                                                                               @(calTotal)]
+                                                                         userInfo:nil];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[NSNotificationCenter defaultCenter] postNotification:notice];
+                    });
+                    
                 }
-                
-                numberDownloaded += postsInDay;
-
-                NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadMadeProgressNotification
-                                                                       object:[NSArray arrayWithObjects:
-                                                                           [NSNumber numberWithInt: numberDownloaded],
-                                                                           [NSNumber numberWithInt: calTotal],
-                                                                           nil]
-                                                                     userInfo:nil];
-                
-                [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:)
-                                                                       withObject:notice
-                                                                    waitUntilDone:NO];
-                
             }
+
         }
 
-    }
+        if(!terminateDownloadThread) { // don't fire this unless we completed the download
+            NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadCompletedNotification
+                                                                   object: @"downloadCompleted"
+                                                                 userInfo:nil];
 
-    if(!terminateDownloadThread) { // don't fire this unless we completed the download
-        NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadCompletedNotification
-                                                               object: @"downloadCompleted"
-                                                             userInfo:nil];
-
-        [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:)
-                                                               withObject:notice
-                                                            waitUntilDone:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotification:notice];
+            });
+        }
+        
+        terminateDownloadThread = NO;
     }
-    
-    terminateDownloadThread = NO;
-    [pool release];
 }
 
 - (void)updateHistoryDownloadProgress: (NSNotification *)note
 {
     NSArray *info = [note object];
-    int progressMax = [[info objectAtIndex: 1] intValue];
+    int progressMax = [info[1] intValue];
     if(![downloadBar isIndeterminate] && [downloadBar maxValue] != progressMax)
         [downloadBar setMaxValue: progressMax];
     
-    [downloadStatus setStringValue: [NSString stringWithFormat: @"%d of %d", [[info objectAtIndex: 0] intValue], [[info objectAtIndex: 1] intValue]]];
-    [downloadBar setDoubleValue: [[info objectAtIndex: 0] intValue]];
+    [downloadStatus setStringValue: [NSString stringWithFormat: @"%d of %d", [info[0] intValue], [info[1] intValue]]];
+    [downloadBar setDoubleValue: [info[0] intValue]];
 }
 
 - (void)historyDownloadFailed: (NSNotification *)note
 {
-    id exception = [[note object] objectForKey: @"exception"];
-	XJDay *day = [[note object] objectForKey: @"day"];
+    id exception = [note object][@"exception"];
+	XJDay *day = [note object][@"day"];
     
     userHasDeclinedDownload = YES;
     downloadInProgress = NO;
@@ -926,61 +930,59 @@ enum {
 
 - (void)updateAgainstDayCounts
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
-    NSArray *dates;
+        NSArray *dates;
 
-    NSDictionary *currentDayCounts = [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getDayCounts];
-    dates = [currentDayCounts allKeys];
-    int i;
-    
-    NSMutableArray *daysToUpdate = [[NSMutableArray array] retain];
-    
-    for(i=0; !terminateUpdateThread && i < [dates count]; i++) {
-        id date = [dates objectAtIndex: i];
-        XJDay *day = [cal dayForCalendarDate: date];
-        NSNumber *countForDay = [currentDayCounts objectForKey: date];
-        if([day postCount] != [countForDay intValue])
-        	[daysToUpdate addObject: day];
-    }
-    
-    
+        NSDictionary *currentDayCounts = [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getDayCounts];
+        dates = [currentDayCounts allKeys];
+        int i;
+        
+        NSMutableArray *daysToUpdate = [NSMutableArray array];
+        
+        for(i=0; !terminateUpdateThread && i < [dates count]; i++) {
+            id date = dates[i];
+            XJDay *day = [cal dayForCalendarDate: date];
+            NSNumber *countForDay = currentDayCounts[date];
+            if([day postCount] != [countForDay intValue])
+            	[daysToUpdate addObject: day];
+        }
+        
+        
 	NSEnumerator *enumerator = [daysToUpdate objectEnumerator];
 	XJDay *dayToUpdate;
 	i=0;
 	while(dayToUpdate = [enumerator nextObject]) {
 		NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadMadeProgressNotification
-                                                               object:[NSArray arrayWithObjects:
-                                                                   [NSNumber numberWithInt: i],
-                                                                   [NSNumber numberWithInt: [daysToUpdate count]],
-                                                                   nil]
-                                                             userInfo:nil];
+                                                                   object:@[@(i),
+                                                                       @([daysToUpdate count])]
+                                                                 userInfo:nil];
 
-        [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:)
-                                                               withObject:notice
-                                                            waitUntilDone:NO];
-        NS_DURING
-            //[dayToUpdate validatePostCountAndUpdate: [[daysToUpdate objectForKey: dayToUpdate] intValue]];
-            [dayToUpdate downloadEntries];
-        NS_HANDLER
-            NSLog(@"Exception in -[XJHistoryWindowController updateAgainstDayCounts]: %@", [localException name]);
-            terminateUpdateThread = YES;
-        NS_ENDHANDLER
-        i++;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotification:notice];
+        });
+            NS_DURING
+                //[dayToUpdate validatePostCountAndUpdate: [[daysToUpdate objectForKey: dayToUpdate] intValue]];
+                [dayToUpdate downloadEntries];
+            NS_HANDLER
+                NSLog(@"Exception in -[XJHistoryWindowController updateAgainstDayCounts]: %@", [localException name]);
+                terminateUpdateThread = YES;
+            NS_ENDHANDLER
+            i++;
 	}
 
-    if(!terminateUpdateThread) { // don't fire this unless we completed the update
-        NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadCompletedNotification
-                                                               object: @"updateCompleted"
-                                                             userInfo:nil];
+        if(!terminateUpdateThread) { // don't fire this unless we completed the update
+            NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadCompletedNotification
+                                                                   object: @"updateCompleted"
+                                                                 userInfo:nil];
 
-        [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:)
-                                                               withObject:notice
-                                                            waitUntilDone:NO];
-    } 
-    terminateUpdateThread = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotification:notice];
+            });
+        }
+        terminateUpdateThread = NO;
     
-    [pool release];
+    }
 }
 
 // Gets fired when HTML preview finishes loading the images
@@ -1063,7 +1065,7 @@ enum {
 // ----------------------------------------------------------------------------------------
 - (void) webView: (WebView *) sender  decidePolicyForNavigationAction: (NSDictionary *) actionInformation request: (NSURLRequest *) request frame: (WebFrame *) frame decisionListener: (id<WebPolicyDecisionListener>) listener
 {
-    NSString *targetURL = [[actionInformation objectForKey: WebActionOriginalURLKey] absoluteString];
+    NSString *targetURL = [actionInformation[WebActionOriginalURLKey] absoluteString];
     if([targetURL isEqualToString: @"about:blank"]) {
         [listener use]; // Generated HTML
     }
@@ -1074,13 +1076,10 @@ enum {
             [listener ignore];
             // Instead of opening it in the WebView, we want to open
             // the URL in the user's default browser
-            [[NSWorkspace sharedWorkspace] openURL: [actionInformation objectForKey:WebActionOriginalURLKey]];
+            [[NSWorkspace sharedWorkspace] openURL: actionInformation[WebActionOriginalURLKey]];
         }
     }
 }
-@end
-
-@implementation XJHistoryWindowController (PrivateAPI)
 
 // Information sheet
 - (void)showEncodingErrorSheetForDate: (NSCalendarDate *)date
@@ -1094,7 +1093,7 @@ enum {
                               @selector(sheetDidEnd:returnCode:contextInfo:),
                               @selector(sheetDidDismiss:returnCode:contextInfo:),
                               @"textEncoding",
-                              [NSString stringWithFormat: @"There is a problem with your text encoding in an entry on %@.  Please visit your LiveJournal information page and set the \"Auto Convert Older Entries From\" setting appropriately.", [date descriptionWithLocale: nil]]);
+                              @"There is a problem with your text encoding in an entry on %@.  Please visit your LiveJournal information page and set the \"Auto Convert Older Entries From\" setting appropriately.", [date descriptionWithLocale: nil]);
 }
 
 - (void)showGenericErrorSheet: (NSString *)message
@@ -1108,7 +1107,7 @@ enum {
                               @selector(sheetDidEnd:returnCode:contextInfo:),
                               @selector(sheetDidDismiss:returnCode:contextInfo:),
                               @"textEncoding",
-                              message);
+                              @"%@", message);
 }
 
 - (BOOL)columnZeroSelectionIsYear
@@ -1116,7 +1115,7 @@ enum {
     /* Note that calling this when there is *no* first column selection 
      will return NO
     */
-    int firstColumnSelection = [browser selectedRowInColumn: 0];
+    NSInteger firstColumnSelection = [browser selectedRowInColumn: 0];
     return firstColumnSelection < [cal numberOfYears];
 }
 
@@ -1129,14 +1128,14 @@ enum {
         return XJHistoryDaySelected;
 
     if([browser selectedRowInColumn: 1] != -1) {
-        int firstColumnSelection = [browser selectedRowInColumn: 0];
+        NSInteger firstColumnSelection = [browser selectedRowInColumn: 0];
             if(firstColumnSelection < [cal numberOfYears])
                 return XJHistoryMonthSelected;
             else
                 return XJHistorySearchResultSelected;
     }
 
-    int firstColumnSelection = [browser selectedRowInColumn: 0];
+    NSInteger firstColumnSelection = [browser selectedRowInColumn: 0];
     if(firstColumnSelection != -1) {
         if(firstColumnSelection < [cal numberOfYears])
             return XJHistoryYearSelected;
@@ -1149,25 +1148,25 @@ enum {
 
 - (NSString *)selectedSearchString
 {
-    int base = [browser selectedRowInColumn: 0] - [cal numberOfYears];
+    NSInteger base = [browser selectedRowInColumn: 0] - [cal numberOfYears];
     NSAssert(base >= 0, @"Error in selectedSearchString - base < 0");
-    return [[searchCache allKeys] objectAtIndex: base];
+    return [searchCache allKeys][base];
 }
 
 - (NSArray *)selectedSearchResultRoot
 {
-    return [searchCache objectForKey: [self selectedSearchString]];
+    return searchCache[[self selectedSearchString]];
 }
 
 - (LJEntry *)selectedSearchResult
 {
-    return [[self selectedSearchResultRoot] objectAtIndex: [browser selectedRowInColumn: 1]];
+    return [self selectedSearchResultRoot][[browser selectedRowInColumn: 1]];
 }
 
 - (void)editEntry: (LJEntry *)entryToEdit
 {
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-    id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
+    XJDocument *doc = [docController openUntitledDocumentAndDisplay:NO error:NULL];
     [doc setEntry: entryToEdit];
     [doc showWindows];
 }
@@ -1196,7 +1195,7 @@ enum {
 
 - (XJYear *)selectedYear
 {
-    int firstColumnSelection = [browser selectedRowInColumn: 0];
+    NSInteger firstColumnSelection = [browser selectedRowInColumn: 0];
     XJYear *year = [cal yearAtIndex: firstColumnSelection];
     return year;
 }
@@ -1250,10 +1249,7 @@ enum {
 
 - (NSString *)zeroizedString:(int)number
 {
-    if(number < 10)
-        return [NSString stringWithFormat: @"0%d", number];
-    else
-        return [NSString stringWithFormat: @"%d", number];
+    return [NSString stringWithFormat: @"%02d", number];
 }
 // ----------------------------------------------------------------------------------------
 // Toolbar delegate
@@ -1263,10 +1259,10 @@ enum {
     NSToolbarItem *item;
 
     if(!toolbarItemCache) {
-        toolbarItemCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
+        toolbarItemCache = [NSMutableDictionary dictionaryWithCapacity: 5];
     }
 
-    item = [toolbarItemCache objectForKey: itemIdentifier];
+    item = toolbarItemCache[itemIdentifier];
     if(!item) {
         item = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier];
 
@@ -1276,7 +1272,7 @@ enum {
             [item setTarget: self];
             [item setAction: @selector(openSelectionInBrowser:)];
             [item setToolTip: NSLocalizedString(@"Open Selected Item in Browser", @"")];
-            [item setImage: [NSImage imageNamed: @"Internet"]];
+            [item setImage: [NSImage imageNamed: NSImageNameNetwork]];
         }
         else if([itemIdentifier isEqualToString: kHistoryDeleteItemIdentifier]) {
             [item setLabel: NSLocalizedString(@"Delete", @"")];
@@ -1321,35 +1317,32 @@ enum {
             [item setImage: [NSImage imageNamed: @"compose"]];
         }
         
-        [toolbarItemCache setObject: item forKey:itemIdentifier];
-        [item release];
+        toolbarItemCache[itemIdentifier] = item;
     }
     return item;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects: kHistoryOpenItemIdentifier,
+    return @[kHistoryOpenItemIdentifier,
         kHistoryEditItemIdentifier,
         kHistoryDeleteItemIdentifier,
         kHistoryRefreshItemIdentifier,
         kHistoryDownloadItemIdentifier,
         kHistorySearchItemIdentifier,
         NSToolbarFlexibleSpaceItemIdentifier,
-        NSToolbarSpaceItemIdentifier,
-        NSToolbarSeparatorItemIdentifier, nil];
+        NSToolbarSpaceItemIdentifier];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kHistoryOpenItemIdentifier,
+    return @[kHistoryOpenItemIdentifier,
         kHistoryEditItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
         kHistoryDeleteItemIdentifier,
         kHistoryRefreshItemIdentifier,
         kHistoryDownloadItemIdentifier,
         NSToolbarFlexibleSpaceItemIdentifier,
-        kHistorySearchItemIdentifier, nil];
+        kHistorySearchItemIdentifier];
 }
 @end

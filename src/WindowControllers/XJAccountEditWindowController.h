@@ -3,7 +3,7 @@
 #import <Cocoa/Cocoa.h>
 #import <LJKit/LJKit.h>
 
-@interface XJAccountEditWindowController : NSWindowController
+@interface XJAccountEditWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 {
     IBOutlet id newAccountSheet;
     IBOutlet id passwordField;

@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface XJMarkupRemovalVT : NSValueTransformer {
-
-}
+@interface XJMarkupRemovalVT : NSValueTransformer
 
 @end

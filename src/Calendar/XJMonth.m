@@ -25,21 +25,23 @@
 #define kDayListKey @"Days"
 
 @implementation XJMonth
-- (id)initWithName:(int)theName inYear:(XJYear *)theYear
+@synthesize year;
+@synthesize monthName = name;
+
+- (instancetype)initWithName:(int)theName inYear:(XJYear *)theYear
 {
-    if(self == [super init]) {
-        days = [[NSMutableArray arrayWithCapacity: 31] retain];
+    if(self = [super init]) {
+        days = [[NSMutableArray alloc] initWithCapacity: 31];
         name = theName;
         year = theYear;
-        return self;
     }
-    return nil;
+    return self;
 }
 
 - (id)propertyListRepresentation
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject: [NSNumber numberWithInt: name] forKey: kNameKey];
+    dictionary[kNameKey] = @(name);
 
     NSMutableArray *array = [NSMutableArray array];
     NSEnumerator *enumerator = [days objectEnumerator];
@@ -48,16 +50,16 @@
     while(day = [enumerator nextObject])
         [array addObject: [day propertyListRepresentation]];
 
-    [dictionary setObject: array forKey: kDayListKey];
+    dictionary[kDayListKey] = array;
     return dictionary;
 }
 
 - (void)configureFromPropertyListRepresentation: (id) plistType
 {
-    name = [[plistType objectForKey: kNameKey] intValue];
-    days = [[NSMutableArray arrayWithCapacity: 31] retain];
+    name = [plistType[kNameKey] intValue];
+    days = [[NSMutableArray alloc] initWithCapacity: 31];
     
-    NSArray *plistDays = [plistType objectForKey: kDayListKey];
+    NSArray *plistDays = plistType[kDayListKey];
     NSEnumerator *enumerator = [plistDays objectEnumerator];
     id plistDay;
     while(plistDay = [enumerator nextObject]) {
@@ -65,14 +67,11 @@
         [day configureFromPropertyListRepresentation: plistDay];
         [day setMonth: self];
         [days addObject: day];
-        [day release];
     }
         
 }
 
-- (int)monthName {return name;}
-
-- (int)numberOfEntriesInMonth
+- (NSInteger)numberOfEntriesInMonth
 {
     int total = 0;
     NSEnumerator *enumerator = [days objectEnumerator];
@@ -85,16 +84,14 @@
 
 - (NSArray *)entriesContainingString: (NSString *)target
 {
-    return [self entriesContainingString: target searchType: 3];
+    return [self entriesContainingString: target searchType: XJSearchEntirePost];
 }
 
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(int) type
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type
 {
-    NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [days objectEnumerator];
-    XJDay *day;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    while(day = [enumerator nextObject]) {
+    for (XJDay *day in days) {
         [array addObjectsFromArray: [day entriesContainingString: target searchType: type]];
     }
 
@@ -108,30 +105,22 @@
 
 - (NSString *)displayName
 {
-    NSArray *months = [NSArray arrayWithObjects: JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC, nil];
-    return [months objectAtIndex: name-1];
+    NSArray *months = @[JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC];
+    return months[name-1];
 }
 
 + (int)numberForMonth: (NSString *)displayName
 {
-    NSArray *months = [NSArray arrayWithObjects: JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC, nil];
-    int i;
-    for(i=0; i < [months count] ; i++) {
-        if([[months objectAtIndex: i] isEqualToString: displayName]) {
+    NSArray *months = @[JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC];
+    for(int i=0; i < [months count] ; i++) {
+        if([months[i] isEqualToString: displayName]) {
             return i+1;
         }
     }
     return -1;
 }
 
-- (XJYear *)year{ return year; }
-
-- (void)setYear: (XJYear *)parentYear
-{
-    year = parentYear;
-}
-
-- (int)numberOfDays { return [days count]; }
+- (NSInteger)numberOfDays { return [days count]; }
 
 - (BOOL)containsDay: (int)dayNumber
 {
@@ -160,7 +149,6 @@
 {
     XJDay *theDay = [[XJDay alloc] initWithDayNumber: dName month: self andPostCount: 0];
     [days addObject: theDay];
-    [theDay release];
 
     [days sortUsingSelector: @selector(compare:)];
     
@@ -179,9 +167,9 @@
     return NSOrderedDescending;
 }
 
-- (XJDay *)dayAtIndex: (int) idx
+- (XJDay *)dayAtIndex: (NSInteger) idx
 {
-    return [days objectAtIndex: idx];
+    return days[idx];
 }
 
 - (NSArray *)entriesInMonth
@@ -201,15 +189,9 @@
 
 - (NSURL *)urlForMonthArchiveForAccount: (LJAccount *)acct {
 	NSString *base = [[year urlForYearArchiveForAccount: acct] absoluteString];
-	NSString *zeroizedName = [self zeroizedString: name];
+	NSString *zeroizedName = zeroizedString(name);
 	NSString *url = [NSString stringWithFormat: @"%@/%@", base, zeroizedName];
 	return [NSURL URLWithString: url];
 }
 
-- (NSString *)zeroizedString:(int)number {
-    if(number < 10)
-        return [NSString stringWithFormat: @"0%d", number];
-    else
-        return [NSString stringWithFormat: @"%d", number];
-}
 @end

@@ -10,6 +10,10 @@
 
 
 @implementation LJPollScaleQuestion
+@synthesize start;
+@synthesize end;
+@synthesize step;
+
 + (LJPollScaleQuestion *)scaleQuestionWithStart: (int)theStart end: (int)theEnd step:(int)theStep
 {
     LJPollScaleQuestion *scale = [[LJPollScaleQuestion alloc] init];
@@ -18,17 +22,8 @@
     [scale setEnd: theEnd];
     [scale setStep: theStep];
 
-    return [scale autorelease];
+    return scale;
 }
-
-- (int)start { return start; }
-- (void)setStart: (int)newValue { start = newValue; }
-
-- (int)end { return end; }
-- (void)setEnd: (int)newValue { end = newValue; }
-
-- (int)step { return step; }
-- (void)setStep: (int)newValue { step = newValue; }
 
 - (NSString *)htmlRepresentation
 {
@@ -39,20 +34,20 @@
 - (NSDictionary *) memento
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject: [[self question] copy] forKey: @"LJPollQuestion"];
-    [dictionary setObject: [NSNumber numberWithInt: [self start]] forKey: @"LJPollScaleStart"];
-    [dictionary setObject: [NSNumber numberWithInt: [self end]] forKey: @"LJPollScaleEnd"];
-    [dictionary setObject: [NSNumber numberWithInt: [self step]] forKey: @"LJPollScaleStep"];
+    dictionary[@"LJPollQuestion"] = [[self question] copy];
+    dictionary[@"LJPollScaleStart"] = @([self start]);
+    dictionary[@"LJPollScaleEnd"] = @([self end]);
+    dictionary[@"LJPollScaleStep"] = @([self step]);
 
     return dictionary;
 }
 
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
-    [self setQuestion: [memento objectForKey: @"LJPollQuestion"]];
-    [self setStart: [[memento objectForKey: @"LJPollScaleStart"] intValue]];
-    [self setEnd: [[memento objectForKey: @"LJPollScaleEnd"] intValue]];
-    [self setStep: [[memento objectForKey: @"LJPollScaleStep"] intValue]];
+    [self setQuestion: memento[ @"LJPollQuestion"]];
+    [self setStart: [memento[ @"LJPollScaleStart"] intValue]];
+    [self setEnd: [memento[ @"LJPollScaleEnd"] intValue]];
+    [self setStep: [memento[ @"LJPollScaleStep"] intValue]];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -61,9 +56,9 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeObject: [NSNumber numberWithInt: start] forKey:@"LJPollScaleStart"];
-        [encoder encodeObject: [NSNumber numberWithInt: end] forKey:@"LJPollScaleEnd"];
-        [encoder encodeObject: [NSNumber numberWithInt: step] forKey:@"LJPollScaleStep"];
+        [encoder encodeInt: start forKey:@"LJPollScaleStart"];
+        [encoder encodeInt: end forKey:@"LJPollScaleEnd"];
+        [encoder encodeInt: step forKey:@"LJPollScaleStep"];
 
         [encoder encodeObject: [self question] forKey:@"LJPollQuestion"];
     } else {
@@ -71,15 +66,15 @@
     }
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
     if (self) {
         [self setQuestion: [decoder decodeObjectForKey:@"LJPollQuestion"]];
         
-        start = [[decoder decodeObjectForKey: @"LJPollScaleStart"] intValue];
-        end = [[decoder decodeObjectForKey: @"LJPollScaleEnd"] intValue];
-        step = [[decoder decodeObjectForKey: @"LJPollScaleStep"] intValue];
+        start = [decoder decodeIntForKey: @"LJPollScaleStart"];
+        end = [decoder decodeIntForKey: @"LJPollScaleEnd"];
+        step = [decoder decodeIntForKey: @"LJPollScaleStep"];
     }
     return self;
 }

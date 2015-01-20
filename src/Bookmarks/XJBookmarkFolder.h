@@ -13,12 +13,12 @@
     NSMutableArray *children;
 }
 
-+ (XJBookmarkFolder *)folderWithTitle: (NSString *)aTitle;
-- (id)initWithTitle:(NSString *)aTitle;
++ (instancetype)folderWithTitle: (NSString *)aTitle;
+- (instancetype)initWithTitle:(NSString *)aTitle NS_DESIGNATED_INITIALIZER;
 
-- (BOOL)hasChildren;
-- (int)numberOfChildren;
-- (XJBookmarkRoot *)childAtIndex:(int)idx;
+@property (readonly) BOOL hasChildren;
+@property (readonly) NSInteger numberOfChildren;
+- (XJBookmarkRoot *)childAtIndex:(NSInteger)idx;
 
 - (void)addChild: (XJBookmarkRoot *)newChild;  // Retains the child
 @end

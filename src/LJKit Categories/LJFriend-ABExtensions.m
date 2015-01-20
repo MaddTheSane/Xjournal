@@ -18,11 +18,7 @@
     // Add this username as a key to the given record
     ABAddressBook *book = [ABAddressBook sharedAddressBook];
 
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-        [NSNumber numberWithInt:kABStringProperty],
-        kLJUsernameKey,
-        nil,
-        nil];
+    NSDictionary *dict =  @{kLJUsernameKey: @(kABStringProperty)};
 
     [ABPerson addPropertiesAndTypes: dict];
 
@@ -49,7 +45,7 @@
     
     NSArray *foundRecords = [book recordsMatchingSearchElement: sElement];
     if([foundRecords count])
-        return [foundRecords objectAtIndex: 0];
+        return foundRecords[0];
     else
         return nil;
 }
@@ -60,7 +56,7 @@
     if([rec isKindOfClass: [ABPerson class]]) {
         NSData *imageData = [(ABPerson *)rec imageData];
         NSImage *img = [[NSImage alloc] initWithData: imageData];
-        return [img autorelease]; // May still be nil
+        return img; // May still be nil
     }
     return nil;
 }
@@ -122,7 +118,7 @@
 
     // Add the LJ Username prop
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-        [NSNumber numberWithInt:kABStringProperty],
+        @(kABStringProperty),
         kLJUsernameKey,
         nil,
         nil];
@@ -138,7 +134,6 @@
     ABMutableMultiValue *emailList = [[ABMutableMultiValue alloc] init];
     [emailList addValue: [self email] withLabel: kLJEmailLabel];
     [person setValue: emailList forProperty: kABEmailProperty];
-    [emailList release];
         
     [[ABAddressBook sharedAddressBook] addRecord: person];
     [[ABAddressBook sharedAddressBook] save];
@@ -148,7 +143,6 @@
         NSString *urlString = [NSString stringWithFormat:@"addressbook://%@?edit", uniqueId];
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
     }
-    [person release];
 }
 
 - (NSString *)email
@@ -174,11 +168,11 @@
     if(![self birthDate]) return NO;
     NSCalendarDate *today = [NSCalendarDate calendarDate];
 
-    int thisMonth = [today monthOfYear];
-    int thisDay = [today dayOfMonth];
+    NSInteger thisMonth = [today monthOfYear];
+    NSInteger thisDay = [today dayOfMonth];
 
-    int bDayMonth = [[self birthDate] monthOfYear];
-    int bDayDay = [[self birthDate] dayOfMonth];
+    NSInteger bDayMonth = [[self birthDate] monthOfYear];
+    NSInteger bDayDay = [[self birthDate] dayOfMonth];
     return bDayDay == thisDay && bDayMonth == thisMonth;
 }
 
@@ -187,8 +181,8 @@
     if(![self birthDate]) return NO;
     NSCalendarDate *today = [NSCalendarDate calendarDate];
 
-    int thisMonth = [today monthOfYear];
-    int bDayMonth = [[self birthDate] monthOfYear];
+    NSInteger thisMonth = [today monthOfYear];
+    NSInteger bDayMonth = [[self birthDate] monthOfYear];
 
     return bDayMonth == thisMonth;
 }
@@ -198,7 +192,7 @@
     NSCalendarDate *birthday = [self birthDate];
     if(!birthday) return; // <-- bail out
     
-    NSString *scriptBody = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_event_ical" ofType:@"txt"]];
+    NSString *scriptBody = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_event_ical" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL];
     NSMutableString *headerText = [NSMutableString string];
     NSString *eventTitle = [NSString stringWithFormat: @"%@'s birthday", [self username]];
     
@@ -206,20 +200,19 @@
     
     [headerText appendString:[NSString stringWithFormat:@"set eventTitle to \"%@\"\r", eventTitle]];
      
-    [headerText appendString:[NSString stringWithFormat:@"set eventDay to %d\r", [birthday dayOfMonth]]];
+    [headerText appendString:[NSString stringWithFormat:@"set eventDay to %ld\r", (long)[birthday dayOfMonth]]];
     [headerText appendString:[NSString stringWithFormat:@"set eventMonth to %@\r", [birthday descriptionWithCalendarFormat:@"%B"]]];
-    [headerText appendString:[NSString stringWithFormat:@"set eventMonthNum to %d\r", [birthday monthOfYear]]];
+    [headerText appendString:[NSString stringWithFormat:@"set eventMonthNum to %ld\r", (long)[birthday monthOfYear]]];
     
     // We now create birthdays starting in the current year, to avoid lots of events in the past.
     // If you prefer the old behaviour, change "[NSCalendarDate calendarDate]" to "birthday" in the next line.
-    [headerText appendString:[NSString stringWithFormat:@"set eventYear to %d\r", [[NSCalendarDate calendarDate] yearOfCommonEra]]];
+    [headerText appendString:[NSString stringWithFormat:@"set eventYear to %ld\r", (long)[[NSCalendarDate calendarDate] yearOfCommonEra]]];
     
     [headerText appendString:scriptBody];
     
     NSAppleScript *script = [[NSAppleScript alloc] initWithSource:headerText];
-    NSDictionary *errorInfo = [NSDictionary dictionary];
+    NSDictionary *errorInfo = @{};
     NSAppleEventDescriptor *descriptor = [script executeAndReturnError:&errorInfo];
-    [script release];
     if (descriptor == nil) {
         NSBeep();
         return;

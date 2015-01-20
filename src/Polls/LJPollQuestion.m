@@ -10,18 +10,7 @@
 
 
 @implementation LJPollQuestion
-
-- (NSString *)question
-{
-    return theQuestion;
-}
-
-- (void)setQuestion: (NSString *)question
-{
-    [question retain];
-    [theQuestion release];
-    theQuestion = question;
-}
+@synthesize question = theQuestion;
 
 - (NSString *)htmlRepresentation
 {

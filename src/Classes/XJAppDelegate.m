@@ -59,8 +59,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defs];
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defs];
 		
-	[NSValueTransformer setValueTransformer: [[[XJMarkupRemovalVT alloc] init] autorelease] forName: @"XJMarkupRemoval"];
-	[NSValueTransformer setValueTransformer: [[[XJFontNameToDisplayVT alloc] init] autorelease] forName: @"XJFontNameToDisplay"];
+	[NSValueTransformer setValueTransformer: [[XJMarkupRemovalVT alloc] init] forName: @"XJMarkupRemoval"];
+	[NSValueTransformer setValueTransformer: [[XJFontNameToDisplayVT alloc] init] forName: @"XJFontNameToDisplay"];
 }
 
 - (void)awakeFromNib
@@ -144,9 +144,9 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
                 NSString *serverMsg = [[acctManager loggedInAccount] loginMessage];
                 if(serverMsg != nil && 
 				   ![[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJSuppressLoginMessage"] boolValue])
-                    NSRunAlertPanel(LJ_LOGIN_MESSAGE, serverMsg, @"OK", nil, nil);
+                    NSRunAlertPanel(LJ_LOGIN_MESSAGE, @"%@", @"OK", nil, nil, serverMsg);
             NS_HANDLER
-                NSRunAlertPanel([localException name], [localException reason], @"OK", nil, nil);
+                NSRunAlertPanel([localException name], @"%@", @"OK", nil, nil, [localException reason]);
             NS_ENDHANDLER
         }
     }
@@ -185,10 +185,10 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	[newPost setContent: postBody];
 	
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-    id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
+	XJDocument *doc = [docController openUntitledDocumentAndDisplay:NO error:nil];
+    //id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
     [doc setEntry: newPost];
     [newPost setJournal: currentJournal];
-    [newPost release];
     [doc showWindows];
 	
     [NSApp activateIgnoringOtherApps: YES];
@@ -198,7 +198,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 #pragma mark Handling Checkfriends Error
 - (void)checkFriendsError: (NSNotification *)note
 {
-    NSException *exc = [[note userInfo] objectForKey: @"LJException"];
+    NSException *exc = [note userInfo][@"LJException"];
     NSLog(@"Check friends error: %@ - %@", [exc name], [exc reason]);
 }
 
@@ -221,15 +221,12 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     NSMenuItem *item, *subItem;
 
     // Release the dock menu if we have one
-    if(dynDockMenu)
-        [dynDockMenu release];
 
     dynDockMenu = [[NSMenu alloc] initWithTitle: @""];
 
     // Create the New Entry item at the top level
     item = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"Compose New Entry", @"") action: @selector(newDocument:) keyEquivalent: @""];
     [dynDockMenu addItem: item];
-    [item release];
 
     // Create the top-level Friend page item....
     item = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"Open Friends Page", @"") action: @selector(openFriendsPage:) keyEquivalent: @""];
@@ -240,28 +237,23 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     // And an item to atach it to
     subItem = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"All Friends", @"") action: @selector(openFriendsPage:) keyEquivalent: @""];
     [subMenu addItem: subItem];
-    [subItem release];
 
     if([[XJAccountManager defaultManager] loggedInAccount]) {
         // Only add friends if we have them.....
         [subMenu addItem: [NSMenuItem separatorItem]];
     
         // Now, add an item for each group
-        NSEnumerator *enu = [[[[XJAccountManager defaultManager] defaultAccount] groupArray] objectEnumerator];
-        LJGroup *grp;
-        while(grp = [enu nextObject]) {
+        NSArray *groupArray = [[[XJAccountManager defaultManager] defaultAccount] groupArray];
+        for (LJGroup *grp in groupArray) {
             subItem = [[NSMenuItem alloc] initWithTitle: [grp name] action: @selector(openFriendGroup:) keyEquivalent: @""];
             [subItem setRepresentedObject: grp];
             [subMenu addItem: subItem];
-            [subItem release];
         }
     }
 
     // Clean up
     [item setSubmenu: subMenu];
-    [subMenu release];
     [dynDockMenu addItem: item];
-    [item release];
 }
 
 /* Called whenever the Dock needs the app menu */
@@ -270,41 +262,36 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 #pragma mark -
 #pragma mark Dock Icon Handling
 - (void)showDockBadge {
-	NSImage *appIcon = [NSImage imageNamed: @"NSApplicationIcon"];
+	NSImage *appIcon = [NSImage imageNamed: NSImageNameApplicationIcon];
 	NSImage *starburst = [NSImage imageNamed: @"starburst"];
 	NSImage *bufferImage = [[NSImage alloc] initWithSize:[appIcon size]];
 
 	NSPoint starburstPoint = NSMakePoint([bufferImage size].height-[starburst size].height,
 										 [bufferImage size].width-[starburst size].width);
 	
-	[bufferImage setFlipped: YES];
-	[bufferImage lockFocus];
-	[appIcon compositeToPoint:NSMakePoint(0, [bufferImage size].height) operation:NSCompositeSourceOver];
-	[starburst compositeToPoint: starburstPoint operation:NSCompositeSourceOver];
+	[bufferImage lockFocusFlipped:YES];
+	[appIcon drawAtPoint:NSMakePoint(0, [bufferImage size].height) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	[starburst drawAtPoint:starburstPoint fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[bufferImage unlockFocus];
 	
 	[NSApp setApplicationIconImage: bufferImage];
-	[bufferImage autorelease];
 	
 	[self setShowingDockBadge: YES];
 }
 
 - (void)hideDockBadge {
-	[NSApp setApplicationIconImage: [NSImage imageNamed: @"NSApplicationIcon"]];	
+	[NSApp setApplicationIconImage: [NSImage imageNamed: NSImageNameApplicationIcon]];
 	[self setShowingDockBadge: NO];
 }
 
-- (BOOL)showingDockBadge { return showingDockBadge; }
-- (void)setShowingDockBadge:(BOOL)flag { showingDockBadge = flag; }
+@synthesize showingDockBadge;
 
 #pragma mark -
 #pragma mark Accounts Menu Handling
 - (void) buildAccountsMenu: (NSNotification *)note
 {
 	if([accountItem hasSubmenu]) {
-		NSMenu *oldSub = [[accountItem submenu] retain];
 		[accountItem setSubmenu: nil];
-		[oldSub release];
 	}
 	
 	NSMenu *newSubmenu = [[NSMenu alloc] init];
@@ -313,8 +300,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	
 	int i;
 	for(i=0; i < [dictionaryKeys count]; i++) {
-		NSString *key = [dictionaryKeys objectAtIndex: i];
-		LJAccount *acc = [accounts objectForKey: key];
+		NSString *key = dictionaryKeys[i];
+		LJAccount *acc = accounts[key];
 		
 		NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: [acc username] action: @selector(switchAccount:) keyEquivalent: @""];
         [item setTarget: nil];
@@ -331,7 +318,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
                 [item setState: NSOnState];
         }
 		[newSubmenu addItem: item];
-		[item release];
 	}
 
     [newSubmenu addItem: [NSMenuItem separatorItem]];
@@ -346,10 +332,8 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [item setTarget: accountController];
 
     [newSubmenu addItem: item];
-    [item release];
 	
 	[accountItem setSubmenu: newSubmenu];
-	[newSubmenu release];
 }
 
 #pragma mark -
@@ -422,7 +406,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	LJJournal *currentJournal = [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal];
 	LJEntry *lastEntry = [currentJournal getMostRecentEntry];
 	NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-    id doc = [docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
+	XJDocument *doc = [docController openUntitledDocumentAndDisplay: NO error: NULL];
     [doc setEntry: lastEntry];
     [doc showWindows];
 }
@@ -472,7 +456,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 		NSString *path = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsAlertSound"];
 		NSSound *snd = [[NSSound alloc] initWithContentsOfFile: path byReference: NO];
         if(snd) [snd play];
-        [snd release];
     }
 
     // If they want a dock icon, show it.
@@ -483,7 +466,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     // If they want a dialog, show that too.
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldShowDialog"] boolValue]) {
         friendsDialogIsShowing = YES;
-        int result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
+        NSInteger result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
         friendsDialogIsShowing = NO;
         if(result == NSAlertAlternateReturn) {
             // alt button is "Open Friends Page"
@@ -556,11 +539,11 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     BOOL isDir;
     NSFileManager *man = [NSFileManager defaultManager];
     if(![man fileExistsAtPath: GLOBAL_APPSUPPORT isDirectory: &isDir]) {
-        [man createDirectoryAtPath: GLOBAL_APPSUPPORT attributes: nil];
+		[man createDirectoryAtPath: GLOBAL_APPSUPPORT withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 
     if(![man fileExistsAtPath: LOCAL_APPSUPPORT isDirectory: &isDir]) {
-        [man createDirectoryAtPath: LOCAL_APPSUPPORT attributes: nil];
+		[man createDirectoryAtPath: LOCAL_APPSUPPORT withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }
 
@@ -571,7 +554,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 - (IBAction)logIn:(id)sender {
     XJAccountManager *man = [XJAccountManager defaultManager];
     if(![man defaultAccount]) {
-        int result = NSRunCriticalAlertPanel(NSLocalizedString(@"No accounts defined", @""),
+        NSInteger result = NSRunCriticalAlertPanel(NSLocalizedString(@"No accounts defined", @""),
                                              NSLocalizedString(@"Please define at least one account before attempting to log in", @""),
                                              NSLocalizedString(@"OK", @""),
                                              NSLocalizedString(@"Open Accounts Window", @""),
@@ -595,9 +578,9 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 /*
  * Validation for some menu items, mostly to disable stuff when we're not logged in
  */
-- (BOOL)validateMenuItem:(id <NSMenuItem>)item
+- (BOOL)validateMenuItem:(NSMenuItem*)item
 {
-    int tag = [item tag];
+    NSInteger tag = [item tag];
     if(tag == kHistoryMenuTag) {
         // Must be logged in to use this menu items.
         //return [[[XJAccountManager defaultManager] defaultAccount] isLoggedIn];
@@ -670,10 +653,10 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     [entry setContent:pboardString];
     
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-    XJDocument *doc = (XJDocument *)[docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
+	XJDocument *doc = [docController openUntitledDocumentAndDisplay:NO error:NULL];
+    //XJDocument *doc = (XJDocument *)[docController openUntitledDocumentOfType: @"Xjournal Entry" display: NO];
     [doc setEntry: entry];
     [doc showWindows];
     [doc updateChangeCount:NSChangeDone];
-    [entry release];
 }
 @end

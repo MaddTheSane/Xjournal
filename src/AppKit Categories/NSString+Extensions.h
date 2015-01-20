@@ -1,19 +1,19 @@
 #import <Cocoa/Cocoa.h>
 
 @interface NSString (LJCutConversions)
-- (NSString *)translateNewLines;
-- (NSString *)translateLJUser;
-- (NSString *)translateLJComm;
-- (NSString *)translateLJCutOpenTagWithText;
-- (NSString *)translateBasicLJCutOpenTag;
-- (NSString *)translateLJCutCloseTag;
-- (NSString *)translateLJPoll;
+@property (readonly, copy) NSString *translateNewLines;
+@property (readonly, copy) NSString *translateLJUser;
+@property (readonly, copy) NSString *translateLJComm;
+@property (readonly, copy) NSString *translateLJCutOpenTagWithText;
+@property (readonly, copy) NSString *translateBasicLJCutOpenTag;
+@property (readonly, copy) NSString *translateLJCutCloseTag;
+@property (readonly, copy) NSString *translateLJPoll;
 - (NSString *)translateLJPhonePostWithItemURL:(NSString *)url userName: (NSString *)user;
-- (NSString *)translateNewLinesOutsideTables;
+@property (readonly, copy) NSString *translateNewLinesOutsideTables;
 @end
 
 // Moved from NSString+extras.h from Ranchero.com's RSS class
 @interface NSString (extras)
-- (NSString *) trimWhiteSpace;
+@property (readonly, copy) NSString *trimWhiteSpace;
 + (BOOL) stringIsEmpty: (NSString *) s;
 @end

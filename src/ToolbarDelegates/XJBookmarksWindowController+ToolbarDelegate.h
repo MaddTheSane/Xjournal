@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "XJBookmarksWindowController.h"
 
-@interface XJBookmarksWindowController (NSToolbarDelegate)
+@interface XJBookmarksWindowController (NSToolbarDelegate) <NSToolbarDelegate>
 
 @end

@@ -32,6 +32,11 @@
 #define kCurrentFileFormatVersionKey @"EntryFileVersion"
 
 @implementation LJEntry (XJExtensions)
+- (BOOL)writePropertyListToURL:(NSURL *)url atomically:(BOOL)flag
+{
+    return [[self propertyListRepresentation] writeToURL:url atomically:flag];
+}
+
 - (BOOL)writePropertyListToFile:(NSString *)path atomically:(BOOL)flag
 {
     return [[self propertyListRepresentation] writeToFile: path atomically: flag];
@@ -44,91 +49,85 @@
 	
     // Encode subject
 	if([self subject])
-		[dictionary setObject: [self subject] forKey: kSubjectKey];
+		dictionary[kSubjectKey] = [self subject];
 	
     // Encode Content
 	if([self content])
-		[dictionary setObject: [self content] forKey: kContentKey];
+		dictionary[kContentKey] = [self content];
 	
 	
-    [dictionary setObject: [self date] forKey: kDateKey];
+    dictionary[kDateKey] = [self date];
 	
     // Encode journal name
 	if([[self journal] name])
-		[dictionary setObject: [[self journal] name] forKey: kJournalNameKey];
+		dictionary[kJournalNameKey] = [[self journal] name];
 	
     // Encode security mode
-    if([self securityMode] != LJPublicSecurityMode) {
-        [dictionary setObject: [NSNumber numberWithInt: [self securityMode]] 
-					   forKey: kSecurityModeKey];
+    if([self securityMode] != LJSecurityModePublic) {
+        dictionary[kSecurityModeKey] = @([self securityMode]);
 		
-        [dictionary setObject: [NSNumber numberWithInt: [self groupsAllowedAccessMask]]
-					   forKey: kGroupAllowedMaskKey];
+        dictionary[kGroupAllowedMaskKey] = @([self groupsAllowedAccessMask]);
     }
 	
 	
     if(_properties)
-        [dictionary setObject: _properties forKey: @"props"];
+        dictionary[@"props"] = _properties;
     if(_customInfo)
-        [dictionary setObject: _customInfo forKey: @"info"];
+        dictionary[@"info"] = _customInfo;
 	
     // Encode poster user name
 	if(_posterUsername)
-		[dictionary setObject: _posterUsername forKey: kPosterUsernameKey];
+		dictionary[kPosterUsernameKey] = _posterUsername;
 	
     // Encode item ID
-    [dictionary setObject: [NSNumber numberWithInt: _itemID]
-				   forKey: kItemIDKey];
-    [dictionary setObject: [NSNumber numberWithInt: _aNum]
-				   forKey: kANumKey];
+    dictionary[kItemIDKey] = @(_itemID);
+    dictionary[kANumKey] = @(_aNum);
     
     // Set the current version of the file
-    [dictionary setObject: [NSNumber numberWithInt: kCurrentFileFormatVersion]
-				   forKey: kCurrentFileFormatVersionKey];
+    dictionary[kCurrentFileFormatVersionKey] = @kCurrentFileFormatVersion;
 	
     return dictionary;
 }
 
 - (void)configureWithContentsOfFile: (NSString *)file
 {
-    NSMutableDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: file];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: file];
     [self configureFromPropertyListRepresentation: dict];
 }
 
 - (void)configureFromPropertyListRepresentation:(id)dict
 {
-    [self setSubject: [dict objectForKey: kSubjectKey] ? [dict objectForKey: kSubjectKey] : @""];
-	[self setContent: [dict objectForKey: kContentKey] ? [dict objectForKey: kContentKey] : @""];
+    [self setSubject: dict[kSubjectKey] ? dict[kSubjectKey] : @""];
+	[self setContent: dict[kContentKey] ? dict[kContentKey] : @""];
 	
-    _properties = [[self makeMutableDictionary: [dict objectForKey: @"props"]] retain];
-    _customInfo = [[dict objectForKey: @"info"] retain];
+    _properties = [self makeMutableDictionary: dict[@"props"]];
+    _customInfo = dict[@"info"];
     
     //if([self optionBackdated])
-    [self setDate: [dict objectForKey: kDateKey]];
+    [self setDate: dict[kDateKey]];
 	
-    LJJournal *journal = [[[XJAccountManager defaultManager] loggedInAccount] journalNamed: [dict objectForKey: kJournalNameKey]];
+    LJJournal *journal = [[[XJAccountManager defaultManager] loggedInAccount] journalNamed: dict[kJournalNameKey]];
     if(journal)
         [self setJournal: journal];
     else
         [self setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
 	
-    [self setSecurityMode: [[dict objectForKey: kSecurityModeKey] intValue]];
-    if([self securityMode] != LJPublicSecurityMode)
-        [self setGroupsAllowedAccessMask: [[dict objectForKey: kGroupAllowedMaskKey] intValue]];
+    [self setSecurityMode: [dict[kSecurityModeKey] intValue]];
+    if([self securityMode] != LJSecurityModePublic)
+        [self setGroupsAllowedAccessMask: [dict[kGroupAllowedMaskKey] intValue]];
 	
     // Decode poster user name
-    _posterUsername = [[dict objectForKey: kPosterUsernameKey] retain];
+    _posterUsername = dict[kPosterUsernameKey];
 	
     // Encode item ID
-    _itemID = [[dict objectForKey: kItemIDKey] intValue];
-    _aNum = [[dict objectForKey: kANumKey] intValue];
+    _itemID = [dict[kItemIDKey] intValue];
+    _aNum = [dict[kANumKey] intValue];
 }
 
 - (NSString *)metadataHTML
 {
 	
-    NSMutableString *meta = [[NSMutableString stringWithCapacity: 100] retain];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableString *meta = [[NSMutableString alloc] initWithCapacity: 100];
 	
     if([self subject]) {
         [meta appendString: [NSString stringWithFormat: @"<strong>Subject:</strong>&nbsp;%@<br>", [self subject]]];
@@ -160,8 +159,7 @@
 			break;
 	}
 	
-    [meta appendString: [NSString stringWithFormat: @" %@<br>",
-		[[self date] descriptionWithCalendarFormat:[NSString stringWithFormat:@"%@ %@", [defaults objectForKey: NSShortDateFormatString], [defaults objectForKey:NSTimeFormatString]] timeZone: nil locale: nil]]];
+	[meta appendFormat: @" %@<br>", [NSDateFormatter localizedStringFromDate: self.date dateStyle: NSDateFormatterShortStyle timeStyle: NSDateFormatterMediumStyle]];
 	
     if([self currentMoodName]) {
         [meta appendString: [NSString stringWithFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMoodName]]];
@@ -180,18 +178,18 @@
 	}
 
     [meta appendString: @"<br>"];
-	return [meta autorelease];
+	return meta;
 }
 
 - (NSMutableDictionary *) makeMutableDictionary: (NSDictionary *)input
 {
-	NSMutableDictionary *muta = [[NSMutableDictionary dictionaryWithCapacity:[input count]] retain];
+	NSMutableDictionary *muta = [NSMutableDictionary dictionaryWithCapacity:[input count]];
 	NSEnumerator *enu = [[input allKeys] objectEnumerator];
 	id key;
 	while (key = [enu nextObject]) {
-		[muta setObject: [input objectForKey:key] forKey: key];
+		muta[key] = input[key];
 	}
 	
-	return [muta autorelease];
+	return muta;
 }
 @end

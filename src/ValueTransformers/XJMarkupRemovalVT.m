@@ -34,10 +34,10 @@
 		NSData *theData = [value dataUsingEncoding:encoding];
 		if (nil != theData)	// this returned nil once; not sure why; so handle this case.
 		{
-			NSDictionary *encodingDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:encoding] forKey:@"CharacterEncoding"];
+			NSDictionary *encodingDict = @{@"CharacterEncoding": @(encoding)};
 			attrString = [[NSAttributedString alloc] initWithHTML:theData documentAttributes:&encodingDict];
-			result = [[[attrString string] retain] autorelease];	// keep only this
-			[attrString release];	// don't do autorelease since this is so deep down.
+			result = [attrString string];	// keep only this
+				// don't do autorelease since this is so deep down.
 		}
 	}
 	return result;

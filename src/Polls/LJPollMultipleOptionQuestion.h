@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LJPollQuestion.h"
 
-enum {
+typedef NS_ENUM(NSInteger, LJPollMultipleOptionType) {
     LJPollRadioType = 1,
     LJPollCheckBoxType = 2,
     LJPollDropDownType = 3
@@ -20,44 +20,43 @@ enum {
 
  Call -setType: with one of the LJPoll*Type constants above to set the specific configuration.
  */
-@interface LJPollMultipleOptionQuestion : LJPollQuestion {
+@interface LJPollMultipleOptionQuestion : LJPollQuestion<NSCoding>  {
     NSMutableArray *answers;
-    int type;
 }
 
 // Returns an autoreleased multiple-option question of the given type with
 // a default question
-+ (LJPollMultipleOptionQuestion *)questionOfType: (int)questionType;
++ (LJPollMultipleOptionQuestion *)questionOfType: (LJPollMultipleOptionType)questionType;
 
 // Get and set the question type (with the LJPoll*Type constants)
-- (int)type;
-- (void)setType:(int)newType;
+@property LJPollMultipleOptionType type;
 
 // Returns the number of answers to this question
-- (int)numberOfAnswers;
+@property (readonly) NSInteger numberOfAnswers;
 
 // Adds an answer to this question
 - (void)addAnswer:(NSString *)answer;
 
 // Insert the question at the given index
-- (void)insertAnswer: (NSString *)answer atIndex:(int)idx;
+- (void)insertAnswer: (NSString *)answer atIndex:(NSInteger)idx;
 
 // Returns the answer at idx
-- (NSString *)answerAtIndex: (int)idx;
+- (NSString *)answerAtIndex: (NSInteger)idx;
 
 // Modifies the answer at idx to reflect the given string
-- (void)setAnswer:(NSString *)answer atIndex: (int)idx;
+- (void)setAnswer:(NSString *)answer atIndex: (NSInteger)idx;
 
 // Removes the answer at idx from the question
-- (void)deleteAnswerAtIndex: (int)idx;
+- (void)deleteAnswerAtIndex: (NSInteger)idx;
+
+- (void)deleteAnswersAtIndexes:(NSIndexSet*)idx;
 
 // Deletes all the answers
 - (void)deleteAllAnswers;
 
 // Moves the answer at oldIdx to newIdx
-- (void)moveAnswerAtIndex: (int) idx toIndex: (int) newIdx;
+- (void)moveAnswerAtIndex: (NSInteger) idx toIndex: (NSInteger) newIdx;
 
     // Memento
-- (NSDictionary *) memento;
-- (void) restoreFromMemento: (NSDictionary *)memento;
+@property (setter=restoreFromMemento:, copy) NSDictionary *memento;
 @end
