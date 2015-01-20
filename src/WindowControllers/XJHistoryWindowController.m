@@ -1326,4 +1326,5 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
         NSToolbarFlexibleSpaceItemIdentifier,
         kHistorySearchItemIdentifier];
 }
+
 @end
