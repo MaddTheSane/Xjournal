@@ -51,6 +51,8 @@ const AEKeyword NNWDataItemSourceHomeURL = 'hurl';
 const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 @implementation XJAppDelegate
+@synthesize showingDockBadge;
+
 + (void)initialize {
 	// Register user defaults
 	NSDictionary *defs = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"ApplicationDefaults" ofType: @"plist"]];
@@ -283,8 +285,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	[NSApp setApplicationIconImage: [NSImage imageNamed: NSImageNameApplicationIcon]];
 	[self setShowingDockBadge: NO];
 }
-
-@synthesize showingDockBadge;
 
 #pragma mark -
 #pragma mark Accounts Menu Handling

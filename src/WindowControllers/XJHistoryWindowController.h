@@ -52,8 +52,7 @@
     LJAccount *account;
 }
 
-@property (readonly, strong) LJAccount *account;
-- (void)setCurrentAccount: (LJAccount *)newAcct;
+@property (nonatomic, strong, setter=setCurrentAccount:) LJAccount *account;
 @property (readonly, copy) NSString *historyArchivePath;
 
 // Notification of user selection in the browser

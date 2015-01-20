@@ -189,8 +189,7 @@
 
 - (NSURL *)urlForMonthArchiveForAccount: (LJAccount *)acct {
 	NSString *base = [[year urlForYearArchiveForAccount: acct] absoluteString];
-	NSString *zeroizedName = zeroizedString(name);
-	NSString *url = [NSString stringWithFormat: @"%@/%@", base, zeroizedName];
+	NSString *url = [NSString stringWithFormat: @"%@/%02d", base, name];
 	return [NSURL URLWithString: url];
 }
 

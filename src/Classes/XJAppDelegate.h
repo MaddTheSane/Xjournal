@@ -42,15 +42,14 @@
     // The Accounts > top level menu item
     IBOutlet NSMenuItem *accountItem;
     
-    // Are we showing the dock badge?
-    BOOL showingDockBadge;
-    
     // Flag to tell us if the friends updated dialog is showing
     BOOL friendsDialogIsShowing;
 
     // cmd-delete menu outlets
     IBOutlet NSMenuItem *deleteFriend, *deleteFromGroup;
 }
+    // Are we showing the dock badge?
+@property BOOL showingDockBadge;
 
 // Target for AppMenu -> Login
 - (IBAction)logIn:(id)sender;
@@ -87,5 +86,4 @@
 // Dock Badge
 - (void)showDockBadge;
 - (void)hideDockBadge;
-@property BOOL showingDockBadge;
 @end

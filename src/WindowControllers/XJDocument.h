@@ -108,8 +108,6 @@ extern NSString *TXJshowMoodField;
     // ----------------------------------------------------------------------------------------
     // HTML Preview
     // ----------------------------------------------------------------------------------------
-    IBOutlet NSWindow *htmlPreviewWindow;
-    IBOutlet WebView *htmlPreview;
 	NSTimer *previewUpdateTimer;
     
     // ----------------------------------------------------------------------------------------
@@ -196,8 +194,8 @@ extern NSString *TXJshowMoodField;
 // ----------------------------------------------------------------------------------------
 // HTML Preview
 // ----------------------------------------------------------------------------------------
-@property (readonly, strong) NSWindow *htmlPreviewWindow;
-@property (readonly, strong) WebView *htmlPreview;
+@property (weak) IBOutlet NSWindow *htmlPreviewWindow;
+@property (weak) IBOutlet WebView *htmlPreview;
 - (void)updatePreviewWindow: (NSString *)textContent;
 - (IBAction)showPreviewWindow: (id)sender;
 - (void)closeHTMLPreviewWindow;

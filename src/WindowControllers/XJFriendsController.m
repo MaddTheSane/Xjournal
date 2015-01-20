@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
 };
 
 @implementation XJFriendsController
+@synthesize account;
 
 - (instancetype)init
 {
@@ -104,20 +105,15 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
     [self updateTabs];
     
     //Configure some WebView stuff
-    [recentEntriesView setPolicyDelegate: self];
-    [recentEntriesView setFrameLoadDelegate: self];
-    [userInfoView setPolicyDelegate: self];
-    [userInfoView setFrameLoadDelegate: self];
+    recentEntriesView.policyDelegate = self;
+    recentEntriesView.frameLoadDelegate = self;
+    userInfoView.policyDelegate = self;
+    userInfoView.frameLoadDelegate = self;
 }
 
 - (NSArray *)inspectedObjects
 {
     return @[[self selectedFriend]];
-}
-
-- (LJAccount *)account
-{ 
-    return account;
 }
 
 - (void)setCurrentAccount: (LJAccount *)acct
@@ -1012,7 +1008,7 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
 			[group addFriend: [acct friendNamed: object]];
     }
 
-    [[self window] setDocumentEdited: YES];
+    self.window.documentEdited = YES;
     return YES;
 }
 
@@ -1164,12 +1160,12 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
 
 - (IBAction)refreshFriends: (id)sender {
 	if([NetworkConfig destinationIsReachable:@"www.livejournal.com"]) {
-		NS_DURING
+		@try {
 			[[self account] downloadFriends];
 			[self refreshWindow:nil];
-		NS_HANDLER
+		} @catch (NSException *localException) {
 			NSLog(@"Friends Download Exception");
-		NS_ENDHANDLER
+        }
 	}
 }
 @end

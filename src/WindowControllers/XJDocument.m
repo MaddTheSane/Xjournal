@@ -36,6 +36,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 @synthesize friendArray;
 @synthesize joinedCommunityArray;
 @synthesize entry;
+@synthesize htmlPreview;
+@synthesize htmlPreviewWindow;
 
 #pragma mark -
 #pragma mark Initialisation
@@ -51,48 +53,49 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (instancetype)init
 {
     if (self = [super init]) {
-    
-    [self setEntry: [[LJEntry alloc] init]];
-	
-    if([[XJAccountManager defaultManager] loggedInAccount]) {
-        [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+        self.entry = [[LJEntry alloc] init];
+        
+        if ([[XJAccountManager defaultManager] loggedInAccount]) {
+            [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
+        }
+        
+        [[NSDocumentController sharedDocumentController] setAutosavingDelay:30];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(manualLoginSuccess:)
+                                                     name: LJAccountDidLoginNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertGlossaryText:)
+                                                     name: XJGlossaryInsertEvent
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(accountDeleted:)
+                                                     name: XJAccountRemovedNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleUIChange)
+                                                     name: XJUIChanged
+                                                   object:nil];
+        
+        [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                            selector: @selector(iTunesChangedTrack:)
+                                                                name: @"com.apple.iTunes.playerInfo"
+                                                              object: nil
+                                                  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
     }
-
-    [[NSDocumentController sharedDocumentController] setAutosavingDelay:30];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(manualLoginSuccess:)
-                                                 name: LJAccountDidLoginNotification
-                                               object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(insertGlossaryText:)
-                                                 name: XJGlossaryInsertEvent
-                                               object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(accountDeleted:)
-                                                 name: XJAccountRemovedNotification
-                                               object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleUIChange)
-												 name: XJUIChanged
-											   object:nil];
-
-	[[NSDistributedNotificationCenter defaultCenter] addObserver: self
-														selector: @selector(iTunesChangedTrack:)
-															name: @"com.apple.iTunes.playerInfo"
-														  object: nil
-											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
-    }
     return self;
 }
 
 - (instancetype)initWithEntry: (LJEntry *)newentry
 {
-    if (!(self = [self init])) return nil;
-    [self setEntry: newentry];
+    if (self = [self init]) {
+        self.entry = newentry;
+    }
     return self;
 }
 
@@ -137,7 +140,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 				[[self entry] setOptionScreenReplies:@"A"]; // Screen all
 				break;
 		}
-    }else {
+    } else {
         [security selectItemAtIndex: [security indexOfItemWithTag: [[self entry] securityMode]]];
 		unichar screeningChar = [[self entry] optionScreenReplies];
 		if (screeningChar == 'A') {
@@ -272,11 +275,11 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     [userpic setMenu: [[[XJAccountManager defaultManager] loggedInAccount] userPicturesMenu]];
     [userPicView setImage: [XJPreferences imageForURL: [[userpic selectedItem] representedObject]]];
 
-    [journalPop setEnabled: YES];
-    [moods setEnabled: YES];
-    [userpic setEnabled: YES];
-    [security setEnabled: YES];
-    [tagsPop setEnabled: YES];
+    journalPop.enabled = YES;
+    moods.enabled = YES;
+    userpic.enabled = YES;
+    security.enabled = YES;
+    tagsPop.enabled = YES;
 
     [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
 
@@ -294,7 +297,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 }
 
 // If an account was deleted
-- (void)accountDeleted: (NSNotification *)note {
+- (void)accountDeleted: (NSNotification *)note
+{
 	[[self entry] setJournal: nil];
 	[self initUI];
 }
@@ -321,7 +325,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 - (NSWindow *)window { return [[self windowControllers][0] window]; }
 
-- (void)windowControllerDidLoadNib:(NSWindowController *) aController {
+- (void)windowControllerDidLoadNib:(NSWindowController *) aController
+{
     [self initUI];
     [super windowControllerDidLoadNib:aController];
 }
@@ -456,21 +461,21 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
 		[theLocationField setHidden:NO];
 	} else {
-		[theLocationFieldLabel setFrame:NSMakeRect([theLocationFieldLabel frame].origin.x,
-												   [theLocationFieldLabel frame].origin.y+[theLocationFieldLabel frame].size.height,
-												   [theLocationFieldLabel frame].size.width,
-												   0.0)];
-		[theLocationField setFrame:NSMakeRect([theLocationField frame].origin.x,
-											  [theLocationField frame].origin.y+[theLocationField frame].size.height,
-											  [theLocationField frame].size.width,
-											  0.0)];
+        theLocationFieldLabel.frame = NSMakeRect([theLocationFieldLabel frame].origin.x,
+                                                 [theLocationFieldLabel frame].origin.y+[theLocationFieldLabel frame].size.height,
+                                                 [theLocationFieldLabel frame].size.width,
+                                                 0.0);
+        theLocationField.frame = NSMakeRect([theLocationField frame].origin.x,
+                                            [theLocationField frame].origin.y+[theLocationField frame].size.height,
+                                            [theLocationField frame].size.width,
+                                            0.0);
 		
 		// Move everything that is below tags controls
 		[self moveTagsControls:31];
 		[self moveMoodControls:31];
 		[self moveJournalStatusControls:31];
-		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
-		[theLocationField setHidden:YES];
+		notFieldsView.frameSize = NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0);
+        theLocationField.hidden = YES;
 	}
 	[[NSUserDefaults standardUserDefaults] setBool:aFlag forKey:@"ShowLocationField"];
 	[fieldsView setNeedsDisplay:YES];
@@ -501,8 +506,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 		[self moveMoodControls:-31];
 		[self moveJournalStatusControls:-31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height-31.0)];
-		[theTagField setHidden:NO];
-		[tagsPop setHidden:NO];
+        theTagField.hidden = NO;
+        tagsPop.hidden = NO;
 	} else {
 		[theTagFieldLabel setFrame:NSMakeRect([theTagFieldLabel frame].origin.x,
 											  [theTagFieldLabel frame].origin.y+[theTagFieldLabel frame].size.height,
@@ -525,8 +530,8 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 		[self moveMoodControls:31];
 		[self moveJournalStatusControls:31];
 		[notFieldsView setFrameSize:NSMakeSize([notFieldsView frame].size.width, [notFieldsView frame].size.height+31.0)];
-		[theTagField setHidden:YES];
-		[tagsPop setHidden:YES];
+        theTagField.hidden = YES;
+        tagsPop.hidden = YES;
 	}
 	[[NSUserDefaults standardUserDefaults] setBool:aFlag forKey:@"ShowTagsField"];
 	[fieldsView setNeedsDisplay:YES];
@@ -1392,9 +1397,6 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     [htmlPreviewWindow makeKeyAndOrderFront: sender];
     [self updatePreviewWindow: [[self entry] content]];
 }
-
-- (NSWindow *)htmlPreviewWindow { return htmlPreviewWindow; }
-- (WebView *)htmlPreview { return htmlPreview; }
 
 - (void)updatePreviewWindow: (NSString *)textContent
 {

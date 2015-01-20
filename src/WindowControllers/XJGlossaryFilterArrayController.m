@@ -94,7 +94,7 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 }
 
 
-//Deprecated method
+// FIXME: Deprecated method
 - (BOOL)tableView:(NSTableView *)tv
 		writeRows:(NSArray*)rows
 	 toPasteboard:(NSPasteboard*)pboard
