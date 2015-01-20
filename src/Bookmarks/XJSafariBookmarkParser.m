@@ -9,7 +9,7 @@
 #import "XJSafariBookmarkParser.h"
 #import <AddressBook/AddressBook.h>
 
-@interface XJSafariBookmarkParser (PrivateAPI)
+@interface XJSafariBookmarkParser () <NSOutlineViewDataSource>
 - (void)parseAddressBookIntoFolder: (XJBookmarkFolder *)root;
 - (void)parseDict:(NSDictionary *)dict withRootFolder: (XJBookmarkFolder *)root;
 - (void)parseList:(NSDictionary *)dict withRootFolder: (XJBookmarkFolder *)root;
@@ -17,11 +17,11 @@
 @end
 
 @implementation XJSafariBookmarkParser
-- (id)init {
-    if(self == [super init]) {
-        return self;
+- (instancetype)init {
+    if (self = [super init]) {
+		
     }
-    return nil;
+    return self;
 }
 
 /*
@@ -31,10 +31,7 @@
 {
     NSString *path = [@"~/Library/Safari/Bookmarks.plist" stringByExpandingTildeInPath];
     NSDictionary *bookmarks = [NSDictionary dictionaryWithContentsOfFile: path];
-    if(rootFolder) {
-        [rootFolder release];
-    }
-    rootFolder = [[XJBookmarkFolder folderWithTitle: @"__root_item__"] retain];
+    rootFolder = [XJBookmarkFolder folderWithTitle: @"__root_item__"];
     [self parseAddressBookIntoFolder: rootFolder];
     [self parseDict: bookmarks withRootFolder: rootFolder];
 }
@@ -46,9 +43,7 @@
 {
     return rootFolder;
 }
-@end
 
-@implementation XJSafariBookmarkParser (PrivateAPI)
 /*
  * Reads all the URLs from Address Book and makes them children
  * of the given XJBookmarkFolder
@@ -58,17 +53,14 @@
     NSArray *everyone;
     NSEnumerator *enumerator;
     id key;
-    ABPerson *person;
-    int i;
     ABAddressBook *book = [ABAddressBook sharedAddressBook];
     XJBookmarkFolder *abFolder = [XJBookmarkFolder folderWithTitle: NSLocalizedString(@"Address Book", @"")];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     
     everyone = [book people];
 
-    for(i=0; i < [everyone count]; i++) {
+    for (ABPerson *person in everyone) {
         NSString *data, *fname, *lname, *cname = nil;
-        person = [everyone objectAtIndex: i];
 
         data = [person valueForProperty: kABHomePageProperty];
         
@@ -90,11 +82,11 @@
                 // Neither first nor last name, so likely a company business card
                 cname = [person valueForProperty: kABOrganizationProperty];
                 if(cname) {
-                    [dictionary setObject: data forKey: cname];
+                    dictionary[cname] = data;
                 }
             }
             else {
-                [dictionary setObject: data forKey: [NSString stringWithFormat: @"%@ %@", fname, lname]];
+                dictionary[[NSString stringWithFormat: @"%@ %@", fname, lname]] = data;
             }
         }
     }
@@ -102,7 +94,7 @@
     // Now, take all the Name/URL key-values and make then into XJBookmarkItems
     enumerator = [[[dictionary allKeys] sortedArrayUsingSelector: @selector(compare:)] objectEnumerator];
     while(key = [enumerator nextObject]) {
-        [abFolder addChild: [XJBookmarkItem bookmarkWithTitle: key address: [NSURL URLWithString: [dictionary objectForKey: key]]]];
+        [abFolder addChild: [XJBookmarkItem bookmarkWithTitle: key address: [NSURL URLWithString: dictionary[key]]]];
     }
             
     [root addChild: abFolder];
@@ -114,16 +106,16 @@
  */
 - (void)parseDict:(NSDictionary *)dict withRootFolder: (XJBookmarkFolder *)root
 {
-    NSString *type = [dict objectForKey: @"WebBookmarkType"];
+    NSString *type = dict[@"WebBookmarkType"];
 
     if([type isEqualToString: @"WebBookmarkTypeList"]) {
         // If it's a list is has a key "Children" which is an array of Leaf dictionaries
-        NSArray *kids = [dict objectForKey: @"Children"];
+        NSArray *kids = dict[@"Children"];
         NSEnumerator *enumer = [kids objectEnumerator];
         NSDictionary *child;
 
         while(child = [enumer nextObject]) {
-            if([[child objectForKey: @"WebBookmarkType"] isEqualToString: @"WebBookmarkTypeList"])
+            if([child[@"WebBookmarkType"] isEqualToString: @"WebBookmarkTypeList"])
                 [self parseList: child withRootFolder: root]; // Parse a list
             else
                 [self parseLeaf: child withRootFolder: root]; // Parse one item
@@ -138,16 +130,16 @@
 - (void)parseList:(NSDictionary *)dict withRootFolder: (XJBookmarkFolder *)root
 {
     XJBookmarkFolder *thisFolder;
-    NSString *folderTitle = [dict objectForKey: @"Title"];
-    thisFolder = [[XJBookmarkFolder folderWithTitle: folderTitle] retain];
+    NSString *folderTitle = dict[@"Title"];
+    thisFolder = [XJBookmarkFolder folderWithTitle: folderTitle];
 
     // If it's a list is has a key "Children" which is an array of Leaf dictionaries
-    NSArray *kids = [dict objectForKey: @"Children"];
+    NSArray *kids = dict[@"Children"];
     NSEnumerator *enumer = [kids objectEnumerator];
     NSDictionary *child;
 
     while(child = [enumer nextObject]) {
-        if([[child objectForKey: @"WebBookmarkType"] isEqualToString: @"WebBookmarkTypeList"])
+        if([child[@"WebBookmarkType"] isEqualToString: @"WebBookmarkTypeList"])
             [self parseList: child withRootFolder: thisFolder];
         else
             [self parseLeaf: child withRootFolder: thisFolder];
@@ -162,8 +154,8 @@
  */
 - (void)parseLeaf:(NSDictionary *)leaf withRootFolder: (XJBookmarkFolder *)root
 {
-    NSDictionary *uriDict = [leaf objectForKey: @"URIDictionary"];
-    NSString *title = [uriDict objectForKey: @"title"], *url = [leaf objectForKey: @"URLString"];
+    NSDictionary *uriDict = leaf[@"URIDictionary"];
+    NSString *title = uriDict[@"title"], *url = leaf[@"URLString"];
 
     if(title != nil & url!= nil) {
         [root addChild: [XJBookmarkItem bookmarkWithTitle: title address: [NSURL URLWithString: url]]];
@@ -173,12 +165,12 @@
 // ----------------------------------------------------------------------------------------
 // OutlineView Data Source
 // ----------------------------------------------------------------------------------------
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
     if(item == nil)
         return [rootFolder childAtIndex: index];
     else {
-        return [item childAtIndex: index];
+        return [(XJBookmarkFolder*)item childAtIndex: index];
     }
 }
 
@@ -191,7 +183,7 @@
     }
 }
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if(item == nil) {
         return [rootFolder numberOfChildren];
@@ -210,7 +202,7 @@
             return [[item webAddress] description];
         
         else if([item isKindOfClass: [XJBookmarkFolder class]])
-            return [NSString stringWithFormat: @"%u items", [item numberOfChildren]];
+            return [NSString stringWithFormat: @"%ld items", (long)[item numberOfChildren]];
     }
     return @"";
 }
@@ -221,10 +213,10 @@
     id item;
     NSString *dragString = @"";
 
-    [pb declareTypes:[NSArray arrayWithObjects: NSStringPboardType, nil] owner:self];
+    [pb declareTypes:@[NSStringPboardType] owner:self];
     
     while(item = [enumer nextObject]) {
-        BOOL optKeyDown = ([[NSApp currentEvent] modifierFlags] && NSAlternateKeyMask);
+        BOOL optKeyDown = ([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask);
         NSLog(@"option is down: %d", optKeyDown);
         if(!optKeyDown)
             dragString = [NSString stringWithFormat: @"%@ %@", dragString, [[item webAddress] description]];

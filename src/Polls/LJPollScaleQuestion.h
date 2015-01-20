@@ -12,27 +12,21 @@
 /*
  Question subclass representing a scale with start, end and step values
  */
-@interface LJPollScaleQuestion : LJPollQuestion {
-    int start, end, step;
-}
+@interface LJPollScaleQuestion : LJPollQuestion <NSCoding>
 
 // Returns an autoreleased scale question with the given start, end and step values
 // and a default question string
 + (LJPollScaleQuestion *)scaleQuestionWithStart: (int)theStart end: (int)theEnd step:(int)theStep;
 
 // Get and set the start value
-- (int)start;
-- (void)setStart: (int)newValue;
+@property  int start;
 
 // Get and set the end value
-- (int)end;
-- (void)setEnd: (int)newValue;
+@property  int end;
 
 // Get and set the step value
-- (int)step;
-- (void)setStep: (int)newValue;
+@property  int step;
 
     // Memento
-- (NSDictionary *) memento;
-- (void) restoreFromMemento: (NSDictionary *)memento;
+@property (setter=restoreFromMemento:, copy) NSDictionary *memento;
 @end

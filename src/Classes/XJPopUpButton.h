@@ -9,10 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface XJPopUpButton : NSButton {
-	IBOutlet NSMenu *popUpMenu;
-	NSPopUpButtonCell *popUpCell;
-}
+@interface XJPopUpButton : NSButton
+@property (weak) IBOutlet NSMenu *popUpMenu;
 
 - (void)awakeFromNib;
 - (void)mouseDown:(NSEvent*)event;

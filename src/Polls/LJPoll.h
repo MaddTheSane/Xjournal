@@ -10,12 +10,12 @@
 
 #import "LJPollQuestion.h"
 
-enum {
+typedef NS_ENUM(NSInteger, LJPollVoters) {
     LJPollAllVote = 1,
     LJPollFriendsVote = 2
 };
 
-enum {
+typedef NS_ENUM(NSInteger, LJPollViewers) {
     LJPollAllView = 1,
     LJPollFriendsView = 2,
     LJPollNoneView = 3
@@ -23,39 +23,37 @@ enum {
 
 @interface LJPoll : NSObject {
     NSMutableArray *questions;
-    int whoVote, whoView;
     NSString *name;
 }
 
 // Get and set the name of the poll
-- (NSString *)name;
-- (void)setName: (NSString *)newName;
+@property (copy) NSString *name;
 
 // Get and set the voting permissions, according to the constants above (LJPoll*Vote)
-- (int)votingPermissions;
-- (void)setVotingPermissions: (int)newPerms;
+@property  LJPollVoters votingPermissions;
 
 // Get and set the viewing permissions, according to the constants above (LJPoll*View)
-- (int)viewingPermissions;
-- (void)setViewingPermissions: (int)newPerms;
+@property  LJPollViewers viewingPermissions;
 
 // How many questions in the poll?
-- (int)numberOfQuestions;
+@property (readonly) NSInteger numberOfQuestions;
 
 // Add a question to the poll
 - (void)addQuestion: (LJPollQuestion *)newQ;
 
 // Get the question at the index?
-- (LJPollQuestion *)questionAtIndex: (int)idx;
+- (LJPollQuestion *)questionAtIndex: (NSInteger)idx;
 
 // Insert the question at the given index
-- (void)insertQuestion: (LJPollQuestion *)question atIndex:(int)idx;
+- (void)insertQuestion: (LJPollQuestion *)question atIndex:(NSInteger)idx;
 
 // Move a question from idx to newIdx
-- (void)moveQuestionAtIndex: (int)idx toIndex: (int)newIdx;
+- (void)moveQuestionAtIndex: (NSInteger)idx toIndex: (NSInteger)newIdx;
 
 // Remove the question at idx
-- (void)deleteQuestionAtIndex: (int)idx;
+- (void)deleteQuestionAtIndex: (NSInteger)idx;
+
+- (void)deleteQuestionsAtIndexes:(NSIndexSet*)idx;
 
 /*
  Get the HTML representation of the entire poll.  This method
@@ -63,5 +61,5 @@ enum {
  poll.  There is no need to manually gather the HTML for every
  question in the poll.
  */
-- (NSString *)htmlRepresentation;
+@property (readonly, copy) NSString *htmlRepresentation;
 @end

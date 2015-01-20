@@ -13,6 +13,8 @@
 static XJCheckFriendsSessionManager *sharedManager;
 
 @implementation XJCheckFriendsSessionManager
+@synthesize checkingMode;
+
 + (XJCheckFriendsSessionManager *)sharedManager
 {
     if(!sharedManager)
@@ -20,15 +22,13 @@ static XJCheckFriendsSessionManager *sharedManager;
     return sharedManager;
 }
 
-- (id)init
+- (instancetype)init
 {
-    if([super init] == nil)
-        return nil;
-
+    if (self = [super init]) {
 	 XJAccountManager *manager = [XJAccountManager defaultManager];
     
     // Configure myself from existing preferences
-	 checkingMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsGroupType"] intValue];
+	 checkingMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsGroupType"] integerValue];
     session = [[LJCheckFriendsSession alloc] initWithAccount: [manager defaultAccount]];
     
     // register for the LJAccountDidLoginNotification event so we know to start checking friends
@@ -41,20 +41,15 @@ static XJCheckFriendsSessionManager *sharedManager;
                                              selector:@selector(accountRemoved:)
                                                  name: XJAccountWillRemoveNotification
                                                object:nil];
+    }
     return self;
 }
 
-- (void)dealloc
-{
-    [session release];
-    [super dealloc];
-}
 
 // Observe when an account will be deleted and end its session
 - (void)accountRemoved: (NSNotification *)note {
 	NSLog(@"Got account will remove notification");
 	if([[note object] isEqualTo: [session account]]) {
-		[session release];
 		session = nil;
 	}
 }
@@ -84,17 +79,6 @@ static XJCheckFriendsSessionManager *sharedManager;
     }
 }
 
-
-// Sets the mode of checking.  Pass XJManagerCheckingAllMode for all friends, XJManagerCheckingGroupsMode for specific groups.
-- (void)setCheckingMode:(int)mode
-{
-    checkingMode = mode;
-}
-
-- (int)checkingMode
-{
-    return checkingMode;
-}
 
 // Returns the checking status for group
 - (BOOL)isCheckingForGroup: (LJGroup *)grp

@@ -42,7 +42,7 @@ extern NSString *TXJshowMoodField;
 
 @class XJMusic;
 
-@interface XJDocument : NSDocument
+@interface XJDocument : NSDocument <NSComboBoxDataSource, NSTableViewDataSource, NSTableViewDelegate>
 {
     // ----------------------------------------------------------------------------------------
     // Window outlets
@@ -124,10 +124,10 @@ extern NSString *TXJshowMoodField;
     NSArray *joinedCommunityArray;
 }
 
-- (id)initWithEntry: (LJEntry *)entry;
+- (instancetype)initWithEntry: (LJEntry *)entry;
 
 /* Actions for posting */
-- (BOOL)postEntryAndReturnStatus;
+@property (readonly) BOOL postEntryAndReturnStatus;
 - (void)postEntryAndDiscardLocalCopy:(id)sender;
 /* Support for post confirmation dialog */
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
@@ -143,7 +143,7 @@ extern NSString *TXJshowMoodField;
 - (void)buildTagsPopup;
 - (IBAction)detectMusicNow:(id)sender;
 
-- (NSWindow *)window;
+@property (readonly, strong) NSWindow *window;
 - (void)startSheet:(NSWindow *)sheet;
 
 - (IBAction)saveWindowSize:(id)sender;
@@ -196,8 +196,8 @@ extern NSString *TXJshowMoodField;
 // ----------------------------------------------------------------------------------------
 // HTML Preview
 // ----------------------------------------------------------------------------------------
-- (NSWindow *)htmlPreviewWindow;
-- (WebView *)htmlPreview;
+@property (readonly, strong) NSWindow *htmlPreviewWindow;
+@property (readonly, strong) WebView *htmlPreview;
 - (void)updatePreviewWindow: (NSString *)textContent;
 - (IBAction)showPreviewWindow: (id)sender;
 - (void)closeHTMLPreviewWindow;
@@ -205,21 +205,13 @@ extern NSString *TXJshowMoodField;
 // =============
 // Accessors
 // =============
-- (LJEntry *)entry;
-- (void)setEntry:(LJEntry *)anEntry;
-
-- (BOOL)entryHasBeenPosted;
-- (void)setEntryHasBeenPosted:(BOOL)flag;
-
-- (NSArray *) friendArray;
-- (void) setFriendArray: (NSArray *) newFriendArray;
-
-- (NSArray *) joinedCommunityArray;
-- (void) setJoinedCommunityArray: (NSArray *) newJoinedCommunityArray;
+@property (strong) LJEntry *entry;
+@property BOOL entryHasBeenPosted;
+@property (copy) NSArray *friendArray;
+@property (copy) NSArray *joinedCommunityArray;
 
 	// Music
-- (XJMusic *)currentMusic;
-- (void)setCurrentMusic:(XJMusic *)aCurrentMusic;
+@property (strong) XJMusic *currentMusic;
 
 
 @end

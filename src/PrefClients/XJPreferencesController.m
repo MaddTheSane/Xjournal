@@ -2,12 +2,13 @@
 #import "XJPreferences.h"
 #import "XJAccountManager.h"
 #import "XJCheckFriendsSessionManager.h"
-#import "Sparkle/SUUpdater.h"
+#import "XJAppDelegate.h"
+#import <Sparkle/SUUpdater.h>
 
 // Almost all this code taken from http://www.cocoadev.com/index.pl?MultiPanePreferences
 
 @implementation XJPreferencesController
-- (id)init {
+- (instancetype)init {
 	self = [super initWithWindowNibName: @"Preferences"];
 	
 	[[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
@@ -34,73 +35,61 @@
     [item setPaletteLabel:@"General"];
     [item setLabel:@"General"];
     [item setToolTip:@"General preference options."];
-    NSImage *genImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GenPreferences" ofType:@"tiff"]];
+    NSImage *genImage = [NSImage imageNamed: NSImageNamePreferencesGeneral];
     [item setImage:genImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    [items setObject:item forKey:@"General"];
-    [genImage release];
-    [item release];
+    items[@"General"] = item;
 
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Friends"];
     [item setPaletteLabel:@"Friends"];
     [item setLabel:@"Friends"];
     [item setToolTip:@"Friends preference options."];
-    NSImage *friendsImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"XJCheckFriendsClient" ofType:@"tiff"]];
+    NSImage *friendsImage = [NSImage imageNamed: NSImageNameUserGroup];
     [item setImage:friendsImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    [items setObject:item forKey:@"Friends"];
-    [friendsImage release];
-    [item release];
+    items[@"Friends"] = item;
 
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Music"];
     [item setPaletteLabel:@"Music"];
     [item setLabel:@"Music"];
     [item setToolTip:@"Music preference options."];
-    NSImage *musicImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"cd" ofType:@"icns"]];
+    NSImage *musicImage = [NSImage imageNamed: @"cd"];
     [item setImage:musicImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    [items setObject:item forKey:@"Music"];
-    [musicImage release];
-    [item release];
+    items[@"Music"] = item;
 	
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"History"];
     [item setPaletteLabel:@"History"];
     [item setLabel:@"History"];
     [item setToolTip:@"History preference options."];
-    NSImage *historyImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"History" ofType:@"tiff"]];
+    NSImage *historyImage = [NSImage imageNamed: @"History"];
     [item setImage:historyImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    [items setObject:item forKey:@"History"];
-    [historyImage release];
-    [item release];	
+    items[@"History"] = item;
 
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Weblogs"];
     [item setPaletteLabel:@"Weblogs"];
     [item setLabel:@"Weblogs"];
     [item setToolTip:@"Weblogs preference options."];
-    NSImage *weblogsImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PostToWeblog" ofType:@"tif"]];
+    NSImage *weblogsImage = [NSImage imageNamed: @"PostToWeblog"];
     [item setImage:weblogsImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    [items setObject:item forKey:@"Weblogs"];
-    [weblogsImage release];
-    [item release];
+    items[@"Weblogs"] = item;
 	
 	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"SWUpdate"];
     [item setPaletteLabel:@"Software Update"];
     [item setLabel:@"Update"];
     [item setToolTip:@"Software Update preference options."];
-    NSImage *updateImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OSUPreferences" ofType:@"tiff"]];
+    NSImage *updateImage = [NSImage imageNamed: @"OSUPreferences"];
     [item setImage:updateImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    [items setObject:item forKey:@"SWUpdate"];
-    [updateImage release];
-    [item release];
+    items[@"SWUpdate"] = item;
 	
     //any other items you want to add, do so here.
     //after you are done, just do all the toolbar stuff.
@@ -125,7 +114,7 @@
     [toolbar setAllowsUserCustomization:NO];  //this is just a pref window, so we don't need to allow customization.
     [toolbar setAutosavesConfiguration:NO];  //we just set everything up manually, so no need for this.
     [[self window] setToolbar:toolbar];  //sets the toolbar to "toolbar"
-    [toolbar release];  //setToolbar retains the toolbar we pass, so release the one we used.
+      //setToolbar retains the toolbar we pass, so release the one we used.
     [[self window] center];  //center the window. This is how the pref window should act.
     [self switchViews:nil];  //this is just to make it select General by default.
 }
@@ -176,7 +165,6 @@
     //to stop flicker, we make a temp blank view.
     NSView *tempView = [[NSView alloc] initWithFrame:[[[self window] contentView] frame]];
     [[self window] setContentView:tempView];
-    [tempView release];
     
     //mojo to get the right frame for the new window.
     NSRect newFrame = [[self window] frame];
@@ -195,7 +183,7 @@
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
-    return [items objectForKey:itemIdentifier];
+    return items[itemIdentifier];
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)theToolbar
@@ -206,7 +194,7 @@
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)theToolbar
 {
     //just return an array with all your items.
-    return [NSArray arrayWithObjects:@"General", @"Friends", @"Music", @"Weblogs", @"History", @"SWUpdate", nil];
+    return @[@"General", @"Friends", @"Music", @"Weblogs", @"History", @"SWUpdate"];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers: (NSToolbar *)toolbar
@@ -259,7 +247,7 @@
 	// Get and store details of selected font
 	// Note: use fontName, not displayName.  The font name identifies the font to
 	// the system, we use a value transformer to show the user the display name
-	NSNumber *fontSize = [NSNumber numberWithFloat:[panelFont pointSize]];	
+	NSNumber *fontSize = @([panelFont pointSize]);
 	
 	id currentPrefsValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 	[currentPrefsValues setValue:[panelFont fontName] forKey:@"XJEntryWindowFontName"];
@@ -273,7 +261,7 @@
 - (void)buildSoundMenu
 {
     NSFileManager *manager = [NSFileManager defaultManager];
-    NSEnumerator *locs = [[NSArray arrayWithObjects: @"/System/Library/Sounds", [@"~/Library/Sounds" stringByExpandingTildeInPath], nil] objectEnumerator];
+    NSEnumerator *locs = [@[@"/System/Library/Sounds", @"/Library/Sounds", [@"~/Library/Sounds" stringByExpandingTildeInPath]] objectEnumerator];
     NSString *path;
 
     NSMenu *menu = [[NSMenu alloc] init];
@@ -285,29 +273,27 @@
         while(file = [dEnum nextObject]) {
             NSMenuItem *item;
             if(![file hasPrefix: @"."]) {
-                baseName = [[[file lastPathComponent] componentsSeparatedByString: @"."] objectAtIndex: 0];
+                baseName = [[file lastPathComponent] componentsSeparatedByString: @"."][0];
                 item = [[NSMenuItem alloc] initWithTitle: baseName action: @selector(setSelectedFriendsSound:) keyEquivalent: @""];
                 [item setTarget: self];
-                [item setRepresentedObject: [NSString stringWithFormat: @"%@/%@", path,file]];
+                [item setRepresentedObject: [path stringByAppendingPathComponent: file]];
                 [menu addItem: item];
-                [item release];
             }
         }
     }
     [soundSelection setMenu: menu];
-    [menu release];
 }
 
 - (IBAction)setSelectedFriendsSound:(id)sender {
 	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [sender representedObject] forKey: @"XJCheckFriendsAlertSound"];
-	[[[[NSSound alloc] initWithContentsOfFile: [sender representedObject] byReference: NO] autorelease] play];
+	[[[NSSound alloc] initWithContentsOfFile: [sender representedObject] byReference: NO] play];
 }
 
 // ----------------------------------------------------------------------------------------
 #pragma mark -
 #pragma mark NSTableDataSource - friend group security
 // ----------------------------------------------------------------------------------------
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];
     if(!acct)
@@ -316,33 +302,33 @@
     return [[acct groupArray] count];
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];
     if(!acct) {
         if([[aTableColumn identifier] isEqualToString: @"name"])
             return @"(not logged in)";
         else
-            return [NSNumber numberWithInt: 0];
+            return @0;
     }
     else {
         NSArray *groups = [acct groupArray];
-        LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
+        LJGroup *rowGroup = groups[rowIndex];
 		
         if([[aTableColumn identifier] isEqualToString: @"name"])
             return [rowGroup name];
         else {
             // Here return an NSNumber signifying whether the group is being checked for.
-            return [NSNumber numberWithBool: [XJPreferences shouldCheckForGroup: rowGroup]];
+            return @([XJPreferences shouldCheckForGroup: rowGroup]);
         }
     }
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];
     NSArray *groups = [acct groupArray];
-    LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
+    LJGroup *rowGroup = groups[rowIndex];
 	
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
         [XJPreferences setShouldCheck: [anObject boolValue] forGroup: rowGroup];
@@ -350,12 +336,12 @@
     [aTableView reloadData];
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     return [[aTableColumn identifier] isEqualToString: @"check"];
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];
     
@@ -380,20 +366,20 @@
 - (IBAction)changeUpdateFrequency:(id)sender
 {
 	if ([@"Never" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:0]  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"SUCheckAtStartup"];
+		[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"SUCheckAtStartup"];
 		[updater setUpdateCheckInterval:0];
 	} else if ([@"Daily" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:24*60*60]  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
+		[[NSUserDefaults standardUserDefaults] setInteger:(24*60*60)  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUCheckAtStartup"];
 		[updater setUpdateCheckInterval:24*60*60];
 	} else if ([@"Weekly" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:7*24*60*60]  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
+		[[NSUserDefaults standardUserDefaults] setInteger:(7*24*60*60)  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUCheckAtStartup"];
 		[updater setUpdateCheckInterval:7*24*60*60];
 	} else if ([@"Monthly" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:4*7*24*60*60]  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SUCheckAtStartup"];
+		[[NSUserDefaults standardUserDefaults] setInteger:(4*7*24*60*60)  forKey:@"SUScheduledCheckInterval"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUCheckAtStartup"];
 		[updater setUpdateCheckInterval:4*7*24*60*60];
 	}
 }
@@ -406,7 +392,7 @@
 					   context:(void *)context 
 {
 	if([keyPath isEqualToString: @"values.XJCheckFriendsShouldCheck"]) {
-		int changeKind = [[change objectForKey: NSKeyValueChangeKindKey] intValue];
+		int changeKind = [change[NSKeyValueChangeKindKey] intValue];
 		if(changeKind == NSKeyValueChangeSetting) {
 			
 			// Here, we *should* inspect [change objectForKey: NSKeyValueChangeNewKey]

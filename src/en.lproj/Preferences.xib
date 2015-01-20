@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="XJPreferencesController">
+            <connections>
+                <outlet property="accountsView" destination="7" id="162"/>
+                <outlet property="checkFriendsGroupTable" destination="120" id="250"/>
+                <outlet property="friendsView" destination="111" id="164"/>
+                <outlet property="historyView" destination="112" id="166"/>
+                <outlet property="musicView" destination="214" id="225"/>
+                <outlet property="softwareUpdateView" destination="113" id="165"/>
+                <outlet property="soundSelection" destination="132" id="251"/>
+                <outlet property="updateCheckSelection" destination="671" id="927"/>
+                <outlet property="updater" destination="1043" id="1158"/>
+                <outlet property="weblogsView" destination="233" id="243"/>
+                <outlet property="window" destination="5" id="160"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="PrefsWindow">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <rect key="contentRect" x="243" y="294" width="480" height="360"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <value key="minSize" type="size" width="213" height="107"/>
+            <view key="contentView" id="6">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="161"/>
+            </connections>
+        </window>
+        <customView id="7" userLabel="General">
+            <rect key="frame" x="0.0" y="0.0" width="591" height="449"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" id="1277">
+                    <rect key="frame" x="309" y="98" width="265" height="26"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Default screening level from journal" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1281" id="1367">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="1279">
+                            <items>
+                                <menuItem title="Default screening level from journal" state="on" id="1281"/>
+                                <menuItem title="Allow all comments" tag="1" id="1280"/>
+                                <menuItem title="Screen anonymous comments" tag="2" id="1284"/>
+                                <menuItem title="Screen non-friends comments" tag="3" id="1283"/>
+                                <menuItem title="Screen all comments" tag="4" id="1282"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="186" name="selectedTag" keyPath="values.XJDefaultCommentScreeningLevel" id="1287"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" id="1276">
+                    <rect key="frame" x="90" y="102" width="217" height="19"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default comment screening level:" id="1366">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" id="196">
+                    <rect key="frame" x="165" y="165" width="196" height="22"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1365">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="186" name="displayPatternValue1" keyPath="values.XJEntryWindowFontName" id="254">
+                            <dictionary key="options">
+                                <string key="NSDisplayPattern">%{value1}@ - %{value2}@pt</string>
+                                <string key="NSValueTransformerName">XJFontNameToDisplay</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="186" name="displayPatternValue2" keyPath="values.XJEntryWindowFontSize" previousBinding="254" id="255">
+                            <dictionary key="options">
+                                <string key="NSDisplayPattern">%{value1}@ - %{value2}@pt</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" id="37">
+                    <rect key="frame" x="418" y="16" width="124" height="26"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <popUpButtonCell key="cell" type="push" title="Ask" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="39" id="1364">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="38">
+                            <items>
+                                <menuItem title="Ask" state="on" id="39"/>
+                                <menuItem title="Save" tag="1" id="41"/>
+                                <menuItem title="Don't Save" tag="2" id="40"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="186" name="selectedTag" keyPath="values.XJUnsavedOption" id="195"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" id="36">
+                    <rect key="frame" x="90" y="22" width="326" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="When posting a saved entry with unsaved changes:" id="1363">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" id="31">
+                    <rect key="frame" x="309" y="124" width="265" height="26"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Public" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="34" id="1362">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="32">
+                            <items>
+                                <menuItem title="Public" state="on" id="34"/>
+                                <menuItem title="All Friends" tag="2" id="33"/>
+                                <menuItem title="Private" tag="1" id="35"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="186" name="selectedTag" keyPath="values.XJDefaultSecurityLevel" id="193"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" id="30">
+                    <rect key="frame" x="90" y="130" width="141" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default security level:" id="1361">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" id="29">
+                    <rect key="frame" x="87" y="364" width="140" height="32"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="push" title="Set up accounts" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1360">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openAccountWindow:" target="-2" id="209"/>
+                    </connections>
+                </button>
+                <button id="28">
+                    <rect key="frame" x="91" y="45" width="278" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Show confirmation of successful posting" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1359">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJShouldShowPostingConfirmationDialog" id="194"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" id="27">
+                    <rect key="frame" x="17" y="69" width="106" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="General Options" id="1358">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="25">
+                    <rect key="frame" x="122" y="70" width="452" height="5"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <textField verticalHuggingPriority="750" id="24">
+                    <rect key="frame" x="90" y="167" width="70" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Text font:" id="1357">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" id="23">
+                    <rect key="frame" x="364" y="160" width="132" height="28"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="push" title="Choose Font…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1356">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeTextFont:" target="-2" id="197"/>
+                    </connections>
+                </button>
+                <button id="21">
+                    <rect key="frame" x="91" y="267" width="286" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Detect current music when window opens" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1355">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJMusicShouldAutoDetect" id="190"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" id="20">
+                    <rect key="frame" x="17" y="313" width="153" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="New document settings" id="1354">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="18">
+                    <rect key="frame" x="169" y="314" width="405" height="5"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <textField verticalHuggingPriority="750" id="17">
+                    <rect key="frame" x="17" y="412" width="129" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="LiveJournal Account" id="1353">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="15">
+                    <rect key="frame" x="146" y="413" width="428" height="5"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <button id="14">
+                    <rect key="frame" x="91" y="289" width="241" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Turn on continuous spell checking" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1352">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJSpellCheckByDefault" id="189"/>
+                    </connections>
+                </button>
+                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="11">
+                    <rect key="frame" x="227" y="201" width="212" height="38"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <size key="cellSize" width="212" height="18"/>
+                    <size key="intercellSpacing" width="4" height="2"/>
+                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="1397">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <cells>
+                        <column>
+                            <buttonCell type="radio" title="When the window was created" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="13">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <buttonCell type="radio" title="When the entry was posted" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="12">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </column>
+                    </cells>
+                    <connections>
+                        <binding destination="186" name="selectedTag" keyPath="values.XJPostingDate" id="192"/>
+                    </connections>
+                </matrix>
+                <textField verticalHuggingPriority="750" id="10">
+                    <rect key="frame" x="90" y="222" width="134" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Entries are dated by:" id="1351">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button id="9">
+                    <rect key="frame" x="91" y="336" width="215" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Log in automatically at launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1350">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJShouldAutoLogin" id="188"/>
+                    </connections>
+                </button>
+                <button id="8">
+                    <rect key="frame" x="91" y="245" width="160" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Open Info drawer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1349">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJShouldOpenDrawerInNewWindow" id="191"/>
+                    </connections>
+                </button>
+            </subviews>
+        </customView>
+        <customView id="111" userLabel="Friends">
+            <rect key="frame" x="0.0" y="0.0" width="468" height="339"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button verticalHuggingPriority="750" id="138">
+                    <rect key="frame" x="342" y="275" width="111" height="28"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="push" title="Set up accounts" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1377">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                </button>
+                <textField verticalHuggingPriority="750" id="137">
+                    <rect key="frame" x="37" y="283" width="305" height="14"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Friend checking is only available for the default account" id="1376">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" id="132">
+                    <rect key="frame" x="201" y="16" width="171" height="26"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="134" id="1375">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="133">
+                            <items>
+                                <menuItem title="Item1" state="on" id="134"/>
+                                <menuItem title="Item2" id="136"/>
+                                <menuItem title="Item3" id="135"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="setSelectedFriendsSound:" target="-2" id="253"/>
+                        <binding destination="186" name="enabled" keyPath="values.XJCheckFriendsPlaySound" id="252"/>
+                    </connections>
+                </popUpButton>
+                <button id="131">
+                    <rect key="frame" x="92" y="21" width="106" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Play a sound:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1374">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJCheckFriendsPlaySound" id="207"/>
+                    </connections>
+                </button>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="129">
+                    <rect key="frame" x="170" y="119" width="278" height="5"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <textField verticalHuggingPriority="750" id="128">
+                    <rect key="frame" x="17" y="119" width="163" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="When new updates arrive" id="1373">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="126">
+                    <rect key="frame" x="156" y="257" width="292" height="5"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <button id="125">
+                    <rect key="frame" x="112" y="46" width="308" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Open friends page when Xjournal is activated" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1372">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJCheckFriendsShouldOpenFriendsPage" id="205"/>
+                    </connections>
+                </button>
+                <button id="124">
+                    <rect key="frame" x="92" y="68" width="144" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Show Dock icon" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1371">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJCheckFriendsShouldShowDockIcon" id="204"/>
+                    </connections>
+                </button>
+                <button id="123">
+                    <rect key="frame" x="92" y="90" width="144" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Display alert dialog" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1370">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJCheckFriendsShouldShowDialog" id="203"/>
+                    </connections>
+                </button>
+                <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="119">
+                    <rect key="frame" x="223" y="148" width="178" height="99"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <clipView key="contentView" id="8ti-fL-3Uj">
+                        <rect key="frame" x="1" y="1" width="161" height="97"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" id="120">
+                                <rect key="frame" x="0.0" y="0.0" width="176" height="19"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <size key="intercellSpacing" width="3" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <tableColumns>
+                                    <tableColumn identifier="check" width="16" minWidth="16" maxWidth="1000" id="121">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tableHeaderCell>
+                                        <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="246">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="titleBar" size="12"/>
+                                        </buttonCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                    </tableColumn>
+                                    <tableColumn identifier="name" width="154" minWidth="40" maxWidth="1000" id="122">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tableHeaderCell>
+                                        <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="1400">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textFieldCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                    </tableColumn>
+                                </tableColumns>
+                                <connections>
+                                    <outlet property="dataSource" destination="-2" id="199"/>
+                                    <outlet property="delegate" destination="-2" id="200"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1401">
+                        <rect key="frame" x="-100" y="-100" width="161" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="1402">
+                        <rect key="frame" x="162" y="1" width="15" height="97"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="116">
+                    <rect key="frame" x="92" y="208" width="125" height="38"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <size key="cellSize" width="125" height="18"/>
+                    <size key="intercellSpacing" width="4" height="2"/>
+                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="1398">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <cells>
+                        <column>
+                            <buttonCell type="radio" title="All Friends" imagePosition="left" alignment="left" state="on" inset="2" id="117">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <buttonCell type="radio" title="Selected groups" imagePosition="left" alignment="left" tag="1" inset="2" id="118">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </column>
+                    </cells>
+                    <connections>
+                        <binding destination="186" name="selectedTag" keyPath="values.XJCheckFriendsGroupType" id="202"/>
+                    </connections>
+                </matrix>
+                <textField verticalHuggingPriority="750" id="115">
+                    <rect key="frame" x="17" y="257" width="139" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Check for updates by" id="1369">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button id="114">
+                    <rect key="frame" x="18" y="303" width="229" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Check for updated friends pages" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1368">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJCheckFriendsShouldCheck" id="187"/>
+                    </connections>
+                </button>
+            </subviews>
+        </customView>
+        <customView id="112" userLabel="History">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="76"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="140">
+                    <rect key="frame" x="160" y="18" width="123" height="38"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <size key="cellSize" width="123" height="18"/>
+                    <size key="intercellSpacing" width="4" height="2"/>
+                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="1399">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <cells>
+                        <column>
+                            <buttonCell type="radio" title="Xjournal" imagePosition="left" alignment="left" state="on" inset="2" id="141">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <buttonCell type="radio" title="Default browser" imagePosition="left" alignment="left" tag="1" inset="2" id="142">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </column>
+                    </cells>
+                    <connections>
+                        <binding destination="186" name="selectedTag" keyPath="values.XJHistoryOpenLinksInApp" id="213"/>
+                    </connections>
+                </matrix>
+                <textField verticalHuggingPriority="750" id="139">
+                    <rect key="frame" x="17" y="39" width="140" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Open clicked links in:" id="1378">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+        </customView>
+        <customView id="113" userLabel="SWUpdate">
+            <rect key="frame" x="0.0" y="0.0" width="482" height="213"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button id="1215">
+                    <rect key="frame" x="136" y="40" width="208" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Include anonymous system profile" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1385">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.SUSendProfileInfo" id="1347"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" id="866">
+                    <rect key="frame" x="159" y="20" width="249" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="1384">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.SULastCheckTime" id="869"/>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="750" id="864">
+                    <rect key="frame" x="71" y="20" width="91" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Last check was:" id="1383">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" id="153">
+                    <rect key="frame" x="147" y="94" width="188" height="32"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="push" title="Check for Updates Now" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1380">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="checkForUpdates:" target="1043" id="1044"/>
+                    </connections>
+                </button>
+                <popUpButton verticalHuggingPriority="750" id="671">
+                    <rect key="frame" x="279" y="58" width="109" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="740" id="1382">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="673">
+                            <items>
+                                <menuItem title="Never" id="674"/>
+                                <menuItem title="Daily" id="675"/>
+                                <menuItem title="Weekly" state="on" id="740"/>
+                                <menuItem title="Monthly" id="676"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="changeUpdateFrequency:" target="-2" id="804"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" id="154">
+                    <rect key="frame" x="17" y="142" width="448" height="51"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1381">
+                        <font key="font" metaFont="system"/>
+                        <string key="title">Xjournal can automatically use your Internet connection to check for new and updated versions of itself. (Checking occurs only when a network connection is active.)</string>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" id="144">
+                    <rect key="frame" x="98" y="64" width="179" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Automatic checking occurs:" id="1379">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="186" userLabel="Shared Defaults"/>
+        <customView id="214" userLabel="Music">
+            <rect key="frame" x="0.0" y="0.0" width="592" height="314"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button id="224">
+                    <rect key="frame" x="18" y="18" width="253" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Generate links to iTunes Music Store" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1391">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJGenerateiTunesLinks" id="230"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" id="223">
+                    <rect key="frame" x="301" y="41" width="153" height="14"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Requires iTunes 4.7 or later" id="1390">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" red="0.58823532000000001" green="0.58823532000000001" blue="0.58823532000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="221">
+                    <rect key="frame" x="20" y="62" width="560" height="5"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <button id="220">
+                    <rect key="frame" x="18" y="40" width="280" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="Detect music when iTunes changes track" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1389">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJDetectMusicOniTunesTrackChange" id="229"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" id="219">
+                    <rect key="frame" x="17" y="75" width="169" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="When no music is playing:" id="1388">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" id="218">
+                    <rect key="frame" x="191" y="73" width="389" height="22"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1387">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJNoMusicString" id="232">
+                            <dictionary key="options">
+                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="750" id="217">
+                    <rect key="frame" x="17" y="103" width="566" height="84"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="1386">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">When Xjournal detects iTunes' current track, Xjournal will substitute the following keywords:
+
+	• &lt;$name/&gt;	- The name of the current track
+	• &lt;$artist/&gt;	- The artist of the current track
+	• &lt;$album/&gt;	- The album of the current track
+	• &lt;$rating/&gt;	- Your iTunes rating for the current track</string>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="215">
+                    <rect key="frame" x="20" y="195" width="560" height="99"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <clipView key="contentView" id="uUo-Uf-lvN">
+                        <rect key="frame" x="1" y="1" width="543" height="97"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="216">
+                                <rect key="frame" x="0.0" y="0.0" width="543" height="97"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="558" height="97"/>
+                                <size key="maxSize" width="560" height="10000000"/>
+                                <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="558" height="97"/>
+                                <size key="maxSize" width="560" height="10000000"/>
+                                <connections>
+                                    <binding destination="186" name="value" keyPath="values.XJMusicSubstitutionString" id="231">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1403">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1404">
+                        <rect key="frame" x="544" y="1" width="15" height="97"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+            </subviews>
+        </customView>
+        <customView id="233" userLabel="NNW">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="333"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" id="240">
+                    <rect key="frame" x="299" y="34" width="284" height="56"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="1396">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">• &lt;$commentsURL/&gt; 	- The URL for comments
+• &lt;$sourceName/&gt;		- The name of the weblog
+• &lt;$sourceHomeURL/&gt;	- The weblog's URL
+• &lt;$sourceFeedURL/&gt;	- The feed's RSS URL</string>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" id="239">
+                    <rect key="frame" x="17" y="20" width="248" height="70"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="1395">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">• &lt;$title/&gt;		- The title of the post
+• &lt;$body/&gt;		- The body content
+• &lt;$link/&gt;		- The link
+• &lt;$permalink/&gt;	- The entry's permalink
+• &lt;$summary/&gt;	- A summary of the post</string>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" id="238">
+                    <rect key="frame" x="82" y="291" width="498" height="22"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1394">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJRSSSubjectFormatString" id="245">
+                            <dictionary key="options">
+                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="750" id="237">
+                    <rect key="frame" x="22" y="293" width="55" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Subject:" id="1393">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" id="236">
+                    <rect key="frame" x="17" y="98" width="550" height="28"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="1392">
+                        <font key="font" metaFont="smallSystem"/>
+                        <string key="title">When using Post to Weblog from NetNewsWire 2 and compatible aggregators, Xjournal will substitute the following keywords, if available:</string>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="234">
+                    <rect key="frame" x="20" y="134" width="560" height="151"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <clipView key="contentView" id="8eB-sr-vYt">
+                        <rect key="frame" x="1" y="1" width="543" height="149"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" richText="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="235">
+                                <rect key="frame" x="0.0" y="0.0" width="543" height="149"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="558" height="149"/>
+                                <size key="maxSize" width="560" height="10000000"/>
+                                <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="558" height="149"/>
+                                <size key="maxSize" width="560" height="10000000"/>
+                                <connections>
+                                    <binding destination="186" name="value" keyPath="values.XJRSSFormatString" id="244">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1405">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1406">
+                        <rect key="frame" x="544" y="1" width="15" height="149"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+            </subviews>
+        </customView>
+        <customObject id="1043" userLabel="Updater" customClass="SUUpdater"/>
+    </objects>
+</document>

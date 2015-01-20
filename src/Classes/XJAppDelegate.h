@@ -18,7 +18,8 @@
 
 @class XJPreferencesController;
 
-@interface XJAppDelegate : NSObject {
+@interface XJAppDelegate : NSObject <NSApplicationDelegate>
+{
     /*
      These controller objects control subsidiary windows in the app.
      Because the windows are singletons, their controllers are too.
@@ -86,6 +87,5 @@
 // Dock Badge
 - (void)showDockBadge;
 - (void)hideDockBadge;
-- (BOOL)showingDockBadge;
-- (void)setShowingDockBadge:(BOOL)flag;
+@property BOOL showingDockBadge;
 @end

@@ -10,53 +10,38 @@
 
 
 @implementation LJPollMultipleOptionQuestion
-+ (LJPollMultipleOptionQuestion *)questionOfType: (int)questionType
+@synthesize type;
+
++ (LJPollMultipleOptionQuestion *)questionOfType: (LJPollMultipleOptionType)questionType
 {
     LJPollMultipleOptionQuestion *mo_question = [[LJPollMultipleOptionQuestion alloc] init];
     [mo_question setType:questionType];
     
-    return [mo_question autorelease];
+    return mo_question;
 }
 
-- (id)init
+- (instancetype)init
 {
-    if([super init] == nil)
-        return nil;
+    if (self = [super init]) {
     
     [self setQuestion: @"New Question"];
     [self setType: LJPollRadioType];
-    answers = [[NSMutableArray arrayWithCapacity: 10] retain];
-    
+    answers = [[NSMutableArray alloc] initWithCapacity: 10];
+    }
     return self;
 }
 
-- (void)dealloc
-{
-    [answers release];
-    [super dealloc];
-}
-
-- (int)type
-{
-    return type;
-}
-
-- (void)setType:(int)newType
-{
-    type = newType;
-}
-
-- (int)numberOfAnswers
+- (NSInteger)numberOfAnswers
 {
     return [answers count];
 }
 
-- (NSString *)answerAtIndex: (int)idx
+- (NSString *)answerAtIndex: (NSInteger)idx
 {
-    return [answers objectAtIndex:idx];
+    return answers[idx];
 }
 
-- (void)setAnswer:(NSString *)answer atIndex: (int)idx
+- (void)setAnswer:(NSString *)answer atIndex: (NSInteger)idx
 {
     [answers removeObjectAtIndex: idx];
     [answers insertObject: answer atIndex: idx];
@@ -68,37 +53,40 @@
 }
 
 // Insert the question at the given index
-- (void)insertAnswer: (NSString *)answer atIndex:(int)idx
+- (void)insertAnswer: (NSString *)answer atIndex:(NSInteger)idx
 {
     [answers insertObject: answer atIndex: idx];
 }
 
-- (void)deleteAnswerAtIndex: (int)idx
+- (void)deleteAnswerAtIndex: (NSInteger)idx
 {
     [answers removeObjectAtIndex: idx];
+}
+
+- (void)deleteAnswersAtIndexes:(NSIndexSet*)idx
+{
+	[answers removeObjectsAtIndexes:idx];
 }
 
 // Deletes all the answers
 - (void)deleteAllAnswers
 {
-    [answers release];
-    answers = [[NSMutableArray arrayWithCapacity: 30] retain];
+	[answers removeAllObjects];
 }
 
-- (void)moveAnswerAtIndex: (int) idx toIndex: (int) newIdx
+- (void)moveAnswerAtIndex: (NSInteger) idx toIndex: (NSInteger) newIdx
 {
     if(newIdx == idx) return;
     if(newIdx < 0 || newIdx >= [answers count]) return;
 
-    id obj = [[answers objectAtIndex: idx] retain];
+    id obj = answers[idx];
     [answers removeObjectAtIndex: idx];
     [answers insertObject: obj atIndex: newIdx];
-    [obj release];
 }
 
 - (NSString *)htmlRepresentation
 {
-    NSMutableString *buf = [[NSMutableString stringWithCapacity: 100] retain];
+    NSMutableString *buf = [NSMutableString stringWithCapacity: 100];
 
     if(type == LJPollRadioType)
         [buf appendString: @"<lj-pq type=\"radio\">\n"];
@@ -120,7 +108,7 @@
     
     [buf appendString: @"</lj-pq>"];
     
-    return [buf autorelease];
+    return buf;
 }
 
 // Memento
@@ -129,10 +117,9 @@
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
     NSDictionary *tempQuestion = [[self question] copy];
-    [dictionary setObject: tempQuestion forKey: @"LJPollQuestion"];
-    [tempQuestion release];
+    dictionary[@"LJPollQuestion"] = tempQuestion;
 
-    [dictionary setObject: [NSNumber numberWithInt: [self type]] forKey: @"LJMultipleOptionType"];
+    dictionary[@"LJMultipleOptionType"] = @([self type]);
 
     NSMutableArray *array = [NSMutableArray array];
     NSEnumerator *enumerator = [answers objectEnumerator];
@@ -140,20 +127,19 @@
 
     while (object = [enumerator nextObject]) {
         [array addObject: object];
-        [object release];
     }
 
-    [dictionary setObject: array forKey: @"LJMultipleOptionAnswerArray"];
+    dictionary[@"LJMultipleOptionAnswerArray"] = array;
     return dictionary;
 }
 
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
-    [self setQuestion: [memento objectForKey: @"LJPollQuestion"]];
-    [self setType: [[memento objectForKey: @"LJMultipleOptionType"] intValue]];
+    [self setQuestion: memento[@"LJPollQuestion"]];
+    [self setType: [memento[@"LJMultipleOptionType"] intValue]];
 
     [self deleteAllAnswers];
-    NSEnumerator *enumerator = [[memento objectForKey: @"LJMultipleOptionAnswerArray"] objectEnumerator];
+    NSEnumerator *enumerator = [memento[@"LJMultipleOptionAnswerArray"] objectEnumerator];
     id object;
 
     while (object = [enumerator nextObject]) {
@@ -167,7 +153,7 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeObject: [NSNumber numberWithInt: type] forKey:@"LJMultipleOptionType"];
+        [encoder encodeInt: type forKey:@"LJMultipleOptionType"];
         [encoder encodeObject: answers forKey:@"LJMultipleOptionAnswerArray"];
         [encoder encodeObject: [self question] forKey:@"LJPollQuestion"];
     } else {
@@ -175,13 +161,13 @@
     }
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
     if (self) {
         [self setQuestion: [decoder decodeObjectForKey:@"LJPollQuestion"]];
         answers = [decoder decodeObjectForKey: @"LJMultipleOptionAnswerArray"];
-        type = [[decoder decodeObjectForKey: @"LJMultipleOptionType"] intValue];
+        type = [decoder decodeIntForKey:@"LJMultipleOptionType"];
     }
     return self;
 }

@@ -15,7 +15,7 @@
 
 static NSMutableDictionary *userPics;
 
-@interface XJPreferences (Private)
+@interface XJPreferences ()
 + (NSMutableDictionary *)makeMutable: (NSDictionary *)dict;
 @end
 
@@ -32,21 +32,20 @@ static NSMutableDictionary *userPics;
         NSImage *img;
     
         if(!userPics)
-            userPics = [[NSMutableDictionary dictionaryWithCapacity: 10] retain];
+            userPics = [NSMutableDictionary dictionaryWithCapacity: 10];
 
-        img = [userPics objectForKey: imageURL];
+        img = userPics[imageURL];
         if(img == nil) {
             img = [[NSImage alloc] initWithContentsOfURL: imageURL];
             if(img) {
-                [userPics setObject: img forKey: imageURL];
-                [img release];
+                userPics[imageURL] = img;
             }
         }
 
         // Check if image is still nil - server may be broken
         if(img) {
         	// Check that the size is right
-        	NSImageRep *rep = [[img representations] objectAtIndex: 0];
+        	NSImageRep *rep = [img representations][0];
         	[img setSize:NSMakeSize([rep pixelsWide], [rep pixelsHigh])];
         	return img;
         }
@@ -62,7 +61,7 @@ static NSMutableDictionary *userPics;
 + (BOOL)shouldCheckForGroup: (LJGroup *)grp
 {
     NSMutableDictionary *dict = [self makeMutable: [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS]];
-    id val = [dict objectForKey: [grp name]];
+    id val = dict[[grp name]];
 
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
     
@@ -76,7 +75,7 @@ static NSMutableDictionary *userPics;
     // Prefs stores a dict of booleans keyed against group names, hence, if you have two groups with the same name
     // --> key clash
     
-    [dict setObject: [NSNumber numberWithBool: chk] forKey: [grp name]];
+    dict[[grp name]] = @(chk);
     [[XJCheckFriendsSessionManager sharedManager] setChecking: chk forGroup: grp];
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
 }
@@ -97,15 +96,12 @@ static NSMutableDictionary *userPics;
 // icons
 // ----------------------------------------------------------------------------------------
 + (NSString *)userIconURL {
-    return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"userinfo" ofType:@"gif"]] absoluteString];
+    return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForImageResource:@"userInfo"]] absoluteString];
 }
 
 + (NSString *)communityIconURL {
-    return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"communitysmall" ofType:@"gif"]] absoluteString];
+    return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForImageResource:@"communitysmall"]] absoluteString];
 }
-@end
-
-@implementation XJPreferences (Private)
 
 + (NSMutableDictionary *)makeMutable: (NSDictionary *)dict
 {

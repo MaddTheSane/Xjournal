@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface XJBookmarkRoot : NSObject {
-    NSString *title;
-}
+@interface XJBookmarkRoot : NSObject
+@property (copy) NSString *title;
 
-- (id)initWithTitle: (NSString *)newTitle;
-- (NSString *)title;
-- (void)setTitle: (NSString *)newTitle;
+- (instancetype)initWithTitle: (NSString *)newTitle NS_DESIGNATED_INITIALIZER;
+
 - (NSComparisonResult)compare:(XJBookmarkRoot *)otherItem;
 @end

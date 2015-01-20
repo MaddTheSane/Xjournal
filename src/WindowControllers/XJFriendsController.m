@@ -19,7 +19,7 @@
 
 #define kFriendsAutosaveName @"kFriendsAutosaveName"
 
-enum {
+typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
     XJColumnSortedAscending = 0,
     XJColumnSortedDescending,
     XJColumnNotSorted
@@ -27,7 +27,7 @@ enum {
 
 @implementation XJFriendsController
 
-- (id)init
+- (instancetype)init
 {
 	self = [super initWithWindowNibName: @"NewFriendsWindow"];
     if(self) {
@@ -35,7 +35,7 @@ enum {
         
         [self refreshFriends: nil];
 
-        sortSettings = [[NSMutableDictionary dictionaryWithCapacity: 30] retain];
+        sortSettings = [NSMutableDictionary dictionaryWithCapacity: 30];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addressBookDropped:)
@@ -43,7 +43,8 @@ enum {
                                                    object:nil];
         
         userinfo = [NSImage imageNamed: @"userinfo"];
-        folder = [NSImage imageNamed: @"OpenFolder"];
+        
+        folder = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kOpenFolderIcon)];
         community = [NSImage imageNamed: @"communitysmall"];
         birthday = [NSImage imageNamed: @"Birthday"];
     }
@@ -63,10 +64,9 @@ enum {
     [tc setDataCell:cell];
     tc = [groupTable tableColumnWithIdentifier: @"icon"];
     [tc setDataCell:cell];
-    [cell release];
 
     // Configure the table for drag and drop
-    [groupTable registerForDraggedTypes: [NSArray arrayWithObjects: @"LJFriend", NSStringPboardType, nil]];
+    [groupTable registerForDraggedTypes: @[@"LJFriend", NSStringPboardType]];
 
     sortedColumn = [friendsTable tableColumnWithIdentifier: @"username"];
     sortDirection = XJColumnSortedAscending;
@@ -94,8 +94,8 @@ enum {
     }
 
     [[self window] setTitle: [NSString stringWithFormat: @"%@ - %@", NSLocalizedString(@"Friends", @""), [[self account] username]]];
-    
-    [groupTable selectRow: 0 byExtendingSelection: NO];
+	
+	[groupTable selectRowIndexes: [NSIndexSet indexSetWithIndex: 0] byExtendingSelection: NO];
     [self updateFriendTableCache];
 
     [self sortFriendTableCacheOnColumn: sortedColumn direction: sortDirection];
@@ -112,7 +112,7 @@ enum {
 
 - (NSArray *)inspectedObjects
 {
-    return [NSArray arrayWithObjects: [self selectedFriend], nil];
+    return @[[self selectedFriend]];
 }
 
 - (LJAccount *)account
@@ -139,7 +139,7 @@ enum {
     // Sort it
     sortedColumn = [friendsTable tableColumnWithIdentifier: @"username"];
     sortDirection = XJColumnSortedAscending;
-    [groupTable selectRow: 0 byExtendingSelection: NO];
+	[groupTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
     [self sortFriendTableCacheOnColumn: sortedColumn direction: sortDirection];
 
     // Reload
@@ -160,7 +160,7 @@ enum {
 // ----------------------------------------------------------------------------------------
 - (IBAction)addFriend:(id)sender
 {
-    if([friendsTable numberOfSelectedRows] == 1 && [[self selectedFriend] friendship] == LJIncomingFriendship )
+    if([friendsTable numberOfSelectedRows] == 1 && [[self selectedFriend] friendship] == LJFriendshipIncoming )
 		[friendField setStringValue: [[self selectedFriend] username]];
 	else
 		[friendField setStringValue: @""];
@@ -221,8 +221,8 @@ enum {
     if(!grp) return;
     
     [[self account] removeGroup: grp];
-    [groupTable selectRow: 0 byExtendingSelection: NO];
-    
+	[groupTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+	
     [[self window] setDocumentEdited: YES];
     [self refreshWindow: nil];
     [self updateTabs];
@@ -259,7 +259,7 @@ enum {
 
 - (IBAction)setForegroundColor: (id)sender
 {
-	int numberSelected = [friendsTable numberOfSelectedRows];
+	NSInteger numberSelected = [friendsTable numberOfSelectedRows];
 	if(numberSelected == 1) {
 		LJFriend *selFriend = [self selectedFriend];
 		if(selFriend) {
@@ -281,7 +281,7 @@ enum {
 - (IBAction)setBackgroundColor: (id)sender
 {
 	
-	int numberSelected = [friendsTable numberOfSelectedRows];
+	NSInteger numberSelected = [friendsTable numberOfSelectedRows];
 	if(numberSelected == 1) {
 		LJFriend *selFriend = [self selectedFriend];
 		if(selFriend) {
@@ -347,8 +347,7 @@ enum {
 {
     LJAccount *userAccount = [self account];
     
-    [friendTableCache release];
-    friendTableCache = [[NSMutableArray arrayWithCapacity: 100] retain];
+    friendTableCache = [[NSMutableArray alloc] initWithCapacity: 100];
 
     if([self allFriendsIsSelected]) {
         /*
@@ -370,13 +369,13 @@ enum {
         id friend;
 
         while (friend = [enumerator nextObject]) {
-            [dictionary setObject: friend forKey: [friend username]];
+            dictionary[[friend username]] = friend;
         }
 
         enumerator = [[userAccount friendOfArray] objectEnumerator];
 
         while (friend = [enumerator nextObject]) {
-            [dictionary setObject: friend forKey: [friend username]];
+            dictionary[[friend username]] = friend;
         }
 
         if(viewType == kViewAllFriends) { // all
@@ -457,7 +456,7 @@ enum {
     NSArray *addressUIDs = [note object];
     if([addressUIDs count] == 0) return;
     
-    ABRecord *person = [[ABAddressBook sharedAddressBook] recordForUniqueId: [addressUIDs objectAtIndex:0]];
+    ABRecord *person = [[ABAddressBook sharedAddressBook] recordForUniqueId: addressUIDs[0]];
 
     NSString *firstName = [person valueForProperty: kABFirstNameProperty];
     NSString *lastName = [person valueForProperty: kABLastNameProperty];
@@ -468,7 +467,6 @@ enum {
         NSData *imageData = [(ABPerson *)person imageData];
         NSImage *img = [[NSImage alloc] initWithData: imageData];
         [addressBookImageWell setImage: img];
-        [img release];
     }
 
     [[self selectedFriend] associateABRecord: person];
@@ -523,22 +521,22 @@ enum {
 - (LJGroup *)selectedGroup // Which group is selected in the group table?
 {
     LJAccount *userAccount = [self account];
-    int index = [groupTable selectedRow];
+    NSInteger index = [groupTable selectedRow];
 
     if(index < 1)
         return nil;
 
-    return [[userAccount groupArray] objectAtIndex: index-1];
+    return [userAccount groupArray][index-1];
 }
 
-- (LJGroup *)groupForRow:(int)row // What group is at the given row?
+- (LJGroup *)groupForRow:(NSInteger)row // What group is at the given row?
 {
     LJAccount *userAccount = [self account];
 
     if(row == 0)
         return nil;
 
-    return [[userAccount groupArray] objectAtIndex: row-1];
+    return [userAccount groupArray][row-1];
 }
 
 - (BOOL)allFriendsIsSelected // Returns YES if the All Friends item in the group table is selected
@@ -547,28 +545,25 @@ enum {
 }
 
 - (LJFriend *) selectedFriend {
-    int index = [friendsTable selectedRow];
+    NSInteger index = [friendsTable selectedRow];
     if(index == -1) return nil; // No selection, return nil
     if([friendsTable numberOfSelectedRows] > 1) return nil;
     if(![self allFriendsIsSelected] ) {
         LJGroup *selectedGroup = [self selectedGroup];
         if(!selectedGroup) return nil;
         
-        return [friendTableCache objectAtIndex: index];
+        return friendTableCache[index];
     }
     else {
-        return [friendTableCache objectAtIndex: [friendsTable selectedRow]];
+        return friendTableCache[[friendsTable selectedRow]];
     }
 }
 
 - (NSArray *)selectedFriendArray {
-	NSMutableArray *friends = [[NSMutableArray array] retain];
-	NSEnumerator *rowEnum = [friendsTable selectedRowEnumerator];
-	int i;
-	while(i = [[rowEnum nextObject] intValue]) {
-		[friends addObject: [friendTableCache objectAtIndex:i]];
-	}
-	return [friends autorelease];
+	NSMutableArray *friends = [NSMutableArray array];
+	NSIndexSet *friendsIndex = [friendsTable selectedRowIndexes];
+	[friends addObjectsFromArray:[friendTableCache objectsAtIndexes:friendsIndex]];
+	return friends;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -585,21 +580,21 @@ enum {
         NSArray *sortInfo = nil;
 
         if([groupTable selectedRow] == 0)
-            sortInfo = [sortSettings objectForKey: @"kAllFriendsXjournalItem"];
+            sortInfo = sortSettings[@"kAllFriendsXjournalItem"];
         else if([groupTable selectedRow] == -1) {
-            [friendsTable selectRow: -1 byExtendingSelection: NO];
+			[friendsTable deselectAll:nil];
             [friendsTable reloadData];
             return;
         }
         else {
-            NSString *theGroupName = [[[userAccount groupArray] objectAtIndex: [groupTable selectedRow]-1] name];
-            sortInfo = [sortSettings objectForKey: theGroupName];
+            NSString *theGroupName = [[userAccount groupArray][[groupTable selectedRow]-1] name];
+            sortInfo = sortSettings[theGroupName];
         }
 
         [self updateFriendTableCache];
         if(sortInfo) {
-            NSTableColumn *columnToBeSortedOn = [friendsTable tableColumnWithIdentifier: [sortInfo objectAtIndex: 0]];
-            int directionToSortIn = [[sortInfo objectAtIndex:1] intValue];
+            NSTableColumn *columnToBeSortedOn = [friendsTable tableColumnWithIdentifier: sortInfo[0]];
+            int directionToSortIn = [sortInfo[1] intValue];
             
             [self sortFriendTableCacheOnColumn: columnToBeSortedOn direction: directionToSortIn];
 
@@ -629,7 +624,7 @@ enum {
             sortDirection = XJColumnSortedAscending;
         } 
 
-        [friendsTable selectRow: -1 byExtendingSelection: NO];
+		[friendsTable selectRowIndexes: [NSIndexSet indexSetWithIndex: -1] byExtendingSelection: NO];
         [friendsTable reloadData];
     }
     else {
@@ -640,12 +635,12 @@ enum {
 
 - (void)updateTabs
 {
-	int numSelected = [friendsTable numberOfSelectedRows];
+	NSInteger numSelected = [friendsTable numberOfSelectedRows];
 	BOOL isMultiple = numSelected > 1;
 	
 	
     if(isMultiple) {
-		NSString *placeHolder = [NSString stringWithFormat: @"(%d selected)", numSelected];
+		NSString *placeHolder = [NSString stringWithFormat: @"(%ld selected)", (long)numSelected];
 		[fullName setBackgroundColor: [NSColor clearColor]];
 		[fullName setTextColor: [NSColor blackColor]];
 		[fullName setStringValue: placeHolder];
@@ -655,7 +650,7 @@ enum {
 		[iCalButton setEnabled: NO];
 		
 		// AB
-		[addressBookImageWell setImage: [NSImage imageNamed: @"NewPerson"]];
+		[addressBookImageWell setImage: [NSImage imageNamed: NSImageNameUser]];
 		[addressBookName setStringValue: placeHolder];
 		[addressBookName setEnabled: NO];
 		[addressBookClearButton setEnabled: NO];
@@ -679,10 +674,8 @@ enum {
 		// Birthdate
 		NSDate *date = [selFriend birthDate];
 		if(date) {
-			[dateOfBirth setStringValue: [date descriptionWithCalendarFormat: [[NSUserDefaults standardUserDefaults] objectForKey: NSShortDateFormatString] 
-																	timeZone: nil 
-																	  locale: nil]];
-			[iCalButton setEnabled: YES];   
+			dateOfBirth.stringValue = [NSDateFormatter localizedStringFromDate: date dateStyle: NSDateFormatterShortStyle timeStyle: NSDateFormatterNoStyle];
+			[iCalButton setEnabled: YES];
 		}
 		else {
 			[dateOfBirth setStringValue: NSLocalizedString(@"not defined", @"")];
@@ -726,7 +719,7 @@ enum {
 			[addressBookClearButton setEnabled: YES];
 		}
 		else {
-			[addressBookImageWell setImage: [NSImage imageNamed: @"NewPerson"]];
+			[addressBookImageWell setImage: [NSImage imageNamed: NSImageNameUser]];
 			[addressBookName setStringValue: NSLocalizedString(@"no address card", @"")];
 			[addressBookName setEnabled: NO];
 			[addressBookClearButton setEnabled: NO];
@@ -769,13 +762,13 @@ enum {
         [@"~/Library/Preferences/com.apple.iCal.sources.plist" stringByExpandingTildeInPath]];
     
     if (prefs != nil) {
-        NSDictionary *cals = [prefs objectForKey:@"SourcesView"];
+        NSDictionary *cals = prefs[@"SourcesView"];
         if (cals != nil) {
             NSMutableDictionary *output = [NSMutableDictionary dictionaryWithCapacity:[cals count]];
             NSEnumerator *enumerator = [cals objectEnumerator];
             NSDictionary *cal;
             while ((cal = [enumerator nextObject])) {
-                [output setObject:[cal objectForKey:@"Color"] forKey:[cal objectForKey:@"Description"]];
+                output[cal[@"Description"]] = cal[@"Color"];
             }
             return output;
         }
@@ -807,7 +800,7 @@ enum {
 // NSTableDataSource
 // ----------------------------------------------------------------------------------------
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     LJAccount *userAccount = [self account];
     
@@ -827,7 +820,7 @@ enum {
     return 0;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     LJAccount *userAccount = [self account];
     NSString *columnIdentifier = [aTableColumn identifier];
@@ -841,14 +834,14 @@ enum {
                 return NSLocalizedString(@"All Friends", @"");
         }
         else {
-            int arrayIndex = rowIndex - 1;
+            NSInteger arrayIndex = rowIndex - 1;
             NSArray *groupArray = [userAccount groupArray];
 
             if([columnIdentifier isEqualToString: @"icon"]) {
                 return folder;
             }
             else {
-                return [[groupArray objectAtIndex: arrayIndex] name]; 
+                return [groupArray[arrayIndex] name]; 
             }
         }
     }
@@ -863,7 +856,7 @@ enum {
             arrayOfFriends = [selectedGroup memberArray];
         }
           
-        LJFriend *thisFriend = [friendTableCache objectAtIndex: rowIndex];
+        LJFriend *thisFriend = friendTableCache[rowIndex];
 
         if([columnIdentifier isEqualToString: @"icon"]) {
             if([[thisFriend accountType] isEqualToString: @"community"])
@@ -882,11 +875,11 @@ enum {
         else if([[aTableColumn identifier] isEqualToString: @"relationship"]) {
             int rel = [thisFriend friendship];
             switch(rel) {
-                case LJIncomingFriendship:
+                case LJFriendshipIncoming:
                     return NSLocalizedString(@"Incoming", @"");
-                case LJOutgoingFriendship:
+                case LJFriendshipOutgoing:
                     return NSLocalizedString(@"Outgoing", @"");
-                case LJMutualFriendship:
+                case LJFriendshipMutual:
                     return NSLocalizedString(@"Mutual", @"");
             }
         }
@@ -895,14 +888,14 @@ enum {
     return @"";
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCellId forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCellId forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     if([aTableView isEqualTo: friendsTable]) {
         LJFriend *friend;
         NSTextFieldCell *aCell = (NSTextFieldCell *)aCellId; /* We cast aCellId to NSTextFieldCell so it finds the proper method prototypes. --Sparks */
         
         if([self allFriendsIsSelected]) {
-            friend = [friendTableCache objectAtIndex: rowIndex];
+            friend = friendTableCache[rowIndex];
         }
         else {
             if(![self selectedGroup]) {
@@ -911,7 +904,7 @@ enum {
                 return;
             }
             else {
-                friend = [friendTableCache objectAtIndex: rowIndex];
+                friend = friendTableCache[rowIndex];
             }
         }
         
@@ -926,7 +919,7 @@ enum {
     }
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     if([aTableView isEqualTo: groupTable]) {
         if([[aTableColumn identifier] isEqualToString: @"groupname"]) {
@@ -938,7 +931,7 @@ enum {
     return NO;
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     LJGroup *grp = [self selectedGroup];
     NSAssert(grp != nil, @"Something really wierd is going on here");
@@ -949,6 +942,7 @@ enum {
     [self refreshWindow: nil];
 }
 
+//Deprecated method!
 - (BOOL) tableView: (NSTableView *)aTableView writeRows: (NSArray *)rows toPasteboard: (NSPasteboard *)pb
 {
     NSArray *arrayOfFriends;
@@ -967,11 +961,11 @@ enum {
 
     while (object = [enumerator nextObject]) {
         int theRow = [object intValue];
-        LJFriend *thisFriend = [arrayOfFriends objectAtIndex: theRow];
+        LJFriend *thisFriend = arrayOfFriends[theRow];
         [array addObject: [thisFriend username]];
     }
 
-    [pb declareTypes: [NSArray arrayWithObjects: @"LJFriend", NSStringPboardType, nil] owner: self];
+    [pb declareTypes: @[@"LJFriend", NSStringPboardType] owner: self];
 
     NSMutableData *data;
     NSKeyedArchiver *archiver;
@@ -981,7 +975,6 @@ enum {
     // Customize archiver here
     [archiver encodeObject:array forKey: @"LJFriend"];
     [archiver finishEncoding];
-    [archiver release];
 
     NSMutableString *string = [NSMutableString stringWithCapacity:100];
     enumerator = [array objectEnumerator];
@@ -995,7 +988,7 @@ enum {
     
 }
 
-- (NSDragOperation)tableView: (NSTableView *)tableView validateDrop: (id <NSDraggingInfo>)info proposedRow: (int)row proposedDropOperation: (NSTableViewDropOperation)op
+- (NSDragOperation)tableView: (NSTableView *)tableView validateDrop: (id <NSDraggingInfo>)info proposedRow: (NSInteger)row proposedDropOperation: (NSTableViewDropOperation)op
 {
     if(row > 0 && row < [self numberOfRowsInTableView: tableView]) {
         [tableView setDropRow: row dropOperation: NSTableViewDropOn];
@@ -1004,15 +997,14 @@ enum {
     return NSDragOperationNone;
 }
 
-- (BOOL)tableView: (NSTableView *)tableView acceptDrop: (id <NSDraggingInfo>)info row: (int)row dropOperation: (NSTableViewDropOperation)op
+- (BOOL)tableView: (NSTableView *)tableView acceptDrop: (id <NSDraggingInfo>)info row: (NSInteger)row dropOperation: (NSTableViewDropOperation)op
 {
     NSPasteboard *pb = [info draggingPasteboard];
     NSData *data = [pb dataForType: @"LJFriend"];
 
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    NSArray *friendArray = [[unarchiver decodeObjectForKey:@"LJFriend"] retain];
+    NSArray *friendArray = [unarchiver decodeObjectForKey:@"LJFriend"];
     [unarchiver finishDecoding];
-    [unarchiver release];
 
     NSEnumerator *enumerator = [friendArray objectEnumerator];
     id object;
@@ -1022,7 +1014,7 @@ enum {
     while (object = [enumerator nextObject]) {
         // Check that the friend is not just an incoming friendshup
 		LJFriend *friendToAdd = [acct friendNamed:object];
-		if([friendToAdd friendship] != LJIncomingFriendship)
+		if([friendToAdd friendship] != LJFriendshipIncoming)
 			[group addFriend: [acct friendNamed: object]];
     }
 
@@ -1089,13 +1081,13 @@ enum {
     else
         selectedGroupName = [[self selectedGroup] name];
 
-    [sortSettings setObject: [NSArray arrayWithObjects: [tableColumn identifier], [NSNumber numberWithInt: sortDirection], nil] forKey: selectedGroupName];
+    sortSettings[selectedGroupName] = @[[tableColumn identifier], @(sortDirection)];
     
     [tableView reloadData];
 
     if(selectedFriendBeforeSort) {
-        int theIndex = [friendTableCache indexOfObject: selectedFriendBeforeSort];
-        [friendsTable selectRow: theIndex byExtendingSelection: NO];
+        NSInteger theIndex = [friendTableCache indexOfObject: selectedFriendBeforeSort];
+		[friendsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:theIndex] byExtendingSelection:NO];
         [friendsTable scrollRowToVisible: theIndex];
     }
 }
@@ -1103,9 +1095,9 @@ enum {
 // ----------------------------------------------------------------------------------------
 // Menu item stuff
 // ----------------------------------------------------------------------------------------
-- (BOOL)validateMenuItem: (id <NSMenuItem>)item
+- (BOOL)validateMenuItem: (NSMenuItem*)item
 {
-    int tag = [item tag];
+    NSInteger tag = [item tag];
 
     if(tag == 1) { // Delete friend
         return [self canDeleteFriend];
@@ -1161,14 +1153,14 @@ enum {
 // ----------------------------------------------------------------------------------------
 - (void) webView: (WebView *) sender  decidePolicyForNavigationAction: (NSDictionary *) actionInformation request: (NSURLRequest *) request frame: (WebFrame *) frame decisionListener: (id<WebPolicyDecisionListener>) listener
 {
-    int key = [[actionInformation objectForKey: WebActionNavigationTypeKey] intValue];
+    int key = [actionInformation[WebActionNavigationTypeKey] intValue];
     switch(key){
         case WebNavigationTypeLinkClicked:
             // Since a link was clicked, we want WebKit to ignore it
             [listener ignore];
             // Instead of opening it in the WebView, we want to open
             // the URL in the user's default browser
-            [[NSWorkspace sharedWorkspace] openURL: [actionInformation objectForKey:WebActionOriginalURLKey]];
+            [[NSWorkspace sharedWorkspace] openURL: actionInformation[WebActionOriginalURLKey]];
             break;
         default:
             [listener use];

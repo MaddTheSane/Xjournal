@@ -6,27 +6,27 @@
 //  Copyright (c) 2003 Fraser Speirs. All rights reserved.
 //
 
-#import "XJYear.h"
+#import <Cocoa/Cocoa.h>
 #import <LJKit/LJKit.h>
+#import "XJYear.h"
 
 #define kNameKey @"YearName"
 #define kMonthListKey @"Months"
 
 @implementation XJYear
-- (id)initWithYearName:(int)yearName
+- (instancetype)initWithYearName:(int)yearName
 {
-    if(self == [super init]) {
-        months = [[NSMutableArray arrayWithCapacity: 12] retain];
+    if(self = [super init]) {
+        months = [[NSMutableArray alloc] initWithCapacity: 12];
         name = yearName;
-        return self;
     }
-    return nil;
+    return self;
 }
 
 - (id)propertyListRepresentation
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject: [NSNumber numberWithInt: name] forKey: kNameKey];
+    dictionary[kNameKey] = @(name);
 
     NSMutableArray *array = [NSMutableArray array];
     NSEnumerator *enumerator = [months objectEnumerator];
@@ -35,18 +35,18 @@
     while(month = [enumerator nextObject])
         [array addObject: [month propertyListRepresentation]];
 
-    [dictionary setObject: array forKey: kMonthListKey];
+    dictionary[kMonthListKey] = array;
     return dictionary;
     
 }
 
 - (void)configureFromPropertyListRepresentation: (id) plistType
 {
-    name = [[plistType objectForKey: kNameKey] intValue];
+    name = [plistType[kNameKey] intValue];
     //[months release];
-    months = [[NSMutableArray arrayWithCapacity: 12] retain];
+    months = [[NSMutableArray alloc] initWithCapacity: 12];
 
-    NSArray *plistMonths = [plistType objectForKey: kMonthListKey];
+    NSArray *plistMonths = plistType[kMonthListKey];
     NSEnumerator *enumerator = [plistMonths objectEnumerator];
     id plistMonth;
     while(plistMonth = [enumerator nextObject]) {
@@ -54,17 +54,14 @@
         [month configureFromPropertyListRepresentation: plistMonth];
         [month setYear: self];
         [months addObject: month];
-        [month release];
     }
     
 }
 
-- (int)numberOfEntriesInYear
+- (NSInteger)numberOfEntriesInYear
 {
-    int total = 0;
-    NSEnumerator *enumerator = [months objectEnumerator];
-    id month;
-    while(month = [enumerator nextObject]) {
+    NSInteger total = 0;
+    for (XJMonth *month in months) {
         total += [month numberOfEntriesInMonth];
     }
     return total;
@@ -72,16 +69,14 @@
 
 - (NSArray *)entriesContainingString: (NSString *)target
 {
-    return [self entriesContainingString: target searchType: 3];
+    return [self entriesContainingString: target searchType: XJSearchEntirePost];
 }
 
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(int) type
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type
 {
-    NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [months objectEnumerator];
-    XJMonth *month;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    while(month = [enumerator nextObject]) {
+    for (XJMonth *month in months) {
         [array addObjectsFromArray: [month entriesContainingString: target searchType: type]];
     }
 
@@ -93,7 +88,7 @@
     return name;
 }
 
-- (int)numberOfMonths
+- (NSInteger)numberOfMonths
 {
     return [months count];
 }
@@ -129,7 +124,6 @@
 {
     XJMonth *theMonth = [[XJMonth alloc] initWithName: mName inYear: self];
     [months addObject: theMonth];
-    [theMonth release];
 
     [months sortUsingSelector: @selector(compare:)];
     
@@ -149,9 +143,9 @@
     return NSOrderedDescending;
 }
 
-- (XJMonth *)monthAtIndex: (int) idx
+- (XJMonth *)monthAtIndex: (NSInteger) idx
 {
-    return [months objectAtIndex: idx];
+    return months[idx];
 }
 
 - (NSURL *)urlForYearArchiveForAccount: (LJAccount *)acct {

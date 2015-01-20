@@ -4,7 +4,7 @@
 
 @class SUUpdater;
 
-@interface XJPreferencesController : NSWindowController
+@interface XJPreferencesController : NSWindowController <NSToolbarDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {
 	NSMutableDictionary *items;
 	

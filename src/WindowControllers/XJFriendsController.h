@@ -6,7 +6,7 @@
 
 #import "AddressBookDropView.h"
 
-@interface XJFriendsController : NSWindowController
+@interface XJFriendsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 {
     IBOutlet NSTableView *friendsTable;
     IBOutlet NSTableView *groupTable;
@@ -35,7 +35,7 @@
     IBOutlet NSPopUpButton *accountToolbarPopup, *showTypePopUp;
     
     // THe view type
-    int viewType; // 0 = all, 1 = only users, 2 = only communities
+    NSInteger viewType; // 0 = all, 1 = only users, 2 = only communities
     
     // The account we're working with
     LJAccount *account;
@@ -66,7 +66,7 @@
 - (IBAction)removeAddressCard: (id)sender;
 
 - (IBAction)addBirthdayToiCal: (id)sender;
-- (NSDictionary *)getCalendars;
+@property (getter=getCalendars, readonly, copy) NSDictionary *calendars;
 - (IBAction)commitBirthdaySheet: (id)sender;
 - (IBAction)cancelBirthdaySheet: (id)sender;
 
@@ -77,6 +77,8 @@
 - (IBAction)cancelSheet: (id)sender;
 - (IBAction)saveDocument: (id)sender;
 
+- (IBAction)launchChatSession: (id)sender;
+- (IBAction)addSelectedFriendToAddressBook: (id)sender;
 - (IBAction)launchAddressBook: (id)sender;
 
 - (void)refreshWindow: (NSNotification *)note;
@@ -87,15 +89,15 @@
 
 - (void)updateTabs;
 
-- (BOOL)canDeleteGroup;
-- (BOOL)canDeleteFriend;
-- (BOOL)canRemoveFriendFromGroup;
+@property (readonly) BOOL canDeleteGroup;
+@property (readonly) BOOL canDeleteFriend;
+@property (readonly) BOOL canRemoveFriendFromGroup;
 
-- (LJFriend *) selectedFriend;
-- (NSArray *)selectedFriendArray;
-- (LJGroup *)selectedGroup;
+@property (readonly, strong) LJFriend *selectedFriend;
+@property (readonly, copy) NSArray *selectedFriendArray;
+@property (readonly, strong) LJGroup *selectedGroup;
 
-- (LJAccount *)account;
+@property (readonly, strong) LJAccount *account;
 - (void)setCurrentAccount: (LJAccount *)acct;
 - (IBAction)switchAccount: (id)sender;
 
@@ -103,6 +105,7 @@
 
 - (void)updateFriendTableCache;
 
-- (BOOL)allFriendsIsSelected;
+@property (readonly) BOOL allFriendsIsSelected;
 - (IBAction)refreshFriends: (id)sender;
+
 @end

@@ -19,5 +19,5 @@
 }
 
 - (void)refreshFromDisk;
-- (id)rootItem;
+@property (readonly, strong) id rootItem;
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <LJKit/LJKit.h>
 
-enum {
+typedef NS_ENUM(NSInteger, XJManagerCheckingMode) {
     XJManagerCheckingAllMode = 0,
     XJManagerCheckingGroupsMode
 };
@@ -18,15 +18,12 @@ enum {
 @interface XJCheckFriendsSessionManager : NSObject {
 
     LJCheckFriendsSession *session;
-
-    int checkingMode;
 }
 
 + (XJCheckFriendsSessionManager *)sharedManager;
 
 // Sets the mode of checking.  Pass XJManagerCheckingAllMode for all friends, XJManagerCheckingGroupsMode for specific groups.
-- (void)setCheckingMode:(int)mode;
-- (int)checkingMode;
+@property XJManagerCheckingMode checkingMode;
 
 // Returns the checking status for group
 - (BOOL)isCheckingForGroup: (LJGroup *)grp;
@@ -36,7 +33,7 @@ enum {
 - (void)startCheckingFriends;
 - (void)stopCheckingFriends;
 
-- (BOOL)isChecking;
+@property (getter=isChecking, readonly) BOOL checking;
 
 // Notifcations
 - (void)accountLoggedIn:(NSNotification *)aNotification;

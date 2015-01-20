@@ -2,17 +2,14 @@
 #import <CoreServices/CoreServices.h>
 #import <Carbon/Carbon.h>
 
-@interface XJKeyChain : NSObject {
-    unsigned	maxPasswordLength ;
-}
+@interface XJKeyChain : NSObject
 
-+ (XJKeyChain*)defaultKeyChain;
+@property (nonatomic) NSUInteger maxPasswordLength;
 
-- (void)setGenericPassword:(NSString*)password forService:(NSString *)service account:(NSString*)account;
++ (instancetype)defaultKeyChain;
+
+- (OSStatus)setGenericPassword:(NSString*)password forService:(NSString *)service account:(NSString*)account;
 - (NSString*)genericPasswordForService:(NSString *)service account:(NSString*)account;
 - (void)removeGenericPasswordForService:(NSString *)service account:(NSString*)account;
-
-- (void)setMaxPasswordLength:(unsigned)length;
-- (unsigned)maxPasswordLength;
 
 @end

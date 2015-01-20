@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="XJHistoryWindowController">
+            <connections>
+                <outlet property="backButton" destination="90" id="97"/>
+                <outlet property="browser" destination="7" id="14"/>
+                <outlet property="downloadBar" destination="52" id="56"/>
+                <outlet property="downloadStatus" destination="51" id="55"/>
+                <outlet property="downloadTitle" destination="50" id="82"/>
+                <outlet property="forwardButton" destination="91" id="98"/>
+                <outlet property="progressSheet" destination="47" id="54"/>
+                <outlet property="searchField" destination="oH8-ny-jgN" id="9bM-MF-I5A"/>
+                <outlet property="searchView" destination="58" id="60"/>
+                <outlet property="selectedMenuItem" destination="65" id="71"/>
+                <outlet property="urlField" destination="92" id="99"/>
+                <outlet property="webView" destination="83" id="85"/>
+                <outlet property="window" destination="5" id="11"/>
+                <outlet property="wvSpinner" destination="100" id="101"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="History" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="467" y="287" width="552" height="478"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <value key="minSize" type="size" width="213" height="107"/>
+            <view key="contentView" id="6">
+                <rect key="frame" x="0.0" y="0.0" width="552" height="478"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <splitView id="95">
+                        <rect key="frame" x="0.0" y="-4" width="552" height="482"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <browser verticalHuggingPriority="750" allowsExpansionToolTips="YES" enabled="YES" allowsEmptySelection="YES" defaultColumnWidth="100" minColumnWidth="1" maxVisibleColumns="4" allowsTypeSelect="YES" columnResizingType="auto" id="7">
+                                <rect key="frame" x="0.0" y="0.0" width="552" height="135"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <action selector="browserChanged:" target="-2" id="13"/>
+                                    <outlet property="delegate" destination="-2" id="12"/>
+                                </connections>
+                            </browser>
+                            <box title="Title" boxType="oldStyle" borderType="none" titlePosition="noTitle" id="88">
+                                <rect key="frame" x="0.0" y="144" width="552" height="338"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView">
+                                    <rect key="frame" x="0.0" y="0.0" width="552" height="338"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView id="83" customClass="WebView">
+                                            <rect key="frame" x="0.0" y="3" width="553" height="295"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </customView>
+                                        <button id="90">
+                                            <rect key="frame" x="16" y="305" width="27" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoLeftTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="104">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system" size="10"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="goBack:" target="83" id="94"/>
+                                            </connections>
+                                        </button>
+                                        <button id="91">
+                                            <rect key="frame" x="42" y="305" width="27" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoRightTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="105">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system" size="10"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="goForward:" target="83" id="96"/>
+                                            </connections>
+                                        </button>
+                                        <textField verticalHuggingPriority="750" id="92">
+                                            <rect key="frame" x="77" y="306" width="440" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="106">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="takeStringURLFrom:" target="83" id="102"/>
+                                            </connections>
+                                        </textField>
+                                        <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="100">
+                                            <rect key="frame" x="525" y="308" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        </progressIndicator>
+                                    </subviews>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="message"/>
+                            </box>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                            <real value="250"/>
+                        </holdingPriorities>
+                    </splitView>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="40"/>
+            </connections>
+        </window>
+        <window title="Panel" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="47" userLabel="Panel" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="667" y="658" width="414" height="110"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <value key="minSize" type="size" width="213" height="107"/>
+            <view key="contentView" id="48">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView id="49">
+                        <rect key="frame" x="20" y="26" width="64" height="64"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Xjournal" id="107"/>
+                    </imageView>
+                    <textField verticalHuggingPriority="750" id="50">
+                        <rect key="frame" x="92" y="73" width="146" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Downloading History" id="108">
+                            <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="51">
+                        <rect key="frame" x="94" y="51" width="223" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="109">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" id="52">
+                        <rect key="frame" x="90" y="23" width="226" height="20"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </progressIndicator>
+                    <button verticalHuggingPriority="750" id="53">
+                        <rect key="frame" x="316" y="17" width="84" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="110">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent"></string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancelHistoryDownload:" target="-2" id="57"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+        </window>
+        <customView id="58" userLabel="View">
+            <rect key="frame" x="0.0" y="0.0" width="181" height="32"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" id="oH8-ny-jgN">
+                    <rect key="frame" x="5" y="5" width="171" height="22"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                    <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="hwc-pk-ntI">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </searchFieldCell>
+                    <connections>
+                        <action selector="executeSearch:" target="-2" id="1yg-er-AdT"/>
+                        <outlet property="menu" destination="63" id="5Ol-2h-fBa"/>
+                    </connections>
+                </searchField>
+            </subviews>
+            <point key="canvasLocation" x="426.5" y="419"/>
+        </customView>
+        <menu title="Menu" id="63">
+            <items>
+                <menuItem title="Entire Post" state="on" tag="3" id="65">
+                    <connections>
+                        <action selector="setSearchType:" target="-2" id="68"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Subject" tag="1" id="64">
+                    <connections>
+                        <action selector="setSearchType:" target="-2" id="69"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Body" tag="2" id="66">
+                    <connections>
+                        <action selector="setSearchType:" target="-2" id="70"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
+    </objects>
+    <resources>
+        <image name="NSGoLeftTemplate" width="9" height="12"/>
+        <image name="NSGoRightTemplate" width="9" height="12"/>
+        <image name="Xjournal" width="128" height="128"/>
+    </resources>
+</document>

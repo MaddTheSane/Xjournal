@@ -13,7 +13,7 @@
  * parameters and return values.
  *   --sparks
  */
-@interface KeyHandlingTableViewDelegate
+@protocol KeyHandlingTableViewDelegate <NSObject>
 - (void) handleDeleteKeyInTableView:(NSTableView *) aTableView;
 @end
 
@@ -26,7 +26,7 @@
 - (void)keyDown:(NSEvent *)event {
     
     unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
-    unsigned int flags = [event modifierFlags];
+    NSEventModifierFlags flags = [event modifierFlags];
 
     if (key == NSDeleteCharacter &&
         flags == 0 &&
@@ -34,7 +34,7 @@
         [self selectedRow] != -1) {
         
         if([[self delegate] respondsToSelector:@selector(handleDeleteKeyInTableView:)])
-            [[self delegate] handleDeleteKeyInTableView: self];
+            [(id<KeyHandlingTableViewDelegate>)[self delegate] handleDeleteKeyInTableView: self];
     }
     else {
         [super keyDown:event]; // let somebody else handle the event

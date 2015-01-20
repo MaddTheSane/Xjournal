@@ -16,11 +16,9 @@
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];
 
-    NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [[acct friendArray] objectEnumerator];
-    id object;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    while (object = [enumerator nextObject]) {
+    for (id object in acct.friendArray) {
         if([object birthdayIsWithinAlertPeriod: 7])
             [array addObject: object];
     }
@@ -31,11 +29,9 @@
 {
     LJAccount *acct = [[XJAccountManager defaultManager] defaultAccount];
 
-    NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [[acct friendArray] objectEnumerator];
-    id object;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    while (object = [enumerator nextObject]) {
+    for (id object in acct.friendArray) {
         if([object birthdayIsThisMonth])
             [array addObject: object];
     }

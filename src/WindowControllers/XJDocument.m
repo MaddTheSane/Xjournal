@@ -15,6 +15,7 @@
 #import "NSString+Extensions.h"
 #import "XJMusic.h"
 #import "NSString+Templating.h"
+#import "XJDocument+NSToolbarController.h"
 
 #define DOC_TEXT @"document.text"
 #define DOC_SUBJECT @"document.subject"
@@ -24,31 +25,31 @@ NSString *TXJshowMusicField	   = @"ShowMusicField";
 NSString *TXJshowTagsField     = @"ShowTagsField";
 NSString *TXJshowMoodField     = @"ShowMoodField";
 
-@interface XJDocument (PrivateAPI)
-- (BOOL)iTunesIsRunning;
-- (BOOL)iTunesIsPlaying;
+@interface XJDocument ()
+@property (readonly) BOOL iTunesIsRunning;
+@property (readonly) BOOL iTunesIsPlaying;
 @end
 
 @implementation XJDocument
+@synthesize currentMusic;
 #pragma mark -
 #pragma mark Initialisation
 + (void)initialize {
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
-	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowLocationField"];
-	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowMusicField"];
-	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowTagsField"];
-	[defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"ShowMoodField"];
+	defaultValues[@"ShowLocationField"] = @YES;
+	defaultValues[@"ShowMusicField"] = @YES;
+	defaultValues[@"ShowTagsField"] = @YES;
+	defaultValues[@"ShowMoodField"] = @YES;
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
-- (id)init
+- (instancetype)init
 {
-    if([super init] == nil)
-        return nil;
+    if (self = [super init]) {
     
-    [self setEntry: [[[LJEntry alloc] init] autorelease]];
+    [self setEntry: [[LJEntry alloc] init]];
 	
     if([[XJAccountManager defaultManager] loggedInAccount]) {
         [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
@@ -81,13 +82,13 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 															name: @"com.apple.iTunes.playerInfo"
 														  object: nil
 											  suspensionBehavior: NSNotificationSuspensionBehaviorDrop];
-
+    }
     return self;
 }
 
-- (id)initWithEntry: (LJEntry *)newentry
+- (instancetype)initWithEntry: (LJEntry *)newentry
 {
-    [self init];
+    if (!(self = [self init])) return nil;
     [self setEntry: newentry];
     return self;
 }
@@ -101,7 +102,6 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     [toolbar setAutosavesConfiguration: YES];
     [toolbar setDelegate: self];
     [[self window] setToolbar: toolbar];
-    [toolbar release];
 	
     // Configure the table
     NSButtonCell *tPrototypeCell = [[NSButtonCell alloc] initTextCell: @""];
@@ -111,7 +111,6 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     [tPrototypeCell setControlSize:NSSmallControlSize];
 	
     [[friendsTable tableColumnWithIdentifier: @"check"] setDataCell: tPrototypeCell];
-    [tPrototypeCell release];
 	
     if([[self entry] itemID] == 0) {
         // Item hasn't been posted, apply default security mode
@@ -301,13 +300,10 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 {
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver: self];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
-    [entry release];
-	[toolbarItemCache release];
 	
 	[self setFriendArray: nil];
     [self setJoinedCommunityArray: nil];
 	
-    [super dealloc];
 }
 
 // ==================================
@@ -320,7 +316,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     return @"XJDocument";
 }
 
-- (NSWindow *)window { return [[[self windowControllers] objectAtIndex: 0] window]; }
+- (NSWindow *)window { return [[self windowControllers][0] window]; }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController {
     [self initUI];
@@ -668,16 +664,37 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 #pragma mark -
 #pragma mark Saving
 // ----------------------------------------------------------------------------------------
+-(BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+{
+    BOOL isSuccess = [[self entry] writePropertyListToFile: [url path] atomically: YES];
+    if (isSuccess) {
+        *outError = nil;
+    } else {
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+    }
+    return isSuccess;
+}
+
+-(BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+{
+    [self setEntry: [[LJEntry alloc] init]];
+    [[self entry] configureWithContentsOfFile: [url path]];
+    *outError = nil;
+    return YES;
+}
+
+#if 0
 - (BOOL)writeToFile:(NSString *)fileName ofType:(NSString *)docType
 {
     return [[self entry] writePropertyListToFile: fileName atomically: YES];
 }
 
 - (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)docType {
-    [self setEntry: [[[LJEntry alloc] init] autorelease]];
+    [self setEntry: [[LJEntry alloc] init]];
 	[[self entry] configureWithContentsOfFile: fileName];
     return YES;
 }
+#endif
 
 - (IBAction)saveWindowSize:(id)sender {
 	NSString *sizeString = NSStringFromSize([[self window] frame].size);
@@ -697,14 +714,13 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 	{
 		if(previewUpdateTimer) {
 			[previewUpdateTimer invalidate];
-			[previewUpdateTimer release];
 			previewUpdateTimer = nil;
 		}
-		previewUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval: 1
+		previewUpdateTimer = [NSTimer scheduledTimerWithTimeInterval: 1
 															   target: self
 															 selector: @selector(previewUpdateTimerFired:)
 															 userInfo: nil
-															  repeats: NO] retain];
+															  repeats: NO];
     }
 }
 
@@ -777,8 +793,6 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     return currentMusic; 
 }
 - (void)setCurrentMusic:(XJMusic *)aCurrentMusic {
-    [aCurrentMusic retain];
-    [currentMusic release];
     currentMusic = aCurrentMusic;
 	NSString *formatString = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey: @"XJMusicSubstitutionString"];
 	
@@ -879,7 +893,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
         NS_HANDLER
             NSBeginCriticalAlertSheet([localException name], @"OK", nil, nil,
                                       [self window], nil, nil, nil, nil,
-                                      [localException reason]);
+                                      @"%@", [localException reason]);
             [spinner stopAnimation: self];    
             return NO;
         NS_ENDHANDLER
@@ -898,17 +912,17 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 - (void)postEntryAndDiscardLocalCopy:(id)sender
 {
-	if([self fileName] != nil && [self isDocumentEdited]) {  // Was opened from file and is dirty
+	if([self fileURL] != nil && [self isDocumentEdited]) {  // Was opened from file and is dirty
 		int unsavedOption = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJUnsavedOption"] intValue];
 
 		if(unsavedOption != 2) { // 2 == don't save
 			BOOL shouldSave = YES;
 			
 			if(unsavedOption == 0) { // ask
-				NSString *file = [[self fileName] lastPathComponent];
+				NSString *file = [[self fileURL] lastPathComponent];
 				NSString *msg = [NSString stringWithFormat: @"Do you want to save the changes you made in the document \"%@\"?", file];
 
-				int result = NSRunInformationalAlertPanel(msg,
+				NSInteger result = NSRunInformationalAlertPanel(msg,
 													  NSLocalizedString(@"Your changes will be posted, but not saved to disk if you don't save them.", @""),
 													  NSLocalizedString(@"Save", @""),
 													  NSLocalizedString(@"Post Without Saving", @""),
@@ -952,7 +966,6 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (BOOL)windowShouldClose:(id)sender
 {
     [htmlPreviewWindow orderOut:self];
-    [htmlPreviewWindow release];
     return YES;
 }
 
@@ -1026,7 +1039,6 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 	[sizeWidth setStringValue: [NSString stringWithFormat: @"%d", (int)[img size].width]];
 	[sizeHeight setStringValue: [NSString stringWithFormat: @"%d", (int)[img size].height]];
 
-    [img release];
 }
 
 - (IBAction)insertBlockquote:(id)sender { [self genericTagWrapWithStart: @"<blockquote>" andEnd: @"</blockquote>"]; }
@@ -1200,7 +1212,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 #pragma mark -
 #pragma mark Validate HTML menu menu items
 // ----------------------------------------------------------------------------------------
-- (BOOL)validateMenuItem:(id <NSMenuItem>)item {
+- (BOOL)validateMenuItem:(NSMenuItem*)item {
 	return YES;
 }
 
@@ -1218,7 +1230,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 #pragma mark -
 #pragma mark Community and user combo box data source
 // ----------------------------------------------------------------------------------------
-- (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
     LJAccount *acct = [[XJAccountManager defaultManager] loggedInAccount];
 	
@@ -1235,12 +1247,12 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     return 0;
 }
 
-- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(int)index
+- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {    
     if(aComboBox == user_nameCombo)
-        return [[[self friendArray] objectAtIndex: index] username];
+        return [[self friendArray][index] username];
     else if(aComboBox == comm_nameCombo) {
-        return [[[self joinedCommunityArray] objectAtIndex: index] username];
+        return [[self joinedCommunityArray][index] username];
     }
     return @"";
 }
@@ -1252,7 +1264,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (IBAction)setValueForSender:(id)sender
 {
     if([sender isEqualTo: security]) {
-        [[self entry] setSecurityMode: [[sender selectedItem] tag]];
+        [[self entry] setSecurityMode: (int)[[sender selectedItem] tag]];
         [friendsTable reloadData];
     }
     else if([sender isEqualTo: userpic]) {
@@ -1305,7 +1317,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 #pragma mark NSTableDataSource - friend group security
 // ----------------------------------------------------------------------------------------
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     if([[XJAccountManager defaultManager] loggedInAccount])
         return [[[[XJAccountManager defaultManager] loggedInAccount] groupArray] count];
@@ -1315,21 +1327,21 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 - (id)tableView:(NSTableView *)aTableView
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
-            row:(int)rowIndex
+            row:(NSInteger)rowIndex
 {
     if([[XJAccountManager defaultManager] loggedInAccount]) 
     {
         NSArray *groups = [[[XJAccountManager defaultManager] loggedInAccount] groupArray];
         if([groups count] > 0) {
-            LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
+            LJGroup *rowGroup = groups[rowIndex];
 
             if([[aTableColumn identifier] isEqualToString: @"name"])
                 return [rowGroup name];
             else {
                 if([[self entry] accessAllowedForGroup: rowGroup])
-                    return [NSNumber numberWithInt: 1];
+                    return @1;
                 else
-                    return [NSNumber numberWithInt: 0];
+                    return @0;
             }
         }
     }
@@ -1337,30 +1349,30 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
         if([[aTableColumn identifier] isEqualToString: @"name"])
             return @"(not logged in)";
         else
-            return [NSNumber numberWithInt: 0];
+            return @0;
     }
     return 0;
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     NSArray *groups = [[[XJAccountManager defaultManager] loggedInAccount] groupArray];
-    LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
+    LJGroup *rowGroup = groups[rowIndex];
 
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
         [[self entry] setAccessAllowed: [anObject boolValue] forGroup: rowGroup];
     }
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     return [[aTableColumn identifier] isEqualToString: @"check"];
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
-        [aCell setEnabled: [[self entry] securityMode] == LJGroupSecurityMode];
+        [aCell setEnabled: [[self entry] securityMode] == LJSecurityModeGroup];
     }
 }
 
@@ -1400,7 +1412,6 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 
 - (void)previewUpdateTimerFired: (NSTimer *)aTimer {
 	[previewUpdateTimer invalidate];
-	[previewUpdateTimer release];
 	previewUpdateTimer = nil;
 	
 	[self updatePreviewWindow: [[self entry] content]];
@@ -1415,14 +1426,14 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 // ----------------------------------------------------------------------------------------
 - (void) webView: (WebView *) sender  decidePolicyForNavigationAction: (NSDictionary *) actionInformation request: (NSURLRequest *) request frame: (WebFrame *) frame decisionListener: (id<WebPolicyDecisionListener>) listener
 {
-    int key = [[actionInformation objectForKey: WebActionNavigationTypeKey] intValue];
+    int key = [actionInformation[WebActionNavigationTypeKey] intValue];
     switch(key){
         case WebNavigationTypeLinkClicked:
             // Since a link was clicked, we want WebKit to ignore it
             [listener ignore];
             // Instead of opening it in the WebView, we want to open
             // the URL in the user's default browser
-            [[NSWorkspace sharedWorkspace] openURL: [actionInformation objectForKey:WebActionOriginalURLKey]];
+            [[NSWorkspace sharedWorkspace] openURL: actionInformation[WebActionOriginalURLKey]];
             break;
         default:
             [listener use];
@@ -1440,14 +1451,16 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     return entry; 
 }
 - (void)setEntry:(LJEntry *)anEntry {
-    [entry release];
-    entry = [anEntry retain];
+    entry = anEntry;
 	[self setEntryHasBeenPosted: [entry webItemID] != 0];
 }
 
 //=========================================================== 
 //  entryHasBeenPosted 
-//=========================================================== 
+//===========================================================
+@synthesize entryHasBeenPosted;
+@synthesize friendArray;
+@synthesize joinedCommunityArray;
 - (BOOL)entryHasBeenPosted {
     return entryHasBeenPosted;
 }
@@ -1457,48 +1470,38 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 
 - (NSArray *) friendArray
 {
-    return [[friendArray retain] autorelease]; 
+    return friendArray; 
 }
 
 - (void) setFriendArray: (NSArray *) newFriendArray
 {
     if (friendArray != newFriendArray) {
-        [newFriendArray retain];
-        [friendArray release];
         friendArray = newFriendArray;
     }
 }
 
 - (NSArray *) joinedCommunityArray
 {
-    return [[joinedCommunityArray retain] autorelease]; 
+    return joinedCommunityArray; 
 }
 
 - (void) setJoinedCommunityArray: (NSArray *) newJoinedCommunityArray
 {
     if (joinedCommunityArray != newJoinedCommunityArray) {
-        [newJoinedCommunityArray retain];
-        [joinedCommunityArray release];
         joinedCommunityArray = newJoinedCommunityArray;
     }
 }
 
-@end
-
 #pragma mark -
-@implementation XJDocument (PrivateAPI)
 - (BOOL) iTunesIsRunning
 {
-    NSArray *apps = [[NSWorkspace sharedWorkspace] launchedApplications];
-    NSEnumerator *allapps = [apps objectEnumerator];
-    NSDictionary *thisApp;
-
-    while(thisApp = [allapps nextObject]) {
-        NSString *appName = [thisApp objectForKey: @"NSApplicationName"];
-        if([appName isEqualToString: @"iTunes"]) {
-            return YES;
-        }
-    }
+    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+	for (NSRunningApplication *app in apps) {
+		if ([app.bundleIdentifier isEqualToString:@"com.apple.iTunes"]) {
+			return YES;
+		}
+	}
+	
     return NO;
 }
 
@@ -1509,7 +1512,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
         NSAppleEventDescriptor *result;
         NSDictionary *dict;
 
-        script = [[[NSAppleScript alloc] initWithSource: @"tell application \"iTunes\" to artist of current track"] autorelease];
+        script = [[NSAppleScript alloc] initWithSource: @"tell application \"iTunes\" to artist of current track"];
         result = [script executeAndReturnError: &dict];
         if(!result) {
             return NO;

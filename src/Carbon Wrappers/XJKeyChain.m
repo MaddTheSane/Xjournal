@@ -1,77 +1,82 @@
 #import "XJKeyChain.h"
+#import <Security/Security.h>
 
 static XJKeyChain* defaultKeyChain = nil;
 
-@interface XJKeyChain (KeyChainPrivate)
+@interface XJKeyChain ()
 
--(KCItemRef)_genericPasswordReferenceForService:(NSString *)service account:(NSString*)account;
+-(SecKeychainItemRef)_genericPasswordReferenceForService:(NSString *)service account:(NSString*)account CF_RETURNS_RETAINED;
 
 @end
 
 @implementation XJKeyChain
+@synthesize maxPasswordLength;
 
-+ (XJKeyChain*) defaultKeyChain {
-	return ( defaultKeyChain ? defaultKeyChain : [[[self alloc] init] autorelease] );
++ (instancetype) defaultKeyChain {
+	return ( defaultKeyChain ?: [[self alloc] init] );
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     maxPasswordLength = 127;
     return self;
 }
 
-- (void)setGenericPassword:(NSString*)password forService:(NSString *)service account:(NSString*)account
+- (OSStatus)setGenericPassword:(NSString*)password forService:(NSString *)service account:(NSString*)account
 {
-    OSStatus ret;
-    KCItemRef itemref = NULL;
-    void *p = (void *)malloc(128 * sizeof(char));
+    OSStatus ret = noErr;
+    SecKeychainItemRef itemref = NULL;
+    void *p = (void *)alloca(maxPasswordLength * sizeof(char));
     
     if ([service length] == 0 || [account length] == 0) {
-        return ;
+        return ret;
     }
     
     if (!password || [password length] == 0) {
         [self removeGenericPasswordForService:service account:account];
     } else {
-        strcpy(p,[password cString]);
+        strcpy(p,[password UTF8String]);
     
-        if (itemref = [self _genericPasswordReferenceForService:service account:account])
-        KCDeleteItem(itemref);
-        ret = kcaddgenericpassword([service cString], [account cString], [password cStringLength], 
-        p, NULL);
-        free(p); 
+        if ((itemref = [self _genericPasswordReferenceForService:service account:account]))
+			SecKeychainItemDelete(itemref);
+        SecKeychainRef keychain;
+        SecKeychainCopyDefault(&keychain);
+        ret = SecKeychainAddGenericPassword(keychain, (UInt32)[service lengthOfBytesUsingEncoding:NSUTF8StringEncoding], [service UTF8String], (UInt32)[account lengthOfBytesUsingEncoding:NSUTF8StringEncoding], [account UTF8String], (UInt32)strlen(p), p, &itemref);
+        CFRelease(itemref);
     }
+    return ret;
 }
 
 - (NSString*)genericPasswordForService:(NSString *)service account:(NSString*)account
 {
-    OSStatus ret;
-    UInt32 length;
-    void *p = (void *)malloc(maxPasswordLength * sizeof(char));
+    OSStatus ret = noErr;
+    UInt32 length = 0;
+    void *p = NULL;
     NSString *string = @"";
     
     if ([service length] == 0 || [account length] == 0) {
-        free(p);
         return @"";
     }
     
-    ret = kcfindgenericpassword([service cString], [account cString], maxPasswordLength-1, p, &length, nil);
+    ret = SecKeychainFindGenericPassword(NULL, (UInt32)[service lengthOfBytesUsingEncoding:NSUTF8StringEncoding], [service UTF8String], (UInt32)[account lengthOfBytesUsingEncoding:NSUTF8StringEncoding], [account UTF8String], &length, &p, NULL);
 
-    if (!ret)
-        string = [NSString stringWithCString:(const char*)p length:length];
-    free(p); 
+    if (ret == noErr)
+        string = [[NSString alloc] initWithBytes:p length:length encoding:NSUTF8StringEncoding];
+	if (p) {
+        SecKeychainItemFreeContent(NULL, p);
+	}
     return string;
 }
 
 - (void)removeGenericPasswordForService:(NSString *)service account:(NSString*)account
 {
-    KCItemRef itemref = nil ;
-    if (itemref = [self _genericPasswordReferenceForService:service account:account])
-        KCDeleteItem(itemref);
+    SecKeychainItemRef itemref = nil ;
+    if ((itemref = [self _genericPasswordReferenceForService:service account:account]))
+        SecKeychainItemDelete(itemref);
 }
 
-- (void)setMaxPasswordLength:(unsigned)length
+- (void)setMaxPasswordLength:(NSUInteger)length
 {
     if (![self isEqual:defaultKeyChain]) {
         maxPasswordLength = length ;
@@ -79,19 +84,10 @@ static XJKeyChain* defaultKeyChain = nil;
     }
 }
 
-- (unsigned)maxPasswordLength
+- (SecKeychainItemRef)_genericPasswordReferenceForService:(NSString *)service account:(NSString*)account
 {
-    return maxPasswordLength;
-}
-
-@end
-
-@implementation XJKeyChain (KeyChainPrivate)
-
-- (KCItemRef)_genericPasswordReferenceForService:(NSString *)service account:(NSString*)account
-{
-    KCItemRef itemref = nil;
-    kcfindgenericpassword([service cString],[account cString],nil,nil,nil,&itemref);
+    SecKeychainItemRef itemref = nil;
+    SecKeychainFindGenericPassword(NULL, (UInt32)[service lengthOfBytesUsingEncoding:NSUTF8StringEncoding], [service UTF8String], (UInt32)[account lengthOfBytesUsingEncoding:NSUTF8StringEncoding], [account UTF8String], NULL, NULL, &itemref);
     return itemref;
 }
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="XJDocument">
+            <connections>
+                <outlet property="htmlPreview" destination="14" id="16"/>
+                <outlet property="htmlPreviewWindow" destination="13" id="15"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Panel" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="13" userLabel="Panel" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="831" y="478" width="360" height="240"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <value key="minSize" type="size" width="213" height="113"/>
+            <view key="contentView" id="12">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="240"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <webView maintainsBackForwardList="NO" id="14">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="240"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <webPreferences key="preferences" defaultFontSize="14" defaultFixedFontSize="14"/>
+                        <connections>
+                            <outlet property="UIDelegate" destination="-2" id="21"/>
+                            <outlet property="downloadDelegate" destination="-2" id="18"/>
+                            <outlet property="frameLoadDelegate" destination="-2" id="17"/>
+                            <outlet property="policyDelegate" destination="-2" id="19"/>
+                            <outlet property="resourceLoadDelegate" destination="-2" id="20"/>
+                        </connections>
+                    </webView>
+                </subviews>
+            </view>
+            <connections>
+                <binding destination="-2" name="displayPatternTitle1" keyPath="entry.subject" id="24">
+                    <dictionary key="options">
+                        <string key="NSDisplayPattern">%{title1}@ [HTML Preview]</string>
+                        <string key="NSValueTransformerName">XJMarkupRemoval</string>
+                    </dictionary>
+                </binding>
+            </connections>
+        </window>
+    </objects>
+</document>

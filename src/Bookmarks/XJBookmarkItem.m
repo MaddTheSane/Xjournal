@@ -10,33 +10,27 @@
 
 
 @implementation XJBookmarkItem
-+ (XJBookmarkItem *) bookmarkWithTitle: (NSString *)theTitle address: (NSURL *)url
+@synthesize webAddress = address;
+
++ (instancetype) bookmarkWithTitle: (NSString *)theTitle address: (NSURL *)url
 {
     XJBookmarkItem *item = [[XJBookmarkItem alloc] initWithTitle: theTitle address: url];
-    return [item autorelease];
+    return item;
 }
 
-- (id)initWithTitle:(NSString *)theTitle address: (NSURL *)url
+- (instancetype)initWithTitle:(NSString *)newTitle
 {
-    if(self == [super initWithTitle: theTitle]) {
-        [self setWebAddress: url];
-        return self;
+    return [self initWithTitle:newTitle address:[NSURL URLWithString:@"http://www.google.com"]];
+}
+
+- (instancetype)initWithTitle:(NSString *)theTitle address: (NSURL *)url
+{
+    if (self = [super initWithTitle: theTitle]) {
+        self.webAddress = url;
     }
-    return nil;
+    return self;
 }
 
-- (void)dealloc
-{
-    [address release];
-    [super dealloc];
-}
-
-- (NSURL *)webAddress { return address; }
-
-- (void)setWebAddress: (NSURL *)newURL
-{
-    address = [newURL copy];
-}
 
 - (NSString *)description
 {

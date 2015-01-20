@@ -8,35 +8,34 @@
 
 #import <Foundation/Foundation.h>
 #import "XJMonth.h"
+#import "XJCalendarProtocol.h"
 
 @class LJAccount;
 @class XJMonth;
 
-@interface XJYear : NSObject {
+@interface XJYear : NSObject <XJCalendarProtocol> {
     int name;
     NSMutableArray *months;
 }
 
-- (id)initWithYearName:(int)yearName;
-- (int)yearName;
+- (instancetype)initWithYearName:(int)yearName NS_DESIGNATED_INITIALIZER;
+@property (readonly) int yearName;
 
-- (int)numberOfMonths;
+@property (readonly) NSInteger numberOfMonths;
 - (XJMonth *)month: (int)monthNumber;
-- (XJMonth *)mostRecentMonth;
+@property (readonly, strong) XJMonth *mostRecentMonth;
 - (BOOL)containsMonth: (int)monthNumber;
 
 - (XJMonth *)createMonthWithName: (int)mName;
 
-- (XJMonth *)monthAtIndex: (int) idx;
-- (NSEnumerator *)monthEnumerator;
+- (XJMonth *)monthAtIndex: (NSInteger) idx;
+@property (readonly, strong) NSEnumerator *monthEnumerator;
 
 - (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(int) type;
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
 
-- (int)numberOfEntriesInYear;
+@property (readonly) NSInteger numberOfEntriesInYear;
 
 - (NSURL *)urlForYearArchiveForAccount: (LJAccount *)acct;
 
-- (id)propertyListRepresentation;
-- (void)configureFromPropertyListRepresentation: (id) plistType;
 @end

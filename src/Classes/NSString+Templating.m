@@ -48,7 +48,7 @@ California 94305, USA.
         }
     }
     
-    return [result autorelease];    
+    return result;    
 }
 
 - (NSString *) stringByEscapingQuotes {
@@ -57,8 +57,8 @@ California 94305, USA.
 
 - (NSString *) stringByEscapingCharactersInSet: (NSCharacterSet *) set usingString: (NSString *) escapeString {
     NSMutableString *result = [[NSMutableString alloc] init];
-    int stringLength = [self length];
-    int currentPosition = 0;
+    NSInteger stringLength = [self length];
+    NSInteger currentPosition = 0;
     unichar currentChar;
     
     while (currentPosition < stringLength) {
@@ -73,7 +73,7 @@ California 94305, USA.
         currentPosition++;
     }
     
-    return [result autorelease];    
+    return result;    
 }
 
 @end

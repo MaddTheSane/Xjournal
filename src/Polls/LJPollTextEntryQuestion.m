@@ -10,58 +10,40 @@
 
 
 @implementation LJPollTextEntryQuestion
+@synthesize size;
+@synthesize maxLength;
 
-+ (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (int)theSize maxLength: (int)theLength
++ (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (NSInteger)theSize maxLength: (NSInteger)theLength
 {
     LJPollTextEntryQuestion *teQ = [[LJPollTextEntryQuestion alloc] init];
     [teQ setQuestion: @"New Text Question"];
-    [teQ setSize: theSize];
-    [teQ setMaxLength: theLength];
+    teQ.size = theSize;
+    teQ.maxLength = theLength;
 
-    return [teQ autorelease];
-}
-
-- (int)size
-{
-    return size;
-}
-
-- (void)setSize:(int)newSize
-{
-    size = newSize;
-}
-
-- (int)maxLength
-{
-    return maxLength;
-}
-
-- (void)setMaxLength: (int)newMaxLength
-{
-    maxLength = newMaxLength;
+    return teQ;
 }
 
 - (NSString *)htmlRepresentation
 {
-    return [NSString stringWithFormat: @"<lj-pq type=\"text\" size=\"%d\" maxlength=\"%d\">%@</lj-pq>", size, maxLength, theQuestion];
+    return [NSString stringWithFormat: @"<lj-pq type=\"text\" size=\"%ld\" maxlength=\"%ld\">%@</lj-pq>", (long)size, (long)maxLength, theQuestion];
 }
 
 // Memento
 - (NSDictionary *) memento
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject: [[self question] copy] forKey: @"LJPollQuestion"];
-    [dictionary setObject: [NSNumber numberWithInt: [self size]] forKey: @"LJPollTextSize"];
-    [dictionary setObject: [NSNumber numberWithInt: [self maxLength]] forKey: @"LJPollTextLength"];
+    dictionary[@"LJPollQuestion"] = [[self question] copy];
+    dictionary[@"LJPollTextSize"] = @([self size]);
+    dictionary[@"LJPollTextLength"] = @([self maxLength]);
 
     return dictionary;
 }
 
 - (void) restoreFromMemento: (NSDictionary *)memento
 {
-    [self setQuestion: [memento objectForKey: @"LJPollQuestion"]];
-    [self setSize: [[memento objectForKey: @"LJPollTextSize"] intValue]];
-    [self setMaxLength: [[memento objectForKey: @"LJPollTextLength"] intValue]];
+    [self setQuestion: memento[@"LJPollQuestion"]];
+    [self setSize: [memento[@"LJPollTextSize"] integerValue]];
+    [self setMaxLength: [memento[@"LJPollTextLength"] integerValue]];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -70,8 +52,8 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     if ([encoder allowsKeyedCoding]) {
-        [encoder encodeObject: [NSNumber numberWithInt: maxLength] forKey:@"LJPollTextLength"];
-        [encoder encodeObject: [NSNumber numberWithInt: size] forKey:@"LJPollTextSize"];
+        [encoder encodeInteger: maxLength forKey: @"LJPollTextLength"];
+        [encoder encodeInteger: size forKey: @"LJPollTextSize"];
 
         [encoder encodeObject: [self question] forKey:@"LJPollQuestion"];
     } else {
@@ -79,14 +61,14 @@
     }
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
     if (self) {
         [self setQuestion: [decoder decodeObjectForKey:@"LJPollQuestion"]];
 
-        maxLength = [[decoder decodeObjectForKey: @"LJPollTextLength"] intValue];
-        size = [[decoder decodeObjectForKey: @"LJPollTextSize"] intValue];
+        maxLength = [decoder decodeIntegerForKey: @"LJPollTextLength"];
+        size = [decoder decodeIntegerForKey: @"LJPollTextSize"];
     }
     return self;
 }

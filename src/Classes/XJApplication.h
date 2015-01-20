@@ -11,7 +11,7 @@
 
 @interface XJApplication : NSApplication {
 	NSDate *exceptionDate;
-    unsigned int exceptions;
+    NSUInteger exceptions;
     
 }
 - (void)handleRunException:(NSException *)anException;

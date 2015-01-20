@@ -8,35 +8,37 @@
 
 #import <Foundation/Foundation.h>
 #import "XJYear.h"
+#import "XJCalendarProtocol.h"
 
-@interface XJCalendar : NSObject {
+@interface XJCalendar : NSObject <XJCalendarProtocol> {
     NSMutableArray *years;
 }
 
-- (int)numberOfYears;
+@property (readonly) NSInteger numberOfYears;
 - (BOOL)containsYear: (int)year;
 - (XJYear *)year: (int)yearNumber;
-- (XJYear *)mostRecentYear;
-- (LJEntry *)mostRecentPost; // convenience!
+@property (readonly, strong) XJYear *mostRecentYear;
+@property (readonly, strong) LJEntry *mostRecentPost; // convenience!
 
 - (XJYear *)addYearWithName: (int)yearName;
-- (XJDay *)dayForCalendarDate:(NSCalendarDate *) theDate;
+- (XJDay *)dayForCalendarDate:(NSCalendarDate *) theDate; //NSCalendarDate is deprecated!
+- (XJDay *)dayForDate:(NSDate *) theDate;
 
 - (XJMonth *)month:(int)mIdx ofYear:(int)yr;
 - (XJDay *)day: (int)dayIdx ofMonth: (int)mIdx inYear:(int)yearIdx;
 
-- (XJYear *)yearAtIndex:(int)idx;
+- (XJYear *)yearAtIndex:(NSInteger)idx;
 
-- (XJDay *)today;
+@property (readonly, strong) XJDay *today;
 
-- (int)totalEntriesInCalendar;
+@property (readonly) NSInteger totalEntriesInCalendar;
 
-- (NSEnumerator *)yearEnumerator;
+@property (readonly, strong) NSEnumerator *yearEnumerator;
 
 - (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(int) type;
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
 
-- (id)propertyListRepresentation;
+@property (readonly, copy) id propertyListRepresentation;
 - (void)configureFromPropertyListRepresentation: (id) plistType;
 - (BOOL)writeToFile: (NSString *)filePath atomically: (BOOL)flag;
 - (void)configureWithContentsOfFile: (NSString *)file;

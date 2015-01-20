@@ -2,6 +2,7 @@
 #import "XJPreferences.h"
 
 @implementation AddressBookDropView
+@synthesize acceptsDrags = dragState;
 
 - (void)awakeFromNib
 {
@@ -14,14 +15,12 @@
 	if(accept) {
 		if(!dragState)
 			[self registerForDraggedTypes: kDragTypesArray];
-	}
-	else {
+	} else {
 		if(dragState)
 			[self unregisterDraggedTypes];
 	}
 	dragState = accept;
 }
-- (BOOL)acceptsDrags { return dragState; }
 
 - (NSDragOperation)draggingEntered: (id <NSDraggingInfo>)sender
 {

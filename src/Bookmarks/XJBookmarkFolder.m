@@ -11,40 +11,34 @@
 
 @implementation XJBookmarkFolder
 
-+ (XJBookmarkFolder *)folderWithTitle: (NSString *)aTitle
++ (instancetype)folderWithTitle: (NSString *)aTitle
 {
     XJBookmarkFolder *folder = [[XJBookmarkFolder alloc] initWithTitle: aTitle];
-    return [folder autorelease];
+    return folder;
 }
 
-- (id)initWithTitle:(NSString *)aTitle
+- (instancetype)initWithTitle:(NSString *)aTitle
 {
-    if(self == [super initWithTitle: aTitle]) {
-        children = [[NSMutableArray arrayWithCapacity: 100] retain];
-        return self;
+    if (self = [super initWithTitle: aTitle]) {
+        children = [[NSMutableArray alloc] initWithCapacity: 100];
     }
-    return nil;
+    return self;
 }
 
-- (void)dealloc
-{
-    [children release];
-    [super dealloc];
-}
 
 - (BOOL)hasChildren
 {
     return [children count] > 0;
 }
 
-- (int)numberOfChildren
+- (NSInteger)numberOfChildren
 {
     return [children count];
 }
 
-- (XJBookmarkRoot *)childAtIndex:(int)idx
+- (XJBookmarkRoot *)childAtIndex:(NSInteger)idx
 {
-    return [children objectAtIndex: idx];
+    return children[idx];
 }
 
 - (void)addChild: (XJBookmarkRoot *)newChild  // Retains the child
@@ -55,6 +49,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat: @"XJBookmarkFolder %@ (%u)", [self title], [self numberOfChildren]];
+    return [NSString stringWithFormat: @"XJBookmarkFolder %@ (%ld)", [self title], (long)[self numberOfChildren]];
 }
 @end

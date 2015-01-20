@@ -8,6 +8,7 @@
 
 #import "XJBookmarksWindowController.h"
 #import "XJPreferences.h"
+#import "XJBookmarksWindowController+ToolbarDelegate.h"
 
 #define kBookmarkAutosaveName @"kBookmarkAutosaveName"
 
@@ -15,11 +16,15 @@
 #define STRIPE_GREEN (243.0 / 255.0)
 #define STRIPE_BLUE  (254.0 / 255.0)
 
+@interface XJSafariBookmarkParser (private) <NSOutlineViewDataSource>
+
+@end
+
 @implementation XJBookmarksWindowController
 
-- (id)init
+- (instancetype)init
 {
-    if(self == [super initWithWindowNibName: @"Bookmarks"]) {
+    if(self = [super initWithWindowNibName: @"Bookmarks"]) {
         [[self window] setFrameAutosaveName: kBookmarkAutosaveName];
 
         [[NSNotificationCenter defaultCenter] addObserver: self
@@ -27,9 +32,8 @@
                                                      name: NSApplicationWillTerminateNotification
                                                    object: nil];
         
-        return self;
     }
-    return nil;
+    return self;
 }
 
 /*
@@ -38,7 +42,7 @@
  */
 - (void)applicationWillTerminate: (NSNotification *)note
 {
-    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithBool: [[self window] isVisible]]
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: @([[self window] isVisible])
 																		forKey: @"XJBookmarkWindowIsOpen"];
 }
 
@@ -47,7 +51,7 @@
  */
 - (void)windowDidLoad
 {
-    [outline registerForDraggedTypes: [NSArray arrayWithObjects: NSStringPboardType, nil]];
+    [outline registerForDraggedTypes: @[NSStringPboardType]];
     [outline setAutosaveTableColumns: YES];
     // Set up NSToolbar
     NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier: kBookmarkWindowToolbarIdentifier];
@@ -55,7 +59,6 @@
     [toolbar setAutosavesConfiguration: YES];
     [toolbar setDelegate: self];
     [[self window] setToolbar: toolbar];
-    [toolbar release];
 
     [self refreshBookmarks: self];
 }
@@ -75,7 +78,7 @@
 // ----------------------------------------------------------------------------------------
 // OutlineView Data Source - forwards most calls to the bookmark parser object.
 // ----------------------------------------------------------------------------------------
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
     return [parser outlineView: outlineView child: index ofItem: item];
 }
@@ -85,7 +88,7 @@
     return [parser outlineView: outlineView isItemExpandable: item];
 }
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     return [parser outlineView: outlineView numberOfChildrenOfItem: item];
 }

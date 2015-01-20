@@ -4,10 +4,11 @@
 
 @implementation XJAccountEditWindowController
 
-- (id)init
+- (instancetype)init
 {
-    if([super initWithWindowNibName:@"AccountEditWindow"] == nil)
-        return nil;
+    if(self = [super initWithWindowNibName:@"AccountEditWindow"]) {
+        
+    }
     return self;
 }
 
@@ -22,7 +23,6 @@
     [tPrototypeCell setControlSize:NSSmallControlSize];
 
     [[table tableColumnWithIdentifier: @"default"] setDataCell: tPrototypeCell];
-    [tPrototypeCell release];
 
     [table setTarget: self];
     [table setDoubleAction: @selector(editAccount:)];
@@ -48,15 +48,13 @@
 - (IBAction)removeAccount:(id)sender
 {
     if([[XJAccountManager defaultManager] numberOfAccounts] > 1) {
-        int selectedAccountIndex = [table selectedRow];
+        NSInteger selectedAccountIndex = [table selectedRow];
 
         if(selectedAccountIndex != -1) {
             NSArray *usernames = [[[[XJAccountManager defaultManager] accounts] allKeys] sortedArrayUsingSelector: @selector(compare:)];
-            NSString *username = [[usernames objectAtIndex: selectedAccountIndex] copy];
-            [usernames release];
+            NSString *username = [usernames[selectedAccountIndex] copy];
 
             [[XJAccountManager defaultManager] removeAccountWithUsername: username];
-            [username release];
 
             [table reloadData];
         }
@@ -77,14 +75,14 @@
 
 - (IBAction)editAccount: (id)sender
 {
-    int row = [table selectedRow];
+    NSInteger row = [table selectedRow];
     if(row == -1) return;
     
     XJAccountManager *man = [XJAccountManager defaultManager];
     NSDictionary *accts = [man accounts];
     NSArray *usernames = [[accts allKeys] sortedArrayUsingSelector: @selector(compare:)];
 
-    editedAccount = [man accountForUsername: [usernames objectAtIndex: row]];
+    editedAccount = [man accountForUsername: usernames[row]];
 
     [usernameField setStringValue: [editedAccount username]];
     [usernameField setEnabled: NO];
@@ -140,14 +138,14 @@
 // NSTableDataSource
 // ----------------------------------------------------------------------------------------
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	int i = [[[[XJAccountManager defaultManager] accounts] allKeys] count];
+	NSInteger i = [[[[XJAccountManager defaultManager] accounts] allKeys] count];
     //return [[[[XJAccountManager defaultManager] accounts] allKeys] count];
 	return i;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     XJAccountManager *man = [XJAccountManager defaultManager];
     NSDictionary *accts = [man accounts];
@@ -155,27 +153,27 @@
 	
     if([[aTableColumn identifier] isEqualToString: @"default"]) {
 		LJAccount *defaultAccount = [man defaultAccount];
-        if([[usernames objectAtIndex: rowIndex] isEqualToString: [defaultAccount username]]) {
-            return [NSNumber numberWithInt: 1];
+        if([usernames[rowIndex] isEqualToString: [defaultAccount username]]) {
+            return @1;
 		}
         else {
-            return [NSNumber numberWithInt: 0];
+            return @0;
 		}
     } else {
-        return [NSString stringWithFormat:@"%@", [usernames objectAtIndex: rowIndex]];
+        return [NSString stringWithFormat:@"%@", usernames[rowIndex]];
     }
 	NSAssert(NO, @"Should never get here");
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     NSArray *usernames = [[[[XJAccountManager defaultManager] accounts] allKeys] sortedArrayUsingSelector: @selector(compare:)];
-    NSString *username = [usernames objectAtIndex: rowIndex];
+    NSString *username = usernames[rowIndex];
     [[XJAccountManager defaultManager] setDefaultUsername: username];
     [table reloadData];
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     return [[aTableColumn identifier] isEqualToString: @"default"];
 }

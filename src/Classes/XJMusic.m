@@ -9,7 +9,7 @@
 #import "XJMusic.h"
 #import "NSString+Templating.h"
 
-@interface XJMusic (PrivateAPI)
+@interface XJMusic ()
 + (NSDictionary *)detectMusic;
 + (BOOL)iTunesIsRunning;
 + (BOOL)iTunesIsPlaying;
@@ -18,6 +18,10 @@
 @end
 
 @implementation XJMusic
+@synthesize name;
+@synthesize artist;
+@synthesize album;
+@synthesize rating;
 
 + (XJMusic *)currentMusic {
 
@@ -27,13 +31,13 @@
 		NSDictionary *data = [self detectMusic];
 
 		if(data) {
-			music = [[XJMusic alloc] initWithName: [data objectForKey: @"name"]
-											album: [data objectForKey: @"album"]
-										   artist: [data objectForKey: @"artist"]
-										   rating: [[data objectForKey: @"rating"] intValue]];
+			music = [[XJMusic alloc] initWithName: data[@"name"]
+											album: data[@"album"]
+										   artist: data[@"artist"]
+										   rating: [data[@"rating"] intValue]];
 		}
 	}
-	return [music autorelease];
+	return music;
 }
 
 + (XJMusic *)musicAsiTunesLink: (XJMusic *)aMusic {
@@ -50,10 +54,10 @@
 										   rating: [aMusic rating]];	
 		}
 	}
-	return [music autorelease];
+	return music;
 }
 
-- (id)initWithName: (NSString *)aName album: (NSString *)anAlbum artist: (NSString *)anArtist rating: (int)aRating {
+- (instancetype)initWithName: (NSString *)aName album: (NSString *)anAlbum artist: (NSString *)anArtist rating: (int)aRating {
 	self = [super init];
 	if(self) {
 		[self setName: aName];
@@ -69,97 +73,6 @@
 		[self name], [self artist], [self album], [self rating]];
 }
 
-
-
-// =========================================================== 
-//  - dealloc:
-// =========================================================== 
-- (void)dealloc {
-    [name release];
-    [album release];
-    [artist release];
-	
-    [super dealloc];
-}
-
-
-// =========================================================== 
-// - name:
-// =========================================================== 
-- (NSString *)name {
-	return name; 
-}
-
-// =========================================================== 
-// - setName:
-// =========================================================== 
-- (void)setName:(NSString *)aName {
-    if (name != aName) {
-        [aName retain];
-        [name release];
-        name = aName;
-    }
-}
-
-
-
-
-// =========================================================== 
-// - album:
-// =========================================================== 
-- (NSString *)album {
-    return album;
-}
-
-// =========================================================== 
-// - setAlbum:
-// =========================================================== 
-- (void)setAlbum:(NSString *)anAlbum {
-    if (album != anAlbum) {
-        [anAlbum retain];
-        [album release];
-        album = anAlbum;
-    }
-}
-
-
-
-// =========================================================== 
-// - artist:
-// =========================================================== 
-- (NSString *)artist {
-return artist; 
-}
-
-// =========================================================== 
-// - setArtist:
-// =========================================================== 
-- (void)setArtist:(NSString *)anArtist {
-    if (artist != anArtist) {
-        [anArtist retain];
-        [artist release];
-        artist = anArtist;
-    }
-}
-
-// =========================================================== 
-// - rating:
-// =========================================================== 
-- (int)rating {
-	
-    return rating;
-}
-
-// =========================================================== 
-// - setRating:
-// =========================================================== 
-- (void)setRating:(int)aRating {
-	rating = aRating;
-}
-
-@end
-
-@implementation XJMusic (PrivateAPI)
 + (NSDictionary *)detectMusic
 {
     if([self iTunesIsRunning] && [self iTunesIsPlaying]) {
@@ -176,47 +89,35 @@ return artist;
         script = [[NSAppleScript alloc] initWithSource: getTrackScript];
         result = [script executeAndReturnError: &info];
         theTrack = [[result stringValue] copy];
-        [script release];
         
         script = [[NSAppleScript alloc] initWithSource: getArtistScript];
         result = [script executeAndReturnError: &info];
         theArtist = [[result stringValue] copy];
-        [script release];
         
         script = [[NSAppleScript alloc] initWithSource: getAlbumScript];
         result = [script executeAndReturnError: &info];
         theAlbum = [[result stringValue] copy];
-        [script release];
 
 		script = [[NSAppleScript alloc] initWithSource: getRatingScript];
         result = [script executeAndReturnError: &info];
         int theRating = [[result stringValue] intValue];
-		theRating = theRating/20;
-        [script release];
+		theRating = theRating / 20;
 		
-        [theArtist autorelease];
-        [theAlbum autorelease];
-        [theTrack autorelease];
-		
-        return [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: theArtist, theAlbum, theTrack, [NSNumber numberWithInt: theRating], nil] 
-										   forKeys: [NSArray arrayWithObjects: @"artist", @"album", @"name", @"rating", nil]];
+        return @{@"artist": theArtist, @"album": theAlbum, @"name": theTrack, @"rating": @(theRating)};
     }
     return nil;
 }
 
 + (BOOL) iTunesIsRunning
 {
-    NSArray *apps = [[NSWorkspace sharedWorkspace] launchedApplications];
-    NSEnumerator *allapps = [apps objectEnumerator];
-    NSDictionary *thisApp;
-    
-    while(thisApp = [allapps nextObject]) {
-        NSString *appName = [thisApp objectForKey: @"NSApplicationName"];
-        if([appName isEqualToString: @"iTunes"]) {
-            return YES;
-        }
-    }
-    return NO;
+    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+	for (NSRunningApplication *thisApp in apps) {
+		if ([thisApp.bundleIdentifier isEqualToString:@"com.apple.iTunes"]) {
+			return YES;
+		}
+	}
+	
+	return NO;
 }
 
 + (BOOL)iTunesIsPlaying
@@ -226,7 +127,7 @@ return artist;
         NSAppleEventDescriptor *result;
         NSDictionary *dict;
         
-        script = [[[NSAppleScript alloc] initWithSource: @"tell application \"iTunes\" to artist of current track"] autorelease];
+        script = [[NSAppleScript alloc] initWithSource: @"tell application \"iTunes\" to artist of current track"];
         result = [script executeAndReturnError: &dict];
         if(!result) {
             return NO;

@@ -13,9 +13,9 @@
 
 - (BOOL)writePropertyListToFile:(NSString *)path atomically:(BOOL)flag;
 - (void)configureWithContentsOfFile: (NSString *)file;
-- (NSDictionary *)propertyListRepresentation;
+@property (readonly, copy) NSDictionary *propertyListRepresentation;
 - (void)configureFromPropertyListRepresentation:(id)plist;
 
-- (NSString *)metadataHTML;
+@property (readonly, copy) NSString *metadataHTML;
 - (NSMutableDictionary *) makeMutableDictionary: (NSDictionary *)input;
 @end

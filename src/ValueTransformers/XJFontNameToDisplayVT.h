@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface XJFontNameToDisplayVT : NSValueTransformer {
-
-}
+@interface XJFontNameToDisplayVT : NSValueTransformer
 
 @end

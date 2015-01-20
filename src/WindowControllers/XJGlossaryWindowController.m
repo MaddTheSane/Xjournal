@@ -13,9 +13,10 @@
 #define kGlossaryFilePath [@"~/Library/Application Support/Xjournal/Glossary.plist" stringByExpandingTildeInPath]
 	
 @implementation XJGlossaryWindowController
-- (id)init
+@synthesize glossary;
+- (instancetype)init
 {
-	self == [super initWithWindowNibName: @"GlossaryWindow"];
+	self = [super initWithWindowNibName: @"GlossaryWindow"];
     if(self) {
 		if(![self fileExists: kGlossaryFilePath])
 			[self writeExampleGlossaryFile];
@@ -27,41 +28,16 @@
                                                      name: NSApplicationWillTerminateNotification
                                                    object:nil];
 
-        return self;
     }
-    return nil;
+    return self;
 }
 
-- (void)dealloc
-{
-    [glossary release];
-    [super dealloc];
-}
-
-
-// =========================================================== 
-// - glossary:
-// =========================================================== 
-- (NSMutableArray *)glossary {
-    return glossary; 
-}
-
-// =========================================================== 
-// - setGlossary:
-// =========================================================== 
-- (void)setGlossary:(NSMutableArray *)aGlossary {
-    if (glossary != aGlossary) {
-        [aGlossary retain];
-        [glossary release];
-        glossary = aGlossary;
-    }
-}
 
 
 - (void)applicationWillTerminate: (NSNotification *)note
 {
 	[self writeGlossaryFile];
-    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithBool: [[self window] isVisible]]
+    [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: @([[self window] isVisible])
 																		forKey: @"XJGlossaryWindowIsOpen"];
 }
 
@@ -97,6 +73,6 @@
 {
     NSString *exPath = [[NSBundle mainBundle] pathForResource: @"ExampleGlossary" ofType: @"plist"];
 	NSFileManager *man = [NSFileManager defaultManager];
-	[man copyPath: exPath toPath: kGlossaryFilePath handler: nil];
+	[man copyItemAtPath:exPath toPath:kGlossaryFilePath error:nil];
 }
 @end

@@ -21,17 +21,11 @@
 + (XJMusic *)currentMusic;
 + (XJMusic *)musicAsiTunesLink: (XJMusic *)aMusic;
 
-- (id)initWithName: (NSString *)aName album: (NSString *)anAlbum artist: (NSString *)anArtist rating: (int)aRating;
+- (instancetype)initWithName: (NSString *)aName album: (NSString *)anAlbum artist: (NSString *)anArtist rating: (int)aRating NS_DESIGNATED_INITIALIZER;
 
-- (NSString *)name;
-- (void)setName:(NSString *)aName;
+@property (copy) NSString *name;
+@property (copy) NSString *album;
+@property (copy) NSString *artist;
 
-- (NSString *)album;
-- (void)setAlbum:(NSString *)anAlbum;
-
-- (NSString *)artist;
-- (void)setArtist:(NSString *)anArtist;
-
-- (int)rating;
-- (void)setRating:(int)aRating;
+@property int rating;
 @end

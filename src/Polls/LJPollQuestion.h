@@ -14,15 +14,12 @@
 }
 
 // The question name
-- (NSString *)question;
-
 // Set the question
-- (void)setQuestion: (NSString *)question;
+@property (copy) NSString *question;
 
 // Get the HTML representation
-- (NSString *) htmlRepresentation;
+@property (readonly, copy) NSString *htmlRepresentation;
 
 // Memento Pattern
-- (id)memento;
-- (void)restoreFromMemento: (id)memento;
+@property (setter=restoreFromMemento:, copy) id memento;
 @end

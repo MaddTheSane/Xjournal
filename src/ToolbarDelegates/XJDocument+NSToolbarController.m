@@ -18,10 +18,10 @@
     NSToolbarItem *item;
 
     if(!toolbarItemCache) {
-        toolbarItemCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
+        toolbarItemCache = [NSMutableDictionary dictionaryWithCapacity: 5];
     }
 
-    item = [toolbarItemCache objectForKey: itemIdentifier];
+    item = toolbarItemCache[itemIdentifier];
     if(!item) {
         item = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier];
 
@@ -52,7 +52,7 @@
             [item setTarget: self];
             [item setAction: @selector(insertLink:)];
             [item setToolTip: NSLocalizedString(@"Open the sheet for building hyperlinks", @"")];
-            [item setImage: [NSImage imageNamed: @"Internet"]];
+            [item setImage: [NSImage imageNamed: NSImageNameNetwork]];
         }
         // IMG Link
         else if([itemIdentifier isEqualToString: kEditImageLinkItemIdentifier]) {
@@ -70,7 +70,8 @@
             [item setTarget: self];
             [item setAction: @selector(insertLJUser:)];
             [item setToolTip: NSLocalizedString(@"Make a link to a journal", @"")];
-            [item setImage: [NSImage imageNamed: @"usericon"]];
+            NSImage *usericon = [NSImage imageNamed: @"usericon"];
+            item.image = usericon;
         }
         // Cut Link
         else if([itemIdentifier isEqualToString: kEditLJCutItemIdentifier]) {
@@ -122,7 +123,7 @@
             [item setLabel: NSLocalizedString(@"Info", @"")];
             [item setPaletteLabel: NSLocalizedString(@"Toggle Info Drawer", @"")];
             [item setToolTip: NSLocalizedString(@"Show Info Drawer", @"")];
-            [item setImage: [NSImage imageNamed: @"Info"]];
+            [item setImage: [NSImage imageNamed: NSImageNameInfo]];
             [item setTarget: drawer];
             [item setAction: @selector(toggle:)];
         }
@@ -134,16 +135,14 @@
             [item setTarget: self];
             [item setAction: @selector(detectMusicNow:)];
         }
-        [toolbarItemCache setObject: item forKey:itemIdentifier];
-        [item release];
+        toolbarItemCache[itemIdentifier] = item;
     }
     return item;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kEditPostItemIdentifier,
+    return @[kEditPostItemIdentifier,
         /*kEditPostAndDiscardItemIdentifier,*/
         kEditSaveItemIdentifier,
         kEditDetectMusicItemIdentifier,
@@ -156,21 +155,20 @@
         kEditItalicItemIdentifier,
         kEditUnderlineItemIdentifier,
         kEditDrawerToggleItemIdentifier,
-        NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarSeparatorItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
+        NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kEditPostItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
+    return @[kEditPostItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
         kEditURLLinkItemIdentifier,
         kEditImageLinkItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
         kEditBoldItemIdentifier,
         kEditItalicItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
         kEditDetectMusicItemIdentifier,
-        NSToolbarFlexibleSpaceItemIdentifier, kEditDrawerToggleItemIdentifier, nil];
+        NSToolbarFlexibleSpaceItemIdentifier, kEditDrawerToggleItemIdentifier];
 }
 @end

@@ -4,7 +4,7 @@
 #import "LJPoll.h"
 #import "LJPollQuestion.h"
 
-@interface XJPollEditorController : NSWindowController
+@interface XJPollEditorController : NSWindowController <NSToolbarDelegate, NSTableViewDelegate, NSTableViewDataSource>
 {
     LJPoll *thePoll;
     LJPollQuestion *currentlyEditedQuestion;

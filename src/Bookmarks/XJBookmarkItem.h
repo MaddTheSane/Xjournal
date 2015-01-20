@@ -9,15 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "XJBookmarkRoot.h"
 
-@interface XJBookmarkItem : XJBookmarkRoot {
-    NSURL *address;
-}
+@interface XJBookmarkItem : XJBookmarkRoot
+@property (strong) NSURL* webAddress;
 
-+ (XJBookmarkItem *) bookmarkWithTitle: (NSString *)theTitle address: (NSURL *)url;
-- (id)initWithTitle:(NSString *)theTitle address: (NSURL *)url;
++ (instancetype) bookmarkWithTitle: (NSString *)theTitle address: (NSURL *)url;
+- (instancetype)initWithTitle:(NSString *)theTitle address: (NSURL *)url NS_DESIGNATED_INITIALIZER;
 
-- (NSURL *)webAddress;
-- (void)setWebAddress: (NSURL *)newURL;
-
-- (BOOL)hasChildren;
+@property (readonly) BOOL hasChildren;
 @end

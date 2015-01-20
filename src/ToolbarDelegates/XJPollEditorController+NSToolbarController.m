@@ -26,10 +26,10 @@
     NSToolbarItem *item;
 
     if(!toolbarItemCache) {
-        toolbarItemCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
+        toolbarItemCache = [NSMutableDictionary dictionaryWithCapacity: 5];
     }
 
-    item = [toolbarItemCache objectForKey: itemIdentifier];
+    item = toolbarItemCache[itemIdentifier];
     if(!item) {
         item = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier];
 
@@ -94,29 +94,26 @@
             [item setTarget: drawer];
             [item setAction: @selector(toggle:)];
         }
-        [toolbarItemCache setObject: item forKey:itemIdentifier];
-        [item release];
+        toolbarItemCache[itemIdentifier] = item;
     }
     return item;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kPollAddTextItemIdentifier,
+    return @[kPollAddTextItemIdentifier,
         kPollAddMultipleItemIdentifier,
         kPollAddScaleItemIdentifier,
         kPollDeleteItemIdentifier,
         kPollMoveUpItemIdentifier,
         kPollMoveDownItemIdentifier,
         kPollShowCodeItemIdentifier,
-        NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarSeparatorItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
+        NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kPollAddTextItemIdentifier,
+    return @[kPollAddTextItemIdentifier,
         kPollAddMultipleItemIdentifier,
         kPollAddScaleItemIdentifier,
         NSToolbarFlexibleSpaceItemIdentifier,
@@ -124,7 +121,7 @@
         kPollMoveDownItemIdentifier,
         NSToolbarFlexibleSpaceItemIdentifier,
         kPollShowCodeItemIdentifier,
-        kPollDeleteItemIdentifier,nil];
+        kPollDeleteItemIdentifier];
 }
 
 @end

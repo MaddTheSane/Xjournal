@@ -58,7 +58,7 @@
 #define kBookmarkWindowOpen @"XJBookmarkWindowIsOpen"
 #define kGlossaryWindowOpen @"XJGlossaryWindowIsOpen"
 
-@interface XJPreferences : NSObject {}
+@interface XJPreferences : NSObject
 
 + (NSArray *)pictureKeywords;
 + (NSImage *)imageForURL: (NSURL *)imageURL; // May return nil if offline

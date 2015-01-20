@@ -43,9 +43,7 @@
 #import <Cocoa/Cocoa.h>
 
 #define NSLogDebug NSLog
-@interface NetworkConfig : NSObject {
-
-}
+@interface NetworkConfig : NSObject
 
 // Convenience method that checks:
 //  1. If proxying is enabled generally and then

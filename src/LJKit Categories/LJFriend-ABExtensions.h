@@ -13,24 +13,24 @@
 @interface LJFriend (ABExtensions)
 
 - (void)associateABRecord: (ABRecord *)record;
-- (ABRecord *)addressBookRecord;
+@property (readonly, strong) ABRecord *addressBookRecord;
 - (void)unassociateABRecord;
-- (BOOL)hasAddressCard;
+@property (readonly) BOOL hasAddressCard;
 
-- (NSString *)uniqueId;
-- (NSString *)chatURL;
-- (NSImage *)abImage;
-- (NSString *)abName;
+@property (readonly, copy) NSString *uniqueId;
+@property (readonly, copy) NSString *chatURL;
+@property (readonly, copy) NSImage *abImage;
+@property (readonly, copy) NSString *abName;
 - (void)addAddressCardAndEdit: (BOOL)shouldEdit;
 
-- (NSString *)email;
+@property (readonly, copy) NSString *email;
 - (NSString *)emailWithDomain: (NSString *)domain;
 @end
 
 @interface LJFriend (Birthdays)
-- (BOOL)birthdayIsToday;
+@property (readonly) BOOL birthdayIsToday;
 - (BOOL)birthdayIsWithinAlertPeriod: (int)alertPeriod;
-- (BOOL)birthdayIsThisMonth;
+@property (readonly) BOOL birthdayIsThisMonth;
 - (void)addBirthdayToCalendarNamed:(NSString *)calendarName;
 @end
 

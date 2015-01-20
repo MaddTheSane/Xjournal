@@ -32,7 +32,6 @@
     [toolbar setAutosavesConfiguration: YES];
     [toolbar setDelegate: self];
     [[self window] setToolbar: toolbar];
-    [toolbar release];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -43,10 +42,10 @@
     NSToolbarItem *item;
 
     if(!toolbarItemCache) {
-        toolbarItemCache = [[NSMutableDictionary dictionaryWithCapacity: 5] retain];
+        toolbarItemCache = [NSMutableDictionary dictionaryWithCapacity: 5];
     }
 
-    item = [toolbarItemCache objectForKey: itemIdentifier];
+    item = toolbarItemCache[itemIdentifier];
     if(!item) {
         item = [[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier];
 
@@ -125,7 +124,6 @@
             NSMenuItem *menuRep = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"Account", @"") action: nil keyEquivalent: @""];
             [menuRep setSubmenu: [accountToolbarPopup menu]];
             [item setMenuFormRepresentation: menuRep];
-            [menuRep release];
             
         }
         else if([itemIdentifier isEqualToString: kFriendsViewTypeSelectionPopup]) {
@@ -139,7 +137,6 @@
             NSMenuItem *menuRep = [[NSMenuItem alloc] initWithTitle: NSLocalizedString(@"View", @"") action: nil keyEquivalent: @""];
             [menuRep setSubmenu: [accountToolbarPopup menu]];
             [item setMenuFormRepresentation: menuRep];
-            [menuRep release];
         }
 		else if([itemIdentifier isEqualToString: kRefreshFriendsToolbarItemIdentifier]) {
 			[item setLabel: NSLocalizedString(@"Reload", @"")];
@@ -149,16 +146,14 @@
             [item setToolTip: NSLocalizedString(@"Reload Friends List from Server", @"")];
             [item setImage: [NSImage imageNamed: @"Refresh"]];
 		}
-        [toolbarItemCache setObject: item forKey:itemIdentifier];
-        [item release];
+        toolbarItemCache[itemIdentifier] = item;
     }
     return item;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kAddFriendToolbarItemIdentifier,
+    return @[kAddFriendToolbarItemIdentifier,
         kAddGroupToolbarItemIdentifier,
         kChatToolbarItemIdentifier,
         kDeleteFriendToolbarItemIdentifier,
@@ -169,27 +164,25 @@
         kFriendsAccountSelectionPopup,
         kFriendsViewTypeSelectionPopup,
 		kRefreshFriendsToolbarItemIdentifier,
-        NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarSeparatorItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier, nil];
+        NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:
-        kSaveChangesToolbarItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
+    return @[kSaveChangesToolbarItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
         kAddFriendToolbarItemIdentifier,
         kAddGroupToolbarItemIdentifier,
         kDeleteFriendToolbarItemIdentifier,
         kDeleteGroupToolbarItemIdentifier,
-        NSToolbarSeparatorItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
         kFriendsAccountSelectionPopup,
         kFriendsViewTypeSelectionPopup,
         NSToolbarFlexibleSpaceItemIdentifier,
         kAddToAddressBookToolbarItemIdentifier,
         kAddressBookToolbarItemIdentifier,
         kChatToolbarItemIdentifier,
-		kRefreshFriendsToolbarItemIdentifier,
-        nil];
+		kRefreshFriendsToolbarItemIdentifier];
 }
 
 - (BOOL)validateToolbarItem:(NSToolbarItem *)theItem

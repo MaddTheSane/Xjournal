@@ -10,57 +10,47 @@
 
 #import "XJMonth.h"
 #import <LJKit/LJKit.h>
+#import "XJCalendarProtocol.h"
 
 @class XJMonth;
 
-enum {
-    XJSearchSubjectOnly = 1,
-    XJSearchBodyOnly = 2,
-    XJSearchEntirePost = 3
-};
-
-@interface XJDay : NSObject {
-    int postCount;
-    int dayNumber;
-
-    XJMonth *myMonth;
-
+@interface XJDay : NSObject <XJCalendarProtocol> {
     NSMutableArray *entries;
 }
 
-- (id)initWithDayNumber:(int)theDayNumber month: (XJMonth *)mo andPostCount:(int)thePostCount;
+@property (weak) XJMonth *month;
 
-- (int)postCount;
-- (void)setPostCount:(int)newPCount;
+- (instancetype)initWithDayNumber:(int)theDayNumber month: (XJMonth *)mo andPostCount:(int)thePostCount NS_DESIGNATED_INITIALIZER;
+
+@property NSInteger postCount;
 - (void)validatePostCountAndUpdate: (int)newPostCount;
 
-- (int)dayName;
+@property (readonly) int dayName;
 
 - (void)setMonth: (XJMonth *)parentMonth;
 
-- (BOOL)hasPosts;
+@property (readonly) BOOL hasPosts;
 
-- (NSCalendarDate *)calendarDate;
-- (NSString *)dayOfWeek;
+@property (readonly, copy) NSCalendarDate *calendarDate;
+@property (readonly, copy) NSString *dayOfWeek;
 
-- (BOOL)hasDownloadedEntries;
+@property (readonly) BOOL hasDownloadedEntries;
 - (void)downloadEntries;
-- (LJEntry *)entryAtIndex:(int)idx;
-- (LJEntry *)mostRecentEntry;
-- (void)deleteEntryAtIndex:(int)idx;
+- (LJEntry *)entryAtIndex:(NSInteger)idx;
+@property (readonly, strong) LJEntry *mostRecentEntry;
+- (void)deleteEntryAtIndex:(NSInteger)idx;
 - (void)deleteEntry: (LJEntry *)entry;
 
 - (void)addPostedEntry:(LJEntry *)entry;
 - (NSMutableArray *)makeMutable:(NSArray *)array;
 
-- (NSString *)description;
+@property (readonly, copy) NSString *description;
 
-- (id)propertyListRepresentation;
+@property (readonly, copy) id propertyListRepresentation;
 - (void)configureFromPropertyListRepresentation: (id) plistType;
 
 - (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType: (int)type;
+- (NSArray *)entriesContainingString: (NSString *)target searchType: (XJSearchType)type;
 
 - (NSURL *)urlForDayArchiveForAccount: (LJAccount *)acct;
-- (NSString *)zeroizedString:(int)number;
 @end
