@@ -346,6 +346,7 @@
 		55D087181A6CA97E00E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Bookmarks.xib; sourceTree = "<group>"; };
 		55D0871B1A6CA98700E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BirthdaysWindow.xib; sourceTree = "<group>"; };
 		55D0871E1A6CA99400E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AccountEditWindow.xib; sourceTree = "<group>"; };
+		55DD21791A6F2BEA00055B5A /* NNWConsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNWConsts.h; sourceTree = "<group>"; };
 		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = "<group>"; };
 		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMarkupRemovalVT.h; sourceTree = "<group>"; };
 		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMarkupRemovalVT.m; sourceTree = "<group>"; };
@@ -493,6 +494,7 @@
 		1BBD894804B0189F003882CD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				55DD21791A6F2BEA00055B5A /* NNWConsts.h */,
 				F304905F0F2227E3008A1888 /* XJPopUpButton.h */,
 				F30490600F2227E3008A1888 /* XJPopUpButton.m */,
 				5F5468C0092809EF00ABCAC9 /* XJSyndicationData.h */,

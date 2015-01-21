@@ -20,6 +20,7 @@
 #import "XJSyndicationData.h"
 #import "NSString+Templating.h"
 #import "XJFontNameToDisplayVT.h"
+#import "NNWConsts.h"
 
 #define PREF_LJ_ACCOUNTS @"preferences.accounts"
 
@@ -33,22 +34,6 @@
 #define kHistoryMenuTag 102
 #define kFriendsMenuTag 103
 #define kLoginMenuTag 104
-
-// NetNewsWire Integration
-const AEKeyword NNWEditDataItemAppleEventClass = 'EBlg';
-const AEKeyword NNWEditDataItemAppleEventID = 'oitm';
-const AEKeyword NNWDataItemTitle = 'titl';
-const AEKeyword NNWDataItemDescription = 'desc';
-const AEKeyword NNWDataItemSummary = 'summ';
-const AEKeyword NNWDataItemLink = 'link';
-const AEKeyword NNWDataItemPermalink = 'plnk';
-const AEKeyword NNWDataItemSubject = 'subj';
-const AEKeyword NNWDataItemCreator = 'crtr';
-const AEKeyword NNWDataItemCommentsURL = 'curl';
-const AEKeyword NNWDataItemGUID = 'guid';
-const AEKeyword NNWDataItemSourceName = 'snam';
-const AEKeyword NNWDataItemSourceHomeURL = 'hurl';
-const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 
 @implementation XJAppDelegate
 @synthesize showingDockBadge;
@@ -112,7 +97,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
     /* Register the NNW Handlers */
      [[NSAppleEventManager sharedAppleEventManager]
         setEventHandler: self
-        andSelector: @selector (editDataItem: withReplyEvent:)
+        andSelector: @selector (editDataItem:withReplyEvent:)
         forEventClass: NNWEditDataItemAppleEventClass
         andEventID: NNWEditDataItemAppleEventID];
 }

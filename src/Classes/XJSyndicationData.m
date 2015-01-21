@@ -8,21 +8,7 @@
 
 #import "XJSyndicationData.h"
 #import "NSString+Templating.h"
-
-const AEKeyword EditDataItemAppleEventClass = 'EBlg';
-const AEKeyword EditDataItemAppleEventID = 'oitm';
-const AEKeyword DataItemTitle = 'titl';
-const AEKeyword DataItemDescription = 'desc';
-const AEKeyword DataItemSummary = 'summ';
-const AEKeyword DataItemLink = 'link';
-const AEKeyword DataItemPermalink = 'plnk';
-const AEKeyword DataItemSubject = 'subj';
-const AEKeyword DataItemCreator = 'crtr';
-const AEKeyword DataItemCommentsURL = 'curl';
-const AEKeyword DataItemGUID = 'guid';
-const AEKeyword DataItemSourceName = 'snam';
-const AEKeyword DataItemSourceHomeURL = 'hurl';
-const AEKeyword DataItemSourceFeedURL = 'furl';
+#import "NNWConsts.h"
 
 @implementation XJSyndicationData
 @synthesize title;
@@ -45,15 +31,15 @@ const AEKeyword DataItemSourceFeedURL = 'furl';
 	if(self) {
 		NSAppleEventDescriptor *recordDescriptor = [aeDesc descriptorForKeyword: keyDirectObject];
 		
-		[self setTitle: [[recordDescriptor descriptorForKeyword: DataItemTitle] stringValue]];
-		[self setBody: [[recordDescriptor descriptorForKeyword: DataItemDescription] stringValue]];
-		[self setSummary: [[recordDescriptor descriptorForKeyword: DataItemSummary] stringValue]];
-		[self setLink: [[recordDescriptor descriptorForKeyword: DataItemLink] stringValue]];
-		[self setPermalink: [[recordDescriptor descriptorForKeyword: DataItemPermalink] stringValue]];
-		[self setCommentsURL: [[recordDescriptor descriptorForKeyword: DataItemCommentsURL] stringValue]];
-		[self setSourceName: [[recordDescriptor descriptorForKeyword: DataItemSourceName] stringValue]];
-		[self setSourceHomeURL: [[recordDescriptor descriptorForKeyword: DataItemSourceHomeURL] stringValue]];
-		[self setSourceFeedURL: [[recordDescriptor descriptorForKeyword: DataItemSourceFeedURL] stringValue]];
+		[self setTitle: [[recordDescriptor descriptorForKeyword: NNWDataItemTitle] stringValue]];
+		[self setBody: [[recordDescriptor descriptorForKeyword: NNWDataItemDescription] stringValue]];
+		[self setSummary: [[recordDescriptor descriptorForKeyword: NNWDataItemSummary] stringValue]];
+		[self setLink: [[recordDescriptor descriptorForKeyword: NNWDataItemLink] stringValue]];
+		[self setPermalink: [[recordDescriptor descriptorForKeyword: NNWDataItemPermalink] stringValue]];
+		[self setCommentsURL: [[recordDescriptor descriptorForKeyword: NNWDataItemCommentsURL] stringValue]];
+		[self setSourceName: [[recordDescriptor descriptorForKeyword: NNWDataItemSourceName] stringValue]];
+		[self setSourceHomeURL: [[recordDescriptor descriptorForKeyword: NNWDataItemSourceHomeURL] stringValue]];
+		[self setSourceFeedURL: [[recordDescriptor descriptorForKeyword: NNWDataItemSourceFeedURL] stringValue]];
 	}
 	return self;
 }
