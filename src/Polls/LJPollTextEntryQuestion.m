@@ -15,12 +15,24 @@
 @synthesize size;
 @synthesize maxLength;
 
+- (instancetype)init
+{
+    return [self initWithSize:10 maxLength:10];
+}
+
+- (instancetype)initWithSize:(NSInteger)theSize maxLength:(NSInteger)theLength
+{
+    if (self = [super init]) {
+        self.question = @"New Text Question";
+        size = theSize;
+        maxLength = theLength;
+    }
+    return self;
+}
+
 + (LJPollTextEntryQuestion *)textEntryQuestionWithSize: (NSInteger)theSize maxLength: (NSInteger)theLength
 {
-    LJPollTextEntryQuestion *teQ = [[LJPollTextEntryQuestion alloc] init];
-    teQ.question = @"New Text Question";
-    teQ.size = theSize;
-    teQ.maxLength = theLength;
+    LJPollTextEntryQuestion *teQ = [[LJPollTextEntryQuestion alloc] initWithSize:theSize maxLength:theLength];
 
     return teQ;
 }

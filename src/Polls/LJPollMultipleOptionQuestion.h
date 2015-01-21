@@ -20,16 +20,18 @@ typedef NS_ENUM(NSInteger, LJPollMultipleOptionType) {
 
  Call -setType: with one of the LJPoll*Type constants above to set the specific configuration.
  */
-@interface LJPollMultipleOptionQuestion : LJPollQuestion<NSCoding>  {
-    NSMutableArray *answers;
-}
+@interface LJPollMultipleOptionQuestion : LJPollQuestion <NSCoding>
+
+// Get and set the question type (with the LJPoll*Type constants)
+@property LJPollMultipleOptionType type;
 
 // Returns an autoreleased multiple-option question of the given type with
 // a default question
 + (LJPollMultipleOptionQuestion *)questionOfType: (LJPollMultipleOptionType)questionType;
 
-// Get and set the question type (with the LJPoll*Type constants)
-@property LJPollMultipleOptionType type;
+- (instancetype)init;
+
+- (instancetype)initWithType:(LJPollMultipleOptionType)questionType NS_DESIGNATED_INITIALIZER;
 
 // Returns the number of answers to this question
 @property (readonly) NSInteger numberOfAnswers;
@@ -57,7 +59,11 @@ typedef NS_ENUM(NSInteger, LJPollMultipleOptionType) {
 // Moves the answer at oldIdx to newIdx
 - (void)moveAnswerAtIndex: (NSInteger) idx toIndex: (NSInteger) newIdx;
 
-    // Memento
+// Memento
 @property (readonly, copy) NSDictionary *memento;
 - (void)restoreFromMemento: (NSDictionary*)memento;
+
+// NSCoding constructor, because Swift/ new Objc can be stupid...
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+
 @end

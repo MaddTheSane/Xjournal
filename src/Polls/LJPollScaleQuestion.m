@@ -19,13 +19,24 @@
 
 + (LJPollScaleQuestion *)scaleQuestionWithStart: (NSInteger)theStart end: (NSInteger)theEnd step:(NSInteger)theStep
 {
-    LJPollScaleQuestion *scale = [[LJPollScaleQuestion alloc] init];
-    scale.question = @"New Question";
-    scale.start = theStart;
-    scale.end = theEnd;
-    scale.step = theStep;
+    LJPollScaleQuestion *scale = [[LJPollScaleQuestion alloc] initWithStart:theStart end:theEnd step:theStep];
 
     return scale;
+}
+
+- (instancetype)init
+{
+    return [self initWithStart:0 end:100 step:10];
+}
+
+- (instancetype)initWithStart: (NSInteger)theStart end: (NSInteger)theEnd step:(NSInteger)theStep
+{
+    if (self = [super init]) {
+        start = theStart;
+        end = theEnd;
+        step = theStep;
+    }
+    return self;
 }
 
 - (NSString *)htmlRepresentation
