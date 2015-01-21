@@ -256,7 +256,7 @@
 	NSPoint starburstPoint = NSMakePoint([bufferImage size].height-[starburst size].height,
 										 [bufferImage size].width-[starburst size].width);
 	
-	[bufferImage lockFocusFlipped:YES];
+	[bufferImage lockFocus];
 	[appIcon drawAtPoint:NSMakePoint(0, [bufferImage size].height) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[starburst drawAtPoint:starburstPoint fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[bufferImage unlockFocus];
