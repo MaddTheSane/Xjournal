@@ -101,8 +101,8 @@
 		1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8BF304B01A77003882CD /* Carbon.framework */; };
 		1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */; };
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
-		552944151A6DC2C100642F70 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552944141A6DC2C100642F70 /* ShortcutWindow.xib */; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
+		55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B95A451A70507F00F4C784 /* ShortcutWindow.xib */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
 		55BCA1C71A5492130034ECF5 /* GlossaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C91A5492130034ECF5 /* GlossaryWindow.xib */; };
@@ -321,8 +321,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
-		552944141A6DC2C100642F70 /* ShortcutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShortcutWindow.xib; path = src/ShortcutWindow.xib; sourceTree = "<group>"; };
 		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
+		55B95A441A70507F00F4C784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutWindow.xib; sourceTree = "<group>"; };
 		55BCA1BE1A5480CF0034ECF5 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "src/English.lproj/Xjournal Help"; sourceTree = "<group>"; };
 		55BCA1C31A5491F30034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HistoryWindow.xib; sourceTree = "<group>"; };
 		55BCA1C81A5492130034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlossaryWindow.xib; sourceTree = "<group>"; };
@@ -616,7 +616,7 @@
 				55D086FE1A6CA89900E0A00A /* XJDocument.xib */,
 				55D086FB1A6CA88E00E0A00A /* HTMLPreview.xib */,
 				55D086F81A6CA88700E0A00A /* Preferences.xib */,
-				552944141A6DC2C100642F70 /* ShortcutWindow.xib */,
+				55B95A451A70507F00F4C784 /* ShortcutWindow.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -872,7 +872,7 @@
 				55D0871D1A6CA99400E0A00A /* AccountEditWindow.xib in Resources */,
 				5F5B083F09252596005BB86B /* ApplicationDefaults.plist in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
-				552944151A6DC2C100642F70 /* ShortcutWindow.xib in Resources */,
+				55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */,
 				55D087111A6CA96B00E0A00A /* CutSheet.xib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				55D087171A6CA97E00E0A00A /* Bookmarks.xib in Resources */,
@@ -1021,6 +1021,15 @@
 				2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		55B95A451A70507F00F4C784 /* ShortcutWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55B95A441A70507F00F4C784 /* en */,
+			);
+			name = ShortcutWindow.xib;
+			path = src;
 			sourceTree = "<group>";
 		};
 		55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */ = {
