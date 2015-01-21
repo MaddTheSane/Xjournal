@@ -259,28 +259,42 @@
 #pragma mark -
 #pragma mark Sounds Popup Menu
 // ----------------------------------------------------------------------------------------
-- (void)buildSoundMenu
+// Code taken from Transmission
+- (NSArray *) sounds
 {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSEnumerator *locs = [@[@"/System/Library/Sounds", @"/Library/Sounds", [@"~/Library/Sounds" stringByExpandingTildeInPath]] objectEnumerator];
-    NSString *path;
-
-    NSMenu *menu = [[NSMenu alloc] init];
+    NSMutableArray * sounds = [[NSMutableArray alloc] init];
     
-    while(path = [locs nextObject]) {
-        NSDirectoryEnumerator *dEnum = [manager enumeratorAtPath: path];
-        NSString *file, *baseName;
-
-        while(file = [dEnum nextObject]) {
-            NSMenuItem *item;
-            if(![file hasPrefix: @"."]) {
-                baseName = [[file lastPathComponent] componentsSeparatedByString: @"."][0];
-                item = [[NSMenuItem alloc] initWithTitle: baseName action: @selector(setSelectedFriendsSound:) keyEquivalent: @""];
-                [item setTarget: self];
-                [item setRepresentedObject: [path stringByAppendingPathComponent: file]];
-                [menu addItem: item];
+    NSArray * directories = NSSearchPathForDirectoriesInDomains(NSAllLibrariesDirectory, NSUserDomainMask | NSLocalDomainMask | NSSystemDomainMask, YES);
+    
+    for (__strong NSString * directory in directories) {
+        directory = [directory stringByAppendingPathComponent: @"Sounds"];
+        
+        BOOL isDirectory;
+        if ([[NSFileManager defaultManager] fileExistsAtPath: directory isDirectory: &isDirectory] && isDirectory) {
+            NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: directory error: NULL];
+            for (NSString * sound in directoryContents) {
+                NSString *asound = [sound stringByDeletingPathExtension];
+                if ([NSSound soundNamed: asound]) {
+                    [sounds addObject: [directory stringByAppendingPathComponent:sound]];
+                }
             }
         }
+    }
+    
+    return sounds;
+}
+
+- (void)buildSoundMenu
+{
+    NSArray *aSounds = [self sounds];
+    NSMenu *menu = [[NSMenu alloc] init];
+    
+    for (NSString *path in aSounds) {
+        NSString *baseName = [[path lastPathComponent] stringByDeletingPathExtension];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: baseName action: @selector(setSelectedFriendsSound:) keyEquivalent: @""];
+        item.target = self;
+        item.representedObject = path;
+        [menu addItem: item];
     }
     [soundSelection setMenu: menu];
 }

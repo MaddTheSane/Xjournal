@@ -10,7 +10,7 @@
 #import "XJPreferences.h"
 
 #define kGlossaryAutosaveName @"GlossaryAutosaveName"
-#define kGlossaryFilePath [@"~/Library/Application Support/Xjournal/Glossary.plist" stringByExpandingTildeInPath]
+#define kGlossaryFilePath [XJGetLocalAppSupportDir() stringByAppendingPathComponent: @"Glossary.plist"]
 	
 @implementation XJGlossaryWindowController
 @synthesize glossary;
