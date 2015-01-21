@@ -56,7 +56,7 @@
     [item setPaletteLabel:@"Music"];
     [item setLabel:@"Music"];
     [item setToolTip:@"Music preference options."];
-    NSImage *musicImage = [NSImage imageNamed: @"cd"];
+    NSImage *musicImage = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericCDROMIcon)];
     [item setImage:musicImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];

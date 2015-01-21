@@ -77,11 +77,11 @@ static NSMutableDictionary *userPics;
         	return img;
         }
         else
-            return [NSImage imageNamed: @"delete"];
+            return [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kToolbarDeleteIcon)];
         
     } else {
         // This is what happens when we're somehow offline or there's no default pic
-        return [NSImage imageNamed: @"delete"];
+        return [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kToolbarDeleteIcon)];
     }
 }
 

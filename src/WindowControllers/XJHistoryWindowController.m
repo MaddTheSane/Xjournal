@@ -1261,7 +1261,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
             [item setTarget: self];
             [item setAction: @selector(deleteSelectedEntry:)];
             [item setToolTip: NSLocalizedString(@"Delete Selected Item from Journal", @"")];
-            [item setImage: [NSImage imageNamed: @"delete"]];
+            [item setImage: [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kToolbarDeleteIcon)]];
         }
         else if([itemIdentifier isEqualToString: kHistoryDownloadItemIdentifier]) {
             [item setLabel: NSLocalizedString(@"Download", @"")];
