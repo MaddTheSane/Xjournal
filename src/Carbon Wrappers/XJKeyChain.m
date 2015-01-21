@@ -76,7 +76,7 @@ static XJKeyChain* defaultKeyChain = nil;
         SecKeychainItemDelete(itemref);
 }
 
-- (void)setMaxPasswordLength:(NSUInteger)length
+- (void)setMaxPasswordLength:(UInt32)length
 {
     if (![self isEqual:defaultKeyChain]) {
         maxPasswordLength = length ;
