@@ -4,7 +4,7 @@
 
 @interface XJKeyChain : NSObject
 
-@property (nonatomic) NSUInteger maxPasswordLength;
+@property (nonatomic) UInt32 maxPasswordLength;
 
 + (instancetype)defaultKeyChain;
 

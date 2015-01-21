@@ -192,7 +192,7 @@
     NSCalendarDate *birthday = [self birthDate];
     if(!birthday) return; // <-- bail out
     
-    NSString *scriptBody = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_event_ical" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL];
+    NSString *scriptBody = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_event_ical" ofType:@"applescript"] encoding:NSUTF8StringEncoding error:NULL];
     NSMutableString *headerText = [NSMutableString string];
     NSString *eventTitle = [NSString stringWithFormat: @"%@'s birthday", [self username]];
     
