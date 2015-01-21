@@ -11,22 +11,25 @@
 #define kMultipleOptionType @"LJMultipleOptionType"
 #define kMultipleOptionAnswerArray @"LJMultipleOptionAnswerArray"
 
-@implementation LJPollMultipleOptionQuestion
+@implementation LJPollMultipleOptionQuestion {
+    NSMutableArray *answers;
+}
 @synthesize type;
 
 + (LJPollMultipleOptionQuestion *)questionOfType: (LJPollMultipleOptionType)questionType
 {
-    LJPollMultipleOptionQuestion *mo_question = [[LJPollMultipleOptionQuestion alloc] init];
-    mo_question.type = questionType;
-    
-    return mo_question;
+    return [[self alloc] initWithType:questionType];
 }
 
 - (instancetype)init
 {
+    return [self initWithType:LJPollRadioType];
+}
+
+- (instancetype)initWithType:(LJPollMultipleOptionType)questionType
+{
     if (self = [super init]) {
-        self.question = @"New Question";
-        type = LJPollRadioType;
+        type = questionType;
         answers = [[NSMutableArray alloc] initWithCapacity: 10];
     }
     return self;

@@ -17,9 +17,8 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-    
-    questions = [[NSMutableArray alloc] initWithCapacity: 30];
-    name = @"NewPoll";
+        questions = [[NSMutableArray alloc] initWithCapacity: 30];
+        name = @"NewPoll";
     }
     return self;
 }
