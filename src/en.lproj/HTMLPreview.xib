@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -13,21 +13,22 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Panel" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="13" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="831" y="478" width="360" height="240"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="12">
                 <rect key="frame" x="0.0" y="0.0" width="360" height="240"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <webView maintainsBackForwardList="NO" id="14">
+                    <webView maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="240"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <webPreferences key="preferences" defaultFontSize="14" defaultFixedFontSize="14"/>
+                        <webPreferences key="preferences" defaultFontSize="14" defaultFixedFontSize="14">
+                            <nil key="identifier"/>
+                        </webPreferences>
                         <connections>
                             <outlet property="UIDelegate" destination="-2" id="21"/>
                             <outlet property="downloadDelegate" destination="-2" id="18"/>
@@ -37,6 +38,12 @@
                         </connections>
                     </webView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="14" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="0J5-Fb-YF1"/>
+                    <constraint firstAttribute="trailing" secondItem="14" secondAttribute="trailing" id="dXE-Km-nSu"/>
+                    <constraint firstItem="14" firstAttribute="top" secondItem="12" secondAttribute="top" id="iw2-p0-fhv"/>
+                    <constraint firstAttribute="bottom" secondItem="14" secondAttribute="bottom" id="kuh-A3-BbB"/>
+                </constraints>
             </view>
             <connections>
                 <binding destination="-2" name="displayPatternTitle1" keyPath="entry.subject" id="24">
