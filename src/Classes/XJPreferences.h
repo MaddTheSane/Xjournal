@@ -28,12 +28,12 @@
 #define XJ_HISTORY_PREF_IDENT @"XJHistory"
 
 // App dirs
-#define GLOBAL_APPSUPPORT @"/Library/Application Support/Xjournal"
-#define LOCAL_APPSUPPORT [@"~/Library/Application Support/Xjournal" stringByExpandingTildeInPath]
+#define GLOBAL_APPSUPPORT XJGetGlobalAppSupportDir()
+#define LOCAL_APPSUPPORT XJGetLocalAppSupportDir()
 
 // Glossary Dirs
-#define GLOBAL_GLOSSARY @"/Library/Application Support/Xjournal/Glossary"
-#define LOCAL_GLOSSARY [@"~/Library/Application Support/Xjournal/Glossary" stringByExpandingTildeInPath]
+#define GLOBAL_GLOSSARY XJGetGlobalGlossary()
+#define LOCAL_GLOSSARY XJGetLocalGlossary()
 
 // Notifications
 #define XJEntryDownloadStartedNotification @"entry.download.started"
@@ -57,6 +57,12 @@
 // Pref keys for whether palettes are open
 #define kBookmarkWindowOpen @"XJBookmarkWindowIsOpen"
 #define kGlossaryWindowOpen @"XJGlossaryWindowIsOpen"
+
+NSString *XJGetGlobalAppSupportDir();
+NSString *XJGetLocalAppSupportDir();
+
+NSString *XJGetGlobalGlossary();
+NSString *XJGetLocalGlossary();
 
 @interface XJPreferences : NSObject
 

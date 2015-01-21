@@ -24,12 +24,22 @@
     return self;
 }
 
+static NSString *XJGetLocalLibraryDir()
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *globalAppURL = [fm URLForDirectory: NSLibraryDirectory inDomain: NSUserDomainMask appropriateForURL: nil create: YES error: nil];
+    return [globalAppURL path];
+}
+
 /*
  * Refresh the bookmarks from the Safari plist.
  */
 - (void)refreshFromDisk
 {
-    NSString *path = [@"~/Library/Safari/Bookmarks.plist" stringByExpandingTildeInPath];
+    //TODO: update? Perhaps use Spotlight?
+    NSMutableArray *safariArray = [[XJGetLocalLibraryDir() pathComponents] mutableCopy];
+    [safariArray addObjectsFromArray:@[@"Safari", @"Bookmarks.plist"]];
+    NSString *path = [NSString pathWithComponents: safariArray];
     NSDictionary *bookmarks = [NSDictionary dictionaryWithContentsOfFile: path];
     rootFolder = [XJBookmarkFolder folderWithTitle: @"__root_item__"];
     [self parseAddressBookIntoFolder: rootFolder];

@@ -27,7 +27,7 @@
 
 #define kHistoryAutosaveName @"kHistoryAutosaveName"
 
-#define CACHED_HISTORY_PATH [@"~/Library/Application Support/Xjournal/History.plist" stringByExpandingTildeInPath]
+#define CACHED_HISTORY_PATH [XJGetLocalAppSupportDir() stringByAppendingPathComponent: @"History.plist"]
 
 #define XJHistoryDownloadMadeProgressNotification @"XJHistoryDownloadMadeProgressNotification"
 #define XJHistoryDownloadCompletedNotification @"XJHistoryDownloadCompletedNotification"
@@ -181,7 +181,7 @@ typedef NS_ENUM(int, XJHistorySelection) {
 
 - (NSString *)historyArchivePath
 {
-    return [NSString stringWithFormat: [@"~/Library/Application Support/Xjournal/%@.plist" stringByExpandingTildeInPath], [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] name]];
+    return [XJGetLocalAppSupportDir() stringByAppendingPathComponent:[[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] name]];
 }
 
 /*

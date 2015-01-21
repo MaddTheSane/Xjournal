@@ -6,12 +6,43 @@
 //  Copyright (c) 2003 Fraser Speirs. All rights reserved.
 //
 
+#import <Cocoa/Cocoa.h>
 #import "XJPreferences.h"
 #import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"
 
-#define ACCOUNT_PATH [@"~/Library/Application Support/Xjournal/Account" stringByExpandingTildeInPath]
+#define ACCOUNT_PATH [XJGetGlobalAppSupportDir() stringByAppendingPathComponent: @"Account"]
+
+NSString *XJGetGlobalAppSupportDir()
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *globalAppURL = [fm URLForDirectory: NSApplicationSupportDirectory inDomain: NSLocalDomainMask appropriateForURL: nil create: NO error: nil];
+    NSString *globalAppPath = [globalAppURL path];
+    
+    return [globalAppPath stringByAppendingPathComponent: @"Xjournal"];
+}
+
+NSString *XJGetLocalAppSupportDir()
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *globalAppURL = [fm URLForDirectory: NSApplicationSupportDirectory inDomain: NSUserDomainMask appropriateForURL: nil create: YES error: nil];
+    NSString *globalAppPath = [globalAppURL path];
+    
+    return [globalAppPath stringByAppendingPathComponent: @"Xjournal"];
+}
+
+#pragma mark -
+
+NSString *XJGetGlobalGlossary()
+{
+    return [XJGetGlobalAppSupportDir() stringByAppendingPathComponent: @"Glossary"];
+}
+
+NSString *XJGetLocallGlossary()
+{
+    return [XJGetLocalAppSupportDir() stringByAppendingPathComponent: @"Glossary"];
+}
 
 static NSMutableDictionary *userPics;
 
