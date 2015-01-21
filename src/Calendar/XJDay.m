@@ -142,7 +142,7 @@
 
 - (void)downloadEntries
 {
-    entries = [self makeMutable: [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getEntriesForDay: [self calendarDate]]];
+    entries = [[[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getEntriesForDay: [self calendarDate]] mutableCopy];
     [self setPostCount: [entries count]];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:XJEntryDownloadEndedNotification object:self];
@@ -235,10 +235,4 @@
 	return [NSURL URLWithString: url];
 }
 
-- (NSMutableArray *)makeMutable:(NSArray *)array
-{
-    NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity: [array count]+5];
-    [temp addObjectsFromArray: array];
-    return temp;
-}
 @end

@@ -46,10 +46,6 @@ NSString *XJGetLocallGlossary()
 
 static NSMutableDictionary *userPics;
 
-@interface XJPreferences ()
-+ (NSMutableDictionary *)makeMutable: (NSDictionary *)dict;
-@end
-
 @implementation XJPreferences
 + (NSArray *)pictureKeywords
 {
@@ -91,7 +87,7 @@ static NSMutableDictionary *userPics;
 
 + (BOOL)shouldCheckForGroup: (LJGroup *)grp
 {
-    NSMutableDictionary *dict = [self makeMutable: [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS]];
+    NSMutableDictionary *dict = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS] mutableCopy];
     id val = dict[[grp name]];
 
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: dict forKey: PREFS_CHECKFRIENDS_GROUPS];
@@ -102,7 +98,7 @@ static NSMutableDictionary *userPics;
 + (void)setShouldCheck: (BOOL)chk forGroup: (LJGroup *)grp
 {
     // this assumes you can't have 2 groups with the same name (valid?)
-    NSMutableDictionary *dict = [self makeMutable: [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS]];
+    NSMutableDictionary *dict = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: PREFS_CHECKFRIENDS_GROUPS] mutableCopy];
     // Prefs stores a dict of booleans keyed against group names, hence, if you have two groups with the same name
     // --> key clash
     
@@ -134,10 +130,4 @@ static NSMutableDictionary *userPics;
     return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForImageResource:@"communitysmall"]] absoluteString];
 }
 
-+ (NSMutableDictionary *)makeMutable: (NSDictionary *)dict
-{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary addEntriesFromDictionary: dict];
-    return dictionary;
-}
 @end

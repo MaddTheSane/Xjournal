@@ -42,7 +42,6 @@
 - (void)deleteEntry: (LJEntry *)entry;
 
 - (void)addPostedEntry:(LJEntry *)entry;
-- (NSMutableArray *)makeMutable:(NSArray *)array;
 
 @property (readonly, copy) NSString *description;
 
