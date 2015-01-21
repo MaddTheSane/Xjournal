@@ -64,7 +64,7 @@
             [item setLabel: NSLocalizedString(@"Delete", @"")];
             [item setPaletteLabel: NSLocalizedString(@"Delete Question", @"")];
             [item setToolTip: NSLocalizedString(@"Delete selected question from poll", @"")];
-            [item setImage: [NSImage imageNamed: @"delete"]];
+            [item setImage: [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kToolbarDeleteIcon)]];
             [item setTarget: self];
             [item setAction: @selector(deleteSelectedQuestion:)];
         }

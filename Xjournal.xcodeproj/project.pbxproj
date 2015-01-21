@@ -22,7 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1B0DEBEA053AF10C00A310CF /* make_event_ical.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEBE9053AF10C00A310CF /* make_event_ical.txt */; };
+		1B0DEBEA053AF10C00A310CF /* make_event_ical.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */; };
 		1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4DEF5005072AAA00090913 /* LJKit-URLLaunching.h */; };
 		1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */; };
 		1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B76D69204CDD901008E50A3 /* AddressBookDropView.h */; };
@@ -102,7 +102,6 @@
 		1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */; };
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
 		552944151A6DC2C100642F70 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552944141A6DC2C100642F70 /* ShortcutWindow.xib */; };
-		552944161A6DC4DD00642F70 /* cd.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E6204B02A7900121863 /* cd.icns */; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
@@ -124,7 +123,6 @@
 		55D087171A6CA97E00E0A00A /* Bookmarks.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D087191A6CA97E00E0A00A /* Bookmarks.xib */; };
 		55D0871A1A6CA98700E0A00A /* BirthdaysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D0871C1A6CA98700E0A00A /* BirthdaysWindow.xib */; };
 		55D0871D1A6CA99400E0A00A /* AccountEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D0871F1A6CA99400E0A00A /* AccountEditWindow.xib */; };
-		55F1E31E1A6F561B00AE70D4 /* disk.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E6A04B02A7900121863 /* disk.icns */; };
 		585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
 		5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */; };
 		5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */; };
@@ -239,7 +237,7 @@
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = src/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1B0DEBE9053AF10C00A310CF /* make_event_ical.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = make_event_ical.txt; path = src/make_event_ical.txt; sourceTree = "<group>"; };
+		1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; name = make_event_ical.applescript; path = src/make_event_ical.applescript; sourceTree = "<group>"; };
 		1B4DEF5005072AAA00090913 /* LJKit-URLLaunching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJKit-URLLaunching.h"; sourceTree = "<group>"; };
 		1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJKit-URLLaunching.m"; sourceTree = "<group>"; };
 		1B76D69204CDD901008E50A3 /* AddressBookDropView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AddressBookDropView.h; path = src/Classes/AddressBookDropView.h; sourceTree = SOURCE_ROOT; };
@@ -318,8 +316,6 @@
 		1BBD8BF304B01A77003882CD /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BBD8C9E04B01A8B003882CD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		1BF27E6204B02A7900121863 /* cd.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = cd.icns; path = src/Art/cd.icns; sourceTree = "<group>"; };
-		1BF27E6A04B02A7900121863 /* disk.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = disk.icns; path = src/Art/disk.icns; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
 		2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = src/English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -629,8 +625,6 @@
 			isa = PBXGroup;
 			children = (
 				55D086F41A6CA1C800E0A00A /* Images.xcassets */,
-				1BF27E6204B02A7900121863 /* cd.icns */,
-				1BF27E6A04B02A7900121863 /* disk.icns */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -667,7 +661,7 @@
 				1BF27EDD04B02A8100121863 /* Images */,
 				1BF27D5E04B0296500121863 /* Nibs */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
-				1B0DEBE9053AF10C00A310CF /* make_event_ical.txt */,
+				1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */,
 				5F5B083E09252596005BB86B /* ApplicationDefaults.plist */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
@@ -876,7 +870,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D0871D1A6CA99400E0A00A /* AccountEditWindow.xib in Resources */,
-				55F1E31E1A6F561B00AE70D4 /* disk.icns in Resources */,
 				5F5B083F09252596005BB86B /* ApplicationDefaults.plist in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				552944151A6DC2C100642F70 /* ShortcutWindow.xib in Resources */,
@@ -889,7 +882,6 @@
 				55D086FF1A6CA8A300E0A00A /* UserSheet.xib in Resources */,
 				55D0870B1A6CA94C00E0A00A /* IMGSheet.xib in Resources */,
 				55D087141A6CA97500E0A00A /* CommunitySheet.xib in Resources */,
-				552944161A6DC4DD00642F70 /* cd.icns in Resources */,
 				55D0870E1A6CA95B00E0A00A /* HREFSheet.xib in Resources */,
 				55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */,
 				55D087051A6CA8B300E0A00A /* NewFriendsWindow.xib in Resources */,
@@ -899,7 +891,7 @@
 				55D086F51A6CA1C800E0A00A /* Images.xcassets in Resources */,
 				1B870E0B04C7EAA200C54147 /* ChangeNotes.rtf in Resources */,
 				1B870E0D04C7EABE00C54147 /* ReadMe.rtf in Resources */,
-				1B0DEBEA053AF10C00A310CF /* make_event_ical.txt in Resources */,
+				1B0DEBEA053AF10C00A310CF /* make_event_ical.applescript in Resources */,
 				55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */,
 				55BCA1C71A5492130034ECF5 /* GlossaryWindow.xib in Resources */,
 				5F562CBA06B99296004629AE /* Localizable.strings in Resources */,

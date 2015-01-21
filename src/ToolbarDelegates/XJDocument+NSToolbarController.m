@@ -42,7 +42,7 @@
             [item setTarget: self];
             [item setAction: @selector(saveDocument:)];
             [item setToolTip: NSLocalizedString(@"Save Entry to Disk", @"")];
-            [item setImage: [NSImage imageNamed: @"disk"]];
+            [item setImage: [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericHardDiskIcon)]];
         }
         // ----------------------------------------------------------------------------------------
         // URL Link
@@ -131,7 +131,7 @@
             [item setLabel: NSLocalizedString(@"Get Music", @"")];
             [item setPaletteLabel: NSLocalizedString(@"Get Current Music", @"")];
             [item setToolTip: NSLocalizedString(@"Get Music from iTunes", @"")];
-            [item setImage: [NSImage imageNamed: @"cd"]];
+            [item setImage: [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericCDROMIcon)]];
             [item setTarget: self];
             [item setAction: @selector(detectMusicNow:)];
         }

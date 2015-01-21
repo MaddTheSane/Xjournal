@@ -95,7 +95,7 @@
             [item setTarget: nil];
             [item setAction: @selector(saveDocument:)];
             [item setToolTip: NSLocalizedString(@"Save changes to LiveJournal", @"")];
-            [item setImage: [NSImage imageNamed: @"disk"]];
+            [item setImage: [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericHardDiskIcon)]];
         }
         else if([itemIdentifier isEqualToString: kAddressBookToolbarItemIdentifier]) {
             [item setLabel: NSLocalizedString(@"Addresses", @"")];
