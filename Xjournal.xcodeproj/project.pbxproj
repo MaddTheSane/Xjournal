@@ -364,8 +364,6 @@
 		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+Templating.m"; path = "src/Classes/NSString+Templating.m"; sourceTree = SOURCE_ROOT; };
 		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
 		5F7C1ADC05EC1BB2004DBCFC /* LJFriend-FOAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-FOAF.m"; sourceTree = "<group>"; };
-		5F80118406BD528900789AD7 /* LJAccount-RetainDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJAccount-RetainDebug.h"; sourceTree = "<group>"; };
-		5F80118506BD528900789AD7 /* LJAccount-RetainDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-RetainDebug.m"; sourceTree = "<group>"; };
 		5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJFontNameToDisplayVT.h; sourceTree = "<group>"; };
 		5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJFontNameToDisplayVT.m; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -517,8 +515,6 @@
 		1BBD895F04B0189F003882CD /* LJKit Categories */ = {
 			isa = PBXGroup;
 			children = (
-				5F80118406BD528900789AD7 /* LJAccount-RetainDebug.h */,
-				5F80118506BD528900789AD7 /* LJAccount-RetainDebug.m */,
 				1BBD896004B0189F003882CD /* LJAccount-BirthdayExtensions.h */,
 				1BBD896104B0189F003882CD /* LJAccount-BirthdayExtensions.m */,
 				1BBD896204B0189F003882CD /* LJEntryExtensions.h */,
