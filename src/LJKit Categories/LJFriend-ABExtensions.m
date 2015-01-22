@@ -22,7 +22,7 @@
 
     [ABPerson addPropertiesAndTypes: dict];
 
-    [record setValue: [self username] forProperty: kLJUsernameKey];
+    [record setValue: self.username forProperty: kLJUsernameKey];
     [book save];
     
 }
@@ -117,11 +117,7 @@
     ABPerson *person = [[ABPerson alloc] init];
 
     // Add the LJ Username prop
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-        @(kABStringProperty),
-        kLJUsernameKey,
-        nil,
-        nil];
+    NSDictionary *dict = @{kLJUsernameKey: @(kABStringProperty)};
 
     [ABPerson addPropertiesAndTypes: dict];
     [person setValue: [self username] forProperty: kLJUsernameKey];
@@ -152,7 +148,7 @@
 
 - (NSString *)emailWithDomain: (NSString *)domain
 {
-    return [NSString stringWithFormat: @"%@@%@", [self username], domain];
+    return [NSString stringWithFormat: @"%@@%@", self.username, domain];
 }
 @end
 
@@ -166,30 +162,37 @@
 - (BOOL)birthdayIsWithinAlertPeriod: (int)alertPeriod
 {
     if(![self birthDate]) return NO;
-    NSCalendarDate *today = [NSCalendarDate calendarDate];
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSDate *today = [NSDate date];
+    NSDateComponents *comps = [cal components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate: today];
 
-    NSInteger thisMonth = [today monthOfYear];
-    NSInteger thisDay = [today dayOfMonth];
+    NSInteger thisMonth = [comps month];
+    NSInteger thisDay = [comps day];
 
-    NSInteger bDayMonth = [[self birthDate] monthOfYear];
-    NSInteger bDayDay = [[self birthDate] dayOfMonth];
+    comps = [cal components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate: self.birthDate];
+
+    NSInteger bDayMonth = [comps month];
+    NSInteger bDayDay = [comps day];
     return bDayDay == thisDay && bDayMonth == thisMonth;
 }
 
 - (BOOL)birthdayIsThisMonth
 {
     if(![self birthDate]) return NO;
-    NSCalendarDate *today = [NSCalendarDate calendarDate];
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSDate *today = [NSDate date];
+    NSDateComponents *comps = [cal components:(NSCalendarUnitMonth) fromDate: today];
 
-    NSInteger thisMonth = [today monthOfYear];
-    NSInteger bDayMonth = [[self birthDate] monthOfYear];
+    NSInteger thisMonth = [comps month];
+    comps = [cal components:(NSCalendarUnitMonth) fromDate: self.birthDate];
+    NSInteger bDayMonth = [comps month];
 
     return bDayMonth == thisMonth;
 }
 
 - (void)addBirthdayToCalendarNamed:(NSString *)calendarName
 {
-    NSCalendarDate *birthday = [self birthDate];
+    NSDate *birthday = [self birthDate];
     if(!birthday) return; // <-- bail out
     
     NSString *scriptBody = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_event_ical" ofType:@"applescript"] encoding:NSUTF8StringEncoding error:NULL];
@@ -199,14 +202,18 @@
     [headerText appendString:[NSString stringWithFormat:@"set calTitle to \"%@\"\r", calendarName]];
     
     [headerText appendString:[NSString stringWithFormat:@"set eventTitle to \"%@\"\r", eventTitle]];
-     
-    [headerText appendString:[NSString stringWithFormat:@"set eventDay to %ld\r", (long)[birthday dayOfMonth]]];
-    [headerText appendString:[NSString stringWithFormat:@"set eventMonth to %@\r", [birthday descriptionWithCalendarFormat:@"%B"]]];
-    [headerText appendString:[NSString stringWithFormat:@"set eventMonthNum to %ld\r", (long)[birthday monthOfYear]]];
+    
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [cal components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate: birthday];
+    
+    [headerText appendString:[NSString stringWithFormat:@"set eventDay to %ld\r", (long)[comps day]]];
+    //[headerText appendString:[NSString stringWithFormat:@"set eventMonth to %@\r", [birthday descriptionWithCalendarFormat:@"%B"]]]; //TODO: find out what this does...
+    [headerText appendString:[NSString stringWithFormat:@"set eventMonthNum to %ld\r", (long)[comps month]]];
     
     // We now create birthdays starting in the current year, to avoid lots of events in the past.
     // If you prefer the old behaviour, change "[NSCalendarDate calendarDate]" to "birthday" in the next line.
-    [headerText appendString:[NSString stringWithFormat:@"set eventYear to %ld\r", (long)[[NSCalendarDate calendarDate] yearOfCommonEra]]];
+    comps = [cal components:(NSCalendarUnitYear) fromDate: [NSDate date]];
+    [headerText appendString:[NSString stringWithFormat:@"set eventYear to %ld\r", (long)[comps year]]];
     
     [headerText appendString:scriptBody];
     
@@ -216,7 +223,7 @@
     if (descriptor == nil) {
         NSBeep();
         return;
-    }    
+    }
 }
 @end
 
