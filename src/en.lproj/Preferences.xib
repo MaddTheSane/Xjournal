@@ -176,7 +176,7 @@
                     </textFieldCell>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="25">
-                    <rect key="frame" x="122" y="70" width="452" height="5"/>
+                    <rect key="frame" x="129" y="70" width="445" height="5"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -223,14 +223,14 @@
                     </textFieldCell>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="18">
-                    <rect key="frame" x="169" y="314" width="405" height="5"/>
+                    <rect key="frame" x="176" y="314" width="398" height="5"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <textField verticalHuggingPriority="750" id="17">
-                    <rect key="frame" x="17" y="412" width="129" height="17"/>
+                    <rect key="frame" x="17" y="412" width="133" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="LiveJournal Account" id="1353">
                         <font key="font" metaFont="system"/>
@@ -239,7 +239,7 @@
                     </textFieldCell>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="15">
-                    <rect key="frame" x="146" y="413" width="428" height="5"/>
+                    <rect key="frame" x="156" y="413" width="418" height="5"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -448,7 +448,7 @@
                                         </buttonCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="name" width="138" minWidth="40" maxWidth="1000" id="122">
+                                    <tableColumn identifier="name" width="154" minWidth="40" maxWidth="1000" id="122">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
