@@ -1,3 +1,10 @@
 [submodule "LJKit"]
-	path = LJKit
+	path = Vendor/LJKit
 	url = https://github.com/MaddTheSane/LJKit.git
+[submodule "Vendor/Sparkle"]
+	path = Vendor/Sparkle
+	url = https://github.com/sparkle-project/Sparkle.git
+[submodule "Vendor/OgreKit"]
+	path = Vendor/OgreKit
+	url = https://github.com/MaddTheSane/OgreKit.git
+	branch = madds

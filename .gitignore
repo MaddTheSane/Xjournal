@@ -25,7 +25,6 @@ DerivedData
 #
 # Pods/
 .DS_Store
-frameworks
 dsa_pub.pem
 project.xcworkspace/
 *.mode1
