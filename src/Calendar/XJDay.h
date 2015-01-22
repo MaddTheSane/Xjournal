@@ -31,7 +31,8 @@
 
 @property (readonly) BOOL hasPosts;
 
-@property (readonly, copy) NSCalendarDate *calendarDate;
+@property (readonly, copy) NSCalendarDate *calendarDate DEPRECATED_ATTRIBUTE;
+@property (readonly, copy) NSDate *date;
 @property (readonly, copy) NSString *dayOfWeek;
 
 @property (readonly) BOOL hasDownloadedEntries;

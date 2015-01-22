@@ -52,7 +52,7 @@ typedef NS_ENUM(int, XJHistorySelection) {
 };
 
 @interface XJHistoryWindowController ()
-- (void)showEncodingErrorSheetForDate: (NSCalendarDate *)date;
+- (void)showEncodingErrorSheetForDate: (NSDate *)date;
 - (void)showGenericErrorSheet: (NSString *)message;
 
  @property (readonly) int browserSelectionType;
@@ -270,7 +270,7 @@ typedef NS_ENUM(int, XJHistorySelection) {
 			int selectionType = [self browserSelectionType];
 			if(selectionType == XJHistorySearchResultSelected) {
 				LJEntry *entryToDelete = [self selectedSearchResult];
-				XJDay *day = [cal dayForCalendarDate: [[entryToDelete date] dateWithCalendarFormat:nil timeZone:nil]];
+				XJDay *day = [cal dayForDate: [entryToDelete date]];
 				NS_DURING
 					[day deleteEntry: entryToDelete];
 				NS_HANDLER
@@ -311,8 +311,6 @@ typedef NS_ENUM(int, XJHistorySelection) {
 - (BOOL)analyzeDayCounts
 {
     if([NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
-        NSEnumerator *dates;
-        NSCalendarDate *date;
         NSDictionary *tempDayCounts;
         
         // Cocoa (erroneously) believes we might fall through the NS_DURING loop,
@@ -320,20 +318,18 @@ typedef NS_ENUM(int, XJHistorySelection) {
         //      --sparks
         tempDayCounts = nil;
         
-        NS_DURING
+        @try {
             tempDayCounts = [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getDayCounts];
             dayCounts = nil;
             dayCounts = tempDayCounts;
             
-            dates = [[dayCounts allKeys] objectEnumerator];
-            
-            while(date = [dates nextObject]) {
-                XJDay *day = [cal dayForCalendarDate: date];
-                [day setPostCount: [dayCounts[date] intValue]];
+            for (NSDate *date in dayCounts) {
+                XJDay *day = [cal dayForDate: date];
+                [day setPostCount: [dayCounts[date] integerValue]];
             }
-        NS_HANDLER
+        } @catch (NSException *localException) {
             NSLog(@"getDayCounts failed");
-        NS_ENDHANDLER
+        }
         return tempDayCounts != nil;
     }
     return NO;
@@ -679,7 +675,7 @@ typedef NS_ENUM(int, XJHistorySelection) {
     LJEntry *entry = (LJEntry *)[note object];
     
     if([[[entry journal] name] isEqualToString: [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] name]]) {
-        XJDay *today = [cal dayForCalendarDate: [[entry date] dateWithCalendarFormat: nil timeZone: nil]];
+        XJDay *today = [cal dayForDate: [entry date]];
         [today addPostedEntry: [note object]];
         [browser reloadColumn: [browser lastVisibleColumn]];
     }
@@ -893,7 +889,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
     NSLog(@"historyDownloadFailed: %@", [exception name]);
     
     if([[exception name] isEqualToString: @"LJServerError"])
-        [self showEncodingErrorSheetForDate: [day calendarDate]];
+        [self showEncodingErrorSheetForDate: day.date];
     else
         [self showGenericErrorSheet: [exception reason]];
 }
@@ -918,28 +914,25 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
 - (void)updateAgainstDayCounts
 {
     @autoreleasepool {
-    
         NSArray *dates;
 
         NSDictionary *currentDayCounts = [[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getDayCounts];
         dates = [currentDayCounts allKeys];
-        int i;
+        NSInteger i;
         
         NSMutableArray *daysToUpdate = [NSMutableArray array];
         
-        for(i=0; !terminateUpdateThread && i < [dates count]; i++) {
+        for (i=0; !terminateUpdateThread && i < [dates count]; i++) {
             id date = dates[i];
-            XJDay *day = [cal dayForCalendarDate: date];
+            XJDay *day = [cal dayForDate: date];
             NSNumber *countForDay = currentDayCounts[date];
             if([day postCount] != [countForDay intValue])
             	[daysToUpdate addObject: day];
         }
         
         
-	NSEnumerator *enumerator = [daysToUpdate objectEnumerator];
-	XJDay *dayToUpdate;
 	i=0;
-	while(dayToUpdate = [enumerator nextObject]) {
+	for (XJDay *dayToUpdate in daysToUpdate) {
 		NSNotification *notice = [NSNotification notificationWithName:XJHistoryDownloadMadeProgressNotification
                                                                    object:@[@(i),
                                                                        @([daysToUpdate count])]
@@ -1069,7 +1062,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
 }
 
 // Information sheet
-- (void)showEncodingErrorSheetForDate: (NSCalendarDate *)date
+- (void)showEncodingErrorSheetForDate: (NSDate *)date
 {
     NSBeginCriticalAlertSheet(@"Text Encoding Error",
                               @"OK",

@@ -94,11 +94,8 @@
 
 - (XJMonth *)month: (int)monthNumber
 {
-    NSEnumerator *enu = [months objectEnumerator];
-    XJMonth *mo;
-
-    while(mo = [enu nextObject]) {
-        if([mo monthName] == monthNumber)
+    for (XJMonth *mo in months) {
+        if (mo.monthName == monthNumber)
             return mo;
     }
     return [self createMonthWithName: monthNumber];
