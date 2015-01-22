@@ -129,11 +129,8 @@
 
 - (XJDay *)day:(int)dayNumber
 {
-    NSEnumerator *enu = [days objectEnumerator];
-    XJDay *d;
-
-    while(d = [enu nextObject]) {
-        if([d dayName] == dayNumber) {
+    for (XJDay *d in days) {
+        if (d.dayName == dayNumber) {
             return d;
         }
     }

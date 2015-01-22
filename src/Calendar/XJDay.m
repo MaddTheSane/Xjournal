@@ -109,30 +109,51 @@
     return [NSCalendarDate dateWithString: dateString calendarFormat: calendarFormat];
 }
 
+- (NSDate*)date
+{
+    NSDateComponents *dc = [NSDateComponents new];
+    dc.year = myMonth.year.yearName;
+    dc.month = myMonth.monthName;
+    dc.day = dayNumber;
+    return [[NSCalendar calendarWithIdentifier:NSGregorianCalendar] dateFromComponents:dc];
+}
+
 - (NSString *)dayOfWeek
 {
-    NSInteger day = [[self calendarDate] dayOfWeek];
-
-    if(day == 0)
-        return @"Sunday";
-
-    if(day == 1)
-        return @"Monday";
-
-    if(day == 2)
-        return @"Tuesday";
-
-    if(day == 3)
-        return @"Wednesday";
-
-    if(day == 4)
-        return @"Thursday";
-
-    if(day == 5)
-        return @"Friday";
-
-    return @"Saturday";
-
+    NSCalendar *aCal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSDateComponents *dc = [aCal components:(NSCalendarUnitWeekday) fromDate:self.date];
+    NSInteger day = dc.weekday;
+    switch (day) {
+            //TODO: get localized versions?
+        case 1:
+            return @"Sunday";
+            break;
+            
+        case 2:
+            return @"Monday";
+            break;
+            
+        case 3:
+            return @"Tuesday";
+            break;
+            
+        case 4:
+            return @"Wednesday";
+            break;
+            
+        case 5:
+            return @"Thursday";
+            break;
+            
+        case 6:
+            return @"Friday";
+            
+        default:
+            NSAssert(NO, @"Got unknown week day, %li", (long)day);
+        case 7:
+            return @"Saturday";
+            break;
+    }
 }
 
 - (BOOL)hasDownloadedEntries
@@ -142,7 +163,7 @@
 
 - (void)downloadEntries
 {
-    entries = [[[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getEntriesForDay: [self calendarDate]] mutableCopy];
+    entries = [[[[[XJAccountManager defaultManager] defaultAccount] defaultJournal] getEntriesForDay: self.date] mutableCopy];
     [self setPostCount: [entries count]];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:XJEntryDownloadEndedNotification object:self];
@@ -226,7 +247,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat: @"%@ - %ld entries.", [[self calendarDate] description], (long)[self postCount]];
+    return [NSString stringWithFormat: @"%@ - %ld entries.", [[self date] description], (long)[self postCount]];
 }
 
 - (NSURL *)urlForDayArchiveForAccount: (LJAccount *)acct {

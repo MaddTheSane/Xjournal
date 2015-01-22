@@ -21,7 +21,7 @@
 @property (readonly, strong) LJEntry *mostRecentPost; // convenience!
 
 - (XJYear *)addYearWithName: (int)yearName;
-- (XJDay *)dayForCalendarDate:(NSCalendarDate *) theDate; //NSCalendarDate is deprecated!
+- (XJDay *)dayForCalendarDate:(NSCalendarDate *) theDate DEPRECATED_ATTRIBUTE;
 - (XJDay *)dayForDate:(NSDate *) theDate;
 
 - (XJMonth *)month:(int)mIdx ofYear:(int)yr;
