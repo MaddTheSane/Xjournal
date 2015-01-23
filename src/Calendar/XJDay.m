@@ -147,6 +147,7 @@
             
         case 6:
             return @"Friday";
+            break;
             
         default:
             NSAssert(NO, @"Got unknown week day, %li", (long)day);
