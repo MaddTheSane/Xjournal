@@ -9,9 +9,7 @@
 		<dict>
 			<key>CFBundleOSTypes</key>
 			<array>
-				<array>
-					<string>TEXT</string>
-				</array>
+				<string>TEXT</string>
 			</array>
 			<key>CFBundleTypeExtensions</key>
 			<array>
@@ -23,6 +21,12 @@
 			<string>Xjournal Entry</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.speirs.xjournal.entry</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>XJDocument</string>
 		</dict>
@@ -78,5 +82,27 @@
 	<string>dsa_pub.pem</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>604800</integer>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>XJournal Entry</string>
+			<key>UTTypeIconFile</key>
+			<string>Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.speirs.xjournal.entry</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>xjournal</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
