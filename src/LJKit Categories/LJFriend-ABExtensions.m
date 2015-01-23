@@ -199,21 +199,23 @@
     NSMutableString *headerText = [NSMutableString string];
     NSString *eventTitle = [NSString stringWithFormat: @"%@'s birthday", [self username]];
     
-    [headerText appendString:[NSString stringWithFormat:@"set calTitle to \"%@\"\r", calendarName]];
+    [headerText appendFormat:@"set calTitle to \"%@\"\r", calendarName];
     
-    [headerText appendString:[NSString stringWithFormat:@"set eventTitle to \"%@\"\r", eventTitle]];
+    [headerText appendFormat:@"set eventTitle to \"%@\"\r", eventTitle];
     
     NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
     NSDateComponents *comps = [cal components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate: birthday];
     
-    [headerText appendString:[NSString stringWithFormat:@"set eventDay to %ld\r", (long)[comps day]]];
-    //[headerText appendString:[NSString stringWithFormat:@"set eventMonth to %@\r", [birthday descriptionWithCalendarFormat:@"%B"]]]; //TODO: find out what this does...
-    [headerText appendString:[NSString stringWithFormat:@"set eventMonthNum to %ld\r", (long)[comps month]]];
+    [headerText appendFormat:@"set eventDay to %ld\r", (long)[comps day]];
+    NSDateFormatter *tmpFormat = [NSDateFormatter new];
+    tmpFormat.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [headerText appendFormat:@"set eventMonth to %@\r", tmpFormat.standaloneMonthSymbols[comps.month]]; //TODO: find out what this does...
+    [headerText appendFormat:@"set eventMonthNum to %ld\r", (long)[comps month]];
     
     // We now create birthdays starting in the current year, to avoid lots of events in the past.
     // If you prefer the old behaviour, change "[NSCalendarDate calendarDate]" to "birthday" in the next line.
     comps = [cal components:(NSCalendarUnitYear) fromDate: [NSDate date]];
-    [headerText appendString:[NSString stringWithFormat:@"set eventYear to %ld\r", (long)[comps year]]];
+    [headerText appendFormat:@"set eventYear to %ld\r", (long)[comps year]];
     
     [headerText appendString:scriptBody];
     

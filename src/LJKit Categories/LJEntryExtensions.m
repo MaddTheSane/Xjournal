@@ -126,55 +126,34 @@
 
 - (NSString *)metadataHTML
 {
-	
     NSMutableString *meta = [[NSMutableString alloc] initWithCapacity: 100];
 	
     if([self subject]) {
-        [meta appendString: [NSString stringWithFormat: @"<strong>Subject:</strong>&nbsp;%@<br>", [self subject]]];
+        [meta appendFormat: @"<strong>Subject:</strong>&nbsp;%@<br>", [self subject]];
     }
 	
 	[meta appendString: @"<strong>Date:</strong>&nbsp;"];
 	
-	switch([[[self date] dateWithCalendarFormat: nil timeZone: nil] dayOfWeek]) {
-		case 0:
-			[meta appendString: NSLocalizedString(@"Sunday", @"Sunday")];
-			break;
-		case 1:
-			[meta appendString: NSLocalizedString(@"Monday", @"Monday")];
-			break;
-		case 2:
-			[meta appendString: NSLocalizedString(@"Tuesday", @"Tuesday")];
-			break;
-		case 3:
-			[meta appendString: NSLocalizedString(@"Wednesday", @"Wednesday")];
-			break;
-		case 4:
-			[meta appendString: NSLocalizedString(@"Thursday", @"Thursday")];
-			break;
-		case 5:
-			[meta appendString: NSLocalizedString(@"Friday", @"Friday")];
-			break;
-		case 6:
-			[meta appendString: NSLocalizedString(@"Saturday", @"Saturday")];
-			break;
-	}
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"EEEE";
+    [meta appendString:[df stringFromDate:self.date]];
 	
 	[meta appendFormat: @" %@<br>", [NSDateFormatter localizedStringFromDate: self.date dateStyle: NSDateFormatterShortStyle timeStyle: NSDateFormatterMediumStyle]];
 	
     if([self currentMoodName]) {
-        [meta appendString: [NSString stringWithFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMoodName]]];
+        [meta appendFormat: @"<strong>Mood:</strong>&nbsp;%@<br>", [self currentMoodName]];
     }
 	
     if([self currentMusic]) {
-        [meta appendString: [NSString stringWithFormat: @"<strong>Music:</strong>&nbsp;%@<br>", [self currentMusic]]];
+        [meta appendFormat: @"<strong>Music:</strong>&nbsp;%@<br>", [self currentMusic]];
     }
 	
     if([self currentLocation]) {
-        [meta appendString: [NSString stringWithFormat: @"<strong>Location:</strong>&nbsp;%@<br>", [self currentLocation]]];
+        [meta appendFormat: @"<strong>Location:</strong>&nbsp;%@<br>", [self currentLocation]];
     }
 	
 	if([self tags]) {
-		[meta appendString: [NSString stringWithFormat: @"<strong>Tags: </strong>%@<br>", [self tags]]];
+		[meta appendFormat: @"<strong>Tags: </strong>%@<br>", [self tags]];
 	}
 
     [meta appendString: @"<br>"];

@@ -971,7 +971,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
     
     NSMutableString *string = [NSMutableString stringWithCapacity:100];
     for (NSString *userName in array) {
-        [string appendString: [NSString stringWithFormat: @"<lj user=\"%@\">, ", userName]];
+        [string appendFormat: @"<lj user=\"%@\">, ", userName];
     }
     NSString *userString = [string substringToIndex: [string length]-2]; // Hack to take off the last comma-space
     
