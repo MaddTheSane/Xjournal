@@ -100,7 +100,7 @@
 
 		script = [[NSAppleScript alloc] initWithSource: getRatingScript];
         result = [script executeAndReturnError: &info];
-        int theRating = [[result stringValue] intValue];
+        int theRating = [result int32Value];
 		theRating = theRating / 20;
 		
         return @{@"artist": theArtist, @"album": theAlbum, @"name": theTrack, @"rating": @(theRating)};

@@ -19,7 +19,7 @@
 
 #define kFriendsAutosaveName @"kFriendsAutosaveName"
 
-typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
+typedef NS_ENUM(int, XJColumnSortOrder) {
     XJColumnSortedAscending = 0,
     XJColumnSortedDescending,
     XJColumnNotSorted
@@ -1143,7 +1143,7 @@ typedef NS_ENUM(NSInteger, XJColumnSortOrder) {
 // ----------------------------------------------------------------------------------------
 - (void) webView: (WebView *) sender  decidePolicyForNavigationAction: (NSDictionary *) actionInformation request: (NSURLRequest *) request frame: (WebFrame *) frame decisionListener: (id<WebPolicyDecisionListener>) listener
 {
-    int key = [actionInformation[WebActionNavigationTypeKey] intValue];
+    WebNavigationType key = [actionInformation[WebActionNavigationTypeKey] integerValue];
     switch(key){
         case WebNavigationTypeLinkClicked:
             // Since a link was clicked, we want WebKit to ignore it

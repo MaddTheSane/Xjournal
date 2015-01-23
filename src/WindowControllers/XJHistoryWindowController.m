@@ -864,12 +864,12 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
 - (void)updateHistoryDownloadProgress: (NSNotification *)note
 {
     NSArray *info = [note object];
-    int progressMax = [info[1] intValue];
+    NSInteger progressMax = [info[1] integerValue];
     if(![downloadBar isIndeterminate] && [downloadBar maxValue] != progressMax)
         [downloadBar setMaxValue: progressMax];
     
     [downloadStatus setStringValue: [NSString stringWithFormat: @"%d of %d", [info[0] intValue], [info[1] intValue]]];
-    [downloadBar setDoubleValue: [info[0] intValue]];
+    [downloadBar setDoubleValue: [info[0] integerValue]];
 }
 
 - (void)historyDownloadFailed: (NSNotification *)note
@@ -926,7 +926,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
             id date = dates[i];
             XJDay *day = [cal dayForDate: date];
             NSNumber *countForDay = currentDayCounts[date];
-            if([day postCount] != [countForDay intValue])
+            if([day postCount] != [countForDay integerValue])
             	[daysToUpdate addObject: day];
         }
         

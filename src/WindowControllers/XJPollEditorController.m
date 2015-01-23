@@ -198,14 +198,14 @@
     }
     else if([currentSheet isEqualTo: scaleSheet]) {
         [currentlyEditedQuestion setQuestion: [scaleQuestionField stringValue]];
-        [(LJPollScaleQuestion *)currentlyEditedQuestion setStart: [[scaleStartField objectValue] intValue]];
-        [(LJPollScaleQuestion *)currentlyEditedQuestion setEnd: [[scaleEndField objectValue] intValue]];
-        [(LJPollScaleQuestion *)currentlyEditedQuestion setStep: [[scaleStepField objectValue] intValue]];
+        [(LJPollScaleQuestion *)currentlyEditedQuestion setStart: [[scaleStartField objectValue] integerValue]];
+        [(LJPollScaleQuestion *)currentlyEditedQuestion setEnd: [[scaleEndField objectValue] integerValue]];
+        [(LJPollScaleQuestion *)currentlyEditedQuestion setStep: [[scaleStepField objectValue] integerValue]];
     }
     else if([currentSheet isEqualTo: textSheet]) {
         [currentlyEditedQuestion setQuestion: [textQuestionField stringValue]];
-        [(LJPollTextEntryQuestion *)currentlyEditedQuestion setSize: [textSizeField intValue]];
-        [(LJPollTextEntryQuestion *)currentlyEditedQuestion setMaxLength: [textMaxLengthField intValue]];
+        [(LJPollTextEntryQuestion *)currentlyEditedQuestion setSize: [textSizeField integerValue]];
+        [(LJPollTextEntryQuestion *)currentlyEditedQuestion setMaxLength: [textMaxLengthField integerValue]];
     }
     
     [questionTable reloadData];

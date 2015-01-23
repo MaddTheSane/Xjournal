@@ -112,7 +112,7 @@
     else
         [self setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
 	
-    [self setSecurityMode: [dict[kSecurityModeKey] intValue]];
+    [self setSecurityMode: [dict[kSecurityModeKey] integerValue]];
     if([self securityMode] != LJSecurityModePublic)
         [self setGroupsAllowedAccessMask: [dict[kGroupAllowedMaskKey] intValue]];
 	
