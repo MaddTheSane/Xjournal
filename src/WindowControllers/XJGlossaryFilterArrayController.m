@@ -80,8 +80,6 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 }
 
 
-//  - dealloc:
-
 // -----------------
 // DND
 // -----------------
@@ -94,32 +92,29 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 }
 
 
-// FIXME: Deprecated method
-- (BOOL)tableView:(NSTableView *)tv
-		writeRows:(NSArray*)rows
-	 toPasteboard:(NSPasteboard*)pboard
+- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard
 {
-	// declare our own pasteboard types
+    // declare our own pasteboard types
     NSArray *typesArray = @[MovedRowsType,	NSStringPboardType];
-	[pboard declareTypes:typesArray owner:self];
-	
-	// Try to create an string
-	// If we can, add NSStringPboardType to the declared types and write
-	//the String to the pasteboard; otherwise declare existing types
-	int i;
-	NSMutableArray *strings = [NSMutableArray array];
-	NSMutableArray *movedRows = [NSMutableArray array];
-	
-	for(i=0; i < [rows count]; i++) {
-		int row = [rows[i] intValue];
-		NSDictionary *rowContent = [self arrangedObjects][row];
-		NSString *string = [rowContent valueForKey:@"text"];
-		[strings addObject: string];
-		[movedRows addObject: rowContent];
-	}
-	
-	[pboard setString: [strings componentsJoinedByString: @"\n"] forType: NSStringPboardType];
-	[pboard setPropertyList: rows forType: MovedRowsType];
+    [pboard declareTypes:typesArray owner:self];
+    
+    // Try to create an string
+    // If we can, add NSStringPboardType to the declared types and write
+    //the String to the pasteboard; otherwise declare existing types
+    NSMutableArray *strings = [NSMutableArray array];
+    NSMutableArray *movedRows = [NSMutableArray array];
+    
+    NSInteger i = rowIndexes.firstIndex;
+    while (i != NSNotFound) {
+        NSDictionary *rowContent = [self arrangedObjects][i];
+        NSString *string = [rowContent valueForKey:@"text"];
+        [strings addObject: string];
+        [movedRows addObject: rowContent];
+        i = [rowIndexes indexGreaterThanIndex:i];
+    }
+    
+    [pboard setString: [strings componentsJoinedByString: @"\n"] forType: NSStringPboardType];
+    [pboard setPropertyList: movedRows forType: MovedRowsType];
 
     return YES;
 }
@@ -228,7 +223,7 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
     NSNumber *idx;
     while (idx = [rowEnumerator nextObject])
     {
-		[indexSet addIndex:[idx intValue]];
+		[indexSet addIndex:[idx integerValue]];
     }
     return indexSet;
 }
