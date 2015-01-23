@@ -99,7 +99,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     return self;
 }
 
-- (void)initUI {
+- (void)prepareUI {
     NSToolbar *toolbar;
 	
     // Set up NSToolbar
@@ -120,7 +120,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 	
     if([[self entry] itemID] == 0) {
         // Item hasn't been posted, apply default security mode
-        int securityLevel = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultSecurityLevel"] intValue];
+        LJSecurityMode securityLevel = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJDefaultSecurityLevel"] integerValue];
         [security selectItemAtIndex: [security indexOfItemWithTag: securityLevel]];
         [[self entry] setSecurityMode:securityLevel];
         // Item hasn't been posted, apply default comment screening mode
@@ -300,7 +300,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (void)accountDeleted: (NSNotification *)note
 {
 	[[self entry] setJournal: nil];
-	[self initUI];
+	[self prepareUI];
 }
 
 - (void)dealloc
@@ -327,7 +327,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
-    [self initUI];
+    [self prepareUI];
     [super windowControllerDidLoadNib:aController];
 }
 
@@ -921,7 +921,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (void)postEntryAndDiscardLocalCopy:(id)sender
 {
 	if([self fileURL] != nil && [self isDocumentEdited]) {  // Was opened from file and is dirty
-		int unsavedOption = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJUnsavedOption"] intValue];
+		NSInteger unsavedOption = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJUnsavedOption"] integerValue];
 
 		if(unsavedOption != 2) { // 2 == don't save
 			BOOL shouldSave = YES;
@@ -1431,7 +1431,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 // ----------------------------------------------------------------------------------------
 - (void) webView: (WebView *) sender  decidePolicyForNavigationAction: (NSDictionary *) actionInformation request: (NSURLRequest *) request frame: (WebFrame *) frame decisionListener: (id<WebPolicyDecisionListener>) listener
 {
-    int key = [actionInformation[WebActionNavigationTypeKey] intValue];
+    WebNavigationType key = [actionInformation[WebActionNavigationTypeKey] integerValue];
     switch(key){
         case WebNavigationTypeLinkClicked:
             // Since a link was clicked, we want WebKit to ignore it

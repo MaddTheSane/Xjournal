@@ -111,7 +111,7 @@ static NSMutableDictionary *userPics;
 {
 	id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *fontName = [values valueForKey: @"XJEntryWindowFontName"];
-	int fontSize = [[values valueForKey: @"XJEntryWindowFontSize"] intValue];
+	CGFloat fontSize = [[values valueForKey: @"XJEntryWindowFontSize"] doubleValue];
 	
     NSFont *font = [NSFont fontWithName: fontName size: fontSize];
 	if(font) return font;

@@ -96,7 +96,7 @@
     //after you are done, just do all the toolbar stuff.
     //[self window] is an outlet pointing to the Preferences Window you made to hold all these custom views.
 	
-	int checkInterval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SUScheduledCheckInterval"] intValue];
+	NSInteger checkInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"SUScheduledCheckInterval"];
 	if (checkInterval == 0) {
 		[updateCheckSelection selectItemWithTitle:@"Never"];
 	} else if (checkInterval == 24*60*60) {
@@ -407,7 +407,7 @@
 					   context:(void *)context 
 {
 	if([keyPath isEqualToString: @"values.XJCheckFriendsShouldCheck"]) {
-		int changeKind = [change[NSKeyValueChangeKindKey] intValue];
+		NSKeyValueChange changeKind = [change[NSKeyValueChangeKindKey] integerValue];
 		if(changeKind == NSKeyValueChangeSetting) {
 			
 			// Here, we *should* inspect [change objectForKey: NSKeyValueChangeNewKey]
