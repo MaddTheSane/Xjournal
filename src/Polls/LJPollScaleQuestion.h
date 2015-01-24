@@ -20,6 +20,7 @@
 
 - (instancetype)init;
 - (instancetype)initWithStart: (NSInteger)theStart end: (NSInteger)theEnd step:(NSInteger)theStep NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRange: (NSRange)range step:(NSInteger)theStep;
 
 // Memento
 @property (readonly, copy) NSDictionary *memento;
