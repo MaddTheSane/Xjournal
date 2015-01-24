@@ -83,8 +83,6 @@
 		1BBD89F004B0189F003882CD /* XJDocument+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */; };
 		1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */; };
 		1BBD89F204B0189F003882CD /* XJFriendsController-NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */; };
-		1BBD89F504B0189F003882CD /* XJPollEditorController+NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899204B0189F003882CD /* XJPollEditorController+NSToolbarController.h */; };
-		1BBD89F604B0189F003882CD /* XJPollEditorController+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */; };
 		1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */; };
 		1BBD89F804B0189F003882CD /* XJAccountEditWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */; };
 		1BBD89FB04B0189F003882CD /* XJDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899904B0189F003882CD /* XJDocument.h */; };
@@ -95,13 +93,12 @@
 		1BBD8A0004B0189F003882CD /* XJGlossaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD899E04B0189F003882CD /* XJGlossaryWindowController.m */; };
 		1BBD8A0104B0189F003882CD /* XJHistoryWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD899F04B0189F003882CD /* XJHistoryWindowController.h */; };
 		1BBD8A0204B0189F003882CD /* XJHistoryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */; };
-		1BBD8A0504B0189F003882CD /* XJPollEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD89A304B0189F003882CD /* XJPollEditorController.h */; };
-		1BBD8A0604B0189F003882CD /* XJPollEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD89A404B0189F003882CD /* XJPollEditorController.m */; };
 		1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8BDE04B01A6B003882CD /* AddressBook.framework */; };
 		1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8BF304B01A77003882CD /* Carbon.framework */; };
 		1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */; };
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
+		5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE261A72EDE800C982EF /* PollEditorController.swift */; };
 		55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B95A451A70507F00F4C784 /* ShortcutWindow.xib */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
@@ -396,8 +393,6 @@
 		1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJDocument+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJFriendsController-NSToolbarController.h"; sourceTree = "<group>"; };
 		1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJFriendsController-NSToolbarController.m"; sourceTree = "<group>"; };
-		1BBD899204B0189F003882CD /* XJPollEditorController+NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "XJPollEditorController+NSToolbarController.h"; sourceTree = "<group>"; };
-		1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "XJPollEditorController+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJAccountEditWindowController.h; sourceTree = "<group>"; };
 		1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJAccountEditWindowController.m; sourceTree = "<group>"; };
 		1BBD899904B0189F003882CD /* XJDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJDocument.h; sourceTree = "<group>"; };
@@ -408,18 +403,18 @@
 		1BBD899E04B0189F003882CD /* XJGlossaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJGlossaryWindowController.m; sourceTree = "<group>"; };
 		1BBD899F04B0189F003882CD /* XJHistoryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJHistoryWindowController.h; sourceTree = "<group>"; };
 		1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJHistoryWindowController.m; sourceTree = "<group>"; };
-		1BBD89A304B0189F003882CD /* XJPollEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJPollEditorController.h; sourceTree = "<group>"; };
-		1BBD89A404B0189F003882CD /* XJPollEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJPollEditorController.m; sourceTree = "<group>"; };
 		1BBD8BDE04B01A6B003882CD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1BBD8BF304B01A77003882CD /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BBD8C9E04B01A8B003882CD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = src/English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xjournal_Prefix.pch; sourceTree = "<group>"; };
 		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
+		5566DE251A72EDE800C982EF /* Xjournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xjournal-Bridging-Header.h"; sourceTree = "<group>"; };
+		5566DE261A72EDE800C982EF /* PollEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollEditorController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55B95A441A70507F00F4C784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutWindow.xib; sourceTree = "<group>"; };
 		55BCA1BE1A5480CF0034ECF5 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "src/English.lproj/Xjournal Help"; sourceTree = "<group>"; };
 		55BCA1C31A5491F30034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HistoryWindow.xib; sourceTree = "<group>"; };
@@ -662,8 +657,6 @@
 				1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */,
 				1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */,
 				1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */,
-				1BBD899204B0189F003882CD /* XJPollEditorController+NSToolbarController.h */,
-				1BBD899304B0189F003882CD /* XJPollEditorController+NSToolbarController.m */,
 			);
 			name = ToolbarDelegates;
 			path = src/ToolbarDelegates;
@@ -685,8 +678,7 @@
 				1BBD899E04B0189F003882CD /* XJGlossaryWindowController.m */,
 				1BBD899F04B0189F003882CD /* XJHistoryWindowController.h */,
 				1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */,
-				1BBD89A304B0189F003882CD /* XJPollEditorController.h */,
-				1BBD89A404B0189F003882CD /* XJPollEditorController.m */,
+				5566DE261A72EDE800C982EF /* PollEditorController.swift */,
 			);
 			path = WindowControllers;
 			sourceTree = "<group>";
@@ -741,11 +733,11 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5566DE251A72EDE800C982EF /* Xjournal-Bridging-Header.h */,
 				32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
@@ -893,13 +885,11 @@
 				1BBD89ED04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h in Headers */,
 				1BBD89EF04B0189F003882CD /* XJDocument+NSToolbarController.h in Headers */,
 				1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */,
-				1BBD89F504B0189F003882CD /* XJPollEditorController+NSToolbarController.h in Headers */,
 				1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */,
 				1BBD89FB04B0189F003882CD /* XJDocument.h in Headers */,
 				1BBD89FD04B0189F003882CD /* XJFriendsController.h in Headers */,
 				1BBD89FF04B0189F003882CD /* XJGlossaryWindowController.h in Headers */,
 				1BBD8A0104B0189F003882CD /* XJHistoryWindowController.h in Headers */,
-				1BBD8A0504B0189F003882CD /* XJPollEditorController.h in Headers */,
 				1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */,
 				1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */,
 				1B7C9A420566708F00F0E1AC /* LJPollTextEntryQuestion.h in Headers */,
@@ -1171,16 +1161,15 @@
 				1BBD89DA04B0189F003882CD /* LJPoll.m in Sources */,
 				1BBD89DC04B0189F003882CD /* LJPollMultipleOptionQuestion.m in Sources */,
 				1BBD89DE04B0189F003882CD /* LJPollQuestion.m in Sources */,
+				5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */,
 				1BBD89EE04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m in Sources */,
 				1BBD89F004B0189F003882CD /* XJDocument+NSToolbarController.m in Sources */,
 				1BBD89F204B0189F003882CD /* XJFriendsController-NSToolbarController.m in Sources */,
-				1BBD89F604B0189F003882CD /* XJPollEditorController+NSToolbarController.m in Sources */,
 				1BBD89F804B0189F003882CD /* XJAccountEditWindowController.m in Sources */,
 				1BBD89FC04B0189F003882CD /* XJDocument.m in Sources */,
 				1BBD89FE04B0189F003882CD /* XJFriendsController.m in Sources */,
 				1BBD8A0004B0189F003882CD /* XJGlossaryWindowController.m in Sources */,
 				1BBD8A0204B0189F003882CD /* XJHistoryWindowController.m in Sources */,
-				1BBD8A0604B0189F003882CD /* XJPollEditorController.m in Sources */,
 				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				1B7C9A430566709300F0E1AC /* LJPollScaleQuestion.m in Sources */,
@@ -1416,6 +1405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Xjournal;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1437,6 +1427,8 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = Xjournal;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/Xjournal-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1445,6 +1437,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Xjournal;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1467,6 +1460,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = Xjournal;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/Xjournal-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1475,6 +1469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Xjournal;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1494,6 +1489,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = Xjournal;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/Xjournal-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Linked with Symbols";
@@ -1618,7 +1614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1650,7 +1646,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1680,7 +1676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VERSIONING_SYSTEM = "apple-generic";

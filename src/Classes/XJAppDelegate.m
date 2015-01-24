@@ -22,6 +22,8 @@
 #import "XJFontNameToDisplayVT.h"
 #import "NNWConsts.h"
 
+#import "Xjournal-Swift.h"
+
 #define PREF_LJ_ACCOUNTS @"preferences.accounts"
 
 // Constant local strings
@@ -378,7 +380,7 @@
 - (IBAction)showPollEditWindow:(id)sender
 {
     if(!pollController) {
-        pollController = [[XJPollEditorController alloc] init];
+        pollController = [[XJPollEditorController alloc] initWithWindowNibName:[XJPollEditorController nibName]];
     }
     [pollController showWindow: self];
 }

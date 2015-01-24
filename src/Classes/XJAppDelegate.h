@@ -14,7 +14,7 @@
 #import "XJSafariBookmarkParser.h"
 #import "XJBookmarksWindowController.h"
 #import "XJAccountEditWindowController.h"
-#import "XJPollEditorController.h"
+@class XJPollEditorController;
 
 @class XJPreferencesController;
 
