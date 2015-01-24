@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "XJPreferences.h"
-#import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"
+
+#import "Xjournal-Swift.h"
 
 #define ACCOUNT_PATH [XJGetGlobalAppSupportDir() stringByAppendingPathComponent: @"Account"]
 

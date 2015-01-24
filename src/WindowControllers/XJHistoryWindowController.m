@@ -15,7 +15,8 @@
 #import "XJAccountManager.h"
 #import "XJDocument.h"
 #import "NSDocumentController-CustomDocs.h"
-#import "NetworkConfig.h"
+
+#import "Xjournal-Swift.h"
 
 #define kHistoryWindowToolbarIdentifier @"history.toolbar" 
 #define kHistoryOpenItemIdentifier @"history.open.item"

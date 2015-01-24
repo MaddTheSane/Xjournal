@@ -51,8 +51,6 @@
 		1BBD89AA04B0189F003882CD /* XJMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894004B0189F003882CD /* XJMonth.m */; };
 		1BBD89AB04B0189F003882CD /* XJYear.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD894104B0189F003882CD /* XJYear.h */; };
 		1BBD89AC04B0189F003882CD /* XJYear.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894204B0189F003882CD /* XJYear.m */; };
-		1BBD89AF04B0189F003882CD /* NetworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD894604B0189F003882CD /* NetworkConfig.h */; };
-		1BBD89B004B0189F003882CD /* NetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD894704B0189F003882CD /* NetworkConfig.m */; };
 		1BBD89B904B0189F003882CD /* XJAccountManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD895104B0189F003882CD /* XJAccountManager.h */; };
 		1BBD89BA04B0189F003882CD /* XJAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD895204B0189F003882CD /* XJAccountManager.m */; };
 		1BBD89BB04B0189F003882CD /* XJAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD895304B0189F003882CD /* XJAppDelegate.h */; };
@@ -87,6 +85,7 @@
 		1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8BF304B01A77003882CD /* Carbon.framework */; };
 		1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */; };
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
+		5500C50C1A74576400A22983 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500C50B1A74576400A22983 /* NetworkConfig.swift */; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
 		5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE261A72EDE800C982EF /* PollEditorController.swift */; };
 		5566DE411A73327A00C982EF /* LJPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE401A73327A00C982EF /* LJPoll.swift */; };
@@ -183,6 +182,20 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		5500C5071A74565300A22983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55403A011A745003007A488E;
+			remoteInfo = ForceFeedbackAdditions;
+		};
+		5500C5091A74565300A22983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55403A0B1A745003007A488E;
+			remoteInfo = ForceFeedbackAdditionsTests;
+		};
 		5566DE491A7337CD00C982EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
@@ -394,8 +407,6 @@
 		1BBD894004B0189F003882CD /* XJMonth.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJMonth.m; path = src/Calendar/XJMonth.m; sourceTree = SOURCE_ROOT; };
 		1BBD894104B0189F003882CD /* XJYear.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJYear.h; sourceTree = "<group>"; };
 		1BBD894204B0189F003882CD /* XJYear.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJYear.m; path = src/Calendar/XJYear.m; sourceTree = SOURCE_ROOT; };
-		1BBD894604B0189F003882CD /* NetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NetworkConfig.h; sourceTree = "<group>"; };
-		1BBD894704B0189F003882CD /* NetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NetworkConfig.m; sourceTree = "<group>"; };
 		1BBD895104B0189F003882CD /* XJAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJAccountManager.h; sourceTree = "<group>"; };
 		1BBD895204B0189F003882CD /* XJAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJAccountManager.m; sourceTree = "<group>"; };
 		1BBD895304B0189F003882CD /* XJAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJAppDelegate.h; sourceTree = "<group>"; };
@@ -435,6 +446,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xjournal_Prefix.pch; sourceTree = "<group>"; };
+		5500C50B1A74576400A22983 /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; usesTabs = 1; };
 		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
 		5566DE251A72EDE800C982EF /* Xjournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xjournal-Bridging-Header.h"; sourceTree = "<group>"; };
 		5566DE261A72EDE800C982EF /* PollEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollEditorController.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -507,18 +519,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5566DE511A7337DD00C982EF /* SwiftAdditions.framework in Frameworks */,
-				55BCA1E91A54B1420034ECF5 /* libcrypto.dylib in Frameworks */,
-				55C3FE3A1A71945000F1EC1A /* LJKit.framework in Frameworks */,
-				55BCA1E71A54B0A60034ECF5 /* Security.framework in Frameworks */,
-				1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */,
-				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
-				55C3FE361A71945000F1EC1A /* Sparkle.framework in Frameworks */,
-				55C3FE581A71953A00F1EC1A /* OgreKit.framework in Frameworks */,
-				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
-				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
 				5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */,
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
+				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
+				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
+				55BCA1E71A54B0A60034ECF5 /* Security.framework in Frameworks */,
+				55C3FE3A1A71945000F1EC1A /* LJKit.framework in Frameworks */,
+				1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */,
+				55C3FE581A71953A00F1EC1A /* OgreKit.framework in Frameworks */,
+				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
+				55C3FE361A71945000F1EC1A /* Sparkle.framework in Frameworks */,
+				55BCA1E91A54B1420034ECF5 /* libcrypto.dylib in Frameworks */,
+				5566DE511A7337DD00C982EF /* SwiftAdditions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,8 +615,7 @@
 			children = (
 				5FD248B408620D520007E0C5 /* XJKeyChain.h */,
 				5FD248B508620D520007E0C5 /* XJKeyChain.m */,
-				1BBD894604B0189F003882CD /* NetworkConfig.h */,
-				1BBD894704B0189F003882CD /* NetworkConfig.m */,
+				5500C50B1A74576400A22983 /* NetworkConfig.swift */,
 			);
 			path = "Carbon Wrappers";
 			sourceTree = "<group>";
@@ -806,6 +817,8 @@
 				5566DE4C1A7337CD00C982EF /* SwiftAdditionsTests.xctest */,
 				5566DE4E1A7337CD00C982EF /* SwiftIOKitAdditions.framework */,
 				5566DE501A7337CD00C982EF /* SwiftIOKitAdditionsTests.xctest */,
+				5500C5081A74565300A22983 /* ForceFeedbackAdditions.framework */,
+				5500C50A1A74565300A22983 /* ForceFeedbackAdditionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -907,7 +920,6 @@
 				1BBD89A704B0189F003882CD /* XJDay.h in Headers */,
 				1BBD89A904B0189F003882CD /* XJMonth.h in Headers */,
 				1BBD89AB04B0189F003882CD /* XJYear.h in Headers */,
-				1BBD89AF04B0189F003882CD /* NetworkConfig.h in Headers */,
 				1BBD89B904B0189F003882CD /* XJAccountManager.h in Headers */,
 				1BBD89BB04B0189F003882CD /* XJAppDelegate.h in Headers */,
 				1BBD89BD04B0189F003882CD /* XJCheckFriendsSessionManager.h in Headers */,
@@ -1014,6 +1026,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5500C5081A74565300A22983 /* ForceFeedbackAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ForceFeedbackAdditions.framework;
+			remoteRef = 5500C5071A74565300A22983 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5500C50A1A74565300A22983 /* ForceFeedbackAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ForceFeedbackAdditionsTests.xctest;
+			remoteRef = 5500C5091A74565300A22983 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5566DE4A1A7337CD00C982EF /* SwiftAdditions.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1205,6 +1231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				5500C50C1A74576400A22983 /* NetworkConfig.swift in Sources */,
 				1BBD891C04B01883003882CD /* KeyHandlingTableView.m in Sources */,
 				1BBD892204B01883003882CD /* NSString+Extensions.m in Sources */,
 				1BBD893104B0188D003882CD /* XJBookmarkFolder.m in Sources */,
@@ -1216,7 +1243,6 @@
 				1BBD89A804B0189F003882CD /* XJDay.m in Sources */,
 				1BBD89AA04B0189F003882CD /* XJMonth.m in Sources */,
 				1BBD89AC04B0189F003882CD /* XJYear.m in Sources */,
-				1BBD89B004B0189F003882CD /* NetworkConfig.m in Sources */,
 				1BBD89BA04B0189F003882CD /* XJAccountManager.m in Sources */,
 				1BBD89BC04B0189F003882CD /* XJAppDelegate.m in Sources */,
 				1BBD89BE04B0189F003882CD /* XJCheckFriendsSessionManager.m in Sources */,

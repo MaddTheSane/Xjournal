@@ -8,7 +8,6 @@
 
 #import "XJDocument.h"
 #import "XJPreferences.h"
-#import "NetworkConfig.h"
 #import "XJSafariBookmarkParser.h"
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
@@ -16,6 +15,8 @@
 #import "XJMusic.h"
 #import "NSString+Templating.h"
 #import "XJDocument+NSToolbarController.h"
+
+#import "Xjournal-Swift.h"
 
 #define DOC_TEXT @"document.text"
 #define DOC_SUBJECT @"document.subject"

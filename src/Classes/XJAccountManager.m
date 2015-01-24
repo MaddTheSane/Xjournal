@@ -9,8 +9,9 @@
 #import "XJAccountManager.h"
 #import "XJPreferences.h"
 #import "XJKeyChain.h"
-#import "NetworkConfig.h"
 #import "XJAppDelegate.h"
+
+#import "Xjournal-Swift.h"
 
 #define kAccountsPrefKey @"Accounts"
 #define kDefaultAccountNameKey @"DefaultAccount"
@@ -61,7 +62,7 @@ static XJAccountManager *manager;
 
 - (NSInteger)numberOfAccounts { return [[accounts allKeys] count]; }
 
-- (NSDictionary *)accounts { return accounts; }
+- (NSDictionary *)accounts { return [NSDictionary dictionaryWithDictionary: accounts]; }
 
 - (void)addAccountWithUsername: (NSString *)name password: (NSString *)password
 {
@@ -188,4 +189,5 @@ static XJAccountManager *manager;
 {
     loggedInAccount = [note object];
 }
+
 @end

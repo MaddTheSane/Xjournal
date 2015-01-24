@@ -7,7 +7,7 @@
 #import "LJFriend-ABExtensions.h"
 #import <Foundation/NSDebug.h>
 
-#import "NetworkConfig.h"
+#import "Xjournal-Swift.h"
 
 #define STRIPE_RED   (237.0 / 255.0)
 #define STRIPE_GREEN (243.0 / 255.0)

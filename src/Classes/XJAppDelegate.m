@@ -9,7 +9,6 @@
 #import "XJAppDelegate.h"
 #import <LJKit/LJKit.h>
 #import "XJPreferences.h"
-#import "NetworkConfig.h"
 #import "XJCheckFriendsSessionManager.h"
 #import "XJAccountManager.h"
 #import "LJKit-URLLaunching.h"
@@ -554,7 +553,8 @@
         if([NetworkConfig destinationIsReachable:@"www.livejournal.com"])
             [man logInAccount: [man defaultAccount]];
         else
-            [NetworkConfig showUnreachableDialog];
+            NSRunInformationalAlertPanel(@"Network Unreachable", @"Livejournal.com is not reachable with your current network settings."
+                                         ,@"OK",nil,nil);
     }
 }
 
