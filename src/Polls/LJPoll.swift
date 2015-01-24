@@ -19,11 +19,12 @@ class LJPoll: NSObject {
 	
 	/// Get and set the viewing permissions, according to the enum PollViewers
 	var viewingPermissions = Viewers.All
+	
 	enum Voters: Int {
 		case All = 1
 		case Friends = 2
 		
-		var stringRepresentation: String {
+		private var stringRepresentation: String {
 			switch self {
 			case .All:
 				return "all"
@@ -38,7 +39,8 @@ class LJPoll: NSObject {
 		case All = 1
 		case Friends = 2
 		case None = 3
-		var stringRepresentation: String {
+		
+		private var stringRepresentation: String {
 			switch self {
 			case .All:
 				return "all"

@@ -30,7 +30,7 @@ class XJPollEditorController: NSWindowController {
     var currentlyEditedQuestion: LJPollQuestion!
     private weak var currentSheet: NSWindow?
     private var toolbarItemCache = [String: NSToolbarItem]()
-	private var currentlyEditedQuestionMemento: NSDictionary?
+	private var currentlyEditedQuestionMemento: [String: AnyObject]?
     
     @IBOutlet weak var pollName: NSTextField!
     @IBOutlet weak var questionTable: NSTableView!
@@ -196,7 +196,7 @@ class XJPollEditorController: NSWindowController {
 	}
 	
 	@IBAction func addMultipleQuestion(sender: AnyObject?) {
-		currentlyEditedQuestion = LJPollMultipleOptionQuestion(type: .RadioType)
+		currentlyEditedQuestion = LJPollMultipleOptionQuestion(type: .Radio)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
 		(currentlyEditedQuestion as LJPollMultipleOptionQuestion).addAnswer("answer")
@@ -210,7 +210,7 @@ class XJPollEditorController: NSWindowController {
 	
 	@IBAction func changeMultipleOptionType(sender: AnyObject?) {
 		if let aTag = (sender as? NSPopUpButton)?.selectedItem?.tag {
-			(currentlyEditedQuestion as LJPollMultipleOptionQuestion).type = LJPollMultipleOptionType(rawValue: aTag)!
+			(currentlyEditedQuestion as LJPollMultipleOptionQuestion).type = LJPollMultipleOptionQuestion.MultipleOption(rawValue: aTag)!
 		}
 	}
 
@@ -262,20 +262,20 @@ class XJPollEditorController: NSWindowController {
 		let questionType = (currentlyEditedQuestion as LJPollMultipleOptionQuestion).type
 		let theMenu = multipleType.menu!
 		switch questionType {
-		case .RadioType:
+		case .Radio:
 			multipleType.selectItemAtIndex(0)
 			
-		case .CheckBoxType:
+		case .CheckBox:
 			multipleType.selectItemAtIndex(1)
 			
-		case .DropDownType:
+		case .DropDown:
 			multipleType.selectItemAtIndex(2)
 		}
 		
 		window?.beginSheet(multipleSheet, completionHandler: { (response) -> Void in
 			switch response {
 			case NSModalResponseAbort, sheetCancel:
-				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento)
+				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento!)
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 
@@ -303,7 +303,7 @@ class XJPollEditorController: NSWindowController {
 		window?.beginSheet(scaleSheet, completionHandler: { (response) -> Void in
 			switch response {
 			case NSModalResponseAbort, sheetCancel:
-				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento)
+				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento!)
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 				
@@ -333,7 +333,7 @@ class XJPollEditorController: NSWindowController {
 		window?.beginSheet(textSheet, completionHandler: { (response) -> Void in
 			switch response {
 			case NSModalResponseAbort, sheetCancel:
-				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento)
+				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento!)
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 
@@ -482,11 +482,11 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 			} else {
 				if let aQues = theQuestion as? LJPollMultipleOptionQuestion {
 					switch aQues.type {
-					case .RadioType:
+					case .Radio:
 						return NSLocalizedString("Radio Buttons", comment: "")
-					case .CheckBoxType:
+					case .CheckBox:
 						return NSLocalizedString("Check Boxes", comment: "");
-					case .DropDownType:
+					case .DropDown:
 						return NSLocalizedString("Drop Down Menu", comment: "");
 
 					}
