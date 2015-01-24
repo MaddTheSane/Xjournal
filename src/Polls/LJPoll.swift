@@ -101,8 +101,7 @@ class LJPoll: NSObject {
  question in the poll.
  */
 	var htmlRepresentation: String {
-		var buf = "<lj-poll"
-		buf += " name=\"\(name)\""
+		var buf = "<lj-poll name=\"\(name)\""
 		buf += " whovote=\"\(votingPermissions.stringRepresentation)\""
 		buf += " whoview=\"\(viewingPermissions.stringRepresentation)\">\n\n"
 		
@@ -114,5 +113,4 @@ class LJPoll: NSObject {
 		
 		return buf
 	}
-	
 }

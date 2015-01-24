@@ -106,9 +106,7 @@ This subclass encapsulates the Radio, Checkbox and Drop-down question types.
 	}
 
 	override var htmlRepresentation: String {
-		var buf = ""
-		
-		buf += "<lj-pq type=\"\(type.stringRepresentation)\">\n"
+		var buf = "<lj-pq type=\"\(type.stringRepresentation)\">\n"
 		buf += question + "\n"
 		
 		for ans in answers {

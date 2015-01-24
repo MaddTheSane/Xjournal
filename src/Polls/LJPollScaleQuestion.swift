@@ -20,7 +20,7 @@ Question subclass representing a scale with start, end and step values
 	var end: Int
 	var step: Int
 	
-	/// Returns an autoreleased scale question with the given start, end and step values
+	/// Returns a scale question with the given start, end and step values
 	/// and a default question string
 	init(start aStart: Int, end anEnd: Int, step aStep: Int) {
 		start = aStart
@@ -32,6 +32,10 @@ Question subclass representing a scale with start, end and step values
 	
 	convenience init(range: Range<Int>, step aStep: Int) {
 		self.init(start: range.startIndex, end: range.endIndex, step: aStep)
+	}
+	
+	convenience init(range: NSRange, step aStep: Int) {
+		self.init(start: range.location, end: range.max, step: aStep)
 	}
 	
 	convenience override init() {
