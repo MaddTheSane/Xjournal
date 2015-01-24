@@ -86,6 +86,8 @@
 		1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */; };
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
 		5500C50C1A74576400A22983 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500C50B1A74576400A22983 /* NetworkConfig.swift */; };
+		5500C50D1A7464C700A22983 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3FE4D1A71951700F1EC1A /* OgreKit.framework */; };
+		5500C50E1A7464C700A22983 /* OgreKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 55C3FE4D1A71951700F1EC1A /* OgreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
 		5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE261A72EDE800C982EF /* PollEditorController.swift */; };
 		5566DE411A73327A00C982EF /* LJPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE401A73327A00C982EF /* LJPoll.swift */; };
@@ -105,8 +107,6 @@
 		55C3FE371A71945000F1EC1A /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 55C3FE2D1A71943800F1EC1A /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C3FE3A1A71945000F1EC1A /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3FE1E1A7193CC00F1EC1A /* LJKit.framework */; };
 		55C3FE3B1A71945000F1EC1A /* LJKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 55C3FE1E1A7193CC00F1EC1A /* LJKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		55C3FE581A71953A00F1EC1A /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3FE4B1A71951700F1EC1A /* OgreKit.framework */; };
-		55C3FE591A71953A00F1EC1A /* OgreKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 55C3FE4B1A71951700F1EC1A /* OgreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55D086F51A6CA1C800E0A00A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D086F41A6CA1C800E0A00A /* Images.xcassets */; };
 		55D086F61A6CA88700E0A00A /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D086F81A6CA88700E0A00A /* Preferences.xib */; };
 		55D086F91A6CA88E00E0A00A /* HTMLPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D086FB1A6CA88E00E0A00A /* HTMLPreview.xib */; };
@@ -195,6 +195,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 55403A0B1A745003007A488E;
 			remoteInfo = ForceFeedbackAdditionsTests;
+		};
+		5500C50F1A7464C700A22983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55C3FE3E1A71951600F1EC1A /* OgreKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DC40BF209150BDB0029A2A6;
+			remoteInfo = "OgreKit (without Find Panel)";
 		};
 		5566DE491A7337CD00C982EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -343,13 +350,6 @@
 			remoteGlobalIDString = 4DA7410F1142B26900E28DA7;
 			remoteInfo = "GC Test";
 		};
-		55C3FE5A1A71953A00F1EC1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55C3FE3E1A71951600F1EC1A /* OgreKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = "OgreKit (Full Features)";
-		};
 		5F7417AB06C588B000FEB18A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -368,8 +368,8 @@
 			files = (
 				5566DE521A7337DD00C982EF /* SwiftAdditions.framework in Copy Framework Files */,
 				55C3FE371A71945000F1EC1A /* Sparkle.framework in Copy Framework Files */,
+				5500C50E1A7464C700A22983 /* OgreKit.framework in Copy Framework Files */,
 				55C3FE3B1A71945000F1EC1A /* LJKit.framework in Copy Framework Files */,
-				55C3FE591A71953A00F1EC1A /* OgreKit.framework in Copy Framework Files */,
 			);
 			name = "Copy Framework Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,12 +521,12 @@
 			files = (
 				5FBF479008138A6400829423 /* Cocoa.framework in Frameworks */,
 				5FBF479E08138DEE00829423 /* CoreServices.framework in Frameworks */,
+				5500C50D1A7464C700A22983 /* OgreKit.framework in Frameworks */,
 				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
 				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
 				55BCA1E71A54B0A60034ECF5 /* Security.framework in Frameworks */,
 				55C3FE3A1A71945000F1EC1A /* LJKit.framework in Frameworks */,
 				1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */,
-				55C3FE581A71953A00F1EC1A /* OgreKit.framework in Frameworks */,
 				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
 				55C3FE361A71945000F1EC1A /* Sparkle.framework in Frameworks */,
 				55BCA1E91A54B1420034ECF5 /* libcrypto.dylib in Frameworks */,
@@ -972,8 +972,8 @@
 			dependencies = (
 				55C3FE391A71945000F1EC1A /* PBXTargetDependency */,
 				55C3FE3D1A71945000F1EC1A /* PBXTargetDependency */,
-				55C3FE5B1A71953A00F1EC1A /* PBXTargetDependency */,
 				5566DE541A7337DD00C982EF /* PBXTargetDependency */,
+				5500C5101A7464C700A22983 /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -1282,6 +1282,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5500C5101A7464C700A22983 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "OgreKit (without Find Panel)";
+			targetProxy = 5500C50F1A7464C700A22983 /* PBXContainerItemProxy */;
+		};
 		5566DE541A7337DD00C982EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftAdditions;
@@ -1296,11 +1301,6 @@
 			isa = PBXTargetDependency;
 			name = LJKit;
 			targetProxy = 55C3FE3C1A71945000F1EC1A /* PBXContainerItemProxy */;
-		};
-		55C3FE5B1A71953A00F1EC1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "OgreKit (Full Features)";
-			targetProxy = 55C3FE5A1A71953A00F1EC1A /* PBXContainerItemProxy */;
 		};
 		5F7417AC06C588B000FEB18A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
