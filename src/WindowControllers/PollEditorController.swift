@@ -92,7 +92,7 @@ class XJPollEditorController: NSWindowController {
     @IBAction func changeVotingAccess(sender: AnyObject?) {
         if let unwrapped = sender as? NSPopUpButton {
             if let v2 = unwrapped.selectedItem?.tag {
-                thePoll.votingPermissions = LJPollVoters(rawValue: v2)!
+                thePoll.votingPermissions = LJPoll.Voters(rawValue: v2)!
             }
         } else {
             return
@@ -103,7 +103,7 @@ class XJPollEditorController: NSWindowController {
     @IBAction func changeResultAccess(sender: AnyObject?) {
         if let unwrapped = sender as? NSPopUpButton {
             if let v2 = unwrapped.selectedItem?.tag {
-                thePoll.viewingPermissions = LJPollViewers(rawValue: v2)!
+                thePoll.viewingPermissions = LJPoll.Viewers(rawValue: v2)!
             }
         } else {
             return

@@ -146,7 +146,7 @@ extern NSString *TXJshowMoodField;
 
 - (IBAction)saveWindowSize:(id)sender;
 
-- (void)initUI;
+- (void)prepareUI;
 
 // ----------------------------------------------------------------------------------------
 // Code for selecting which textfields to show

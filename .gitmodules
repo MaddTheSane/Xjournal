@@ -8,3 +8,6 @@
 	path = Vendor/OgreKit
 	url = https://github.com/MaddTheSane/OgreKit.git
 	branch = madds
+[submodule "Vendor/SwiftAdditions"]
+	path = Vendor/SwiftAdditions
+	url = https://github.com/MaddTheSane/SwiftMacTypes.git

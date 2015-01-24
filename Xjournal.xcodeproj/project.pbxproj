@@ -70,8 +70,6 @@
 		1BBD89CA04B0189F003882CD /* LJEntryExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD896304B0189F003882CD /* LJEntryExtensions.m */; };
 		1BBD89CB04B0189F003882CD /* LJFriend-ABExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */; };
 		1BBD89CC04B0189F003882CD /* LJFriend-ABExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */; };
-		1BBD89D904B0189F003882CD /* LJPoll.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD897404B0189F003882CD /* LJPoll.h */; };
-		1BBD89DA04B0189F003882CD /* LJPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD897504B0189F003882CD /* LJPoll.m */; };
 		1BBD89DB04B0189F003882CD /* LJPollMultipleOptionQuestion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD897604B0189F003882CD /* LJPollMultipleOptionQuestion.h */; };
 		1BBD89DC04B0189F003882CD /* LJPollMultipleOptionQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD897704B0189F003882CD /* LJPollMultipleOptionQuestion.m */; };
 		1BBD89DD04B0189F003882CD /* LJPollQuestion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD897804B0189F003882CD /* LJPollQuestion.h */; };
@@ -99,6 +97,9 @@
 		1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBD8C9E04B01A8B003882CD /* WebKit.framework */; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
 		5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE261A72EDE800C982EF /* PollEditorController.swift */; };
+		5566DE411A73327A00C982EF /* LJPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE401A73327A00C982EF /* LJPoll.swift */; };
+		5566DE511A7337DD00C982EF /* SwiftAdditions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5566DE4A1A7337CD00C982EF /* SwiftAdditions.framework */; };
+		5566DE521A7337DD00C982EF /* SwiftAdditions.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 5566DE4A1A7337CD00C982EF /* SwiftAdditions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B95A451A70507F00F4C784 /* ShortcutWindow.xib */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
@@ -186,6 +187,41 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		5566DE491A7337CD00C982EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 550FBABE19A7ADC500EFBD3D;
+			remoteInfo = SwiftAdditions;
+		};
+		5566DE4B1A7337CD00C982EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 550FBAC919A7ADC500EFBD3D;
+			remoteInfo = SwiftAdditionsTests;
+		};
+		5566DE4D1A7337CD00C982EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55706D8F1A1EC2440000FD93;
+			remoteInfo = SwiftIOKitAdditions;
+		};
+		5566DE4F1A7337CD00C982EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55706D991A1EC2440000FD93;
+			remoteInfo = SwiftIOKitAdditionsTests;
+		};
+		5566DE531A7337DD00C982EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 550FBABD19A7ADC500EFBD3D;
+			remoteInfo = SwiftAdditions;
+		};
 		55C3FE1D1A7193CC00F1EC1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BC7E88D30BE4057600765961 /* LJKit.xcodeproj */;
@@ -321,6 +357,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5566DE521A7337DD00C982EF /* SwiftAdditions.framework in Copy Framework Files */,
 				55C3FE371A71945000F1EC1A /* Sparkle.framework in Copy Framework Files */,
 				55C3FE3B1A71945000F1EC1A /* LJKit.framework in Copy Framework Files */,
 				55C3FE591A71953A00F1EC1A /* OgreKit.framework in Copy Framework Files */,
@@ -377,8 +414,6 @@
 		1BBD896304B0189F003882CD /* LJEntryExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LJEntryExtensions.m; sourceTree = "<group>"; };
 		1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "LJFriend-ABExtensions.h"; sourceTree = "<group>"; };
 		1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-ABExtensions.m"; sourceTree = "<group>"; };
-		1BBD897404B0189F003882CD /* LJPoll.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LJPoll.h; path = src/Polls/LJPoll.h; sourceTree = SOURCE_ROOT; };
-		1BBD897504B0189F003882CD /* LJPoll.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LJPoll.m; path = src/Polls/LJPoll.m; sourceTree = SOURCE_ROOT; };
 		1BBD897604B0189F003882CD /* LJPollMultipleOptionQuestion.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LJPollMultipleOptionQuestion.h; path = src/Polls/LJPollMultipleOptionQuestion.h; sourceTree = SOURCE_ROOT; };
 		1BBD897704B0189F003882CD /* LJPollMultipleOptionQuestion.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LJPollMultipleOptionQuestion.m; path = src/Polls/LJPollMultipleOptionQuestion.m; sourceTree = SOURCE_ROOT; };
 		1BBD897804B0189F003882CD /* LJPollQuestion.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LJPollQuestion.h; path = src/Polls/LJPollQuestion.h; sourceTree = SOURCE_ROOT; };
@@ -415,6 +450,8 @@
 		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
 		5566DE251A72EDE800C982EF /* Xjournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xjournal-Bridging-Header.h"; sourceTree = "<group>"; };
 		5566DE261A72EDE800C982EF /* PollEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollEditorController.swift; sourceTree = "<group>"; usesTabs = 1; };
+		5566DE401A73327A00C982EF /* LJPoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPoll.swift; sourceTree = "<group>"; };
+		5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftAdditions.xcodeproj; path = SwiftAdditions/SwiftAdditions.xcodeproj; sourceTree = "<group>"; };
 		55B95A441A70507F00F4C784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutWindow.xib; sourceTree = "<group>"; };
 		55BCA1BE1A5480CF0034ECF5 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "src/English.lproj/Xjournal Help"; sourceTree = "<group>"; };
 		55BCA1C31A5491F30034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HistoryWindow.xib; sourceTree = "<group>"; };
@@ -478,6 +515,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5566DE511A7337DD00C982EF /* SwiftAdditions.framework in Frameworks */,
 				55BCA1E91A54B1420034ECF5 /* libcrypto.dylib in Frameworks */,
 				55C3FE3A1A71945000F1EC1A /* LJKit.framework in Frameworks */,
 				55BCA1E71A54B0A60034ECF5 /* Security.framework in Frameworks */,
@@ -625,8 +663,7 @@
 		1BBD897304B0189F003882CD /* Polls */ = {
 			isa = PBXGroup;
 			children = (
-				1BBD897404B0189F003882CD /* LJPoll.h */,
-				1BBD897504B0189F003882CD /* LJPoll.m */,
+				5566DE401A73327A00C982EF /* LJPoll.swift */,
 				1BBD897804B0189F003882CD /* LJPollQuestion.h */,
 				1BBD897904B0189F003882CD /* LJPollQuestion.m */,
 				1BBD897604B0189F003882CD /* LJPollMultipleOptionQuestion.h */,
@@ -638,6 +675,7 @@
 			);
 			path = Polls;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		1BBD897E04B0189F003882CD /* PrefClients */ = {
 			isa = PBXGroup;
@@ -773,9 +811,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5566DE431A7337CD00C982EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5566DE4A1A7337CD00C982EF /* SwiftAdditions.framework */,
+				5566DE4C1A7337CD00C982EF /* SwiftAdditionsTests.xctest */,
+				5566DE4E1A7337CD00C982EF /* SwiftIOKitAdditions.framework */,
+				5566DE501A7337CD00C982EF /* SwiftIOKitAdditionsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		55C3FE171A71930500F1EC1A /* Third-party */ = {
 			isa = PBXGroup;
 			children = (
+				5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */,
 				55C3FE211A71943800F1EC1A /* Sparkle.xcodeproj */,
 				BC7E88D30BE4057600765961 /* LJKit.xcodeproj */,
 				55C3FE3E1A71951600F1EC1A /* OgreKit.xcodeproj */,
@@ -877,7 +927,6 @@
 				1BBD89C704B0189F003882CD /* LJAccount-BirthdayExtensions.h in Headers */,
 				1BBD89C904B0189F003882CD /* LJEntryExtensions.h in Headers */,
 				1BBD89CB04B0189F003882CD /* LJFriend-ABExtensions.h in Headers */,
-				1BBD89D904B0189F003882CD /* LJPoll.h in Headers */,
 				1BBD89DB04B0189F003882CD /* LJPollMultipleOptionQuestion.h in Headers */,
 				1BBD89DD04B0189F003882CD /* LJPollQuestion.h in Headers */,
 				1BBD89DF04B0189F003882CD /* LJPollScaleQuestion.h in Headers */,
@@ -928,6 +977,7 @@
 				55C3FE391A71945000F1EC1A /* PBXTargetDependency */,
 				55C3FE3D1A71945000F1EC1A /* PBXTargetDependency */,
 				55C3FE5B1A71953A00F1EC1A /* PBXTargetDependency */,
+				5566DE541A7337DD00C982EF /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -966,6 +1016,10 @@
 					ProductGroup = 55C3FE221A71943800F1EC1A /* Products */;
 					ProjectRef = 55C3FE211A71943800F1EC1A /* Sparkle.xcodeproj */;
 				},
+				{
+					ProductGroup = 5566DE431A7337CD00C982EF /* Products */;
+					ProjectRef = 5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -976,6 +1030,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5566DE4A1A7337CD00C982EF /* SwiftAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftAdditions.framework;
+			remoteRef = 5566DE491A7337CD00C982EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5566DE4C1A7337CD00C982EF /* SwiftAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftAdditionsTests.xctest;
+			remoteRef = 5566DE4B1A7337CD00C982EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5566DE4E1A7337CD00C982EF /* SwiftIOKitAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftIOKitAdditions.framework;
+			remoteRef = 5566DE4D1A7337CD00C982EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5566DE501A7337CD00C982EF /* SwiftIOKitAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftIOKitAdditionsTests.xctest;
+			remoteRef = 5566DE4F1A7337CD00C982EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		55C3FE1E1A7193CC00F1EC1A /* LJKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1158,7 +1240,6 @@
 				1BBD89C804B0189F003882CD /* LJAccount-BirthdayExtensions.m in Sources */,
 				1BBD89CA04B0189F003882CD /* LJEntryExtensions.m in Sources */,
 				1BBD89CC04B0189F003882CD /* LJFriend-ABExtensions.m in Sources */,
-				1BBD89DA04B0189F003882CD /* LJPoll.m in Sources */,
 				1BBD89DC04B0189F003882CD /* LJPollMultipleOptionQuestion.m in Sources */,
 				1BBD89DE04B0189F003882CD /* LJPollQuestion.m in Sources */,
 				5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */,
@@ -1170,6 +1251,7 @@
 				1BBD89FE04B0189F003882CD /* XJFriendsController.m in Sources */,
 				1BBD8A0004B0189F003882CD /* XJGlossaryWindowController.m in Sources */,
 				1BBD8A0204B0189F003882CD /* XJHistoryWindowController.m in Sources */,
+				5566DE411A73327A00C982EF /* LJPoll.swift in Sources */,
 				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				1B7C9A430566709300F0E1AC /* LJPollScaleQuestion.m in Sources */,
@@ -1190,6 +1272,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5566DE541A7337DD00C982EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftAdditions;
+			targetProxy = 5566DE531A7337DD00C982EF /* PBXContainerItemProxy */;
+		};
 		55C3FE391A71945000F1EC1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Sparkle;
