@@ -39,6 +39,11 @@
     return self;
 }
 
+- (instancetype)initWithRange: (NSRange)range step:(NSInteger)theStep
+{
+    return [self initWithStart: range.location end: NSMaxRange(range) step: theStep];
+}
+
 - (NSString *)htmlRepresentation
 {
     return [NSString stringWithFormat: @"<lj-pq type=\"scale\" from=\"%ld\" to=\"%ld\" by=\"%ld\">%@</lj-pq>", (long)start, (long)end, (long)step, self.question];
