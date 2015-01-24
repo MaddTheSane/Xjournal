@@ -114,20 +114,19 @@ static NSMutableDictionary *userPics;
 	CGFloat fontSize = [[values valueForKey: @"XJEntryWindowFontSize"] doubleValue];
 	
     NSFont *font = [NSFont fontWithName: fontName size: fontSize];
-	if(font) return font;
 	
-	return [NSFont systemFontOfSize: fontSize];
+    return font ?: [NSFont systemFontOfSize: fontSize];
 }
 
 // ----------------------------------------------------------------------------------------
 // icons
 // ----------------------------------------------------------------------------------------
 + (NSString *)userIconURL {
-    return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForImageResource:@"userInfo"]] absoluteString];
+    return [[[NSBundle mainBundle] URLForImageResource:@"userInfo"] absoluteString];
 }
 
 + (NSString *)communityIconURL {
-    return [[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForImageResource:@"communitysmall"]] absoluteString];
+    return [[[NSBundle mainBundle] URLForImageResource:@"communitysmall"] absoluteString];
 }
 
 @end
