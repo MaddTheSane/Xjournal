@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftAdditions
 
 private let kPollScaleStart = "LJPollScaleStart"
 private let kPollScaleEnd = "LJPollScaleEnd"

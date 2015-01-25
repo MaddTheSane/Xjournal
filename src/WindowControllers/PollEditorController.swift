@@ -92,7 +92,9 @@ class XJPollEditorController: NSWindowController {
     @IBAction func changeVotingAccess(sender: AnyObject?) {
         if let unwrapped = sender as? NSPopUpButton {
             if let v2 = unwrapped.selectedItem?.tag {
-                thePoll.votingPermissions = LJPoll.Voters(rawValue: v2)!
+				if let votrs = LJPoll.Voters(rawValue: v2) {
+					thePoll.votingPermissions = votrs
+				}
             }
         } else {
             return
@@ -103,7 +105,9 @@ class XJPollEditorController: NSWindowController {
     @IBAction func changeResultAccess(sender: AnyObject?) {
         if let unwrapped = sender as? NSPopUpButton {
             if let v2 = unwrapped.selectedItem?.tag {
-                thePoll.viewingPermissions = LJPoll.Viewers(rawValue: v2)!
+				if let aViers = LJPoll.Viewers(rawValue: v2) {
+					thePoll.viewingPermissions = aViers
+				}
             }
         } else {
             return
@@ -210,7 +214,9 @@ class XJPollEditorController: NSWindowController {
 	
 	@IBAction func changeMultipleOptionType(sender: AnyObject?) {
 		if let aTag = (sender as? NSPopUpButton)?.selectedItem?.tag {
-			(currentlyEditedQuestion as LJPollMultipleOptionQuestion).type = LJPollMultipleOptionQuestion.MultipleOption(rawValue: aTag)!
+			if let aTyp = LJPollMultipleOptionQuestion.MultipleOption(rawValue: aTag) {
+				(currentlyEditedQuestion as LJPollMultipleOptionQuestion).type = aTyp
+			}
 		}
 	}
 
