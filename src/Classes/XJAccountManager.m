@@ -8,7 +8,6 @@
 
 #import "XJAccountManager.h"
 #import "XJPreferences.h"
-#import "XJKeyChain.h"
 #import "XJAppDelegate.h"
 
 #import "Xjournal-Swift.h"

@@ -8,6 +8,7 @@
 
 import Cocoa
 import OgreKit
+import SwiftAdditions
 
 private let kPollAddTextItemIdentifier = "kPollAddTextItemIdentifier"
 private let kPollAddMultipleItemIdentifier = "kPollAddMultipleItemIdentifier"
@@ -403,7 +404,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item!.label = NSLocalizedString("Delete", comment: "")
 				item?.paletteLabel = NSLocalizedString("Delete Question", comment: "")
 				item?.toolTip = NSLocalizedString("Delete selected question from poll", comment: "")
-				item?.image = NSWorkspace.sharedWorkspace().iconForFileType(NSFileTypeForHFSTypeCode(OSType(kToolbarDeleteIcon)))
+				item?.image = NSWorkspace.sharedWorkspace().iconForFileType(NSFileTypeForHFSTypeCode(CarbonToolbarIcons.Delete.rawValue))
 				item?.target = self
 				item?.action = "deleteSelectedQuestion:"
 				
