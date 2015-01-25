@@ -135,23 +135,22 @@ static XJAccountManager *manager;
 
 - (void)logInAccount: (LJAccount *)theAccount
 {
-
-		[[theAccount server] setURL: [NSURL URLWithString:@"http://www.livejournal.com"]];
-
-	NS_DURING
-		[theAccount loginWithPassword: [self passwordForUsername: [theAccount username]]];
+    [[theAccount server] setURL: [NSURL URLWithString:@"http://www.livejournal.com"]];
+    
+    @try {
+        [theAccount loginWithPassword: [self passwordForUsername: [theAccount username]]];
         [theAccount downloadFriends];
-	NS_HANDLER
-		NSLog(@"%@ - %@", [localException name], [localException reason]);
-		NSRunAlertPanel(@"Could not log in",
-						@"%@",
-						@"OK",nil,nil,[localException reason]);
-	NS_ENDHANDLER
+    } @catch (NSException *localException) {
+        NSLog(@"%@ - %@", [localException name], [localException reason]);
+        NSRunAlertPanel(@"Could not log in",
+                        @"%@",
+                        @"OK",nil,nil,[localException reason]);
+    }
 }
 
 - (void)setDefaultUsername: (NSString *)newDefault
 {
-    defaultUsername = newDefault;
+    defaultUsername = [newDefault copy];
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: defaultUsername forKey: kDefaultAccountNameKey];
 	NSLog(@"Stored default username: %@", defaultUsername);
 }
@@ -161,9 +160,8 @@ static XJAccountManager *manager;
     NSMutableArray *array = [NSMutableArray array];
     NSArray *keys = [[accounts allKeys] sortedArrayUsingSelector: @selector(compare:)];
     
-    int i;
-    for(i=0; i < [keys count]; i++) {
-        LJAccount *acct = [self accountForUsername: keys[i]];
+    for (NSString* key in keys) {
+        LJAccount *acct = [self accountForUsername: key];
         
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: [acct username] action: @selector(switchAccount:) keyEquivalent: @""];
         [item setTarget: nil];

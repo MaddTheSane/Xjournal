@@ -9,7 +9,7 @@
 import Cocoa
 import Security
 
-var adefaultKeyChain: KeyChain?
+private var adefaultKeyChain: KeyChain?
 
 final class KeyChain: NSObject {
 	var maxPasswordLength: UInt32
