@@ -44,14 +44,12 @@
     dictionary[kNameKey] = @(name);
 
     NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [days objectEnumerator];
-    id day;
 
-    while(day = [enumerator nextObject])
+    for (id day in days)
         [array addObject: [day propertyListRepresentation]];
 
     dictionary[kDayListKey] = array;
-    return dictionary;
+    return [dictionary copy];
 }
 
 - (void)configureFromPropertyListRepresentation: (id) plistType
@@ -60,23 +58,18 @@
     days = [[NSMutableArray alloc] initWithCapacity: 31];
     
     NSArray *plistDays = plistType[kDayListKey];
-    NSEnumerator *enumerator = [plistDays objectEnumerator];
-    id plistDay;
-    while(plistDay = [enumerator nextObject]) {
+    for (id plistDay in plistDays) {
         XJDay *day = [[XJDay alloc] init];
         [day configureFromPropertyListRepresentation: plistDay];
         [day setMonth: self];
         [days addObject: day];
     }
-        
 }
 
 - (NSInteger)numberOfEntriesInMonth
 {
-    int total = 0;
-    NSEnumerator *enumerator = [days objectEnumerator];
-    id day;
-    while(day = [enumerator nextObject]) {
+    NSInteger total = 0;
+    for (XJDay *day in days) {
         total += [day postCount];
     }
     return total;
@@ -172,11 +165,9 @@
 - (NSArray *)entriesInMonth
 {
     NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *dayEnum = [days objectEnumerator];
-    XJDay *day;
 
-    while(day = [dayEnum nextObject]) {
-        int i;
+    for (XJDay *day in days) {
+        NSInteger i;
         for(i=0 ; i < [day postCount] ; i++) {
             [array addObject: [day entryAtIndex: i]];
         }

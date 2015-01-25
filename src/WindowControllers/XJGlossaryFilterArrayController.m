@@ -53,9 +53,7 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
     // case-insensitive search
     NSString *lowerSearch = [searchString lowercaseString];
     
-	NSEnumerator *oEnum = [objects objectEnumerator];
-    id item;	
-    while (item = [oEnum nextObject])
+    for (id item in objects)
 	{
 		// if the item has just been created, add it unconditionally
 		if (item == newObj)
@@ -219,13 +217,11 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 - (NSIndexSet *)indexSetFromRows:(NSArray *)rows
 {
     NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    NSEnumerator *rowEnumerator = [rows objectEnumerator];
-    NSNumber *idx;
-    while (idx = [rowEnumerator nextObject])
+    for (NSNumber *idx in rows)
     {
 		[indexSet addIndex:[idx integerValue]];
     }
-    return indexSet;
+    return [indexSet copy];
 }
 
 

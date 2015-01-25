@@ -263,8 +263,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
 		}
 	} else {
 		NSEnumerator *selectedFriends = [[self selectedFriendArray] objectEnumerator];
-		LJFriend *friend;
-		while(friend = [selectedFriends nextObject]) {
+		for (LJFriend *friend in selectedFriends) {
 			[friend setForegroundColor: [(NSColorWell *)sender color]];
 		}
 	}
@@ -286,8 +285,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
 	} else {
 		NSArray *friendArr = [self selectedFriendArray];
 		NSEnumerator *selectedFriends = [friendArr objectEnumerator];
-		LJFriend *friend;
-		while(friend = [selectedFriends nextObject]) {
+		for (LJFriend *friend in selectedFriends) {
 			[friend setBackgroundColor: [(NSColorWell *)sender color]];
 		}
 	}
@@ -361,16 +359,12 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
          friendOfArray.
          */
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        NSEnumerator *enumerator = [[userAccount friendArray] objectEnumerator];
-        id friend;
 
-        while (friend = [enumerator nextObject]) {
+        for (id friend in [userAccount friendArray]) {
             dictionary[[friend username]] = friend;
         }
 
-        enumerator = [[userAccount friendOfArray] objectEnumerator];
-
-        while (friend = [enumerator nextObject]) {
+        for (id friend in [userAccount friendOfArray]) {
             dictionary[[friend username]] = friend;
         }
 
@@ -378,17 +372,13 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
             [friendTableCache addObjectsFromArray: [dictionary allValues]];
         }
         else if(viewType == kViewUsersOnly) { // Uers only
-            NSEnumerator *enumerator = [[dictionary allValues] objectEnumerator];
-            LJFriend *obj;
-            while(obj = [enumerator nextObject]) {
+            for (LJFriend *obj in [dictionary allValues]) {
                 if(![[obj accountType] isEqualToString: @"community"])
                     [friendTableCache addObject: obj];
             }
         }
         else { // Communities only
-            NSEnumerator *enumerator = [[dictionary allValues] objectEnumerator];
-            LJFriend *obj;
-            while(obj = [enumerator nextObject]) {
+            for (LJFriend *obj in [dictionary allValues]) {
                 if([[obj accountType] isEqualToString: @"community"])
                     [friendTableCache addObject: obj];
             }
@@ -399,17 +389,13 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
             [friendTableCache addObjectsFromArray: [[self selectedGroup] memberArray]];
         }
         else if(viewType == kViewUsersOnly) { // Uers only
-            NSEnumerator *enumerator = [[[self selectedGroup] memberArray] objectEnumerator];
-            LJFriend *obj;
-            while(obj = [enumerator nextObject]) {
+            for (LJFriend *obj in [[self selectedGroup] memberArray]) {
                 if(![[obj accountType] isEqualToString: @"community"])
                     [friendTableCache addObject: obj];
             }
         }
         else { // Communities only
-            NSEnumerator *enumerator = [[[self selectedGroup] memberArray] objectEnumerator];
-            LJFriend *obj;
-            while(obj = [enumerator nextObject]) {
+            for (LJFriend *obj in [[self selectedGroup] memberArray]) {
                 if([[obj accountType] isEqualToString: @"community"])
                     [friendTableCache addObject: obj];
             }
@@ -761,9 +747,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
         NSDictionary *cals = prefs[@"SourcesView"];
         if (cals != nil) {
             NSMutableDictionary *output = [[NSMutableDictionary alloc] initWithCapacity:[cals count]];
-            NSEnumerator *enumerator = [cals objectEnumerator];
-            NSDictionary *cal;
-            while ((cal = [enumerator nextObject])) {
+            for (NSDictionary *cal in [cals objectEnumerator]) {
                 output[cal[@"Description"]] = cal[@"Color"];
             }
             return [NSDictionary dictionaryWithDictionary: output];
@@ -996,16 +980,16 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
     NSArray *friendArray = [unarchiver decodeObjectForKey:@"LJFriend"];
     [unarchiver finishDecoding];
 
-    NSEnumerator *enumerator = [friendArray objectEnumerator];
-    id object;
-
     LJAccount *acct = [self account];
     LJGroup *group = [self groupForRow: row];
-    while (object = [enumerator nextObject]) {
+    for (NSString *object in friendArray) {
+        if (![object isKindOfClass:[NSString class]]) {
+            continue;
+        }
         // Check that the friend is not just an incoming friendshup
-		LJFriend *friendToAdd = [acct friendNamed:object];
-		if([friendToAdd friendship] != LJFriendshipIncoming)
-			[group addFriend: [acct friendNamed: object]];
+        LJFriend *friendToAdd = [acct friendNamed:object];
+        if([friendToAdd friendship] != LJFriendshipIncoming)
+            [group addFriend: [acct friendNamed: object]];
     }
 
     self.window.documentEdited = YES;

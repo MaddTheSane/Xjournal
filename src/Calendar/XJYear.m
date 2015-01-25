@@ -29,10 +29,8 @@
     dictionary[kNameKey] = @(name);
 
     NSMutableArray *array = [NSMutableArray array];
-    NSEnumerator *enumerator = [months objectEnumerator];
-    id month;
 
-    while(month = [enumerator nextObject])
+    for (XJMonth *month in months)
         [array addObject: [month propertyListRepresentation]];
 
     dictionary[kMonthListKey] = array;
@@ -43,13 +41,10 @@
 - (void)configureFromPropertyListRepresentation: (id) plistType
 {
     name = [plistType[kNameKey] intValue];
-    //[months release];
     months = [[NSMutableArray alloc] initWithCapacity: 12];
 
     NSArray *plistMonths = plistType[kMonthListKey];
-    NSEnumerator *enumerator = [plistMonths objectEnumerator];
-    id plistMonth;
-    while(plistMonth = [enumerator nextObject]) {
+    for (id plistMonth in plistMonths) {
         XJMonth *month = [[XJMonth alloc] init];
         [month configureFromPropertyListRepresentation: plistMonth];
         [month setYear: self];

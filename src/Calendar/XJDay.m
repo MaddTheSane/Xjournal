@@ -42,10 +42,7 @@
 
     NSMutableArray *array = [NSMutableArray array];
     if(entries) {
-        NSEnumerator *entryEnumerator = [entries objectEnumerator];
-        LJEntry *oneentry;
-        
-        while(oneentry = [entryEnumerator nextObject])
+        for (LJEntry *oneentry in entries)
             [array addObject: [oneentry propertyListRepresentation]];
     }
     
@@ -56,27 +53,21 @@
 - (void)configureFromPropertyListRepresentation: (id) plistType
 {
     NSAssert([plistType isKindOfClass: [NSDictionary class]], @"Non-dictionary supplied in configureFromPropertyListRepresentation");
-    NSArray *plistEntries;
-    NSEnumerator *plistEnumerator;
     
     postCount = [plistType[kPostCountKey] intValue];
     dayNumber = [plistType[kDayNumberKey] intValue];
-    plistEntries = plistType[kEntryArrayKey];
+    NSArray *plistEntries = plistType[kEntryArrayKey];
 
     if([plistEntries count] > 0) {
         // if we don't actually have any entries, the entries array
         // needs to remain nil, so that -hasDownloadedEntries will
         // return the right value
-        plistEnumerator = [plistEntries objectEnumerator];
-        id entry;
-        //[entries release];
         entries = [[NSMutableArray alloc] initWithCapacity: 30];
 
-        while(entry = [plistEnumerator nextObject]) {
+        for (id entry in plistEntries) {
             LJEntry *newEntry = [[LJEntry alloc] init];
             [newEntry configureFromPropertyListRepresentation: entry];
             [entries addObject: newEntry];
-            //[entry release];
         }
     }
 }

@@ -61,8 +61,6 @@ static NSString *XJGetLocalLibraryDir()
 - (void)parseAddressBookIntoFolder: (XJBookmarkFolder *)root
 {
     NSArray *everyone;
-    NSEnumerator *enumerator;
-    id key;
     ABAddressBook *book = [ABAddressBook sharedAddressBook];
     XJBookmarkFolder *abFolder = [XJBookmarkFolder folderWithTitle: NSLocalizedString(@"Address Book", @"")];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -102,8 +100,7 @@ static NSString *XJGetLocalLibraryDir()
     }
 
     // Now, take all the Name/URL key-values and make then into XJBookmarkItems
-    enumerator = [[[dictionary allKeys] sortedArrayUsingSelector: @selector(compare:)] objectEnumerator];
-    while(key = [enumerator nextObject]) {
+    for (id key in [[dictionary allKeys] sortedArrayUsingSelector: @selector(compare:)]) {
         [abFolder addChild: [XJBookmarkItem bookmarkWithTitle: key address: [NSURL URLWithString: dictionary[key]]]];
     }
             
@@ -121,10 +118,8 @@ static NSString *XJGetLocalLibraryDir()
     if([type isEqualToString: @"WebBookmarkTypeList"]) {
         // If it's a list is has a key "Children" which is an array of Leaf dictionaries
         NSArray *kids = dict[@"Children"];
-        NSEnumerator *enumer = [kids objectEnumerator];
-        NSDictionary *child;
 
-        while(child = [enumer nextObject]) {
+        for (NSDictionary *child in kids) {
             if([child[@"WebBookmarkType"] isEqualToString: @"WebBookmarkTypeList"])
                 [self parseList: child withRootFolder: root]; // Parse a list
             else
@@ -145,10 +140,8 @@ static NSString *XJGetLocalLibraryDir()
 
     // If it's a list is has a key "Children" which is an array of Leaf dictionaries
     NSArray *kids = dict[@"Children"];
-    NSEnumerator *enumer = [kids objectEnumerator];
-    NSDictionary *child;
 
-    while(child = [enumer nextObject]) {
+    for (NSDictionary* child in kids) {
         if([child[@"WebBookmarkType"] isEqualToString: @"WebBookmarkTypeList"])
             [self parseList: child withRootFolder: thisFolder];
         else
@@ -219,13 +212,11 @@ static NSString *XJGetLocalLibraryDir()
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray*)items toPasteboard:(NSPasteboard*)pb
 {
-    NSEnumerator *enumer = [items objectEnumerator];
-    id item;
     NSString *dragString = @"";
 
     [pb declareTypes:@[NSStringPboardType] owner:self];
     
-    while(item = [enumer nextObject]) {
+    for (id item in items) {
         BOOL optKeyDown = ([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask);
         NSLog(@"option is down: %d", optKeyDown);
         if(!optKeyDown)

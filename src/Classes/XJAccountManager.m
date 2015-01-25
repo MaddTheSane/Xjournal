@@ -30,10 +30,7 @@ static XJAccountManager *manager;
         accounts = [[NSMutableDictionary alloc] initWithCapacity: 5];
         passwordCache = [[NSMutableDictionary alloc] initWithCapacity: 5];
         
-        NSEnumerator *enumerator = [storedAccounts objectEnumerator];
-        id object;
-        
-        while (object = [enumerator nextObject]) {
+        for (id object in storedAccounts) {
             [self accountForUsername: object];
         }
         

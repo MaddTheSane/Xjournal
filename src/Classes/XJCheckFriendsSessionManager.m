@@ -60,10 +60,8 @@ static XJCheckFriendsSessionManager *sharedManager;
     XJAccountManager *manager = [XJAccountManager defaultManager];
     
     if(checkingMode == XJManagerCheckingGroupsMode) {
-        NSEnumerator *allGroups = [[[manager defaultAccount] groupArray] objectEnumerator];
-        LJGroup *group;
         // Populate the all-sessions dictionary with the expected checked groups
-        while(group = [allGroups nextObject]) {
+        for (LJGroup *group in [[manager defaultAccount] groupArray]) {
             if([XJPreferences shouldCheckForGroup: group]) {
                 [session setChecking: YES forGroup: group];
             }

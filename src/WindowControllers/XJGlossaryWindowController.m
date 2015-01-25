@@ -53,9 +53,7 @@
 	NSMutableArray *tempGloss = [NSMutableArray array];
 	
 	NSArray *file = [NSArray arrayWithContentsOfFile: kGlossaryFilePath];
-	NSEnumerator *en = [file objectEnumerator];
-	NSDictionary *item;
-	while(item = [en nextObject]) {
+	for (NSDictionary *item in file) {
 		NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
 		[tempDict addEntriesFromDictionary: item];
 		[tempGloss addObject: tempDict];
