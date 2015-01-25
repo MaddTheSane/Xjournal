@@ -9,9 +9,9 @@
 import Cocoa
 import Security
 
-var adefaultKeyChain: XJKeyChain?
+var adefaultKeyChain: KeyChain?
 
-final class XJKeyChain: NSObject {
+final class KeyChain: NSObject {
 	var maxPasswordLength: UInt32
 	
 	required override init() {
@@ -20,7 +20,7 @@ final class XJKeyChain: NSObject {
 		super.init()
 	}
 	
-	class var defaultKeyChain: XJKeyChain {
+	class var defaultKeyChain: KeyChain {
 		return adefaultKeyChain ?? self()
 	}
 	
