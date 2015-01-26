@@ -151,8 +151,6 @@
 		5515D49B1A76EDC9001E6360 /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5515D4981A76EC9C001E6360 /* AGRegex.framework */; };
 		5515D49C1A76EDC9001E6360 /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5515D4981A76EC9C001E6360 /* AGRegex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55D7E0A21A75D1890028F08E /* Poll2.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5072960738521F009BA1D9 /* Poll2.nib */; };
-		5F0680E707FB420B00B9806F /* DisclosableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; };
-		5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
 		5F0C941906BC04DA0082A48B /* CreateDiskImage.sh in ShellScript */ = {isa = PBXBuildFile; fileRef = 5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */; };
 		5F3CA82B0714A87500245A7F /* FriendsFilterArrayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F3CA8290714A87500245A7F /* FriendsFilterArrayController.h */; };
@@ -242,8 +240,6 @@
 		5FD8A710072530CD00843532 /* PostToWeblog.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5FD8A70F072530CD00843532 /* PostToWeblog.tif */; };
 		5FD8A730072531EE00843532 /* XJSyndicationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD8A72E072531EE00843532 /* XJSyndicationData.h */; };
 		5FD8A731072531EE00843532 /* XJSyndicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8A72F072531EE00843532 /* XJSyndicationData.m */; };
-		5FE8A4690805C6C900F85E06 /* ILCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */; };
-		5FE8A4700805C74400F85E06 /* ILCrashReporter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FEBF27A07333B9100D4ED10 /* NSString+Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FEBF27807333B9100D4ED10 /* NSString+Script.h */; };
 		5FEBF27B07333B9100D4ED10 /* NSString+Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF27907333B9100D4ED10 /* NSString+Script.m */; };
 		5FEBF36507340C2F00D4ED10 /* XJPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FEBF36307340C2F00D4ED10 /* XJPopUpButton.h */; };
@@ -351,9 +347,7 @@
 			files = (
 				5F62AC55084B50AE00F61290 /* Growl.framework in CopyFiles */,
 				5515D4621A75E641001E6360 /* LJKit.framework in CopyFiles */,
-				5FE8A4700805C74400F85E06 /* ILCrashReporter.framework in CopyFiles */,
 				5515D49C1A76EDC9001E6360 /* AGRegex.framework in CopyFiles */,
-				5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +514,6 @@
 		5515D48A1A76E429001E6360 /* XJDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XJDocument.xib; sourceTree = "<group>"; };
 		5515D48C1A76E521001E6360 /* HTMLPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTMLPreview.xib; sourceTree = "<group>"; };
 		5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AGRegex.xcodeproj; path = Vendor/AGRegex/AGRegex.xcodeproj; sourceTree = "<group>"; };
-		5F0680E607FB420B00B9806F /* DisclosableView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DisclosableView.framework; path = /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build/DisclosableView.framework; sourceTree = "<absolute>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
 		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
 		5F3CA8290714A87500245A7F /* FriendsFilterArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendsFilterArrayController.h; path = src/Friends/FriendsFilterArrayController.h; sourceTree = SOURCE_ROOT; };
@@ -560,7 +553,7 @@
 		5F62ABE4084B414000F61290 /* XJExportManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJExportManager.h; sourceTree = "<group>"; };
 		5F62ABE5084B414000F61290 /* XJExportManager.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJExportManager.m; sourceTree = "<group>"; };
 		5F62ABE6084B414000F61290 /* XJExportPluginProtocol.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJExportPluginProtocol.h; sourceTree = "<group>"; };
-		5F62AC3F084B50A600F61290 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "../../../../Frameworks/growl/growl-0.6.1/build/Growl.framework"; sourceTree = SOURCE_ROOT; };
+		5F62AC3F084B50A600F61290 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Vendor/Growl/Growl.framework; sourceTree = SOURCE_ROOT; };
 		5F62AD38084B5D8000F61290 /* XjournalImporter.xcode */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XjournalImporter.xcode; path = ../../XjournalImporter/XjournalImporter.xcode; sourceTree = SOURCE_ROOT; };
 		5F64FF370713DC660036D5BF /* XJRoundedTableCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJRoundedTableCell.h; sourceTree = "<group>"; };
 		5F64FF380713DC660036D5BF /* XJRoundedTableCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJRoundedTableCell.m; sourceTree = "<group>"; };
@@ -613,7 +606,6 @@
 		5FD8A70F072530CD00843532 /* PostToWeblog.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PostToWeblog.tif; sourceTree = "<group>"; };
 		5FD8A72E072531EE00843532 /* XJSyndicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSyndicationData.h; sourceTree = "<group>"; };
 		5FD8A72F072531EE00843532 /* XJSyndicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSyndicationData.m; sourceTree = "<group>"; };
-		5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ILCrashReporter.framework; path = /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter/ILCrashReporter.framework; sourceTree = "<absolute>"; };
 		5FEBF27807333B9100D4ED10 /* NSString+Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Script.h"; sourceTree = "<group>"; };
 		5FEBF27907333B9100D4ED10 /* NSString+Script.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Script.m"; sourceTree = "<group>"; };
 		5FEBF36307340C2F00D4ED10 /* XJPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPopUpButton.h; sourceTree = "<group>"; };
@@ -640,8 +632,6 @@
 				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
 				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
 				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
-				5F0680E707FB420B00B9806F /* DisclosableView.framework in Frameworks */,
-				5FE8A4690805C6C900F85E06 /* ILCrashReporter.framework in Frameworks */,
 				5515D49B1A76EDC9001E6360 /* AGRegex.framework in Frameworks */,
 				5F62AC40084B50A600F61290 /* Growl.framework in Frameworks */,
 			);
@@ -654,8 +644,6 @@
 			isa = PBXGroup;
 			children = (
 				5F62AC3F084B50A600F61290 /* Growl.framework */,
-				5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */,
-				5F0680E607FB420B00B9806F /* DisclosableView.framework */,
 				1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */,
 				1BBD8BF304B01A77003882CD /* Carbon.framework */,
 				1BBD8BDE04B01A6B003882CD /* AddressBook.framework */,
@@ -1838,7 +1826,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 60;
-				FRAMEWORK_VERSION = A;
+				FRAMEWORK_SEARCH_PATHS = Vendor/Growl;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1864,7 +1852,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_VERSION = A;
+				FRAMEWORK_SEARCH_PATHS = Vendor/Growl;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1886,7 +1874,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 60;
 				DiskImageEncryption = 1;
-				FRAMEWORK_VERSION = A;
+				FRAMEWORK_SEARCH_PATHS = Vendor/Growl;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
