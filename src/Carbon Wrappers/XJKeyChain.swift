@@ -6,10 +6,10 @@
 //
 //
 
-import Cocoa
+import Foundation
 import Security
 
-private var adefaultKeyChain: KeyChain?
+//private var adefaultKeyChain: KeyChain?
 
 final class KeyChain: NSObject {
 	var maxPasswordLength: UInt32
@@ -21,7 +21,7 @@ final class KeyChain: NSObject {
 	}
 	
 	class var defaultKeyChain: KeyChain {
-		return adefaultKeyChain ?? self()
+		return self()
 	}
 	
 	private func genericPasswordReference(#service: String, account: String) -> SecKeychainItemRef? {
@@ -48,11 +48,7 @@ final class KeyChain: NSObject {
 			if let itemRef = genericPasswordReference(service: service, account: account) {
 				SecKeychainItemDelete(itemRef)
 			}
-			(aPass as NSString).UTF8String
-			var itemRef: Unmanaged<SecKeychainItem>? = nil
-			SecKeychainAddGenericPassword(nil, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, UInt32(aPass.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), UnsafePointer<()>((aPass as NSString).UTF8String), &itemRef)
-			
-			itemRef?.release()
+			SecKeychainAddGenericPassword(nil, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, UInt32(aPass.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), UnsafePointer<()>((aPass as NSString).UTF8String), nil)
 		} else {
 			removeGenericPassword(service: service, account: account)
 		}
@@ -73,7 +69,6 @@ final class KeyChain: NSObject {
 		if ret == noErr {
 			string = NSString(bytes: p, length: Int(length), encoding: NSUTF8StringEncoding)!
 		}
-		
 		if p != nil {
 			SecKeychainItemFreeContent(nil, p)
 		}

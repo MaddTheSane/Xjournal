@@ -80,7 +80,7 @@ class LJPoll: NSObject {
 	}
 	
 	/// Insert the question at the given index
-	func insertQuestion(question: LJPollQuestion, atIndex idx: NSInteger) {
+	func insertQuestion(question: LJPollQuestion, atIndex idx: Int) {
 		questions.insert(question, atIndex: idx)
 	}
 	
