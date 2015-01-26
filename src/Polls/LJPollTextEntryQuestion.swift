@@ -15,7 +15,7 @@ private let kPollTextLength = "LJPollTextLength"
 /**
 This is a subclass representing a text box question
 */
-@objc(LJPollTextEntryQuestion) final class LJPollTextEntryQuestion: LJPollQuestion, NSCoding {
+@objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: LJPollQuestion, NSCoding {
 	/// Get and set the size property
 	var size: Int
 	/// Get and set the length

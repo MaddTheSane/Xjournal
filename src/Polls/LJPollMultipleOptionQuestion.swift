@@ -15,7 +15,7 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 /**
 This subclass encapsulates the Radio, Checkbox and Drop-down question types.
 */
-@objc(LJPollMultipleOptionQuestion) final class LJPollMultipleOptionQuestion: LJPollQuestion, NSCoding {
+@objc(LJPollMultipleOptionQuestion) final class PollMultipleOptionQuestion: LJPollQuestion, NSCoding {
 	
 	enum MultipleOption: Int {
 		case Radio = 1

@@ -16,7 +16,7 @@ private let kPollScaleStep = "LJPollScaleStep"
 /**
 Question subclass representing a scale with start, end and step values
 */
-@objc(LJPollScaleQuestion) final class LJPollScaleQuestion: LJPollQuestion, NSCoding {
+@objc(LJPollScaleQuestion) final class PollScaleQuestion: LJPollQuestion, NSCoding {
 	var start: Int
 	var end: Int
 	var step: Int

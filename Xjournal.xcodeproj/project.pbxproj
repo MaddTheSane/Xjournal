@@ -123,6 +123,8 @@
 		55D087171A6CA97E00E0A00A /* Bookmarks.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D087191A6CA97E00E0A00A /* Bookmarks.xib */; };
 		55D0871A1A6CA98700E0A00A /* BirthdaysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D0871C1A6CA98700E0A00A /* BirthdaysWindow.xib */; };
 		55D0871D1A6CA99400E0A00A /* AccountEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D0871F1A6CA99400E0A00A /* AccountEditWindow.xib */; };
+		55D7E09B1A75C8C80028F08E /* XJUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D7E09A1A75C8C80028F08E /* XJUserNotification.swift */; };
+		55D7E09D1A75C8ED0028F08E /* ExampleGlossary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55D7E09C1A75C8ED0028F08E /* ExampleGlossary.plist */; };
 		585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */; };
 		5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */; };
 		5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */; };
@@ -479,6 +481,8 @@
 		55D087181A6CA97E00E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Bookmarks.xib; sourceTree = "<group>"; };
 		55D0871B1A6CA98700E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BirthdaysWindow.xib; sourceTree = "<group>"; };
 		55D0871E1A6CA99400E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AccountEditWindow.xib; sourceTree = "<group>"; };
+		55D7E09A1A75C8C80028F08E /* XJUserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJUserNotification.swift; sourceTree = "<group>"; };
+		55D7E09C1A75C8ED0028F08E /* ExampleGlossary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ExampleGlossary.plist; path = src/ExampleGlossary.plist; sourceTree = "<group>"; };
 		55DD21791A6F2BEA00055B5A /* NNWConsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNWConsts.h; sourceTree = "<group>"; };
 		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = "<group>"; };
 		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMarkupRemovalVT.h; sourceTree = "<group>"; };
@@ -782,6 +786,7 @@
 				1BF27D5E04B0296500121863 /* Nibs */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */,
+				55D7E09C1A75C8ED0028F08E /* ExampleGlossary.plist */,
 				5F5B083E09252596005BB86B /* ApplicationDefaults.plist */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
@@ -881,9 +886,18 @@
 				1BBD891004B01883003882CD /* AppKit Categories */,
 				5F044ADC09224A58003D6D2A /* Value Transformers */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				55D7E0841A75C87F0028F08E /* Notifications */,
 			);
 			name = Source;
 			path = src;
+			sourceTree = "<group>";
+		};
+		55D7E0841A75C87F0028F08E /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				55D7E09A1A75C8C80028F08E /* XJUserNotification.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		5F044ADC09224A58003D6D2A /* Value Transformers */ = {
@@ -1183,6 +1197,7 @@
 				55D0870B1A6CA94C00E0A00A /* IMGSheet.xib in Resources */,
 				55D087141A6CA97500E0A00A /* CommunitySheet.xib in Resources */,
 				55D0870E1A6CA95B00E0A00A /* HREFSheet.xib in Resources */,
+				55D7E09D1A75C8ED0028F08E /* ExampleGlossary.plist in Resources */,
 				55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */,
 				55D087051A6CA8B300E0A00A /* NewFriendsWindow.xib in Resources */,
 				55D087081A6CA8BC00E0A00A /* MainMenu.xib in Resources */,
@@ -1258,6 +1273,7 @@
 				1BBD8A0204B0189F003882CD /* XJHistoryWindowController.m in Sources */,
 				5566DE411A73327A00C982EF /* LJPoll.swift in Sources */,
 				5566DE5C1A74448700C982EF /* LJPollTextEntryQuestion.swift in Sources */,
+				55D7E09B1A75C8C80028F08E /* XJUserNotification.swift in Sources */,
 				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				5566DE5A1A7440BF00C982EF /* LJPollScaleQuestion.swift in Sources */,

@@ -131,11 +131,11 @@ class XJPollEditorController: NSWindowController {
 		if selectedRow != -1 {
 			currentlyEditedQuestion = thePoll.questionAtIndex(selectedRow)
 			currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
-			if let curEdQu = currentlyEditedQuestion as? LJPollMultipleOptionQuestion {
+			if let curEdQu = currentlyEditedQuestion as? PollMultipleOptionQuestion {
 				runMultipleSheet()
-			} else if let curEdQu = currentlyEditedQuestion as? LJPollScaleQuestion {
+			} else if let curEdQu = currentlyEditedQuestion as? PollScaleQuestion {
 				runScaleSheet()
-			} else if let curEdQu = currentlyEditedQuestion as? LJPollTextEntryQuestion {
+			} else if let curEdQu = currentlyEditedQuestion as? PollTextEntryQuestion {
 				runTextSheet()
 			}
 		}
@@ -154,7 +154,7 @@ class XJPollEditorController: NSWindowController {
 				
 			case 1:
 				if multipleAnswerTable.numberOfSelectedRows == 1 {
-					(currentlyEditedQuestion as LJPollMultipleOptionQuestion).moveAnswerAtIndex(multipleAnswerTable.selectedRow, toIndex: multipleAnswerTable.selectedRow - 1)
+					(currentlyEditedQuestion as PollMultipleOptionQuestion).moveAnswerAtIndex(multipleAnswerTable.selectedRow, toIndex: multipleAnswerTable.selectedRow - 1)
 					multipleAnswerTable.selectRowIndexes(NSIndexSet(index: multipleAnswerTable.selectedRow - 1), byExtendingSelection: false)
 					multipleAnswerTable.reloadData()
 				}
@@ -179,7 +179,7 @@ class XJPollEditorController: NSWindowController {
 				
 			case 1:
 				if multipleAnswerTable.numberOfSelectedRows == 1 {
-					(currentlyEditedQuestion as LJPollMultipleOptionQuestion).moveAnswerAtIndex(multipleAnswerTable.selectedRow, toIndex: multipleAnswerTable.selectedRow + 1)
+					(currentlyEditedQuestion as PollMultipleOptionQuestion).moveAnswerAtIndex(multipleAnswerTable.selectedRow, toIndex: multipleAnswerTable.selectedRow + 1)
 					multipleAnswerTable.selectRowIndexes(NSIndexSet(index: multipleAnswerTable.selectedRow + 1), byExtendingSelection: false)
 					multipleAnswerTable.reloadData()
 				}
@@ -193,7 +193,7 @@ class XJPollEditorController: NSWindowController {
 
 	@IBAction func addMultipleAnswer(sender: AnyObject) {
 		multipleSheet.endEditingFor(nil)
-		(currentlyEditedQuestion as LJPollMultipleOptionQuestion).addAnswer("answer")
+		(currentlyEditedQuestion as PollMultipleOptionQuestion).addAnswer("answer")
 		multipleAnswerTable.reloadData()
 		multipleAnswerTable.selectRowIndexes(NSIndexSet(index: multipleAnswerTable.numberOfRows - 1), byExtendingSelection: false)
 		multipleAnswerTable.editColumn(0, row: multipleAnswerTable.numberOfRows - 1, withEvent: nil, select: true)
@@ -201,10 +201,10 @@ class XJPollEditorController: NSWindowController {
 	}
 	
 	@IBAction func addMultipleQuestion(sender: AnyObject?) {
-		currentlyEditedQuestion = LJPollMultipleOptionQuestion(type: .Radio)
+		currentlyEditedQuestion = PollMultipleOptionQuestion(type: .Radio)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
-		(currentlyEditedQuestion as LJPollMultipleOptionQuestion).addAnswer("answer")
+		(currentlyEditedQuestion as PollMultipleOptionQuestion).addAnswer("answer")
 		
 		thePoll.addQuestion(currentlyEditedQuestion)
 		questionTable.reloadData()
@@ -215,14 +215,14 @@ class XJPollEditorController: NSWindowController {
 	
 	@IBAction func changeMultipleOptionType(sender: AnyObject?) {
 		if let aTag = (sender as? NSPopUpButton)?.selectedItem?.tag {
-			if let aTyp = LJPollMultipleOptionQuestion.MultipleOption(rawValue: aTag) {
-				(currentlyEditedQuestion as LJPollMultipleOptionQuestion).type = aTyp
+			if let aTyp = PollMultipleOptionQuestion.MultipleOption(rawValue: aTag) {
+				(currentlyEditedQuestion as PollMultipleOptionQuestion).type = aTyp
 			}
 		}
 	}
 
 	@IBAction func addScaleQuestion(sender: AnyObject?) {
-		currentlyEditedQuestion = LJPollScaleQuestion(start: 1, end: 10, step: 1)
+		currentlyEditedQuestion = PollScaleQuestion(start: 1, end: 10, step: 1)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
 		thePoll.addQuestion(currentlyEditedQuestion)
@@ -232,7 +232,7 @@ class XJPollEditorController: NSWindowController {
 	}
 	
 	@IBAction func addTextQuestion(sender: AnyObject?) {
-		currentlyEditedQuestion = LJPollTextEntryQuestion(size: 30, maxLength: 15)
+		currentlyEditedQuestion = PollTextEntryQuestion(size: 30, maxLength: 15)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
 		thePoll.addQuestion(currentlyEditedQuestion)
@@ -245,7 +245,7 @@ class XJPollEditorController: NSWindowController {
 		window?.endEditingFor(nil)
 		
 		let selectedRows = multipleAnswerTable.selectedRowIndexes
-		(currentlyEditedQuestion as LJPollMultipleOptionQuestion).deleteAnswersAtIndexes(selectedRows)
+		(currentlyEditedQuestion as PollMultipleOptionQuestion).deleteAnswersAtIndexes(selectedRows)
 		
 		multipleAnswerTable.reloadData()
 		updateDrawer()
@@ -266,7 +266,7 @@ class XJPollEditorController: NSWindowController {
 		multipleQuestion.stringValue = currentlyEditedQuestion.question
 		multipleAnswerTable.reloadData()
 		
-		let questionType = (currentlyEditedQuestion as LJPollMultipleOptionQuestion).type
+		let questionType = (currentlyEditedQuestion as PollMultipleOptionQuestion).type
 		let theMenu = multipleType.menu!
 		switch questionType {
 		case .Radio:
@@ -303,9 +303,9 @@ class XJPollEditorController: NSWindowController {
 		currentSheet = scaleSheet
 		
 		scaleQuestionField.stringValue = currentlyEditedQuestion.question
-		scaleStartField.integerValue = (currentlyEditedQuestion as LJPollScaleQuestion).start
-		scaleEndField.integerValue = (currentlyEditedQuestion as LJPollScaleQuestion).end
-		scaleStepField.integerValue = (currentlyEditedQuestion as LJPollScaleQuestion).step
+		scaleStartField.integerValue = (currentlyEditedQuestion as PollScaleQuestion).start
+		scaleEndField.integerValue = (currentlyEditedQuestion as PollScaleQuestion).end
+		scaleStepField.integerValue = (currentlyEditedQuestion as PollScaleQuestion).step
 		
 		window?.beginSheet(scaleSheet, completionHandler: { (response) -> Void in
 			switch response {
@@ -316,9 +316,9 @@ class XJPollEditorController: NSWindowController {
 				
 			case sheetOK, NSModalResponseStop:
 				self.currentlyEditedQuestion.question = self.scaleQuestionField.stringValue
-				(self.currentlyEditedQuestion as LJPollScaleQuestion).start = self.scaleStartField.integerValue
-				(self.currentlyEditedQuestion as LJPollScaleQuestion).end = self.scaleEndField.integerValue
-				(self.currentlyEditedQuestion as LJPollScaleQuestion).step = self.scaleStepField.integerValue
+				(self.currentlyEditedQuestion as PollScaleQuestion).start = self.scaleStartField.integerValue
+				(self.currentlyEditedQuestion as PollScaleQuestion).end = self.scaleEndField.integerValue
+				(self.currentlyEditedQuestion as PollScaleQuestion).step = self.scaleStepField.integerValue
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 				self.questionTable.reloadData()
@@ -334,8 +334,8 @@ class XJPollEditorController: NSWindowController {
 		currentSheet = textSheet
 		
 		textQuestionField.stringValue = currentlyEditedQuestion.question
-		textSizeField.integerValue = (currentlyEditedQuestion as LJPollTextEntryQuestion).size
-		textMaxLengthField.integerValue = (currentlyEditedQuestion as LJPollTextEntryQuestion).maxLength
+		textSizeField.integerValue = (currentlyEditedQuestion as PollTextEntryQuestion).size
+		textMaxLengthField.integerValue = (currentlyEditedQuestion as PollTextEntryQuestion).maxLength
 		
 		window?.beginSheet(textSheet, completionHandler: { (response) -> Void in
 			switch response {
@@ -346,8 +346,8 @@ class XJPollEditorController: NSWindowController {
 
 			case sheetOK, NSModalResponseStop:
 				self.currentlyEditedQuestion.question = self.textQuestionField.stringValue
-				(self.currentlyEditedQuestion as LJPollTextEntryQuestion).size = self.textSizeField.integerValue
-				(self.currentlyEditedQuestion as LJPollTextEntryQuestion).maxLength = self.textMaxLengthField.integerValue
+				(self.currentlyEditedQuestion as PollTextEntryQuestion).size = self.textSizeField.integerValue
+				(self.currentlyEditedQuestion as PollTextEntryQuestion).maxLength = self.textMaxLengthField.integerValue
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 				self.questionTable.reloadData()
@@ -474,7 +474,7 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 		if atableView == questionTable {
 			return thePoll.numberOfQuestions
 		} else if atableView == multipleAnswerTable {
-			if let multipleOption = currentlyEditedQuestion as? LJPollMultipleOptionQuestion {
+			if let multipleOption = currentlyEditedQuestion as? PollMultipleOptionQuestion {
 				return multipleOption.numberOfAnswers
 			}
 		}
@@ -487,7 +487,7 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 			if tableColumn?.identifier == "question" {
 				return theQuestion.question
 			} else {
-				if let aQues = theQuestion as? LJPollMultipleOptionQuestion {
+				if let aQues = theQuestion as? PollMultipleOptionQuestion {
 					switch aQues.type {
 					case .Radio:
 						return NSLocalizedString("Radio Buttons", comment: "")
@@ -497,15 +497,15 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 						return NSLocalizedString("Drop Down Menu", comment: "");
 
 					}
-				} else if let aQues = theQuestion as? LJPollTextEntryQuestion {
+				} else if let aQues = theQuestion as? PollTextEntryQuestion {
 					return NSLocalizedString("Text", comment: "");
 
-				} else if let aQues = theQuestion as? LJPollScaleQuestion {
+				} else if let aQues = theQuestion as? PollScaleQuestion {
 					return NSString(format: NSLocalizedString("Scale (%ld-%ld by %ld)", comment: ""), aQues.start, aQues.end, aQues.step)
 				}
 			}
 		} else if aTableView == multipleAnswerTable {
-			if let multipleOption = currentlyEditedQuestion as? LJPollMultipleOptionQuestion {
+			if let multipleOption = currentlyEditedQuestion as? PollMultipleOptionQuestion {
 				return multipleOption.answerAtIndex(row)
 			}
 		}
@@ -519,7 +519,7 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 	
 	func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
 		if tableView == multipleAnswerTable {
-			if let aQues = currentlyEditedQuestion as? LJPollMultipleOptionQuestion {
+			if let aQues = currentlyEditedQuestion as? PollMultipleOptionQuestion {
 				aQues.setAnswer(object as String, atIndex: row)
 			}
 		}
