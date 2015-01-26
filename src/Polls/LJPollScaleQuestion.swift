@@ -43,6 +43,10 @@ Question subclass representing a scale with start, end and step values
 		self.init(start: 1, end: 100, step: 10)
 	}
 	
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "start", "end", "step", "question")
+	}
+	
 	override var htmlRepresentation: String {
 		return "<lj-pq type=\"scale\" from=\"\(start)\" to=\"\(end)\" by=\"\(step)\">\(question)</lj-pq>"
 	}

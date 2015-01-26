@@ -35,6 +35,10 @@ This is a subclass representing a text box question
 		self.init(size: 10, maxLength: 10)
 	}
 	
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "size", "maxLength", "question")
+	}
+	
 	override var htmlRepresentation: String {
 		return "<lj-pq type=\"text\" size=\"\(size)\" maxlength=\"\(maxLength)\">\(question)</lj-pq>"
 	}

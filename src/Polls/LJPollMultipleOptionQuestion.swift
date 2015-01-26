@@ -51,6 +51,10 @@ This subclass encapsulates the Radio, Checkbox and Drop-down question types.
 		super.init()
 	}
 	
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "answers", "type", "question")
+	}
+	
 	/// Returns the number of answers to this question
 	var numberOfAnswers: Int {
 		return answers.count
