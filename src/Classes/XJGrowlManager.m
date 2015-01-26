@@ -16,6 +16,10 @@ NSString * const XJFriendsUpdatedGrowlNotification = @"Friends Page Updated";
 
 static XJGrowlManager *singleton;
 
+@interface XJGrowlManager () <GrowlApplicationBridgeDelegate>
+
+@end
+
 @implementation XJGrowlManager
 + (XJGrowlManager *)defaultManager {
 	if(!singleton)
