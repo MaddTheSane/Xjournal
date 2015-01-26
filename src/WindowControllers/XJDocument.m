@@ -897,15 +897,15 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
         breaks = [[[self entry] content] componentsSeparatedByString: @"\r"];
         temp = [breaks componentsJoinedByString: @"\n"];
         [[self entry] setContent: temp];
-        NS_DURING
+        @try {
             [[self entry] saveToJournal];
-        NS_HANDLER
+        } @catch (NSException *localException) {
             NSBeginCriticalAlertSheet([localException name], @"OK", nil, nil,
                                       [self window], nil, nil, nil, nil,
                                       @"%@", [localException reason]);
             [spinner stopAnimation: self];    
             return NO;
-        NS_ENDHANDLER
+        }
 
         [spinner stopAnimation: self];
 

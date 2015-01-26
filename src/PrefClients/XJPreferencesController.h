@@ -22,8 +22,8 @@
 }
 
 - (void)switchViews:(NSToolbarItem *)item;
-- (void)changeTextFont:(id)sender;
-- (void)changeFont:(id)sender;
+- (IBAction)changeTextFont:(id)sender;
+- (IBAction)changeFont:(id)sender;
 - (IBAction)openAccountWindow: (id)sender;
 - (void)buildSoundMenu;
 - (IBAction)setSelectedFriendsSound:(id)sender;

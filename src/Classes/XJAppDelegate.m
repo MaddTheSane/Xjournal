@@ -123,7 +123,7 @@
         // Once accounts support other LJ services, we should move these reachability tests into the login method
 		BOOL shouldLogin = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldAutoLogin"] boolValue];
         if(shouldLogin && [NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
-            NS_DURING
+            @try {
 
                 [acctManager logInAccount: [acctManager defaultAccount]];
                 if([[acctManager defaultAccount] isLoggedIn])
@@ -133,19 +133,19 @@
                 if(serverMsg != nil && 
 				   ![[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJSuppressLoginMessage"] boolValue])
                     NSRunAlertPanel(LJ_LOGIN_MESSAGE, @"%@", @"OK", nil, nil, serverMsg);
-            NS_HANDLER
+            } @catch (NSException *localException) {
                 NSRunAlertPanel([localException name], @"%@", @"OK", nil, nil, [localException reason]);
-            NS_ENDHANDLER
+            }
         }
     }
     [self updateDockMenu];
     [self buildAccountsMenu: nil];
 
     // Reopen palettes that were open
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJBookmarkWindowIsOpen"] boolValue])
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kBookmarkWindowOpen] boolValue])
         [self showBookmarkWindow: self];
 
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJGlossaryWindowIsOpen"] boolValue])
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kGlossaryWindowOpen] boolValue])
         [self showGlossaryWindow: self];
 
     [NSApp setServicesProvider:self];
@@ -438,8 +438,8 @@
 - (void)friendsUpdated:(NSNotification *)aNotification
 {
     // If the user wants a sound, play it.
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsPlaySound"] boolValue]) {
-		NSString *path = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsAlertSound"];
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: CHECKFRIENDS_PLAY_SOUND] boolValue]) {
+		NSString *path = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: CHECKFRIENDS_SELECTED_SOUND];
 		NSSound *snd = [[NSSound alloc] initWithContentsOfFile: path byReference: NO];
         if(snd) [snd play];
     }

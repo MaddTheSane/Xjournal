@@ -28,7 +28,7 @@ static XJCheckFriendsSessionManager *sharedManager;
 	 XJAccountManager *manager = [XJAccountManager defaultManager];
     
     // Configure myself from existing preferences
-	 checkingMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsGroupType"] integerValue];
+	 checkingMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: CHECKFRIENDS_GROUP_TYPE] integerValue];
     session = [[LJCheckFriendsSession alloc] initWithAccount: [manager defaultAccount]];
     
     // register for the LJAccountDidLoginNotification event so we know to start checking friends
@@ -68,12 +68,12 @@ static XJCheckFriendsSessionManager *sharedManager;
         }
     }
     
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldCheck"] boolValue]) {
-        NS_DURING
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: XJCheckFriendsShouldCheck] boolValue]) {
+        @try {
             [session startChecking];
-        NS_HANDLER
+        } @catch (NSException *localException) {
             NSLog(@"Got exception: %@", [[localException userInfo] description]);
-        NS_ENDHANDLER
+        }
     }
 }
 

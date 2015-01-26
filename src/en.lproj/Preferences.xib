@@ -448,7 +448,7 @@
                                         </buttonCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="name" width="154" minWidth="40" maxWidth="1000" id="122">
+                                    <tableColumn identifier="name" width="138" minWidth="40" maxWidth="1000" id="122">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -618,15 +618,15 @@
                 <popUpButton verticalHuggingPriority="750" id="671">
                     <rect key="frame" x="279" y="58" width="109" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="740" id="1382">
+                    <popUpButtonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3" inset="2" selectedItem="740" id="1382">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="673">
                             <items>
-                                <menuItem title="Never" id="674"/>
-                                <menuItem title="Daily" id="675"/>
-                                <menuItem title="Weekly" state="on" id="740"/>
-                                <menuItem title="Monthly" id="676"/>
+                                <menuItem title="Never" tag="1" id="674"/>
+                                <menuItem title="Daily" tag="2" id="675"/>
+                                <menuItem title="Weekly" state="on" tag="3" id="740"/>
+                                <menuItem title="Monthly" tag="4" id="676"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

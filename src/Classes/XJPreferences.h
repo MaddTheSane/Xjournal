@@ -54,6 +54,8 @@
 
 #define XJUIChanged @"XJUIChanged"
 
+#define XJCheckFriendsShouldCheck @"XJCheckFriendsShouldCheck"
+
 // Pref keys for whether palettes are open
 #define kBookmarkWindowOpen @"XJBookmarkWindowIsOpen"
 #define kGlossaryWindowOpen @"XJGlossaryWindowIsOpen"

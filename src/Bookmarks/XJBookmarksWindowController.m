@@ -43,7 +43,7 @@
 - (void)applicationWillTerminate: (NSNotification *)note
 {
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: @([[self window] isVisible])
-																		forKey: @"XJBookmarkWindowIsOpen"];
+																		forKey: kBookmarkWindowOpen];
 }
 
 /*

@@ -5,6 +5,20 @@
 #import "XJAppDelegate.h"
 #import <Sparkle/SUUpdater.h>
 
+#define SUScheduledCheckIntervalKey @"SUScheduledCheckInterval"
+#define SUEnableAutomaticChecksKey @"SUEnableAutomaticChecks"
+
+#define EntryFontName @"XJEntryWindowFontName"
+#define EntryFontSize @"XJEntryWindowFontSize"
+
+#pragma mark Toolbar identifiers
+#define kGeneralID @"General"
+#define kFriendsID @"Friends"
+#define kMusicID @"Music"
+#define kHistoryID @"History"
+#define kWeblogsID @"Weblogs"
+#define kSWUpdateID @"SWUpdate"
+
 // Almost all this code taken from http://www.cocoadev.com/index.pl?MultiPanePreferences
 
 @implementation XJPreferencesController
@@ -12,12 +26,12 @@
     if (self = [super initWithWindowNibName: @"Preferences"]) {
         
         [[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
-                                                                  forKeyPath: @"values.XJCheckFriendsShouldCheck"
+                                                                  forKeyPath: @"values."XJCheckFriendsShouldCheck
                                                                      options: NSKeyValueObservingOptionNew
                                                                      context: nil];
         
         [[NSUserDefaultsController sharedUserDefaultsController] addObserver: self
-                                                                  forKeyPath: @"values.XJCheckFriendsGroupType"
+                                                                  forKeyPath: @"values."CHECKFRIENDS_GROUP_TYPE
                                                                      options: NSKeyValueObservingOptionNew
                                                                      context: nil];
     }
@@ -32,7 +46,7 @@
     NSToolbarItem *item;
     items = [[NSMutableDictionary alloc] init];
     
-    item = [[NSToolbarItem alloc] initWithItemIdentifier:@"General"];
+    item = [[NSToolbarItem alloc] initWithItemIdentifier:kGeneralID];
     [item setPaletteLabel:@"General"];
     [item setLabel:@"General"];
     [item setToolTip:@"General preference options."];
@@ -40,9 +54,9 @@
     [item setImage:genImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    items[@"General"] = item;
+    items[kGeneralID] = item;
 
-	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Friends"];
+	item = [[NSToolbarItem alloc] initWithItemIdentifier:kFriendsID];
     [item setPaletteLabel:@"Friends"];
     [item setLabel:@"Friends"];
     [item setToolTip:@"Friends preference options."];
@@ -50,9 +64,9 @@
     [item setImage:friendsImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    items[@"Friends"] = item;
+    items[kFriendsID] = item;
 
-	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Music"];
+	item = [[NSToolbarItem alloc] initWithItemIdentifier:kMusicID];
     [item setPaletteLabel:@"Music"];
     [item setLabel:@"Music"];
     [item setToolTip:@"Music preference options."];
@@ -60,9 +74,9 @@
     [item setImage:musicImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    items[@"Music"] = item;
+    items[kMusicID] = item;
 	
-	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"History"];
+	item = [[NSToolbarItem alloc] initWithItemIdentifier:kHistoryID];
     [item setPaletteLabel:@"History"];
     [item setLabel:@"History"];
     [item setToolTip:@"History preference options."];
@@ -70,9 +84,9 @@
     [item setImage:historyImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    items[@"History"] = item;
+    items[kHistoryID] = item;
 
-	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"Weblogs"];
+	item = [[NSToolbarItem alloc] initWithItemIdentifier:kWeblogsID];
     [item setPaletteLabel:@"Weblogs"];
     [item setLabel:@"Weblogs"];
     [item setToolTip:@"Weblogs preference options."];
@@ -80,9 +94,9 @@
     [item setImage:weblogsImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    items[@"Weblogs"] = item;
+    items[kWeblogsID] = item;
 	
-	item = [[NSToolbarItem alloc] initWithItemIdentifier:@"SWUpdate"];
+	item = [[NSToolbarItem alloc] initWithItemIdentifier:kSWUpdateID];
     [item setPaletteLabel:@"Software Update"];
     [item setLabel:@"Update"];
     [item setToolTip:@"Software Update preference options."];
@@ -90,25 +104,25 @@
     [item setImage:updateImage];
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
-    items[@"SWUpdate"] = item;
+    items[kSWUpdateID] = item;
 	
     //any other items you want to add, do so here.
     //after you are done, just do all the toolbar stuff.
     //[self window] is an outlet pointing to the Preferences Window you made to hold all these custom views.
 	
-	NSInteger checkInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"SUScheduledCheckInterval"];
+	NSInteger checkInterval = [[NSUserDefaults standardUserDefaults] integerForKey:SUScheduledCheckIntervalKey];
 	if (checkInterval == 0) {
-		[updateCheckSelection selectItemWithTitle:@"Never"];
+        [updateCheckSelection selectItemWithTag:1]; //Never
 	} else if (checkInterval == 24*60*60) {
-		[updateCheckSelection selectItemWithTitle:@"Daily"];
+        [updateCheckSelection selectItemWithTag:2]; //Daily
 	} else if (checkInterval == 7*24*60*60) {
-		[updateCheckSelection selectItemWithTitle:@"Weekly"];
+        [updateCheckSelection selectItemWithTag:3]; //Weekly
 	} else if (checkInterval == 4*7*24*60*60) {
-		[updateCheckSelection selectItemWithTitle:@"Monthly"];
+        [updateCheckSelection selectItemWithTag:4]; //Monthly
 	} else {
 		// If it isn't one of these values then pick a default
-		[updateCheckSelection selectItemWithTitle:@"Weekly"];
-	}	
+        [updateCheckSelection selectItemWithTag:3]; //Weekly
+	}
 	
     NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:@"preferencePanes"];
     [toolbar setDelegate:self];  //this is how the toolbar knows what can be selected and such.
@@ -125,7 +139,7 @@
 {
     NSString *sender;
     if(item == nil){  //set the pane to the default.
-        sender = @"General";
+        sender = kGeneralID;
         [[[self window] toolbar] setSelectedItemIdentifier:sender];
     }else{
         sender = [item itemIdentifier];
@@ -140,25 +154,25 @@
     //set the title to the name of the Preference Item.
     [[self window] setTitle:sender];
 	
-    if([sender isEqualToString:@"General"]){
+    if([sender isEqualToString:kGeneralID]){
         //assign the temp pointer to the generalView we set up in IB.
         prefsView = accountsView;
-    }else if([sender isEqualToString:@"History"]){
+    }else if([sender isEqualToString:kHistoryID]){
         //assign the temp pointer to the searchView we set up in IB.
         prefsView = historyView;
-    }else if([sender isEqualToString:@"Friends"]){
+    }else if([sender isEqualToString:kFriendsID]){
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = friendsView;
     }
-	else if([sender isEqualToString:@"Music"]){
+	else if([sender isEqualToString:kMusicID]){
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = musicView;
     }
-	else if([sender isEqualToString:@"Weblogs"]){
+	else if([sender isEqualToString:kWeblogsID]){
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = weblogsView;
     }
-	else if([sender isEqualToString:@"SWUpdate"]){
+	else if([sender isEqualToString:kSWUpdateID]){
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = softwareUpdateView;
     }
@@ -195,7 +209,7 @@
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)theToolbar
 {
     //just return an array with all your items.
-    return @[@"General", @"Friends", @"Music", @"Weblogs", @"History", @"SWUpdate"];
+    return @[kGeneralID, kFriendsID, kMusicID, kWeblogsID, kHistoryID, kSWUpdateID];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers: (NSToolbar *)toolbar
@@ -213,9 +227,9 @@
 	 */
 	
 	// Get font name and size from user defaults
-	NSDictionary *values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-	NSString *fontName = [values valueForKey:@"XJEntryWindowFontName"];
-	int fontSize = [[values valueForKey:@"XJEntryWindowFontSize"] floatValue];
+	NSUserDefaults *values = [NSUserDefaults standardUserDefaults];
+	NSString *fontName = [values valueForKey:EntryFontName];
+	CGFloat fontSize = [values floatForKey:EntryFontSize];
 	
 	// Create font from name and size; initialize font panel
     NSFont *font = [NSFont fontWithName:fontName size:fontSize];
@@ -251,8 +265,8 @@
 	NSNumber *fontSize = @([panelFont pointSize]);
 	
 	id currentPrefsValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-	[currentPrefsValues setValue:[panelFont fontName] forKey:@"XJEntryWindowFontName"];
-	[currentPrefsValues setValue:fontSize forKey:@"XJEntryWindowFontSize"];
+	[currentPrefsValues setValue:[panelFont fontName] forKey:EntryFontName];
+	[currentPrefsValues setValue:fontSize forKey:EntryFontSize];
 }
 
 // ----------------------------------------------------------------------------------------
@@ -264,7 +278,7 @@
 {
     NSMutableArray * sounds = [[NSMutableArray alloc] init];
     
-    NSArray * directories = NSSearchPathForDirectoriesInDomains(NSAllLibrariesDirectory, NSUserDomainMask | NSLocalDomainMask | NSSystemDomainMask, YES);
+    NSArray * directories = NSSearchPathForDirectoriesInDomains(NSAllLibrariesDirectory, NSAllDomainsMask, YES);
     
     for (__strong NSString * directory in directories) {
         directory = [directory stringByAppendingPathComponent: @"Sounds"];
@@ -300,7 +314,7 @@
 }
 
 - (IBAction)setSelectedFriendsSound:(id)sender {
-	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [sender representedObject] forKey: @"XJCheckFriendsAlertSound"];
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [sender representedObject] forKey: CHECKFRIENDS_SELECTED_SOUND];
 	[[[NSSound alloc] initWithContentsOfFile: [sender representedObject] byReference: NO] play];
 }
 
@@ -362,8 +376,8 @@
     
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
 		id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-		BOOL shouldCheck = [[values valueForKey: @"XJCheckFriendsShouldCheck"] boolValue];
-		int checkGroupType = [[values valueForKey: @"XJCheckFriendsGroupType"] intValue];
+		BOOL shouldCheck = [[values valueForKey: XJCheckFriendsShouldCheck] boolValue];
+		int checkGroupType = [[values valueForKey: CHECKFRIENDS_GROUP_TYPE] intValue];
 		
         [aCell setEnabled: (shouldCheck && (acct && checkGroupType == 1))];
     }
@@ -380,23 +394,35 @@
 // Grab title from popup menu and set defaults accordingly
 - (IBAction)changeUpdateFrequency:(id)sender
 {
-	if ([@"Never" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"SUCheckAtStartup"];
-		[updater setUpdateCheckInterval:0];
-	} else if ([@"Daily" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setInteger:(24*60*60)  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUCheckAtStartup"];
-		[updater setUpdateCheckInterval:24*60*60];
-	} else if ([@"Weekly" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setInteger:(7*24*60*60)  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUCheckAtStartup"];
-		[updater setUpdateCheckInterval:7*24*60*60];
-	} else if ([@"Monthly" isEqualToString:[sender title]]) {
-		[[NSUserDefaults standardUserDefaults] setInteger:(4*7*24*60*60)  forKey:@"SUScheduledCheckInterval"];
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUCheckAtStartup"];
-		[updater setUpdateCheckInterval:4*7*24*60*60];
-	}
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    switch ([sender tag]) {
+        case 1: //Never
+            [defaults setInteger:0 forKey:SUScheduledCheckIntervalKey];
+            [defaults setBool:NO forKey:SUEnableAutomaticChecksKey];
+            [updater setUpdateCheckInterval:0];
+            break;
+            
+        case 2: //Daily
+            [defaults setInteger:(24*60*60) forKey:SUScheduledCheckIntervalKey];
+            [defaults setBool:YES forKey:SUEnableAutomaticChecksKey];
+            [updater setUpdateCheckInterval:24*60*60];
+            break;
+            
+        case 3: //Weekly
+            [defaults setInteger:(7*24*60*60) forKey:SUScheduledCheckIntervalKey];
+            [defaults setBool:YES forKey:SUEnableAutomaticChecksKey];
+            [updater setUpdateCheckInterval:7*24*60*60];
+            break;
+            
+        case 4: //Monthly
+            [defaults setInteger:(4*7*24*60*60) forKey:SUScheduledCheckIntervalKey];
+            [defaults setBool:YES forKey:SUEnableAutomaticChecksKey];
+            [updater setUpdateCheckInterval:4*7*24*60*60];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark -
@@ -406,7 +432,7 @@
 						change:(NSDictionary *)change
 					   context:(void *)context 
 {
-	if([keyPath isEqualToString: @"values.XJCheckFriendsShouldCheck"]) {
+	if([keyPath isEqualToString: @"values." XJCheckFriendsShouldCheck]) {
 		NSKeyValueChange changeKind = [change[NSKeyValueChangeKindKey] integerValue];
 		if(changeKind == NSKeyValueChangeSetting) {
 			
@@ -415,14 +441,14 @@
 			// Instead, we'll interrogate the defaults directly.
 			// rdar://3777034 apparently.
 			
-			if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldCheck"] boolValue])
+			if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: XJCheckFriendsShouldCheck] boolValue])
 				[[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
 			else
 				[[XJCheckFriendsSessionManager sharedManager] stopCheckingFriends];
 		}
 	}
 	
-	if([keyPath isEqualToString: @"values.XJCheckFriendsGroupType"]) {
+	if([keyPath isEqualToString: @"values."CHECKFRIENDS_GROUP_TYPE]) {
 		[checkFriendsGroupTable reloadData];
 	}
 }

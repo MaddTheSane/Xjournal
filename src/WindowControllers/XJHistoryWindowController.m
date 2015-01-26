@@ -272,20 +272,20 @@ typedef NS_ENUM(int, XJHistorySelection) {
 			if(selectionType == XJHistorySearchResultSelected) {
 				LJEntry *entryToDelete = [self selectedSearchResult];
 				XJDay *day = [cal dayForDate: [entryToDelete date]];
-				NS_DURING
+				@try {
 					[day deleteEntry: entryToDelete];
-				NS_HANDLER
+				} @catch (NSException *localException) {
 					NSLog(@"Connection Reset During Delete");
-				NS_ENDHANDLER
+				}
 				[self executeSearchForString: [self selectedSearchString]];
 			}
 			else {
 				XJDay *day = [self selectedDay];
-				NS_DURING
+				@try {
 					[day deleteEntryAtIndex: [browser selectedRowInColumn:3]];
-				NS_HANDLER
+				} @catch (NSException *localException) {
 					NSLog(@"Connection Reset During Delete");
-				NS_ENDHANDLER
+				}
 				NSInteger row = [browser selectedRowInColumn: 2];
 				[browser selectRow: row inColumn: 2];
 				//[browser reloadColumn: [browser lastVisibleColumn]];
@@ -807,17 +807,17 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
                 XJDay *currentDay;
                 while(!terminateDownloadThread && (currentDay = [daysInMonth nextObject])) {
                     NSInteger postsInDay = [currentDay postCount];
-                    NS_DURING
+                    @try {
                         // This can vomit if the network goes away
                         [currentDay downloadEntries];
-                    NS_HANDLER
+                    } @catch (NSException *localException) {
                         terminateDownloadThread = YES;
                         NSLog(@"%@ - %@", [localException name], [localException reason]);
 
                         // Network has failed, so bail
                         downloadFailed = YES;
                         exc = localException;
-                    NS_ENDHANDLER
+                    }
                     
                     if(downloadFailed) {
                         terminateDownloadThread = NO;
@@ -942,13 +942,13 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotification:notice];
         });
-            NS_DURING
+            @try {
                 //[dayToUpdate validatePostCountAndUpdate: [[daysToUpdate objectForKey: dayToUpdate] intValue]];
                 [dayToUpdate downloadEntries];
-            NS_HANDLER
+            } @catch (NSException *localException) {
                 NSLog(@"Exception in -[XJHistoryWindowController updateAgainstDayCounts]: %@", [localException name]);
                 terminateUpdateThread = YES;
-            NS_ENDHANDLER
+            }
             i++;
 	}
 

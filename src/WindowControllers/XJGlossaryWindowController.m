@@ -38,7 +38,7 @@
 {
 	[self writeGlossaryFile];
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: @([[self window] isVisible])
-																		forKey: @"XJGlossaryWindowIsOpen"];
+																		forKey: kGlossaryWindowOpen];
 }
 
 - (BOOL)fileExists:(NSString *)path
