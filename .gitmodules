@@ -1,3 +1,6 @@
 [submodule "Vendor/LJKit"]
 	path = Vendor/LJKit
 	url = https://github.com/MaddTheSane/LJKit.git
+[submodule "Vendor/AGRegex"]
+	path = Vendor/AGRegex
+	url = https://github.com/MaddTheSane/AGRegex.git

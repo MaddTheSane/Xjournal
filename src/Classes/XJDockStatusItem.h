@@ -20,14 +20,14 @@
     BOOL isHidden;
 }
 
-- initWithIcon:(NSImage *)newIcon;
+- (instancetype)initWithIcon:(NSImage *)newIcon;
 
 // API
-@property NSUInteger count;
+@property (nonatomic) NSUInteger count;
 - (void)setNoCount;
 
 - (void)hide;
 - (void)show;
-- (BOOL)isHidden;
+@property (readonly, getter=isHidden) BOOL hidden;
 
 @end

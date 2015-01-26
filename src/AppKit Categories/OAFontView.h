@@ -14,7 +14,7 @@
 
 #import <AppKit/NSNibDeclarations.h> // For IBOutlet and IBAction
 
-@interface OAFontView : NSView
+@interface OAFontView : NSView <NSWindowDelegate>
 {
     IBOutlet id delegate;
 

@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class LJAccount;
+
 @interface XJExportManager : NSObject {
-	id account;
+	LJAccount *account;
 	
 	NSMutableDictionary *historyTree;
 }
@@ -18,8 +20,8 @@
 - (NSString *)accountFullName;
 - (NSURL *)accountURL;
 
-- (int)numberOfEntries;
-- (NSDictionary *)entryAtIndex:(int)i;
+- (NSInteger)numberOfEntries;
+- (NSDictionary *)entryAtIndex:(NSInteger)i;
 - (NSDictionary *)entryAtPath:(NSString *)path;
 
 // Ordered array of entries

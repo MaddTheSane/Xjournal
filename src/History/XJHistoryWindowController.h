@@ -11,7 +11,7 @@
 
 @class XJAccountManager, LJAccount, XJHistoryFilterArrayController, XJExportController;
 
-@interface XJHistoryWindowController : NSWindowController {
+@interface XJHistoryWindowController : NSWindowController <NSToolbarDelegate> {
     // The NSBrowser for dates
     IBOutlet NSTableView *table;
 	IBOutlet NSTableColumn *subjectColumn;
@@ -44,15 +44,12 @@
 - (IBAction)editEntry: (id)sender;
 - (IBAction)beginHistoryExport: (id)sender;
 
-- (LJAccount *)account;
-- (void)setAccount: (LJAccount *)newAcct;
-- (XJAccountManager *)accountManager;
-- (void)setAccountManager:(XJAccountManager *)anAccountManager;
+@property (assign) LJAccount *account;
+@property (assign) XJAccountManager *accountManager;
 
 - (IBAction)skSearch: (id)sender;
 - (NSMutableArray *)searchKitResults;
 - (void)setSearchKitResults:(NSMutableArray *)aSearchKitResults;
 
-- (NSString *)message;
-- (void)setMessage:(NSString *)aMessage;
+@property (copy) NSString *message;
 @end

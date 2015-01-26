@@ -32,6 +32,10 @@
 
 @end
 
+@interface NSFont (priv)
+- (CGFloat)widthOfString:(NSString*)aStr;
+@end
+
 @implementation OAFontView
 
 // Init and dealloc
@@ -215,7 +219,7 @@
 	
     if (!string)
         string = [[NSString stringWithFormat: @"%@%@", self, @"..."] retain];
-	NSLog(string);
+	NSLog(@"%@", string);
     return @"...";
 }
 
@@ -263,7 +267,7 @@
     requiresEllipsis = lineTooLong || NSMaxRange(lineCharacterRange) < [self length];
     
     if (requiresEllipsis) {
-        unsigned int ellipsisAttributeCharacterIndex;
+        NSUInteger ellipsisAttributeCharacterIndex;
         if (lineCharacterRange.length != 0)
             ellipsisAttributeCharacterIndex = NSMaxRange(lineCharacterRange) - 1;
         else

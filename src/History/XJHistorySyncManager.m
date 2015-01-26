@@ -10,6 +10,10 @@
 #import "XJAccountManager.h"
 #import <LJKit/LJKit.h>
 
+@class LJLightwieghtHistoryIndexItem;
+@class LJHistory;
+@class LJLightwieghtHistoryIndex;
+
 @implementation XJHistorySyncManager
 - (id)init {
 	self = [super init];

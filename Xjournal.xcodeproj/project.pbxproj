@@ -148,6 +148,8 @@
 		5515D4891A76E40E001E6360 /* CutSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5515D4881A76E40E001E6360 /* CutSheet.xib */; };
 		5515D48B1A76E429001E6360 /* XJDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5515D48A1A76E429001E6360 /* XJDocument.xib */; };
 		5515D48D1A76E521001E6360 /* HTMLPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5515D48C1A76E521001E6360 /* HTMLPreview.xib */; };
+		5515D49B1A76EDC9001E6360 /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5515D4981A76EC9C001E6360 /* AGRegex.framework */; };
+		5515D49C1A76EDC9001E6360 /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5515D4981A76EC9C001E6360 /* AGRegex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55D7E0A21A75D1890028F08E /* Poll2.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5072960738521F009BA1D9 /* Poll2.nib */; };
 		5F0680E707FB420B00B9806F /* DisclosableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; };
 		5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -205,8 +207,6 @@
 		5F9697B205D930670026F31C /* Donation.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9697B005D930670026F31C /* Donation.nib */; };
 		5F9697B505D930F20026F31C /* XJDonationWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F9697B305D930F20026F31C /* XJDonationWindowController.h */; };
 		5F9697B605D930F20026F31C /* XJDonationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9697B405D930F20026F31C /* XJDonationWindowController.m */; };
-		5F979D5A05B990300082C2C7 /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F979D5505B990300082C2C7 /* AGRegex.framework */; };
-		5F979E8705B990420082C2C7 /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F979D5505B990300082C2C7 /* AGRegex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
 		5FC323BC0764E19F00AF0C49 /* XJPollEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD89A404B0189F003882CD /* XJPollEditorController.m */; };
 		5FC323BD0764E1A000AF0C49 /* XJPollEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD89A304B0189F003882CD /* XJPollEditorController.h */; };
@@ -284,6 +284,27 @@
 			remoteGlobalIDString = BC72DAED058B2AFA00784C4A;
 			remoteInfo = LJKit;
 		};
+		5515D4971A76EC9C001E6360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1C6A0C360865E09C009EE6D2;
+			remoteInfo = "AGRegex (Framework)";
+		};
+		5515D4991A76EC9C001E6360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1C6A0C4C0865E09C009EE6D2;
+			remoteInfo = "RegexTest (Application)";
+		};
+		5515D49D1A76EDC9001E6360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C6A0C250865E09C009EE6D2;
+			remoteInfo = "AGRegex (Framework)";
+		};
 		5F62AD3B084B5D8000F61290 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F62AD38084B5D8000F61290 /* XjournalImporter.xcode */;
@@ -331,8 +352,8 @@
 				5F62AC55084B50AE00F61290 /* Growl.framework in CopyFiles */,
 				5515D4621A75E641001E6360 /* LJKit.framework in CopyFiles */,
 				5FE8A4700805C74400F85E06 /* ILCrashReporter.framework in CopyFiles */,
+				5515D49C1A76EDC9001E6360 /* AGRegex.framework in CopyFiles */,
 				5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */,
-				5F979E8705B990420082C2C7 /* AGRegex.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +519,7 @@
 		5515D4881A76E40E001E6360 /* CutSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CutSheet.xib; sourceTree = "<group>"; };
 		5515D48A1A76E429001E6360 /* XJDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XJDocument.xib; sourceTree = "<group>"; };
 		5515D48C1A76E521001E6360 /* HTMLPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTMLPreview.xib; sourceTree = "<group>"; };
+		5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AGRegex.xcodeproj; path = Vendor/AGRegex/AGRegex.xcodeproj; sourceTree = "<group>"; };
 		5F0680E607FB420B00B9806F /* DisclosableView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DisclosableView.framework; path = /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build/DisclosableView.framework; sourceTree = "<absolute>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
 		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
@@ -557,7 +579,6 @@
 		5F9697B105D930670026F31C /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = Donation.nib; sourceTree = "<group>"; };
 		5F9697B305D930F20026F31C /* XJDonationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDonationWindowController.h; sourceTree = "<group>"; };
 		5F9697B405D930F20026F31C /* XJDonationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJDonationWindowController.m; sourceTree = "<group>"; };
-		5F979D5505B990300082C2C7 /* AGRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGRegex.framework; path = /Users/fspeirs/Coding/Projects/Xjournal/BuildFolder/AGRegex.framework; sourceTree = "<absolute>"; };
 		5FAB4BED07803E1D006E15F9 /* XJiPodNotesExport.xcode */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XJiPodNotesExport.xcode; path = /Users/fspeirs/Coding/Projects/Xjournal/XJiPodNotesExport/XJiPodNotesExport.xcode; sourceTree = "<absolute>"; };
 		5FB5980505EA96A100B78E38 /* ImageResource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageResource.png; path = src/Art/ImageResource.png; sourceTree = "<group>"; };
 		5FC324090764EE2800AF0C49 /* XJPollTypeVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPollTypeVT.h; sourceTree = "<group>"; };
@@ -619,9 +640,9 @@
 				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
 				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
 				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
-				5F979D5A05B990300082C2C7 /* AGRegex.framework in Frameworks */,
 				5F0680E707FB420B00B9806F /* DisclosableView.framework in Frameworks */,
 				5FE8A4690805C6C900F85E06 /* ILCrashReporter.framework in Frameworks */,
+				5515D49B1A76EDC9001E6360 /* AGRegex.framework in Frameworks */,
 				5F62AC40084B50A600F61290 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,7 +656,6 @@
 				5F62AC3F084B50A600F61290 /* Growl.framework */,
 				5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */,
 				5F0680E607FB420B00B9806F /* DisclosableView.framework */,
-				5F979D5505B990300082C2C7 /* AGRegex.framework */,
 				1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */,
 				1BBD8BF304B01A77003882CD /* Carbon.framework */,
 				1BBD8BDE04B01A6B003882CD /* AddressBook.framework */,
@@ -930,6 +950,7 @@
 		5515D4571A75E60B001E6360 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */,
 				5515D4581A75E623001E6360 /* LJKit.xcodeproj */,
 			);
 			name = Vendors;
@@ -967,6 +988,15 @@
 			);
 			name = Source;
 			path = src;
+			sourceTree = "<group>";
+		};
+		5515D4931A76EC9C001E6360 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5515D4981A76EC9C001E6360 /* AGRegex.framework */,
+				5515D49A1A76EC9C001E6360 /* RegexTest.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5F62AD39084B5D8000F61290 /* Products */ = {
@@ -1276,6 +1306,7 @@
 			dependencies = (
 				5F62AD3F084B5D8E00F61290 /* PBXTargetDependency */,
 				5515D4641A75E641001E6360 /* PBXTargetDependency */,
+				5515D49E1A76EDC9001E6360 /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -1304,6 +1335,10 @@
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Xjournal */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 5515D4931A76EC9C001E6360 /* Products */;
+					ProjectRef = 5515D4921A76EC9C001E6360 /* AGRegex.xcodeproj */;
+				},
 				{
 					ProductGroup = 5515D4591A75E623001E6360 /* Products */;
 					ProjectRef = 5515D4581A75E623001E6360 /* LJKit.xcodeproj */;
@@ -1342,6 +1377,20 @@
 			fileType = "compiled.mach-o.executable";
 			path = LJKitDocumentation;
 			remoteRef = 5515D45F1A75E623001E6360 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5515D4981A76EC9C001E6360 /* AGRegex.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AGRegex.framework;
+			remoteRef = 5515D4971A76EC9C001E6360 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5515D49A1A76EC9C001E6360 /* RegexTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = RegexTest.app;
+			remoteRef = 5515D4991A76EC9C001E6360 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5F62AD3A084B5D8000F61290 /* XjournalImporter.mdimporter */ = {
@@ -1579,6 +1628,11 @@
 			name = LJKit;
 			targetProxy = 5515D4631A75E641001E6360 /* PBXContainerItemProxy */;
 		};
+		5515D49E1A76EDC9001E6360 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AGRegex (Framework)";
+			targetProxy = 5515D49D1A76EDC9001E6360 /* PBXContainerItemProxy */;
+		};
 		5F62AD3F084B5D8E00F61290 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "XjournalImporter (from XjournalImporter.xcode)";
@@ -1720,7 +1774,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1747,7 +1801,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1773,7 +1827,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = "Linked with Symbols";

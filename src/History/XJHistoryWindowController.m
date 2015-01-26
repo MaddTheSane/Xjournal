@@ -29,12 +29,17 @@
 
 #define kHistoryAutosaveName @"kHistoryAutosaveName"
 
+@class LJLightwieghtHistoryIndexItem;
+@class LJHistory;
+@class LJLightwieghtHistoryIndex;
 
-@interface XJHistoryWindowController (PrivateAPI)
-- (NSString *)zeroizedString:(int)number;
-@end
+#define LJHistoryDownloadStartedNotification @"lhidfa"
+#define LJHistoryDownloadEndedNotification @"afgaef"
 
-@implementation XJHistoryWindowController 
+@implementation XJHistoryWindowController
+@synthesize account;
+@synthesize accountManager;
+@synthesize message;
 
 - (id)init
 {
@@ -84,16 +89,6 @@
 	[table setDoubleAction: @selector(openSelectionInBrowser:)];
 }
 
-- (LJAccount *)account
-{
-    return account;
-}
-
-- (void)setAccount: (LJAccount *)newAcct
-{
-    account = newAcct;
-}
-
 - (void)updateStarted: (NSNotification *)note {
 	[self setMessage: @"Synchronizing with server"];	
 }
@@ -101,21 +96,6 @@
 - (void)updateEnded: (NSNotification *)note {
 	[self setMessage: @""];	
 }
-
-// =========================================================== 
-// - accountManager:
-// =========================================================== 
-- (XJAccountManager *)accountManager {
-    return accountManager; 
-}
-
-// =========================================================== 
-// - setAccountManager:
-// =========================================================== 
-- (void)setAccountManager:(XJAccountManager *)anAccountManager {
-	accountManager = anAccountManager;
-}
-
 
 // =========================================================== 
 // - searchKitResults:
@@ -254,26 +234,6 @@
 		NSLog(@"Added result: %@", [result displayName]);
     }
 	[self didChangeValueForKey: @"searchKitResults"];
-}
-
-
-// =========================================================== 
-// - message:
-// =========================================================== 
-- (NSString *)message {
-    return message; 
-}
-
-// =========================================================== 
-// - setMessage:
-// =========================================================== 
-- (void)setMessage:(NSString *)aMessage {
-    if (message != aMessage) {
-        [aMessage retain];
-        [message release];
-        message = aMessage;
-		NSLog(message);
-    }
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
@@ -427,9 +387,6 @@
 		exportController = [[XJExportController alloc] init];
 	[exportController exportFromAccount: [self account]];
 }
-@end
-
-@implementation XJHistoryWindowController (PrivateAPI)
 
 
 - (NSString *)zeroizedString:(int)number

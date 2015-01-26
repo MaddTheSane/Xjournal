@@ -10,20 +10,24 @@
 #import <LJKit/LJKit.h>
 #import "LJEntryExtensions.h"
 
-@interface XJExportManager (Private)
-- (id)initWithAccount:(LJAccount *)acct;
-- (id)account;
-- (void)setAccount:(id)anAccount;
+@class LJLightwieghtHistoryIndexItem;
+@class LJHistory;
+@class LJLightwieghtHistoryIndex;
+
+@interface XJExportManager ()
+- (instancetype)initWithAccount:(LJAccount *)acct;
+@property (retain) LJAccount *account;
 
 - (void)createHistoryTree;
 - (NSMutableDictionary *)dictionaryForYear:(NSNumber *)year;
 - (NSMutableDictionary *)dictionaryForMonth:(NSNumber *)month ofYear:(NSNumber *)year;
 - (NSMutableArray *)arrayForDay:(NSNumber *)day ofMonth:(NSNumber *)month ofYear:(NSNumber *)year;
 
-- (LJLightwieghtHistoryIndexItem *)lightIndexItemAtIndex:(int)i;
+- (LJLightwieghtHistoryIndexItem *)lightIndexItemAtIndex:(NSInteger)i;
 @end
 
 @implementation XJExportManager
+@synthesize account = account;
 - (NSString *)accountUsername {
 	return [[self account] username];
 }
@@ -36,7 +40,7 @@
 	return [[self account] recentEntriesHttpURL];
 }
 
-- (int)numberOfEntries {
+- (NSInteger)numberOfEntries {
 	LJHistory *history = [[self account] history];
 	return [[[history lightIndex] entries] count];
 }
@@ -101,9 +105,7 @@
     [account release];
     [super dealloc];
 }
-@end
 
-@implementation XJExportManager (Private)
 - (id)initWithAccount:(LJAccount *)acct {
 	self = [super init];
 	if(self) {
@@ -117,14 +119,6 @@
 //=========================================================== 
 //  account 
 //=========================================================== 
-- (LJAccount *)account {
-    return (LJAccount *)account; 
-}
-- (void)setAccount:(LJAccount *)anAccount {
-    [anAccount retain];
-    [account release];
-    account = anAccount;
-}
 
 - (void)createHistoryTree {
 	[historyTree release];

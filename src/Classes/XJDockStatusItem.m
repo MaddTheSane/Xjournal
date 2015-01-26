@@ -7,8 +7,7 @@
 
 #import "XJDockStatusItem.h"
 
-#import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
 @interface XJDockStatusItem ()
 + (void)registerItem:(XJDockStatusItem *)item;
@@ -19,9 +18,9 @@
 
 @implementation XJDockStatusItem
 @synthesize count;
+@synthesize hidden = isHidden;
 
 static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundImage;
-
 + (void)initialize;
 {
     leftBackgroundImage = [NSImage imageNamed:@"XJDockStatusItemLeft"];
@@ -30,7 +29,7 @@ static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundIma
 
 }
 
-- init;
+- (instancetype)init;
 {
     if ([super init] == nil)
         return nil;
@@ -38,11 +37,11 @@ static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundIma
     count = NSNotFound;
     isHidden = YES;
     
-    [isa registerItem:self];
+    [[self class] registerItem:self];
     return self;
 }
 
-- initWithIcon:(NSImage *)newIcon;
+- (instancetype)initWithIcon:(NSImage *)newIcon;
 {
     if ([self init] == nil)
         return nil;
@@ -56,20 +55,22 @@ static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundIma
 - (void)dealloc;
 {
     [icon release];
-    [isa unregisterItem:self];
+    [[self class] unregisterItem:self];
     if (!isHidden)
-        [isa redisplay];
+        [[self class] redisplay];
+	
+	[super dealloc];
 }
 
 // API
 
-- (void)setCount:(unsigned int)aCount;
+- (void)setCount:(NSUInteger)aCount;
 {
     if (count == aCount)
         return;
     count = aCount;
     if (!isHidden)
-        [isa redisplay];
+        [[self class] redisplay];
 }
 
 - (void)setNoCount;
@@ -83,7 +84,7 @@ static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundIma
         return;
 
     isHidden = YES;
-    [isa redisplay];
+    [[self class] redisplay];
 }
 
 - (void)show;
@@ -92,12 +93,7 @@ static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundIma
         return;
 
     isHidden = NO;
-    [isa redisplay];
-}
-
-- (BOOL)isHidden;
-{
-    return isHidden;
+    [[self class] redisplay];
 }
 
 static NSMutableArray *dockStatusItems;
@@ -129,11 +125,10 @@ static NSMutableArray *dockStatusItems;
     NSImage *applicationIcon, *bufferImage;
     NSUInteger index;
 
-    applicationIcon = [NSImage imageNamed:@"NSApplicationIcon"];
+    applicationIcon = [NSImage imageNamed:NSImageNameApplicationIcon];
 
     bufferImage = [[NSImage alloc] initWithSize:[applicationIcon size]];
-    [bufferImage setFlipped:YES];
-    [bufferImage lockFocus]; {
+    [bufferImage lockFocusFlipped:YES]; {
         [applicationIcon compositeToPoint:NSMakePoint(0, [bufferImage size].height) operation:NSCompositeSourceOver];
 
         index = [dockStatusItems count];

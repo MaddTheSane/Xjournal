@@ -896,7 +896,7 @@
 // NSTableDataSource - friend group security
 // ----------------------------------------------------------------------------------------
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     if([[self entry] account])
         return [[[[self entry] account] groupArray] count];
@@ -907,7 +907,7 @@
 
 - (id)tableView:(NSTableView *)aTableView
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
-            row:(int)rowIndex
+            row:(NSInteger)rowIndex
 {
     if([[self entry] account])
     {
@@ -928,7 +928,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     return @"";
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     NSArray *groups = [[[self entry] account] groupArray];
     LJGroup *rowGroup = [groups objectAtIndex: rowIndex];
@@ -938,7 +938,7 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     }
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     if([[aTableColumn identifier] isEqualToString: @"check"]) {
         [aCell setEnabled: [entry securityMode] == LJSecurityModeGroup];
