@@ -113,4 +113,8 @@ class LJPoll: NSObject {
 		
 		return buf
 	}
+	
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "votingPermissions", "viewingPermissions", "name", "questions")
+	}
 }

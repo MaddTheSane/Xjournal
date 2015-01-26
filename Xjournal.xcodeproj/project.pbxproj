@@ -885,8 +885,8 @@
 				1BBD894304B0189F003882CD /* Carbon Wrappers */,
 				1BBD891004B01883003882CD /* AppKit Categories */,
 				5F044ADC09224A58003D6D2A /* Value Transformers */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				55D7E0841A75C87F0028F08E /* Notifications */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 			);
 			name = Source;
 			path = src;
