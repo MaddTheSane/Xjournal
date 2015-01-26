@@ -34,8 +34,6 @@
 		1B7C9A440566709400F0E1AC /* LJPollTextEntryQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD897D04B0189F003882CD /* LJPollTextEntryQuestion.m */; };
 		1B870E0B04C7EAA200C54147 /* ChangeNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
 		1B870E0D04C7EABE00C54147 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
-		1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
-		1B870E1304C7EACB00C54147 /* ReadMe.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
 		1B8A041B04B2BC110002ED8F /* CCFSoftwareUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B8A041904B2BC110002ED8F /* CCFSoftwareUpdate.h */; };
 		1B8A041C04B2BC110002ED8F /* CCFSoftwareUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A041A04B2BC110002ED8F /* CCFSoftwareUpdate.m */; };
 		1B967FC5058779680035F70C /* itunes.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B967FC4058779680035F70C /* itunes.png */; };
@@ -303,17 +301,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1B870E0604C7EA1400C54147 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				1B870E1204C7EACB00C54147 /* ChangeNotes.rtf in CopyFiles */,
-				1B870E1304C7EACB00C54147 /* ReadMe.rtf in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1BF27FA304B032D600121863 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1244,7 +1231,6 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				1BF27FA304B032D600121863 /* CopyFiles */,
-				1B870E0604C7EA1400C54147 /* CopyFiles */,
 				5FFD4AFF0768E02A00EB1EC6 /* CopyFiles */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				5F62AD40084B5D9C00F61290 /* CopyFiles */,
@@ -1781,21 +1767,21 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5569D0ED1A75CCFF00C6553E /* Development */ = {
+		5569D0ED1A75CCFF00C6553E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
-			name = Development;
+			name = Debug;
 		};
-		5569D0EE1A75CCFF00C6553E /* Deployment */ = {
+		5569D0EE1A75CCFF00C6553E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		5569D0EF1A75CCFF00C6553E /* Linked with Symbols */ = {
 			isa = XCBuildConfiguration;
@@ -1805,15 +1791,7 @@
 			};
 			name = "Linked with Symbols";
 		};
-		5569D0F01A75CCFF00C6553E /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
-			};
-			name = Default;
-		};
-		5569D0F11A75CCFF00C6553E /* Development */ = {
+		5569D0F11A75CCFF00C6553E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -1856,9 +1834,9 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		5569D0F21A75CCFF00C6553E /* Deployment */ = {
+		5569D0F21A75CCFF00C6553E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -1901,7 +1879,7 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		5569D0F31A75CCFF00C6553E /* Linked with Symbols */ = {
 			isa = XCBuildConfiguration;
@@ -1945,48 +1923,7 @@
 			};
 			name = "Linked with Symbols";
 		};
-		5569D0F41A75CCFF00C6553E /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 60;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder,
-					/Users/fspeirs/Library/Frameworks,
-					/Users/fspeirs/Desktop,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter,
-					"/Users/fspeirs/Coding/Frameworks/growl/growl-0.6.1/build",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/Xjournal_Prefix.pch;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = src/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					GrowlAppBridge,
-				);
-				PRODUCT_NAME = Xjournal;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Default;
-		};
-		5569D0F51A75CCFF00C6553E /* Development */ = {
+		5569D0F51A75CCFF00C6553E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -2018,9 +1955,9 @@
 				);
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		5569D0F61A75CCFF00C6553E /* Deployment */ = {
+		5569D0F61A75CCFF00C6553E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -2050,7 +1987,7 @@
 				);
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		5569D0F71A75CCFF00C6553E /* Linked with Symbols */ = {
 			isa = XCBuildConfiguration;
@@ -2079,67 +2016,38 @@
 			};
 			name = "Linked with Symbols";
 		};
-		5569D0F81A75CCFF00C6553E /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DiskImageProduct = "$(PROJECT_NAME).app";
-				DiskImageSizeInMB = 10;
-				DiskImageVolumeName = "$(PROJECT_NAME)";
-				DiskImageWindowBackgroundBlue = 1.0;
-				DiskImageWindowBackgroundGreen = 1.0;
-				DiskImageWindowBackgroundRed = 1.0;
-				DiskImageWindowMaxX = 500;
-				DiskImageWindowMaxY = 300;
-				DiskImageWindowMinX = 100;
-				DiskImageWindowMinY = 100;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "Disk Image";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		5569D1231A75CD0000C6553E /* Build configuration list for PBXProject "Xjournal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5569D0ED1A75CCFF00C6553E /* Development */,
-				5569D0EE1A75CCFF00C6553E /* Deployment */,
+				5569D0ED1A75CCFF00C6553E /* Debug */,
+				5569D0EE1A75CCFF00C6553E /* Release */,
 				5569D0EF1A75CCFF00C6553E /* Linked with Symbols */,
-				5569D0F01A75CCFF00C6553E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		5569D1241A75CD0000C6553E /* Build configuration list for PBXNativeTarget "Xjournal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5569D0F11A75CCFF00C6553E /* Development */,
-				5569D0F21A75CCFF00C6553E /* Deployment */,
+				5569D0F11A75CCFF00C6553E /* Debug */,
+				5569D0F21A75CCFF00C6553E /* Release */,
 				5569D0F31A75CCFF00C6553E /* Linked with Symbols */,
-				5569D0F41A75CCFF00C6553E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		5569D1251A75CD0000C6553E /* Build configuration list for PBXAggregateTarget "Disk Image" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5569D0F51A75CCFF00C6553E /* Development */,
-				5569D0F61A75CCFF00C6553E /* Deployment */,
+				5569D0F51A75CCFF00C6553E /* Debug */,
+				5569D0F61A75CCFF00C6553E /* Release */,
 				5569D0F71A75CCFF00C6553E /* Linked with Symbols */,
-				5569D0F81A75CCFF00C6553E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

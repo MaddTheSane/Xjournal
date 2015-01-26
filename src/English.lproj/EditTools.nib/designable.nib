@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="XJEditToolsController">
+            <connections>
+                <outlet property="window" destination="5" id="12"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Edit Tools" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Panel" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="853" y="404" width="122" height="202"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <view key="contentView" id="6">
+                <rect key="frame" x="1" y="1" width="122" height="202"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button id="7">
+                        <rect key="frame" x="0.0" y="130" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Bold" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="32">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertBold:" target="-1" id="13"/>
+                        </connections>
+                    </button>
+                    <button id="8">
+                        <rect key="frame" x="0.0" y="110" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Italic" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="33">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertItalic:" target="-1" id="14"/>
+                        </connections>
+                    </button>
+                    <button id="9">
+                        <rect key="frame" x="0.0" y="90" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Underline" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="34">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertUnderline:" target="-1" id="15"/>
+                        </connections>
+                    </button>
+                    <button id="10">
+                        <rect key="frame" x="0.0" y="70" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Blockquote" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="35">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertBlockquote:" target="-1" id="16"/>
+                        </connections>
+                    </button>
+                    <button id="17">
+                        <rect key="frame" x="0.0" y="181" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Image" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="36">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertImage:" target="-1" id="19"/>
+                        </connections>
+                    </button>
+                    <button id="20">
+                        <rect key="frame" x="0.0" y="161" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Link" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="37">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertLink:" target="-1" id="22"/>
+                        </connections>
+                    </button>
+                    <button id="23">
+                        <rect key="frame" x="0.0" y="-1" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Markdown" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="38">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertLink:" target="-1" id="24"/>
+                        </connections>
+                    </button>
+                    <button id="25">
+                        <rect key="frame" x="0.0" y="50" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Computer Code" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="39">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertCode:" target="-1" id="29"/>
+                        </connections>
+                    </button>
+                    <button id="27">
+                        <rect key="frame" x="0.0" y="30" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="square" title="Teletype Text" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="40">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="insertTT:" target="-1" id="30"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+        </window>
+    </objects>
+</document>
