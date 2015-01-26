@@ -9,7 +9,7 @@
 #import "XJSafariBookmarkParser.h"
 #import <AddressBook/AddressBook.h>
 
-@interface XJSafariBookmarkParser (PrivateAPI)
+@interface XJSafariBookmarkParser ()
 - (void)parseAddressBookIntoFolder: (XJBookmarkFolder *)root;
 - (void)parseDict:(NSDictionary *)dict withRootFolder: (XJBookmarkFolder *)root;
 - (void)parseList:(NSDictionary *)dict withRootFolder: (XJBookmarkFolder *)root;
@@ -46,9 +46,7 @@
 {
     return rootFolder;
 }
-@end
 
-@implementation XJSafariBookmarkParser (PrivateAPI)
 /*
  * Reads all the URLs from Address Book and makes them children
  * of the given XJBookmarkFolder
@@ -173,12 +171,12 @@
 // ----------------------------------------------------------------------------------------
 // OutlineView Data Source
 // ----------------------------------------------------------------------------------------
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
     if(item == nil)
         return [rootFolder childAtIndex: index];
     else {
-        return [item childAtIndex: index];
+        return [(XJBookmarkFolder*)item childAtIndex: index];
     }
 }
 
@@ -191,7 +189,7 @@
     }
 }
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if(item == nil) {
         return [rootFolder numberOfChildren];
@@ -210,7 +208,7 @@
             return [[item webAddress] description];
         
         else if([item isKindOfClass: [XJBookmarkFolder class]])
-            return [NSString stringWithFormat: @"%u items", [item numberOfChildren]];
+            return [NSString stringWithFormat: @"%ld items", (long)[item numberOfChildren]];
     }
     return @"";
 }
@@ -224,7 +222,7 @@
     [pb declareTypes:[NSArray arrayWithObjects: NSStringPboardType, nil] owner:self];
     
     while(item = [enumer nextObject]) {
-        BOOL optKeyDown = ([[NSApp currentEvent] modifierFlags] && NSAlternateKeyMask);
+        BOOL optKeyDown = ([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask);
         NSLog(@"option is down: %d", optKeyDown);
         if(!optKeyDown)
             dragString = [NSString stringWithFormat: @"%@ %@", dragString, [[item webAddress] description]];

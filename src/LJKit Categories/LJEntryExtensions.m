@@ -60,7 +60,7 @@
     [dictionary setObject: [[self journal] name] forKey: kJournalNameKey];
 
     // Encode security mode
-    if([self securityMode] != LJPublicSecurityMode) {
+    if([self securityMode] != LJSecurityModePrivate) {
         [dictionary setObject: [NSNumber numberWithInt: [self securityMode]]
 					   forKey: kSecurityModeKey];
         [dictionary setObject: [NSNumber numberWithInt: [self groupsAllowedAccessMask]]
@@ -118,7 +118,7 @@
         [self setJournal: [[[XJAccountManager defaultManager] defaultAccount] defaultJournal]];
 
     [self setSecurityMode: [[dict objectForKey: kSecurityModeKey] intValue]];
-    if([self securityMode] != LJPublicSecurityMode)
+    if([self securityMode] != LJSecurityModePrivate)
         [self setGroupsAllowedAccessMask: [[dict objectForKey: kGroupAllowedMaskKey] intValue]];
 
     // Decode poster user name

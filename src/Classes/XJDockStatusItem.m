@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
-@interface XJDockStatusItem (private)
+@interface XJDockStatusItem ()
 + (void)registerItem:(XJDockStatusItem *)item;
 + (void)unregisterItem:(XJDockStatusItem *)item;
 + (void)redisplay;
@@ -18,6 +18,7 @@
 @end
 
 @implementation XJDockStatusItem
+@synthesize count;
 
 static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundImage;
 
@@ -99,10 +100,6 @@ static NSImage *leftBackgroundImage, *centerBackgroundImage, *rightBackgroundIma
     return isHidden;
 }
 
-@end
-
-@implementation XJDockStatusItem (private)
-
 static NSMutableArray *dockStatusItems;
 
 + (void)registerItem:(XJDockStatusItem *)item;
@@ -115,7 +112,7 @@ static NSMutableArray *dockStatusItems;
 
 + (void)unregisterItem:(XJDockStatusItem *)item;
 {
-    unsigned int index;
+    NSUInteger index;
 
     index = [dockStatusItems count];
     while (index--) {
@@ -130,7 +127,7 @@ static NSMutableArray *dockStatusItems;
 + (void)redisplay;
 {
     NSImage *applicationIcon, *bufferImage;
-    unsigned int index;
+    NSUInteger index;
 
     applicationIcon = [NSImage imageNamed:@"NSApplicationIcon"];
 

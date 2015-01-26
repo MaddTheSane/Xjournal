@@ -11,7 +11,7 @@
 
 @class XJMetaLJGroup;
 
-@interface MetaItemArrayController : NSArrayController {
+@interface MetaItemArrayController : NSArrayController <NSTableViewDelegate, NSTableViewDataSource> {
 	XJMetaLJGroup *allFriendsGroup;
 	LJAccount *account;
 	NSIndexSet *selectionIndexes;

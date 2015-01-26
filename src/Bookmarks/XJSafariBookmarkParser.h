@@ -14,7 +14,7 @@
 #import "XJBookmarkFolder.h"
 #import "XJBookmarkItem.h"
 
-@interface XJSafariBookmarkParser : NSObject {
+@interface XJSafariBookmarkParser : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate> {
     XJBookmarkFolder *rootFolder;
 }
 

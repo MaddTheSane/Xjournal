@@ -15,11 +15,11 @@
 
 - (id)transformedValue:(id)value {
 	switch([value intValue]) {
-		case LJIncomingFriendship:
+		case LJFriendshipIncoming:
 			return @"Incoming";
-		case LJMutualFriendship:
+		case LJFriendshipMutual:
 			return @"Mutual";
-		case LJOutgoingFriendship:
+		case LJFriendshipOutgoing:
 			return @"Outgoing";
 		default:
 			return @"Unknown";

@@ -17,8 +17,8 @@
 - (id)initWithTitle:(NSString *)aTitle;
 
 - (BOOL)hasChildren;
-- (int)numberOfChildren;
-- (XJBookmarkRoot *)childAtIndex:(int)idx;
+- (NSInteger)numberOfChildren;
+- (XJBookmarkRoot *)childAtIndex:(NSInteger)idx;
 
 - (void)addChild: (XJBookmarkRoot *)newChild;  // Retains the child
 @end

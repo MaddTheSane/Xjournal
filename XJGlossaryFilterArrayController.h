@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface XJGlossaryFilterArrayController : NSArrayController {
+@interface XJGlossaryFilterArrayController : NSArrayController <NSTableViewDataSource, NSTableViewDelegate> {
     NSString *searchString;
 	id newObj;
 	
@@ -17,12 +17,11 @@
 }
 
 - (void)search:(id)sender;
-- (NSString *)searchString;
-- (void)setSearchString:(NSString *)newSearchString;
+@property (copy) NSString *searchString;
 
 
 - (NSIndexSet *)indexSetFromRows:(NSArray *)rows;
-- (int)rowsAboveRow:(int)row inIndexSet:(NSIndexSet *)indexSet;
+- (NSInteger)rowsAboveRow:(NSInteger)row inIndexSet:(NSIndexSet *)indexSet;
 -(void) moveObjectsInArrangedObjectsFromIndexes:(NSIndexSet*)indexSet
-										toIndex:(unsigned int)insertIndex;
+										toIndex:(NSUInteger)insertIndex;
 @end

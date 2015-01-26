@@ -260,7 +260,7 @@ static CCFSoftwareUpdate *singleton;
     NSString *AltButton = NSLocalizedString(@"Read Release Notes", @"");
     NSString *OtherButton = NSLocalizedString(@"Check Later", @"");
     
-    int result = NSRunInformationalAlertPanel(title, message, OKButton, AltButton, OtherButton);
+    NSInteger result = NSRunInformationalAlertPanel(title, message, OKButton, AltButton, OtherButton);
     
     switch(result) {
         case NSAlertDefaultReturn:
@@ -297,8 +297,8 @@ static CCFSoftwareUpdate *singleton;
      work out the difference from now, and if it's positive we create a timer
      to fire when that time comes.
      */
-    int checkFrequency = [[NSUserDefaults standardUserDefaults] integerForKey: @"CCFSoftwareUpdateInterval"];
-    int offset = 0;
+    NSInteger checkFrequency = [[NSUserDefaults standardUserDefaults] integerForKey: @"CCFSoftwareUpdateInterval"];
+    NSInteger offset = 0;
     
     switch (checkFrequency) {
         case 0:

@@ -33,11 +33,10 @@
 - (NSMutableDictionary *)passwordCache;
 - (void)setPasswordCache:(NSMutableDictionary *)aPasswordCache;
 
-- (NSMutableArray *)accounts;
-- (void)setAccounts:(NSMutableArray *)anAccounts;
+@property (retain) NSMutableArray *accounts;
 	///////  accounts  ///////
 
-- (unsigned int)countOfAccounts;
+- (NSUInteger)countOfAccounts;
 - (id)objectInAccountsAtIndex:(unsigned int)index;
 - (void)insertObject:(id)anObject inAccountsAtIndex:(unsigned int)index;
 - (void)removeObjectFromAccountsAtIndex:(unsigned int)index;

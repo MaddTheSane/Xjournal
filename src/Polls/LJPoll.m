@@ -33,11 +33,7 @@
     [super dealloc];
 }
 
-- (NSString *)name { return name; }
-- (void)setName: (NSString *)newName
-{
-    name = [newName copy];
-}
+@synthesize name;
 
 - (int)votingPermissions { return whoVote; }
 - (void)setVotingPermissions: (int)newPerms { whoVote = newPerms; }
@@ -63,29 +59,29 @@
 
 ///////  questions  ///////
 
-- (unsigned int)countOfQuestions 
+- (NSUInteger)countOfQuestions
 {
     return [[self questions] count];
 }
 
-- (id)objectInQuestionsAtIndex:(unsigned int)index 
+- (id)objectInQuestionsAtIndex:(NSUInteger)index
 {
     return [[self questions] objectAtIndex:index];
 }
 
-- (void)insertObject:(id)anObject inQuestionsAtIndex:(unsigned int)index 
+- (void)insertObject:(id)anObject inQuestionsAtIndex:(NSUInteger)index
 {
     [[self questions] insertObject:anObject atIndex:index];
 }
 
-- (void)removeObjectFromQuestionsAtIndex:(unsigned int)index 
+- (void)removeObjectFromQuestionsAtIndex:(NSUInteger)index
 {
     [[self questions] removeObjectAtIndex:index];
 }
 
-- (void)replaceObjectInQuestionsAtIndex:(unsigned int)index withObject:(id)anObject 
+- (void)replaceObjectInQuestionsAtIndex:(NSUInteger)index withObject:(id)anObject
 {
-    [[self questions] replaceObjectAtIndex:index withObject:anObject];
+	[questions replaceObjectAtIndex:index withObject:anObject];
 }
 - (NSString *)htmlRepresentation
 {

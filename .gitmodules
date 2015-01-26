@@ -1,0 +1,3 @@
+[submodule "Vendor/LJKit"]
+	path = Vendor/LJKit
+	url = https://github.com/MaddTheSane/LJKit.git

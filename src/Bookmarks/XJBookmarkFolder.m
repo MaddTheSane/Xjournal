@@ -37,12 +37,12 @@
     return [children count] > 0;
 }
 
-- (int)numberOfChildren
+- (NSInteger)numberOfChildren
 {
     return [children count];
 }
 
-- (XJBookmarkRoot *)childAtIndex:(int)idx
+- (XJBookmarkRoot *)childAtIndex:(NSInteger)idx
 {
     return [children objectAtIndex: idx];
 }
@@ -55,6 +55,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat: @"XJBookmarkFolder %@ (%u)", [self title], [self numberOfChildren]];
+    return [NSString stringWithFormat: @"XJBookmarkFolder %@ (%ld)", [self title], (long)[self numberOfChildren]];
 }
 @end

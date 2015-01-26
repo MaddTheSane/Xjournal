@@ -18,7 +18,7 @@ NSString *DroppableRowType = @"XJFriendRowsType";
 
 - (NSDragOperation)tableView:(NSTableView*)tv
 				validateDrop:(id <NSDraggingInfo>)info
-				 proposedRow:(int)row
+				 proposedRow:(NSInteger)row
 	   proposedDropOperation:(NSTableViewDropOperation)op
 {
     
@@ -36,7 +36,7 @@ NSString *DroppableRowType = @"XJFriendRowsType";
 
 - (BOOL)tableView:(NSTableView*)tv
 	   acceptDrop:(id <NSDraggingInfo>)info
-			  row:(int)row
+			  row:(NSInteger)row
 	dropOperation:(NSTableViewDropOperation)op
 {
     if (row < 1)
@@ -49,7 +49,7 @@ NSString *DroppableRowType = @"XJFriendRowsType";
 	
 	if (newRows)
 	{
-		NSLog(@"Got %d dropped rows: %@", [newRows count], [newRows description]);
+		NSLog(@"Got %lu dropped rows: %@", (unsigned long)[newRows count], [newRows description]);
 		if([[self arrangedObjects] count] > row) {
 			LJGroup *group = [[self arrangedObjects] objectAtIndex: row];
 			NSLog(@"Dropped on group %@", [group name]);
@@ -61,7 +61,7 @@ NSString *DroppableRowType = @"XJFriendRowsType";
 				[group addFriend: fr];
 			}
 			
-			NSLog([[group memberArray] description]);
+			NSLog(@"%@", [[group memberArray] description]);
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName: @"XJGroupsChangedNotification"
 																object: group];

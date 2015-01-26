@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -141,10 +141,12 @@
 		1BF27ED904B02A7900121863 /* userinfo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E9704B02A7900121863 /* userinfo.gif */; };
 		1BF27EDB04B02A7900121863 /* XJCheckFriendsClient.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E9904B02A7900121863 /* XJCheckFriendsClient.tiff */; };
 		1BF27EDC04B02A7900121863 /* Xjournal.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BF27E9A04B02A7900121863 /* Xjournal.icns */; };
+		5515D4611A75E641001E6360 /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5515D45E1A75E623001E6360 /* LJKit.framework */; };
+		5515D4621A75E641001E6360 /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5515D45E1A75E623001E6360 /* LJKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55D7E0A11A75D1390028F08E /* CommunitySheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD8A2E04B01916003882CD /* CommunitySheet.nib */; };
 		55D7E0A21A75D1890028F08E /* Poll2.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5072960738521F009BA1D9 /* Poll2.nib */; };
 		5F0680E707FB420B00B9806F /* DisclosableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; };
-		5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; };
+		5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F0680E607FB420B00B9806F /* DisclosableView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F071A0605DB8A34003058D3 /* GenPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F071A0505DB8A34003058D3 /* GenPreferences.tiff */; };
 		5F0C941906BC04DA0082A48B /* CreateDiskImage.sh in ShellScript */ = {isa = PBXBuildFile; fileRef = 5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */; };
 		5F3CA82B0714A87500245A7F /* FriendsFilterArrayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F3CA8290714A87500245A7F /* FriendsFilterArrayController.h */; };
@@ -174,7 +176,6 @@
 		5F506E6D073707D5009BA1D9 /* XJDockStatusItemLeft.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F506E6A073707D5009BA1D9 /* XJDockStatusItemLeft.tiff */; };
 		5F506E6E073707D5009BA1D9 /* XJDockStatusItemRight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F506E6B073707D5009BA1D9 /* XJDockStatusItemRight.tiff */; };
 		5F506EAB07370915009BA1D9 /* usericon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5F506EAA07370915009BA1D9 /* usericon.tiff */; };
-		5F548C6A07133C3C00515272 /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F548C6907133C3C00515272 /* LJKit.framework */; };
 		5F562CBA06B99296004629AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F562CB806B99296004629AE /* Localizable.strings */; };
 		5F5C6F1707659881007D0230 /* Markdown.pl in Resources */ = {isa = PBXBuildFile; fileRef = 5F5C6F1607659881007D0230 /* Markdown.pl */; };
 		5F62ABE7084B414000F61290 /* XJExportController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F62ABE2084B414000F61290 /* XJExportController.h */; };
@@ -183,8 +184,8 @@
 		5F62ABEA084B414000F61290 /* XJExportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F62ABE5084B414000F61290 /* XJExportManager.m */; };
 		5F62ABEB084B414000F61290 /* XJExportPluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F62ABE6084B414000F61290 /* XJExportPluginProtocol.h */; };
 		5F62AC40084B50A600F61290 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F62AC3F084B50A600F61290 /* Growl.framework */; };
-		5F62AC55084B50AE00F61290 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F62AC3F084B50A600F61290 /* Growl.framework */; };
-		5F62AD47084B5E0200F61290 /* XjournalImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F62AD3A084B5D8000F61290 /* XjournalImporter.mdimporter */; };
+		5F62AC55084B50AE00F61290 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F62AC3F084B50A600F61290 /* Growl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F62AD47084B5E0200F61290 /* XjournalImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F62AD3A084B5D8000F61290 /* XjournalImporter.mdimporter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F64FF390713DC660036D5BF /* XJRoundedTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F64FF370713DC660036D5BF /* XJRoundedTableCell.h */; };
 		5F64FF3A0713DC660036D5BF /* XJRoundedTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F64FF380713DC660036D5BF /* XJRoundedTableCell.m */; };
 		5F6899520742C41C00DA7BDF /* XJGroupToCheckfriendsAccessVT.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F6899500742C41C00DA7BDF /* XJGroupToCheckfriendsAccessVT.h */; };
@@ -202,7 +203,7 @@
 		5F9697B505D930F20026F31C /* XJDonationWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F9697B305D930F20026F31C /* XJDonationWindowController.h */; };
 		5F9697B605D930F20026F31C /* XJDonationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9697B405D930F20026F31C /* XJDonationWindowController.m */; };
 		5F979D5A05B990300082C2C7 /* AGRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F979D5505B990300082C2C7 /* AGRegex.framework */; };
-		5F979E8705B990420082C2C7 /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F979D5505B990300082C2C7 /* AGRegex.framework */; };
+		5F979E8705B990420082C2C7 /* AGRegex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F979D5505B990300082C2C7 /* AGRegex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FB5980605EA96A100B78E38 /* ImageResource.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FB5980505EA96A100B78E38 /* ImageResource.png */; };
 		5FC323BC0764E19F00AF0C49 /* XJPollEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD89A404B0189F003882CD /* XJPollEditorController.m */; };
 		5FC323BD0764E1A000AF0C49 /* XJPollEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD89A304B0189F003882CD /* XJPollEditorController.h */; };
@@ -239,9 +240,8 @@
 		5FD8A710072530CD00843532 /* PostToWeblog.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5FD8A70F072530CD00843532 /* PostToWeblog.tif */; };
 		5FD8A730072531EE00843532 /* XJSyndicationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FD8A72E072531EE00843532 /* XJSyndicationData.h */; };
 		5FD8A731072531EE00843532 /* XJSyndicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8A72F072531EE00843532 /* XJSyndicationData.m */; };
-		5FE0BAB60727ACC8005E402E /* LJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F548C6907133C3C00515272 /* LJKit.framework */; };
 		5FE8A4690805C6C900F85E06 /* ILCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */; };
-		5FE8A4700805C74400F85E06 /* ILCrashReporter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */; };
+		5FE8A4700805C74400F85E06 /* ILCrashReporter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FEBF27A07333B9100D4ED10 /* NSString+Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FEBF27807333B9100D4ED10 /* NSString+Script.h */; };
 		5FEBF27B07333B9100D4ED10 /* NSString+Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF27907333B9100D4ED10 /* NSString+Script.m */; };
 		5FEBF32C0734032F00D4ED10 /* Scripts.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5FEBF32A0734032F00D4ED10 /* Scripts.nib */; };
@@ -263,6 +263,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5515D45D1A75E623001E6360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5515D4581A75E623001E6360 /* LJKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC72DB1C058B2AFA00784C4A;
+			remoteInfo = LJKit;
+		};
+		5515D45F1A75E623001E6360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5515D4581A75E623001E6360 /* LJKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC72DCA3058B315E00784C4A;
+			remoteInfo = Documentation;
+		};
+		5515D4631A75E641001E6360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5515D4581A75E623001E6360 /* LJKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC72DAED058B2AFA00784C4A;
+			remoteInfo = LJKit;
+		};
 		5F62AD3B084B5D8000F61290 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F62AD38084B5D8000F61290 /* XjournalImporter.xcode */;
@@ -308,9 +329,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5F62AC55084B50AE00F61290 /* Growl.framework in CopyFiles */,
+				5515D4621A75E641001E6360 /* LJKit.framework in CopyFiles */,
 				5FE8A4700805C74400F85E06 /* ILCrashReporter.framework in CopyFiles */,
 				5F0680F407FB421300B9806F /* DisclosableView.framework in CopyFiles */,
-				5FE0BAB60727ACC8005E402E /* LJKit.framework in CopyFiles */,
 				5F979E8705B990420082C2C7 /* AGRegex.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +493,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Xjournal_Prefix.pch; path = src/Xjournal_Prefix.pch; sourceTree = "<group>"; };
+		5515D4581A75E623001E6360 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = Vendor/LJKit/LJKit.xcodeproj; sourceTree = "<group>"; };
 		5F0680E607FB420B00B9806F /* DisclosableView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DisclosableView.framework; path = /Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build/DisclosableView.framework; sourceTree = "<absolute>"; };
 		5F071A0505DB8A34003058D3 /* GenPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = GenPreferences.tiff; path = src/Art/GenPreferences.tiff; sourceTree = "<group>"; };
 		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
@@ -505,8 +527,7 @@
 		5F5072970738521F009BA1D9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = src/English.lproj/Poll2.nib; sourceTree = "<group>"; };
 		5F50729907385366009BA1D9 /* XJPollController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XJPollController.h; path = src/WindowControllers/XJPollController.h; sourceTree = SOURCE_ROOT; };
 		5F50729A07385366009BA1D9 /* XJPollController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XJPollController.m; path = src/WindowControllers/XJPollController.m; sourceTree = SOURCE_ROOT; };
-		5F548C6907133C3C00515272 /* LJKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LJKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F562CB906B99296004629AE /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = src/English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5F562CB906B99296004629AE /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = src/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5F5C6F1607659881007D0230 /* Markdown.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Markdown.pl; sourceTree = "<group>"; };
 		5F62ABE2084B414000F61290 /* XJExportController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = XJExportController.h; sourceTree = "<group>"; };
 		5F62ABE3084B414000F61290 /* XJExportController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = XJExportController.m; sourceTree = "<group>"; };
@@ -595,12 +616,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+				5515D4611A75E641001E6360 /* LJKit.framework in Frameworks */,
 				1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */,
 				1BBD8BF404B01A77003882CD /* Carbon.framework in Frameworks */,
 				1BBD8C8D04B01A85003882CD /* SystemConfiguration.framework in Frameworks */,
 				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
 				5F979D5A05B990300082C2C7 /* AGRegex.framework in Frameworks */,
-				5F548C6A07133C3C00515272 /* LJKit.framework in Frameworks */,
 				5F0680E707FB420B00B9806F /* DisclosableView.framework in Frameworks */,
 				5FE8A4690805C6C900F85E06 /* ILCrashReporter.framework in Frameworks */,
 				5F62AC40084B50A600F61290 /* Growl.framework in Frameworks */,
@@ -616,7 +637,6 @@
 				5F62AC3F084B50A600F61290 /* Growl.framework */,
 				5FE8A4680805C6C900F85E06 /* ILCrashReporter.framework */,
 				5F0680E607FB420B00B9806F /* DisclosableView.framework */,
-				5F548C6907133C3C00515272 /* LJKit.framework */,
 				5F979D5505B990300082C2C7 /* AGRegex.framework */,
 				1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */,
 				1BBD8BF304B01A77003882CD /* Carbon.framework */,
@@ -870,6 +890,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Xjournal */ = {
 			isa = PBXGroup;
 			children = (
+				5515D4571A75E60B001E6360 /* Vendors */,
 				5F62AD38084B5D8000F61290 /* XjournalImporter.xcode */,
 				5FFD4AF60768E00800EB1EC6 /* Plugins */,
 				5FC324A9076507DF00AF0C49 /* HTML Tools */,
@@ -931,6 +952,23 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5515D4571A75E60B001E6360 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				5515D4581A75E623001E6360 /* LJKit.xcodeproj */,
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
+		5515D4591A75E623001E6360 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5515D45E1A75E623001E6360 /* LJKit.framework */,
+				5515D4601A75E623001E6360 /* LJKitDocumentation */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5F62AD39084B5D8000F61290 /* Products */ = {
@@ -1239,6 +1277,7 @@
 			);
 			dependencies = (
 				5F62AD3F084B5D8E00F61290 /* PBXTargetDependency */,
+				5515D4641A75E641001E6360 /* PBXTargetDependency */,
 			);
 			name = Xjournal;
 			productInstallPath = "$(HOME)/Applications";
@@ -1252,9 +1291,10 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 5569D1231A75CD0000C6553E /* Build configuration list for PBXProject "Xjournal" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1266,6 +1306,10 @@
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Xjournal */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 5515D4591A75E623001E6360 /* Products */;
+					ProjectRef = 5515D4581A75E623001E6360 /* LJKit.xcodeproj */;
+				},
 				{
 					ProductGroup = 5FFD4AFA0768E00F00EB1EC6 /* Products */;
 					ProjectRef = 5FFD4AF90768E00F00EB1EC6 /* XJHTMLExporter.xcode */;
@@ -1288,6 +1332,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5515D45E1A75E623001E6360 /* LJKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LJKit.framework;
+			remoteRef = 5515D45D1A75E623001E6360 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5515D4601A75E623001E6360 /* LJKitDocumentation */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = LJKitDocumentation;
+			remoteRef = 5515D45F1A75E623001E6360 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5F62AD3A084B5D8000F61290 /* XjournalImporter.mdimporter */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -1518,6 +1576,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5515D4641A75E641001E6360 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LJKit;
+			targetProxy = 5515D4631A75E641001E6360 /* PBXContainerItemProxy */;
+		};
 		5F62AD3F084B5D8E00F61290 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "XjournalImporter (from XjournalImporter.xcode)";
@@ -1770,7 +1833,28 @@
 		5569D0ED1A75CCFF00C6553E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1778,6 +1862,24 @@
 		5569D0EE1A75CCFF00C6553E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
@@ -1786,6 +1888,24 @@
 		5569D0EF1A75CCFF00C6553E /* Linked with Symbols */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
@@ -1794,64 +1914,35 @@
 		5569D0F11A75CCFF00C6553E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 60;
-				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder,
-					/Users/fspeirs/Library/Frameworks,
-					/Users/fspeirs/Desktop,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter,
-					"/Users/fspeirs/Coding/Frameworks/growl/growl-0.6.1/build",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = src/Xjournal_Prefix.pch;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = src/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					GrowlAppBridge,
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Xjournal;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		5569D0F21A75CCFF00C6553E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 60;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DiskImageEncryption = 0;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder,
-					/Users/fspeirs/Library/Frameworks,
-					/Users/fspeirs/Desktop,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter,
-					"/Users/fspeirs/Coding/Frameworks/growl/growl-0.6.1/build",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1861,39 +1952,19 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = src/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					GrowlAppBridge,
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Xjournal;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		5569D0F31A75CCFF00C6553E /* Linked with Symbols */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 60;
 				DiskImageEncryption = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					/Users/fspeirs/Coding/Projects/Xjournal/BuildFolder,
-					/Users/fspeirs/Library/Frameworks,
-					/Users/fspeirs/Desktop,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/DisclosableView/build,
-					/Users/fspeirs/Coding/Projects/Xjournal/FrameworkSrc/ILCrashReporter,
-					"/Users/fspeirs/Coding/Frameworks/growl/growl-0.6.1/build",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -1903,23 +1974,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = src/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					GrowlAppBridge,
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Xjournal;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
 			name = "Linked with Symbols";
 		};

@@ -176,13 +176,13 @@ static NSMutableDictionary *userPics;
 
 // Default Security Setting
 // These return LJPublicSecurityMode, LJPrivateSecurityMode or LJFriendSecurityMode
-+ (int)defaultSecuritySetting
++ (LJSecurityMode)defaultSecuritySetting
 {
 	[self log];
     return [PREFS integerForKey:XJ_DEFAULT_SECURITY];
 }
 
-+ (void)setDefaultSecuritySetting:(int)newSetting
++ (void)setDefaultSecuritySetting:(LJSecurityMode)newSetting
 {
 	[self log];
     [PREFS setInteger: newSetting forKey: XJ_DEFAULT_SECURITY];

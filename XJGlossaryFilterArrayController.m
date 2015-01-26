@@ -11,6 +11,7 @@
 NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 
 @implementation XJGlossaryFilterArrayController
+@synthesize searchString;
 - (void)search:(id)sender
 {
     [self setSearchString:[sender stringValue]];
@@ -86,21 +87,6 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 }
 
 
-// - searchString:
-- (NSString *)searchString
-{
-	return searchString;
-}
-// - setSearchString:
-- (void)setSearchString:(NSString *)newSearchString
-{
-    if (searchString != newSearchString)
-	{
-        [searchString autorelease];
-        searchString = [newSearchString copy];
-    }
-}
-
 // -----------------
 // DND
 // -----------------
@@ -146,7 +132,7 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 
 - (NSDragOperation)tableView:(NSTableView*)tv
 				validateDrop:(id <NSDraggingInfo>)info
-				 proposedRow:(int)row
+				 proposedRow:(NSInteger)row
 	   proposedDropOperation:(NSTableViewDropOperation)op
 {
     
@@ -168,7 +154,7 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 
 - (BOOL)tableView:(NSTableView*)tv
 	   acceptDrop:(id <NSDraggingInfo>)info
-			  row:(int)row
+			  row:(NSInteger)row
 	dropOperation:(NSTableViewDropOperation)op
 {
     if (row < 0)
@@ -186,7 +172,7 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 		
 		// set selected rows to those that were just moved
 		// Need to work out what moved where to determine proper selection...
-		int rowsAbove = [self rowsAboveRow:row inIndexSet:indexSet];
+		NSInteger rowsAbove = [self rowsAboveRow:row inIndexSet:indexSet];
 		
 		NSRange range = NSMakeRange(row - rowsAbove, [indexSet count]);
 		indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -210,15 +196,15 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 
 
 -(void) moveObjectsInArrangedObjectsFromIndexes:(NSIndexSet*)indexSet
-										toIndex:(unsigned int)insertIndex
+										toIndex:(NSUInteger)insertIndex
 {
 	
     NSArray		*objects = [self arrangedObjects];
-	int			index = [indexSet lastIndex];
+	NSInteger	index = [indexSet lastIndex];
 	
-    int			aboveInsertIndexCount = 0;
+    NSInteger	aboveInsertIndexCount = 0;
     id			object;
-    int			removeIndex;
+    NSInteger			removeIndex;
 	
     while (NSNotFound != index)
 	{
@@ -253,10 +239,10 @@ NSString *MovedRowsType = @"MOVED_ROWS_TYPE";
 }
 
 
-- (int)rowsAboveRow:(int)row inIndexSet:(NSIndexSet *)indexSet
+- (NSInteger)rowsAboveRow:(NSInteger)row inIndexSet:(NSIndexSet *)indexSet
 {
-    unsigned currentIndex = [indexSet firstIndex];
-    int i = 0;
+    NSUInteger currentIndex = [indexSet firstIndex];
+    NSInteger i = 0;
     while (currentIndex != NSNotFound)
     {
 		if (currentIndex < row) { i++; }

@@ -10,7 +10,7 @@
 
 @class XJAccountManager, XJAccountDoesCheckFriendsVT;
 
-@interface XJPreferencesController : NSWindowController {
+@interface XJPreferencesController : NSWindowController <NSToolbarDelegate, NSTableViewDataSource, NSTableViewDelegate> {
 	NSView *currentView;
 	
 	XJAccountManager *accountManager;

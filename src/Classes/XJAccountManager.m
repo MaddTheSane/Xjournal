@@ -31,13 +31,14 @@
  
 static XJAccountManager *manager;
 
-@interface XJAccountManager (Private)
+@interface XJAccountManager ()
 - (void)gatherAccountsFromPreferences;
 - (void)logInAccount: (LJAccount *)acct;
 - (void)saveToPreferences;
 @end
 
 @implementation XJAccountManager
+@synthesize accounts;
 + (XJAccountManager *)defaultManager
 {
     if(!manager)
@@ -179,7 +180,7 @@ static XJAccountManager *manager;
 // ===========================================================
 ///////  accounts  ///////
 
-- (unsigned int)countOfAccounts 
+- (NSUInteger)countOfAccounts
 {
     return [[self accounts] count];
 }
@@ -249,9 +250,7 @@ static XJAccountManager *manager;
 - (LJCheckFriendsSession *)cfSessionForAccount: (LJAccount *)acct {
 	return [[self cfSessions] objectForKey: [acct username]];
 }
-@end
 
-@implementation XJAccountManager (Private)
 - (void)gatherAccountsFromPreferences {
 	NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
 	NSString *defaultUsername = [defs objectForKey: kDefaultAccountUsernameKey];

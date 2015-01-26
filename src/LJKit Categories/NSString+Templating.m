@@ -57,8 +57,8 @@ California 94305, USA.
 
 - (NSString *) stringByEscapingCharactersInSet: (NSCharacterSet *) set usingString: (NSString *) escapeString {
     NSMutableString *result = [[NSMutableString alloc] init];
-    int stringLength = [self length];
-    int currentPosition = 0;
+    NSUInteger stringLength = [self length];
+    NSUInteger currentPosition = 0;
     unichar currentChar;
     
     while (currentPosition < stringLength) {

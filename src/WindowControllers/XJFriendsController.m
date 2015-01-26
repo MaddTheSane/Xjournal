@@ -136,7 +136,7 @@
 // ----------------------------------------------------------------------------------------
 - (IBAction)addFriend:(id)sender
 {
-    if([friendsTable numberOfSelectedRows] == 1 && [[[friendsForSelectedGroupController selectedObjects] objectAtIndex:0] friendship] == LJIncomingFriendship )
+    if([friendsTable numberOfSelectedRows] == 1 && [[[friendsForSelectedGroupController selectedObjects] objectAtIndex:0] friendship] == LJFriendshipIncoming )
 		[friendField setStringValue: [[[friendsForSelectedGroupController selectedObjects] objectAtIndex:0] username]];
 	else
 		[friendField setStringValue: @""];
@@ -163,7 +163,7 @@
 }
 
 - (IBAction)deleteFriendButtonAction: (id)sender {
-	NSLog(@"Selected index: %d", [groupController selectionIndex]);
+	NSLog(@"Selected index: %lu", (unsigned long)[groupController selectionIndex]);
 	if([groupController selectionIndex] != 0) {
 		NSString *groupName = [[[groupController selectedObjects] objectAtIndex: 0] name];
 		NSString *msg = [NSString stringWithFormat: @"Do you want to remove the selected friends from your friends list, or simply remove them from the group \"%@\"?", groupName];
@@ -459,9 +459,9 @@
 // ----------------------------------------------------------------------------------------
 // Menu item stuff
 // ----------------------------------------------------------------------------------------
-- (BOOL)validateMenuItem: (id <NSMenuItem>)item
+- (BOOL)validateMenuItem: (NSMenuItem*)item
 {
-    int tag = [item tag];
+    NSInteger tag = [item tag];
 
     if(tag == 1) { // Delete friend
         return [self canDeleteFriend];

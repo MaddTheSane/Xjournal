@@ -196,7 +196,7 @@
 // =========================================================== 
 // Checkfriends table delegate
 // ===========================================================
-- (int)numberOfRowsInTableView:(NSTableView *)tableView {
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
 	if([[accountsArrayController selectedObjects] count] > 0) {
 		LJAccount *selectedAccount = [[accountsArrayController selectedObjects] objectAtIndex: 0];
 		return [[selectedAccount groupArray] count];
@@ -204,7 +204,7 @@
 	return 0;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	LJAccount *selectedAccount = [[accountsArrayController selectedObjects] objectAtIndex: 0];
 	LJGroup *group = [[selectedAccount groupArray] objectAtIndex: row];
 	
@@ -220,7 +220,7 @@
 }
 
 // optional
-- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	LJAccount *selectedAccount = [[accountsArrayController selectedObjects] objectAtIndex: 0];
 	LJGroup *group = [[selectedAccount groupArray] objectAtIndex: row];
 	
@@ -234,7 +234,7 @@
 - (void)tableView:(NSTableView *)aTableView 
   willDisplayCell:(id)aCell
    forTableColumn:(NSTableColumn *)aTableColumn 
-			  row:(int)rowIndex
+			  row:(NSInteger)rowIndex
 {
 	if([[aTableColumn identifier] isEqualToString: @"groupAccess"]) {
 		[aCell setEnabled: [checksAllOrGroupsMatrix selectedTag] != 0];

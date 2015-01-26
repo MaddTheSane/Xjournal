@@ -16,14 +16,14 @@
 @interface XJDockStatusItem : NSObject 
 {
     NSImage *icon;
-    unsigned int count;
+    NSUInteger count;
     BOOL isHidden;
 }
 
 - initWithIcon:(NSImage *)newIcon;
 
 // API
-- (void)setCount:(unsigned int)aCount;
+@property NSUInteger count;
 - (void)setNoCount;
 
 - (void)hide;

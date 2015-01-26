@@ -87,13 +87,13 @@ NSString *FriendRowsType = @"XJFriendRowsType";
 	else  if([[aTableColumn identifier] isEqualToString: @"relationship"]) {
 		[aCell setDrawsBackground: YES];
 		switch([friend friendship]) {
-			case LJMutualFriendship:
+			case LJFriendshipMutual:
 				[(NSTextFieldCell *)aCell setBackgroundColor: [NSColor colorWithCalibratedRed: 240.0/255.0 green: 255.0/255.0 blue: 240.0/255.0 alpha: 1.0]];
 				break;
-			case LJIncomingFriendship:
+			case LJFriendshipIncoming:
 				[(NSTextFieldCell *)aCell setBackgroundColor: [NSColor colorWithCalibratedRed: 205/255.0 green: 220/255.0 blue: 243/255.0 alpha: 1.0]];
 				break;
-			case LJOutgoingFriendship:
+			case LJFriendshipOutgoing:
 				[(NSTextFieldCell *)aCell setBackgroundColor: [NSColor colorWithCalibratedRed: 215/255.0 green: 180/255.0 blue: 229/255.0 alpha: 1.0]];
 				break;
 			default:

@@ -28,8 +28,7 @@ enum {
 }
 
 // Get and set the name of the poll
-- (NSString *)name;
-- (void)setName: (NSString *)newName;
+@property (copy) NSString *name;
 
 // Get and set the voting permissions, according to the constants above (LJPoll*Vote)
 - (int)votingPermissions;
@@ -43,11 +42,11 @@ enum {
 - (void)setQuestions:(NSMutableArray *)aQuestions;
 
 	///////  questions  ///////
-- (unsigned int)countOfQuestions;
-- (id)objectInQuestionsAtIndex:(unsigned int)index;
-- (void)insertObject:(id)anObject inQuestionsAtIndex:(unsigned int)index;
-- (void)removeObjectFromQuestionsAtIndex:(unsigned int)index;
-- (void)replaceObjectInQuestionsAtIndex:(unsigned int)index withObject:(id)anObject;
+- (NSUInteger)countOfQuestions;
+- (id)objectInQuestionsAtIndex:(NSUInteger)index;
+- (void)insertObject:(id)anObject inQuestionsAtIndex:(NSUInteger)index;
+- (void)removeObjectFromQuestionsAtIndex:(NSUInteger)index;
+- (void)replaceObjectInQuestionsAtIndex:(NSUInteger)index withObject:(id)anObject;
 
 /*
  Get the HTML representation of the entire poll.  This method

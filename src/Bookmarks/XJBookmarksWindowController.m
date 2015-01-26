@@ -74,7 +74,7 @@
 // ----------------------------------------------------------------------------------------
 // OutlineView Data Source - forwards most calls to the bookmark parser object.
 // ----------------------------------------------------------------------------------------
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
     return [parser outlineView: outlineView child: index ofItem: item];
 }
@@ -84,7 +84,7 @@
     return [parser outlineView: outlineView isItemExpandable: item];
 }
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     return [parser outlineView: outlineView numberOfChildrenOfItem: item];
 }

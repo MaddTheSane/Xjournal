@@ -133,8 +133,8 @@ FOUNDATION_EXPORT NSString * const XJRSSFormatStringPreference;
 
 // Default Security Setting
 // These return LJPublicSecurityMode, LJPrivateSecurityMode or LJFriendSecurityMode
-+ (int)defaultSecuritySetting;
-+ (void)setDefaultSecuritySetting:(int)newSetting;
++ (LJSecurityMode)defaultSecuritySetting;
++ (void)setDefaultSecuritySetting:(LJSecurityMode)newSetting;
 
 + (void)setPreferredWindowFont: (NSFont *)font;
 + (NSFont *)preferredWindowFont;
