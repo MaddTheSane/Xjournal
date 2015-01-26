@@ -24,8 +24,9 @@
 #import "XJFilePathToBaseNameValueTransformer.h"
 #import "XJDockStatusItem.h"
 #import "XJEditToolsController.h"
+#import "XJHistorySyncManager.h"
 
-#import <ILCrashReporter/ILCrashReporter.h>
+//#import <ILCrashReporter/ILCrashReporter.h>
  
 // Constant local strings
 #define LJ_LOGIN_MESSAGE NSLocalizedString(@"Message from LiveJournal.com", @"")
@@ -57,7 +58,7 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 @implementation XJAppDelegate
 + (void)initialize {
 	if([self isExpired]) {
-		int result = NSRunAlertPanel(@"Beta Version Expired",
+		NSInteger result = NSRunAlertPanel(@"Beta Version Expired",
 									 @"This beta version of Xjournal has expired.  Please visit the Xjournal home page to download a newer version.",
 									 @"Quit", @"Open Home Page", nil);
 		
@@ -69,9 +70,6 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 	}
 	else {
 		[XJPreferences installPreferences];
-		[[ILCrashReporter defaultReporter]
-	launchReporterForCompany:@"Fraser Speirs"
-				  reportAddr:@"fraser@speirs.org"];
 		
 		[XJGrowlManager defaultManager];
 	}
@@ -440,9 +438,9 @@ const AEKeyword NNWDataItemSourceFeedURL = 'furl';
 /*
  * Validation for some menu items, mostly to disable stuff when we're not logged in
  */
-- (BOOL)validateMenuItem:(id <NSMenuItem>)item
+- (BOOL)validateMenuItem:(NSMenuItem*)item
 {
-    int tag = [item tag];
+    NSInteger tag = [item tag];
     if(tag == kHistoryMenuTag) {
         // Must be logged in to use this menu items.
         return YES;

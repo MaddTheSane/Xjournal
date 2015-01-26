@@ -11,7 +11,7 @@
 
 static CCFSoftwareUpdate *singleton;
 
-@interface CCFSoftwareUpdate (PrivateAPI)
+@interface CCFSoftwareUpdate ()
 - (NSDictionary *)downloadPropertyList;
 - (BOOL)propertyListIsValidForCurrentBundle: (NSDictionary *)propList;
 - (NSComparisonResult)orderingAgainstCurrentBundle: (NSDictionary *)propList;
@@ -117,9 +117,7 @@ static CCFSoftwareUpdate *singleton;
     updateTimer = nil;
     [self runSoftwareUpdate: YES];
 }
-@end
 
-@implementation CCFSoftwareUpdate (PrivateAPI)
 - (NSDictionary *)downloadPropertyList
 {
     NSURL *plistURL = [NSURL URLWithString: [[self currentBundlePropertyList] objectForKey: @"CCFSoftwareUpdateURL"]];

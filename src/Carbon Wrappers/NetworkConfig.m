@@ -97,7 +97,7 @@
     NSArray *nonProxied = [dict objectForKey: @"ExceptionsList"];
     
     if(nonProxied != nil && [nonProxied count] > 0) {
-        int ct, idx;
+        NSInteger ct, idx;
 
         ct = [nonProxied count];
         for(idx = 0; idx < ct; idx++) {
@@ -122,7 +122,7 @@
     assert(sizeof(SCNetworkConnectionFlags) == sizeof(int));
 
     result = false;
-    if ( SCNetworkCheckReachabilityByName([host cString], &flags) ) {
+    if ( SCNetworkCheckReachabilityByName([host UTF8String], &flags) ) {
         result =    !(flags & kSCNetworkFlagsConnectionRequired)
         &&  (flags & kSCNetworkFlagsReachable);
     }
