@@ -18,10 +18,17 @@
 #define kHistoryID @"History"
 #define kWeblogsID @"Weblogs"
 #define kSWUpdateID @"SWUpdate"
+#define kNotificationsID @"NotificationCenter"
 
 // Almost all this code taken from http://www.cocoadev.com/index.pl?MultiPanePreferences
 
 @implementation XJPreferencesController
+@synthesize accountsView;
+@synthesize musicView;
+@synthesize friendsView;
+@synthesize historyView;
+@synthesize weblogsView;
+@synthesize softwareUpdateView;
 - (instancetype)init {
     if (self = [super initWithWindowNibName: @"Preferences"]) {
         
@@ -105,6 +112,16 @@
     [item setTarget:self];
     [item setAction:@selector(switchViews:)];
     items[kSWUpdateID] = item;
+    
+    item = [[NSToolbarItem alloc] initWithItemIdentifier:kNotificationsID];
+    item.paletteLabel = @"Notification Center";
+    item.label = @"Notifications";
+    item.toolTip = @"Configure what shows up in Notification Center";
+    //TODO: find image
+    //item.image;
+    item.target = self;
+    item.action = @selector(switchViews:);
+    items[kNotificationsID] = item;
 	
     //any other items you want to add, do so here.
     //after you are done, just do all the toolbar stuff.
@@ -175,6 +192,8 @@
 	else if([sender isEqualToString:kSWUpdateID]){
         //assign the temp pointer to the appearanceView we set up in IB.
         prefsView = softwareUpdateView;
+    } else if ([sender isEqualToString:kNotificationsID]) {
+        prefsView = _notificationsView;
     }
     
     //to stop flicker, we make a temp blank view.
@@ -209,7 +228,7 @@
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)theToolbar
 {
     //just return an array with all your items.
-    return @[kGeneralID, kFriendsID, kMusicID, kWeblogsID, kHistoryID, kSWUpdateID];
+    return @[kGeneralID, kFriendsID, kMusicID, kWeblogsID, kHistoryID, kSWUpdateID, kNotificationsID];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers: (NSToolbar *)toolbar

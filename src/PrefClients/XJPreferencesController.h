@@ -7,12 +7,6 @@
 {
 	NSMutableDictionary *items;
 	
-	IBOutlet NSView *accountsView;
-	IBOutlet NSView *musicView;
-	IBOutlet NSView *friendsView;
-	IBOutlet NSView *historyView;
-	IBOutlet NSView *weblogsView;
-	IBOutlet NSView *softwareUpdateView;
 	
 	IBOutlet NSTableView *checkFriendsGroupTable;
 	IBOutlet NSPopUpButton *soundSelection;
@@ -20,6 +14,13 @@
 	
 	IBOutlet SUUpdater *updater;
 }
+@property (weak) IBOutlet NSView *accountsView;
+@property (weak) IBOutlet NSView *musicView;
+@property (weak) IBOutlet NSView *friendsView;
+@property (weak) IBOutlet NSView *historyView;
+@property (weak) IBOutlet NSView *weblogsView;
+@property (weak) IBOutlet NSView *softwareUpdateView;
+@property (weak) IBOutlet NSView *notificationsView;
 
 - (void)switchViews:(NSToolbarItem *)item;
 - (IBAction)changeTextFont:(id)sender;
