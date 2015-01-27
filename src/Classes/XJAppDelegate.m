@@ -121,7 +121,7 @@
         [XJCheckFriendsSessionManager sharedManager]; // Initialise the shared session
 
         // Once accounts support other LJ services, we should move these reachability tests into the login method
-		BOOL shouldLogin = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldAutoLogin"] boolValue];
+		BOOL shouldLogin = [[NSUserDefaults standardUserDefaults] boolForKey: @"XJShouldAutoLogin"];
         if(shouldLogin && [NetworkConfig destinationIsReachable: @"www.livejournal.com"]) {
             @try {
 

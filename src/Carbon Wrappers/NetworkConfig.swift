@@ -8,6 +8,7 @@
 
 import Foundation
 import SystemConfiguration
+import SwiftAdditions
 
 @objc class NetworkConfig {
 	/// Convenience method that checks:
@@ -64,33 +65,33 @@ import SystemConfiguration
 		return httpProxyPort ?? 80
 	}
 	
+	private struct NetworkFlags : RawOptionSetType {
+		typealias RawValue = UInt32
+		private var value: UInt32 = 0
+		init(_ value: UInt32) { self.value = value }
+		init(rawValue value: UInt32) { self.value = value }
+		init(nilLiteral: ()) { self.value = 0 }
+		static var allZeros: NetworkFlags { return self(0) }
+		static func fromMask(raw: UInt32) -> NetworkFlags { return self(raw) }
+		var rawValue: UInt32 { return self.value }
+		
+		static var TransientConnection: NetworkFlags { return NetworkFlags(1 << 0) }
+		static var Reachable: NetworkFlags { return NetworkFlags(1 << 1) }
+		static var ConnectionRequired: NetworkFlags { return NetworkFlags(1 << 2) }
+		static var ConnectionAutomatic: NetworkFlags { return NetworkFlags(1 << 3) }
+		static var InterventionRequired: NetworkFlags { return NetworkFlags(1 << 4) }
+		static var IsLocalAddress: NetworkFlags { return NetworkFlags(1 << 16) }
+		static var IsDirect: NetworkFlags { return NetworkFlags(1 << 17) }
+	}
+	
 	@objc class func destinationIsReachable(host: String) -> Bool {
 		var	result = false
 		var	flags: SCNetworkConnectionFlags = 0
-		struct NetworkFlags : RawOptionSetType {
-			typealias RawValue = UInt32
-			private var value: UInt32 = 0
-			init(_ value: UInt32) { self.value = value }
-			init(rawValue value: UInt32) { self.value = value }
-			init(nilLiteral: ()) { self.value = 0 }
-			static var allZeros: NetworkFlags { return self(0) }
-			static func fromMask(raw: UInt32) -> NetworkFlags { return self(raw) }
-			var rawValue: UInt32 { return self.value }
-			
-			static var TransientConnection: NetworkFlags { return NetworkFlags(1 << 0) }
-			static var Reachable: NetworkFlags { return NetworkFlags(1 << 1) }
-			static var ConnectionRequired: NetworkFlags { return NetworkFlags(1 << 2) }
-			static var ConnectionAutomatic: NetworkFlags { return NetworkFlags(1 << 3) }
-			static var InterventionRequired: NetworkFlags { return NetworkFlags(1 << 4) }
-			static var IsLocalAddress: NetworkFlags { return NetworkFlags(1 << 16) }
-			static var IsDirect: NetworkFlags { return NetworkFlags(1 << 17) }
-		}
 		
-		var ok: Boolean = 0;
 		let target = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, host).takeRetainedValue()
-		ok = SCNetworkReachabilityGetFlags(target, &flags)
+		let ok = SCNetworkReachabilityGetFlags(target, &flags)
 		
-		if ok != 0 {
+		if ok {
 			let betterFlags = NetworkFlags(flags)
 			result = (!((betterFlags & .ConnectionRequired) == .ConnectionRequired)
 				&&  ((betterFlags & .Reachable) == .Reachable))
@@ -98,7 +99,6 @@ import SystemConfiguration
 		
 		return result
 	}
-
 }
 
 private var settingsDictionary: NSDictionary {
