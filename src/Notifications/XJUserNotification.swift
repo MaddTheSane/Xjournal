@@ -8,6 +8,11 @@
 
 import Cocoa
 
-class XJUserNotification: NSObject {
-
+class XJUserNotification: NSObject, NSUserNotificationCenterDelegate {
+    let notification = NSUserNotificationCenter.defaultUserNotificationCenter()
+    
+    override init() {
+        super.init()
+        notification.delegate = self
+    }
 }

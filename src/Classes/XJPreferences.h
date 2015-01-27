@@ -60,6 +60,10 @@
 #define kBookmarkWindowOpen @"XJBookmarkWindowIsOpen"
 #define kGlossaryWindowOpen @"XJGlossaryWindowIsOpen"
 
+// Keys for Notification Center
+#define XJNotificationEnabled @"XJNotificationEnabled"
+#define XJNotificationShowAlways @"XJNotificationsAlways"
+
 NSString *XJGetGlobalAppSupportDir();
 NSString *XJGetLocalAppSupportDir();
 

@@ -41,7 +41,10 @@
 
 + (void)initialize {
 	// Register user defaults
-	NSDictionary *defs = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"ApplicationDefaults" ofType: @"plist"]];
+	NSMutableDictionary *defs = [[NSMutableDictionary alloc] initWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"ApplicationDefaults" withExtension: @"plist"]];
+    defs[XJNotificationEnabled] = @YES;
+    defs[XJNotificationShowAlways] = @NO;
+    
 	// You have to do both of the following, apparently
 	// http://www.cocoabuilder.com/archive/message/cocoa/2004/4/27/105492
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: defs];
@@ -437,20 +440,21 @@
 /* Called from LJKit when the checked-for friends pages have been updated. */
 - (void)friendsUpdated:(NSNotification *)aNotification
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     // If the user wants a sound, play it.
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: CHECKFRIENDS_PLAY_SOUND] boolValue]) {
+    if([userDefaults boolForKey: CHECKFRIENDS_PLAY_SOUND]) {
 		NSString *path = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: CHECKFRIENDS_SELECTED_SOUND];
 		NSSound *snd = [[NSSound alloc] initWithContentsOfFile: path byReference: NO];
         if(snd) [snd play];
     }
 
     // If they want a dock icon, show it.
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldShowDockIcon"] boolValue]) {
+    if([userDefaults boolForKey: @"XJCheckFriendsShouldShowDockIcon"]) {
 		[self showDockBadge];
     }
 
     // If they want a dialog, show that too.
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJCheckFriendsShouldShowDialog"] boolValue]) {
+    if([userDefaults boolForKey: @"XJCheckFriendsShouldShowDialog"]) {
         friendsDialogIsShowing = YES;
         NSInteger result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
         friendsDialogIsShowing = NO;
@@ -463,12 +467,16 @@
 		[self hideDockBadge];
         [[XJCheckFriendsSessionManager sharedManager] startCheckingFriends];
     }
+    
+    if ([userDefaults boolForKey: XJNotificationEnabled]) {
+        //TODO: implement
+    }
 }
 
 /* Notifications about login beginning and ending */
 - (void)loginStarted:(NSNotification *)notification
 {
-     [loginPanel makeKeyAndOrderFront: self];
+    [loginPanel makeKeyAndOrderFront: self];
     [spinner setUsesThreadedAnimation: YES];
     [spinner startAnimation:self];
 }
