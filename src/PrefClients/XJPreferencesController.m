@@ -300,7 +300,12 @@
 
 - (void)buildSoundMenu
 {
-    NSArray *aSounds = [self sounds];
+    NSArray *aSounds = [[self sounds] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *str1 = [obj1 lastPathComponent];
+        NSString *str2 = [obj2 lastPathComponent];
+        
+        return [str1 localizedStandardCompare:str2];
+    }];
     NSMenu *menu = [[NSMenu alloc] init];
     
     for (NSString *path in aSounds) {
