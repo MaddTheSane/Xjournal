@@ -143,7 +143,7 @@ This subclass encapsulates the Radio, Checkbox and Drop-down question types.
 	
 	// MARK: - NSCoding
 	required init(coder aDecoder: NSCoder) {
-		answers = aDecoder.decodeObjectForKey(kMultipleOptionAnswerArray) as [String]
+		answers = aDecoder.decodeObjectForKey(kMultipleOptionAnswerArray) as? [String] ?? []
 		type = MultipleOption(rawValue: aDecoder.decodeIntegerForKey(kMultipleOptionType)) ?? .Radio
 		
 		super.init(coder: aDecoder)

@@ -36,7 +36,7 @@ import SwiftAdditions
 			return val
 		}
 		
-	return nil;
+		return nil;
 	}
 
 	/// Returns YES if the proxy should be used for the given URL.

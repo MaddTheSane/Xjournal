@@ -94,12 +94,10 @@ class LJPoll: NSObject {
 		removeObjects(inArray: &questions, atIndexes: idx)
 	}
 	
-	/**
- Get the HTML representation of the entire poll.  This method
- will gather the HTML representation of every question in the
- poll.  There is no need to manually gather the HTML for every
- question in the poll.
- */
+	/// Get the HTML representation of the entire poll.  This method
+	/// will gather the HTML representation of every question in the
+	/// poll.  There is no need to manually gather the HTML for every
+	/// question in the poll.
 	var htmlRepresentation: String {
 		var buf = "<lj-poll name=\"\(name)\""
 		buf += " whovote=\"\(votingPermissions.stringRepresentation)\""
