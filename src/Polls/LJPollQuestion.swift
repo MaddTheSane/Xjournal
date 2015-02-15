@@ -40,7 +40,7 @@ class LJPollQuestion: NSObject, NSSecureCoding {
 	}
 	
 	required init(coder aDecoder: NSCoder) {
-		question = aDecoder.decodeObjectForKey(kLJPollQuestionKey) as? NSString ?? "Question"
+		question = aDecoder.decodeObjectForKey(kLJPollQuestionKey) as? String ?? "Question"
 		super.init()
 	}
 	

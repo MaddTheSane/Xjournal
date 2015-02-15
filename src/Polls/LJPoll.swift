@@ -9,7 +9,12 @@
 import Foundation
 import SwiftAdditions
 
-class LJPoll: NSObject {
+private let pollNameKey = "Poll Name"
+private let pollVotingKey = "Voting Permissions"
+private let pollViewingKey = "Viewing Permissions"
+private let pollQuestionsKey = "Poll Questions"
+
+class LJPoll: NSObject, NSSecureCoding {
 	private var questions = [LJPollQuestion]()
 	/// Get and set the name of the poll
 	var name = "NewPoll"
@@ -54,6 +59,11 @@ class LJPoll: NSObject {
 		}
 	}
 
+	/// Default initializer
+	override init() {
+		super.init()
+	}
+	
 	/// How many questions in the poll?
 	var numberOfQuestions: Int {
 		return questions.count
@@ -71,8 +81,12 @@ class LJPoll: NSObject {
 	
 	/// Move a question from idx to newIdx
 	func moveQuestionAtIndex(idx: Int, toIndex newIdx: Int) {
-		if newIdx == idx {return}
-		if(newIdx < 0 || newIdx >= questions.count) {return}
+		if newIdx == idx {
+			return
+		}
+		if(newIdx < 0 || newIdx >= questions.count) {
+			return
+		}
 		
 		let obj = questions[idx]
 		questions.removeAtIndex(idx)
@@ -114,5 +128,25 @@ class LJPoll: NSObject {
 	
 	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
 		return NSSet(objects: "votingPermissions", "viewingPermissions", "name", "questions")
+	}
+	
+	class func supportsSecureCoding() -> Bool {
+		return true
+	}
+	
+	func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(name, forKey: pollNameKey)
+		aCoder.encodeObject(questions, forKey: pollQuestionsKey)
+		aCoder.encodeInteger(votingPermissions.rawValue, forKey: pollVotingKey)
+		aCoder.encodeInteger(viewingPermissions.rawValue, forKey: pollViewingKey)
+	}
+	
+	
+	required convenience init(coder aDecoder: NSCoder) {
+		self.init()
+		name = aDecoder.decodeObjectForKey(pollNameKey) as? String ?? name
+		questions = aDecoder.decodeObjectForKey(pollQuestionsKey) as? [LJPollQuestion] ?? questions
+		votingPermissions = Voters(rawValue: aDecoder.decodeIntegerForKey(pollVotingKey)) ?? .All
+		viewingPermissions = Viewers(rawValue: aDecoder.decodeIntegerForKey(pollViewingKey)) ?? .All
 	}
 }
