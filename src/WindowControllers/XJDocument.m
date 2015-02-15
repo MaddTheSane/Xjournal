@@ -32,6 +32,9 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 @end
 
 @implementation XJDocument
+{
+    NSArray *nibObjects;
+}
 @synthesize currentMusic;
 @synthesize entryHasBeenPosted;
 @synthesize friendArray;
@@ -55,6 +58,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 {
     if (self = [super init]) {
         self.entry = [[LJEntry alloc] init];
+        nibObjects = [[NSArray alloc] init];
         
         if ([[XJAccountManager defaultManager] loggedInAccount]) {
             [[self entry] setJournal: [[[XJAccountManager defaultManager] loggedInAccount] defaultJournal]];
@@ -984,8 +988,11 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 // ----------------------------------------------------------------------------------------
 - (IBAction)insertLink:(id)sender
 {
-    if(!hrefSheet)
-        [NSBundle loadNibNamed: @"HREFSheet" owner: self];
+    if(!hrefSheet) {
+        NSArray *tempNibArray;
+        [[NSBundle mainBundle] loadNibNamed: @"HREFSheet" owner: self topLevelObjects: &tempNibArray];
+        nibObjects = [nibObjects arrayByAddingObjectsFromArray: tempNibArray];
+    }
     
 	NSRange selection = [theTextView selectedRange];
 
@@ -1018,8 +1025,11 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 - (IBAction)insertImage:(id)sender
 {
-    if(!imgSheet)
-        [NSBundle loadNibNamed: @"IMGSheet" owner: self];
+    if(!imgSheet) {
+        NSArray *tempNibArray;
+        [[NSBundle mainBundle] loadNibNamed: @"IMGSheet" owner: self topLevelObjects: &tempNibArray];
+        nibObjects = [nibObjects arrayByAddingObjectsFromArray: tempNibArray];
+    }
 
 	// Clear fields
 	[srcField setStringValue:@""];
@@ -1070,8 +1080,11 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
      If there's no selection, open an empty sheet.
      */
     NSRange selection = [theTextView selectedRange];
-    if(!cutSheet)
-        [NSBundle loadNibNamed: @"CutSheet" owner: self];
+    if(!cutSheet) {
+        NSArray *tempNibArray;
+        [[NSBundle mainBundle] loadNibNamed: @"CutSheet" owner: self topLevelObjects: &tempNibArray];
+        nibObjects = [nibObjects arrayByAddingObjectsFromArray: tempNibArray];
+    }
 
     if(selection.length == 0) {
         [cut_textField setStringValue: @""];
@@ -1087,8 +1100,11 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (IBAction)insertLJUser:(id)sender
 {
     NSRange selection = [theTextView selectedRange];
-    if(!userSheet)
-        [NSBundle loadNibNamed: @"UserSheet" owner: self];
+    if(!userSheet) {
+        NSArray *tempNibArray;
+        [[NSBundle mainBundle] loadNibNamed: @"UserSheet" owner: self topLevelObjects: &tempNibArray];
+        nibObjects = [nibObjects arrayByAddingObjectsFromArray: tempNibArray];
+    }
     
     if(selection.length == 0) {
         [self startSheet: userSheet];
@@ -1392,7 +1408,9 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
 - (IBAction)showPreviewWindow: (id)sender
 {
     if(!htmlPreviewWindow) {
-        [NSBundle loadNibNamed:@"HTMLPreview" owner: self];
+        NSArray *tempNibArray;
+        [[NSBundle mainBundle] loadNibNamed: @"HTMLPreview" owner: self topLevelObjects: &tempNibArray];
+        nibObjects = [nibObjects arrayByAddingObjectsFromArray: tempNibArray];
     }
 
     [htmlPreviewWindow makeKeyAndOrderFront: sender];
