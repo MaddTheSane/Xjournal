@@ -72,6 +72,7 @@ final class KeyChain: NSObject {
 		if p != nil {
 			SecKeychainItemFreeContent(nil, p)
 		}
+		
 		return string
 	}
 }
