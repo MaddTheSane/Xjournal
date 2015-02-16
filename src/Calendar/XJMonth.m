@@ -45,7 +45,7 @@
 
     NSMutableArray *array = [NSMutableArray array];
 
-    for (id day in days)
+    for (XJDay *day in days)
         [array addObject: [day propertyListRepresentation]];
 
     dictionary[kDayListKey] = array;
