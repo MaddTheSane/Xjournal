@@ -656,7 +656,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
 		// Birthdate
 		NSDate *date = [selFriend birthDate];
 		if(date) {
-			dateOfBirth.stringValue = [NSDateFormatter localizedStringFromDate: date dateStyle: NSDateFormatterShortStyle timeStyle: NSDateFormatterNoStyle];
+            dateOfBirth.objectValue = date;
 			[iCalButton setEnabled: YES];
 		}
 		else {

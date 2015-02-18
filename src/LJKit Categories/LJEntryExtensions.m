@@ -135,6 +135,7 @@
 	[meta appendString: @"<strong>Date:</strong>&nbsp;"];
 	
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     df.dateFormat = @"EEEE";
     [meta appendString:[df stringFromDate:self.date]];
 	
