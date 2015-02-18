@@ -12,8 +12,6 @@
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
 
-#define DEBUG NO
-
 // Keys for Dictionary Representation
 #define kPostCountKey @"PostCount"
 #define kDayNumberKey @"DayNumber"

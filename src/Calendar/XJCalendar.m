@@ -11,7 +11,6 @@
 #import "XJDay.h"
 
 #define kYearListKey @"Years"
-#define DEBUG NO
 
 @implementation XJCalendar
 - (instancetype)init
