@@ -1,0 +1,5 @@
+﻿/* Localized versions of Info.plist keys */
+
+CFBundleName = "XJImport";
+CFBundleGetInfoString = "XJImport version 1.0, Copyright © 2015 C.W. Betts.";
+NSHumanReadableCopyright = "Copyright © 2005 2015 C.W. Betts.";
