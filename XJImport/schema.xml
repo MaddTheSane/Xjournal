@@ -17,9 +17,11 @@
 		The keys that this metadata importer handles.
             </note>
             <allattrs>
+				kMDItemTitle
             kMDItemTextContent
             </allattrs>
             <displayattrs>
+				kMDItemTitle
             kMDItemTextContent
             </displayattrs>
         </type>

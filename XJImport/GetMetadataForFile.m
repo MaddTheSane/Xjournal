@@ -7,6 +7,7 @@
 //
 
 #include <CoreFoundation/CoreFoundation.h>
+#import <Foundation/Foundation.h>
 #include "GetMetadataForFile.h"
 
 
@@ -20,7 +21,7 @@
 //
 //==============================================================================
 
-Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attributes, CFStringRef contentTypeUTI, CFStringRef pathToFile)
+Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef CFattributes, CFStringRef contentTypeUTI, CFStringRef pathToFile)
 {
     // Pull any available metadata from the file at the specified path
     // Return the attribute keys and attribute values in the dict
@@ -30,7 +31,18 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attribute
 	// Data external record file for a specific record instances
 
     Boolean ok = FALSE;
-    
+	@autoreleasepool {
+		NSMutableDictionary * attributes = (__bridge NSMutableDictionary *)(CFattributes);
+		NSDictionary *ourDict = [[NSDictionary alloc] initWithContentsOfFile:(__bridge NSString *)(pathToFile)];
+
+		if (ourDict) {
+			attributes[(NSString*)kMDItemTitle] = ourDict[@"JournalName"];
+			attributes[(NSString*)kMDItemContentCreationDate] = ourDict[@"Date"];
+
+			NSString *htmlData = ourDict[@"Content"];
+		}
+	}
+	
 	// Return the status
     return ok;
 }
