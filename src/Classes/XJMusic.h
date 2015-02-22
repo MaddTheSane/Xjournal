@@ -10,7 +10,6 @@
 
 
 @interface XJMusic : NSObject
-
 @property (copy) NSString *name;
 @property (copy) NSString *album;
 @property (copy) NSString *artist;

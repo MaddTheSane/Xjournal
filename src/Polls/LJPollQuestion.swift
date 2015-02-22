@@ -11,7 +11,7 @@ import Foundation
 let kLJPollQuestionKey = "LJPollQuestion"
 
 
-class LJPollQuestion: NSObject, NSSecureCoding {
+class PollQuestion: NSObject, NSSecureCoding {
 	
 	/// The question name
 	var question: String

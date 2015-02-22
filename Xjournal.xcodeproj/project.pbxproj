@@ -88,6 +88,7 @@
 		5500C50C1A74576400A22983 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500C50B1A74576400A22983 /* NetworkConfig.swift */; };
 		5500C50D1A7464C700A22983 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3FE4D1A71951700F1EC1A /* OgreKit.framework */; };
 		5500C50E1A7464C700A22983 /* OgreKit.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 55C3FE4D1A71951700F1EC1A /* OgreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		552DD5E61A9A56BE00B2AE26 /* NotificationPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DD5E51A9A56BE00B2AE26 /* NotificationPrefs.swift */; };
 		553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */; };
 		5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE261A72EDE800C982EF /* PollEditorController.swift */; };
 		5566DE411A73327A00C982EF /* LJPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE401A73327A00C982EF /* LJPoll.swift */; };
@@ -103,7 +104,6 @@
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
 		55BCA1C71A5492130034ECF5 /* GlossaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C91A5492130034ECF5 /* GlossaryWindow.xib */; };
 		55BCA1E71A54B0A60034ECF5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BCA1E61A54B0A60034ECF5 /* Security.framework */; };
-		55BCA1E91A54B1420034ECF5 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BCA1E81A54B1420034ECF5 /* libcrypto.dylib */; };
 		55C3FE361A71945000F1EC1A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3FE2D1A71943800F1EC1A /* Sparkle.framework */; };
 		55C3FE371A71945000F1EC1A /* Sparkle.framework in Copy Framework Files */ = {isa = PBXBuildFile; fileRef = 55C3FE2D1A71943800F1EC1A /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55C3FE3A1A71945000F1EC1A /* LJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3FE1E1A7193CC00F1EC1A /* LJKit.framework */; };
@@ -448,6 +448,7 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xjournal_Prefix.pch; sourceTree = "<group>"; };
 		5500C50B1A74576400A22983 /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; usesTabs = 1; };
+		552DD5E51A9A56BE00B2AE26 /* NotificationPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPrefs.swift; sourceTree = "<group>"; };
 		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
 		5566DE251A72EDE800C982EF /* Xjournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xjournal-Bridging-Header.h"; sourceTree = "<group>"; };
 		5566DE261A72EDE800C982EF /* PollEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollEditorController.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -463,7 +464,6 @@
 		55BCA1C31A5491F30034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HistoryWindow.xib; sourceTree = "<group>"; };
 		55BCA1C81A5492130034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlossaryWindow.xib; sourceTree = "<group>"; };
 		55BCA1E61A54B0A60034ECF5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		55BCA1E81A54B1420034ECF5 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		55C3FE211A71943800F1EC1A /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		55C3FE3E1A71951600F1EC1A /* OgreKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OgreKit.xcodeproj; path = OgreKit/OgreKit.xcodeproj; sourceTree = "<group>"; };
 		55D086F41A6CA1C800E0A00A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = src/Art/Images.xcassets; sourceTree = "<group>"; };
@@ -531,7 +531,6 @@
 				1BBD8BDF04B01A6B003882CD /* AddressBook.framework in Frameworks */,
 				1BBD8C9F04B01A8B003882CD /* WebKit.framework in Frameworks */,
 				55C3FE361A71945000F1EC1A /* Sparkle.framework in Frameworks */,
-				55BCA1E91A54B1420034ECF5 /* libcrypto.dylib in Frameworks */,
 				5566DE511A7337DD00C982EF /* SwiftAdditions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +681,7 @@
 			children = (
 				5F5B05870924E5A0005BB86B /* XJPreferencesController.h */,
 				5F5B05880924E5A0005BB86B /* XJPreferencesController.m */,
+				552DD5E51A9A56BE00B2AE26 /* NotificationPrefs.swift */,
 			);
 			path = PrefClients;
 			sourceTree = "<group>";
@@ -799,7 +799,6 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				55BCA1E81A54B1420034ECF5 /* libcrypto.dylib */,
 				55BCA1E61A54B0A60034ECF5 /* Security.framework */,
 				5FBF479D08138DEE00829423 /* CoreServices.framework */,
 				5FBF478F08138A6400829423 /* Cocoa.framework */,
@@ -1250,6 +1249,7 @@
 				1BBD893504B0188D003882CD /* XJBookmarkRoot.m in Sources */,
 				1BBD893704B0188D003882CD /* XJBookmarksWindowController.m in Sources */,
 				1BBD893904B0188D003882CD /* XJSafariBookmarkParser.m in Sources */,
+				552DD5E61A9A56BE00B2AE26 /* NotificationPrefs.swift in Sources */,
 				1BBD89A604B0189F003882CD /* XJCalendar.m in Sources */,
 				1BBD89A804B0189F003882CD /* XJDay.m in Sources */,
 				5572C16D1A74A90100CA1B60 /* XJKeyChain.swift in Sources */,

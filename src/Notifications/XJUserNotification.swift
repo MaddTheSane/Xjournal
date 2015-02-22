@@ -15,4 +15,19 @@ class XJUserNotification: NSObject, NSUserNotificationCenterDelegate {
         super.init()
         notification.delegate = self
     }
+    
+    func showNotification(name: String, callback: dispatch_block_t?) {
+        
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let always = defaults.boolForKey(XJNotificationShowAlways)
+        
+        return always
+    }
 }

@@ -13,6 +13,9 @@
 static XJCheckFriendsSessionManager *sharedManager;
 
 @implementation XJCheckFriendsSessionManager
+{
+    LJCheckFriendsSession *session;
+}
 @synthesize checkingMode;
 
 + (XJCheckFriendsSessionManager *)sharedManager

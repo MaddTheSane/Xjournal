@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -619,14 +619,14 @@
                 <popUpButton verticalHuggingPriority="750" id="671">
                     <rect key="frame" x="279" y="58" width="109" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3" inset="2" selectedItem="740" id="1382">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="1382">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="673">
                             <items>
                                 <menuItem title="Never" tag="1" id="674"/>
                                 <menuItem title="Daily" tag="2" id="675"/>
-                                <menuItem title="Weekly" state="on" tag="3" id="740"/>
+                                <menuItem title="Weekly" tag="3" id="740"/>
                                 <menuItem title="Monthly" tag="4" id="676"/>
                             </items>
                         </menu>
@@ -882,28 +882,56 @@
             </subviews>
         </customView>
         <customObject id="1043" userLabel="Updater" customClass="SUUpdater"/>
-        <customView id="Kya-mS-vCb" userLabel="Notifications">
+        <customView id="Kya-mS-vCb" userLabel="Notifications" customClass="NotificationPrefs" customModule="Xjournal" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="390" height="221"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button id="Xqm-jo-qkm">
-                    <rect key="frame" x="18" y="185" width="145" height="18"/>
+                    <rect key="frame" x="18" y="185" width="184" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Enable Notifications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="PEQ-fR-pt9">
+                    <buttonCell key="cell" type="check" title="Enable Notification Center" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="PEQ-fR-pt9">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="toggleNotifications:" target="Kya-mS-vCb" id="Bwb-f6-un3"/>
+                        <binding destination="186" name="value" keyPath="values.XJNotificationEnabled" id="SWa-Od-hZu">
+                            <dictionary key="options">
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
                 <button id="IIf-1f-X8w">
-                    <rect key="frame" x="42" y="154" width="143" height="18"/>
+                    <rect key="frame" x="33" y="165" width="159" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="When a frend posts" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="th2-dc-hyb">
+                    <buttonCell key="cell" type="check" title="…When a friend posts" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="th2-dc-hyb">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <button id="G9G-fH-LsI">
+                    <rect key="frame" x="33" y="145" width="212" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="…Even when in the foreground" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Jcg-nR-uMm">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="186" name="value" keyPath="values.XJNotificationsAlways" id="1Ka-Qh-5iI">
+                            <dictionary key="options">
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="383" y="868.5"/>
+            <connections>
+                <outlet property="showInForeground" destination="G9G-fH-LsI" id="Pto-G8-yo3"/>
+                <outlet property="showNotifications" destination="Xqm-jo-qkm" id="D89-4N-MMs"/>
+                <outlet property="showOnFriends" destination="IIf-1f-X8w" id="Ot6-F2-drK"/>
+            </connections>
+            <point key="canvasLocation" x="439" y="984.5"/>
         </customView>
     </objects>
 </document>

@@ -12,11 +12,7 @@
 
 #define XJRendezvousAccountsUpdated @"XJRendezvousAccountsUpdated"
 
-@interface XJAccountManager : NSObject {
-    NSMutableDictionary *accounts, *passwordCache;
-    NSString *defaultUsername;
-    LJAccount *loggedInAccount;
-}
+@interface XJAccountManager : NSObject
 
 + (XJAccountManager *)defaultManager;
 

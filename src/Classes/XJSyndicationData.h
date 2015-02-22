@@ -9,17 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface XJSyndicationData : NSObject {
-	NSString *title;
-	NSString *body;
-	NSString *summary;
-	NSString *link;
-	NSString *permalink;
-	NSString *commentsURL;
-	NSString *sourceName;
-	NSString *sourceHomeURL;
-	NSString *sourceFeedURL;
-}
+@interface XJSyndicationData : NSObject
 
 + (instancetype)syndicationDataWithAppleEvent: (NSAppleEventDescriptor *)aeDesc;
 - (instancetype)initWithAppleEvent: (NSAppleEventDescriptor *)aeDesc NS_DESIGNATED_INITIALIZER;

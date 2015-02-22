@@ -19,35 +19,18 @@
 @class XJPreferencesController;
 
 @interface XJAppDelegate : NSObject <NSApplicationDelegate>
-{
-    /*
-     These controller objects control subsidiary windows in the app.
-     Because the windows are singletons, their controllers are too.
-     */
-    XJHistoryWindowController *histController;
-    XJFriendsController *friendController;
-    XJGlossaryWindowController *glossaryController;
-    XJBookmarksWindowController *bookmarkController;
-    XJAccountEditWindowController *accountController;
-    XJPollEditorController *pollController;
-    XJPreferencesController *prefsController;
-	
-    // Connections to the progress panel
-    IBOutlet NSWindow *loginPanel;
-    IBOutlet NSProgressIndicator *spinner;
 
-    // The dock menu
-    NSMenu *dynDockMenu;
+// Connections to the progress panel
+@property (weak) IBOutlet NSWindow *loginPanel;
+@property (weak) IBOutlet NSProgressIndicator *spinner;
+// cmd-delete menu outlets
+@property (weak) IBOutlet NSMenuItem *deleteFriend;
+@property (weak) IBOutlet NSMenuItem *deleteFromGroup;
 
-    // The Accounts > top level menu item
-    IBOutlet NSMenuItem *accountItem;
-    
-    // Flag to tell us if the friends updated dialog is showing
-    BOOL friendsDialogIsShowing;
+// The Accounts > top level menu item
+@property (weak) IBOutlet NSMenuItem *accountItem;
 
-    // cmd-delete menu outlets
-    IBOutlet NSMenuItem *deleteFriend, *deleteFromGroup;
-}
+
     // Are we showing the dock badge?
 @property BOOL showingDockBadge;
 

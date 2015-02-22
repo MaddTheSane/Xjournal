@@ -15,7 +15,7 @@ private let pollViewingKey = "Viewing Permissions"
 private let pollQuestionsKey = "Poll Questions"
 
 class LJPoll: NSObject, NSSecureCoding {
-	private var questions = [LJPollQuestion]()
+	private var questions = [PollQuestion]()
 	/// Get and set the name of the poll
 	var name = "NewPoll"
 	
@@ -70,12 +70,12 @@ class LJPoll: NSObject, NSSecureCoding {
 	}
 	
 	/// Add a question to the poll
-	func addQuestion(newQ: LJPollQuestion) {
+	func addQuestion(newQ: PollQuestion) {
 		questions.append(newQ)
 	}
 	
 	/// Get the question at the index?
-	func questionAtIndex(idx: Int) -> LJPollQuestion {
+	func questionAtIndex(idx: Int) -> PollQuestion {
 		return questions[idx]
 	}
 	
@@ -94,7 +94,7 @@ class LJPoll: NSObject, NSSecureCoding {
 	}
 	
 	/// Insert the question at the given index
-	func insertQuestion(question: LJPollQuestion, atIndex idx: Int) {
+	func insertQuestion(question: PollQuestion, atIndex idx: Int) {
 		questions.insert(question, atIndex: idx)
 	}
 	
@@ -145,7 +145,7 @@ class LJPoll: NSObject, NSSecureCoding {
 	required convenience init(coder aDecoder: NSCoder) {
 		self.init()
 		name = aDecoder.decodeObjectForKey(pollNameKey) as? String ?? name
-		questions = aDecoder.decodeObjectForKey(pollQuestionsKey) as? [LJPollQuestion] ?? questions
+		questions = aDecoder.decodeObjectForKey(pollQuestionsKey) as? [PollQuestion] ?? questions
 		votingPermissions = Voters(rawValue: aDecoder.decodeIntegerForKey(pollVotingKey)) ?? .All
 		viewingPermissions = Viewers(rawValue: aDecoder.decodeIntegerForKey(pollViewingKey)) ?? .All
 	}

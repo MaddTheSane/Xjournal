@@ -28,7 +28,7 @@ private let sheetCancel = 1
 
 class XJPollEditorController: NSWindowController {
     var thePoll = LJPoll()
-    var currentlyEditedQuestion: LJPollQuestion!
+    var currentlyEditedQuestion: PollQuestion!
     private weak var currentSheet: NSWindow?
     private var toolbarItemCache = [String: NSToolbarItem]()
 	private var currentlyEditedQuestionMemento: [String: AnyObject]?
@@ -367,9 +367,7 @@ class XJPollEditorController: NSWindowController {
 //MARK: NSToolbarDelegate
 extension XJPollEditorController: NSToolbarDelegate {
     func toolbar(toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
-        var item: NSToolbarItem? = nil
-
-        item = toolbarItemCache[itemIdentifier]
+        var item = toolbarItemCache[itemIdentifier]
 
         if item == nil {
             item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -452,7 +450,9 @@ extension XJPollEditorController: NSToolbarDelegate {
 			kPollMoveUpItemIdentifier,
 			kPollMoveDownItemIdentifier,
 			kPollShowCodeItemIdentifier,
-			NSToolbarFlexibleSpaceItemIdentifier, NSToolbarSpaceItemIdentifier, NSToolbarCustomizeToolbarItemIdentifier]
+			NSToolbarFlexibleSpaceItemIdentifier,
+			NSToolbarSpaceItemIdentifier,
+			NSToolbarCustomizeToolbarItemIdentifier]
 	}
 	
 	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [AnyObject] {

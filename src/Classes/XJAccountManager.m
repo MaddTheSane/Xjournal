@@ -18,13 +18,18 @@
 static XJAccountManager *manager;
 
 @implementation XJAccountManager
+{
+    NSMutableDictionary *accounts, *passwordCache;
+    NSString *defaultUsername;
+    LJAccount *loggedInAccount;
+}
 @synthesize defaultUsername;
 @synthesize loggedInAccount;
 
 - (instancetype)init
 {
     if (self = [super init]) {
-        NSArray *storedAccounts = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAccountsPrefKey];
+        NSArray *storedAccounts = [[NSUserDefaults standardUserDefaults] arrayForKey:kAccountsPrefKey];
         
         accounts = [[NSMutableDictionary alloc] initWithCapacity: 5];
         passwordCache = [[NSMutableDictionary alloc] initWithCapacity: 5];
@@ -34,7 +39,7 @@ static XJAccountManager *manager;
         }
         
         
-        defaultUsername = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kDefaultAccountNameKey] copy];
+        defaultUsername = [[[NSUserDefaults standardUserDefaults] stringForKey:kDefaultAccountNameKey] copy];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(accountSwitched:)
@@ -102,6 +107,10 @@ static XJAccountManager *manager;
     LJAccount *acct = accounts[username];
     if(!acct) {
         acct = [[LJAccount alloc] initWithUsername: username];
+//#ifdef ENABLE_REACHABILITY_MONITORING
+#if 0
+        [acct.server enableReachabilityMonitoring];
+#endif
         accounts[username] = acct;
     }
     return acct;

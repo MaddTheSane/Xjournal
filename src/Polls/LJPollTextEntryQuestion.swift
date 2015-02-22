@@ -12,10 +12,9 @@ private let kPollTextSize = "LJPollTextSize"
 private let kPollTextLength = "LJPollTextLength"
 
 
-/**
-This is a subclass representing a text box question
-*/
-@objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: LJPollQuestion, NSCoding {
+
+///This is a subclass representing a text box question
+@objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: PollQuestion, NSCoding {
 	/// Get and set the size property
 	var size: Int
 	/// Get and set the length
@@ -39,6 +38,7 @@ This is a subclass representing a text box question
 		return NSSet(objects: "size", "maxLength", "question")
 	}
 	
+	/// Get the HTML representation
 	override var htmlRepresentation: String {
 		return "<lj-pq type=\"text\" size=\"\(size)\" maxlength=\"\(maxLength)\">\(question)</lj-pq>"
 	}

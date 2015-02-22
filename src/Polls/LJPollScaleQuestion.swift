@@ -13,10 +13,8 @@ private let kPollScaleStart = "LJPollScaleStart"
 private let kPollScaleEnd = "LJPollScaleEnd"
 private let kPollScaleStep = "LJPollScaleStep"
 
-/**
-Question subclass representing a scale with start, end and step values
-*/
-@objc(LJPollScaleQuestion) final class PollScaleQuestion: LJPollQuestion, NSCoding {
+/// Question subclass representing a scale with start, end and step values
+@objc(LJPollScaleQuestion) final class PollScaleQuestion: PollQuestion, NSCoding {
 	var start: Int
 	var end: Int
 	var step: Int
@@ -47,11 +45,12 @@ Question subclass representing a scale with start, end and step values
 		return NSSet(objects: "start", "end", "step", "question")
 	}
 	
+	/// Get the HTML representation
 	override var htmlRepresentation: String {
 		return "<lj-pq type=\"scale\" from=\"\(start)\" to=\"\(end)\" by=\"\(step)\">\(question)</lj-pq>"
 	}
 	
-	//MARK: - memento
+	// MARK: - memento
 	override var memento: [String: AnyObject] {
 		return [kLJPollQuestionKey: question,
 			kPollScaleStart: start,
@@ -66,7 +65,7 @@ Question subclass representing a scale with start, end and step values
 		step = amemento[kPollScaleStep] as Int
 	}
 	
-	//MARK: - NSCoding
+	// MARK: - NSCoding
 	override func encodeWithCoder(aCoder: NSCoder) {
 		super.encodeWithCoder(aCoder)
 		

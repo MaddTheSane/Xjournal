@@ -15,10 +15,7 @@ typedef NS_ENUM(NSInteger, XJManagerCheckingMode) {
 };
 
 
-@interface XJCheckFriendsSessionManager : NSObject {
-
-    LJCheckFriendsSession *session;
-}
+@interface XJCheckFriendsSessionManager : NSObject
 
 + (XJCheckFriendsSessionManager *)sharedManager;
 

@@ -37,7 +37,35 @@
 #define kLoginMenuTag 104
 
 @implementation XJAppDelegate
+{
+    /*
+     These controller objects control subsidiary windows in the app.
+     Because the windows are singletons, their controllers are too.
+     */
+    XJHistoryWindowController *histController;
+    XJFriendsController *friendController;
+    XJGlossaryWindowController *glossaryController;
+    XJBookmarksWindowController *bookmarkController;
+    XJAccountEditWindowController *accountController;
+    XJPollEditorController *pollController;
+    XJPreferencesController *prefsController;
+    XJUserNotification *userNote;
+    
+    // The dock menu
+    NSMenu *dynDockMenu;
+    
+    // Flag to tell us if the friends updated dialog is showing
+    BOOL friendsDialogIsShowing;
+}
 @synthesize showingDockBadge;
+
+@synthesize loginPanel;
+@synthesize accountItem;
+@synthesize spinner;
+
+@synthesize deleteFriend;
+@synthesize deleteFromGroup;
+
 
 + (void)initialize {
 	// Register user defaults
@@ -97,6 +125,8 @@
 
     /* Check for and create app support directories */
     [self checkForApplicationSupportDirs];
+    
+    userNote = [[XJUserNotification alloc] init];
     
     /* Register the NNW Handlers */
      [[NSAppleEventManager sharedAppleEventManager]
@@ -253,25 +283,15 @@
 #pragma mark -
 #pragma mark Dock Icon Handling
 - (void)showDockBadge {
-	NSImage *appIcon = [NSImage imageNamed: NSImageNameApplicationIcon];
-	NSImage *starburst = [NSImage imageNamed: @"starburst"];
-	NSImage *bufferImage = [[NSImage alloc] initWithSize:[appIcon size]];
-
-	NSPoint starburstPoint = NSMakePoint([bufferImage size].height-[starburst size].height,
-										 [bufferImage size].width-[starburst size].width);
-	
-	[bufferImage lockFocus];
-	[appIcon drawAtPoint:NSMakePoint(0, [bufferImage size].height) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-	[starburst drawAtPoint:starburstPoint fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-	[bufferImage unlockFocus];
-	
-	[NSApp setApplicationIconImage: bufferImage];
+    [[NSApplication sharedApplication] dockTile].showsApplicationBadge = YES;
+    [[NSApplication sharedApplication] dockTile].badgeLabel = @"update";
 	
 	[self setShowingDockBadge: YES];
 }
 
 - (void)hideDockBadge {
-	[NSApp setApplicationIconImage: [NSImage imageNamed: NSImageNameApplicationIcon]];
+    [[NSApplication sharedApplication] dockTile].badgeLabel = @"";
+    [[NSApplication sharedApplication] dockTile].showsApplicationBadge = NO;
 	[self setShowingDockBadge: NO];
 }
 
@@ -469,6 +489,7 @@
     }
     
     if ([userDefaults boolForKey: XJNotificationEnabled]) {
+        [userNote showNotification:@"" callback: nil];
         //TODO: implement
     }
 }
