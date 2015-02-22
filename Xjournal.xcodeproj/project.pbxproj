@@ -101,10 +101,10 @@
 		5572C16D1A74A90100CA1B60 /* XJKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572C16C1A74A90100CA1B60 /* XJKeyChain.swift */; };
 		559BECD01A9A6B92004E75B1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 559BECCF1A9A6B92004E75B1 /* main.c */; };
 		559BECD21A9A6B92004E75B1 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 559BECD11A9A6B92004E75B1 /* GetMetadataForFile.m */; };
-		559BECD91A9A6B92004E75B1 /* XJImport.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 559BECCB1A9A6B92004E75B1 /* XJImport.mdimporter */; };
 		559BECF71A9A724A004E75B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF41A9A724A004E75B1 /* InfoPlist.strings */; };
 		559BECF81A9A724A004E75B1 /* schema.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF51A9A724A004E75B1 /* schema.strings */; };
 		559BECF91A9A724A004E75B1 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF61A9A724A004E75B1 /* schema.xml */; };
+		559BECFF1A9A774F004E75B1 /* XJImport.mdimporter in Copy Spotlight */ = {isa = PBXBuildFile; fileRef = 559BECCB1A9A6B92004E75B1 /* XJImport.mdimporter */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B95A451A70507F00F4C784 /* ShortcutWindow.xib */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
@@ -386,6 +386,17 @@
 				55C3FE3B1A71945000F1EC1A /* LJKit.framework in Copy Framework Files */,
 			);
 			name = "Copy Framework Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		559BECFA1A9A76FB004E75B1 /* Copy Spotlight */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Spotlight;
+			dstSubfolderSpec = 1;
+			files = (
+				559BECFF1A9A774F004E75B1 /* XJImport.mdimporter in Copy Spotlight */,
+			);
+			name = "Copy Spotlight";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1042,6 +1053,7 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				1BF27FA304B032D600121863 /* Copy Framework Files */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				559BECFA1A9A76FB004E75B1 /* Copy Spotlight */,
 			);
 			buildRules = (
 				5FE37A58086441A600B6C34F /* PBXBuildRule */,
@@ -1294,7 +1306,6 @@
 				1B870E0D04C7EABE00C54147 /* ReadMe.rtf in Resources */,
 				1B0DEBEA053AF10C00A310CF /* make_event_ical.applescript in Resources */,
 				55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */,
-				559BECD91A9A6B92004E75B1 /* XJImport.mdimporter in Resources */,
 				55BCA1C71A5492130034ECF5 /* GlossaryWindow.xib in Resources */,
 				5F562CBA06B99296004629AE /* Localizable.strings in Resources */,
 				585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */,

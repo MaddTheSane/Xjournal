@@ -18,11 +18,14 @@
             </note>
             <allattrs>
 				kMDItemTitle
-            kMDItemTextContent
+				kMDItemAuthors
+				kMDItemTextContent
+				kMDItemTimestamp
             </allattrs>
             <displayattrs>
 				kMDItemTitle
-            kMDItemTextContent
+				kMDItemAuthors
+				kMDItemTimestamp
             </displayattrs>
         </type>
     </types>

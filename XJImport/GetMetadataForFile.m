@@ -30,19 +30,24 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef CFattribu
 	// case we import the store's metadata, or it could point to a Core
 	// Data external record file for a specific record instances
 
-    Boolean ok = FALSE;
+    BOOL ok = NO;
 	@autoreleasepool {
 		NSMutableDictionary * attributes = (__bridge NSMutableDictionary *)(CFattributes);
 		NSDictionary *ourDict = [[NSDictionary alloc] initWithContentsOfFile:(__bridge NSString *)(pathToFile)];
 
 		if (ourDict) {
-			attributes[(NSString*)kMDItemTitle] = ourDict[@"JournalName"];
-			attributes[(NSString*)kMDItemContentCreationDate] = ourDict[@"Date"];
-
+			attributes[(NSString*)kMDItemTitle] = ourDict[@"Subject"];
+			attributes[(NSString*)kMDItemTimestamp] = ourDict[@"Date"];
+			attributes[(NSString*)kMDItemAuthors] = @[ourDict[@"JournalName"]];
+			
 			NSString *htmlData = ourDict[@"Content"];
+			
+			//TODO: trim out HTML code
+			attributes[(NSString*)kMDItemTextContent] = htmlData;
+			ok = YES;
 		}
 	}
 	
 	// Return the status
-    return ok;
+	return ok? TRUE : FALSE;
 }
