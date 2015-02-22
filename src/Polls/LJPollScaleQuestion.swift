@@ -29,20 +29,22 @@ private let kPollScaleStep = "LJPollScaleStep"
 		super.init()
 	}
 	
+	/// Returns a scale question within the given range, step values
+	/// and a default question string
 	convenience init(range: Range<Int>, step aStep: Int) {
 		self.init(start: range.startIndex, end: range.endIndex, step: aStep)
 	}
 	
+	/// Returns a scale question within the given range, step values
+	/// and a default question string
 	convenience init(range: NSRange, step aStep: Int) {
 		self.init(start: range.location, end: range.max, step: aStep)
 	}
 	
+	/// Returns a scale question with a start of 1, an end of 100, a step of 10,
+	/// and a default question string
 	convenience override init() {
 		self.init(start: 1, end: 100, step: 10)
-	}
-	
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "start", "end", "step", "question")
 	}
 	
 	/// Get the HTML representation
@@ -80,5 +82,11 @@ private let kPollScaleStep = "LJPollScaleStep"
 		step = aDecoder.decodeIntegerForKey(kPollScaleStep)
 		
 		super.init(coder: aDecoder)
+	}
+	
+	// MARK: -
+	
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "start", "end", "step", "question")
 	}
 }

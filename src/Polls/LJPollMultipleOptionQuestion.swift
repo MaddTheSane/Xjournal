@@ -38,6 +38,8 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	
 	var type: MultipleOption
 	
+	/// Returns a multiple-option radio question type with
+	/// a default question
 	convenience override init() {
 		self.init(type: .Radio)
 	}
@@ -47,10 +49,6 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	init(type: MultipleOption) {
 		self.type = type
 		super.init()
-	}
-	
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "answers", "type", "question")
 	}
 	
 	/// Returns the number of answers to this question
@@ -107,6 +105,7 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 		answers.insert(obj, atIndex: newIdx)
 	}
 
+	/// Get the HTML representation
 	override var htmlRepresentation: String {
 		var buf = "<lj-pq type=\"\(type.stringRepresentation)\">\n"
 		buf += question + "\n"
@@ -151,5 +150,10 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 		super.encodeWithCoder(aCoder)
 		aCoder.encodeObject(answers, forKey: kMultipleOptionAnswerArray)
 		aCoder.encodeInteger(type.rawValue, forKey: kMultipleOptionType)
+	}
+	
+	// MARK: -
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "answers", "type", "question")
 	}
 }

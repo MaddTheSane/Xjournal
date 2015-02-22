@@ -11,8 +11,6 @@ import Foundation
 private let kPollTextSize = "LJPollTextSize"
 private let kPollTextLength = "LJPollTextLength"
 
-
-
 ///This is a subclass representing a text box question
 @objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: PollQuestion, NSCoding {
 	/// Get and set the size property
@@ -30,12 +28,10 @@ private let kPollTextLength = "LJPollTextLength"
 		question = "New Text Question"
 	}
 	
+	/// Returns a text question a size of 10, a length of 10,
+	/// and a default question
 	override convenience init() {
 		self.init(size: 10, maxLength: 10)
-	}
-	
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "size", "maxLength", "question")
 	}
 	
 	/// Get the HTML representation
@@ -68,5 +64,10 @@ private let kPollTextLength = "LJPollTextLength"
 		maxLength = aDecoder.decodeIntegerForKey(kPollTextLength)
 		
 		super.init(coder: aDecoder)
+	}
+	
+	// MARK: -
+	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
+		return NSSet(objects: "size", "maxLength", "question")
 	}
 }
