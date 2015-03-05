@@ -1976,6 +1976,7 @@
 				559BECDC1A9A6B92004E75B1 /* Linked with Symbols */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FD243C40861F8BC0007E0C5 /* Build configuration list for PBXNativeTarget "Xjournal" */ = {
 			isa = XCConfigurationList;
