@@ -128,12 +128,12 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	}
 	
 	override func restoreFromMemento(amemento: [String: AnyObject]) {
-		question = memento[kLJPollQuestionKey] as String
-		type = MultipleOption(rawValue: memento[kMultipleOptionType] as Int) ?? .Radio
+		question = memento[kLJPollQuestionKey] as! String
+		type = MultipleOption(rawValue: memento[kMultipleOptionType] as! Int) ?? .Radio
 		
 		deleteAllAnswers()
 		
-		for object in memento[kMultipleOptionAnswerArray] as [String] {
+		for object in memento[kMultipleOptionAnswerArray] as! [String] {
 			addAnswer(object)
 		}
 	}

@@ -47,9 +47,9 @@ private let kPollTextLength = "LJPollTextLength"
 	}
 	
 	override func restoreFromMemento(amemento: [String: AnyObject]) {
-		question = amemento[question] as String
-		size = amemento[kPollTextSize] as Int
-		maxLength = amemento[kPollTextLength] as Int
+		question = amemento[question] as! String
+		size = amemento[kPollTextSize] as! Int
+		maxLength = amemento[kPollTextLength] as! Int
 	}
 
 	// MARK: - NSCoding
