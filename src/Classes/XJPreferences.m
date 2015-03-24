@@ -123,7 +123,7 @@ static NSMutableDictionary *userPics;
 // icons
 // ----------------------------------------------------------------------------------------
 + (NSString *)userIconURL {
-    return [[[NSBundle mainBundle] URLForImageResource:@"userInfo"] absoluteString];
+    return [[[NSBundle mainBundle] URLForImageResource:@"userinfo"] absoluteString];
 }
 
 + (NSString *)communityIconURL {

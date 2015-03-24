@@ -55,6 +55,9 @@
     ABRecord *rec = [self addressBookRecord];
     if([rec isKindOfClass: [ABPerson class]]) {
         NSData *imageData = [(ABPerson *)rec imageData];
+        if (imageData == nil) {
+            return nil;
+        }
         NSImage *img = [[NSImage alloc] initWithData: imageData];
         return img; // May still be nil
     }

@@ -99,6 +99,8 @@
 		5566DE5A1A7440BF00C982EF /* LJPollScaleQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE591A7440BF00C982EF /* LJPollScaleQuestion.swift */; };
 		5566DE5C1A74448700C982EF /* LJPollTextEntryQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566DE5B1A74448700C982EF /* LJPollTextEntryQuestion.swift */; };
 		5572C16D1A74A90100CA1B60 /* XJKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572C16C1A74A90100CA1B60 /* XJKeyChain.swift */; };
+		557978E91AC20BC600979D9B /* userinfo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 557978E71AC20BC600979D9B /* userinfo.gif */; };
+		557978EA1AC20BC600979D9B /* communitysmall.gif in Resources */ = {isa = PBXBuildFile; fileRef = 557978E81AC20BC600979D9B /* communitysmall.gif */; };
 		559BECD01A9A6B92004E75B1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 559BECCF1A9A6B92004E75B1 /* main.c */; };
 		559BECD21A9A6B92004E75B1 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 559BECD11A9A6B92004E75B1 /* GetMetadataForFile.m */; };
 		559BECF71A9A724A004E75B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF41A9A724A004E75B1 /* InfoPlist.strings */; };
@@ -411,9 +413,9 @@
 		1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ChangeNotes.rtf; path = doc/ChangeNotes.rtf; sourceTree = "<group>"; };
 		1B870E0C04C7EABE00C54147 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = doc/ReadMe.rtf; sourceTree = "<group>"; };
 		1BBD891104B01883003882CD /* KeyHandlingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyHandlingTableView.h; sourceTree = "<group>"; };
-		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyHandlingTableView.m; path = "src/AppKit Categories/KeyHandlingTableView.m"; sourceTree = SOURCE_ROOT; };
+		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyHandlingTableView.m; sourceTree = "<group>"; };
 		1BBD891704B01883003882CD /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
-		1BBD891804B01883003882CD /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Extensions.m"; path = "src/AppKit Categories/NSString+Extensions.m"; sourceTree = SOURCE_ROOT; usesTabs = 1; };
+		1BBD891804B01883003882CD /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; usesTabs = 1; };
 		1BBD892604B0188D003882CD /* XJBookmarkFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBookmarkFolder.h; sourceTree = "<group>"; };
 		1BBD892704B0188D003882CD /* XJBookmarkFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBookmarkFolder.m; path = src/Bookmarks/XJBookmarkFolder.m; sourceTree = SOURCE_ROOT; };
 		1BBD892804B0188D003882CD /* XJBookmarkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBookmarkItem.h; sourceTree = "<group>"; };
@@ -483,6 +485,8 @@
 		5566DE591A7440BF00C982EF /* LJPollScaleQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPollScaleQuestion.swift; sourceTree = "<group>"; };
 		5566DE5B1A74448700C982EF /* LJPollTextEntryQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPollTextEntryQuestion.swift; sourceTree = "<group>"; };
 		5572C16C1A74A90100CA1B60 /* XJKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJKeyChain.swift; sourceTree = "<group>"; usesTabs = 1; };
+		557978E71AC20BC600979D9B /* userinfo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = userinfo.gif; sourceTree = "<group>"; };
+		557978E81AC20BC600979D9B /* communitysmall.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = communitysmall.gif; sourceTree = "<group>"; };
 		559BECCB1A9A6B92004E75B1 /* XJImport.mdimporter */ = {isa = PBXFileReference; explicitFileType = "wrapper.spotlight-importer"; includeInIndex = 0; path = XJImport.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		559BECCE1A9A6B92004E75B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559BECCF1A9A6B92004E75B1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -788,6 +792,8 @@
 		1BF27EDD04B02A8100121863 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				557978E71AC20BC600979D9B /* userinfo.gif */,
+				557978E81AC20BC600979D9B /* communitysmall.gif */,
 				55D086F41A6CA1C800E0A00A /* Images.xcassets */,
 			);
 			name = Images;
@@ -1300,6 +1306,7 @@
 				55D087051A6CA8B300E0A00A /* NewFriendsWindow.xib in Resources */,
 				55D087081A6CA8BC00E0A00A /* MainMenu.xib in Resources */,
 				55D0871A1A6CA98700E0A00A /* BirthdaysWindow.xib in Resources */,
+				557978EA1AC20BC600979D9B /* communitysmall.gif in Resources */,
 				55D086F91A6CA88E00E0A00A /* HTMLPreview.xib in Resources */,
 				55D086F51A6CA1C800E0A00A /* Images.xcassets in Resources */,
 				1B870E0B04C7EAA200C54147 /* ChangeNotes.rtf in Resources */,
@@ -1308,6 +1315,7 @@
 				55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */,
 				55BCA1C71A5492130034ECF5 /* GlossaryWindow.xib in Resources */,
 				5F562CBA06B99296004629AE /* Localizable.strings in Resources */,
+				557978E91AC20BC600979D9B /* userinfo.gif in Resources */,
 				585E030C0A1A2F7E001E92ED /* CFPSL_1_0.rtf in Resources */,
 				F3A3927D0F80228E0079760A /* dsa_pub.pem in Resources */,
 			);
