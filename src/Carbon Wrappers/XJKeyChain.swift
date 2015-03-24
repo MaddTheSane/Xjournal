@@ -9,24 +9,61 @@
 import Foundation
 import Security
 
-//private var adefaultKeyChain: KeyChain?
+private var adefaultKeyChain: KeyChain = {
+	return KeyChain()
+}()
 
 final class KeyChain: NSObject {
 	var maxPasswordLength: UInt32
+	private let currentKeychain: SecKeychain?
 	
-	required override init() {
+	enum PreferencesDomain: UInt32 {
+		///user domain
+		case User
+		
+		///system (daemon) domain
+		case System
+		
+		///preferences to be merged to everyone
+		case Common
+		
+		///dynamic searchlist (typically removable keychains like smartcards)
+		case Dynamic
+	}
+
+	required convenience override init() {
+		var defKeyChain: Unmanaged<SecKeychain>?
+		let iErr = SecKeychainCopyDefault(&defKeyChain)
+		self.init(keychain: defKeyChain?.takeRetainedValue())
+	}
+	
+	init(keychain: SecKeychain?) {
 		maxPasswordLength = 127;
+		currentKeychain = keychain
 		
 		super.init()
 	}
 	
+	convenience init?(keychainPath: NSURL) {
+		var capturedKey: Unmanaged<SecKeychain>?
+		
+		let iErr = SecKeychainOpen(keychainPath.fileSystemRepresentation, &capturedKey)
+		if let aKey = capturedKey?.takeRetainedValue() {
+			self.init(keychain: aKey)
+		} else {
+			self.init(keychain: nil)
+			
+			return nil
+		}
+	}
+	
 	class var defaultKeyChain: KeyChain {
-		return self()
+		return adefaultKeyChain
 	}
 	
 	private func genericPasswordReference(#service: String, account: String) -> SecKeychainItemRef? {
 		var itemref: Unmanaged<SecKeychainItem>? = nil
-		SecKeychainFindGenericPassword(nil, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, nil, nil, &itemref)
+		SecKeychainFindGenericPassword(currentKeychain, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, nil, nil, &itemref)
 		
 		return itemref?.takeRetainedValue()
 	}
@@ -48,7 +85,7 @@ final class KeyChain: NSObject {
 			if let itemRef = genericPasswordReference(service: service, account: account) {
 				SecKeychainItemDelete(itemRef)
 			}
-			SecKeychainAddGenericPassword(nil, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, UInt32(aPass.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), UnsafePointer<()>((aPass as NSString).UTF8String), nil)
+			SecKeychainAddGenericPassword(currentKeychain, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, UInt32(aPass.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), UnsafePointer<()>((aPass as NSString).UTF8String), nil)
 		} else {
 			removeGenericPassword(service: service, account: account)
 		}
@@ -64,7 +101,7 @@ final class KeyChain: NSObject {
 			return ""
 		}
 
-		ret = SecKeychainFindGenericPassword(nil, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, &length, &p, nil)
+		ret = SecKeychainFindGenericPassword(currentKeychain, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, &length, &p, nil)
 		
 		if ret == noErr {
 			string = NSString(bytes: p, length: Int(length), encoding: NSUTF8StringEncoding)!
@@ -74,5 +111,17 @@ final class KeyChain: NSObject {
 		}
 		
 		return string
+	}
+	
+	var keychainURL: NSURL? {
+		var pathLen: UInt32 = 0
+		var pathName: [Int8] = [Int8](count: Int(PATH_MAX), repeatedValue: 0)
+		var iErr = SecKeychainGetPath(currentKeychain, &pathLen, &pathName)
+		if iErr != noErr {
+			return nil
+		}
+		pathName[Int(pathLen)] = 0
+		
+		return NSURL(fileURLWithFileSystemRepresentation: pathName, isDirectory: false, relativeToURL: nil)
 	}
 }
