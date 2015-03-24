@@ -62,6 +62,7 @@
 
 // Keys for Notification Center
 #define XJNotificationEnabled @"XJNotificationEnabled"
+#define XJNotificationFriendPosts @"XJNotificationFriendPosts"
 #define XJNotificationShowAlways @"XJNotificationsAlways"
 
 NSString *XJGetGlobalAppSupportDir();

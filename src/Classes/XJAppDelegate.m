@@ -71,6 +71,7 @@
 	// Register user defaults
 	NSMutableDictionary *defs = [[NSMutableDictionary alloc] initWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"ApplicationDefaults" withExtension: @"plist"]];
     defs[XJNotificationEnabled] = @YES;
+    defs[XJNotificationFriendPosts] = @YES;
     defs[XJNotificationShowAlways] = @NO;
     
 	// You have to do both of the following, apparently

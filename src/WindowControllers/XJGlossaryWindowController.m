@@ -11,14 +11,22 @@
 
 #define kGlossaryAutosaveName @"GlossaryAutosaveName"
 #define kGlossaryFilePath [XJGetLocalAppSupportDir() stringByAppendingPathComponent: @"Glossary.plist"]
-	
+
+static BOOL fileExists(NSString *path)
+{
+    BOOL isDir;
+    NSFileManager *man = [NSFileManager defaultManager];
+    BOOL exists = [man fileExistsAtPath: path isDirectory: &isDir];
+    return exists;
+}
+
 @implementation XJGlossaryWindowController
 @synthesize glossary;
 - (instancetype)init
 {
 	self = [super initWithWindowNibName: @"GlossaryWindow"];
     if(self) {
-		if(![self fileExists: kGlossaryFilePath])
+		if(!fileExists(kGlossaryFilePath))
 			[self writeExampleGlossaryFile];
 			
 		[self readGlossaryFile];
@@ -39,14 +47,6 @@
 	[self writeGlossaryFile];
     [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: @([[self window] isVisible])
 																		forKey: kGlossaryWindowOpen];
-}
-
-- (BOOL)fileExists:(NSString *)path
-{
-    BOOL isDir;
-    NSFileManager *man = [NSFileManager defaultManager];
-    BOOL exists = [man fileExistsAtPath: path isDirectory: &isDir];
-	return exists;
 }
 
 - (void)readGlossaryFile {

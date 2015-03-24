@@ -14,8 +14,6 @@
 
 @property (copy) NSMutableArray *glossary;
 
-- (BOOL)fileExists:(NSString *)path;
-
 - (void)readGlossaryFile;
 - (void)writeGlossaryFile;
 - (void)writeExampleGlossaryFile;
