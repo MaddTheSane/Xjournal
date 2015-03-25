@@ -502,7 +502,7 @@
 		55BCA1E61A54B0A60034ECF5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		55C3FE211A71943800F1EC1A /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		55C3FE3E1A71951600F1EC1A /* OgreKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OgreKit.xcodeproj; path = OgreKit/OgreKit.xcodeproj; sourceTree = "<group>"; };
-		55D086F41A6CA1C800E0A00A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = src/Art/Images.xcassets; sourceTree = "<group>"; };
+		55D086F41A6CA1C800E0A00A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55D086F71A6CA88700E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
 		55D086FA1A6CA88E00E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HTMLPreview.xib; sourceTree = "<group>"; };
 		55D086FD1A6CA89900E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XJDocument.xib; sourceTree = "<group>"; };
@@ -792,11 +792,12 @@
 		1BF27EDD04B02A8100121863 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				557978E71AC20BC600979D9B /* userinfo.gif */,
 				557978E81AC20BC600979D9B /* communitysmall.gif */,
+				557978E71AC20BC600979D9B /* userinfo.gif */,
 				55D086F41A6CA1C800E0A00A /* Images.xcassets */,
 			);
 			name = Images;
+			path = src/Art;
 			sourceTree = "<group>";
 		};
 		2A37F4AAFDCFA73011CA2CEA /* Xjournal */ = {
