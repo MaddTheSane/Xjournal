@@ -12,10 +12,16 @@
     IBOutlet NSTableView *groupTable;
     IBOutlet NSSplitView *splitView;
     
-    IBOutlet id groupSheet, friendSheet, groupField, friendField, currentSheet;
+    IBOutlet NSPanel *groupSheet;
+    IBOutlet NSPanel *friendSheet;
+    IBOutlet NSTextField *groupField;
+    IBOutlet NSTextField *friendField;
 
-    IBOutlet NSTextField *userNameField, *fullName, *dateOfBirth;
-    IBOutlet NSColorWell *fgWell, *bgWell;
+    IBOutlet NSTextField *userNameField;
+    IBOutlet NSTextField *fullName;
+    IBOutlet NSTextField *dateOfBirth;
+    IBOutlet NSColorWell *fgWell;
+    IBOutlet NSColorWell *bgWell;
 
     IBOutlet AddressBookDropView *addressBookImageWell;
 	IBOutlet NSTextField *addressBookName;
@@ -31,8 +37,10 @@
     NSMutableDictionary *toolbarItemCache;
 
     // Toolbar popups
-    IBOutlet NSView *accountToolbarView, *showTypeToolbarView;
-    IBOutlet NSPopUpButton *accountToolbarPopup, *showTypePopUp;
+    IBOutlet NSView *accountToolbarView;
+    IBOutlet NSView *showTypeToolbarView;
+    IBOutlet NSPopUpButton *accountToolbarPopup;
+    IBOutlet NSPopUpButton *showTypePopUp;
     
     // THe view type
     NSInteger viewType; // 0 = all, 1 = only users, 2 = only communities
@@ -47,9 +55,11 @@
     NSImage *birthday;
     
     // WebKit
-    IBOutlet WebView *recentEntriesView, *userInfoView;
+    IBOutlet WebView *recentEntriesView;
+    IBOutlet WebView *userInfoView;
     IBOutlet NSTabView *tabs;
-    IBOutlet NSProgressIndicator *recentSpinner, *userInfoSpinner;
+    IBOutlet NSProgressIndicator *recentSpinner;
+    IBOutlet NSProgressIndicator *userInfoSpinner;
     
     // Birthdays
     IBOutlet NSButton *iCalButton;
@@ -58,6 +68,9 @@
     
     NSTimer *colorTimer;
 }
+
+@property (weak) IBOutlet NSPanel *currentSheet;
+
 - (IBAction)addFriend:(id)sender;
 - (IBAction)addGroup:(id)sender;
 - (IBAction)deleteSelectedFriend: (id)sender;

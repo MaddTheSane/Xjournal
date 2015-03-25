@@ -5,12 +5,12 @@
 
 @interface XJAccountEditWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 {
-    IBOutlet id newAccountSheet;
-    IBOutlet id passwordField;
-    IBOutlet id table;
-    IBOutlet id usernameField;
+    IBOutlet NSPanel *newAccountSheet;
+    IBOutlet NSSecureTextField *passwordField;
+    IBOutlet NSTableView *table;
+    IBOutlet NSTextField *usernameField;
 
-    IBOutlet id deleteButton;
+    IBOutlet NSButton *deleteButton;
 
     BOOL isEditingAccount;
     LJAccount *editedAccount;

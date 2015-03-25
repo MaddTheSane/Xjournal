@@ -21,7 +21,3 @@ typedef NS_ENUM(NSInteger, XJSearchType) {
 - (NSArray *)entriesContainingString: (NSString *)target;
 - (NSArray *)entriesContainingString: (NSString *)target searchType: (XJSearchType)type;
 @end
-
-static inline NSString *zeroizedString(int number) {
-    return [NSString stringWithFormat:@"%02d", number];
-}

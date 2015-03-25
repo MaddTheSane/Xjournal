@@ -27,6 +27,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
 
 @implementation XJFriendsController
 @synthesize account;
+@synthesize currentSheet;
 
 - (instancetype)init
 {

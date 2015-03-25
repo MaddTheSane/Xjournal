@@ -172,7 +172,7 @@
             [array addObject: [day entryAtIndex: i]];
         }
     }
-    return array;
+    return [array copy];
 }
 
 - (NSURL *)urlForMonthArchiveForAccount: (LJAccount *)acct {

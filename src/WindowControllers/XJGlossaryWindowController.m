@@ -22,6 +22,8 @@ static BOOL fileExists(NSString *path)
 
 @implementation XJGlossaryWindowController
 @synthesize glossary;
+@synthesize textView;
+
 - (instancetype)init
 {
 	self = [super initWithWindowNibName: @"GlossaryWindow"];

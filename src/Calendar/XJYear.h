@@ -18,24 +18,24 @@
     NSMutableArray *months;
 }
 
-- (instancetype)initWithYearName:(int)yearName NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithYearName:(int)yearName NS_DESIGNATED_INITIALIZER;
 @property (readonly) int yearName;
 
 @property (readonly) NSInteger numberOfMonths;
-- (XJMonth *)month: (int)monthNumber;
-@property (readonly, strong) XJMonth *mostRecentMonth;
+- (nonnull XJMonth *)month: (int)monthNumber;
+@property (readonly, weak, nonnull) XJMonth *mostRecentMonth;
 - (BOOL)containsMonth: (int)monthNumber;
 
-- (XJMonth *)createMonthWithName: (int)mName;
+- (nonnull XJMonth *)createMonthWithName: (int)mName;
 
-- (XJMonth *)monthAtIndex: (NSInteger) idx;
-@property (readonly, strong) NSEnumerator *monthEnumerator;
+- (nonnull XJMonth *)monthAtIndex: (NSInteger) idx;
+@property (readonly, strong, nonnull) NSEnumerator *monthEnumerator;
 
-- (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
+- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target;
+- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target searchType:(XJSearchType) type;
 
 @property (readonly) NSInteger numberOfEntriesInYear;
 
-- (NSURL *)urlForYearArchiveForAccount: (LJAccount *)acct;
+- (nonnull NSURL *)urlForYearArchiveForAccount: (nonnull LJAccount *)acct;
 
 @end

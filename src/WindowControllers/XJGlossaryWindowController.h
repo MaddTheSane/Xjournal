@@ -8,11 +8,10 @@
 
 #import <AppKit/AppKit.h>
 
-@interface XJGlossaryWindowController : NSWindowController {
-    IBOutlet NSTextView *textView;
-}
+@interface XJGlossaryWindowController : NSWindowController
 
 @property (copy) NSMutableArray *glossary;
+@property (unsafe_unretained) IBOutlet NSTextView *textView;
 
 - (void)readGlossaryFile;
 - (void)writeGlossaryFile;

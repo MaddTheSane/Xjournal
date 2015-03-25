@@ -14,32 +14,34 @@
     NSMutableArray *years;
 }
 
+- (nonnull instancetype)init;
+
 @property (readonly) NSInteger numberOfYears;
 - (BOOL)containsYear: (int)year;
-- (XJYear *)year: (int)yearNumber;
-@property (readonly, strong) XJYear *mostRecentYear;
-@property (readonly, strong) LJEntry *mostRecentPost; // convenience!
+- (nonnull XJYear *)year: (int)yearNumber;
+@property (nonnull, readonly, strong) XJYear *mostRecentYear;
+@property (nonnull, readonly, strong) LJEntry *mostRecentPost; // convenience!
 
-- (XJYear *)addYearWithName: (int)yearName;
-- (XJDay *)dayForCalendarDate:(NSCalendarDate *) theDate DEPRECATED_ATTRIBUTE;
-- (XJDay *)dayForDate:(NSDate *) theDate;
+- (nonnull XJYear *)addYearWithName: (int)yearName NS_RETURNS_RETAINED;
+- (nonnull XJDay *)dayForCalendarDate:(nonnull NSCalendarDate *) theDate DEPRECATED_ATTRIBUTE;
+- (nonnull XJDay *)dayForDate:(nonnull NSDate *) theDate;
 
-- (XJMonth *)month:(int)mIdx ofYear:(int)yr;
-- (XJDay *)day: (int)dayIdx ofMonth: (int)mIdx inYear:(int)yearIdx;
+- (nonnull XJMonth *)month:(int)mIdx ofYear:(int)yr;
+- (nonnull XJDay *)day: (int)dayIdx ofMonth: (int)mIdx inYear:(int)yearIdx;
 
-- (XJYear *)yearAtIndex:(NSInteger)idx;
+- (nonnull XJYear *)yearAtIndex:(NSInteger)idx;
 
-@property (readonly, strong) XJDay *today;
+@property (readonly, weak, nonnull) XJDay *today;
 
 @property (readonly) NSInteger totalEntriesInCalendar;
 
-@property (readonly, strong) NSEnumerator *yearEnumerator;
+@property (readonly, strong, nonnull) NSEnumerator *yearEnumerator;
 
-- (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
+- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target;
+- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target searchType:(XJSearchType) type;
 
-@property (readonly, copy) id propertyListRepresentation;
-- (void)configureFromPropertyListRepresentation: (id) plistType;
-- (BOOL)writeToFile: (NSString *)filePath atomically: (BOOL)flag;
-- (void)configureWithContentsOfFile: (NSString *)file;
+@property (readonly, copy, nonnull) id propertyListRepresentation;
+- (void)configureFromPropertyListRepresentation: (nonnull id) plistType;
+- (BOOL)writeToFile: (nonnull NSString *)filePath atomically: (BOOL)flag;
+- (void)configureWithContentsOfFile: (nonnull NSString *)file;
 @end

@@ -18,29 +18,29 @@
     NSMutableArray *days;
 }
 
-- (instancetype)initWithName:(int)theName inYear:(XJYear *)theYear NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithName:(int)theName inYear:(nonnull XJYear *)theYear NS_DESIGNATED_INITIALIZER;
 @property (readonly) int monthName;
-@property (readonly, copy) NSString *displayName;
-+ (int)numberForMonth: (NSString *)name;
-@property (weak) XJYear *year;
+@property (readonly, copy, nonnull) NSString *displayName;
++ (int)numberForMonth: (nonnull NSString *)name;
+@property (weak, nullable) XJYear *year;
 
 @property (readonly) NSInteger numberOfDays;
 - (BOOL)containsDay: (int)dayNumber;
-- (XJDay *)day:(int)dayNumber;
-- (XJDay *)createDayWithName:(int)dName;
-- (XJDay *)dayAtIndex: (NSInteger) idx;
-@property (readonly, strong) XJDay *mostRecentDay;
-@property (readonly, strong) NSEnumerator *dayEnumerator;
+- (nonnull XJDay *)day:(int)dayNumber;
+- (nonnull XJDay *)createDayWithName:(int)dName NS_RETURNS_RETAINED;
+- (nonnull XJDay *)dayAtIndex: (NSInteger) idx;
+@property (readonly, strong, nonnull) XJDay *mostRecentDay;
+@property (readonly, strong, nonnull) NSEnumerator *dayEnumerator;
 
-- (NSArray *)entriesContainingString: (NSString *)target;
-- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
+- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target;
+- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target searchType:(XJSearchType) type;
 
-@property (readonly, copy) NSArray *entriesInMonth;
+@property (readonly, copy, nonnull) NSArray *entriesInMonth;
 @property (readonly) NSInteger numberOfEntriesInMonth;
 
-- (NSURL *)urlForMonthArchiveForAccount: (LJAccount *)acct;
+- (nonnull NSURL *)urlForMonthArchiveForAccount: (nonnull LJAccount *)acct;
 
-@property (readonly, copy) id propertyListRepresentation;
-- (void)configureFromPropertyListRepresentation: (id) plistType;
+@property (readonly, copy, nonnull) id propertyListRepresentation;
+- (void)configureFromPropertyListRepresentation: (nonnull id) plistType;
 
 @end

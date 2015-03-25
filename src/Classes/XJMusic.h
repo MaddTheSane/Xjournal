@@ -10,16 +10,16 @@
 
 
 @interface XJMusic : NSObject
-@property (copy) NSString *name;
-@property (copy) NSString *album;
-@property (copy) NSString *artist;
+@property (copy, nullable) NSString *name;
+@property (copy, nullable) NSString *album;
+@property (copy, nullable) NSString *artist;
 @property int rating;
 
 // If iTunes is playing, returns a configured XJMusic object
 // If iTunes is not playing, returns nil;
-+ (XJMusic *)currentMusic;
-+ (XJMusic *)musicAsiTunesLink: (XJMusic *)aMusic;
++ (nonnull XJMusic *)currentMusic;
++ (nonnull XJMusic *)musicAsiTunesLink: (nonnull XJMusic *)aMusic;
 
-- (instancetype)initWithName: (NSString *)aName album: (NSString *)anAlbum artist: (NSString *)anArtist rating: (int)aRating NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithName: (nullable NSString *)aName album: (nullable NSString *)anAlbum artist: (nullable NSString *)anArtist rating: (int)aRating NS_DESIGNATED_INITIALIZER;
 
 @end
