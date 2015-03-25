@@ -103,7 +103,7 @@ import SwiftAdditions
 
 private var settingsDictionary: NSDictionary {
 	let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, NSProcessInfo().processName, nil, nil).takeRetainedValue()
-	let proxiesKey: String = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault).takeRetainedValue()
-	let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey).takeRetainedValue() as CFDictionary
+	let proxiesKey: String = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault).takeRetainedValue() as String
+	let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey).takeRetainedValue() as! CFDictionary
 	return dict
 }

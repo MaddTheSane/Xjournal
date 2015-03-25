@@ -61,10 +61,10 @@ private let kPollScaleStep = "LJPollScaleStep"
 	}
 	
 	override func restoreFromMemento(amemento: [String: AnyObject]) {
-		question = amemento[question] as String
-		start = amemento[kPollScaleStart] as Int
-		end = amemento[kPollScaleEnd] as Int
-		step = amemento[kPollScaleStep] as Int
+		question = amemento[question] as! String
+		start = amemento[kPollScaleStart] as! Int
+		end = amemento[kPollScaleEnd] as! Int
+		step = amemento[kPollScaleStep] as! Int
 	}
 	
 	// MARK: - NSCoding

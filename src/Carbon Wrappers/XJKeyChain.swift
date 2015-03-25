@@ -77,7 +77,7 @@ final class KeyChain: NSObject {
 	@objc(setGenericPassword:forService:account:) func setGenericPassword(password: String?, service: String, account: String) {
 		var ret: OSStatus = noErr
 		
-		if countElements(service) == 0 || countElements(account) == 0 {
+		if count(service) == 0 || count(account) == 0 {
 			return
 		}
 		
@@ -97,14 +97,14 @@ final class KeyChain: NSObject {
 		var p: UnsafeMutablePointer<()> = nil
 		var length: UInt32 = 0
 		
-		if countElements(service) == 0 || countElements(account) == 0 {
+		if count(service) == 0 || count(account) == 0 {
 			return ""
 		}
 
 		ret = SecKeychainFindGenericPassword(currentKeychain, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, &length, &p, nil)
 		
 		if ret == noErr {
-			string = NSString(bytes: p, length: Int(length), encoding: NSUTF8StringEncoding)!
+			string = NSString(bytes: p, length: Int(length), encoding: NSUTF8StringEncoding) as! String
 		}
 		if p != nil {
 			SecKeychainItemFreeContent(nil, p)
