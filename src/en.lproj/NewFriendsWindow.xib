@@ -287,7 +287,7 @@
                                                                                         <action selector="removeAddressCard:" target="-2" id="246"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Drag a card from Address Book to associate it with this friend" id="208" customClass="AddressBookDropView">
+                                                                                <imageView toolTip="Drag a card from Address Book to associate it with this friend" id="208" customClass="AddressBookDropView" customModule="Xjournal" customModuleProvider="target">
                                                                                     <rect key="frame" x="11" y="11" width="71" height="61"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="293"/>

@@ -633,7 +633,7 @@ typedef NS_ENUM(int, XJColumnSortOrder) {
 		[iCalButton setEnabled: NO];
 		
 		// AB
-		[addressBookImageWell setImage: [NSImage imageNamed: NSImageNameUser]];
+		addressBookImageWell.image = [NSImage imageNamed: NSImageNameUser];
 		[addressBookName setStringValue: placeHolder];
 		[addressBookName setEnabled: NO];
 		[addressBookClearButton setEnabled: NO];

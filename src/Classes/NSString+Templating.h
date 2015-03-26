@@ -20,8 +20,8 @@ California 94305, USA.
 
 @interface NSString (Templating)
 
-- (NSString *) stringByParsingTagsWithStartDelimeter: (NSString *) startDelim endDelimeter: (NSString *) endDelim usingObject: (id) object;
-@property (readonly, copy) NSString *stringByEscapingQuotes;
-- (NSString *) stringByEscapingCharactersInSet: (NSCharacterSet *) set usingString: (NSString*) escapeString;
+- (nonnull NSString *) stringByParsingTagsWithStartDelimeter: (nonnull NSString *) startDelim endDelimeter: (nonnull NSString *) endDelim usingObject: (nonnull id) object;
+@property (readonly, copy, nonnull) NSString *stringByEscapingQuotes;
+- (nonnull NSString *) stringByEscapingCharactersInSet: (nonnull NSCharacterSet *) set usingString: (nonnull NSString*) escapeString;
 
 @end

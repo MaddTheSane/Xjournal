@@ -25,8 +25,6 @@
 		1B0DEBEA053AF10C00A310CF /* make_event_ical.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */; };
 		1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4DEF5005072AAA00090913 /* LJKit-URLLaunching.h */; };
 		1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */; };
-		1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B76D69204CDD901008E50A3 /* AddressBookDropView.h */; };
-		1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D69304CDD901008E50A3 /* AddressBookDropView.m */; };
 		1B870E0B04C7EAA200C54147 /* ChangeNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */; };
 		1B870E0D04C7EABE00C54147 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B870E0C04C7EABE00C54147 /* ReadMe.rtf */; };
 		1BBD891B04B01883003882CD /* KeyHandlingTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD891104B01883003882CD /* KeyHandlingTableView.h */; };
@@ -107,6 +105,7 @@
 		559BECF81A9A724A004E75B1 /* schema.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF51A9A724A004E75B1 /* schema.strings */; };
 		559BECF91A9A724A004E75B1 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF61A9A724A004E75B1 /* schema.xml */; };
 		559BECFF1A9A774F004E75B1 /* XJImport.mdimporter in Copy Spotlight */ = {isa = PBXBuildFile; fileRef = 559BECCB1A9A6B92004E75B1 /* XJImport.mdimporter */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55AA168B1AC49D19004FE35A /* AddressBookDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */; };
 		55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B95A451A70507F00F4C784 /* ShortcutWindow.xib */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
 		55BCA1C21A5491F30034ECF5 /* HistoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */; };
@@ -408,8 +407,6 @@
 		1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; name = make_event_ical.applescript; path = src/make_event_ical.applescript; sourceTree = "<group>"; };
 		1B4DEF5005072AAA00090913 /* LJKit-URLLaunching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJKit-URLLaunching.h"; sourceTree = "<group>"; };
 		1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJKit-URLLaunching.m"; sourceTree = "<group>"; };
-		1B76D69204CDD901008E50A3 /* AddressBookDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressBookDropView.h; path = src/Classes/AddressBookDropView.h; sourceTree = SOURCE_ROOT; };
-		1B76D69304CDD901008E50A3 /* AddressBookDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookDropView.m; sourceTree = "<group>"; };
 		1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ChangeNotes.rtf; path = doc/ChangeNotes.rtf; sourceTree = "<group>"; };
 		1B870E0C04C7EABE00C54147 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = doc/ReadMe.rtf; sourceTree = "<group>"; };
 		1BBD891104B01883003882CD /* KeyHandlingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyHandlingTableView.h; sourceTree = "<group>"; };
@@ -495,6 +492,7 @@
 		559BECF41A9A724A004E75B1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		559BECF51A9A724A004E75B1 /* schema.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = schema.strings; sourceTree = "<group>"; };
 		559BECF61A9A724A004E75B1 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
+		55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDropView.swift; sourceTree = "<group>"; };
 		55B95A441A70507F00F4C784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutWindow.xib; sourceTree = "<group>"; };
 		55BCA1BE1A5480CF0034ECF5 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "src/English.lproj/Xjournal Help"; sourceTree = "<group>"; };
 		55BCA1C31A5491F30034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HistoryWindow.xib; sourceTree = "<group>"; };
@@ -674,8 +672,7 @@
 				5F5468C1092809EF00ABCAC9 /* XJSyndicationData.m */,
 				5F5B098B092563B6005BB86B /* XJMusic.h */,
 				5F5B098C092563B6005BB86B /* XJMusic.m */,
-				1B76D69204CDD901008E50A3 /* AddressBookDropView.h */,
-				1B76D69304CDD901008E50A3 /* AddressBookDropView.m */,
+				55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */,
 				1BBD895104B0189F003882CD /* XJAccountManager.h */,
 				1BBD895204B0189F003882CD /* XJAccountManager.m */,
 				1BBD895304B0189F003882CD /* XJAppDelegate.h */,
@@ -1017,7 +1014,6 @@
 				1BBD89FD04B0189F003882CD /* XJFriendsController.h in Headers */,
 				1BBD89FF04B0189F003882CD /* XJGlossaryWindowController.h in Headers */,
 				1BBD8A0104B0189F003882CD /* XJHistoryWindowController.h in Headers */,
-				1B76D69404CDD901008E50A3 /* AddressBookDropView.h in Headers */,
 				1B4DEF5205072AAA00090913 /* LJKit-URLLaunching.h in Headers */,
 				5F142DA9091E935E0002ADAE /* XJGlossaryFilterArrayController.h in Headers */,
 				5F044AD809224A4F003D6D2A /* XJMarkupRemovalVT.h in Headers */,
@@ -1391,13 +1387,13 @@
 				5566DE411A73327A00C982EF /* LJPoll.swift in Sources */,
 				5566DE5C1A74448700C982EF /* LJPollTextEntryQuestion.swift in Sources */,
 				55D7E09B1A75C8C80028F08E /* XJUserNotification.swift in Sources */,
-				1B76D69504CDD901008E50A3 /* AddressBookDropView.m in Sources */,
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				5566DE5A1A7440BF00C982EF /* LJPollScaleQuestion.swift in Sources */,
 				5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */,
 				5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */,
 				5566DE581A73493600C982EF /* LJPollMultipleOptionQuestion.swift in Sources */,
 				5566DE561A73470A00C982EF /* LJPollQuestion.swift in Sources */,
+				55AA168B1AC49D19004FE35A /* AddressBookDropView.swift in Sources */,
 				5F5B06D80924FBFA005BB86B /* XJPreferencesController.m in Sources */,
 				5F5B098E092563B6005BB86B /* XJMusic.m in Sources */,
 				5F5B0992092563E8005BB86B /* NSString+Templating.m in Sources */,

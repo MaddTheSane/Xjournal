@@ -48,7 +48,7 @@ California 94305, USA.
         }
     }
     
-    return result;    
+    return [result copy];
 }
 
 - (NSString *) stringByEscapingQuotes {
@@ -73,7 +73,7 @@ California 94305, USA.
         currentPosition++;
     }
     
-    return result;    
+    return [result copy];
 }
 
 @end

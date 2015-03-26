@@ -4,7 +4,7 @@
 #import <LJKit/LJKit.h>
 #import <WebKit/WebKit.h>
 
-#import "AddressBookDropView.h"
+@class AddressBookDropView;
 
 @interface XJFriendsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 {
