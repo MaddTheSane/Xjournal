@@ -10,6 +10,8 @@
 #import "XJMonth.h"
 #import "XJCalendarProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LJAccount;
 @class XJMonth;
 
@@ -18,24 +20,26 @@
     NSMutableArray *months;
 }
 
-- (nonnull instancetype)initWithYearName:(int)yearName NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithYearName:(int)yearName NS_DESIGNATED_INITIALIZER;
 @property (readonly) int yearName;
 
 @property (readonly) NSInteger numberOfMonths;
-- (nonnull XJMonth *)month: (int)monthNumber;
-@property (readonly, weak, nonnull) XJMonth *mostRecentMonth;
+- (XJMonth *)month: (int)monthNumber;
+@property (readonly, weak) XJMonth *mostRecentMonth;
 - (BOOL)containsMonth: (int)monthNumber;
 
-- (nonnull XJMonth *)createMonthWithName: (int)mName;
+- (XJMonth *)createMonthWithName: (int)mName;
 
-- (nonnull XJMonth *)monthAtIndex: (NSInteger) idx;
-@property (readonly, strong, nonnull) NSEnumerator *monthEnumerator;
+- (XJMonth *)monthAtIndex: (NSInteger) idx;
+@property (readonly, strong) NSEnumerator *monthEnumerator;
 
-- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target;
-- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target searchType:(XJSearchType) type;
+- (NSArray *)entriesContainingString: (NSString *)target;
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
 
 @property (readonly) NSInteger numberOfEntriesInYear;
 
-- (nonnull NSURL *)urlForYearArchiveForAccount: (nonnull LJAccount *)acct;
+- (NSURL *)urlForYearArchiveForAccount: (LJAccount *)acct;
 
 @end
+
+NS_ASSUME_NONNULL_END

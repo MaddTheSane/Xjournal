@@ -11,6 +11,8 @@
 #import "XJDay.h"
 #import "XJCalendarProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class XJDay;
 @class XJYear;
 
@@ -18,29 +20,31 @@
     NSMutableArray *days;
 }
 
-- (nonnull instancetype)initWithName:(int)theName inYear:(nonnull XJYear *)theYear NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(int)theName inYear:(XJYear *)theYear NS_DESIGNATED_INITIALIZER;
 @property (readonly) int monthName;
-@property (readonly, copy, nonnull) NSString *displayName;
-+ (int)numberForMonth: (nonnull NSString *)name;
+@property (readonly, copy, ) NSString *displayName;
++ (int)numberForMonth: (NSString *)name;
 @property (weak, nullable) XJYear *year;
 
 @property (readonly) NSInteger numberOfDays;
 - (BOOL)containsDay: (int)dayNumber;
-- (nonnull XJDay *)day:(int)dayNumber;
-- (nonnull XJDay *)createDayWithName:(int)dName NS_RETURNS_RETAINED;
-- (nonnull XJDay *)dayAtIndex: (NSInteger) idx;
-@property (readonly, strong, nonnull) XJDay *mostRecentDay;
-@property (readonly, strong, nonnull) NSEnumerator *dayEnumerator;
+- (XJDay *)day:(int)dayNumber;
+- (XJDay *)createDayWithName:(int)dName NS_RETURNS_RETAINED;
+- (XJDay *)dayAtIndex: (NSInteger) idx;
+@property (readonly, strong, ) XJDay *mostRecentDay;
+@property (readonly, strong, ) NSEnumerator *dayEnumerator;
 
-- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target;
-- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target searchType:(XJSearchType) type;
+- (NSArray *)entriesContainingString: (NSString *)target;
+- (NSArray *)entriesContainingString: (NSString *)target searchType:(XJSearchType) type;
 
-@property (readonly, copy, nonnull) NSArray *entriesInMonth;
+@property (readonly, copy, ) NSArray *entriesInMonth;
 @property (readonly) NSInteger numberOfEntriesInMonth;
 
-- (nonnull NSURL *)urlForMonthArchiveForAccount: (nonnull LJAccount *)acct;
+- (NSURL *)urlForMonthArchiveForAccount: (LJAccount *)acct;
 
-@property (readonly, copy, nonnull) id propertyListRepresentation;
-- (void)configureFromPropertyListRepresentation: (nonnull id) plistType;
+@property (readonly, copy, ) id propertyListRepresentation;
+- (void)configureFromPropertyListRepresentation: (id) plistType;
 
 @end
+
+NS_ASSUME_NONNULL_END

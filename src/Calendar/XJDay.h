@@ -12,6 +12,8 @@
 #import <LJKit/LJKit.h>
 #import "XJCalendarProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class XJMonth;
 
 @interface XJDay : NSObject <XJCalendarProtocol> {
@@ -20,7 +22,7 @@
 
 @property (weak, nullable) XJMonth *month;
 
-- (nonnull instancetype)initWithDayNumber:(int)theDayNumber month: (nonnull XJMonth *)mo andPostCount:(int)thePostCount NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDayNumber:(int)theDayNumber month: (XJMonth *)mo andPostCount:(int)thePostCount NS_DESIGNATED_INITIALIZER;
 
 @property NSInteger postCount;
 - (void)validatePostCountAndUpdate: (int)newPostCount;
@@ -30,25 +32,27 @@
 @property (readonly) BOOL hasPosts;
 
 @property (readonly, copy, nullable) NSCalendarDate *calendarDate DEPRECATED_ATTRIBUTE;
-@property (readonly, copy, nonnull) NSDate *date;
-@property (readonly, copy, nonnull) NSString *dayOfWeek;
+@property (readonly, copy) NSDate *date;
+@property (readonly, copy) NSString *dayOfWeek;
 
 @property (readonly) BOOL hasDownloadedEntries;
 - (void)downloadEntries;
-- (nonnull LJEntry *)entryAtIndex:(NSInteger)idx;
-@property (readonly, weak, nonnull) LJEntry *mostRecentEntry;
+- (LJEntry *)entryAtIndex:(NSInteger)idx;
+@property (readonly, weak) LJEntry *mostRecentEntry;
 - (void)deleteEntryAtIndex:(NSInteger)idx;
-- (void)deleteEntry: (nonnull LJEntry *)entry;
+- (void)deleteEntry: (LJEntry *)entry;
 
-- (void)addPostedEntry:(nonnull LJEntry *)entry;
+- (void)addPostedEntry:(LJEntry *)entry;
 
-@property (readonly, copy, nonnull) NSString *description;
+@property (readonly, copy) NSString *description;
 
-@property (readonly, copy, nonnull) id propertyListRepresentation;
-- (void)configureFromPropertyListRepresentation: (nonnull id) plistType;
+@property (readonly, copy) id propertyListRepresentation;
+- (void)configureFromPropertyListRepresentation: (id) plistType;
 
-- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target;
-- (nonnull NSArray *)entriesContainingString: (nonnull NSString *)target searchType: (XJSearchType)type;
+- (NSArray *)entriesContainingString: (NSString *)target;
+- (NSArray *)entriesContainingString: (NSString *)target searchType: (XJSearchType)type;
 
-- (nonnull NSURL *)urlForDayArchiveForAccount: (nonnull LJAccount *)acct;
+- (NSURL *)urlForDayArchiveForAccount: (LJAccount *)acct;
 @end
+
+NS_ASSUME_NONNULL_END

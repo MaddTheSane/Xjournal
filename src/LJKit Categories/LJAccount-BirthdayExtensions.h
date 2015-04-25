@@ -11,7 +11,7 @@
 
 @interface LJAccount (BirthdayExtensions)
 
-@property (readonly, copy) NSArray *friendsWithBirthdaysThisWeek;
-@property (readonly, copy) NSArray *friendsWithBirthdaysThisMonth;
+@property (readonly, copy, nonnull) NSArray *friendsWithBirthdaysThisWeek;
+@property (readonly, copy, nonnull) NSArray *friendsWithBirthdaysThisMonth;
 
 @end

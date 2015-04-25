@@ -22,7 +22,7 @@
         if([object birthdayIsWithinAlertPeriod: 7])
             [array addObject: object];
     }
-    return array;
+    return [array copy];
 }
 
 - (NSArray *)friendsWithBirthdaysThisMonth
@@ -35,7 +35,7 @@
         if([object birthdayIsThisMonth])
             [array addObject: object];
     }
-    return array;
+    return [array copy];
 }
 
 @end
