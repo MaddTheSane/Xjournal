@@ -197,7 +197,7 @@
 // Moved from NSString+extras.m from Ranchero.com's RSS class
 // ----------------------------------------------------------
 @implementation NSString (extras)
-- (NSString *) trimWhiteSpace {
+- (NSString *) stringByTrimmingWhiteSpace {
     
     NSMutableString *s = [self mutableCopy];
     
@@ -220,7 +220,7 @@
     
     copy = [s copy];
     
-    if ([[copy trimWhiteSpace] isEqualTo: @""])
+    if ([[copy stringByTrimmingWhiteSpace] isEqualTo: @""])
         return (YES);
     
     return (NO);

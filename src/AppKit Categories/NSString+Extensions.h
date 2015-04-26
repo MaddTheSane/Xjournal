@@ -14,6 +14,6 @@
 
 // Moved from NSString+extras.h from Ranchero.com's RSS class
 @interface NSString (extras)
-@property (readonly, copy, nonnull) NSString *trimWhiteSpace;
+@property (readonly, copy, nonnull) NSString *stringByTrimmingWhiteSpace;
 + (BOOL) stringIsEmpty: (nullable NSString *) s;
 @end
