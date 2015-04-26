@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ ${ZERO_LINK} == YES ]; then
 	echo error:0:Cannot distribute a ZeroLink build
 	exit 1

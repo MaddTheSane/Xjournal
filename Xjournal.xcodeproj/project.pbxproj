@@ -417,85 +417,85 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		089C1660FE840EACC02AAC07 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = src/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C1660FE840EACC02AAC07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B0DEBE9053AF10C00A310CF /* make_event_ical.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; path = make_event_ical.applescript; sourceTree = "<group>"; };
-		1B4DEF5005072AAA00090913 /* LJKit-URLLaunching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJKit-URLLaunching.h"; sourceTree = "<group>"; };
-		1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJKit-URLLaunching.m"; sourceTree = "<group>"; };
-		1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ChangeNotes.rtf; path = doc/ChangeNotes.rtf; sourceTree = "<group>"; };
-		1B870E0C04C7EABE00C54147 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = doc/ReadMe.rtf; sourceTree = "<group>"; };
-		1BBD891104B01883003882CD /* KeyHandlingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyHandlingTableView.h; sourceTree = "<group>"; };
-		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyHandlingTableView.m; sourceTree = "<group>"; };
-		1BBD891704B01883003882CD /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
-		1BBD891804B01883003882CD /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; usesTabs = 1; };
-		1BBD892604B0188D003882CD /* XJBookmarkFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBookmarkFolder.h; sourceTree = "<group>"; };
-		1BBD892704B0188D003882CD /* XJBookmarkFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBookmarkFolder.m; path = src/Bookmarks/XJBookmarkFolder.m; sourceTree = SOURCE_ROOT; };
-		1BBD892804B0188D003882CD /* XJBookmarkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBookmarkItem.h; sourceTree = "<group>"; };
-		1BBD892904B0188D003882CD /* XJBookmarkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBookmarkItem.m; path = src/Bookmarks/XJBookmarkItem.m; sourceTree = SOURCE_ROOT; };
-		1BBD892A04B0188D003882CD /* XJBookmarkRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBookmarkRoot.h; sourceTree = "<group>"; };
-		1BBD892B04B0188D003882CD /* XJBookmarkRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBookmarkRoot.m; path = src/Bookmarks/XJBookmarkRoot.m; sourceTree = SOURCE_ROOT; };
-		1BBD892C04B0188D003882CD /* XJBookmarksWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBookmarksWindowController.h; sourceTree = "<group>"; };
-		1BBD892D04B0188D003882CD /* XJBookmarksWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBookmarksWindowController.m; path = src/Bookmarks/XJBookmarksWindowController.m; sourceTree = SOURCE_ROOT; };
-		1BBD892E04B0188D003882CD /* XJSafariBookmarkParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSafariBookmarkParser.h; sourceTree = "<group>"; };
-		1BBD892F04B0188D003882CD /* XJSafariBookmarkParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJSafariBookmarkParser.m; path = src/Bookmarks/XJSafariBookmarkParser.m; sourceTree = SOURCE_ROOT; };
-		1BBD893B04B0189F003882CD /* XJCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendar.h; sourceTree = "<group>"; };
-		1BBD893C04B0189F003882CD /* XJCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJCalendar.m; path = src/Calendar/XJCalendar.m; sourceTree = SOURCE_ROOT; };
-		1BBD893D04B0189F003882CD /* XJDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDay.h; sourceTree = "<group>"; };
-		1BBD893E04B0189F003882CD /* XJDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJDay.m; path = src/Calendar/XJDay.m; sourceTree = SOURCE_ROOT; };
-		1BBD893F04B0189F003882CD /* XJMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMonth.h; sourceTree = "<group>"; };
-		1BBD894004B0189F003882CD /* XJMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMonth.m; path = src/Calendar/XJMonth.m; sourceTree = SOURCE_ROOT; };
-		1BBD894104B0189F003882CD /* XJYear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJYear.h; sourceTree = "<group>"; };
-		1BBD894204B0189F003882CD /* XJYear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJYear.m; path = src/Calendar/XJYear.m; sourceTree = SOURCE_ROOT; };
-		1BBD895104B0189F003882CD /* XJAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJAccountManager.h; sourceTree = "<group>"; };
-		1BBD895204B0189F003882CD /* XJAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJAccountManager.m; sourceTree = "<group>"; };
-		1BBD895304B0189F003882CD /* XJAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJAppDelegate.h; sourceTree = "<group>"; };
-		1BBD895404B0189F003882CD /* XJAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = XJAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1BBD895504B0189F003882CD /* XJCheckFriendsSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCheckFriendsSessionManager.h; sourceTree = "<group>"; };
-		1BBD895604B0189F003882CD /* XJCheckFriendsSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = XJCheckFriendsSessionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1BBD895704B0189F003882CD /* XJPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPreferences.h; sourceTree = "<group>"; };
-		1BBD895804B0189F003882CD /* XJPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPreferences.m; sourceTree = "<group>"; };
-		1BBD896004B0189F003882CD /* LJAccount-BirthdayExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJAccount-BirthdayExtensions.h"; sourceTree = "<group>"; };
-		1BBD896104B0189F003882CD /* LJAccount-BirthdayExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-BirthdayExtensions.m"; sourceTree = "<group>"; };
-		1BBD896204B0189F003882CD /* LJEntryExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJEntryExtensions.h; sourceTree = "<group>"; };
-		1BBD896304B0189F003882CD /* LJEntryExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJEntryExtensions.m; sourceTree = "<group>"; };
-		1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-ABExtensions.h"; sourceTree = "<group>"; };
-		1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-ABExtensions.m"; sourceTree = "<group>"; };
-		1BBD898A04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XJBookmarksWindowController+ToolbarDelegate.h"; sourceTree = "<group>"; };
-		1BBD898B04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XJBookmarksWindowController+ToolbarDelegate.m"; sourceTree = "<group>"; };
-		1BBD898C04B0189F003882CD /* XJDocument+NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XJDocument+NSToolbarController.h"; sourceTree = "<group>"; };
-		1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XJDocument+NSToolbarController.m"; sourceTree = "<group>"; };
-		1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XJFriendsController-NSToolbarController.h"; sourceTree = "<group>"; };
-		1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XJFriendsController-NSToolbarController.m"; sourceTree = "<group>"; };
-		1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJAccountEditWindowController.h; sourceTree = "<group>"; };
-		1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJAccountEditWindowController.m; sourceTree = "<group>"; };
-		1BBD899904B0189F003882CD /* XJDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDocument.h; sourceTree = "<group>"; };
-		1BBD899A04B0189F003882CD /* XJDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = XJDocument.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1BBD899B04B0189F003882CD /* XJFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJFriendsController.h; sourceTree = "<group>"; };
-		1BBD899C04B0189F003882CD /* XJFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJFriendsController.m; sourceTree = "<group>"; };
-		1BBD899D04B0189F003882CD /* XJGlossaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJGlossaryWindowController.h; sourceTree = "<group>"; };
-		1BBD899E04B0189F003882CD /* XJGlossaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJGlossaryWindowController.m; sourceTree = "<group>"; };
-		1BBD899F04B0189F003882CD /* XJHistoryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJHistoryWindowController.h; sourceTree = "<group>"; };
-		1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = XJHistoryWindowController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1B4DEF5005072AAA00090913 /* LJKit-URLLaunching.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LJKit-URLLaunching.h"; sourceTree = "<group>"; };
+		1B4DEF5105072AAA00090913 /* LJKit-URLLaunching.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LJKit-URLLaunching.m"; sourceTree = "<group>"; };
+		1B870E0A04C7EAA200C54147 /* ChangeNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ChangeNotes.rtf; sourceTree = "<group>"; };
+		1B870E0C04C7EABE00C54147 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
+		1BBD891104B01883003882CD /* KeyHandlingTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyHandlingTableView.h; sourceTree = "<group>"; };
+		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyHandlingTableView.m; sourceTree = "<group>"; };
+		1BBD891704B01883003882CD /* NSString+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		1BBD891804B01883003882CD /* NSString+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; usesTabs = 1; };
+		1BBD892604B0188D003882CD /* XJBookmarkFolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJBookmarkFolder.h; sourceTree = "<group>"; };
+		1BBD892704B0188D003882CD /* XJBookmarkFolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJBookmarkFolder.m; sourceTree = "<group>"; };
+		1BBD892804B0188D003882CD /* XJBookmarkItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJBookmarkItem.h; sourceTree = "<group>"; };
+		1BBD892904B0188D003882CD /* XJBookmarkItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJBookmarkItem.m; sourceTree = "<group>"; };
+		1BBD892A04B0188D003882CD /* XJBookmarkRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJBookmarkRoot.h; sourceTree = "<group>"; };
+		1BBD892B04B0188D003882CD /* XJBookmarkRoot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJBookmarkRoot.m; sourceTree = "<group>"; };
+		1BBD892C04B0188D003882CD /* XJBookmarksWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJBookmarksWindowController.h; sourceTree = "<group>"; };
+		1BBD892D04B0188D003882CD /* XJBookmarksWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJBookmarksWindowController.m; sourceTree = "<group>"; };
+		1BBD892E04B0188D003882CD /* XJSafariBookmarkParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJSafariBookmarkParser.h; sourceTree = "<group>"; };
+		1BBD892F04B0188D003882CD /* XJSafariBookmarkParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJSafariBookmarkParser.m; sourceTree = "<group>"; };
+		1BBD893B04B0189F003882CD /* XJCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJCalendar.h; sourceTree = "<group>"; };
+		1BBD893C04B0189F003882CD /* XJCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJCalendar.m; sourceTree = "<group>"; };
+		1BBD893D04B0189F003882CD /* XJDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJDay.h; sourceTree = "<group>"; };
+		1BBD893E04B0189F003882CD /* XJDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJDay.m; sourceTree = "<group>"; };
+		1BBD893F04B0189F003882CD /* XJMonth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJMonth.h; sourceTree = "<group>"; };
+		1BBD894004B0189F003882CD /* XJMonth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJMonth.m; sourceTree = "<group>"; };
+		1BBD894104B0189F003882CD /* XJYear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJYear.h; sourceTree = "<group>"; };
+		1BBD894204B0189F003882CD /* XJYear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJYear.m; sourceTree = "<group>"; };
+		1BBD895104B0189F003882CD /* XJAccountManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJAccountManager.h; sourceTree = "<group>"; };
+		1BBD895204B0189F003882CD /* XJAccountManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJAccountManager.m; sourceTree = "<group>"; };
+		1BBD895304B0189F003882CD /* XJAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJAppDelegate.h; sourceTree = "<group>"; };
+		1BBD895404B0189F003882CD /* XJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1BBD895504B0189F003882CD /* XJCheckFriendsSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJCheckFriendsSessionManager.h; sourceTree = "<group>"; };
+		1BBD895604B0189F003882CD /* XJCheckFriendsSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJCheckFriendsSessionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1BBD895704B0189F003882CD /* XJPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPreferences.h; sourceTree = "<group>"; };
+		1BBD895804B0189F003882CD /* XJPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPreferences.m; sourceTree = "<group>"; };
+		1BBD896004B0189F003882CD /* LJAccount-BirthdayExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LJAccount-BirthdayExtensions.h"; sourceTree = "<group>"; };
+		1BBD896104B0189F003882CD /* LJAccount-BirthdayExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LJAccount-BirthdayExtensions.m"; sourceTree = "<group>"; };
+		1BBD896204B0189F003882CD /* LJEntryExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJEntryExtensions.h; sourceTree = "<group>"; };
+		1BBD896304B0189F003882CD /* LJEntryExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJEntryExtensions.m; sourceTree = "<group>"; };
+		1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LJFriend-ABExtensions.h"; sourceTree = "<group>"; };
+		1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-ABExtensions.m"; sourceTree = "<group>"; };
+		1BBD898A04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJBookmarksWindowController+ToolbarDelegate.h"; sourceTree = "<group>"; };
+		1BBD898B04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XJBookmarksWindowController+ToolbarDelegate.m"; sourceTree = "<group>"; };
+		1BBD898C04B0189F003882CD /* XJDocument+NSToolbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJDocument+NSToolbarController.h"; sourceTree = "<group>"; };
+		1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XJDocument+NSToolbarController.m"; sourceTree = "<group>"; };
+		1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJFriendsController-NSToolbarController.h"; sourceTree = "<group>"; };
+		1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XJFriendsController-NSToolbarController.m"; sourceTree = "<group>"; };
+		1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJAccountEditWindowController.h; sourceTree = "<group>"; };
+		1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJAccountEditWindowController.m; sourceTree = "<group>"; };
+		1BBD899904B0189F003882CD /* XJDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJDocument.h; sourceTree = "<group>"; };
+		1BBD899A04B0189F003882CD /* XJDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJDocument.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1BBD899B04B0189F003882CD /* XJFriendsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJFriendsController.h; sourceTree = "<group>"; };
+		1BBD899C04B0189F003882CD /* XJFriendsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJFriendsController.m; sourceTree = "<group>"; };
+		1BBD899D04B0189F003882CD /* XJGlossaryWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJGlossaryWindowController.h; sourceTree = "<group>"; };
+		1BBD899E04B0189F003882CD /* XJGlossaryWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJGlossaryWindowController.m; sourceTree = "<group>"; };
+		1BBD899F04B0189F003882CD /* XJHistoryWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJHistoryWindowController.h; sourceTree = "<group>"; };
+		1BBD89A004B0189F003882CD /* XJHistoryWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJHistoryWindowController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1BBD8BDE04B01A6B003882CD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1BBD8BF304B01A77003882CD /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		1BBD8C8C04B01A85003882CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BBD8C9E04B01A8B003882CD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = src/en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xjournal_Prefix.pch; sourceTree = "<group>"; };
-		5500C50B1A74576400A22983 /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; usesTabs = 1; };
-		552DD5E51A9A56BE00B2AE26 /* NotificationPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPrefs.swift; sourceTree = "<group>"; };
-		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* Xjournal_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xjournal_Prefix.pch; sourceTree = "<group>"; };
+		5500C50B1A74576400A22983 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; usesTabs = 1; };
+		552DD5E51A9A56BE00B2AE26 /* NotificationPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPrefs.swift; sourceTree = "<group>"; };
+		553DEF931A6DA1D1004BFA17 /* XJCalendarProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJCalendarProtocol.h; sourceTree = "<group>"; };
 		5566DE251A72EDE800C982EF /* Xjournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xjournal-Bridging-Header.h"; sourceTree = "<group>"; };
-		5566DE261A72EDE800C982EF /* PollEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollEditorController.swift; sourceTree = "<group>"; usesTabs = 1; };
-		5566DE401A73327A00C982EF /* LJPoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPoll.swift; sourceTree = "<group>"; };
+		5566DE261A72EDE800C982EF /* PollEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollEditorController.swift; sourceTree = "<group>"; usesTabs = 1; };
+		5566DE401A73327A00C982EF /* LJPoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJPoll.swift; sourceTree = "<group>"; };
 		5566DE421A7337CD00C982EF /* SwiftAdditions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftAdditions.xcodeproj; path = SwiftAdditions/SwiftAdditions.xcodeproj; sourceTree = "<group>"; };
-		5566DE551A73470A00C982EF /* LJPollQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPollQuestion.swift; sourceTree = "<group>"; };
-		5566DE571A73493600C982EF /* LJPollMultipleOptionQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPollMultipleOptionQuestion.swift; sourceTree = "<group>"; };
-		5566DE591A7440BF00C982EF /* LJPollScaleQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPollScaleQuestion.swift; sourceTree = "<group>"; };
-		5566DE5B1A74448700C982EF /* LJPollTextEntryQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LJPollTextEntryQuestion.swift; sourceTree = "<group>"; };
-		5572C16C1A74A90100CA1B60 /* XJKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJKeyChain.swift; sourceTree = "<group>"; usesTabs = 1; };
+		5566DE551A73470A00C982EF /* LJPollQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJPollQuestion.swift; sourceTree = "<group>"; };
+		5566DE571A73493600C982EF /* LJPollMultipleOptionQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJPollMultipleOptionQuestion.swift; sourceTree = "<group>"; };
+		5566DE591A7440BF00C982EF /* LJPollScaleQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJPollScaleQuestion.swift; sourceTree = "<group>"; };
+		5566DE5B1A74448700C982EF /* LJPollTextEntryQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJPollTextEntryQuestion.swift; sourceTree = "<group>"; };
+		5572C16C1A74A90100CA1B60 /* XJKeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XJKeyChain.swift; sourceTree = "<group>"; usesTabs = 1; };
 		557978E71AC20BC600979D9B /* userinfo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = userinfo.gif; sourceTree = "<group>"; };
 		557978E81AC20BC600979D9B /* communitysmall.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = communitysmall.gif; sourceTree = "<group>"; };
 		559BECCB1A9A6B92004E75B1 /* XJImport.mdimporter */ = {isa = PBXFileReference; explicitFileType = "wrapper.spotlight-importer"; includeInIndex = 0; path = XJImport.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,12 +503,12 @@
 		559BECCF1A9A6B92004E75B1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		559BECD11A9A6B92004E75B1 /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
 		559BECF31A9A7124004E75B1 /* GetMetadataForFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetMetadataForFile.h; sourceTree = "<group>"; };
-		559BECF41A9A724A004E75B1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		559BECF51A9A724A004E75B1 /* schema.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = schema.strings; sourceTree = "<group>"; };
-		559BECF61A9A724A004E75B1 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
-		55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDropView.swift; sourceTree = "<group>"; };
+		559BECF41A9A724A004E75B1 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		559BECF51A9A724A004E75B1 /* schema.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = schema.strings; sourceTree = "<group>"; };
+		559BECF61A9A724A004E75B1 /* schema.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
+		55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookDropView.swift; sourceTree = "<group>"; };
 		55B95A441A70507F00F4C784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutWindow.xib; sourceTree = "<group>"; };
-		55BCA1BE1A5480CF0034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = "src/en.lproj/Xjournal Help"; sourceTree = "<group>"; };
+		55BCA1BE1A5480CF0034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = "en.lproj/Xjournal Help"; sourceTree = "<group>"; };
 		55BCA1C31A5491F30034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HistoryWindow.xib; sourceTree = "<group>"; };
 		55BCA1C81A5492130034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlossaryWindow.xib; sourceTree = "<group>"; };
 		55BCA1E61A54B0A60034ECF5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -529,39 +529,39 @@
 		55D087181A6CA97E00E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Bookmarks.xib; sourceTree = "<group>"; };
 		55D0871B1A6CA98700E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BirthdaysWindow.xib; sourceTree = "<group>"; };
 		55D0871E1A6CA99400E0A00A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AccountEditWindow.xib; sourceTree = "<group>"; };
-		55D7E09A1A75C8C80028F08E /* XJUserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJUserNotification.swift; sourceTree = "<group>"; };
-		55D7E09C1A75C8ED0028F08E /* ExampleGlossary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExampleGlossary.plist; sourceTree = "<group>"; };
-		55DD21791A6F2BEA00055B5A /* NNWConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNWConsts.h; sourceTree = "<group>"; };
-		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = "<group>"; };
-		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMarkupRemovalVT.h; sourceTree = "<group>"; };
-		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMarkupRemovalVT.m; sourceTree = "<group>"; };
-		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
-		5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJGlossaryFilterArrayController.h; sourceTree = "<group>"; };
-		5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJGlossaryFilterArrayController.m; sourceTree = "<group>"; };
-		5F5468C0092809EF00ABCAC9 /* XJSyndicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSyndicationData.h; sourceTree = "<group>"; };
-		5F5468C1092809EF00ABCAC9 /* XJSyndicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSyndicationData.m; sourceTree = "<group>"; };
-		5F562CB906B99296004629AE /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = src/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5F5B05250924D90A005BB86B /* XJApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJApplication.h; sourceTree = "<group>"; };
-		5F5B05260924D90A005BB86B /* XJApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJApplication.m; sourceTree = "<group>"; };
-		5F5B05870924E5A0005BB86B /* XJPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPreferencesController.h; sourceTree = "<group>"; };
-		5F5B05880924E5A0005BB86B /* XJPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPreferencesController.m; sourceTree = "<group>"; };
+		55D7E09A1A75C8C80028F08E /* XJUserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XJUserNotification.swift; sourceTree = "<group>"; };
+		55D7E09C1A75C8ED0028F08E /* ExampleGlossary.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ExampleGlossary.plist; sourceTree = "<group>"; };
+		55DD21791A6F2BEA00055B5A /* NNWConsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNWConsts.h; sourceTree = "<group>"; };
+		585E030B0A1A2F7E001E92ED /* CFPSL_1_0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = CFPSL_1_0.rtf; path = legal/CFPSL_1_0.rtf; sourceTree = SOURCE_ROOT; };
+		5F044AD609224A4F003D6D2A /* XJMarkupRemovalVT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJMarkupRemovalVT.h; sourceTree = "<group>"; };
+		5F044AD709224A4F003D6D2A /* XJMarkupRemovalVT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJMarkupRemovalVT.m; sourceTree = "<group>"; };
+		5F0C941806BC04DA0082A48B /* CreateDiskImage.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = CreateDiskImage.sh; path = src/CreateDiskImage.sh; sourceTree = "<group>"; };
+		5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJGlossaryFilterArrayController.h; sourceTree = "<group>"; };
+		5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJGlossaryFilterArrayController.m; sourceTree = "<group>"; };
+		5F5468C0092809EF00ABCAC9 /* XJSyndicationData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJSyndicationData.h; sourceTree = "<group>"; };
+		5F5468C1092809EF00ABCAC9 /* XJSyndicationData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJSyndicationData.m; sourceTree = "<group>"; };
+		5F562CB906B99296004629AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5F5B05250924D90A005BB86B /* XJApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJApplication.h; sourceTree = "<group>"; };
+		5F5B05260924D90A005BB86B /* XJApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJApplication.m; sourceTree = "<group>"; };
+		5F5B05870924E5A0005BB86B /* XJPreferencesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPreferencesController.h; sourceTree = "<group>"; };
+		5F5B05880924E5A0005BB86B /* XJPreferencesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPreferencesController.m; sourceTree = "<group>"; };
 		5F5B083E09252596005BB86B /* ApplicationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = ApplicationDefaults.plist; sourceTree = "<group>"; };
-		5F5B098B092563B6005BB86B /* XJMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMusic.h; sourceTree = "<group>"; };
-		5F5B098C092563B6005BB86B /* XJMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMusic.m; sourceTree = "<group>"; };
-		5F5B098F092563E8005BB86B /* NSString+Templating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Templating.h"; path = "src/Classes/NSString+Templating.h"; sourceTree = SOURCE_ROOT; };
-		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Templating.m"; path = "src/Classes/NSString+Templating.m"; sourceTree = SOURCE_ROOT; };
-		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
-		5F7C1ADC05EC1BB2004DBCFC /* LJFriend-FOAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-FOAF.m"; sourceTree = "<group>"; };
-		5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJFontNameToDisplayVT.h; sourceTree = "<group>"; };
-		5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJFontNameToDisplayVT.m; sourceTree = "<group>"; };
+		5F5B098B092563B6005BB86B /* XJMusic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJMusic.h; sourceTree = "<group>"; };
+		5F5B098C092563B6005BB86B /* XJMusic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJMusic.m; sourceTree = "<group>"; };
+		5F5B098F092563E8005BB86B /* NSString+Templating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Templating.h"; sourceTree = "<group>"; };
+		5F5B0990092563E8005BB86B /* NSString+Templating.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Templating.m"; sourceTree = "<group>"; };
+		5F7C1ADB05EC1BB2004DBCFC /* LJFriend-FOAF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LJFriend-FOAF.h"; sourceTree = "<group>"; };
+		5F7C1ADC05EC1BB2004DBCFC /* LJFriend-FOAF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-FOAF.m"; sourceTree = "<group>"; };
+		5FBEA5F0093107170071F534 /* XJFontNameToDisplayVT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJFontNameToDisplayVT.h; sourceTree = "<group>"; };
+		5FBEA5F1093107170071F534 /* XJFontNameToDisplayVT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJFontNameToDisplayVT.m; sourceTree = "<group>"; };
 		5FBF478F08138A6400829423 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5FBF479D08138DEE00829423 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
-		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Xjournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xjournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7E88D30BE4057600765961 /* LJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LJKit.xcodeproj; path = LJKit/LJKit.xcodeproj; sourceTree = "<group>"; };
-		F304905F0F2227E3008A1888 /* XJPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPopUpButton.h; sourceTree = "<group>"; };
-		F30490600F2227E3008A1888 /* XJPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPopUpButton.m; sourceTree = "<group>"; };
-		F3A3927C0F80228E0079760A /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ../dsa_pub.pem; sourceTree = "<group>"; };
+		F304905F0F2227E3008A1888 /* XJPopUpButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPopUpButton.h; sourceTree = "<group>"; };
+		F30490600F2227E3008A1888 /* XJPopUpButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPopUpButton.m; sourceTree = "<group>"; };
+		F3A3927C0F80228E0079760A /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; name = dsa_pub.pem; path = ../dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -619,13 +619,12 @@
 				1B870E0C04C7EABE00C54147 /* ReadMe.rtf */,
 			);
 			name = Documentation;
+			path = doc;
 			sourceTree = "<group>";
 		};
 		1BBD891004B01883003882CD /* AppKit Categories */ = {
 			isa = PBXGroup;
 			children = (
-				5F5B098F092563E8005BB86B /* NSString+Templating.h */,
-				5F5B0990092563E8005BB86B /* NSString+Templating.m */,
 				1BBD891104B01883003882CD /* KeyHandlingTableView.h */,
 				1BBD891204B01883003882CD /* KeyHandlingTableView.m */,
 				1BBD891704B01883003882CD /* NSString+Extensions.h */,
@@ -751,16 +750,14 @@
 				1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */,
 				1BBD898F04B0189F003882CD /* XJFriendsController-NSToolbarController.m */,
 			);
-			name = ToolbarDelegates;
-			path = src/ToolbarDelegates;
-			sourceTree = SOURCE_ROOT;
+			path = ToolbarDelegates;
+			sourceTree = "<group>";
 		};
 		1BBD899404B0189F003882CD /* WindowControllers */ = {
 			isa = PBXGroup;
 			children = (
 				5F142DA7091E935E0002ADAE /* XJGlossaryFilterArrayController.h */,
 				5F142DA8091E935E0002ADAE /* XJGlossaryFilterArrayController.m */,
-				1BBD898904B0189F003882CD /* ToolbarDelegates */,
 				1BBD899504B0189F003882CD /* XJAccountEditWindowController.h */,
 				1BBD899604B0189F003882CD /* XJAccountEditWindowController.m */,
 				1BBD899904B0189F003882CD /* XJDocument.h */,
@@ -871,6 +868,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5546EEE51AECA42400605917 /* Foundation Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5F5B098F092563E8005BB86B /* NSString+Templating.h */,
+				5F5B0990092563E8005BB86B /* NSString+Templating.m */,
+			);
+			path = "Foundation Categories";
+			sourceTree = "<group>";
+		};
 		5566DE431A7337CD00C982EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,8 +971,10 @@
 				1BBD895F04B0189F003882CD /* LJKit Categories */,
 				1BBD897304B0189F003882CD /* Polls */,
 				1BBD897E04B0189F003882CD /* PrefClients */,
+				1BBD898904B0189F003882CD /* ToolbarDelegates */,
 				1BBD899404B0189F003882CD /* WindowControllers */,
 				1BBD894304B0189F003882CD /* Carbon Wrappers */,
+				5546EEE51AECA42400605917 /* Foundation Categories */,
 				1BBD891004B01883003882CD /* AppKit Categories */,
 				5F044ADC09224A58003D6D2A /* Value Transformers */,
 				55D7E0841A75C87F0028F08E /* Notifications */,
@@ -1478,7 +1486,6 @@
 				089C1660FE840EACC02AAC07 /* en */,
 			);
 			name = InfoPlist.strings;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
@@ -1487,7 +1494,6 @@
 				2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */,
 			);
 			name = Credits.rtf;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		55B95A451A70507F00F4C784 /* ShortcutWindow.xib */ = {
@@ -1504,7 +1510,6 @@
 				55BCA1BE1A5480CF0034ECF5 /* en */,
 			);
 			name = "Xjournal Help";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		55BCA1C41A5491F30034ECF5 /* HistoryWindow.xib */ = {
@@ -1641,7 +1646,6 @@
 				5F562CB906B99296004629AE /* en */,
 			);
 			name = Localizable.strings;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
