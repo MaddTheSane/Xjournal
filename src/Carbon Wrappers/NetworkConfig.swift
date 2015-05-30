@@ -24,7 +24,7 @@ import SwiftAdditions
 	
 	/// is True if HTTP proxying is turned on in System Prefs
 	@objc class var httpProxyIsEnabled: Bool {
-		if let aBool = settingsDictionary[kSCPropNetProxiesHTTPEnable as NSString] as? Bool {
+		if let aBool = settingsDictionary[kSCPropNetProxiesHTTPEnable as String] as? Bool {
 			return aBool
 		}
 		return false
@@ -32,7 +32,7 @@ import SwiftAdditions
 	
 	/// The HTTP proxy, or nil if none is set
 	@objc class var httpProxyHost: String? {
-		if let val = settingsDictionary[kSCPropNetProxiesHTTPProxy as NSString] as? String {
+		if let val = settingsDictionary[kSCPropNetProxiesHTTPProxy as String] as? String {
 			return val
 		}
 		
@@ -42,7 +42,7 @@ import SwiftAdditions
 	/// Returns YES if the proxy should be used for the given URL.
 	/// i.e. The domain does not appear in the non-proxied destinations list.
 	@objc class func destinationIsProxied(host: String) -> Bool {
-		if let nonProxied = settingsDictionary[kSCPropNetProxiesExceptionsList as NSString] as? [String] {
+		if let nonProxied = settingsDictionary[kSCPropNetProxiesExceptionsList as String] as? [String] {
 			for exception in nonProxied {
 				if host.hasSuffix(exception) {
 					return false
@@ -54,7 +54,7 @@ import SwiftAdditions
 	
 	/// Returns the HTTP Proxy port, or nil if none is set
 	class var httpProxyPort: Int32? {
-		if let val = settingsDictionary[kSCPropNetProxiesHTTPPort as NSString] as? Int {
+		if let val = settingsDictionary[kSCPropNetProxiesHTTPPort as String] as? Int {
 			return Int32(val)
 		}
 		return nil
