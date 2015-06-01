@@ -130,7 +130,7 @@ class LJPoll: NSObject, NSSecureCoding {
 		return NSSet(objects: "votingPermissions", "viewingPermissions", "name", "questions")
 	}
 	
-	class func supportsSecureCoding() -> Bool {
+	final class func supportsSecureCoding() -> Bool {
 		return true
 	}
 	

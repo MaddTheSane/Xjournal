@@ -315,10 +315,11 @@ class XJPollEditorController: NSWindowController {
 				self.currentSheet = nil;
 				
 			case sheetOK, NSModalResponseStop:
+				let currEdQues = self.currentlyEditedQuestion as! PollScaleQuestion
 				self.currentlyEditedQuestion.question = self.scaleQuestionField.stringValue
-				(self.currentlyEditedQuestion as! PollScaleQuestion).start = self.scaleStartField.integerValue
-				(self.currentlyEditedQuestion as! PollScaleQuestion).end = self.scaleEndField.integerValue
-				(self.currentlyEditedQuestion as! PollScaleQuestion).step = self.scaleStepField.integerValue
+				currEdQues.start = self.scaleStartField.integerValue
+				currEdQues.end = self.scaleEndField.integerValue
+				currEdQues.step = self.scaleStepField.integerValue
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 				self.questionTable.reloadData()
@@ -346,8 +347,9 @@ class XJPollEditorController: NSWindowController {
 
 			case sheetOK, NSModalResponseStop:
 				self.currentlyEditedQuestion.question = self.textQuestionField.stringValue
-				(self.currentlyEditedQuestion as! PollTextEntryQuestion).size = self.textSizeField.integerValue
-				(self.currentlyEditedQuestion as! PollTextEntryQuestion).maxLength = self.textMaxLengthField.integerValue
+				let currEdQues = self.currentlyEditedQuestion as! PollTextEntryQuestion
+				currEdQues.size = self.textSizeField.integerValue
+				currEdQues.maxLength = self.textMaxLengthField.integerValue
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 				self.questionTable.reloadData()
