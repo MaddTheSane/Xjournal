@@ -9,16 +9,13 @@
 #import "XJBookmarksWindowController.h"
 #import "XJPreferences.h"
 #import "XJBookmarksWindowController+ToolbarDelegate.h"
+#import "Xjournal-Swift.h"
 
 #define kBookmarkAutosaveName @"kBookmarkAutosaveName"
 
 #define STRIPE_RED   (237.0 / 255.0)
 #define STRIPE_GREEN (243.0 / 255.0)
 #define STRIPE_BLUE  (254.0 / 255.0)
-
-@interface XJSafariBookmarkParser (private) <NSOutlineViewDataSource>
-
-@end
 
 @implementation XJBookmarksWindowController
 
@@ -68,8 +65,8 @@
  */
 - (IBAction)refreshBookmarks:(id)sender
 {
-    if(!parser) {
-        parser = [[XJSafariBookmarkParser alloc] init];
+    if (!parser) {
+        parser = [[SafariBookmarkParser alloc] init];
     }
     [parser refreshFromDisk];
     [outline reloadData];
@@ -108,7 +105,7 @@
 - (void)outlineView:(NSOutlineView *)olv willDisplayCell:(NSCell *)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
     if(![[tableColumn identifier] isEqualToString: @"title"]) {
-        if([item isKindOfClass: [XJBookmarkFolder class]])
+        if([item isKindOfClass: [BookmarkFolder class]])
             [(NSTextFieldCell*)cell setTextColor: [NSColor grayColor]];
         else
             [(NSTextFieldCell*)cell setTextColor: [NSColor blackColor]];
@@ -133,7 +130,7 @@ I don't think this is a good idea, but I'm keeping it here for now.
 // ----------------------------------------------------------------------------------------
 - (IBAction)expandAll:(id)sender
 {
-    XJBookmarkFolder *root = [parser rootItem];
+    BookmarkFolder *root = [parser rootItem];
     int i;
 
     for(i=0; i < [root numberOfChildren]; i++)
@@ -142,7 +139,7 @@ I don't think this is a good idea, but I'm keeping it here for now.
 
 - (IBAction)collapseAll: (id) sender
 {
-    XJBookmarkFolder *root = [parser rootItem];
+    BookmarkFolder *root = [parser rootItem];
     int i;
 
     for(i=0; i < [root numberOfChildren]; i++)

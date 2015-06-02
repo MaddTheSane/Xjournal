@@ -9,18 +9,19 @@
 /*
  * Implements the controller class for the Bookmarks palette.
  */
-#import <AppKit/AppKit.h>
-#import "XJSafariBookmarkParser.h"
+#import <Cocoa/Cocoa.h>
 
 #define kBookmarkWindowToolbarIdentifier @"BookmarkWindowToolbarIdentifier"
 #define kBookmarkRefreshItemIdentifier @"BookmarkRefreshItemIdentifier"
 #define kBookmarkExpandAllItemIdentifier @"BookmarkExpandAllItemIdentifier"
 #define kBookmarkCollapseAllItemIdentifier @"BookmarkCollapseAllItemIdentifier"
 
-@interface XJBookmarksWindowController : NSWindowController <NSOutlineViewDataSource> {
+@class SafariBookmarkParser;
+
+@interface XJBookmarksWindowController : NSWindowController <NSOutlineViewDataSource, NSOutlineViewDelegate> {
     IBOutlet NSOutlineView* outline;
     NSMutableDictionary *toolbarItemCache;
-    XJSafariBookmarkParser *parser;
+    SafariBookmarkParser *parser;
 }
 
 - (IBAction)refreshBookmarks:(id)sender;

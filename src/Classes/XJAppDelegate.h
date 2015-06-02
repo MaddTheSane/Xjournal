@@ -11,11 +11,10 @@
 #import "XJHistoryWindowController.h"
 #import "XJFriendsController.h"
 #import "XJGlossaryWindowController.h"
-#import "XJSafariBookmarkParser.h"
 #import "XJBookmarksWindowController.h"
 #import "XJAccountEditWindowController.h"
-@class XJPollEditorController;
 
+@class XJPollEditorController;
 @class XJPreferencesController;
 
 @interface XJAppDelegate : NSObject <NSApplicationDelegate>
@@ -27,14 +26,14 @@
 @property (weak) IBOutlet NSMenuItem *deleteFriend;
 @property (weak) IBOutlet NSMenuItem *deleteFromGroup;
 
-// The Accounts > top level menu item
+//! The Accounts > top level menu item
 @property (weak) IBOutlet NSMenuItem *accountItem;
 
 
-    // Are we showing the dock badge?
+    //! Are we showing the dock badge?
 @property BOOL showingDockBadge;
 
-// Target for AppMenu -> Login
+//! Target for AppMenu -> Login
 - (IBAction)logIn:(id)sender;
 
 // Targets for Window menu items

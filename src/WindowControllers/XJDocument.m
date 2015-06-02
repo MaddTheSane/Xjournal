@@ -8,7 +8,6 @@
 
 #import "XJDocument.h"
 #import "XJPreferences.h"
-#import "XJSafariBookmarkParser.h"
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
 #import "NSString+Extensions.h"
