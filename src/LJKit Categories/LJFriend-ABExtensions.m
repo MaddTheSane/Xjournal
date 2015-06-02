@@ -7,6 +7,7 @@
 //
 
 #import "LJFriend-ABExtensions.h" 
+#import <AddressBook/AddressBook.h>
 
 #define kLJUsernameKey @"org.speirs.xjournal.livejournalusername"
 #define kLJEmailLabel @"LJ Email"
@@ -40,7 +41,7 @@
     ABSearchElement *sElement = [ABPerson searchElementForProperty: kLJUsernameKey
                                                              label: nil
                                                                key: nil
-                                                             value: [self username]
+                                                             value: self.username
                                                         comparison: kABEqual];
     
     NSArray *foundRecords = [book recordsMatchingSearchElement: sElement];
@@ -100,8 +101,7 @@
         else {
             return last;
         }
-    }
-    else {
+    } else {
         NSString *company = [rec valueForProperty: kABOrganizationProperty];
         if(company)
             return company;
@@ -199,11 +199,10 @@
     if(!birthday) return; // <-- bail out
     
     NSString *scriptBody = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_event_ical" ofType:@"applescript"] encoding:NSUTF8StringEncoding error:NULL];
-    NSMutableString *headerText = [NSMutableString string];
+    NSMutableString *headerText = [[NSMutableString alloc] initWithCapacity:scriptBody.length + 512];
     NSString *eventTitle = [NSString stringWithFormat: @"%@'s birthday", [self username]];
     
     [headerText appendFormat:@"set calTitle to \"%@\"\r", calendarName];
-    
     [headerText appendFormat:@"set eventTitle to \"%@\"\r", eventTitle];
     
     NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];

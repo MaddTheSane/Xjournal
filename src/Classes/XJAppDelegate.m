@@ -284,23 +284,22 @@
 #pragma mark -
 #pragma mark Dock Icon Handling
 - (void)showDockBadge {
-    [[NSApplication sharedApplication] dockTile].showsApplicationBadge = YES;
-    [[NSApplication sharedApplication] dockTile].badgeLabel = @"update";
-	
-	[self setShowingDockBadge: YES];
+    [NSApplication sharedApplication].dockTile.showsApplicationBadge = YES;
+    [NSApplication sharedApplication].dockTile.badgeLabel = @"update";
+    self.showingDockBadge = YES;
 }
 
 - (void)hideDockBadge {
-    [[NSApplication sharedApplication] dockTile].badgeLabel = @"";
-    [[NSApplication sharedApplication] dockTile].showsApplicationBadge = NO;
-	[self setShowingDockBadge: NO];
+    [NSApplication sharedApplication].dockTile.showsApplicationBadge = NO;
+    [NSApplication sharedApplication].dockTile.badgeLabel = @"";
+    self.showingDockBadge = NO;
 }
 
 #pragma mark -
 #pragma mark Accounts Menu Handling
 - (void) buildAccountsMenu: (NSNotification *)note
 {
-	if([accountItem hasSubmenu]) {
+	if ([accountItem hasSubmenu]) {
 		[accountItem setSubmenu: nil];
 	}
 	
@@ -308,9 +307,7 @@
 	NSDictionary *accounts = [[XJAccountManager defaultManager] accounts];
 	NSArray *dictionaryKeys = [[accounts allKeys] sortedArrayUsingSelector:@selector(compare:)];
 	
-	int i;
-	for(i=0; i < [dictionaryKeys count]; i++) {
-		NSString *key = dictionaryKeys[i];
+    for (NSString *key in dictionaryKeys) {
 		LJAccount *acc = accounts[key];
 		
 		NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: [acc username] action: @selector(switchAccount:) keyEquivalent: @""];

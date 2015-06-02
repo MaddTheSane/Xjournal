@@ -158,7 +158,7 @@
 	}
 
     [meta appendString: @"<br>"];
-	return meta;
+	return [NSString stringWithString: meta];
 }
 
 @end

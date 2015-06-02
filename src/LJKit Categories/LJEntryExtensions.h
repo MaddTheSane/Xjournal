@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <LJKit/LJKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LJEntry (XJExtensions)
 
 - (BOOL)writePropertyListToFile:(NSString *)path atomically:(BOOL)flag;
@@ -18,3 +20,5 @@
 
 @property (readonly, copy) NSString *metadataHTML;
 @end
+
+NS_ASSUME_NONNULL_END

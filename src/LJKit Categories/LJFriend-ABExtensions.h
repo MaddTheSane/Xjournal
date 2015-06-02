@@ -7,19 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AddressBook/AddressBook.h>
 #import <LJKit/LJKit.h>
+
+@class ABRecord;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface LJFriend (ABExtensions)
 
 - (void)associateABRecord: (ABRecord *)record;
-@property (readonly, strong) ABRecord *addressBookRecord;
+@property (readonly, strong, nullable) ABRecord *addressBookRecord;
 - (void)unassociateABRecord;
 @property (readonly) BOOL hasAddressCard;
 
-@property (readonly, copy) NSString *uniqueId;
-@property (readonly, copy) NSString *chatURL;
-@property (readonly, copy) NSImage *abImage;
+@property (readonly, copy, nullable) NSString *uniqueId;
+@property (readonly, copy, nullable) NSString *chatURL;
+@property (readonly, copy, nullable) NSImage *abImage;
 @property (readonly, copy) NSString *abName;
 - (void)addAddressCardAndEdit: (BOOL)shouldEdit;
 
@@ -29,8 +32,8 @@
 
 @interface LJFriend (Birthdays)
 @property (readonly) BOOL birthdayIsToday;
-- (BOOL)birthdayIsWithinAlertPeriod: (int)alertPeriod;
 @property (readonly) BOOL birthdayIsThisMonth;
+- (BOOL)birthdayIsWithinAlertPeriod: (int)alertPeriod;
 - (void)addBirthdayToCalendarNamed:(NSString *)calendarName;
 @end
 
@@ -52,3 +55,5 @@
 - (NSComparisonResult)compareRelationshipDescending: (id)otherFriend;
 - (NSComparisonResult)compareRelationship: (id)otherFriend descending: (BOOL)descending;
 @end
+
+NS_ASSUME_NONNULL_END
