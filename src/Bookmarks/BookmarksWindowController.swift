@@ -13,7 +13,6 @@ private let kBookmarkRefreshItemIdentifier = "BookmarkRefreshItemIdentifier"
 private let kBookmarkExpandAllItemIdentifier = "BookmarkExpandAllItemIdentifier"
 private let kBookmarkCollapseAllItemIdentifier = "BookmarkCollapseAllItemIdentifier"
 
-
 class BookmarksWindowController: NSWindowController {
     //    IBOutlet NSOutlineView* outline;
     @IBOutlet weak var outline: NSOutlineView!
@@ -57,9 +56,9 @@ class BookmarksWindowController: NSWindowController {
 	}
 }
 
-let STRIPE_RED =	CGFloat(237.0 / 255.0)
-let STRIPE_GREEN =	CGFloat(243.0 / 255.0)
-let STRIPE_BLUE =	CGFloat(254.0 / 255.0)
+private let STRIPE_RED =	CGFloat(237.0 / 255.0)
+private let STRIPE_GREEN =	CGFloat(243.0 / 255.0)
+private let STRIPE_BLUE =	CGFloat(254.0 / 255.0)
 
 /// OutlineView Data Source - forwards most calls to the bookmark parser object.
 extension BookmarksWindowController: NSOutlineViewDataSource, NSOutlineViewDelegate {
