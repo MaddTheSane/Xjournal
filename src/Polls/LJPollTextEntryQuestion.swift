@@ -12,7 +12,7 @@ private let kPollTextSize = "LJPollTextSize"
 private let kPollTextLength = "LJPollTextLength"
 
 ///This is a subclass representing a text box question
-@objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: PollQuestion, NSCoding {
+@objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: PollQuestion {
 	/// Get and set the size property
 	var size: Int
 	/// Get and set the length
@@ -59,7 +59,7 @@ private let kPollTextLength = "LJPollTextLength"
 		aCoder.encodeInteger(maxLength, forKey: kPollTextLength)
 	}
 	
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		size = aDecoder.decodeIntegerForKey(kPollTextSize)
 		maxLength = aDecoder.decodeIntegerForKey(kPollTextLength)
 		

@@ -444,7 +444,7 @@ extension XJPollEditorController: NSToolbarDelegate {
         return item
     }
 	
-	func toolbarAllowedItemIdentifiers(toolbar: NSToolbar) -> [AnyObject] {
+	func toolbarAllowedItemIdentifiers(toolbar: NSToolbar) -> [String] {
 		return [kPollAddTextItemIdentifier,
 			kPollAddMultipleItemIdentifier,
 			kPollAddScaleItemIdentifier,
@@ -457,7 +457,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 			NSToolbarCustomizeToolbarItemIdentifier]
 	}
 	
-	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [AnyObject] {
+	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [String] {
 		return [kPollAddTextItemIdentifier,
 			kPollAddMultipleItemIdentifier,
 			kPollAddScaleItemIdentifier,

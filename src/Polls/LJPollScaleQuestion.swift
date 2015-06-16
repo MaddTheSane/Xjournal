@@ -14,7 +14,7 @@ private let kPollScaleEnd = "LJPollScaleEnd"
 private let kPollScaleStep = "LJPollScaleStep"
 
 /// Question subclass representing a scale with start, end and step values
-@objc(LJPollScaleQuestion) final class PollScaleQuestion: PollQuestion, NSCoding {
+@objc(LJPollScaleQuestion) final class PollScaleQuestion: PollQuestion {
 	var start: Int
 	var end: Int
 	var step: Int
@@ -76,7 +76,7 @@ private let kPollScaleStep = "LJPollScaleStep"
 		aCoder.encodeInteger(step, forKey: kPollScaleStep)
 	}
 	
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		start = aDecoder.decodeIntegerForKey(kPollScaleStart)
 		end = aDecoder.decodeIntegerForKey(kPollScaleEnd)
 		step = aDecoder.decodeIntegerForKey(kPollScaleStep)

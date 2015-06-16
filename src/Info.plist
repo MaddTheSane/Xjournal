@@ -40,7 +40,7 @@
 	<key>CFBundleHelpBookName</key>
 	<string>Xjournal Help</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.speirs.xjournal</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BookmarkItem: BookmarkRoot, Printable {
+final class BookmarkItem: BookmarkRoot {
 	var webAddress: NSURL
 	
 	init(title newTitle: String, address: NSURL) {
