@@ -31,8 +31,6 @@
 		1BBD891C04B01883003882CD /* KeyHandlingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD891204B01883003882CD /* KeyHandlingTableView.m */; };
 		1BBD892104B01883003882CD /* NSString+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD891704B01883003882CD /* NSString+Extensions.h */; };
 		1BBD892204B01883003882CD /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD891804B01883003882CD /* NSString+Extensions.m */; };
-		1BBD893604B0188D003882CD /* XJBookmarksWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD892C04B0188D003882CD /* XJBookmarksWindowController.h */; };
-		1BBD893704B0188D003882CD /* XJBookmarksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD892D04B0188D003882CD /* XJBookmarksWindowController.m */; };
 		1BBD89A504B0189F003882CD /* XJCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD893B04B0189F003882CD /* XJCalendar.h */; };
 		1BBD89A604B0189F003882CD /* XJCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD893C04B0189F003882CD /* XJCalendar.m */; };
 		1BBD89A704B0189F003882CD /* XJDay.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD893D04B0189F003882CD /* XJDay.h */; };
@@ -55,8 +53,6 @@
 		1BBD89CA04B0189F003882CD /* LJEntryExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD896304B0189F003882CD /* LJEntryExtensions.m */; };
 		1BBD89CB04B0189F003882CD /* LJFriend-ABExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */; };
 		1BBD89CC04B0189F003882CD /* LJFriend-ABExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */; };
-		1BBD89ED04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD898A04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h */; };
-		1BBD89EE04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD898B04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m */; };
 		1BBD89EF04B0189F003882CD /* XJDocument+NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD898C04B0189F003882CD /* XJDocument+NSToolbarController.h */; };
 		1BBD89F004B0189F003882CD /* XJDocument+NSToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */; };
 		1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */; };
@@ -101,6 +97,7 @@
 		559BECF81A9A724A004E75B1 /* schema.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF51A9A724A004E75B1 /* schema.strings */; };
 		559BECF91A9A724A004E75B1 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 559BECF61A9A724A004E75B1 /* schema.xml */; };
 		559BECFF1A9A774F004E75B1 /* XJImport.mdimporter in Copy Spotlight */ = {isa = PBXBuildFile; fileRef = 559BECCB1A9A6B92004E75B1 /* XJImport.mdimporter */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55A7EA5E1B30AE0800EBB453 /* BookmarksWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7EA5D1B30AE0800EBB453 /* BookmarksWindowController.swift */; };
 		55AA168B1AC49D19004FE35A /* AddressBookDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */; };
 		55B95A431A70507F00F4C784 /* ShortcutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B95A451A70507F00F4C784 /* ShortcutWindow.xib */; };
 		55BCA1BF1A5480CF0034ECF5 /* Xjournal Help in Resources */ = {isa = PBXBuildFile; fileRef = 55BCA1BD1A5480CF0034ECF5 /* Xjournal Help */; };
@@ -430,8 +427,6 @@
 		1BBD891204B01883003882CD /* KeyHandlingTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyHandlingTableView.m; sourceTree = "<group>"; };
 		1BBD891704B01883003882CD /* NSString+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		1BBD891804B01883003882CD /* NSString+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; usesTabs = 1; };
-		1BBD892C04B0188D003882CD /* XJBookmarksWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJBookmarksWindowController.h; sourceTree = "<group>"; };
-		1BBD892D04B0188D003882CD /* XJBookmarksWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJBookmarksWindowController.m; sourceTree = "<group>"; };
 		1BBD893B04B0189F003882CD /* XJCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJCalendar.h; sourceTree = "<group>"; };
 		1BBD893C04B0189F003882CD /* XJCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJCalendar.m; sourceTree = "<group>"; };
 		1BBD893D04B0189F003882CD /* XJDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJDay.h; sourceTree = "<group>"; };
@@ -454,8 +449,6 @@
 		1BBD896304B0189F003882CD /* LJEntryExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJEntryExtensions.m; sourceTree = "<group>"; };
 		1BBD896404B0189F003882CD /* LJFriend-ABExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LJFriend-ABExtensions.h"; sourceTree = "<group>"; };
 		1BBD896504B0189F003882CD /* LJFriend-ABExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LJFriend-ABExtensions.m"; sourceTree = "<group>"; };
-		1BBD898A04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJBookmarksWindowController+ToolbarDelegate.h"; sourceTree = "<group>"; };
-		1BBD898B04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XJBookmarksWindowController+ToolbarDelegate.m"; sourceTree = "<group>"; };
 		1BBD898C04B0189F003882CD /* XJDocument+NSToolbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJDocument+NSToolbarController.h"; sourceTree = "<group>"; };
 		1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XJDocument+NSToolbarController.m"; sourceTree = "<group>"; };
 		1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJFriendsController-NSToolbarController.h"; sourceTree = "<group>"; };
@@ -505,6 +498,7 @@
 		559BECF41A9A724A004E75B1 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		559BECF51A9A724A004E75B1 /* schema.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = schema.strings; sourceTree = "<group>"; };
 		559BECF61A9A724A004E75B1 /* schema.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
+		55A7EA5D1B30AE0800EBB453 /* BookmarksWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksWindowController.swift; sourceTree = "<group>"; };
 		55AA168A1AC49D19004FE35A /* AddressBookDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookDropView.swift; sourceTree = "<group>"; };
 		55B95A441A70507F00F4C784 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShortcutWindow.xib; sourceTree = "<group>"; };
 		55BCA1BE1A5480CF0034ECF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = "en.lproj/Xjournal Help"; sourceTree = "<group>"; };
@@ -638,12 +632,12 @@
 				555A164C1B1CE3F700E1B461 /* BookmarkRoot.swift */,
 				555A166A1B1CE4D300E1B461 /* BookmarkItem.swift */,
 				555A166C1B1CE67D00E1B461 /* BookmarkFolder.swift */,
-				1BBD892C04B0188D003882CD /* XJBookmarksWindowController.h */,
-				1BBD892D04B0188D003882CD /* XJBookmarksWindowController.m */,
+				55A7EA5D1B30AE0800EBB453 /* BookmarksWindowController.swift */,
 				555A166E1B1CE87100E1B461 /* SafariBookmarkParser.swift */,
 			);
 			path = Bookmarks;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		1BBD893A04B0189F003882CD /* Calendar */ = {
 			isa = PBXGroup;
@@ -738,8 +732,6 @@
 		1BBD898904B0189F003882CD /* ToolbarDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				1BBD898A04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h */,
-				1BBD898B04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m */,
 				1BBD898C04B0189F003882CD /* XJDocument+NSToolbarController.h */,
 				1BBD898D04B0189F003882CD /* XJDocument+NSToolbarController.m */,
 				1BBD898E04B0189F003882CD /* XJFriendsController-NSToolbarController.h */,
@@ -1010,7 +1002,6 @@
 				8D15AC290486D014006FF6A4 /* Xjournal_Prefix.pch in Headers */,
 				1BBD891B04B01883003882CD /* KeyHandlingTableView.h in Headers */,
 				1BBD892104B01883003882CD /* NSString+Extensions.h in Headers */,
-				1BBD893604B0188D003882CD /* XJBookmarksWindowController.h in Headers */,
 				1BBD89A504B0189F003882CD /* XJCalendar.h in Headers */,
 				1BBD89A704B0189F003882CD /* XJDay.h in Headers */,
 				1BBD89A904B0189F003882CD /* XJMonth.h in Headers */,
@@ -1023,7 +1014,6 @@
 				1BBD89C904B0189F003882CD /* LJEntryExtensions.h in Headers */,
 				1BBD89CB04B0189F003882CD /* LJFriend-ABExtensions.h in Headers */,
 				553DEF941A6DA1D1004BFA17 /* XJCalendarProtocol.h in Headers */,
-				1BBD89ED04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.h in Headers */,
 				1BBD89EF04B0189F003882CD /* XJDocument+NSToolbarController.h in Headers */,
 				1BBD89F104B0189F003882CD /* XJFriendsController-NSToolbarController.h in Headers */,
 				1BBD89F704B0189F003882CD /* XJAccountEditWindowController.h in Headers */,
@@ -1398,7 +1388,6 @@
 				5500C50C1A74576400A22983 /* NetworkConfig.swift in Sources */,
 				1BBD891C04B01883003882CD /* KeyHandlingTableView.m in Sources */,
 				1BBD892204B01883003882CD /* NSString+Extensions.m in Sources */,
-				1BBD893704B0188D003882CD /* XJBookmarksWindowController.m in Sources */,
 				552DD5E61A9A56BE00B2AE26 /* NotificationPrefs.swift in Sources */,
 				1BBD89A604B0189F003882CD /* XJCalendar.m in Sources */,
 				1BBD89A804B0189F003882CD /* XJDay.m in Sources */,
@@ -1413,7 +1402,6 @@
 				1BBD89CA04B0189F003882CD /* LJEntryExtensions.m in Sources */,
 				1BBD89CC04B0189F003882CD /* LJFriend-ABExtensions.m in Sources */,
 				5566DE271A72EDE800C982EF /* PollEditorController.swift in Sources */,
-				1BBD89EE04B0189F003882CD /* XJBookmarksWindowController+ToolbarDelegate.m in Sources */,
 				1BBD89F004B0189F003882CD /* XJDocument+NSToolbarController.m in Sources */,
 				1BBD89F204B0189F003882CD /* XJFriendsController-NSToolbarController.m in Sources */,
 				1BBD89F804B0189F003882CD /* XJAccountEditWindowController.m in Sources */,
@@ -1429,6 +1417,7 @@
 				1B4DEF5305072AAA00090913 /* LJKit-URLLaunching.m in Sources */,
 				5566DE5A1A7440BF00C982EF /* LJPollScaleQuestion.swift in Sources */,
 				5F142DAA091E935E0002ADAE /* XJGlossaryFilterArrayController.m in Sources */,
+				55A7EA5E1B30AE0800EBB453 /* BookmarksWindowController.swift in Sources */,
 				5F044AD909224A50003D6D2A /* XJMarkupRemovalVT.m in Sources */,
 				5566DE581A73493600C982EF /* LJPollMultipleOptionQuestion.swift in Sources */,
 				5566DE561A73470A00C982EF /* LJPollQuestion.swift in Sources */,

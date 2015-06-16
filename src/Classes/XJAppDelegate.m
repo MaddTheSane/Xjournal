@@ -45,7 +45,7 @@
     XJHistoryWindowController *histController;
     XJFriendsController *friendController;
     XJGlossaryWindowController *glossaryController;
-    XJBookmarksWindowController *bookmarkController;
+    BookmarksWindowController *bookmarkController;
     XJAccountEditWindowController *accountController;
     XJPollEditorController *pollController;
     XJPreferencesController *prefsController;
@@ -360,7 +360,7 @@
 - (IBAction)showBookmarkWindow:(id)sender
 {
     if(!bookmarkController) {
-        bookmarkController = [[XJBookmarksWindowController alloc] init];
+        bookmarkController = [[BookmarksWindowController alloc] initWithWindowNibName:@"Bookmarks"];
     }
     [bookmarkController showWindow: self];
 }

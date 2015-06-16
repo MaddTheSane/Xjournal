@@ -10,12 +10,11 @@ import Foundation
 
 
 
-class BookmarkRoot: NSObject {
+class BookmarkRoot: CustomStringConvertible {
 	var title: String
 	
 	init(title newTitle: String) {
 		title = newTitle
-		super.init()
 	}
 	
 	func compare(other: BookmarkRoot) -> NSComparisonResult {
@@ -24,5 +23,9 @@ class BookmarkRoot: NSObject {
 	
 	var hasChildren: Bool {
 		return false
+	}
+	
+	var description: String {
+		return "Bookmark Root"
 	}
 }

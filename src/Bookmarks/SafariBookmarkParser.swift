@@ -151,7 +151,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		if let item = item as? BookmarkRoot {
 			return item.hasChildren
 		} else {
-			return true
+			return false
 		}
 	}
 	
@@ -159,7 +159,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		if let item = item as? BookmarkFolder {
 			return item.numberOfChildren
 		} else {
-			return rootFolder!.numberOfChildren
+			return rootFolder?.numberOfChildren ?? 0
 		}
 	}
 	
