@@ -116,7 +116,7 @@ final class KeyChain: NSObject {
 	var keychainURL: NSURL? {
 		var pathLen: UInt32 = 0
 		var pathName: [Int8] = [Int8](count: Int(PATH_MAX), repeatedValue: 0)
-		var iErr = SecKeychainGetPath(currentKeychain, &pathLen, &pathName)
+		let iErr = SecKeychainGetPath(currentKeychain, &pathLen, &pathName)
 		if iErr != noErr {
 			return nil
 		}

@@ -69,22 +69,24 @@ import SwiftAdditions
 		var	result = false
 		var	flags: SCNetworkReachabilityFlags = []
 		
-		let target = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, host)!
-		let ok = SCNetworkReachabilityGetFlags(target, &flags)
-		
-		if ok {
-			result = true
-			result = !flags.contains(.ConnectionRequired) &&
-				flags.contains(.Reachable)
+		if let target = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, host) {
+			let ok = SCNetworkReachabilityGetFlags(target, &flags)
+			
+			if ok {
+				result = !flags.contains(.ConnectionRequired) &&
+					flags.contains(.Reachable)
+			}
 		}
-		
 		return result
 	}
 }
 
 private var settingsDictionary: NSDictionary {
-	let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, NSProcessInfo().processName, nil, nil)!
-	let proxiesKey: String = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault) as String
-	let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey) as! CFDictionary
-	return dict
+	if let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, NSProcessInfo().processName, nil, nil) {
+		let proxiesKey = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault) as String
+		if let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey) {
+			return dict as! CFDictionary
+		}
+	}
+	return [:]
 }
