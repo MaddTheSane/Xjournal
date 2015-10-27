@@ -65,45 +65,28 @@ import SwiftAdditions
 		return httpProxyPort ?? 80
 	}
 	
-	private struct NetworkFlags : RawOptionSetType {
-		typealias RawValue = UInt32
-		private var value: UInt32 = 0
-		init(_ value: UInt32) { self.value = value }
-		init(rawValue value: UInt32) { self.value = value }
-		init(nilLiteral: ()) { self.value = 0 }
-		static var allZeros: NetworkFlags { return self(0) }
-		static func fromMask(raw: UInt32) -> NetworkFlags { return self(raw) }
-		var rawValue: UInt32 { return self.value }
-		
-		static var TransientConnection: NetworkFlags { return NetworkFlags(1 << 0) }
-		static var Reachable: NetworkFlags { return NetworkFlags(1 << 1) }
-		static var ConnectionRequired: NetworkFlags { return NetworkFlags(1 << 2) }
-		static var ConnectionAutomatic: NetworkFlags { return NetworkFlags(1 << 3) }
-		static var InterventionRequired: NetworkFlags { return NetworkFlags(1 << 4) }
-		static var IsLocalAddress: NetworkFlags { return NetworkFlags(1 << 16) }
-		static var IsDirect: NetworkFlags { return NetworkFlags(1 << 17) }
-	}
-	
 	@objc class func destinationIsReachable(host: String) -> Bool {
 		var	result = false
-		var	flags: SCNetworkConnectionFlags = 0
+		var	flags: SCNetworkReachabilityFlags = []
 		
-		let target = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, host).takeRetainedValue()
-		let ok = SCNetworkReachabilityGetFlags(target, &flags)
-		
-		if ok {
-			let betterFlags = NetworkFlags(flags)
-			result = (!((betterFlags & .ConnectionRequired) == .ConnectionRequired)
-				&&  ((betterFlags & .Reachable) == .Reachable))
+		if let target = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, host) {
+			let ok = SCNetworkReachabilityGetFlags(target, &flags)
+			
+			if ok {
+				result = !flags.contains(.ConnectionRequired) &&
+					flags.contains(.Reachable)
+			}
 		}
-		
 		return result
 	}
 }
 
 private var settingsDictionary: NSDictionary {
-	let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, NSProcessInfo().processName, nil, nil).takeRetainedValue()
-	let proxiesKey: String = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault).takeRetainedValue() as String
-	let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey).takeRetainedValue() as! CFDictionary
-	return dict
+	if let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, NSProcessInfo().processName, nil, nil) {
+		let proxiesKey = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault) as String
+		if let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey) {
+			return dict as! CFDictionary
+		}
+	}
+	return [:]
 }

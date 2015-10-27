@@ -6,9 +6,9 @@
 //
 //
 
-import Cocoa
+import Foundation
 
-final class BookmarkFolder: BookmarkRoot, Printable {
+final class BookmarkFolder: BookmarkRoot {
 	private var children = [BookmarkRoot]()
 	
 	override init(title newTitle: String) {

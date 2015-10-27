@@ -11,7 +11,7 @@ import AddressBook
 
 private func localLibraryDir() -> String {
     let fm = NSFileManager.defaultManager()
-    let globalAppURL = fm.URLForDirectory(.LibraryDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: nil)!
+    let globalAppURL = try! fm.URLForDirectory(.LibraryDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
     return globalAppURL.path!
 }
 
@@ -100,7 +100,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 				let fname = (person.valueForProperty(kABFirstNameProperty) as? String) ?? ""
 				let lname = (person.valueForProperty(kABLastNameProperty) as? String) ?? ""
 				
-				if (count(fname) == 0) && (count(lname) == 0) {
+				if (fname.characters.count == 0) && (lname.characters.count == 0) {
 					// Neither first nor last name, so likely a company business card
 					if let cname = person.valueForProperty(kABOrganizationProperty) as? String {
 						dictionary[cname] = data
@@ -113,7 +113,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		
 		// Now, take all the Name/URL key-values and make then into XJBookmarkItems
 		var allDictKeys = dictionary.keys.array
-		allDictKeys.sort(<)
+		allDictKeys.sortInPlace(<)
 		for key in allDictKeys {
 			let person = dictionary[key]!
 			let urls: [String] = {
@@ -151,7 +151,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		if let item = item as? BookmarkRoot {
 			return item.hasChildren
 		} else {
-			return true
+			return false
 		}
 	}
 	
@@ -159,7 +159,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		if let item = item as? BookmarkFolder {
 			return item.numberOfChildren
 		} else {
-			return rootFolder!.numberOfChildren
+			return rootFolder?.numberOfChildren ?? 0
 		}
 	}
 	
@@ -184,7 +184,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		
 		//pasteboard.declareTypes([NSPasteboardTypeString], owner: self)
 		pasteboard.clearContents()
-		let optKeyDown = (NSApplication.sharedApplication().currentEvent!.modifierFlags & .AlternateKeyMask) == .AlternateKeyMask
+		let optKeyDown = NSApplication.sharedApplication().currentEvent!.modifierFlags.contains(.AlternateKeyMask)
 		
 		if let items = items as? [BookmarkItem] {
 			var urls = [NSURL]()
@@ -196,7 +196,9 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 					dragString += " <a href=\"\(item.webAddress.description)\">\(item.title)</a>"
 				}
 			}
-			return pasteboard.writeObjects([dragString, urls])
+			var toWrite: [NSPasteboardWriting] = [dragString]
+			toWrite += urls as [NSPasteboardWriting]
+			return pasteboard.writeObjects(toWrite)
 		}
 		
 		return false

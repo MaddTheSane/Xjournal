@@ -39,9 +39,15 @@ class PollQuestion: NSObject, NSSecureCoding {
 		return true
 	}
 	
-	required init(coder aDecoder: NSCoder) {
-		question = aDecoder.decodeObjectForKey(kLJPollQuestionKey) as? String ?? "Question"
-		super.init()
+	required init?(coder aDecoder: NSCoder) {
+		if let aQues = aDecoder.decodeObjectForKey(kLJPollQuestionKey) as? String {
+			question = aQues
+			super.init()
+		} else {
+			question = ""
+			super.init()
+			return nil
+		}
 	}
 	
 	func encodeWithCoder(aCoder: NSCoder) {

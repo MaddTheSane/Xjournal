@@ -13,7 +13,7 @@ private let kMultipleOptionType = "LJMultipleOptionType"
 private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 
 ///This subclass encapsulates the Radio, Checkbox and Drop-down question types.
-@objc(LJPollMultipleOptionQuestion) final class PollMultipleOptionQuestion: PollQuestion, NSCoding {
+@objc(LJPollMultipleOptionQuestion) final class PollMultipleOptionQuestion: PollQuestion {
 	
 	enum MultipleOption: Int {
 		case Radio = 1
@@ -139,11 +139,18 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	}
 	
 	// MARK: - NSCoding
-	required init(coder aDecoder: NSCoder) {
-		answers = aDecoder.decodeObjectForKey(kMultipleOptionAnswerArray) as? [String] ?? []
-		type = MultipleOption(rawValue: aDecoder.decodeIntegerForKey(kMultipleOptionType)) ?? .Radio
-		
-		super.init(coder: aDecoder)
+	required init?(coder aDecoder: NSCoder) {
+		if let anAns = aDecoder.decodeObjectForKey(kMultipleOptionAnswerArray) as? [String],
+			aType = MultipleOption(rawValue: aDecoder.decodeIntegerForKey(kMultipleOptionType)) {
+				answers = anAns
+				type = aType
+				super.init(coder: aDecoder)
+		} else {
+			answers = []
+			type = .Radio
+			super.init(coder: aDecoder)
+			return nil
+		}
 	}
 	
 	override func encodeWithCoder(aCoder: NSCoder) {

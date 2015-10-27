@@ -11,7 +11,6 @@
 #import "XJHistoryWindowController.h"
 #import "XJFriendsController.h"
 #import "XJGlossaryWindowController.h"
-#import "XJBookmarksWindowController.h"
 #import "XJAccountEditWindowController.h"
 
 @class XJPollEditorController;

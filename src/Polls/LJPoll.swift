@@ -142,7 +142,7 @@ class LJPoll: NSObject, NSSecureCoding {
 	}
 	
 	
-	required convenience init(coder aDecoder: NSCoder) {
+	required convenience init?(coder aDecoder: NSCoder) {
 		self.init()
 		name = aDecoder.decodeObjectForKey(pollNameKey) as? String ?? name
 		questions = aDecoder.decodeObjectForKey(pollQuestionsKey) as? [PollQuestion] ?? questions

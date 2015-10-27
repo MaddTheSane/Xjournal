@@ -131,11 +131,11 @@ class XJPollEditorController: NSWindowController {
 		if selectedRow != -1 {
 			currentlyEditedQuestion = thePoll.questionAtIndex(selectedRow)
 			currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
-			if let curEdQu = currentlyEditedQuestion as? PollMultipleOptionQuestion {
+			if let _ = currentlyEditedQuestion as? PollMultipleOptionQuestion {
 				runMultipleSheet()
-			} else if let curEdQu = currentlyEditedQuestion as? PollScaleQuestion {
+			} else if let _ = currentlyEditedQuestion as? PollScaleQuestion {
 				runScaleSheet()
-			} else if let curEdQu = currentlyEditedQuestion as? PollTextEntryQuestion {
+			} else if let _ = currentlyEditedQuestion as? PollTextEntryQuestion {
 				runTextSheet()
 			}
 		}
@@ -267,7 +267,6 @@ class XJPollEditorController: NSWindowController {
 		multipleAnswerTable.reloadData()
 		
 		let questionType = (currentlyEditedQuestion as! PollMultipleOptionQuestion).type
-		let theMenu = multipleType.menu!
 		switch questionType {
 		case .Radio:
 			multipleType.selectItemAtIndex(0)
@@ -444,7 +443,7 @@ extension XJPollEditorController: NSToolbarDelegate {
         return item
     }
 	
-	func toolbarAllowedItemIdentifiers(toolbar: NSToolbar) -> [AnyObject] {
+	func toolbarAllowedItemIdentifiers(toolbar: NSToolbar) -> [String] {
 		return [kPollAddTextItemIdentifier,
 			kPollAddMultipleItemIdentifier,
 			kPollAddScaleItemIdentifier,
@@ -457,7 +456,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 			NSToolbarCustomizeToolbarItemIdentifier]
 	}
 	
-	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [AnyObject] {
+	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [String] {
 		return [kPollAddTextItemIdentifier,
 			kPollAddMultipleItemIdentifier,
 			kPollAddScaleItemIdentifier,
@@ -499,7 +498,7 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 						return NSLocalizedString("Drop Down Menu", comment: "");
 
 					}
-				} else if let aQues = theQuestion as? PollTextEntryQuestion {
+				} else if let _ = theQuestion as? PollTextEntryQuestion {
 					return NSLocalizedString("Text", comment: "");
 
 				} else if let aQues = theQuestion as? PollScaleQuestion {

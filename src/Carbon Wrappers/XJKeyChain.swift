@@ -33,7 +33,7 @@ final class KeyChain: NSObject {
 
 	required convenience override init() {
 		var defKeyChain: Unmanaged<SecKeychain>?
-		let iErr = SecKeychainCopyDefault(&defKeyChain)
+		_ = SecKeychainCopyDefault(&defKeyChain)
 		self.init(keychain: defKeyChain?.takeRetainedValue())
 	}
 	
@@ -47,7 +47,7 @@ final class KeyChain: NSObject {
 	convenience init?(keychainPath: NSURL) {
 		var capturedKey: Unmanaged<SecKeychain>?
 		
-		let iErr = SecKeychainOpen(keychainPath.fileSystemRepresentation, &capturedKey)
+		_ = SecKeychainOpen(keychainPath.fileSystemRepresentation, &capturedKey)
 		if let aKey = capturedKey?.takeRetainedValue() {
 			self.init(keychain: aKey)
 		} else {
@@ -61,23 +61,23 @@ final class KeyChain: NSObject {
 		return adefaultKeyChain
 	}
 	
-	private func genericPasswordReference(#service: String, account: String) -> SecKeychainItemRef? {
+	private func genericPasswordReference(service service: String, account: String) -> SecKeychainItemRef? {
 		var itemref: Unmanaged<SecKeychainItem>? = nil
 		SecKeychainFindGenericPassword(currentKeychain, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, nil, nil, &itemref)
 		
 		return itemref?.takeRetainedValue()
 	}
 	
-	@objc(removeGenericPasswordForService:account:) func removeGenericPassword(#service: String, account: String) {
+	@objc(removeGenericPasswordForService:account:) func removeGenericPassword(service service: String, account: String) {
 		if let itemref = genericPasswordReference(service: service, account: account) {
 			SecKeychainItemDelete(itemref)
 		}
 	}
 	
 	@objc(setGenericPassword:forService:account:) func setGenericPassword(password: String?, service: String, account: String) {
-		var ret: OSStatus = noErr
+		//var ret: OSStatus = noErr
 		
-		if count(service) == 0 || count(account) == 0 {
+		if service.characters.count == 0 || account.characters.count == 0 {
 			return
 		}
 		
@@ -91,13 +91,13 @@ final class KeyChain: NSObject {
 		}
 	}
 	
-	@objc(genericPasswordForService:account:) func genericPassword(#service: String, account: String) -> String {
+	@objc(genericPasswordForService:account:) func genericPassword(service service: String, account: String) -> String {
 		var ret: OSStatus = noErr
 		var string = ""
 		var p: UnsafeMutablePointer<()> = nil
 		var length: UInt32 = 0
 		
-		if count(service) == 0 || count(account) == 0 {
+		if service.characters.count == 0 || account.characters.count == 0 {
 			return ""
 		}
 
@@ -116,7 +116,7 @@ final class KeyChain: NSObject {
 	var keychainURL: NSURL? {
 		var pathLen: UInt32 = 0
 		var pathName: [Int8] = [Int8](count: Int(PATH_MAX), repeatedValue: 0)
-		var iErr = SecKeychainGetPath(currentKeychain, &pathLen, &pathName)
+		let iErr = SecKeychainGetPath(currentKeychain, &pathLen, &pathName)
 		if iErr != noErr {
 			return nil
 		}

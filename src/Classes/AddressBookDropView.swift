@@ -11,7 +11,7 @@ import Cocoa
 private let kABDragType = "ABPeopleUIDsPboardType"
 private let kDragTypes = [kABDragType]
 
-class AddressBookDropView: NSImageView, NSDraggingDestination {
+class AddressBookDropView: NSImageView {
 
     var acceptsDrags: Bool = false {
         willSet {
