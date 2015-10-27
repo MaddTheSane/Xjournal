@@ -6,7 +6,7 @@
 
 @class AddressBookDropView;
 
-@interface XJFriendsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface XJFriendsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, WebPolicyDelegate, WebFrameLoadDelegate>
 {
     IBOutlet NSTableView *friendsTable;
     IBOutlet NSTableView *groupTable;

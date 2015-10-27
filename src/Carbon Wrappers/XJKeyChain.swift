@@ -32,9 +32,9 @@ final class KeyChain: NSObject {
 	}
 
 	required convenience override init() {
-		var defKeyChain: Unmanaged<SecKeychain>?
+		var defKeyChain: SecKeychain?
 		_ = SecKeychainCopyDefault(&defKeyChain)
-		self.init(keychain: defKeyChain?.takeRetainedValue())
+		self.init(keychain: defKeyChain)
 	}
 	
 	init(keychain: SecKeychain?) {
@@ -45,10 +45,10 @@ final class KeyChain: NSObject {
 	}
 	
 	convenience init?(keychainPath: NSURL) {
-		var capturedKey: Unmanaged<SecKeychain>?
+		var capturedKey: SecKeychain?
 		
 		_ = SecKeychainOpen(keychainPath.fileSystemRepresentation, &capturedKey)
-		if let aKey = capturedKey?.takeRetainedValue() {
+		if let aKey = capturedKey {
 			self.init(keychain: aKey)
 		} else {
 			self.init(keychain: nil)
@@ -62,10 +62,10 @@ final class KeyChain: NSObject {
 	}
 	
 	private func genericPasswordReference(service service: String, account: String) -> SecKeychainItemRef? {
-		var itemref: Unmanaged<SecKeychainItem>? = nil
+		var itemref: SecKeychainItem? = nil
 		SecKeychainFindGenericPassword(currentKeychain, UInt32(service.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), service, UInt32(account.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)), account, nil, nil, &itemref)
 		
-		return itemref?.takeRetainedValue()
+		return itemref
 	}
 	
 	@objc(removeGenericPasswordForService:account:) func removeGenericPassword(service service: String, account: String) {

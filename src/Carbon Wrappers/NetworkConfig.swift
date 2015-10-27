@@ -10,7 +10,7 @@ import Foundation
 import SystemConfiguration
 import SwiftAdditions
 
-@objc class NetworkConfig {
+class NetworkConfig: NSObject {
 	/// Convenience method that checks:
 	///  1. If proxying is enabled generally and then
 	///  2. if proxying should be used for the given host

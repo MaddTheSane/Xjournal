@@ -8,11 +8,9 @@
 
 #import <AppKit/AppKit.h>
 #import "XJCalendar.h"
-//#import "WBSearchTextField.h"
-
 #import <WebKit/WebKit.h>
 
-@interface XJHistoryWindowController : NSWindowController <NSToolbarDelegate, NSBrowserDelegate> {
+@interface XJHistoryWindowController : NSWindowController <NSToolbarDelegate, NSBrowserDelegate, WebPolicyDelegate, WebFrameLoadDelegate> {
     // The NSBrowser for dates
     IBOutlet NSBrowser *browser;
 

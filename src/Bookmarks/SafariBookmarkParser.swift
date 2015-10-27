@@ -26,10 +26,10 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 	/// Refresh the bookmarks from the Safari plist.
 	func refreshFromDisk() {
 		//TODO: update? Perhaps use Spotlight?
-		var safariArray = localLibraryDir().pathComponents
-		safariArray.extend(["Safari", "Bookmarks.plist"])
-		let path = String.pathWithComponents(safariArray)
-		let bookmarks = NSDictionary(contentsOfFile: path)!
+		var safariArray = (localLibraryDir() as NSString).pathComponents
+		safariArray.appendContentsOf(["Safari", "Bookmarks.plist"])
+		let path = NSURL.fileURLWithPathComponents(safariArray)!
+		let bookmarks = NSDictionary(contentsOfURL: path)!
 		rootFolder = BookmarkFolder(title: "__root_item__")
 		parseAddressBookIntoFolder(rootFolder!)
 		parseDict(bookmarks, withRootFolder: rootFolder!)
@@ -112,7 +112,7 @@ final class SafariBookmarkParser: NSObject, NSOutlineViewDataSource {
 		}
 		
 		// Now, take all the Name/URL key-values and make then into XJBookmarkItems
-		var allDictKeys = dictionary.keys.array
+		var allDictKeys = Array(dictionary.keys)
 		allDictKeys.sortInPlace(<)
 		for key in allDictKeys {
 			let person = dictionary[key]!
