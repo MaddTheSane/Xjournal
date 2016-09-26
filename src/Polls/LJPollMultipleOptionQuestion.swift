@@ -15,20 +15,20 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 ///This subclass encapsulates the Radio, Checkbox and Drop-down question types.
 @objc(LJPollMultipleOptionQuestion) final class PollMultipleOptionQuestion: PollQuestion {
 	
-	enum MultipleOption: Int {
-		case Radio = 1
-		case CheckBox = 2
-		case DropDown = 3
+	@objc(LJPollMultipleOption) enum MultipleOption: Int {
+		case radio = 1
+		case checkBox = 2
+		case dropDown = 3
 		
 		fileprivate var stringRepresentation: String {
 			switch self {
-			case .Radio:
+			case .radio:
 				return "radio"
 				
-			case .CheckBox:
+			case .checkBox:
 				return "check"
 				
-			case .DropDown:
+			case .dropDown:
 				return "drop"
 			}
 		}
@@ -41,7 +41,7 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	/// Returns a multiple-option radio question type with
 	/// a default question
 	convenience override init() {
-		self.init(type: .Radio)
+		self.init(type: .radio)
 	}
 	
 	/// Returns a multiple-option question of the given type with
@@ -130,7 +130,7 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	
 	override func restore(fromMemento amemento: [String: Any]) {
 		question = memento[kLJPollQuestionKey] as! String
-		type = MultipleOption(rawValue: memento[kMultipleOptionType] as! Int) ?? .Radio
+		type = MultipleOption(rawValue: memento[kMultipleOptionType] as! Int) ?? .radio
 		
 		deleteAllAnswers()
 		

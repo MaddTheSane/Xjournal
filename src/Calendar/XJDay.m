@@ -104,12 +104,12 @@
     dc.year = myMonth.year.yearName;
     dc.month = myMonth.monthName;
     dc.day = dayNumber;
-    return [[NSCalendar calendarWithIdentifier:NSGregorianCalendar] dateFromComponents:dc];
+    return [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] dateFromComponents:dc];
 }
 
 - (NSString *)dayOfWeek
 {
-    NSCalendar *aCal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSCalendar *aCal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dc = [aCal components:(NSCalendarUnitWeekday) fromDate:self.date];
     NSInteger day = dc.weekday;
     switch (day) {

@@ -24,21 +24,21 @@ class LJPoll: NSObject, NSSecureCoding {
 	var name = "NewPoll"
 	
 	/// Get and set the voting permissions, according to the enum PollVoters
-	var votingPermissions = Voters.All
+	var votingPermissions = Voters.all
 	
 	/// Get and set the viewing permissions, according to the enum PollViewers
 	var viewingPermissions = Viewers.All
 	
-	enum Voters: Int {
-		case All = 1
-		case Friends = 2
+	@objc(LJPollVoters) enum Voters: Int {
+		case all = 1
+		case friends = 2
 		
 		fileprivate var stringRepresentation: String {
 			switch self {
-			case .All:
+			case .all:
 				return "all"
 				
-			case .Friends:
+			case .friends:
 				return "friends"
 			}
 		}
@@ -146,7 +146,7 @@ class LJPoll: NSObject, NSSecureCoding {
 		self.init()
 		name = aDecoder.decodeObject(forKey: pollNameKey) as? String ?? name
 		questions = aDecoder.decodeObject(forKey: pollQuestionsKey) as? [PollQuestion] ?? questions
-		votingPermissions = Voters(rawValue: aDecoder.decodeInteger(forKey: pollVotingKey)) ?? .All
+		votingPermissions = Voters(rawValue: aDecoder.decodeInteger(forKey: pollVotingKey)) ?? .all
 		viewingPermissions = Viewers(rawValue: aDecoder.decodeInteger(forKey: pollViewingKey)) ?? .All
 	}
 }

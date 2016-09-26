@@ -201,7 +201,7 @@ class XJPollEditorController: NSWindowController {
 	}
 	
 	@IBAction func addMultipleQuestion(_ sender: AnyObject?) {
-		currentlyEditedQuestion = PollMultipleOptionQuestion(type: .Radio)
+		currentlyEditedQuestion = PollMultipleOptionQuestion(type: .radio)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
 		(currentlyEditedQuestion as! PollMultipleOptionQuestion).add(answer: "answer")
@@ -268,13 +268,13 @@ class XJPollEditorController: NSWindowController {
 		
 		let questionType = (currentlyEditedQuestion as! PollMultipleOptionQuestion).type
 		switch questionType {
-		case .Radio:
+		case .radio:
 			multipleType.selectItem(at: 0)
 			
-		case .CheckBox:
+		case .checkBox:
 			multipleType.selectItem(at: 1)
 			
-		case .DropDown:
+		case .dropDown:
 			multipleType.selectItem(at: 2)
 		}
 		
@@ -490,11 +490,11 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 			} else {
 				if let aQues = theQuestion as? PollMultipleOptionQuestion {
 					switch aQues.type {
-					case .Radio:
+					case .radio:
 						return NSLocalizedString("Radio Buttons", comment: "")
-					case .CheckBox:
+					case .checkBox:
 						return NSLocalizedString("Check Boxes", comment: "");
-					case .DropDown:
+					case .dropDown:
 						return NSLocalizedString("Drop Down Menu", comment: "");
 
 					}
