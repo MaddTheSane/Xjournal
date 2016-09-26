@@ -24,15 +24,25 @@ final class BookmarkFolder: BookmarkRoot {
 		return children.count
 	}
 	
-	func childAtIndex(idx: Int) -> BookmarkRoot {
+	func child(at idx: Int) -> BookmarkRoot {
 		return children[idx]
 	}
 	
-	func addChild(child: BookmarkRoot) {
+	func add(child: BookmarkRoot) {
 		children.append(child)
 	}
 	
 	override var description: String {
 		return "XJBookmarkFolder: \(title) (\(numberOfChildren))"
+	}
+	
+	@available(*, unavailable, renamed: "add(child:)")
+	func addChild(_ child: BookmarkRoot) {
+		
+	}
+	
+	@available(*, unavailable, renamed: "child(at:)")
+	func childAtIndex(_ idx: Int) -> BookmarkRoot {
+		return child(at: idx)
 	}
 }

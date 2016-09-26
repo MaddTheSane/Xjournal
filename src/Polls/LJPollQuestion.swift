@@ -21,11 +21,11 @@ class PollQuestion: NSObject, NSSecureCoding {
 		super.init()
 	}
 	
-	var memento: [String: AnyObject] {
-		return [String: AnyObject]()
+	var memento: [String: Any] {
+		return [String: Any]()
 	}
 	
-	func restoreFromMemento(amemento: [String: AnyObject]) {
+	@objc(restoreFromMemento:) func restore(fromMemento amemento: [String: Any]) {
 		
 	}
 	
@@ -35,12 +35,12 @@ class PollQuestion: NSObject, NSSecureCoding {
 	}
 	
 	// MARK: NSCoding
-	final class func supportsSecureCoding() -> Bool {
+	final class var supportsSecureCoding: Bool {
 		return true
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
-		if let aQues = aDecoder.decodeObjectForKey(kLJPollQuestionKey) as? String {
+		if let aQues = aDecoder.decodeObject(forKey: kLJPollQuestionKey) as? String {
 			question = aQues
 			super.init()
 		} else {
@@ -50,7 +50,15 @@ class PollQuestion: NSObject, NSSecureCoding {
 		}
 	}
 	
-	func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(question, forKey: kLJPollQuestionKey)
+	func encode(with aCoder: NSCoder) {
+		aCoder.encode(question, forKey: kLJPollQuestionKey)
+	}
+}
+
+extension PollQuestion {
+	
+	@available(*, unavailable, renamed: "restore(fromMemento:)")
+	@nonobjc func restoreFromMemento(_ amemento: [String: AnyObject]) {
+	
 	}
 }

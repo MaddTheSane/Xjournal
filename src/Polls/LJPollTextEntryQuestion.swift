@@ -40,34 +40,34 @@ private let kPollTextLength = "LJPollTextLength"
 	}
 	
 	// MARK: - memento
-	override var memento: [String: AnyObject] {
+	override var memento: [String: Any] {
 		return [kLJPollQuestionKey: question,
 			kPollTextSize: size,
 			kPollTextLength: maxLength]
 	}
 	
-	override func restoreFromMemento(amemento: [String: AnyObject]) {
+	override func restore(fromMemento amemento: [String: Any]) {
 		question = amemento[question] as! String
 		size = amemento[kPollTextSize] as! Int
 		maxLength = amemento[kPollTextLength] as! Int
 	}
 
 	// MARK: - NSCoding
-	override func encodeWithCoder(aCoder: NSCoder) {
-		super.encodeWithCoder(aCoder)
-		aCoder.encodeInteger(size, forKey: kPollTextSize)
-		aCoder.encodeInteger(maxLength, forKey: kPollTextLength)
+	override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
+		aCoder.encode(size, forKey: kPollTextSize)
+		aCoder.encode(maxLength, forKey: kPollTextLength)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
-		size = aDecoder.decodeIntegerForKey(kPollTextSize)
-		maxLength = aDecoder.decodeIntegerForKey(kPollTextLength)
+		size = aDecoder.decodeInteger(forKey: kPollTextSize)
+		maxLength = aDecoder.decodeInteger(forKey: kPollTextLength)
 		
 		super.init(coder: aDecoder)
 	}
 	
 	// MARK: -
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "size", "maxLength", "question")
+	class var keyPathsForValuesAffectingHtmlRepresentation: Set<String> {
+		return Set(["size", "maxLength", "question"])
 	}
 }

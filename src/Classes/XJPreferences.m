@@ -13,6 +13,20 @@
 
 #import "Xjournal-Swift.h"
 
+NSString * const XJAddressCardDroppedNotification = @"XJAddressCardDroppedNotification";
+
+NSString * const XJEntryDownloadStartedNotification = @"entry.download.started";
+NSString * const XJEntryDownloadEndedNotification = @"entry.download.ended";
+NSString * const XJManualLoginSuccessNotification = @"manual.login.success";
+NSString * const XJEntryEntryPostedNotification = @"entry.posted";
+
+NSString * const XJAccountAddedNotification = @"XJAccountAddedNotification";
+NSString * const XJAccountRemovedNotification = @"XJAccountRemovedNotification";
+NSString * const XJAccountWillRemoveNotification = @"XJAccountWillRemoveNotification";
+NSString * const XJAccountSwitchedNotification = @"XJAccountSwitchedNotification";
+NSString * const XJEntryEditedNotification = @"XJEntryEditedNotification";
+
+
 #define ACCOUNT_PATH [XJGetGlobalAppSupportDir() stringByAppendingPathComponent: @"Account"]
 
 NSString *XJGetGlobalAppSupportDir()

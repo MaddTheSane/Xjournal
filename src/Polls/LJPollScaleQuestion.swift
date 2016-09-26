@@ -32,7 +32,7 @@ private let kPollScaleStep = "LJPollScaleStep"
 	/// Returns a scale question within the given range, step values
 	/// and a default question string
 	convenience init(range: Range<Int>, step aStep: Int) {
-		self.init(start: range.startIndex, end: range.endIndex, step: aStep)
+		self.init(start: range.lowerBound, end: range.upperBound, step: aStep)
 	}
 	
 	/// Returns a scale question within the given range, step values
@@ -53,14 +53,14 @@ private let kPollScaleStep = "LJPollScaleStep"
 	}
 	
 	// MARK: - memento
-	override var memento: [String: AnyObject] {
+	override var memento: [String: Any] {
 		return [kLJPollQuestionKey: question,
 			kPollScaleStart: start,
 			kPollScaleEnd: end,
 			kPollScaleStep: step]
 	}
 	
-	override func restoreFromMemento(amemento: [String: AnyObject]) {
+	override func restore(fromMemento amemento: [String: Any]) {
 		question = amemento[question] as! String
 		start = amemento[kPollScaleStart] as! Int
 		end = amemento[kPollScaleEnd] as! Int
@@ -68,25 +68,25 @@ private let kPollScaleStep = "LJPollScaleStep"
 	}
 	
 	// MARK: - NSCoding
-	override func encodeWithCoder(aCoder: NSCoder) {
-		super.encodeWithCoder(aCoder)
+	override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
 		
-		aCoder.encodeInteger(start, forKey: kPollScaleStart)
-		aCoder.encodeInteger(end, forKey: kPollScaleEnd)
-		aCoder.encodeInteger(step, forKey: kPollScaleStep)
+		aCoder.encode(start, forKey: kPollScaleStart)
+		aCoder.encode(end, forKey: kPollScaleEnd)
+		aCoder.encode(step, forKey: kPollScaleStep)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
-		start = aDecoder.decodeIntegerForKey(kPollScaleStart)
-		end = aDecoder.decodeIntegerForKey(kPollScaleEnd)
-		step = aDecoder.decodeIntegerForKey(kPollScaleStep)
+		start = aDecoder.decodeInteger(forKey: kPollScaleStart)
+		end = aDecoder.decodeInteger(forKey: kPollScaleEnd)
+		step = aDecoder.decodeInteger(forKey: kPollScaleStep)
 		
 		super.init(coder: aDecoder)
 	}
 	
 	// MARK: -
 	
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "start", "end", "step", "question")
+	class var keyPathsForValuesAffectingHtmlRepresentation: Set<String> {
+		return Set(["start", "end", "step", "question"])
 	}
 }

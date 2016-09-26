@@ -17,7 +17,7 @@ class AddressBookDropView: NSImageView {
         willSet {
             if newValue {
                 if !acceptsDrags {
-                    registerForDraggedTypes(kDragTypes)
+                    register(forDraggedTypes: kDragTypes)
                 }
             } else {
                 if acceptsDrags {
@@ -30,28 +30,28 @@ class AddressBookDropView: NSImageView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        registerForDraggedTypes(kDragTypes)
+        register(forDraggedTypes: kDragTypes)
         acceptsDrags = true
     }
     
-    override func prepareForDragOperation(sender: NSDraggingInfo) -> Bool {
+    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
         return true
     }
     
-    override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        return .Copy
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        return .copy
     }
     
-    override func performDragOperation(sender: NSDraggingInfo) -> Bool {
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         let pb = sender.draggingPasteboard()
-        if let uidArrays = pb.propertyListForType(kABDragType) as? NSArray {
-            NSNotificationCenter.defaultCenter().postNotificationName(XJAddressCardDroppedNotification, object: uidArrays)
+        if let uidArrays = pb.propertyList(forType: kABDragType) as? NSArray {
+            NotificationCenter.default.post(name: .XJAddressCardDropped, object: uidArrays)
         }
         
         return true
     }
     
-    override func concludeDragOperation(sender: NSDraggingInfo?) {
+    override func concludeDragOperation(_ sender: NSDraggingInfo?) {
         
     }
 }

@@ -9,24 +9,24 @@
 import Cocoa
 
 class XJUserNotification: NSObject, NSUserNotificationCenterDelegate {
-    let notification = NSUserNotificationCenter.defaultUserNotificationCenter()
+    let notification = NSUserNotificationCenter.default
     
     override init() {
         super.init()
         notification.delegate = self
     }
     
-    func showNotification(name: String, callback: dispatch_block_t?) {
+    func showNotification(_ name: String, callback: (() -> Void)?) {
         
     }
     
-    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
         
     }
     
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let always = defaults.boolForKey(XJNotificationShowAlways)
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        let defaults = UserDefaults.standard
+        let always = defaults.bool(forKey: XJNotificationShowAlways)
         
         return always
     }

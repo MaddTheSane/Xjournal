@@ -15,7 +15,7 @@ class BookmarkRoot: CustomStringConvertible {
 		title = newTitle
 	}
 	
-	func compare(other: BookmarkRoot) -> NSComparisonResult {
+	func compare(other: BookmarkRoot) -> ComparisonResult {
 		return title.compare(other.title)
 	}
 	

@@ -13,11 +13,11 @@ class NotificationPrefs: NSView {
 	@IBOutlet weak var showNotifications: NSButton!
 	@IBOutlet weak var showOnFriends: NSButton!
 	@IBOutlet weak var showInForeground: NSButton!
-	@IBAction func toggleNotifications(sender: AnyObject!) {
+	@IBAction func toggleNotifications(_ sender: AnyObject!) {
 		let active = showNotifications.state == NSOnState
 		
-		showOnFriends.enabled = active
-		showInForeground.enabled = active
+		showOnFriends.isEnabled = active
+		showInForeground.isEnabled = active
 	}
     
     override func awakeFromNib() {

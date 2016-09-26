@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 // NetNewsWire Integration
-typedef NS_ENUM(AEKeyword, NetNewsWireTypes) {
+NS_ENUM(AEKeyword) {
     NNWEditDataItemAppleEventClass = 'EBlg',
     NNWEditDataItemAppleEventID = 'oitm',
     NNWDataItemTitle = 'titl',

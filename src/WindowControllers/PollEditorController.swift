@@ -30,8 +30,8 @@ class XJPollEditorController: NSWindowController {
     var thePoll = LJPoll()
     var currentlyEditedQuestion: PollQuestion!
     private weak var currentSheet: NSWindow?
-    private var toolbarItemCache = [String: NSToolbarItem]()
-	private var currentlyEditedQuestionMemento: [String: AnyObject]?
+    fileprivate var toolbarItemCache = [String: NSToolbarItem]()
+	fileprivate var currentlyEditedQuestionMemento: [String: Any]?
     
     @IBOutlet weak var pollName: NSTextField!
     @IBOutlet weak var questionTable: NSTableView!
@@ -73,7 +73,7 @@ class XJPollEditorController: NSWindowController {
         
         pollName.stringValue = thePoll.name
         questionTable.target = self
-        questionTable.doubleAction = "editSelectedQuestion:"
+        questionTable.doubleAction = #selector(XJPollEditorController.editSelectedQuestion(_:))
         
         // Set the height of the drawer
         let currentDrawerSize = drawer.contentSize
@@ -82,15 +82,15 @@ class XJPollEditorController: NSWindowController {
         drawer.open()
     }
 
-	@IBAction func changePollName(sender: AnyObject?) {
+	@IBAction func changePollName(_ sender: AnyObject?) {
 		if let asend = sender as? NSTextField {
-			let regex = OGRegularExpression(string: "\"")
-			thePoll.name = regex.replaceAllMatchesInString(asend.stringValue, withString: "&quot;")
+			let regex = OGRegularExpression(string: "\"")!
+			thePoll.name = regex.replaceAllMatches(in: asend.stringValue, with: "&quot;")
 			updateDrawer()
 		}
 	}
 
-    @IBAction func changeVotingAccess(sender: AnyObject?) {
+    @IBAction func changeVotingAccess(_ sender: AnyObject?) {
         if let unwrapped = sender as? NSPopUpButton {
             if let v2 = unwrapped.selectedItem?.tag {
 				if let votrs = LJPoll.Voters(rawValue: v2) {
@@ -103,7 +103,7 @@ class XJPollEditorController: NSWindowController {
         updateDrawer()
     }
     
-    @IBAction func changeResultAccess(sender: AnyObject?) {
+    @IBAction func changeResultAccess(_ sender: AnyObject?) {
         if let unwrapped = sender as? NSPopUpButton {
             if let v2 = unwrapped.selectedItem?.tag {
 				if let aViers = LJPoll.Viewers(rawValue: v2) {
@@ -116,20 +116,20 @@ class XJPollEditorController: NSWindowController {
         updateDrawer()
     }
 	
-	@IBAction func cancelSheet(sender: AnyObject?) {
-		currentSheet!.endEditingFor(nil)
+	@IBAction func cancelSheet(_ sender: AnyObject?) {
+		currentSheet!.endEditing(for: nil)
 		window?.endSheet(currentSheet!, returnCode: sheetCancel)
 	}
 	
-	@IBAction func commitSheet(sender: AnyObject?) {
-		currentSheet!.endEditingFor(nil)
+	@IBAction func commitSheet(_ sender: AnyObject?) {
+		currentSheet!.endEditing(for: nil)
 		window?.endSheet(currentSheet!, returnCode: sheetOK)
 	}
     
-	@IBAction func editSelectedQuestion(sender: AnyObject?) {
+	@IBAction func editSelectedQuestion(_ sender: AnyObject?) {
 		let selectedRow = questionTable.selectedRow
 		if selectedRow != -1 {
-			currentlyEditedQuestion = thePoll.questionAtIndex(selectedRow)
+			currentlyEditedQuestion = thePoll.question(at: selectedRow)
 			currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 			if let _ = currentlyEditedQuestion as? PollMultipleOptionQuestion {
 				runMultipleSheet()
@@ -141,21 +141,21 @@ class XJPollEditorController: NSWindowController {
 		}
 	}
 	
-	@IBAction func moveSelectedQuestionUp(sender: AnyObject?) {
-		currentSheet?.endEditingFor(nil)
+	@IBAction func moveSelectedQuestionUp(_ sender: AnyObject?) {
+		currentSheet?.endEditing(for: nil)
 		if let aTag = (sender as? NSControl)?.tag {
 			switch aTag {
 			case 0:
 				if questionTable.numberOfSelectedRows == 1 {
-					thePoll.moveQuestionAtIndex(questionTable.selectedRow, toIndex: questionTable.selectedRow - 1)
-					questionTable.selectRowIndexes(NSIndexSet(index: questionTable.selectedRow - 1), byExtendingSelection: false)
+					thePoll.moveQuestion(at: questionTable.selectedRow, to: questionTable.selectedRow - 1)
+					questionTable.selectRowIndexes(IndexSet(integer: questionTable.selectedRow - 1), byExtendingSelection: false)
 					questionTable.reloadData()
 				}
 				
 			case 1:
 				if multipleAnswerTable.numberOfSelectedRows == 1 {
-					(currentlyEditedQuestion as! PollMultipleOptionQuestion).moveAnswerAtIndex(multipleAnswerTable.selectedRow, toIndex: multipleAnswerTable.selectedRow - 1)
-					multipleAnswerTable.selectRowIndexes(NSIndexSet(index: multipleAnswerTable.selectedRow - 1), byExtendingSelection: false)
+					(currentlyEditedQuestion as! PollMultipleOptionQuestion).moveAnswer(at: multipleAnswerTable.selectedRow, to: multipleAnswerTable.selectedRow - 1)
+					multipleAnswerTable.selectRowIndexes(IndexSet(integer: multipleAnswerTable.selectedRow - 1), byExtendingSelection: false)
 					multipleAnswerTable.reloadData()
 				}
 				
@@ -166,21 +166,21 @@ class XJPollEditorController: NSWindowController {
 		}
 	}
 	
-	@IBAction func moveSelectedQuestionDown(sender: AnyObject?) {
-		currentSheet?.endEditingFor(nil)
+	@IBAction func moveSelectedQuestionDown(_ sender: AnyObject?) {
+		currentSheet?.endEditing(for: nil)
 		if let aTag = (sender as? NSControl)?.tag {
 			switch aTag {
 			case 0:
 				if questionTable.numberOfSelectedRows == 1 {
-					thePoll.moveQuestionAtIndex(questionTable.selectedRow, toIndex: questionTable.selectedRow + 1)
-					questionTable.selectRowIndexes(NSIndexSet(index: questionTable.selectedRow + 1), byExtendingSelection: false)
+					thePoll.moveQuestion(at: questionTable.selectedRow, to: questionTable.selectedRow + 1)
+					questionTable.selectRowIndexes(IndexSet(integer: questionTable.selectedRow + 1), byExtendingSelection: false)
 					questionTable.reloadData()
 				}
 				
 			case 1:
 				if multipleAnswerTable.numberOfSelectedRows == 1 {
-					(currentlyEditedQuestion as! PollMultipleOptionQuestion).moveAnswerAtIndex(multipleAnswerTable.selectedRow, toIndex: multipleAnswerTable.selectedRow + 1)
-					multipleAnswerTable.selectRowIndexes(NSIndexSet(index: multipleAnswerTable.selectedRow + 1), byExtendingSelection: false)
+					(currentlyEditedQuestion as! PollMultipleOptionQuestion).moveAnswer(at: multipleAnswerTable.selectedRow, to: multipleAnswerTable.selectedRow + 1)
+					multipleAnswerTable.selectRowIndexes(IndexSet(integer: multipleAnswerTable.selectedRow + 1), byExtendingSelection: false)
 					multipleAnswerTable.reloadData()
 				}
 				
@@ -191,29 +191,29 @@ class XJPollEditorController: NSWindowController {
 		}
 	}
 
-	@IBAction func addMultipleAnswer(sender: AnyObject) {
-		multipleSheet.endEditingFor(nil)
-		(currentlyEditedQuestion as! PollMultipleOptionQuestion).addAnswer("answer")
+	@IBAction func addMultipleAnswer(_ sender: AnyObject) {
+		multipleSheet.endEditing(for: nil)
+		(currentlyEditedQuestion as! PollMultipleOptionQuestion).add(answer: "answer")
 		multipleAnswerTable.reloadData()
-		multipleAnswerTable.selectRowIndexes(NSIndexSet(index: multipleAnswerTable.numberOfRows - 1), byExtendingSelection: false)
-		multipleAnswerTable.editColumn(0, row: multipleAnswerTable.numberOfRows - 1, withEvent: nil, select: true)
+		multipleAnswerTable.selectRowIndexes(IndexSet(integer: multipleAnswerTable.numberOfRows - 1), byExtendingSelection: false)
+		multipleAnswerTable.editColumn(0, row: multipleAnswerTable.numberOfRows - 1, with: nil, select: true)
 		updateDrawer()
 	}
 	
-	@IBAction func addMultipleQuestion(sender: AnyObject?) {
+	@IBAction func addMultipleQuestion(_ sender: AnyObject?) {
 		currentlyEditedQuestion = PollMultipleOptionQuestion(type: .Radio)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
-		(currentlyEditedQuestion as! PollMultipleOptionQuestion).addAnswer("answer")
+		(currentlyEditedQuestion as! PollMultipleOptionQuestion).add(answer: "answer")
 		
-		thePoll.addQuestion(currentlyEditedQuestion)
+		thePoll.add(question: currentlyEditedQuestion)
 		questionTable.reloadData()
 		
 		runMultipleSheet()
 		updateDrawer()
 	}
 	
-	@IBAction func changeMultipleOptionType(sender: AnyObject?) {
+	@IBAction func changeMultipleOptionType(_ sender: AnyObject?) {
 		if let aTag = (sender as? NSPopUpButton)?.selectedItem?.tag {
 			if let aTyp = PollMultipleOptionQuestion.MultipleOption(rawValue: aTag) {
 				(currentlyEditedQuestion as! PollMultipleOptionQuestion).type = aTyp
@@ -221,40 +221,40 @@ class XJPollEditorController: NSWindowController {
 		}
 	}
 
-	@IBAction func addScaleQuestion(sender: AnyObject?) {
+	@IBAction func addScaleQuestion(_ sender: AnyObject?) {
 		currentlyEditedQuestion = PollScaleQuestion(start: 1, end: 10, step: 1)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
-		thePoll.addQuestion(currentlyEditedQuestion)
+		thePoll.add(question: currentlyEditedQuestion)
 		questionTable.reloadData()
 		runScaleSheet()
 		updateDrawer()
 	}
 	
-	@IBAction func addTextQuestion(sender: AnyObject?) {
+	@IBAction func addTextQuestion(_ sender: AnyObject?) {
 		currentlyEditedQuestion = PollTextEntryQuestion(size: 30, maxLength: 15)
 		currentlyEditedQuestionMemento = currentlyEditedQuestion.memento
 		
-		thePoll.addQuestion(currentlyEditedQuestion)
+		thePoll.add(question: currentlyEditedQuestion)
 		questionTable.reloadData()
 		runTextSheet()
 		updateDrawer()
 	}
 	
-	@IBAction func deleteMultipleAnswer(sender: AnyObject?) {
-		window?.endEditingFor(nil)
+	@IBAction func deleteMultipleAnswer(_ sender: AnyObject?) {
+		window?.endEditing(for: nil)
 		
 		let selectedRows = multipleAnswerTable.selectedRowIndexes
-		(currentlyEditedQuestion as! PollMultipleOptionQuestion).deleteAnswersAtIndexes(selectedRows)
+		(currentlyEditedQuestion as! PollMultipleOptionQuestion).deleteAnswers(at: selectedRows)
 		
 		multipleAnswerTable.reloadData()
 		updateDrawer()
 	}
 
-	@IBAction func deleteSelectedQuestion(sender: AnyObject?) {
+	@IBAction func deleteSelectedQuestion(_ sender: AnyObject?) {
 		let selectedRows = questionTable.selectedRowIndexes
 		
-		thePoll.deleteQuestionsAtIndexes(selectedRows)
+		thePoll.deleteQuestions(at: selectedRows)
 		
 		questionTable.reloadData()
 		updateDrawer()
@@ -269,19 +269,19 @@ class XJPollEditorController: NSWindowController {
 		let questionType = (currentlyEditedQuestion as! PollMultipleOptionQuestion).type
 		switch questionType {
 		case .Radio:
-			multipleType.selectItemAtIndex(0)
+			multipleType.selectItem(at: 0)
 			
 		case .CheckBox:
-			multipleType.selectItemAtIndex(1)
+			multipleType.selectItem(at: 1)
 			
 		case .DropDown:
-			multipleType.selectItemAtIndex(2)
+			multipleType.selectItem(at: 2)
 		}
 		
 		window?.beginSheet(multipleSheet, completionHandler: { (response) -> Void in
 			switch response {
 			case NSModalResponseAbort, sheetCancel:
-				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento!)
+				self.currentlyEditedQuestion.restore(fromMemento: self.currentlyEditedQuestionMemento!)
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 
@@ -309,7 +309,7 @@ class XJPollEditorController: NSWindowController {
 		window?.beginSheet(scaleSheet, completionHandler: { (response) -> Void in
 			switch response {
 			case NSModalResponseAbort, sheetCancel:
-				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento!)
+				self.currentlyEditedQuestion.restore(fromMemento: self.currentlyEditedQuestionMemento!)
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 				
@@ -340,7 +340,7 @@ class XJPollEditorController: NSWindowController {
 		window?.beginSheet(textSheet, completionHandler: { (response) -> Void in
 			switch response {
 			case NSModalResponseAbort, sheetCancel:
-				self.currentlyEditedQuestion.restoreFromMemento(self.currentlyEditedQuestionMemento!)
+				self.currentlyEditedQuestion.restore(fromMemento: self.currentlyEditedQuestionMemento!)
 				self.currentlyEditedQuestionMemento = nil
 				self.currentSheet = nil;
 
@@ -367,7 +367,7 @@ class XJPollEditorController: NSWindowController {
 
 //MARK: NSToolbarDelegate
 extension XJPollEditorController: NSToolbarDelegate {
-    func toolbar(toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         var item = toolbarItemCache[itemIdentifier]
 
         if item == nil {
@@ -377,7 +377,7 @@ extension XJPollEditorController: NSToolbarDelegate {
                 item!.label = NSLocalizedString("Insert Text", comment: "")
 				item!.paletteLabel = NSLocalizedString("Insert Text Question", comment: "")
                 item!.target = self
-				item!.action = "addTextQuestion:"
+				item!.action = #selector(XJPollEditorController.addTextQuestion(_:))
 				item!.toolTip = NSLocalizedString("Add a Text question to the Poll", comment: "")
 				item!.image = NSImage(named: "InsertTextQuestion")
 				
@@ -386,7 +386,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item!.label = NSLocalizedString("Insert Scale", comment: "")
 				item!.paletteLabel = NSLocalizedString("Insert Text Question", comment: "")
 				item!.target = self
-				item!.action = "addTextQuestion:"
+				item!.action = #selector(XJPollEditorController.addTextQuestion(_:))
 				item!.toolTip = NSLocalizedString("Add a scale question to the poll", comment: "")
 				item!.image = NSImage(named: "InsertScaleQuestion")
 				
@@ -395,7 +395,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item!.label = NSLocalizedString("Insert Multiple", comment: "")
 				item!.paletteLabel = NSLocalizedString("Insert Multple Question", comment: "")
 				item!.target = self
-				item!.action = "addMultipleQuestion:"
+				item!.action = #selector(XJPollEditorController.addMultipleQuestion(_:))
 				item!.toolTip = NSLocalizedString("Add a multiple choice question to the poll", comment: "")
 				item!.image = NSImage(named: "InsertMultipleChoice")
 				
@@ -403,9 +403,9 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item!.label = NSLocalizedString("Delete", comment: "")
 				item?.paletteLabel = NSLocalizedString("Delete Question", comment: "")
 				item?.toolTip = NSLocalizedString("Delete selected question from poll", comment: "")
-				item?.image = NSWorkspace.sharedWorkspace().iconForFileType(NSFileTypeForHFSTypeCode(CarbonToolbarIcons.Delete.rawValue))
+				item?.image = CarbonToolbarIcons.delete.iconRepresentation
 				item?.target = self
-				item?.action = "deleteSelectedQuestion:"
+				item?.action = #selector(XJPollEditorController.deleteSelectedQuestion(_:))
 				
 			case kPollMoveDownItemIdentifier:
 				item?.label = NSLocalizedString("Move Down", comment: "")
@@ -414,7 +414,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item?.image = NSImage(named: "MoveDown")
 				item?.target = self
 				item?.tag = 0
-				item?.action = "moveSelectedQuestionDown:"
+				item?.action = #selector(XJPollEditorController.moveSelectedQuestionDown(_:))
 				
 			case kPollMoveUpItemIdentifier:
 				item?.label = NSLocalizedString("Move Up", comment: "")
@@ -423,7 +423,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item?.image = NSImage(named:"MoveUp")
 				item?.target = self
 				item?.tag = 0
-				item?.action = "moveSelectedQuestionUp:"
+				item?.action = #selector(XJPollEditorController.moveSelectedQuestionUp(_:))
 				
 			case kPollShowCodeItemIdentifier:
 				item?.label = NSLocalizedString("Show Code", comment: "")
@@ -431,7 +431,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 				item?.toolTip = NSLocalizedString("Open the code drawer", comment: "")
 				item?.image = NSImage(named: "ShowCode")
 				item?.target = drawer
-				item?.action = "toggle:"
+				item?.action = #selector(NSDrawer.toggle(_:))
 
             default:
                 break;
@@ -443,7 +443,7 @@ extension XJPollEditorController: NSToolbarDelegate {
         return item
     }
 	
-	func toolbarAllowedItemIdentifiers(toolbar: NSToolbar) -> [String] {
+	func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
 		return [kPollAddTextItemIdentifier,
 			kPollAddMultipleItemIdentifier,
 			kPollAddScaleItemIdentifier,
@@ -456,7 +456,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 			NSToolbarCustomizeToolbarItemIdentifier]
 	}
 	
-	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [String] {
+	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
 		return [kPollAddTextItemIdentifier,
 			kPollAddMultipleItemIdentifier,
 			kPollAddScaleItemIdentifier,
@@ -471,7 +471,7 @@ extension XJPollEditorController: NSToolbarDelegate {
 
 // MARK: NSTableViewDelegate/DataSource
 extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
-	func numberOfRowsInTableView(atableView: NSTableView) -> Int {
+	func numberOfRows(in atableView: NSTableView) -> Int {
 		if atableView == questionTable {
 			return thePoll.numberOfQuestions
 		} else if atableView == multipleAnswerTable {
@@ -482,9 +482,9 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 		return 0
 	}
 	
-	func tableView(aTableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+	func tableView(_ aTableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 		if aTableView == questionTable {
-			let theQuestion = thePoll.questionAtIndex(row)
+			let theQuestion = thePoll.question(at: row)
 			if tableColumn?.identifier == "question" {
 				return theQuestion.question
 			} else {
@@ -502,26 +502,26 @@ extension XJPollEditorController: NSTableViewDelegate, NSTableViewDataSource {
 					return NSLocalizedString("Text", comment: "");
 
 				} else if let aQues = theQuestion as? PollScaleQuestion {
-					return NSString(format: NSLocalizedString("Scale (%ld-%ld by %ld)", comment: ""), aQues.start, aQues.end, aQues.step)
+					return String(format: NSLocalizedString("Scale (%ld-%ld by %ld)", comment: ""), aQues.start, aQues.end, aQues.step)
 				}
 			}
 		} else if aTableView == multipleAnswerTable {
 			if let multipleOption = currentlyEditedQuestion as? PollMultipleOptionQuestion {
-				return multipleOption.answerAtIndex(row)
+				return multipleOption.answer(at: row)
 			}
 		}
 
 		return ""
 	}
 	
-	func tableView(tableView: NSTableView, shouldEditTableColumn tableColumn: NSTableColumn?, row: Int) -> Bool {
+	func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
 		return tableView == multipleAnswerTable
 	}
 	
-	func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+	func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		if tableView == multipleAnswerTable {
 			if let aQues = currentlyEditedQuestion as? PollMultipleOptionQuestion {
-				aQues.setAnswer(object as! String, atIndex: row)
+				aQues.set(answer: object as! String, at: row)
 			}
 		}
 	}

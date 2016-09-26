@@ -9,15 +9,15 @@
 import Foundation
 
 final class BookmarkItem: BookmarkRoot {
-	var webAddress: NSURL
+	var webAddress: URL
 	
-	init(title newTitle: String, address: NSURL) {
+	init(title newTitle: String, address: URL) {
 		webAddress = address
 		super.init(title: newTitle)
 	}
 	
 	override convenience init(title newTitle: String) {
-		self.init(title: newTitle, address: NSURL(string: "http://www.google.com")!)
+		self.init(title: newTitle, address: URL(string: "http://www.google.com")!)
 	}
 	
 	override var description: String {

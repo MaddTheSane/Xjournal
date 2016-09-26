@@ -20,7 +20,7 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 		case CheckBox = 2
 		case DropDown = 3
 		
-		private var stringRepresentation: String {
+		fileprivate var stringRepresentation: String {
 			switch self {
 			case .Radio:
 				return "radio"
@@ -57,42 +57,43 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	}
 	
 	/// Adds an answer to this question
-	func addAnswer(answer: String) {
+	@objc(addAnswer:) func add(answer: String) {
 		answers.append(answer)
 	}
 	
 	/// Insert the question at the given index
-	func insertAnswer(answer: String, atIndex idx: Int) {
-		answers.insert(answer, atIndex: idx)
+	@objc(insertAnswer:atIndex:) func insert(answer: String, at idx: Int) {
+		answers.insert(answer, at: idx)
 	}
 	
 	/// Returns the answer at idx
-	func answerAtIndex(idx: Int) -> String {
+	@objc(answerAtIndex:) func answer(at idx: Int) -> String {
 		return answers[idx]
 	}
 	
 	/// Modifies the answer at idx to reflect the given string
-	func setAnswer(answer: String, atIndex idx: Int) {
+	@objc(setAnswer:atIndex:) func set(answer: String, at idx: Int) {
 		answers[idx] = answer
 	}
 	
 	/// Removes the answer at idx from the question
-	func deleteAnswerAtIndex(idx: Int) {
-		answers.removeAtIndex(idx)
+	@objc(deleteAnswerAtIndex:) func deleteAnswer(at idx: Int) {
+		answers.remove(at: idx)
 	}
 	
 	/// Removes answers at idx from the question
-	func deleteAnswersAtIndexes(idx: NSIndexSet) {
-		removeObjects(inArray: &answers, atIndexes: idx)
+	@objc(deleteAnswersAtIndexes:) func deleteAnswers(at idx: IndexSet) {
+		answers.remove(indexes: idx)
 	}
 	
 	/// Deletes all the answers
 	func deleteAllAnswers() {
-		answers.removeAll(keepCapacity: false)
+		answers.removeAll(keepingCapacity: false)
 	}
 	
 	/// Moves the answer at oldIdx to newIdx
-	func moveAnswerAtIndex(idx: Int, toIndex newIdx: Int) {
+	@objc(moveAnswerAtIndex:toIndex:)
+	func moveAnswer(at idx: Int, to newIdx: Int) {
 		if newIdx == idx {
 			return
 		}
@@ -101,8 +102,8 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 		}
 		
 		let obj = answers[idx]
-		answers.removeAtIndex(idx)
-		answers.insert(obj, atIndex: newIdx)
+		answers.remove(at: idx)
+		answers.insert(obj, at: newIdx)
 	}
 
 	/// Get the HTML representation
@@ -119,48 +120,83 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	}
 
 	// MARK: - Memento
-	override var memento: [String: AnyObject] {
-		let dict: [String: AnyObject] = [kLJPollQuestionKey: question,
+	override var memento: [String: Any] {
+		let dict: [String: Any] = [kLJPollQuestionKey: question,
 			kMultipleOptionType: type.rawValue,
 			kMultipleOptionAnswerArray: answers]
 		
 		return dict
 	}
 	
-	override func restoreFromMemento(amemento: [String: AnyObject]) {
+	override func restore(fromMemento amemento: [String: Any]) {
 		question = memento[kLJPollQuestionKey] as! String
 		type = MultipleOption(rawValue: memento[kMultipleOptionType] as! Int) ?? .Radio
 		
 		deleteAllAnswers()
 		
 		for object in memento[kMultipleOptionAnswerArray] as! [String] {
-			addAnswer(object)
+			add(answer: object)
 		}
 	}
 	
 	// MARK: - NSCoding
 	required init?(coder aDecoder: NSCoder) {
-		if let anAns = aDecoder.decodeObjectForKey(kMultipleOptionAnswerArray) as? [String],
-			aType = MultipleOption(rawValue: aDecoder.decodeIntegerForKey(kMultipleOptionType)) {
+		if let anAns = aDecoder.decodeObject(forKey: kMultipleOptionAnswerArray) as? [String],
+			let aType = MultipleOption(rawValue: aDecoder.decodeInteger(forKey: kMultipleOptionType)) {
 				answers = anAns
 				type = aType
 				super.init(coder: aDecoder)
 		} else {
-			answers = []
-			type = .Radio
-			super.init(coder: aDecoder)
 			return nil
 		}
 	}
 	
-	override func encodeWithCoder(aCoder: NSCoder) {
-		super.encodeWithCoder(aCoder)
-		aCoder.encodeObject(answers, forKey: kMultipleOptionAnswerArray)
-		aCoder.encodeInteger(type.rawValue, forKey: kMultipleOptionType)
+	override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
+		aCoder.encode(answers, forKey: kMultipleOptionAnswerArray)
+		aCoder.encode(type.rawValue, forKey: kMultipleOptionType)
 	}
 	
 	// MARK: -
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "answers", "type", "question")
+	class var keyPathsForValuesAffectingHtmlRepresentation: Set<String> {
+		return Set(["answers", "type", "question"])
 	}
+}
+
+extension PollMultipleOptionQuestion {
+	/// Adds an answer to this question
+	@available(*, unavailable, renamed: "add(answer:)")
+	@nonobjc func addAnswer(_ answer: String) {
+	}
+	
+	/// Insert the question at the given index
+	@available(*, unavailable, renamed: "insert(answer:at:)")
+	@nonobjc func insertAnswer(_ answer: String, atIndex idx: Int) {
+	}
+	
+	/// Returns the answer at idx
+	@available(*, unavailable, renamed: "answer(at:)")
+	@nonobjc func answerAtIndex(_ idx: Int) -> String {
+		return ""
+	}
+	
+	/// Modifies the answer at idx to reflect the given string
+	@available(*, unavailable, renamed: "set(answer:at:)")
+	@nonobjc func setAnswer(_ answer: String, atIndex idx: Int) {
+	}
+	
+	/// Removes the answer at idx from the question
+	@available(*, unavailable, renamed: "deleteAnswer(at:)")
+	@nonobjc func deleteAnswerAtIndex(_ idx: Int) {
+	}
+	
+	/// Removes answers at idx from the question
+	@available(*, unavailable, renamed: "deleteAnswers(at:)")
+	@nonobjc func deleteAnswersAtIndexes(_ idx: NSIndexSet) {
+	}
+	
+	/// Moves the answer at oldIdx to newIdx
+	@available(*, unavailable, renamed: "moveAnswer(at:to:)")
+	@nonobjc func moveAnswerAtIndex(_ idx: Int, toIndex newIdx: Int) {
+	}	
 }

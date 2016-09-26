@@ -17,11 +17,14 @@ California 94305, USA.
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Templating)
 
-- (nonnull NSString *) stringByParsingTagsWithStartDelimeter: (nonnull NSString *) startDelim endDelimeter: (nonnull NSString *) endDelim usingObject: (nonnull id) object;
+- (NSString *) stringByParsingTagsWithStartDelimeter: (NSString *) startDelim endDelimeter: (NSString *) endDelim usingObject: (id) object;
 @property (readonly, copy, nonnull) NSString *stringByEscapingQuotes;
-- (nonnull NSString *) stringByEscapingCharactersInSet: (nonnull NSCharacterSet *) set usingString: (nonnull NSString*) escapeString;
+- (NSString *) stringByEscapingCharactersInSet: (NSCharacterSet *) set usingString: (NSString*) escapeString;
 
 @end
+
+NS_ASSUME_NONNULL_END

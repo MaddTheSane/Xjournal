@@ -14,7 +14,7 @@ class NetworkConfig: NSObject {
 	/// Convenience method that checks:
 	///  1. If proxying is enabled generally and then
 	///  2. if proxying should be used for the given host
-	@objc class func proxyIsEnabledForHost(hostname: String) -> Bool {
+	@objc(proxyIsEnabledForHost:) class func proxyIsEnabled(for hostname: String) -> Bool {
 		if !httpProxyIsEnabled {
 			return false
 		} else {
@@ -41,7 +41,7 @@ class NetworkConfig: NSObject {
 
 	/// Returns YES if the proxy should be used for the given URL.
 	/// i.e. The domain does not appear in the non-proxied destinations list.
-	@objc class func destinationIsProxied(host: String) -> Bool {
+	@objc class func destinationIsProxied(_ host: String) -> Bool {
 		if let nonProxied = settingsDictionary[kSCPropNetProxiesExceptionsList as String] as? [String] {
 			for exception in nonProxied {
 				if host.hasSuffix(exception) {
@@ -65,7 +65,7 @@ class NetworkConfig: NSObject {
 		return httpProxyPort ?? 80
 	}
 	
-	@objc class func destinationIsReachable(host: String) -> Bool {
+	@objc class func destinationIsReachable(_ host: String) -> Bool {
 		var	result = false
 		var	flags: SCNetworkReachabilityFlags = []
 		
@@ -73,19 +73,19 @@ class NetworkConfig: NSObject {
 			let ok = SCNetworkReachabilityGetFlags(target, &flags)
 			
 			if ok {
-				result = !flags.contains(.ConnectionRequired) &&
-					flags.contains(.Reachable)
+				result = !flags.contains(.connectionRequired) &&
+					flags.contains(.reachable)
 			}
 		}
 		return result
 	}
 }
 
-private var settingsDictionary: NSDictionary {
-	if let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, NSProcessInfo().processName, nil, nil) {
-		let proxiesKey = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault) as String
+private var settingsDictionary: [String: Any] {
+	if let sc_store = SCDynamicStoreCreate(kCFAllocatorDefault, ProcessInfo().processName as NSString, nil, nil) {
+		let proxiesKey = SCDynamicStoreKeyCreateProxies(kCFAllocatorDefault)
 		if let dict = SCDynamicStoreCopyValue(sc_store, proxiesKey) {
-			return dict as! CFDictionary
+			return dict as! CFDictionary as! [String: Any]
 		}
 	}
 	return [:]

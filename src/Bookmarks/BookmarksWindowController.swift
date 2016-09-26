@@ -16,14 +16,14 @@ private let kBookmarkCollapseAllItemIdentifier = "BookmarkCollapseAllItemIdentif
 class BookmarksWindowController: NSWindowController {
     //    IBOutlet NSOutlineView* outline;
     @IBOutlet weak var outline: NSOutlineView!
-    private var toolbarItemCache = [String: NSToolbarItem]()
-    private let parser = SafariBookmarkParser()
+    fileprivate var toolbarItemCache = [String: NSToolbarItem]()
+    fileprivate let parser = SafariBookmarkParser()
     
     override func windowDidLoad() {
         super.windowDidLoad()
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-		outline.registerForDraggedTypes([NSStringPboardType])
+		outline.register(forDraggedTypes: [NSStringPboardType])
 		outline.autosaveTableColumns = true
 		// Set up NSToolbar
 		let toolbar = NSToolbar(identifier: kBookmarkWindowToolbarIdentifier)
@@ -36,22 +36,22 @@ class BookmarksWindowController: NSWindowController {
     }
 	
 	/// Refresh the bookmarks from disk.
-	@IBAction func refreshBookmarks(sender: AnyObject?) {
+	@IBAction func refreshBookmarks(_ sender: AnyObject?) {
 		parser.refreshFromDisk()
 		outline.reloadData()
 	}
 	
-	@IBAction func expandAll(sender: AnyObject?) {
+	@IBAction func expandAll(_ sender: AnyObject?) {
 		let root = parser.rootItem as! BookmarkFolder
 		for i in 0..<root.numberOfChildren {
-			outline.expandItem(root.childAtIndex(i), expandChildren: true)
+			outline.expandItem(root.child(at: i), expandChildren: true)
 		}
 	}
 	
-	@IBAction func collapseAll(sender: AnyObject?) {
+	@IBAction func collapseAll(_ sender: AnyObject?) {
 		let root = parser.rootItem as! BookmarkFolder
 		for i in 0..<root.numberOfChildren {
-			outline.collapseItem(root.childAtIndex(i), collapseChildren: true)
+			outline.collapseItem(root.child(at: i), collapseChildren: true)
 		}
 	}
 }
@@ -62,43 +62,43 @@ private let STRIPE_BLUE =	CGFloat(254.0 / 255.0)
 
 /// OutlineView Data Source - forwards most calls to the bookmark parser object.
 extension BookmarksWindowController: NSOutlineViewDataSource, NSOutlineViewDelegate {
-	func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		return parser.outlineView(outlineView, child: index, ofItem: item)
 	}
 	
-	func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 		return parser.outlineView(outlineView, isItemExpandable: item)
 	}
 	
-	func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		return parser.outlineView(outlineView, numberOfChildrenOfItem: item)
 	}
 	
-	func outlineView(outlineView: NSOutlineView, objectValueForTableColumn tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
-		return parser.outlineView(outlineView, objectValueForTableColumn: tableColumn, byItem: item)
+	func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
+		return parser.outlineView(outlineView, objectValueFor: tableColumn, byItem: item)
 	}
 	
-	func outlineView(outlineView: NSOutlineView, writeItems items: [AnyObject], toPasteboard pasteboard: NSPasteboard) -> Bool {
-		return parser.outlineView(outlineView, writeItems: items, toPasteboard: pasteboard)
+	func outlineView(_ outlineView: NSOutlineView, writeItems items: [Any], to pasteboard: NSPasteboard) -> Bool {
+		return parser.outlineView(outlineView, writeItems: items, to: pasteboard)
 	}
 	
-	func outlineView(outlineView: NSOutlineView, shouldEditTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> Bool {
+	func outlineView(_ outlineView: NSOutlineView, shouldEdit tableColumn: NSTableColumn?, item: Any) -> Bool {
 		return false
 	}
 	
-	func outlineView(outlineView: NSOutlineView, willDisplayCell cell: AnyObject, forTableColumn tableColumn: NSTableColumn?, item: AnyObject) {
+	func outlineView(_ outlineView: NSOutlineView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, item: Any) {
 		if tableColumn?.identifier != "title" {
 			if let _ = item as? BookmarkFolder {
-				(cell as! NSTextFieldCell).textColor = NSColor.grayColor()
+				(cell as! NSTextFieldCell).textColor = NSColor.gray
 			} else {
-				(cell as! NSTextFieldCell).textColor = NSColor.blackColor()
+				(cell as! NSTextFieldCell).textColor = NSColor.black
 			}
 		}
 	}
 }
 
 extension BookmarksWindowController: NSToolbarDelegate {
-	func toolbar(toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+	func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: String, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
 		var item: NSToolbarItem? = toolbarItemCache[itemIdentifier]
 		
 		if item == nil {
@@ -111,7 +111,7 @@ extension BookmarksWindowController: NSToolbarDelegate {
 				tmpItem.label = NSLocalizedString("Refresh", comment: "")
 				tmpItem.paletteLabel = NSLocalizedString("Refresh", comment: "")
 				tmpItem.target = self
-				tmpItem.action = "refreshBookmarks:"
+				tmpItem.action = #selector(BookmarksWindowController.refreshBookmarks(_:))
 				tmpItem.toolTip = NSLocalizedString("Refresh bookmarks", comment: "")
 				tmpItem.image = NSImage(named: "Refresh")
 				
@@ -119,7 +119,7 @@ extension BookmarksWindowController: NSToolbarDelegate {
 				tmpItem.label = NSLocalizedString("Collapse All", comment: "")
 				tmpItem.paletteLabel = NSLocalizedString("Collapse All", comment: "")
 				tmpItem.target = self
-				tmpItem.action = "collapseAll:"
+				tmpItem.action = #selector(BookmarksWindowController.collapseAll(_:))
 				tmpItem.toolTip = NSLocalizedString("Collapse all bookmarks", comment: "")
 				tmpItem.image = NSImage(named: "CollapseAll")
 				
@@ -127,7 +127,7 @@ extension BookmarksWindowController: NSToolbarDelegate {
 				tmpItem.label = NSLocalizedString("Expand All", comment: "")
 				tmpItem.paletteLabel = NSLocalizedString("Expand All", comment: "")
 				tmpItem.target = self
-				tmpItem.action = "expandAll:"
+				tmpItem.action = #selector(BookmarksWindowController.expandAll(_:))
 				tmpItem.toolTip = NSLocalizedString("Expand all bookmarks", comment: "")
 				tmpItem.image = NSImage(named: "ExpandAll")
 				
@@ -143,7 +143,7 @@ extension BookmarksWindowController: NSToolbarDelegate {
 		return item
 	}
 	
-	func toolbarAllowedItemIdentifiers(toolbar: NSToolbar) -> [String] {
+	func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
 		return [kBookmarkRefreshItemIdentifier,
 		kBookmarkExpandAllItemIdentifier,
 		kBookmarkCollapseAllItemIdentifier,
@@ -152,7 +152,7 @@ extension BookmarksWindowController: NSToolbarDelegate {
 		NSToolbarCustomizeToolbarItemIdentifier]
 	}
 	
-	func toolbarDefaultItemIdentifiers(toolbar: NSToolbar) -> [String] {
+	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
 		return [kBookmarkExpandAllItemIdentifier, kBookmarkCollapseAllItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, kBookmarkRefreshItemIdentifier]
 	}
 }

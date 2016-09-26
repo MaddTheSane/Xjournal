@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="XJHistoryWindowController">
@@ -46,10 +47,10 @@
                                     <outlet property="delegate" destination="-2" id="12"/>
                                 </connections>
                             </browser>
-                            <box title="Title" boxType="oldStyle" borderType="none" titlePosition="noTitle" id="88">
+                            <box boxType="oldStyle" borderType="none" title="Title" titlePosition="noTitle" id="88">
                                 <rect key="frame" x="0.0" y="143" width="543" height="335"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView">
+                                <view key="contentView" id="VMz-Y7-aqg">
                                     <rect key="frame" x="0.0" y="0.0" width="543" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -83,7 +84,7 @@
                                                 <action selector="takeStringURLFrom:" target="83" id="102"/>
                                             </connections>
                                         </textField>
-                                        <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="100">
+                                        <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="100">
                                             <rect key="frame" x="516" y="306" width="16" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="TaR-iV-vkC"/>
@@ -107,24 +108,22 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="83" secondAttribute="trailing" id="3RZ-aw-kmE"/>
-                                    <constraint firstItem="83" firstAttribute="leading" secondItem="88" secondAttribute="leading" id="3Tj-ws-A0h"/>
-                                    <constraint firstItem="92" firstAttribute="centerY" secondItem="91" secondAttribute="centerY" id="9KZ-Oi-Byu"/>
-                                    <constraint firstItem="90" firstAttribute="leading" secondItem="88" secondAttribute="leading" constant="16" id="C9G-gp-cGg"/>
-                                    <constraint firstAttribute="bottom" secondItem="83" secondAttribute="bottom" id="FAo-N3-nIk"/>
-                                    <constraint firstItem="91" firstAttribute="top" secondItem="90" secondAttribute="top" id="FXj-86-1ME"/>
-                                    <constraint firstAttribute="trailing" secondItem="100" secondAttribute="trailing" constant="11" id="OeN-kI-U6P"/>
-                                    <constraint firstItem="92" firstAttribute="centerY" secondItem="100" secondAttribute="centerY" id="P04-lR-gbG"/>
-                                    <constraint firstItem="91" firstAttribute="width" secondItem="90" secondAttribute="width" id="VXg-mR-Yht"/>
-                                    <constraint firstItem="91" firstAttribute="bottom" secondItem="90" secondAttribute="bottom" id="Vp1-KW-c4s"/>
-                                    <constraint firstItem="92" firstAttribute="top" secondItem="88" secondAttribute="top" constant="10" id="c7H-Rt-bq6"/>
-                                    <constraint firstItem="83" firstAttribute="top" secondItem="91" secondAttribute="bottom" constant="8" symbolic="YES" id="kzD-lg-Hsd"/>
-                                    <constraint firstItem="91" firstAttribute="leading" secondItem="90" secondAttribute="trailing" constant="-1" id="o9g-Q8-Sn9"/>
-                                    <constraint firstItem="100" firstAttribute="leading" secondItem="92" secondAttribute="trailing" constant="8" id="obv-NK-8Qe"/>
-                                    <constraint firstItem="92" firstAttribute="leading" secondItem="91" secondAttribute="trailing" constant="-1" id="rg1-7s-JYK"/>
+                                    <constraint firstAttribute="trailing" secondItem="100" secondAttribute="trailing" constant="11" id="CWp-rj-6QX"/>
+                                    <constraint firstItem="100" firstAttribute="leading" secondItem="92" secondAttribute="trailing" constant="8" id="IbE-Bl-JZN"/>
+                                    <constraint firstItem="83" firstAttribute="leading" secondItem="88" secondAttribute="leading" id="KqK-Ch-kMQ"/>
+                                    <constraint firstItem="91" firstAttribute="width" secondItem="90" secondAttribute="width" id="ONh-aA-41g"/>
+                                    <constraint firstItem="90" firstAttribute="leading" secondItem="88" secondAttribute="leading" constant="16" id="PDW-Jy-Z8X"/>
+                                    <constraint firstItem="91" firstAttribute="leading" secondItem="90" secondAttribute="trailing" constant="-1" id="RfE-fh-THd"/>
+                                    <constraint firstItem="91" firstAttribute="top" secondItem="90" secondAttribute="top" id="Rz1-dD-JqH"/>
+                                    <constraint firstItem="92" firstAttribute="leading" secondItem="91" secondAttribute="trailing" constant="-1" id="VkG-jf-DzS"/>
+                                    <constraint firstItem="91" firstAttribute="bottom" secondItem="90" secondAttribute="bottom" id="aYG-Ml-PCt"/>
+                                    <constraint firstAttribute="bottom" secondItem="83" secondAttribute="bottom" id="dNO-ZR-bqb"/>
+                                    <constraint firstItem="92" firstAttribute="centerY" secondItem="100" secondAttribute="centerY" id="fZH-da-P1w"/>
+                                    <constraint firstAttribute="trailing" secondItem="83" secondAttribute="trailing" id="gfb-mK-xqI"/>
+                                    <constraint firstItem="92" firstAttribute="top" secondItem="88" secondAttribute="top" constant="10" id="hIe-Uw-lfy"/>
+                                    <constraint firstItem="92" firstAttribute="centerY" secondItem="91" secondAttribute="centerY" id="uxn-AZ-7yo"/>
+                                    <constraint firstItem="83" firstAttribute="top" secondItem="91" secondAttribute="bottom" constant="8" symbolic="YES" id="zIr-Qw-dZV"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="message"/>
                             </box>
                         </subviews>
@@ -150,7 +149,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="667" y="658" width="411" height="106"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <value key="minSize" type="size" width="213" height="107"/>
+            <value key="minSize" type="size" width="213" height="105"/>
             <view key="contentView" id="48">
                 <rect key="frame" x="0.0" y="0.0" width="411" height="106"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -164,7 +163,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="107"/>
                     </imageView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="90" y="69" width="141" height="17"/>
+                        <rect key="frame" x="90" y="69" width="139" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Downloading History" id="108">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -179,11 +178,11 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="52">
-                        <rect key="frame" x="92" y="20" width="220" height="20"/>
+                    <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="52">
+                        <rect key="frame" x="92" y="20" width="221" height="20"/>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="53">
-                        <rect key="frame" x="314" y="13" width="83" height="32"/>
+                        <rect key="frame" x="315" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="110">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>

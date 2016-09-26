@@ -36,21 +36,21 @@
 #define LOCAL_GLOSSARY XJGetLocalGlossary()
 
 // Notifications
-#define XJEntryDownloadStartedNotification @"entry.download.started"
-#define XJEntryDownloadEndedNotification @"entry.download.ended"
-#define XJManualLoginSuccessNotification @"manual.login.success"
-#define XJEntryEntryPostedNotification @"entry.posted"
+extern NSString * const XJEntryDownloadStartedNotification;
+extern NSString * const XJEntryDownloadEndedNotification;
+extern NSString * const XJManualLoginSuccessNotification;
+extern NSString * const XJEntryEntryPostedNotification;
 #define XJGlossaryInsertEvent @"XJGlossaryInsertEvent"
 #define XJAccountInfoProvided @"XJAccountInfoProvided"
 
 #define XJFirstAccountInstalled @"XJFirstAccountInstalled"
-#define XJAccountAddedNotification @"XJAccountAddedNotification"
-#define XJAccountRemovedNotification @"XJAccountRemovedNotification"
-#define XJAccountWillRemoveNotification @"XJAccountWillRemoveNotification"
-#define XJAccountSwitchedNotification @"XJAccountSwitchedNotification"
-#define XJEntryEditedNotification @"XJEntryEditedNotification"
+extern NSString * const XJAccountAddedNotification;
+extern NSString * const XJAccountRemovedNotification;
+extern NSString * const XJAccountWillRemoveNotification;
+extern NSString * const XJAccountSwitchedNotification;
+extern NSString * const XJEntryEditedNotification;
 
-#define XJAddressCardDroppedNotification @"XJAddressCardDroppedNotification"
+extern NSString * const XJAddressCardDroppedNotification;
 
 #define XJUIChanged @"XJUIChanged"
 

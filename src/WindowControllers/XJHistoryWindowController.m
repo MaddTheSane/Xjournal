@@ -14,7 +14,7 @@
 #import "LJEntryExtensions.h"
 #import "XJAccountManager.h"
 #import "XJDocument.h"
-#import "NSDocumentController-CustomDocs.h"
+//#import "NSDocumentController-CustomDocs.h"
 
 #import "Xjournal-Swift.h"
 

@@ -15,6 +15,10 @@ private let pollViewingKey = "Viewing Permissions"
 private let pollQuestionsKey = "Poll Questions"
 
 class LJPoll: NSObject, NSSecureCoding {
+	public static var supportsSecureCoding: Bool {
+		return true
+	}
+
 	private var questions = [PollQuestion]()
 	/// Get and set the name of the poll
 	var name = "NewPoll"
@@ -29,7 +33,7 @@ class LJPoll: NSObject, NSSecureCoding {
 		case All = 1
 		case Friends = 2
 		
-		private var stringRepresentation: String {
+		fileprivate var stringRepresentation: String {
 			switch self {
 			case .All:
 				return "all"
@@ -45,7 +49,7 @@ class LJPoll: NSObject, NSSecureCoding {
 		case Friends = 2
 		case None = 3
 		
-		private var stringRepresentation: String {
+		fileprivate var stringRepresentation: String {
 			switch self {
 			case .All:
 				return "all"
@@ -70,17 +74,17 @@ class LJPoll: NSObject, NSSecureCoding {
 	}
 	
 	/// Add a question to the poll
-	func addQuestion(newQ: PollQuestion) {
+	@objc(addQuestion:) func add(question newQ: PollQuestion) {
 		questions.append(newQ)
 	}
 	
 	/// Get the question at the index?
-	func questionAtIndex(idx: Int) -> PollQuestion {
+	@objc(questionAtIndex:) func question(at idx: Int) -> PollQuestion {
 		return questions[idx]
 	}
 	
 	/// Move a question from idx to newIdx
-	func moveQuestionAtIndex(idx: Int, toIndex newIdx: Int) {
+	@objc(moveQuestionAtIndex:toIndex:) func moveQuestion(at idx: Int, to newIdx: Int) {
 		if newIdx == idx {
 			return
 		}
@@ -89,23 +93,23 @@ class LJPoll: NSObject, NSSecureCoding {
 		}
 		
 		let obj = questions[idx]
-		questions.removeAtIndex(idx)
-		questions.insert(obj, atIndex: newIdx)
+		questions.remove(at: idx)
+		questions.insert(obj, at: newIdx)
 	}
 	
 	/// Insert the question at the given index
-	func insertQuestion(question: PollQuestion, atIndex idx: Int) {
-		questions.insert(question, atIndex: idx)
+	@objc(insertQuestion:atIndex:) func insert(question: PollQuestion, at idx: Int) {
+		questions.insert(question, at: idx)
 	}
 	
 	/// Remove the question at idx
-	func deleteQuestionAtIndex(idx: Int) {
-		questions.removeAtIndex(idx)
+	@objc(deleteQuestionAtIndex:) func deleteQuestionAtIndex(idx: Int) {
+		questions.remove(at: idx)
 	}
 	
 	/// Remove the questions at idx
-	func deleteQuestionsAtIndexes(idx: NSIndexSet) {
-		removeObjects(inArray: &questions, atIndexes: idx)
+	@objc(deleteQuestionsAtIndexes:) func deleteQuestions(at idx: IndexSet) {
+		questions.remove(indexes: idx)
 	}
 	
 	/// Get the HTML representation of the entire poll.  This method
@@ -130,23 +134,51 @@ class LJPoll: NSObject, NSSecureCoding {
 		return NSSet(objects: "votingPermissions", "viewingPermissions", "name", "questions")
 	}
 	
-	final class func supportsSecureCoding() -> Bool {
-		return true
-	}
-	
-	func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(name, forKey: pollNameKey)
-		aCoder.encodeObject(questions, forKey: pollQuestionsKey)
-		aCoder.encodeInteger(votingPermissions.rawValue, forKey: pollVotingKey)
-		aCoder.encodeInteger(viewingPermissions.rawValue, forKey: pollViewingKey)
+	func encode(with aCoder: NSCoder) {
+		aCoder.encode(name, forKey: pollNameKey)
+		aCoder.encode(questions, forKey: pollQuestionsKey)
+		aCoder.encode(votingPermissions.rawValue, forKey: pollVotingKey)
+		aCoder.encode(viewingPermissions.rawValue, forKey: pollViewingKey)
 	}
 	
 	
 	required convenience init?(coder aDecoder: NSCoder) {
 		self.init()
-		name = aDecoder.decodeObjectForKey(pollNameKey) as? String ?? name
-		questions = aDecoder.decodeObjectForKey(pollQuestionsKey) as? [PollQuestion] ?? questions
-		votingPermissions = Voters(rawValue: aDecoder.decodeIntegerForKey(pollVotingKey)) ?? .All
-		viewingPermissions = Viewers(rawValue: aDecoder.decodeIntegerForKey(pollViewingKey)) ?? .All
+		name = aDecoder.decodeObject(forKey: pollNameKey) as? String ?? name
+		questions = aDecoder.decodeObject(forKey: pollQuestionsKey) as? [PollQuestion] ?? questions
+		votingPermissions = Voters(rawValue: aDecoder.decodeInteger(forKey: pollVotingKey)) ?? .All
+		viewingPermissions = Viewers(rawValue: aDecoder.decodeInteger(forKey: pollViewingKey)) ?? .All
+	}
+}
+
+extension LJPoll {
+	@available(*, unavailable, renamed: "deleteQuestions(at:)")
+	@nonobjc func deleteQuestionsAtIndexes(_ idx: IndexSet) {
+		
+	}
+	
+	@available(*, unavailable, renamed: "deleteQuestion(at:)")
+	@nonobjc func deleteQuestionAtIndex(_ idx: Int) {
+		
+	}
+	
+	@available(*, unavailable, renamed: "moveQuestion(at:to:)")
+	@nonobjc func moveQuestionAtIndex(_ idx: Int, toIndex newIdx: Int) {
+		
+	}
+	
+	@available(*, unavailable, renamed: "insert(question:at:)")
+	@nonobjc func insertQuestion(_ question: PollQuestion, atIndex idx: Int) {
+		
+	}
+	
+	@available(*, unavailable, renamed: "question(at:)")
+	@nonobjc func questionAtIndex(_ idx: Int) -> PollQuestion {
+		return question(at: idx)
+	}
+	
+	@available(*, unavailable, renamed: "add(question:)")
+	@nonobjc func addQuestion(_ newQ: PollQuestion) {
+		
 	}
 }
