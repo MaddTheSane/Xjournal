@@ -36,7 +36,7 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 	
 	private var answers = [String]()
 	
-	var type: MultipleOption
+	dynamic var type: MultipleOption
 	
 	/// Returns a multiple-option radio question type with
 	/// a default question
@@ -91,13 +91,13 @@ private let kMultipleOptionAnswerArray = "LJMultipleOptionAnswerArray"
 		answers.removeAll(keepingCapacity: false)
 	}
 	
-	/// Moves the answer at oldIdx to newIdx
+	/// Moves the answer at `idx` to `newIdx`.
 	@objc(moveAnswerAtIndex:toIndex:)
 	func moveAnswer(at idx: Int, to newIdx: Int) {
 		if newIdx == idx {
 			return
 		}
-		if (newIdx < 0 || newIdx >= answers.count) {
+		if newIdx < 0 || newIdx >= answers.count {
 			return
 		}
 		

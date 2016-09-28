@@ -165,7 +165,7 @@
 - (BOOL)birthdayIsWithinAlertPeriod: (int)alertPeriod
 {
     if(![self birthDate]) return NO;
-    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDate *today = [NSDate date];
     NSDateComponents *comps = [cal components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate: today];
 
@@ -182,7 +182,7 @@
 - (BOOL)birthdayIsThisMonth
 {
     if(![self birthDate]) return NO;
-    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDate *today = [NSDate date];
     NSDateComponents *comps = [cal components:(NSCalendarUnitMonth) fromDate: today];
 
@@ -205,7 +205,7 @@
     [headerText appendFormat:@"set calTitle to \"%@\"\r", calendarName];
     [headerText appendFormat:@"set eventTitle to \"%@\"\r", eventTitle];
     
-    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *comps = [cal components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate: birthday];
     
     [headerText appendFormat:@"set eventDay to %ld\r", (long)[comps day]];

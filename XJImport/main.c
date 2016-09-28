@@ -193,19 +193,19 @@ ULONG MetadataImporterPluginRelease(void *thisInstance)
 //
 void *MetadataImporterPluginFactory(CFAllocatorRef allocator,CFUUIDRef typeID)
 {
-    MDImportPlug	*result;
-    CFUUIDRef		uuid;
-
-        /* If correct type is being requested, allocate an
-         * instance of TestType and return the IUnknown interface.
-         */
-    if (CFEqual(typeID,kMDImporterTypeID)){
-        uuid = CFUUIDCreateFromString(kCFAllocatorDefault,CFSTR(PLUGIN_ID));
-        result = AllocMetadataImporterPluginType(uuid);
-        CFRelease(uuid);
-        return result;
-    }
-        /* If the requested type is incorrect, return NULL. */
-    return NULL;
+	MDImportPlug	*result;
+	CFUUIDRef		uuid;
+	
+	/* If correct type is being requested, allocate an
+	 * instance of TestType and return the IUnknown interface.
+	 */
+	if (CFEqual(typeID,kMDImporterTypeID)){
+		uuid = CFUUIDCreateFromString(kCFAllocatorDefault,CFSTR(PLUGIN_ID));
+		result = AllocMetadataImporterPluginType(uuid);
+		CFRelease(uuid);
+		return result;
+	}
+	/* If the requested type is incorrect, return NULL. */
+	return NULL;
 }
 

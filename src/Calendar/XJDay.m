@@ -221,8 +221,7 @@
 
 - (void)deleteEntry: (LJEntry *)entry
 {
-	NSInteger i;
-	for(i = 0; i < [entries count]; i++) {
+	for(NSInteger i = 0; i < [entries count]; i++) {
 		LJEntry *iter = [self entryAtIndex:i];
 		if([iter itemID] == [entry itemID])
 			[self deleteEntryAtIndex:i];
@@ -242,7 +241,7 @@
 
 - (NSURL *)urlForDayArchiveForAccount: (LJAccount *)acct {
 	NSString *base = [[myMonth urlForMonthArchiveForAccount: acct] absoluteString];
-	NSString *url = [NSString stringWithFormat: @"%@/%02d", base, dayNumber];
+    NSString *url = [base stringByAppendingFormat: @"/%02d", dayNumber];
 	return [NSURL URLWithString: url];
 }
 

@@ -11,7 +11,8 @@
 
 @interface XJSyndicationData : NSObject
 
-+ (instancetype)syndicationDataWithAppleEvent: (NSAppleEventDescriptor *)aeDesc;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
++ (XJSyndicationData*)syndicationDataWithAppleEvent: (NSAppleEventDescriptor *)aeDesc;
 - (instancetype)initWithAppleEvent: (NSAppleEventDescriptor *)aeDesc NS_DESIGNATED_INITIALIZER;
 
 // ---------------------------------

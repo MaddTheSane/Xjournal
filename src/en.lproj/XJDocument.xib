@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="XJDocument">
@@ -84,10 +83,8 @@
                             <textField verticalHuggingPriority="750" id="375">
                                 <rect key="frame" x="262" y="40" width="77" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="967">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Mood Text:" id="967">
                                     <font key="font" metaFont="system"/>
-                                    <string key="title">Mood Text:
-</string>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -95,10 +92,8 @@
                             <textField verticalHuggingPriority="750" id="384">
                                 <rect key="frame" x="262" y="68" width="77" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="969">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Tag List:" id="969">
                                     <font key="font" metaFont="system"/>
-                                    <string key="title">Tag List:
-</string>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -305,15 +300,13 @@
                                     <rect key="frame" x="1" y="1" width="505" height="337"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="22">
+                                        <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="22">
                                             <rect key="frame" x="0.0" y="0.0" width="505" height="337"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="505" height="337"/>
                                             <size key="maxSize" width="507" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="505" height="337"/>
-                                            <size key="maxSize" width="507" height="10000000"/>
                                             <connections>
                                                 <binding destination="-2" name="value" keyPath="entry.content" id="357">
                                                     <dictionary key="options">
@@ -344,9 +337,9 @@
             </connections>
         </window>
         <drawer leadingOffset="10" trailingOffset="15" id="210" userLabel="Drawer">
-            <size key="contentSize" width="253" height="458"/>
+            <size key="contentSize" width="253" height="430"/>
             <size key="minContentSize" width="253" height="399"/>
-            <size key="maxContentSize" width="600" height="400"/>
+            <size key="maxContentSize" width="600" height="440"/>
             <connections>
                 <outlet property="contentView" destination="211" id="212"/>
                 <outlet property="delegate" destination="-2" id="213"/>
@@ -401,14 +394,14 @@
                     <rect key="frame" x="80" y="321" width="155" height="62"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="JWx-7f-MgS">
-                        <rect key="frame" x="1" y="1" width="153" height="60"/>
+                        <rect key="frame" x="1" y="1" width="142" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" id="231">
-                                <rect key="frame" x="0.0" y="0.0" width="153" height="19"/>
+                                <rect key="frame" x="0.0" y="0.0" width="142" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="check" width="16" minWidth="16" maxWidth="1000" id="220">
@@ -424,7 +417,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="name" width="131" minWidth="8" maxWidth="1000" id="230">
+                                    <tableColumn identifier="name" width="120" minWidth="8" maxWidth="1000" id="230">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -444,14 +437,13 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="988">
                         <rect key="frame" x="-100" y="-100" width="120" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="989">
-                        <rect key="frame" x="140" y="1" width="14" height="60"/>
+                        <rect key="frame" x="143" y="1" width="11" height="60"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>

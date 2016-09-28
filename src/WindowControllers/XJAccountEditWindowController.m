@@ -38,11 +38,9 @@
 	[usernameField setEnabled:YES];
     [passwordField setStringValue: @""];
     
-    [NSApp beginSheet: newAccountSheet
-       modalForWindow: [self window]
-        modalDelegate: self
-       didEndSelector: nil
-          contextInfo: nil];
+    [self.window beginSheet:newAccountSheet completionHandler:^(NSModalResponse returnCode) {
+        // Do nothing
+    }];
 }
 
 - (IBAction)removeAccount:(id)sender
@@ -50,7 +48,7 @@
     if([[XJAccountManager defaultManager] numberOfAccounts] > 1) {
         NSInteger selectedAccountIndex = [table selectedRow];
 
-        if(selectedAccountIndex != -1) {
+        if (selectedAccountIndex != -1) {
             NSArray *usernames = [[[[XJAccountManager defaultManager] accounts] allKeys] sortedArrayUsingSelector: @selector(compare:)];
             NSString *username = [usernames[selectedAccountIndex] copy];
 
@@ -60,16 +58,13 @@
         }
     }
     else {
-        NSBeginCriticalAlertSheet(NSLocalizedString(@"Cannot Delete last account", @""),
-                                  @"OK",
-                                  nil,
-                                  nil,
-                                  [self window],
-                                  nil,
-                                  nil,
-                                  nil,
-                                  nil,
-                                  NSLocalizedString(@"You must always have one account defined.  To delete this account, make another one first, then delete this one", @""));
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Cannot Delete last account", @"");
+        alert.informativeText = NSLocalizedString(@"You must always have one account defined.  To delete this account, make another one first, then delete this one", @"");
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+            //Do nothing
+        }];
     }
 }
 
@@ -90,16 +85,14 @@
 
     isEditingAccount = YES;
     
-    [NSApp beginSheet: newAccountSheet
-       modalForWindow: [self window]
-        modalDelegate: self
-       didEndSelector: nil
-          contextInfo: nil];
+    [self.window beginSheet: newAccountSheet completionHandler:^(NSModalResponse returnCode) {
+        // Do nothing
+    }];
 }
 
 - (IBAction)commitSheet: (id)sender
 {
-    [NSApp endSheet: newAccountSheet];
+    [self.window endSheet: newAccountSheet];
     [newAccountSheet orderOut: nil];
 
     if(!isEditingAccount) {
@@ -123,7 +116,7 @@
 
 - (IBAction)cancelSheet: (id)sender
 {
-    [NSApp endSheet: newAccountSheet];
+    [self.window endSheet: newAccountSheet];
     [newAccountSheet orderOut: nil];
 	isEditingAccount = NO;
 	editedAccount = nil;
@@ -176,4 +169,5 @@
 {
     return [[aTableColumn identifier] isEqualToString: @"default"];
 }
+
 @end

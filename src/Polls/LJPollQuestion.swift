@@ -44,8 +44,6 @@ class PollQuestion: NSObject, NSSecureCoding {
 			question = aQues
 			super.init()
 		} else {
-			question = ""
-			super.init()
 			return nil
 		}
 	}

@@ -165,10 +165,17 @@
                 // Be a good client and show the LiveJournal login message, if any
                 NSString *serverMsg = [[acctManager loggedInAccount] loginMessage];
                 if(serverMsg != nil && 
-				   ![[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJSuppressLoginMessage"] boolValue])
-                    NSRunAlertPanel(LJ_LOGIN_MESSAGE, @"%@", @"OK", nil, nil, serverMsg);
+                   ![[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJSuppressLoginMessage"] boolValue]){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    alert.messageText = LJ_LOGIN_MESSAGE;
+                    alert.informativeText = serverMsg;
+                    [alert runModal];
+                }
             } @catch (NSException *localException) {
-                NSRunAlertPanel([localException name], @"%@", @"OK", nil, nil, [localException reason]);
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = [localException name];
+                alert.informativeText = [localException reason] ?: @"Unknown reason";
+                [alert runModal];
             }
         }
     }
@@ -474,9 +481,14 @@
     // If they want a dialog, show that too.
     if([userDefaults boolForKey: @"XJCheckFriendsShouldShowDialog"]) {
         friendsDialogIsShowing = YES;
-        NSInteger result = NSRunAlertPanel(LJ_FRIENDS_UPDATED_TITLE, LJ_FRIENDS_UPDATED_MSG, @"OK", LJ_FRIENDS_UPDATED_ALT_BUTTON, nil);
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = LJ_FRIENDS_UPDATED_TITLE;
+        alert.messageText = LJ_FRIENDS_UPDATED_MSG;
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:LJ_FRIENDS_UPDATED_ALT_BUTTON];
+        NSInteger result = [alert runModal];
         friendsDialogIsShowing = NO;
-        if(result == NSAlertAlternateReturn) {
+        if(result == NSAlertSecondButtonReturn) {
             // alt button is "Open Friends Page"
             [[[XJAccountManager defaultManager] defaultAccount] launchFriendsPage];
         }
@@ -567,21 +579,26 @@
 - (IBAction)logIn:(id)sender {
     XJAccountManager *man = [XJAccountManager defaultManager];
     if(![man defaultAccount]) {
-        NSInteger result = NSRunCriticalAlertPanel(NSLocalizedString(@"No accounts defined", @""),
-                                             NSLocalizedString(@"Please define at least one account before attempting to log in", @""),
-                                             NSLocalizedString(@"OK", @""),
-                                             NSLocalizedString(@"Open Accounts Window", @""),
-                                             nil);
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = NSLocalizedString(@"No accounts defined", @"");
+        alert.informativeText = NSLocalizedString(@"Please define at least one account before attempting to log in", @"");
+        [alert addButtonWithTitle:NSLocalizedString(@"OK", @"")];
+        [alert addButtonWithTitle:NSLocalizedString(@"Open Accounts Window", @"")];
+        NSInteger result = [alert runModal];
 
-        if(result == NSAlertAlternateReturn)
+        if (result == NSAlertSecondButtonReturn) {
             [self showAccountEditWindow: self];
-    }
-    else {
+        }
+    } else {
         if([NetworkConfig destinationIsReachable:@"www.livejournal.com"])
             [man logInAccount: [man defaultAccount]];
-        else
-            NSRunInformationalAlertPanel(@"Network Unreachable", @"Livejournal.com is not reachable with your current network settings."
-                                         ,@"OK",nil,nil);
+        else {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Network Unreachable";
+            alert.informativeText = @"Livejournal.com is not reachable with your current network settings.";
+            alert.alertStyle = NSAlertStyleInformational;
+            [alert runModal];
+        }
     }
 }
 

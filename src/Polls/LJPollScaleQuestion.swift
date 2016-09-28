@@ -15,9 +15,9 @@ private let kPollScaleStep = "LJPollScaleStep"
 
 /// Question subclass representing a scale with start, end and step values
 @objc(LJPollScaleQuestion) final class PollScaleQuestion: PollQuestion {
-	var start: Int
-	var end: Int
-	var step: Int
+	dynamic var start: Int
+	dynamic var end: Int
+	dynamic var step: Int
 	
 	/// Returns a scale question with the given start, end and step values
 	/// and a default question string

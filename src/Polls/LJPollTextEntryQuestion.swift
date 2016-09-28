@@ -14,9 +14,9 @@ private let kPollTextLength = "LJPollTextLength"
 ///This is a subclass representing a text box question
 @objc(LJPollTextEntryQuestion) final class PollTextEntryQuestion: PollQuestion {
 	/// Get and set the size property
-	var size: Int
+	dynamic var size: Int
 	/// Get and set the length
-	var maxLength: Int
+	dynamic var maxLength: Int
 	
 	/// Returns a text question with the given size and length
 	/// and a default question

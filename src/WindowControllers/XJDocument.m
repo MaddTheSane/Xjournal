@@ -833,28 +833,22 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
         if([self postEntryAndReturnStatus] && 
 		   [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldShowPostingConfirmationDialog"] boolValue])
 		{
-            NSBeginInformationalAlertSheet(NSLocalizedString(@"Posting Succeeded", @""),
-                                           NSLocalizedString(@"OK", @""),
-                                           NSLocalizedString(@"Open Recent Entries", @""),
-                                           nil, /* Other Btn */
-                                           [self window],
-                                           self, /* id modalDelegate */
-                                           @selector(sheetDidEnd:returnCode:contextInfo:), /* SEL didEndSelector */
-                                           nil, /* SEL didDismissSelector */
-                                           nil, /* void *contextInfo */
-                                           NSLocalizedString(@"Your entry was successfully posted", @""));
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = NSLocalizedString(@"Posting Succeeded", @"");
+            alert.informativeText = NSLocalizedString(@"Your entry was successfully posted", @"");
+            [alert addButtonWithTitle: NSLocalizedString(@"OK", @"")];
+            [alert addButtonWithTitle: NSLocalizedString(@"Open Recent Entries", @"")];
+            alert.alertStyle = NSAlertStyleInformational;
+            
+            [alert beginSheetModalForWindow: [self window] completionHandler:^(NSModalResponse returnCode) {
+                if(returnCode == NSAlertSecondButtonReturn) {
+                    [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];
+                }
+                [self closeHTMLPreviewWindow];
+                [self close];
+            }];
         }
     }
-}
-
-- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-    if(returnCode == NSAlertAlternateReturn)
-    {
-        [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];  
-    }
-    [self closeHTMLPreviewWindow];
-    [self close];
 }
 
 - (BOOL)postEntryAndReturnStatus
@@ -903,10 +897,14 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
         @try {
             [[self entry] saveToJournal];
         } @catch (NSException *localException) {
-            NSBeginCriticalAlertSheet([localException name], @"OK", nil, nil,
-                                      [self window], nil, nil, nil, nil,
-                                      @"%@", [localException reason]);
-            [spinner stopAnimation: self];    
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = localException.name;
+            alert.informativeText = localException.reason ?: @"";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+                //Do nothing
+            }];
+            [spinner stopAnimation: self];
             return NO;
         }
 
@@ -934,12 +932,14 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 				NSString *file = [[self fileURL] lastPathComponent];
 				NSString *msg = [NSString stringWithFormat: @"Do you want to save the changes you made in the document \"%@\"?", file];
 
-				NSInteger result = NSRunInformationalAlertPanel(msg,
-													  NSLocalizedString(@"Your changes will be posted, but not saved to disk if you don't save them.", @""),
-													  NSLocalizedString(@"Save", @""),
-													  NSLocalizedString(@"Post Without Saving", @""),
-													  nil);
-				shouldSave = (result == NSAlertDefaultReturn);
+                NSAlert *alert = [NSAlert new];
+                alert.messageText = msg;
+                alert.informativeText = NSLocalizedString(@"Your changes will be posted, but not saved to disk if you don't save them.", @"");
+                [alert addButtonWithTitle: NSLocalizedString(@"Save", @"")];
+                [alert addButtonWithTitle: NSLocalizedString(@"Post Without Saving", @"")];
+                alert.alertStyle = NSAlertStyleInformational;
+				NSInteger result = [alert runModal];
+				shouldSave = (result == NSAlertFirstButtonReturn);
 			}
 			
 			if(shouldSave) {
@@ -951,17 +951,21 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     if([self postEntryAndReturnStatus]) {
         
         if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: @"XJShouldShowPostingConfirmationDialog"] boolValue]) {
-            NSBeginInformationalAlertSheet(NSLocalizedString(@"Posting Succeeded", @""),
-                                           NSLocalizedString(@"OK", @""),
-                                           NSLocalizedString(@"Open Recent Entries", @""),
-                                           nil, /* Other Btn */
-                                           [self window],
-                                           self, /* id modalDelegate */
-                                           @selector(sheetDidEnd:returnCode:contextInfo:), /* SEL didEndSelector */
-                                           nil, /* SEL didDismissSelector */
-                                           nil, /* void *contextInfo */
-                                           NSLocalizedString(@"Your entry was successfully posted", @""));
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = NSLocalizedString(@"Posting Succeeded", @"");
+            alert.informativeText = NSLocalizedString(@"Your entry was successfully posted", @"");
+            [alert addButtonWithTitle: NSLocalizedString(@"OK", @"")];
+            [alert addButtonWithTitle: NSLocalizedString(@"Open Recent Entries", @"")];
+            alert.alertStyle = NSAlertStyleInformational;
             
+            [alert beginSheetModalForWindow: [self window] completionHandler:^(NSModalResponse returnCode) {
+                if(returnCode == NSAlertSecondButtonReturn)
+                {
+                    [[NSWorkspace sharedWorkspace] openURL: [[[self entry] journal] recentEntriesHttpURL]];
+                }
+                [self closeHTMLPreviewWindow];
+                [self close];
+            }];
         }
         else {
 #warning Why is this here?  I have no idea!
@@ -1193,7 +1197,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 
 - (IBAction)closeSheet:(id)sender
 {
-    [NSApp endSheet: currentSheet];
+    [self.window endSheet: currentSheet];
     [currentSheet orderOut: nil];
     currentSheet = nil;
 }
@@ -1201,11 +1205,9 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
 - (void)startSheet:(NSWindow *)sheet
 {
     currentSheet = sheet;
-    [NSApp beginSheet: currentSheet
-       modalForWindow: [self window]
-        modalDelegate: nil
-       didEndSelector: nil
-          contextInfo: nil];
+    [self.window beginSheet: currentSheet completionHandler:^(NSModalResponse returnCode) {
+        //Do nothing
+    }];
 }
 
 - (void)genericTagWrapWithStart: (NSString *)tagStart andEnd: (NSString *)tagEnd
@@ -1313,7 +1315,7 @@ NSString *TXJshowMoodField     = @"ShowMoodField";
     }
     else if([sender isEqualTo: backdateField]) {
         NSString *enteredString = [sender stringValue];
-        NSDate *date = [NSDate dateWithNaturalLanguageString: enteredString];
+        NSDate *date = [[[NSDateFormatter alloc] init] dateFromString: enteredString];
         [[self entry] setDate: date];
     }
     else if([sender isEqualTo: commentScreening]) {

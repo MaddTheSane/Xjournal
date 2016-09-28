@@ -23,11 +23,11 @@ class LJPoll: NSObject, NSSecureCoding {
 	/// Get and set the name of the poll
 	var name = "NewPoll"
 	
-	/// Get and set the voting permissions, according to the enum PollVoters
+	/// Get and set the voting permissions, according to the enum `LJPollVoters`
 	var votingPermissions = Voters.all
 	
-	/// Get and set the viewing permissions, according to the enum PollViewers
-	var viewingPermissions = Viewers.All
+	/// Get and set the viewing permissions, according to the enum `LJPollViewers`
+	var viewingPermissions = Viewers.all
 	
 	@objc(LJPollVoters) enum Voters: Int {
 		case all = 1
@@ -44,20 +44,20 @@ class LJPoll: NSObject, NSSecureCoding {
 		}
 	}
 	
-	enum Viewers: Int {
-		case All = 1
-		case Friends = 2
-		case None = 3
+	@objc(LJPollViewers) enum Viewers: Int {
+		case all = 1
+		case friends = 2
+		case none = 3
 		
 		fileprivate var stringRepresentation: String {
 			switch self {
-			case .All:
+			case .all:
 				return "all"
 				
-			case .Friends:
+			case .friends:
 				return "friends"
 				
-			case .None:
+			case .none:
 				return "none"
 			}
 		}
@@ -103,7 +103,7 @@ class LJPoll: NSObject, NSSecureCoding {
 	}
 	
 	/// Remove the question at idx
-	@objc(deleteQuestionAtIndex:) func deleteQuestionAtIndex(idx: Int) {
+	@objc(deleteQuestionAtIndex:) func deleteQuestion(at idx: Int) {
 		questions.remove(at: idx)
 	}
 	
@@ -130,8 +130,8 @@ class LJPoll: NSObject, NSSecureCoding {
 		return buf
 	}
 	
-	class var keyPathsForValuesAffectingHtmlRepresentation: NSSet {
-		return NSSet(objects: "votingPermissions", "viewingPermissions", "name", "questions")
+	class var keyPathsForValuesAffectingHtmlRepresentation: Set<String> {
+		return Set(["votingPermissions", "viewingPermissions", "name", "questions"])
 	}
 	
 	func encode(with aCoder: NSCoder) {
@@ -147,7 +147,7 @@ class LJPoll: NSObject, NSSecureCoding {
 		name = aDecoder.decodeObject(forKey: pollNameKey) as? String ?? name
 		questions = aDecoder.decodeObject(forKey: pollQuestionsKey) as? [PollQuestion] ?? questions
 		votingPermissions = Voters(rawValue: aDecoder.decodeInteger(forKey: pollVotingKey)) ?? .all
-		viewingPermissions = Viewers(rawValue: aDecoder.decodeInteger(forKey: pollViewingKey)) ?? .All
+		viewingPermissions = Viewers(rawValue: aDecoder.decodeInteger(forKey: pollViewingKey)) ?? .all
 	}
 }
 

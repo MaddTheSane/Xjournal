@@ -151,9 +151,10 @@ static XJAccountManager *manager;
         [theAccount downloadFriends];
     } @catch (NSException *localException) {
         NSLog(@"%@ - %@", [localException name], [localException reason]);
-        NSRunAlertPanel(@"Could not log in",
-                        @"%@",
-                        @"OK",nil,nil,[localException reason]);
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = @"Could not log in";
+        alert.informativeText = localException.reason ?: @"Unknown reason";
+        [alert runModal];
     }
 }
 

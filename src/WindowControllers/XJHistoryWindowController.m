@@ -130,9 +130,10 @@ typedef NS_ENUM(int, XJHistorySelection) {
             userHasDeclinedDownload = ![self analyzeDayCounts];
             if(userHasDeclinedDownload) {
                 userHasDeclinedUpdate = YES;
-                NSRunCriticalAlertPanel(NSLocalizedString(@"Network Error", @""),
-                                        NSLocalizedString(@"Could not contact the server to get your post counts.  Please try again later.", @""),
-                                        NSLocalizedString(@"OK", @""),nil,nil);
+                NSAlert *alert = [NSAlert new];
+                alert.messageText = NSLocalizedString(@"Network Error", @"");
+                alert.informativeText = NSLocalizedString(@"Could not contact the server to get your post counts.  Please try again later.", @"");
+                [alert runModal];
             }
         }
 
@@ -227,10 +228,40 @@ typedef NS_ENUM(int, XJHistorySelection) {
 */
 - (IBAction)deleteSelectedEntry:(id)sender
 {
-    NSBeginAlertSheet(@"Delete Journal Entry", @"Cancel", @"Delete", nil, [self window], self, @selector(sheetDidEnd:returnCode:contextInfo:), nil, @"deleteEntry",
-                      NSLocalizedString(@"Are you sure you want to delete the selected entry from your journal?  This cannot be undone.", @""));
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = @"Delete Journal Entry";
+    alert.informativeText = NSLocalizedString(@"Are you sure you want to delete the selected entry from your journal?  This cannot be undone.", @"");
+    [alert addButtonWithTitle: @"Cancel"];
+    [alert addButtonWithTitle: @"Delete"];
+    [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertSecondButtonReturn) {
+            XJHistorySelection selectionType = [self browserSelectionType];
+            if (selectionType == XJHistorySearchResultSelected) {
+                LJEntry *entryToDelete = [self selectedSearchResult];
+                XJDay *day = [cal dayForDate: [entryToDelete date]];
+                @try {
+                    [day deleteEntry: entryToDelete];
+                } @catch (NSException *localException) {
+                    NSLog(@"Connection Reset During Delete");
+                }
+                [self executeSearchForString: [self selectedSearchString]];
+            } else {
+                XJDay *day = [self selectedDay];
+                @try {
+                    [day deleteEntryAtIndex: [browser selectedRowInColumn:3]];
+                } @catch (NSException *localException) {
+                    NSLog(@"Connection Reset During Delete");
+                }
+                NSInteger row = [browser selectedRowInColumn: 2];
+                [browser selectRow: row inColumn: 2];
+                //[browser reloadColumn: [browser lastVisibleColumn]];
+                [self setStatus: @""];
+            }
+        }
+    }];
 }
 
+#if 0
 // DidEndHandler for the delete confirmation sheet
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
@@ -308,6 +339,7 @@ typedef NS_ENUM(int, XJHistorySelection) {
         
     }
 }
+#endif
 
 - (BOOL)analyzeDayCounts
 {
@@ -719,7 +751,9 @@ typedef NS_ENUM(int, XJHistorySelection) {
         NSInteger calTotal = [cal totalEntriesInCalendar];
         [downloadTitle setStringValue: NSLocalizedString(@"Downloading History", @"")];
         
-        [NSApp beginSheet: progressSheet modalForWindow: [self window] modalDelegate: nil didEndSelector: nil contextInfo: nil];
+        [self.window beginSheet: progressSheet completionHandler:^(NSModalResponse returnCode) {
+            
+        }];
         
         [downloadBar setMaxValue: calTotal];
         [downloadBar setMinValue: 0.0];
@@ -729,10 +763,13 @@ typedef NS_ENUM(int, XJHistorySelection) {
         
         [NSThread detachNewThreadSelector: @selector(downloadEntireHistory) toTarget: self withObject: nil];
     } else {
-        NSBeginCriticalAlertSheet(NSLocalizedString(@"Network Error", @""),
-                                  NSLocalizedString(@"OK", @""),nil,nil,
-                                  [self window],nil,nil,nil,nil,
-                                  NSLocalizedString(@"Could not contact the server to update your history.  Please try again later.", @""));
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Network Error", @"");
+        alert.informativeText = NSLocalizedString(@"Could not contact the server to update your history.  Please try again later.", @"");
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+            // Do nothing
+        }];
     }
 }
 
@@ -747,7 +784,7 @@ typedef NS_ENUM(int, XJHistorySelection) {
     terminateUpdateThread = YES;
     updateInProgress = NO;
     
-    [NSApp endSheet: progressSheet];
+    [self.window endSheet: progressSheet];
     [progressSheet orderOut: nil];   
 }
 
@@ -771,8 +808,8 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
     else {
         updateIsComplete = YES;
         updateInProgress = NO;
-        [NSApp endSheet: progressSheet];
-        [progressSheet orderOut: nil];   
+        [self.window endSheet: progressSheet];
+        [progressSheet orderOut: nil];
 	}
 	
 	// Here, note the selected rows in each column and select them again
@@ -885,7 +922,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
     updateInProgress = NO;
     userHasDeclinedUpdate = YES;
     
-    [NSApp endSheet: progressSheet];
+    [self.window endSheet: progressSheet];
     [progressSheet orderOut: nil];
     NSLog(@"historyDownloadFailed: %@", [exception name]);
     
@@ -899,16 +936,21 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
 {
     if([NetworkConfig destinationIsReachable:@"www.livejournal.com"]) {
         [downloadTitle setStringValue: NSLocalizedString(@"Updating History", @"")];
-        [NSApp beginSheet: progressSheet modalForWindow: [self window] modalDelegate: nil didEndSelector: nil contextInfo: nil];
+        [self.window beginSheet: progressSheet completionHandler:^(NSModalResponse returnCode) {
+            // Do nothing
+        }];
         [downloadBar setIndeterminate: NO];
         [downloadStatus setStringValue: @""];
         
         [NSThread detachNewThreadSelector: @selector(updateAgainstDayCounts) toTarget: self withObject: nil];
     } else {
-        NSBeginCriticalAlertSheet(NSLocalizedString(@"Network Error", @""),
-                                  NSLocalizedString(@"OK", @""),nil,nil,
-                                  [self window],nil,nil,nil,nil,
-                                  NSLocalizedString(@"Could not contact the server to update your history.  Please try again later.", @""));
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Network Error", @"");
+        alert.informativeText = NSLocalizedString(@"Could not contact the server to update your history.  Please try again later.", @"");
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+            // Do nothing
+        }];
     }
 }
 
@@ -1065,30 +1107,31 @@ static inline void RunOnMainThreadSync(dispatch_block_t theBlock)
 // Information sheet
 - (void)showEncodingErrorSheetForDate: (NSDate *)date
 {
-    NSBeginCriticalAlertSheet(@"Text Encoding Error",
-                              @"OK",
-                              @"Open Info Page",
-                              nil,
-                              [self window],
-                              self,
-                              @selector(sheetDidEnd:returnCode:contextInfo:),
-                              @selector(sheetDidDismiss:returnCode:contextInfo:),
-                              @"textEncoding",
-                              @"There is a problem with your text encoding in an entry on %@.  Please visit your LiveJournal information page and set the \"Auto Convert Older Entries From\" setting appropriately.", [date descriptionWithLocale: nil]);
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = @"Text Encoding Error";
+    alert.informativeText = [NSString stringWithFormat: @"There is a problem with your text encoding in an entry on %@.  Please visit your LiveJournal information page and set the \"Auto Convert Older Entries From\" setting appropriately.", [date descriptionWithLocale: nil]];
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert addButtonWithTitle: NSLocalizedString(@"OK", @"")];
+    [alert addButtonWithTitle: NSLocalizedString(@"Open Info Page", @"")];
+    [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+        switch(returnCode) {
+            case NSAlertSecondButtonReturn:
+                [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://www.livejournal.com/editinfo.bml"]];
+                break;
+                // do nothing on default return
+        }
+    }];
 }
 
 - (void)showGenericErrorSheet: (NSString *)message
 {
-    NSBeginCriticalAlertSheet(@"Error",
-                              @"OK",
-                              nil,
-                              nil,
-                              [self window],
-                              self,
-                              @selector(sheetDidEnd:returnCode:contextInfo:),
-                              @selector(sheetDidDismiss:returnCode:contextInfo:),
-                              @"textEncoding",
-                              @"%@", message);
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = @"Error";
+    alert.informativeText = message;
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert beginSheetModalForWindow: self.window completionHandler:^(NSModalResponse returnCode) {
+        //Do nothing
+    }];
 }
 
 - (BOOL)columnZeroSelectionIsYear
